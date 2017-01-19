@@ -1,0 +1,132 @@
+Chức năng: Sửa ngày duyệt kế toán
+
+Mục đích sử dụng:
+- Sửa lại thời gian duyệt kế toán viện phí cho đúng khi gỡ duyệt ra duyệt lại.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng đến báo cáo lấy theo tiêu chí duyệt viện phí.
+
+Sử dụng:
+- Sử dụng đối với bệnh nhân đã được duyệt kế toán viện phí.
+
+Chú ý:
+- Mức độ nguy hiểm: 5/10
+- Cẩn thận trước khi thực hiện.
+===================
+Chức năng: Xử lý bệnh nhân bỏ khoa
+
+Mục đích sử dụng:
+- Sửa lại hồ sơ bệnh án của bệnh nhân trong trường hợp đã tiếp nhận bệnh nhân vào buồng điều trị, bệnh nhân bỏ khám, sai mã điều trị.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng tới hồ sơ bệnh án, trạng thái viện phí của bệnh nhân.
+
+Sử dụng:
+- Sử dụng đối với bệnh nhân đang điều trị.
+
+Chú ý:
+- Mức độ nguy hiểm: 8/10
+- Cẩn thận trước khi thực hiện.
+=======================
+Chức năng: Sửa tên, giá DV/thuốc của bệnh nhân
+
+Mục đích sử dụng:
+- Dịch vụ đã kê cho bệnh nhân sai giá, sai tên.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng tới hồ sơ bệnh án, dịch vụ, phơi thanh toán, tiền của bệnh nhân. Và các báo cáo BHYT, viện phí, doanh thu
+
+Sử dụng:
+- Sử dụng đối với bệnh nhân đang điều trị.
+
+Chú ý:
+- Mức độ nguy hiểm: 9/10
+- Backup trước khi thực hiện.
+- Khuyến cáo khi sử dụng.
+============================
+Chức năng: Update data serviceprice
+
+Mục đích sử dụng:
+- Cập nhật lại trường dữ liệu liên quan đến thanh toán BHYT trong bảng serviceprice.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng tới báo cáo BHYT.
+
+Sử dụng:
+- Sử dụng đối với bệnh nhân đang điều trị và đã thanh toán.
+
+Chú ý:
+- Mức độ nguy hiểm: 5/10
+============================
+Chức năng: Chạy khả dụng - tồn kho
+
+Mục đích sử dụng:
+- Cập nhật lại số lượng khả dụng của thuốc/vật tư khi số lượng khả dụng > số lượng tồn kho (sai).
+- Làm giảm tình trạng thuốc không đủ số lượng để xuất.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng tới số lượng thuốc/vật tư trong kho.
+
+Sử dụng:
+- Sử dụng trong trường hợp số lượng KD>TK và thuốc không đủ số lượng để xuất.
+
+Chú ý:
+- Không gây nguy hiểm.
+====================
+Chức năng: Sửa phơi thanh toán
+
+Mục đích sử dụng:
+- Sửa loại hình thanh toán, số lượng của dịch vụ trong trường hợp không thao tác được trên phần mềm.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng tới phơi thanh toán của bệnh nhân.
+
+Sử dụng:
+- Sử dụng trong trường hợp phơi thanh toán bị sai số lượng, loại hình thanh toán.
+
+Chú ý:
+- Mức độ nguy hiểm: 5/10
+=========================
+Chức năng: Sửa phiếu chỉ định dịch vụ
+
+Mục đích sử dụng:
+- Sửa thời gian, xóa phiếu yêu cầu dịch vụ trong trường hợp kê sai thời gian, phần mềm lỗi không thể xóa được.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng tới phơi thanh toán, phiếu dịch vụ của bệnh nhân.
+
+Sử dụng:
+- Sử dụng trong trường hợp sai thời gian chỉ định, không xóa được từ phần mềm.
+
+Chú ý:
+- Mức độ nguy hiểm: 6/10
+=================================
+Chức năng: Sửa thông tin bệnh án
+
+Mục đích sử dụng:
+- Sửa thông tin liên quan đến bệnh nhân, thông tin về thẻ BHYT.
+
+Phạm vi ảnh hưởng:
+- Ảnh hướng tới hồ sơ bệnh án của bệnh nhân, các giấy tờ liên quan, báo cáo BHYT.
+
+Sử dụng:
+- Sử dụng trong trường hợp sai thông tin bệnh án, để thanh toán BHYT.
+
+Chú ý:
+- Mức độ nguy hiểm: 9/10
+- Cẩn thận trước khi thực hiện.
+- Khuyến cáo khi sử dụng.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

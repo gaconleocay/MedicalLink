@@ -207,6 +207,9 @@ namespace MedicalLink.FormCommon
                     case "TOOL_16":
                         ucResult = new ChucNang.ucXuLyMaVPTrang();
                         break;
+                    case "TOOL_17":
+                        ucResult = new ChucNang.ucSuaDanhMucDichVu();
+                        break;
                     //
                     case "REPORT_01":
                         ucResult = new ChucNang.ucBCDSBNSDdv();

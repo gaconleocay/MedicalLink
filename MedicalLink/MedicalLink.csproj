@@ -248,6 +248,7 @@
     <Compile Include="ChucNang\ucXuLyMaVPTrang.Designer.cs">
       <DependentUpon>ucXuLyMaVPTrang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassCommon\classDanhMucDichVu.cs" />
     <Compile Include="FormCommon\KetNoiSCDLProcess.cs" />
     <Compile Include="HeThong\ucDanhSachNhanVien.cs">
       <SubType>UserControl</SubType>
@@ -582,6 +583,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Documents\Huong dan.txt" />
+    <None Include="Images\edit-2-16.png" />
+    <None Include="Images\save-16.png" />
+    <None Include="Images\recurring-appointment-16.png" />
     <Content Include="Martin-Berube-Flat-Animal-Crab.ico" />
     <None Include="Images\arrow-32-16.png" />
   </ItemGroup>

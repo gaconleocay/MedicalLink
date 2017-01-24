@@ -13,6 +13,8 @@ using System.Globalization;
 using MedicalLink.Base;
 using Npgsql;
 using DevExpress.XtraTab;
+using System.Diagnostics;
+using DevExpress.XtraSplashScreen;
 
 namespace MedicalLink.FormCommon
 {
@@ -45,6 +47,7 @@ namespace MedicalLink.FormCommon
                 LoadGiaoDienDevexpress();
                 EnablePhanQuyenNguoiDung();
                 LoadThongTinCoBan();
+                LoadVersion();
             }
             catch (Exception ex)
             {
@@ -103,6 +106,20 @@ namespace MedicalLink.FormCommon
                 {
                     linkLabelTenNguoiDung.Text = MedicalLink.Base.SessionLogin.SessionUsername;
                 }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void LoadVersion()
+        {
+            try
+            {
+                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+                lblVersion.Text = fvi.FileVersion;
             }
             catch (Exception ex)
             {
@@ -448,29 +465,22 @@ namespace MedicalLink.FormCommon
 
         private void btnDBUpdate_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                KetNoiSCDLProcess.CreateTableTblUser();
-                KetNoiSCDLProcess.CreateTableTblPermission();
-                KetNoiSCDLProcess.CreateTableTblDepartment();
-                KetNoiSCDLProcess.CreateTableTblLog();
-                KetNoiSCDLProcess.CreateTableTblUpdateKhaDung();
-                KetNoiSCDLProcess.CreateTableTblServiceFull();
-                KetNoiSCDLProcess.CreateTableTblClients();
-                //KetNoiSCDLProcess.CreateTableColumeBackupDichVu();
-                KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh();
-                KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew();
-                KetNoiSCDLProcess.UpdateTableWithVersion();
-                KetNoiSCDLProcess.CreateViewServicepriceDichVu();
-                KetNoiSCDLProcess.CreateViewServicepriceThuoc();
-
-                MessageBox.Show("Cập nhật cơ sở dữ liệu thành công", "Thông báo");
+                if (KetNoiSCDLProcess.CreateTableTblUser() && KetNoiSCDLProcess.CreateTableTblPermission() && KetNoiSCDLProcess.CreateTableTblDepartment() && KetNoiSCDLProcess.CreateTableTblLog() && KetNoiSCDLProcess.CreateTableTblUpdateKhaDung() && KetNoiSCDLProcess.CreateTableTblServiceFull() && KetNoiSCDLProcess.CreateTableTblClients() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew() && KetNoiSCDLProcess.CreateTableBCTongTheKhoa() && KetNoiSCDLProcess.CreateViewServicepriceDichVu() && KetNoiSCDLProcess.CreateViewServicepriceThuoc())
+                {
+                    MessageBox.Show("Cập nhật cơ sở dữ liệu thành công", "Thông báo");
+                }
+                //KetNoiSCDLProcess.CreateTableColumeBackupDichVu() &&
+                //KetNoiSCDLProcess.UpdateTableWithVersion()
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MedicalLink.Base.Logging.Error(ex);
+                MessageBox.Show("Lỗi cập nhật cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MedicalLink.Base.Logging.Error("Lỗi cập nhật cơ sở dữ liệu!" + ex.ToString());
             }
+            SplashScreenManager.CloseForm();
         }
         #endregion
 

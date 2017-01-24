@@ -197,8 +197,9 @@
             this.tabMenuDashboard.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tabMenuDashboard.Name = "tabMenuDashboard";
+            this.tabMenuDashboard.PageVisible = false;
             this.tabMenuDashboard.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuDashboard.Size = new System.Drawing.Size(1134, 617);
+            this.tabMenuDashboard.Size = new System.Drawing.Size(1116, 569);
             // 
             // tabMenuChucNang
             // 

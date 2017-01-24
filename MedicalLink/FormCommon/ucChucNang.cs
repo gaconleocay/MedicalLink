@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraTab;
 using DevExpress.XtraGrid.Views.Grid;
+using MedicalLink.Base;
 
 namespace MedicalLink.FormCommon
 {
     public partial class ucChucNang : UserControl
     {
         #region Declaration
+        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         public string CurrentTabPage { get; set; }
         public int SelectedTabPageIndex { get; set; }
         internal frmMain frmMain;
@@ -44,6 +46,32 @@ namespace MedicalLink.FormCommon
             {
                 List<ClassCommon.classPermission> lstDSChucNang = new List<ClassCommon.classPermission>();
                 lstDSChucNang = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 2).ToList();
+                if (SessionLogin.SessionUsercode != KeyTrongPhanMem.AdminUser_key)
+                {
+                    string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true) + "';";
+                    DataView dv_per = new DataView(condb.getDataTable(sqlquerry_per));
+                    //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
+                    if (dv_per != null && dv_per.Count > 0)
+                    {
+                        for (int i = 0; i < lstDSChucNang.Count; i++)
+                        {
+                            for (int j = 0; j < dv_per.Count; j++)
+                            {
+                                if (lstDSChucNang[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
+                                {
+                                    lstDSChucNang[i].permissioncheck = Convert.ToBoolean(dv_per[j]["permissioncheck"]);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < lstDSChucNang.Count; i++)
+                    {
+                        lstDSChucNang[i].permissioncheck = true;
+                    }
+                }
                 gridControlDSChucNang.DataSource = lstDSChucNang;
             }
             catch (Exception ex)
@@ -57,6 +85,32 @@ namespace MedicalLink.FormCommon
             {
                 List<ClassCommon.classPermission> lstDSBaoCao = new List<ClassCommon.classPermission>();
                 lstDSBaoCao = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 3).ToList();
+                if (SessionLogin.SessionUsercode != KeyTrongPhanMem.AdminUser_key)
+                {
+                    string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true) + "';";
+                    DataView dv_per = new DataView(condb.getDataTable(sqlquerry_per));
+                    //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
+                    if (dv_per != null && dv_per.Count > 0)
+                    {
+                        for (int i = 0; i < lstDSBaoCao.Count; i++)
+                        {
+                            for (int j = 0; j < dv_per.Count; j++)
+                            {
+                                if (lstDSBaoCao[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
+                                {
+                                    lstDSBaoCao[i].permissioncheck = Convert.ToBoolean(dv_per[j]["permissioncheck"]);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < lstDSBaoCao.Count; i++)
+                    {
+                        lstDSBaoCao[i].permissioncheck = true;
+                    }
+                }
                 gridControlDSBaoCao.DataSource = lstDSBaoCao;
             }
             catch (Exception ex)
@@ -116,7 +170,7 @@ namespace MedicalLink.FormCommon
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.BackColor = Color.Salmon;
                     e.Appearance.ForeColor = Color.Black;
                 }
             }
@@ -161,19 +215,41 @@ namespace MedicalLink.FormCommon
                 var rowHandle = gridViewDSChucNang.FocusedRowHandle;
                 string code = gridViewDSChucNang.GetRowCellValue(rowHandle, "permissioncode").ToString();
                 string name = gridViewDSChucNang.GetRowCellValue(rowHandle, "permissionname").ToString();
-                bool permission = Convert.ToBoolean(gridViewDSChucNang.GetRowCellValue(rowHandle, "permissioncheck"));
-
-                if (permission ==false) //xemlai...
+                if (Convert.ToBoolean(gridViewDSChucNang.GetRowCellValue(rowHandle, "permissioncheck")))
                 {
                     //Chon ucControl
-                   ucControlActive= TabControlProcess.SelectUCControlActive(code);
-                   MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, code, name, ucControlActive);
+                    ucControlActive = TabControlProcess.SelectUCControlActive(code);
+                    MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, code, name, ucControlActive);
                     ucControlActive.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Bạn không được phân quyền sử dụng chức năng này !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void gridViewDSChucNang_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            try
+            {
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["permissioncheck"]);
+                    if (category == "Checked")
+                    {
+                        e.Appearance.BackColor = Color.DeepSkyBlue;
+                        e.Appearance.BackColor2 = Color.LightCyan;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
         #endregion
@@ -186,7 +262,7 @@ namespace MedicalLink.FormCommon
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.BackColor = Color.Salmon;
                     e.Appearance.ForeColor = Color.Black;
                 }
             }
@@ -231,14 +307,16 @@ namespace MedicalLink.FormCommon
                 var rowHandle = gridViewDSBaoCao.FocusedRowHandle;
                 string code = gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissioncode").ToString();
                 string name = gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissionname").ToString();
-                bool permission = Convert.ToBoolean(gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissioncheck"));
-
-                if (permission == false) //xemlai...
+                if (Convert.ToBoolean(gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissioncheck"))) //xemlai...
                 {
                     //Chon ucControl
                     ucControlActive = TabControlProcess.SelectUCControlActive(code);
                     MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, code, name, ucControlActive);
                     ucControlActive.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Bạn không được phân quyền sử dụng chức năng này !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -246,7 +324,29 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void gridViewDSBaoCao_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            try
+            {
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["permissioncheck"]);
+                    if (category == "Checked")
+                    {
+                        e.Appearance.BackColor = Color.DeepSkyBlue;
+                        e.Appearance.BackColor2 = Color.LightCyan;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         #endregion
+
+
 
 
 

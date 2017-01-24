@@ -42,7 +42,7 @@
             this.gridDSBCColumeStt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.permissioncheck1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -52,7 +52,7 @@
             this.gridColumnstt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.permissioncheck = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -211,12 +211,13 @@
             this.gridDSBCColumeStt,
             this.gridColumn7,
             this.gridColumn8,
-            this.gridColumn10});
+            this.permissioncheck1});
             this.gridViewDSBaoCao.GridControl = this.gridControlDSBaoCao;
             this.gridViewDSBaoCao.Name = "gridViewDSBaoCao";
             this.gridViewDSBaoCao.OptionsView.ShowGroupPanel = false;
             this.gridViewDSBaoCao.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSBaoCao_CustomDrawCell);
             this.gridViewDSBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSBaoCao_RowCellStyle);
+            this.gridViewDSBaoCao.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewDSBaoCao_RowStyle);
             this.gridViewDSBaoCao.Click += new System.EventHandler(this.gridViewDSBaoCao_Click);
             this.gridViewDSBaoCao.DoubleClick += new System.EventHandler(this.gridViewDSBaoCao_DoubleClick);
             // 
@@ -265,22 +266,22 @@
             this.gridColumn8.VisibleIndex = 2;
             this.gridColumn8.Width = 321;
             // 
-            // gridColumn10
+            // permissioncheck1
             // 
-            this.gridColumn10.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn10.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn10.Caption = "Phân quyền";
-            this.gridColumn10.ColumnEdit = this.repositoryItemCheckEdit2;
-            this.gridColumn10.FieldName = "permissioncheck";
-            this.gridColumn10.Name = "gridColumn10";
-            this.gridColumn10.OptionsColumn.AllowEdit = false;
-            this.gridColumn10.OptionsColumn.FixedWidth = true;
-            this.gridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
-            this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 3;
-            this.gridColumn10.Width = 70;
+            this.permissioncheck1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.permissioncheck1.AppearanceHeader.Options.UseForeColor = true;
+            this.permissioncheck1.AppearanceHeader.Options.UseTextOptions = true;
+            this.permissioncheck1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.permissioncheck1.Caption = "Phân quyền";
+            this.permissioncheck1.ColumnEdit = this.repositoryItemCheckEdit2;
+            this.permissioncheck1.FieldName = "permissioncheck";
+            this.permissioncheck1.Name = "permissioncheck1";
+            this.permissioncheck1.OptionsColumn.AllowEdit = false;
+            this.permissioncheck1.OptionsColumn.FixedWidth = true;
+            this.permissioncheck1.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
+            this.permissioncheck1.Visible = true;
+            this.permissioncheck1.VisibleIndex = 3;
+            this.permissioncheck1.Width = 70;
             // 
             // repositoryItemCheckEdit2
             // 
@@ -350,12 +351,13 @@
             this.gridColumnstt,
             this.gridColumn2,
             this.gridColumn3,
-            this.gridColumn5});
+            this.permissioncheck});
             this.gridViewDSChucNang.GridControl = this.gridControlDSChucNang;
             this.gridViewDSChucNang.Name = "gridViewDSChucNang";
             this.gridViewDSChucNang.OptionsView.ShowGroupPanel = false;
             this.gridViewDSChucNang.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSChucNang_CustomDrawCell);
             this.gridViewDSChucNang.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSChucNang_RowCellStyle);
+            this.gridViewDSChucNang.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewDSChucNang_RowStyle);
             this.gridViewDSChucNang.Click += new System.EventHandler(this.gridControlDSChucNang_Click);
             this.gridViewDSChucNang.DoubleClick += new System.EventHandler(this.gridViewDSChucNang_DoubleClick);
             // 
@@ -404,22 +406,22 @@
             this.gridColumn3.VisibleIndex = 2;
             this.gridColumn3.Width = 317;
             // 
-            // gridColumn5
+            // permissioncheck
             // 
-            this.gridColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn5.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.Caption = "Phân quyền";
-            this.gridColumn5.ColumnEdit = this.repositoryItemCheckEdit1;
-            this.gridColumn5.FieldName = "permissioncheck";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.OptionsColumn.AllowEdit = false;
-            this.gridColumn5.OptionsColumn.FixedWidth = true;
-            this.gridColumn5.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 3;
-            this.gridColumn5.Width = 70;
+            this.permissioncheck.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.permissioncheck.AppearanceHeader.Options.UseForeColor = true;
+            this.permissioncheck.AppearanceHeader.Options.UseTextOptions = true;
+            this.permissioncheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.permissioncheck.Caption = "Phân quyền";
+            this.permissioncheck.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.permissioncheck.FieldName = "permissioncheck";
+            this.permissioncheck.Name = "permissioncheck";
+            this.permissioncheck.OptionsColumn.AllowEdit = false;
+            this.permissioncheck.OptionsColumn.FixedWidth = true;
+            this.permissioncheck.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
+            this.permissioncheck.Visible = true;
+            this.permissioncheck.VisibleIndex = 3;
+            this.permissioncheck.Width = 70;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -545,7 +547,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnstt;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn permissioncheck;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraLayout.LayoutControl layoutControl3;
@@ -560,7 +562,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridDSBCColumeStt;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn permissioncheck1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;

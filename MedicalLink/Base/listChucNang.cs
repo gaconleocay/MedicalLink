@@ -14,6 +14,11 @@ namespace MedicalLink.Base
             List<ClassCommon.classPermission> lstresult = new List<classPermission>();
             try
             {
+                //permissiontype = 1 system
+                //permissiontype = 2 Tools
+                //permissiontype = 3 bao cao
+                //permissiontype = 4 phan quyen thao tac
+                //permissiontype = 5 Dashboard
                 //System
                 ClassCommon.classPermission SYS_01 = new ClassCommon.classPermission();
                 SYS_01.permissioncheck = false;
@@ -214,7 +219,23 @@ namespace MedicalLink.Base
                 REPORT_07.permissionname = "Tìm dịch vụ/thuốc không có mã trong danh mục";
                 REPORT_07.permissiontype = 3;
                 lstresult.Add(REPORT_07);
-               
+
+                //Dashboard
+                ClassCommon.classPermission REPORT_08 = new ClassCommon.classPermission();
+                REPORT_08.permissioncheck = false;
+                REPORT_08.permissioncode = "REPORT_08";
+                REPORT_08.permissionname = "Dashboard BC quản lý tổng thể khoa";
+                REPORT_08.permissiontype = 5;
+                lstresult.Add(REPORT_08);
+
+                ClassCommon.classPermission REPORT_09 = new ClassCommon.classPermission();
+                REPORT_09.permissioncheck = false;
+                REPORT_09.permissioncode = "REPORT_09";
+                REPORT_09.permissionname = "Dashboard BC bệnh nhân nội trú";
+                REPORT_09.permissiontype = 5;
+                lstresult.Add(REPORT_09);
+
+
             }
             catch (Exception ex)
             {

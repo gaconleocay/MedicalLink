@@ -237,9 +237,9 @@ namespace MedicalLink.ChucNang
                     //MessageBox.Show(obj);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 

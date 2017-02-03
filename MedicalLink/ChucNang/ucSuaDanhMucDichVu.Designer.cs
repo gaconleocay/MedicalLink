@@ -515,6 +515,7 @@
             this.gridViewDMDichVu.GridControl = this.gridControlDMDichVu;
             this.gridViewDMDichVu.Name = "gridViewDMDichVu";
             this.gridViewDMDichVu.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDMDichVu.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDMDichVu.OptionsView.ShowGroupPanel = false;
             this.gridViewDMDichVu.OptionsView.ShowIndicator = false;
             // 

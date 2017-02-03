@@ -78,11 +78,13 @@ namespace MedicalLink.ChucNang.MoBenhAn
                     string sqlmobenhan = "UPDATE medicalrecord SET medicalrecordstatus='2' WHERE medicalrecordid=" + _madt + "; UPDATE vienphi SET vienphistatus='0', vienphidate_ravien='0001-01-01 00:00:00', chandoanravien='', chandoanravien_code='',   chandoanravien_kemtheo='', chandoanravien_kemtheo_code='' WHERE vienphiid=" + _mavp + "; UPDATE hosobenhan SET hosobenhandate_ravien='0001-01-01 00:00:00', hosobenhanstatus='0', xutrikhambenhid='0' WHERE hosobenhanid=" + _hosobn + ";";
                     string sqlinsert = "INSERT INTO logevent (LogApp, LogUser, LogForm, SoftVersion, LogTime, IPAddress, ComputerName, PatientID, HoSoBenhAnID, VienPhiID, MedicalRecordID, MauBenhPhamID, SoThuTuPhongKhamID, ServicePriceID, DepartmentGroupID, DepartmentID, LogEventType, LogEventContentDetail, LogEventContent)  VALUES( 'Tools', '" + SessionLogin.SessionUsercode + "', '', '" + SessionLogin.SessionVersion + "', '" + datetime + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + _mabn + "', '" + _hosobn + "', '" + _mavp + "', '" + _madt + "', '0', '0', '0', '" + _idkhoa + "', '" + _idphong + "', '4', '" + _mabn + "|" + _tenbn + "|" + _khoa + "|" + _phong + "|" + SessionLogin.SessionUsercode + "|" + SessionLogin.SessionUsername + "|" + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "|" + memoEditLyDo.Text + "', 'Mở bệnh án " + _tenbn + "," + _mabn + "," + _madt + " -> " + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "," + memoEditLyDo.Text + "');";
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Mở lại bệnh án: Mã BN: " + _mabn + " tên BN: " + _tenbn + " mã VP: " + _mavp + " mã ĐT: " + _madt + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                    condb.ExecuteNonQuery(sqlmobenhan);
-                    condb.ExecuteNonQuery(sqlinsert);
-                    condb.ExecuteNonQuery(sqlinsert_log);
-                    this.Enabled = false;
-                    Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                    if (condb.ExecuteNonQuery(sqlmobenhan))
+                    {
+                        condb.ExecuteNonQuery(sqlinsert);
+                        condb.ExecuteNonQuery(sqlinsert_log);
+                        this.Enabled = false;
+                        Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                    }
                 }
                 else // không là khoa cuối
                 {
@@ -113,16 +115,17 @@ namespace MedicalLink.ChucNang.MoBenhAn
                             string sqlxoamadt = "DELETE FROM MedicalRecord WHERE MedicalRecordID =" + _madtsau + ";";
                             string sqlinsert = "INSERT INTO logevent (LogApp, LogUser, LogForm, SoftVersion, LogTime, IPAddress, ComputerName, PatientID, HoSoBenhAnID, VienPhiID, MedicalRecordID, MauBenhPhamID, SoThuTuPhongKhamID, ServicePriceID, DepartmentGroupID, DepartmentID, LogEventType, LogEventContentDetail, LogEventContent)  VALUES( 'Tools', '" + SessionLogin.SessionUsercode + "', '', '" + SessionLogin.SessionVersion + "', '" + datetime + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + _mabn + "', '" + _hosobn + "', '" + _mavp + "', '" + _madt + "', '0', '0', '0', '" + _idkhoa + "', '" + _idphong + "', '4', '" + _mabn + "|" + _tenbn + "|" + _khoa + "|" + _phong + "|" + SessionLogin.SessionUsercode + "|" + SessionLogin.SessionUsername + "|" + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "|" + memoEditLyDo.Text + "', 'Mở bệnh án " + _tenbn + "," + _mabn + "," + _madt + " -> " + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "," + memoEditLyDo.Text + "');";
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Mở lại bệnh án: Mã BN: " + _mabn + " tên BN: " + _tenbn + " mã VP: " + _mavp + " mã ĐT: " + _madt + ". Xóa mã điều trị ở phòng hành chính: " + _madtsau + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlmobenhan);
-                            condb.ExecuteNonQuery(sqlxoamadt);
-                            condb.ExecuteNonQuery(sqlinsert);
-                            condb.ExecuteNonQuery(sqlinsert_log);
-                            this.Enabled = false;
 
-                            Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                            if (condb.ExecuteNonQuery(sqlmobenhan))
+                            {
+                                condb.ExecuteNonQuery(sqlxoamadt);
+                                condb.ExecuteNonQuery(sqlinsert);
+                                condb.ExecuteNonQuery(sqlinsert_log);
+                                this.Enabled = false;
 
+                                Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                            }
                         }
-
 
                     }
                     else
@@ -131,13 +134,14 @@ namespace MedicalLink.ChucNang.MoBenhAn
                         string sqlmobenhan = "UPDATE MedicalRecord SET MedicalRecordStatus = '2' WHERE MedicalRecordID=" + _madt + ";";
                         string sqlinsert = "INSERT INTO logevent (LogApp, LogUser, LogForm, SoftVersion, LogTime, IPAddress, ComputerName, PatientID, HoSoBenhAnID, VienPhiID, MedicalRecordID, MauBenhPhamID, SoThuTuPhongKhamID, ServicePriceID, DepartmentGroupID, DepartmentID, LogEventType, LogEventContentDetail, LogEventContent)  VALUES( 'Tools', '" + SessionLogin.SessionUsercode + "', '', '" + SessionLogin.SessionVersion + "', '" + datetime + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + _mabn + "', '" + _hosobn + "', '" + _mavp + "', '" + _madt + "', '0', '0', '0', '" + _idkhoa + "', '" + _idphong + "', '4', '" + _mabn + "|" + _tenbn + "|" + _khoa + "|" + _phong + "|" + SessionLogin.SessionUsercode + "|" + SessionLogin.SessionUsername + "|" + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "|" + memoEditLyDo.Text + "', 'Mở bệnh án " + _tenbn + "," + _mabn + "," + _madt + " -> " + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "," + memoEditLyDo.Text + "');";
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Mở lại bệnh án: Mã BN: " + _mabn + " tên BN: " + _tenbn + " mã VP: " + _mavp + " mã ĐT: " + _madt + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                        condb.ExecuteNonQuery(sqlmobenhan);
-                        condb.ExecuteNonQuery(sqlinsert);
-                        condb.ExecuteNonQuery(sqlinsert_log);
-                        this.Enabled = false;
+                        if (condb.ExecuteNonQuery(sqlmobenhan))
+                        {
+                            condb.ExecuteNonQuery(sqlinsert);
+                            condb.ExecuteNonQuery(sqlinsert_log);
+                            this.Enabled = false;
 
-                        Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
-
+                            Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                        }
                     }
                 }
             }
@@ -159,7 +163,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 comboBoxNYC.Focus();
             }
             catch (Exception ex)
-            {             
+            {
                 throw;
             }
         }
@@ -203,7 +207,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 comboBoxNYC.ValueMember = "manv";
             }
             catch (Exception ex)
-            {             
+            {
                 throw;
             }
         }

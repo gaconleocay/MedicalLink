@@ -232,7 +232,13 @@ namespace MedicalLink.FormCommon
                     case "REPORT_07":
                         ucResult = new ChucNang.ucTimThuocDVSaiMa();
                         break;
-
+                    //
+                    case "REPORT_08":
+                        ucResult = new Dashboard.ucBaoCaoTongTheKhoa();
+                        break;
+                    case "REPORT_09":
+                        ucResult = new Dashboard.ucBaoCaoBenhNhanNoiTru();
+                        break;
 
                     default:
                         break;

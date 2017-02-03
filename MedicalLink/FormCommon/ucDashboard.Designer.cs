@@ -41,19 +41,16 @@
             this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem7 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem8 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarBCQLTongTheKhoa = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarBCBenhNhanNoiTru = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabControlChucNang = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabDashboard = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage = new DevExpress.XtraTab.XtraTabPage();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlChucNang)).BeginInit();
-            this.xtraTabControlChucNang.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -67,7 +64,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControlChucNang);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1096, 613);
-            this.splitContainerControl1.SplitterPosition = 145;
+            this.splitContainerControl1.SplitterPosition = 180;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -88,14 +85,14 @@
             this.navBarItem4,
             this.navBarItem5,
             this.navBarItem6,
-            this.navBarItem7,
-            this.navBarItem8,
+            this.navBarBCQLTongTheKhoa,
+            this.navBarBCBenhNhanNoiTru,
             this.navBarItem9,
             this.navBarItem10});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 145;
-            this.navBarControl1.Size = new System.Drawing.Size(145, 613);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 180;
+            this.navBarControl1.Size = new System.Drawing.Size(180, 613);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -117,12 +114,14 @@
             this.navBarItem1.Caption = "Doanh thu";
             this.navBarItem1.Name = "navBarItem1";
             this.navBarItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem1.SmallImage")));
+            this.navBarItem1.Visible = false;
             // 
             // navBarItem2
             // 
             this.navBarItem2.Caption = "Tạm ứng";
             this.navBarItem2.Name = "navBarItem2";
             this.navBarItem2.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem2.Visible = false;
             // 
             // navBarGroup2
             // 
@@ -142,12 +141,14 @@
             this.navBarItem3.Caption = "navBarItem3";
             this.navBarItem3.Name = "navBarItem3";
             this.navBarItem3.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem3.Visible = false;
             // 
             // navBarItem4
             // 
             this.navBarItem4.Caption = "navBarItem4";
             this.navBarItem4.Name = "navBarItem4";
             this.navBarItem4.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem4.Visible = false;
             // 
             // navBarGroup3
             // 
@@ -167,12 +168,14 @@
             this.navBarItem5.Caption = "navBarItem5";
             this.navBarItem5.Name = "navBarItem5";
             this.navBarItem5.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem5.Visible = false;
             // 
             // navBarItem6
             // 
             this.navBarItem6.Caption = "navBarItem6";
             this.navBarItem6.Name = "navBarItem6";
             this.navBarItem6.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem6.Visible = false;
             // 
             // navBarGroup4
             // 
@@ -183,21 +186,23 @@
             this.navBarGroup4.Caption = "NỘI TRÚ";
             this.navBarGroup4.Expanded = true;
             this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem7),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem8)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCQLTongTheKhoa),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCBenhNhanNoiTru)});
             this.navBarGroup4.Name = "navBarGroup4";
             // 
-            // navBarItem7
+            // navBarBCQLTongTheKhoa
             // 
-            this.navBarItem7.Caption = "navBarItem7";
-            this.navBarItem7.Name = "navBarItem7";
-            this.navBarItem7.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCQLTongTheKhoa.Caption = "BC QL Tổng thể khoa";
+            this.navBarBCQLTongTheKhoa.Name = "navBarBCQLTongTheKhoa";
+            this.navBarBCQLTongTheKhoa.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCQLTongTheKhoa.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCQLTongTheKhoa_LinkClicked);
             // 
-            // navBarItem8
+            // navBarBCBenhNhanNoiTru
             // 
-            this.navBarItem8.Caption = "navBarItem8";
-            this.navBarItem8.Name = "navBarItem8";
-            this.navBarItem8.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCBenhNhanNoiTru.Caption = "BC Bệnh nhân nội trú";
+            this.navBarBCBenhNhanNoiTru.Name = "navBarBCBenhNhanNoiTru";
+            this.navBarBCBenhNhanNoiTru.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCBenhNhanNoiTru.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCBenhNhanNoiTru_LinkClicked);
             // 
             // navBarGroup5
             // 
@@ -217,12 +222,14 @@
             this.navBarItem9.Caption = "navBarItem9";
             this.navBarItem9.Name = "navBarItem9";
             this.navBarItem9.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem9.Visible = false;
             // 
             // navBarItem10
             // 
             this.navBarItem10.Caption = "navBarItem10";
             this.navBarItem10.Name = "navBarItem10";
             this.navBarItem10.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem10.Visible = false;
             // 
             // xtraTabControlChucNang
             // 
@@ -231,33 +238,10 @@
             this.xtraTabControlChucNang.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControlChucNang.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabControlChucNang.Name = "xtraTabControlChucNang";
-            this.xtraTabControlChucNang.SelectedTabPage = this.xtraTabDashboard;
-            this.xtraTabControlChucNang.Size = new System.Drawing.Size(946, 613);
+            this.xtraTabControlChucNang.Size = new System.Drawing.Size(911, 613);
             this.xtraTabControlChucNang.TabIndex = 1;
-            this.xtraTabControlChucNang.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabDashboard,
-            this.xtraTabPage});
-            // 
-            // xtraTabDashboard
-            // 
-            this.xtraTabDashboard.Appearance.Header.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.xtraTabDashboard.Appearance.Header.ForeColor = System.Drawing.Color.Navy;
-            this.xtraTabDashboard.Appearance.Header.Options.UseFont = true;
-            this.xtraTabDashboard.Appearance.Header.Options.UseForeColor = true;
-            this.xtraTabDashboard.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
-            this.xtraTabDashboard.Appearance.PageClient.Options.UseBackColor = true;
-            this.xtraTabDashboard.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabDashboard.Image")));
-            this.xtraTabDashboard.Name = "xtraTabDashboard";
-            this.xtraTabDashboard.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
-            this.xtraTabDashboard.Size = new System.Drawing.Size(940, 582);
-            this.xtraTabDashboard.Text = "Dashboard";
-            // 
-            // xtraTabPage
-            // 
-            this.xtraTabPage.Name = "xtraTabPage";
-            this.xtraTabPage.ShowCloseButton = DevExpress.Utils.DefaultBoolean.True;
-            this.xtraTabPage.Size = new System.Drawing.Size(959, 582);
-            this.xtraTabPage.Text = "xtraTabPage2";
+            this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDashboard_SelectedPageChanged);
+            this.xtraTabControlChucNang.CloseButtonClick += new System.EventHandler(this.xtraTabControlDashboard_CloseButtonClick);
             // 
             // ucDashboard
             // 
@@ -271,7 +255,6 @@
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlChucNang)).EndInit();
-            this.xtraTabControlChucNang.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -280,8 +263,6 @@
 
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControlChucNang;
-        private DevExpress.XtraTab.XtraTabPage xtraTabDashboard;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
         private DevExpress.XtraNavBar.NavBarItem navBarItem1;
@@ -293,8 +274,8 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem6;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup4;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem7;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem8;
+        private DevExpress.XtraNavBar.NavBarItem navBarBCQLTongTheKhoa;
+        private DevExpress.XtraNavBar.NavBarItem navBarBCBenhNhanNoiTru;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
         private DevExpress.XtraNavBar.NavBarItem navBarItem9;
         private DevExpress.XtraNavBar.NavBarItem navBarItem10;

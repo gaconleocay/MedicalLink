@@ -250,6 +250,24 @@
       <DependentUpon>ucXuLyMaVPTrang.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassCommon\classDanhMucDichVu.cs" />
+    <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.Designer.cs">
+      <DependentUpon>ucBaoCaoBenhNhanNoiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTruProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.Designer.cs">
+      <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoaProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="FormCommon\KetNoiSCDLProcess.cs" />
     <Compile Include="HeThong\ucDanhSachNhanVien.cs">
       <SubType>UserControl</SubType>
@@ -424,6 +442,8 @@
     <Compile Include="ThongBao\WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Ultil_DateTime.cs" />
+    <Compile Include="Utilities\Ultil_NumberConvert.cs" />
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21\ucBBHYT21Chenh.resx">
       <DependentUpon>ucBBHYT21Chenh.cs</DependentUpon>
     </EmbeddedResource>
@@ -477,6 +497,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucXuLyMaVPTrang.resx">
       <DependentUpon>ucXuLyMaVPTrang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.resx">
+      <DependentUpon>ucBaoCaoBenhNhanNoiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.resx">
+      <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HeThong\ucDanhSachNhanVien.resx">
       <DependentUpon>ucDanhSachNhanVien.cs</DependentUpon>
@@ -579,7 +605,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dashboard\" />
     <Folder Include="HuongDan\" />
   </ItemGroup>
   <ItemGroup>
@@ -587,6 +612,7 @@
     <None Include="Images\edit-2-16.png" />
     <None Include="Images\save-16.png" />
     <None Include="Images\recurring-appointment-16.png" />
+    <None Include="Images\recurring-appointment-32.png" />
     <Content Include="Martin-Berube-Flat-Animal-Crab.ico" />
     <None Include="Images\arrow-32-16.png" />
   </ItemGroup>

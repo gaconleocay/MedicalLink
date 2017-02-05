@@ -17,6 +17,8 @@ namespace MedicalLink.FormCommon
     {
         public string serverhost = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost"].ToString(), true);
         public string serverdb = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString(), true);
+        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+
         DialogResult hoi;
         private string _message;
 
@@ -28,9 +30,6 @@ namespace MedicalLink.FormCommon
         public frmMain()
         {
             InitializeComponent();
-            timerClock.Start();
-            timerKiemTraLicense.Interval = MedicalLink.Base.KeyTrongPhanMem.ThoiGianKiemTraLicense;
-            timerKiemTraLicense.Start();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -38,10 +37,16 @@ namespace MedicalLink.FormCommon
             //Thread.Sleep(4000);
             try
             {
+                timerClock.Start();
+                timerKiemTraLicense.Interval = MedicalLink.Base.KeyTrongPhanMem.ThoiGianKiemTraLicense;
+                timerKiemTraLicense.Start();
+
                 LoadThongTinVePhanMem_Version();
                 LoadGiaoDien();
                 KiemTraPhanQuyen_EnableButton();
                 LoadPageMenu();
+
+                TimerChayChuongTrinhServiceAn();
             }
             catch (Exception ex)
             {
@@ -243,12 +248,14 @@ namespace MedicalLink.FormCommon
             {
                 StatusTenBC.Caption = _message;
             }
-            catch (Exception)
+            catch (Exception )
             {
 
                 throw;
             }
         }
+
+
 
 
 

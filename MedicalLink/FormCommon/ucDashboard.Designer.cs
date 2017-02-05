@@ -251,6 +251,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucDashboard";
             this.Size = new System.Drawing.Size(1096, 613);
+            this.Load += new System.EventHandler(this.ucDashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();

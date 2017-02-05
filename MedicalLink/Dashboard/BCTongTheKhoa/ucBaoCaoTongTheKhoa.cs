@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraSplashScreen;
-using System.Globalization;
-using System.IO;
-using MedicalLink.Base;
 
 namespace MedicalLink.Dashboard
 {
@@ -159,12 +149,8 @@ namespace MedicalLink.Dashboard
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                // Lấy từ ngày, đến ngày
-                thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 if (cboKhoa.EditValue == null)
                 {
                     timerThongBao.Start();
@@ -173,23 +159,13 @@ namespace MedicalLink.Dashboard
                 }
                 else
                 {
-                    if (thoiGianTu != "" && thoiGianDen != "")
-                    {
-                        LayDuLieuBaoCaoKhiClick(thoiGianTu, thoiGianDen);
-                    }
-                    else
-                    {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN;
-                    }
+                    LayDuLieuBaoCao();
                 }
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
-            SplashScreenManager.CloseForm();
         }
 
         private void cboChonNhanh_SelectedValueChanged(object sender, EventArgs e)
@@ -211,7 +187,7 @@ namespace MedicalLink.Dashboard
                             break;
                         case "Tháng 2":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 2, 1, 0, 0, 0);
-                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.Ultil_DateTime.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
+                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.Util_DateTime.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
                             break;
                         case "Tháng 3":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 3, 1, 0, 0, 0);
@@ -323,7 +299,7 @@ namespace MedicalLink.Dashboard
                 tickCurrentVal--;
                 if (tickCurrentVal == 0)
                 {
-                    LayDuLieuBaoCaoTuDongCapNhat(spinThoiGianCapNhat.Value);
+                    LayDuLieuBaoCao();
                     tickCurrentVal = thoiGianCapNhat;
                 }
             }
@@ -333,9 +309,103 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        #region Lable Click
+        private void lblBNHienDien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Utilities.Util_TypeConvertParse.ToDecimal(lblBNHienDien.Text) > 0)
+                {
+                    BCTongTheKhoa.BCTongTheKhoaBNDetail frmDetail = new BCTongTheKhoa.BCTongTheKhoaBNDetail(1);
+                    frmDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
+        private void lblBNChuyenDi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Utilities.Util_TypeConvertParse.ToDecimal(lblBNChuyenDi.Text) > 0)
+                {
+                    BCTongTheKhoa.BCTongTheKhoaBNDetail frmDetail = new BCTongTheKhoa.BCTongTheKhoaBNDetail(2);
+                    frmDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
+        private void lblBNChuyenDen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Utilities.Util_TypeConvertParse.ToDecimal(lblBNChuyenDen.Text) > 0)
+                {
+                    BCTongTheKhoa.BCTongTheKhoaBNDetail frmDetail = new BCTongTheKhoa.BCTongTheKhoaBNDetail(3);
+                    frmDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
+        private void lblBNRaVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Utilities.Util_TypeConvertParse.ToDecimal(lblBNRaVien.Text) > 0)
+                {
+                    BCTongTheKhoa.BCTongTheKhoaBNDetail frmDetail = new BCTongTheKhoa.BCTongTheKhoaBNDetail(4);
+                    frmDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void lblDaRVSoLuong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Utilities.Util_TypeConvertParse.ToDecimal(lblDaRVSoLuong.Text) > 0)
+                {
+                    BCTongTheKhoa.BCTongTheKhoaBNDetail frmDetail = new BCTongTheKhoa.BCTongTheKhoaBNDetail(9);
+                    frmDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void lblDaTTSoLuong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Utilities.Util_TypeConvertParse.ToDecimal(lblDaTTSoLuong.Text) > 0)
+                {
+                    BCTongTheKhoa.BCTongTheKhoaBNDetail frmDetail = new BCTongTheKhoa.BCTongTheKhoaBNDetail(13);
+                    frmDetail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        #endregion
 
 
 

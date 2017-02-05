@@ -24,7 +24,33 @@ namespace MedicalLink.FormCommon
         public ucDashboard()
         {
             InitializeComponent();
-            splitContainerControl1.SplitterPosition=180;
+            splitContainerControl1.SplitterPosition = 180;
+        }
+
+        private void ucDashboard_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                splitContainerControl1.SplitterPosition = 180;
+                EnabledAndDisableControl();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void EnabledAndDisableControl()
+        {
+            try
+            {
+                navBarBCQLTongTheKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_08");
+                navBarBCBenhNhanNoiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_09");
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
         }
 
         #region Tabcontrol function
@@ -96,5 +122,7 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+
     }
 }

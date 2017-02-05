@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.Utilities
 {
-  public static  class Ultil_DateTime
+  public static  class Util_DateTime
     {
         /// <summary>
         /// Lấy ra ngày đầu tiên trong tháng có chứa 

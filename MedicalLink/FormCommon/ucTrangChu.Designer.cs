@@ -94,6 +94,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
+            this.btnDSOption = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlHome)).BeginInit();
             this.xtraTabControlHome.SuspendLayout();
             this.xtraTabTTCoBan.SuspendLayout();
@@ -141,6 +142,7 @@
             this.xtraTabTTCoBan.Appearance.Header.Options.UseForeColor = true;
             this.xtraTabTTCoBan.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
             this.xtraTabTTCoBan.Appearance.PageClient.Options.UseBackColor = true;
+            this.xtraTabTTCoBan.Controls.Add(this.btnDSOption);
             this.xtraTabTTCoBan.Controls.Add(this.btnDSNguoiDung);
             this.xtraTabTTCoBan.Controls.Add(this.btnDSNhanVien);
             this.xtraTabTTCoBan.Controls.Add(this.groupBoxTaoLicense);
@@ -175,7 +177,7 @@
             this.btnDSNguoiDung.Appearance.Options.UseFont = true;
             this.btnDSNguoiDung.Appearance.Options.UseForeColor = true;
             this.btnDSNguoiDung.Image = ((System.Drawing.Image)(resources.GetObject("btnDSNguoiDung.Image")));
-            this.btnDSNguoiDung.Location = new System.Drawing.Point(21, 349);
+            this.btnDSNguoiDung.Location = new System.Drawing.Point(17, 349);
             this.btnDSNguoiDung.Name = "btnDSNguoiDung";
             this.btnDSNguoiDung.Size = new System.Drawing.Size(120, 23);
             this.btnDSNguoiDung.TabIndex = 28;
@@ -189,7 +191,7 @@
             this.btnDSNhanVien.Appearance.Options.UseFont = true;
             this.btnDSNhanVien.Appearance.Options.UseForeColor = true;
             this.btnDSNhanVien.Image = ((System.Drawing.Image)(resources.GetObject("btnDSNhanVien.Image")));
-            this.btnDSNhanVien.Location = new System.Drawing.Point(169, 349);
+            this.btnDSNhanVien.Location = new System.Drawing.Point(158, 349);
             this.btnDSNhanVien.Name = "btnDSNhanVien";
             this.btnDSNhanVien.Size = new System.Drawing.Size(120, 23);
             this.btnDSNhanVien.TabIndex = 27;
@@ -850,6 +852,20 @@
             this.timerThongBao.Interval = 2000;
             this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
             // 
+            // btnDSOption
+            // 
+            this.btnDSOption.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDSOption.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnDSOption.Appearance.Options.UseFont = true;
+            this.btnDSOption.Appearance.Options.UseForeColor = true;
+            this.btnDSOption.Image = ((System.Drawing.Image)(resources.GetObject("btnDSOption.Image")));
+            this.btnDSOption.Location = new System.Drawing.Point(299, 349);
+            this.btnDSOption.Name = "btnDSOption";
+            this.btnDSOption.Size = new System.Drawing.Size(120, 23);
+            this.btnDSOption.TabIndex = 29;
+            this.btnDSOption.Text = "DS option";
+            this.btnDSOption.Click += new System.EventHandler(this.btnDSOption_Click);
+            // 
             // ucTrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -955,5 +971,6 @@
         private DevExpress.XtraEditors.SimpleButton btnTaoLicenseTao;
         private DevExpress.XtraEditors.SimpleButton btnDSNguoiDung;
         private DevExpress.XtraEditors.SimpleButton btnDSNhanVien;
+        private DevExpress.XtraEditors.SimpleButton btnDSOption;
     }
 }

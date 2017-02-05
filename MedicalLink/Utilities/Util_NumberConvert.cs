@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.Utilities
 {
-    public class Ultil_NumberConvert
+    public class Util_NumberConvert
     {
         public static string NumberToStringMoney(double money)
         {

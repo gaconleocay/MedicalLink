@@ -30,6 +30,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 KiemTraInsertMayTram();
+                LoadDataFromDatabase();
                 // Mã hóa thông tin để so sánh trong DB
                 string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
                 string en_txtPassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtPassword.Text.Trim(), true);
@@ -236,5 +237,32 @@ namespace MedicalLink.FormCommon
             }
         }
 
+        private void LoadDataFromDatabase()
+        {
+            try
+            {
+                //Load thong tin Luu vao GlobalStore
+                string sqlDSOption = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote FROM tools_option WHERE toolsoptionlook<>'1' ;";
+                DataView dataOption = new DataView(condb.getDataTable(sqlDSOption));
+                if (dataOption != null && dataOption.Count > 0)
+                {
+                    for (int i = 0; i < dataOption.Count; i++)
+                    {
+                        if (dataOption[i]["toolsoptioncode"].ToString().ToUpper() == "ThoiGianCapNhatTbl_tools_bndangdt_tmp".ToUpper())
+                        {
+                            MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = Utilities.Util_TypeConvertParse.ToInt64(dataOption[i]["toolsoptionvalue"].ToString());
+                        }
+                    }
+                }
+                else
+                {
+                    MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
     }
 }

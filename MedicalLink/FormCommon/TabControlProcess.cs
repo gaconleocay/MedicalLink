@@ -159,6 +159,10 @@ namespace MedicalLink.FormCommon
                     case "SYS_03":
                         ucResult = new HeThong.ucDanhSachNhanVien();
                         break;
+                    case "SYS_04":
+                        ucResult = new HeThong.ucCauHinhHeThong();
+                        break;
+                    //
                     case "TOOL_01":
                         ucResult = new ChucNang.ucSuaThoiGianRaVien();
                         break;

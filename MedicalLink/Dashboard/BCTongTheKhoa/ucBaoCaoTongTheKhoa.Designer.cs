@@ -158,14 +158,14 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(911, 147);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(911, 141);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // bbbb
             // 
             this.bbbb.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bbbb.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.bbbb.Location = new System.Drawing.Point(15, 97);
+            this.bbbb.Location = new System.Drawing.Point(15, 89);
             this.bbbb.Name = "bbbb";
             this.bbbb.Size = new System.Drawing.Size(179, 16);
             this.bbbb.TabIndex = 67;
@@ -176,7 +176,7 @@
             this.lblTenKhoaLayBaoCao.AutoSize = true;
             this.lblTenKhoaLayBaoCao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenKhoaLayBaoCao.ForeColor = System.Drawing.Color.Black;
-            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(231, 116);
+            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(231, 108);
             this.lblTenKhoaLayBaoCao.Name = "lblTenKhoaLayBaoCao";
             this.lblTenKhoaLayBaoCao.Size = new System.Drawing.Size(46, 20);
             this.lblTenKhoaLayBaoCao.TabIndex = 68;
@@ -186,7 +186,7 @@
             // 
             this.lblThoiGianLayBaoCao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThoiGianLayBaoCao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(45, 124);
+            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(45, 116);
             this.lblThoiGianLayBaoCao.Name = "lblThoiGianLayBaoCao";
             this.lblThoiGianLayBaoCao.Size = new System.Drawing.Size(122, 16);
             this.lblThoiGianLayBaoCao.TabIndex = 69;
@@ -199,9 +199,9 @@
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.spinThoiGianCapNhat);
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(607, -2);
+            this.groupBox1.Location = new System.Drawing.Point(607, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 93);
+            this.groupBox1.Size = new System.Drawing.Size(301, 80);
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thiết lập";
@@ -263,9 +263,9 @@
             this.groupBoxFile.Controls.Add(this.cboChonNhanh);
             this.groupBoxFile.Controls.Add(this.btnTimKiem);
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxFile.Location = new System.Drawing.Point(2, -2);
+            this.groupBoxFile.Location = new System.Drawing.Point(2, 1);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(599, 93);
+            this.groupBoxFile.Size = new System.Drawing.Size(599, 80);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -308,7 +308,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(6, 64);
+            this.labelControl1.Location = new System.Drawing.Point(6, 57);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(47, 13);
             this.labelControl1.TabIndex = 21;
@@ -328,7 +328,7 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(59, 58);
+            this.dateDenNgay.Location = new System.Drawing.Point(59, 51);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
@@ -350,7 +350,7 @@
             // 
             // cboChonNhanh
             // 
-            this.cboChonNhanh.Location = new System.Drawing.Point(257, 59);
+            this.cboChonNhanh.Location = new System.Drawing.Point(257, 52);
             this.cboChonNhanh.Name = "cboChonNhanh";
             this.cboChonNhanh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChonNhanh.Properties.Appearance.Options.UseFont = true;
@@ -368,7 +368,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnTimKiem.Location = new System.Drawing.Point(462, 32);
+            this.btnTimKiem.Location = new System.Drawing.Point(462, 23);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -377,7 +377,7 @@
             // 
             // cboKhoa
             // 
-            this.cboKhoa.Location = new System.Drawing.Point(283, 106);
+            this.cboKhoa.Location = new System.Drawing.Point(283, 98);
             this.cboKhoa.Name = "cboKhoa";
             this.cboKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboKhoa.Properties.Appearance.Options.UseFont = true;
@@ -403,10 +403,10 @@
             this.layoutControl1.Controls.Add(this.layoutControl3);
             this.layoutControl1.Controls.Add(this.layoutControl2);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 147);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 141);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(911, 466);
+            this.layoutControl1.Size = new System.Drawing.Size(911, 472);
             this.layoutControl1.TabIndex = 4;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -417,7 +417,7 @@
             this.layoutControl4.Name = "layoutControl4";
             this.layoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(973, 382, 250, 350);
             this.layoutControl4.Root = this.layoutControlGroup3;
-            this.layoutControl4.Size = new System.Drawing.Size(297, 462);
+            this.layoutControl4.Size = new System.Drawing.Size(297, 468);
             this.layoutControl4.TabIndex = 6;
             this.layoutControl4.Text = "layoutControl4";
             // 
@@ -437,7 +437,7 @@
             this.panelControl3.Controls.Add(this.label3);
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(297, 462);
+            this.panelControl3.Size = new System.Drawing.Size(297, 468);
             this.panelControl3.TabIndex = 4;
             // 
             // labelControl19
@@ -535,12 +535,14 @@
             this.lblDaTTSoLuong.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDaTTSoLuong.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.lblDaTTSoLuong.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblDaTTSoLuong.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDaTTSoLuong.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblDaTTSoLuong.Location = new System.Drawing.Point(136, 87);
             this.lblDaTTSoLuong.Name = "lblDaTTSoLuong";
             this.lblDaTTSoLuong.Size = new System.Drawing.Size(144, 19);
             this.lblDaTTSoLuong.TabIndex = 66;
             this.lblDaTTSoLuong.Text = "00000";
+            this.lblDaTTSoLuong.Click += new System.EventHandler(this.lblDaTTSoLuong_Click);
             // 
             // labelControl52
             // 
@@ -571,7 +573,7 @@
             this.layoutControlGroup3.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup3.Name = "Root";
             this.layoutControlGroup3.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup3.Size = new System.Drawing.Size(297, 462);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(297, 468);
             this.layoutControlGroup3.TextVisible = false;
             // 
             // layoutControlItem6
@@ -580,7 +582,7 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlItem6.Size = new System.Drawing.Size(297, 462);
+            this.layoutControlItem6.Size = new System.Drawing.Size(297, 468);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
@@ -590,7 +592,7 @@
             this.layoutControl3.Location = new System.Drawing.Point(302, 2);
             this.layoutControl3.Name = "layoutControl3";
             this.layoutControl3.Root = this.layoutControlGroup2;
-            this.layoutControl3.Size = new System.Drawing.Size(306, 462);
+            this.layoutControl3.Size = new System.Drawing.Size(306, 468);
             this.layoutControl3.TabIndex = 5;
             this.layoutControl3.Text = "layoutControl3";
             // 
@@ -611,7 +613,7 @@
             this.panelControl2.Controls.Add(this.label2);
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(306, 462);
+            this.panelControl2.Size = new System.Drawing.Size(306, 468);
             this.panelControl2.TabIndex = 4;
             // 
             // labelControl21
@@ -721,12 +723,14 @@
             this.lblDaRVSoLuong.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDaRVSoLuong.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.lblDaRVSoLuong.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblDaRVSoLuong.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDaRVSoLuong.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblDaRVSoLuong.Location = new System.Drawing.Point(134, 87);
             this.lblDaRVSoLuong.Name = "lblDaRVSoLuong";
             this.lblDaRVSoLuong.Size = new System.Drawing.Size(153, 19);
             this.lblDaRVSoLuong.TabIndex = 49;
             this.lblDaRVSoLuong.Text = "00000";
+            this.lblDaRVSoLuong.Click += new System.EventHandler(this.lblDaRVSoLuong_Click);
             // 
             // labelControl36
             // 
@@ -757,7 +761,7 @@
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
             this.layoutControlGroup2.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup2.Size = new System.Drawing.Size(306, 462);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(306, 468);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem5
@@ -766,7 +770,7 @@
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlItem5.Size = new System.Drawing.Size(306, 462);
+            this.layoutControlItem5.Size = new System.Drawing.Size(306, 468);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -776,7 +780,7 @@
             this.layoutControl2.Location = new System.Drawing.Point(2, 2);
             this.layoutControl2.Name = "layoutControl2";
             this.layoutControl2.Root = this.Root;
-            this.layoutControl2.Size = new System.Drawing.Size(296, 462);
+            this.layoutControl2.Size = new System.Drawing.Size(296, 468);
             this.layoutControl2.TabIndex = 4;
             this.layoutControl2.Text = "4. SL Bệnh nhân  viện:";
             // 
@@ -805,7 +809,7 @@
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(296, 462);
+            this.panelControl1.Size = new System.Drawing.Size(296, 468);
             this.panelControl1.TabIndex = 4;
             // 
             // labelControl22
@@ -933,12 +937,14 @@
             this.lblBNRaVien.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNRaVien.Appearance.ForeColor = System.Drawing.Color.Brown;
             this.lblBNRaVien.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblBNRaVien.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNRaVien.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblBNRaVien.Location = new System.Drawing.Point(173, 207);
             this.lblBNRaVien.Name = "lblBNRaVien";
             this.lblBNRaVien.Size = new System.Drawing.Size(106, 19);
             this.lblBNRaVien.TabIndex = 46;
             this.lblBNRaVien.Text = "00000";
+            this.lblBNRaVien.Click += new System.EventHandler(this.lblBNRaVien_Click);
             // 
             // labelControl12
             // 
@@ -954,12 +960,14 @@
             this.lblBNChuyenDen.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNChuyenDen.Appearance.ForeColor = System.Drawing.Color.Brown;
             this.lblBNChuyenDen.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblBNChuyenDen.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNChuyenDen.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblBNChuyenDen.Location = new System.Drawing.Point(173, 168);
             this.lblBNChuyenDen.Name = "lblBNChuyenDen";
             this.lblBNChuyenDen.Size = new System.Drawing.Size(106, 19);
             this.lblBNChuyenDen.TabIndex = 44;
             this.lblBNChuyenDen.Text = "00000";
+            this.lblBNChuyenDen.Click += new System.EventHandler(this.lblBNChuyenDen_Click);
             // 
             // labelControl10
             // 
@@ -975,12 +983,14 @@
             this.lblBNChuyenDi.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNChuyenDi.Appearance.ForeColor = System.Drawing.Color.Brown;
             this.lblBNChuyenDi.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblBNChuyenDi.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNChuyenDi.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblBNChuyenDi.Location = new System.Drawing.Point(173, 127);
             this.lblBNChuyenDi.Name = "lblBNChuyenDi";
             this.lblBNChuyenDi.Size = new System.Drawing.Size(106, 19);
             this.lblBNChuyenDi.TabIndex = 42;
             this.lblBNChuyenDi.Text = "00000";
+            this.lblBNChuyenDi.Click += new System.EventHandler(this.lblBNChuyenDi_Click);
             // 
             // labelControl8
             // 
@@ -996,12 +1006,14 @@
             this.lblBNHienDien.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNHienDien.Appearance.ForeColor = System.Drawing.Color.Brown;
             this.lblBNHienDien.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lblBNHienDien.AppearanceHovered.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBNHienDien.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblBNHienDien.Location = new System.Drawing.Point(173, 87);
             this.lblBNHienDien.Name = "lblBNHienDien";
             this.lblBNHienDien.Size = new System.Drawing.Size(106, 19);
             this.lblBNHienDien.TabIndex = 40;
             this.lblBNHienDien.Text = "00000";
+            this.lblBNHienDien.Click += new System.EventHandler(this.lblBNHienDien_Click);
             // 
             // labelControl5
             // 
@@ -1032,7 +1044,7 @@
             this.Root.Location = new System.Drawing.Point(0, 0);
             this.Root.Name = "Root";
             this.Root.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.Root.Size = new System.Drawing.Size(296, 462);
+            this.Root.Size = new System.Drawing.Size(296, 468);
             this.Root.Text = "1";
             this.Root.TextVisible = false;
             // 
@@ -1042,7 +1054,7 @@
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlItem4.Size = new System.Drawing.Size(296, 462);
+            this.layoutControlItem4.Size = new System.Drawing.Size(296, 468);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
@@ -1057,7 +1069,7 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(911, 466);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(911, 472);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
@@ -1065,7 +1077,7 @@
             this.layoutControlItem1.Control = this.layoutControl2;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(300, 466);
+            this.layoutControlItem1.Size = new System.Drawing.Size(300, 472);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -1074,7 +1086,7 @@
             this.layoutControlItem2.Control = this.layoutControl3;
             this.layoutControlItem2.Location = new System.Drawing.Point(300, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(310, 466);
+            this.layoutControlItem2.Size = new System.Drawing.Size(310, 472);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -1083,7 +1095,7 @@
             this.layoutControlItem3.Control = this.layoutControl4;
             this.layoutControlItem3.Location = new System.Drawing.Point(610, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(301, 466);
+            this.layoutControlItem3.Size = new System.Drawing.Size(301, 472);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 

@@ -41,6 +41,13 @@ namespace MedicalLink.Base
                 SYS_03.permissiontype = 1;
                 lstresult.Add(SYS_03);
 
+                ClassCommon.classPermission SYS_04 = new ClassCommon.classPermission();
+                SYS_04.permissioncheck = false;
+                SYS_04.permissioncode = "SYS_04";
+                SYS_04.permissionname = "Danh sách option";
+                SYS_04.permissiontype = 1;
+                lstresult.Add(SYS_04);
+
                 //Tools
                 ClassCommon.classPermission TOOL_01 = new ClassCommon.classPermission();
                 TOOL_01.permissioncheck = false;

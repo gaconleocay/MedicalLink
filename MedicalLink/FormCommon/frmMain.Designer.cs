@@ -48,6 +48,7 @@
             this.tabMenuRestart = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.timerClock = new System.Windows.Forms.Timer(this.components);
             this.timerKiemTraLicense = new System.Windows.Forms.Timer(this.components);
+            this.timerTblBNDangDT = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabPaneMenu)).BeginInit();
             this.tabPaneMenu.SuspendLayout();
@@ -230,6 +231,10 @@
             this.timerKiemTraLicense.Interval = 360000;
             this.timerKiemTraLicense.Tick += new System.EventHandler(this.timerKiemTraLicense_Tick);
             // 
+            // timerTblBNDangDT
+            // 
+            this.timerTblBNDangDT.Tick += new System.EventHandler(this.timerTblBNDangDT_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -275,5 +280,6 @@
         private System.Windows.Forms.Timer timerKiemTraLicense;
         internal DevExpress.XtraBars.BarStaticItem StatusTenBC;
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuRestart;
+        private System.Windows.Forms.Timer timerTblBNDangDT;
     }
 }

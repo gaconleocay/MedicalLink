@@ -11,6 +11,7 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using System.IO;
 using MedicalLink.Base;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace MedicalLink.Dashboard
 {
@@ -22,6 +23,7 @@ namespace MedicalLink.Dashboard
         string thoiGianDen = "";
         private long tickCurrentVal = 0;
         private long thoiGianCapNhat = 0;
+        private DataView dataBCTongTheKhoa { get; set; }
         #endregion
 
         #region Load
@@ -140,28 +142,14 @@ namespace MedicalLink.Dashboard
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                // Lấy từ ngày, đến ngày
-                thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                if (thoiGianTu != "" && thoiGianDen != "")
-                {
-                    LayDuLieuBaoCaoKhiClick(thoiGianTu, thoiGianDen);
-                }
-                else
-                {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN;
-                }
+                LayDuLieuBaoCao();
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
-            SplashScreenManager.CloseForm();
         }
 
         private void cboChonNhanh_SelectedValueChanged(object sender, EventArgs e)
@@ -183,7 +171,7 @@ namespace MedicalLink.Dashboard
                             break;
                         case "Tháng 2":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 2, 1, 0, 0, 0);
-                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.Ultil_DateTime.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
+                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.Util_DateTime.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
                             break;
                         case "Tháng 3":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 3, 1, 0, 0, 0);
@@ -259,21 +247,12 @@ namespace MedicalLink.Dashboard
             {
                 if (spinThoiGianCapNhat.Value != 0)
                 {
-                    //if (cboKhoa.EditValue == null)
-                    //{
-                    //    timerThongBao.Start();
-                    //    lblThongBao.Visible = true;
-                    //    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG;
-                    //}
-                    //else
-                    //{
-                    //    thoiGianCapNhat = Convert.ToInt64(spinThoiGianCapNhat.Value.ToString()) * 60;
-                    //    tickCurrentVal = thoiGianCapNhat;
-                    //    timerTuDongCapNhat.Start();
-                    //    //Lay thoi gian tu dong cap nhat = thoi gian trong 1 ngay
-                    //    dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-                    //    dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-                    //}
+                    thoiGianCapNhat = Convert.ToInt64(spinThoiGianCapNhat.Value.ToString()) * 60;
+                    tickCurrentVal = thoiGianCapNhat;
+                    timerTuDongCapNhat.Start();
+                    //Lay thoi gian tu dong cap nhat = thoi gian trong 1 ngay
+                    dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                    dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 }
                 else
                 {
@@ -295,7 +274,7 @@ namespace MedicalLink.Dashboard
                 tickCurrentVal--;
                 if (tickCurrentVal == 0)
                 {
-                    LayDuLieuBaoCaoTuDongCapNhat(spinThoiGianCapNhat.Value);
+                    LayDuLieuBaoCao();
                     tickCurrentVal = thoiGianCapNhat;
                 }
             }
@@ -305,9 +284,68 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
 
+        private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.LightPink;
+                    e.Appearance.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
+        private void repositoryItemButton_View_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //TODO
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
+        private void bandedGridViewDataBNNT_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                //TODO
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnFullSize_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataBCTongTheKhoa != null && dataBCTongTheKhoa.Count > 0)
+                {
+                    MedicalLink.Dashboard.BCBenhNhanNoiTru.BCBenhNhanNoiTruFullSize fullSize = new BCBenhNhanNoiTru.BCBenhNhanNoiTruFullSize(dataBCTongTheKhoa);
+                    fullSize.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
 
 

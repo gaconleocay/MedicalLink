@@ -19,5 +19,8 @@ namespace MedicalLink.Base
         internal static int SoLuongTabPageDashboard = 10;
 
 
+
+
+
     }
 }

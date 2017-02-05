@@ -80,6 +80,7 @@ namespace MedicalLink.FormCommon
             {
                 btnDSNguoiDung.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
                 btnDSNhanVien.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
+                btnDSOption.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
             }
             catch (Exception ex)
             {
@@ -468,12 +469,13 @@ namespace MedicalLink.FormCommon
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                if (KetNoiSCDLProcess.CreateTableTblUser() && KetNoiSCDLProcess.CreateTableTblPermission() && KetNoiSCDLProcess.CreateTableTblDepartment() && KetNoiSCDLProcess.CreateTableTblLog() && KetNoiSCDLProcess.CreateTableTblUpdateKhaDung() && KetNoiSCDLProcess.CreateTableTblServiceFull() && KetNoiSCDLProcess.CreateTableTblClients() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew() && KetNoiSCDLProcess.CreateTableBCTongTheKhoa() && KetNoiSCDLProcess.CreateViewServicepriceDichVu() && KetNoiSCDLProcess.CreateViewServicepriceThuoc())
+                if (KetNoiSCDLProcess.CreateTableTblUser() && KetNoiSCDLProcess.CreateTableTblPermission() && KetNoiSCDLProcess.CreateTableTblDepartment() && KetNoiSCDLProcess.CreateTableTblLog() && KetNoiSCDLProcess.CreateTableTblUpdateKhaDung() && KetNoiSCDLProcess.CreateTableTblServiceFull() && KetNoiSCDLProcess.CreateTableTblClients() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew() && KetNoiSCDLProcess.CreateViewServicepriceDichVu() && KetNoiSCDLProcess.CreateViewServicepriceThuoc() && KetNoiSCDLProcess.CreateTableBCBNDangDTTmp() && KetNoiSCDLProcess.CreateTableOption())
                 {
                     MessageBox.Show("Cập nhật cơ sở dữ liệu thành công", "Thông báo");
                 }
                 //KetNoiSCDLProcess.CreateTableColumeBackupDichVu() &&
                 //KetNoiSCDLProcess.UpdateTableWithVersion()
+                //KetNoiSCDLProcess.CreateTableBCTongTheKhoa()
             }
             catch (Exception ex)
             {
@@ -621,7 +623,6 @@ namespace MedicalLink.FormCommon
             UserControl ucControlActive = new UserControl();
             try
             {
-                //Chon ucControl
                 ucControlActive = TabControlProcess.SelectUCControlActive("SYS_02");
                 MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlHome, "SYS_02", "Quản lý người dùng", ucControlActive);
                 ucControlActive.Show();
@@ -688,6 +689,21 @@ namespace MedicalLink.FormCommon
             }
         }
         #endregion
+
+        private void btnDSOption_Click(object sender, EventArgs e)
+        {
+            UserControl ucControlActive = new UserControl();
+            try
+            {
+                ucControlActive = TabControlProcess.SelectUCControlActive("SYS_04");
+                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlHome, "SYS_04", "Danh sách option", ucControlActive);
+                ucControlActive.Show();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
 
 

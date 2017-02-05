@@ -250,6 +250,12 @@
       <DependentUpon>ucXuLyMaVPTrang.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassCommon\classDanhMucDichVu.cs" />
+    <Compile Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruFullSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruFullSize.Designer.cs">
+      <DependentUpon>BCBenhNhanNoiTruFullSize.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -258,6 +264,12 @@
     </Compile>
     <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTruProcess.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.Designer.cs">
+      <DependentUpon>BCTongTheKhoaBNDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.cs">
       <SubType>UserControl</SubType>
@@ -269,6 +281,19 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormCommon\KetNoiSCDLProcess.cs" />
+    <Compile Include="FormCommon\ucDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\ucDashboard.Designer.cs">
+      <DependentUpon>ucDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalStore.cs" />
+    <Compile Include="HeThong\ucCauHinhHeThong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HeThong\ucCauHinhHeThong.Designer.cs">
+      <DependentUpon>ucCauHinhHeThong.cs</DependentUpon>
+    </Compile>
     <Compile Include="HeThong\ucDanhSachNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -416,12 +441,6 @@
     <Compile Include="FormCommon\ucChucNang.Designer.cs">
       <DependentUpon>ucChucNang.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCommon\ucDashboard.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FormCommon\ucDashboard.Designer.cs">
-      <DependentUpon>ucDashboard.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormCommon\ucTrangChu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -442,8 +461,10 @@
     <Compile Include="ThongBao\WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Ultil_DateTime.cs" />
-    <Compile Include="Utilities\Ultil_NumberConvert.cs" />
+    <Compile Include="TimerService\TimerServiceProcess.cs" />
+    <Compile Include="Utilities\Util_DateTime.cs" />
+    <Compile Include="Utilities\Util_NumberConvert.cs" />
+    <Compile Include="Utilities\Util_TypeConvertParse.cs" />
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21\ucBBHYT21Chenh.resx">
       <DependentUpon>ucBBHYT21Chenh.cs</DependentUpon>
     </EmbeddedResource>
@@ -498,11 +519,23 @@
     <EmbeddedResource Include="ChucNang\ucXuLyMaVPTrang.resx">
       <DependentUpon>ucXuLyMaVPTrang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruFullSize.resx">
+      <DependentUpon>BCBenhNhanNoiTruFullSize.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.resx">
       <DependentUpon>ucBaoCaoBenhNhanNoiTru.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.resx">
+      <DependentUpon>BCTongTheKhoaBNDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.resx">
       <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\ucDashboard.resx">
+      <DependentUpon>ucDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HeThong\ucCauHinhHeThong.resx">
+      <DependentUpon>ucCauHinhHeThong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HeThong\ucDanhSachNhanVien.resx">
       <DependentUpon>ucDanhSachNhanVien.cs</DependentUpon>
@@ -563,9 +596,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\ucChucNang.resx">
       <DependentUpon>ucChucNang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormCommon\ucDashboard.resx">
-      <DependentUpon>ucDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\ucTrangChu.resx">
       <DependentUpon>ucTrangChu.cs</DependentUpon>

@@ -52,7 +52,7 @@ namespace MedicalLink.Base
                     for (int i = 0; i < dv.Count; i++)
                     {
                         ClassCommon.classPermission itemPer = new ClassCommon.classPermission();
-                        itemPer.permissionid = Convert.ToInt32(dv[i]["permissionid"]);
+                        //itemPer.permissionid = Convert.ToInt32(dv[i]["permissionid"]);
                         itemPer.permissioncode = dv[i]["permissioncode"].ToString();
                         itemPer.permissionname = dv[i]["permissionname"].ToString();
                         itemPer.permissioncheck = Convert.ToBoolean(dv[i]["permissioncheck"]);

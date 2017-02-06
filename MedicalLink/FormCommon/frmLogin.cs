@@ -241,6 +241,10 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+                //Set default
+                MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = 0;
+                MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = DateTime.Now.Year - 1 + "-01-01 00:00:00";
+
                 //Load thong tin Luu vao GlobalStore
                 string sqlDSOption = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote FROM tools_option WHERE toolsoptionlook<>'1' ;";
                 DataView dataOption = new DataView(condb.getDataTable(sqlDSOption));
@@ -252,11 +256,14 @@ namespace MedicalLink.FormCommon
                         {
                             MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = Utilities.Util_TypeConvertParse.ToInt64(dataOption[i]["toolsoptionvalue"].ToString());
                         }
+
+                        if (dataOption[i]["toolsoptioncode"].ToString().ToUpper() == "KhoangThoiGianLayDuLieu".ToUpper())
+                        {
+                            MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = dataOption[i]["toolsoptionvalue"].ToString();
+                        }
+
+
                     }
-                }
-                else
-                {
-                    MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = 0;
                 }
             }
             catch (Exception ex)

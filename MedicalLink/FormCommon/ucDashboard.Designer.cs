@@ -63,7 +63,7 @@
             this.splitContainerControl1.Panel1.Text = "Panel1";
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControlChucNang);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(1096, 613);
+            this.splitContainerControl1.Size = new System.Drawing.Size(1170, 613);
             this.splitContainerControl1.SplitterPosition = 180;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
@@ -238,7 +238,7 @@
             this.xtraTabControlChucNang.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControlChucNang.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabControlChucNang.Name = "xtraTabControlChucNang";
-            this.xtraTabControlChucNang.Size = new System.Drawing.Size(911, 613);
+            this.xtraTabControlChucNang.Size = new System.Drawing.Size(985, 613);
             this.xtraTabControlChucNang.TabIndex = 1;
             this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDashboard_SelectedPageChanged);
             this.xtraTabControlChucNang.CloseButtonClick += new System.EventHandler(this.xtraTabControlDashboard_CloseButtonClick);
@@ -250,7 +250,7 @@
             this.Controls.Add(this.splitContainerControl1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucDashboard";
-            this.Size = new System.Drawing.Size(1096, 613);
+            this.Size = new System.Drawing.Size(1170, 613);
             this.Load += new System.EventHandler(this.ucDashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);

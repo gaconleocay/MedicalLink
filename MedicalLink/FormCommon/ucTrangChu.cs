@@ -469,10 +469,25 @@ namespace MedicalLink.FormCommon
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                if (KetNoiSCDLProcess.CreateTableTblUser() && KetNoiSCDLProcess.CreateTableTblPermission() && KetNoiSCDLProcess.CreateTableTblDepartment() && KetNoiSCDLProcess.CreateTableTblLog() && KetNoiSCDLProcess.CreateTableTblUpdateKhaDung() && KetNoiSCDLProcess.CreateTableTblServiceFull() && KetNoiSCDLProcess.CreateTableTblClients() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew() && KetNoiSCDLProcess.CreateViewServicepriceDichVu() && KetNoiSCDLProcess.CreateViewServicepriceThuoc() && KetNoiSCDLProcess.CreateTableBCBNDangDTTmp() && KetNoiSCDLProcess.CreateTableOption())
-                {
-                    MessageBox.Show("Cập nhật cơ sở dữ liệu thành công", "Thông báo");
-                }
+               // KetNoiSCDLProcess.CreateTableTblUser();
+                KetNoiSCDLProcess.CreateTableTblPermission();
+                KetNoiSCDLProcess.CreateTableTblDepartment();
+                KetNoiSCDLProcess.CreateTableTblLog();
+                KetNoiSCDLProcess.CreateTableTblUpdateKhaDung();
+                KetNoiSCDLProcess.CreateTableTblServiceFull();
+                KetNoiSCDLProcess.CreateTableTblClients();
+                KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh();
+                KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew();
+                KetNoiSCDLProcess.CreateViewServicepriceDichVu();
+                KetNoiSCDLProcess.CreateViewServicepriceThuoc();
+                KetNoiSCDLProcess.CreateTableBCBNDangDTTmp();
+                KetNoiSCDLProcess.CreateTableOption();
+
+
+                //if (KetNoiSCDLProcess.CreateTableTblUser() && KetNoiSCDLProcess.CreateTableTblPermission() && KetNoiSCDLProcess.CreateTableTblDepartment() && KetNoiSCDLProcess.CreateTableTblLog() && KetNoiSCDLProcess.CreateTableTblUpdateKhaDung() && KetNoiSCDLProcess.CreateTableTblServiceFull() && KetNoiSCDLProcess.CreateTableTblClients() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew() && KetNoiSCDLProcess.CreateViewServicepriceDichVu() && KetNoiSCDLProcess.CreateViewServicepriceThuoc() && KetNoiSCDLProcess.CreateTableBCBNDangDTTmp() && KetNoiSCDLProcess.CreateTableOption())
+                //{
+                //    MessageBox.Show("Cập nhật cơ sở dữ liệu thành công", "Thông báo");
+                //}
                 //KetNoiSCDLProcess.CreateTableColumeBackupDichVu() &&
                 //KetNoiSCDLProcess.UpdateTableWithVersion()
                 //KetNoiSCDLProcess.CreateTableBCTongTheKhoa()

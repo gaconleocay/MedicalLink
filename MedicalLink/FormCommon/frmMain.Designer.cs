@@ -135,14 +135,14 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1134, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1184, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 617);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1134, 25);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1184, 25);
             // 
             // barDockControlLeft
             // 
@@ -155,7 +155,7 @@
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1134, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(1184, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 617);
             // 
             // tabPaneMenu
@@ -173,9 +173,9 @@
             this.tabMenuDashboard,
             this.tabMenuChucNang,
             this.tabMenuTrangChu});
-            this.tabPaneMenu.RegularSize = new System.Drawing.Size(1134, 617);
+            this.tabPaneMenu.RegularSize = new System.Drawing.Size(1184, 617);
             this.tabPaneMenu.SelectedPage = this.tabMenuTrangChu;
-            this.tabPaneMenu.Size = new System.Drawing.Size(1134, 617);
+            this.tabPaneMenu.Size = new System.Drawing.Size(1184, 617);
             this.tabPaneMenu.TabIndex = 5;
             this.tabPaneMenu.Text = "MENU";
             this.tabPaneMenu.SelectedPageChanged += new DevExpress.XtraBars.Navigation.SelectedPageChangedEventHandler(this.tabPaneMenu_SelectedPageChanged);
@@ -239,7 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 642);
+            this.ClientSize = new System.Drawing.Size(1184, 642);
             this.Controls.Add(this.tabPaneMenu);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

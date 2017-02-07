@@ -24,6 +24,8 @@ namespace MedicalLink.Dashboard
         private long tickCurrentVal = 0;
         private long thoiGianCapNhat = 0;
         private DataView dataBCTongTheKhoa { get; set; }
+        internal string KhoangThoiGianLayDuLieu { get; set; }
+
         #endregion
 
         #region Load
@@ -34,6 +36,7 @@ namespace MedicalLink.Dashboard
 
         private void ucBaoCaoBenhNhanNoiTru_Load(object sender, EventArgs e)
         {
+            KhoangThoiGianLayDuLieu = GlobalStore.KhoangThoiGianLayDuLieu;
             //Lấy thời gian lấy BC mặc định là ngày hiện tại
             dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
@@ -50,6 +53,10 @@ namespace MedicalLink.Dashboard
                 cboChonNhanh.Enabled = false;
                 cboChonNhanh.Properties.Items.Clear();
                 spinThoiGianCapNhat.Value = 0;
+                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_02"))
+                {
+                    btnSettingAdvand.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
@@ -347,7 +354,40 @@ namespace MedicalLink.Dashboard
             }
         }
 
-
+        private void btnSettingAdvand_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao frmCauHinh = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao();
+                frmCauHinh.MyGetData = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao.GetString(GetDataCaiDatNangCao);
+                frmCauHinh.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        public void GetDataCaiDatNangCao(string thoigian)
+        {
+            KhoangThoiGianLayDuLieu = thoigian;
+        }
+        private void dateTuNgay_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
+                {
+                    dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
+                    timerThongBao.Start();
+                    lblThongBao.Visible = true;
+                    lblThongBao.Text = "Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu";
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
     }
 }

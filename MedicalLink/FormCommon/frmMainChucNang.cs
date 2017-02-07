@@ -43,7 +43,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                TimerServiceProcess.SQLKiemTraVaUpdateTableTmp();
+                //TimerServiceProcess.SQLKiemTraVaUpdateTableDangDTTmp();
             }
             catch (Exception ex)
             {

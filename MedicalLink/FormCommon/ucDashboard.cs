@@ -24,14 +24,14 @@ namespace MedicalLink.FormCommon
         public ucDashboard()
         {
             InitializeComponent();
-            splitContainerControl1.SplitterPosition = 180;
+           // splitContainerControl1.SplitterPosition = 180;
         }
 
         private void ucDashboard_Load(object sender, EventArgs e)
         {
             try
             {
-                splitContainerControl1.SplitterPosition = 180;
+               // splitContainerControl1.SplitterPosition = 180;
                 EnabledAndDisableControl();
             }
             catch (Exception ex)

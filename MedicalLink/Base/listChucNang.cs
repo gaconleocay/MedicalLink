@@ -48,6 +48,13 @@ namespace MedicalLink.Base
                 SYS_04.permissiontype = 1;
                 lstresult.Add(SYS_04);
 
+                ClassCommon.classPermission SYS_05 = new ClassCommon.classPermission();
+                SYS_05.permissioncheck = false;
+                SYS_05.permissioncode = "SYS_05";
+                SYS_05.permissionname = "Quản trị hệ thống";
+                SYS_05.permissiontype = 1;
+                lstresult.Add(SYS_05);
+
                 //Tools
                 ClassCommon.classPermission TOOL_01 = new ClassCommon.classPermission();
                 TOOL_01.permissioncheck = false;
@@ -175,6 +182,13 @@ namespace MedicalLink.Base
                 THAOTAC_01.permissionname = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng";
                 THAOTAC_01.permissiontype = 4;
                 lstresult.Add(THAOTAC_01);
+
+                ClassCommon.classPermission THAOTAC_02 = new ClassCommon.classPermission();
+                THAOTAC_02.permissioncheck = false;
+                THAOTAC_02.permissioncode = "THAOTAC_02";
+                THAOTAC_02.permissionname = "Thiết lập khoảng thời gian lấy dữ liệu trong báo cáo";
+                THAOTAC_02.permissiontype = 4;
+                lstresult.Add(THAOTAC_02);
 
                 //report
                 ClassCommon.classPermission REPORT_01 = new ClassCommon.classPermission();

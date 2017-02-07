@@ -12,6 +12,7 @@ namespace MedicalLink.Dashboard
         string thoiGianDen = "";
         private long tickCurrentVal = 0;
         private long thoiGianCapNhat = 0;
+        internal string KhoangThoiGianLayDuLieu { get; set; }
         #endregion
 
         #region Load
@@ -22,11 +23,19 @@ namespace MedicalLink.Dashboard
 
         private void ucBaoCaoTongTheKhoa_Load(object sender, EventArgs e)
         {
+            KhoangThoiGianLayDuLieu = GlobalStore.KhoangThoiGianLayDuLieu;
             //Lấy thời gian lấy BC mặc định là ngày hiện tại
             dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             EnableControl();
             LoadDanhMucKhoa();
+            LoadDuLieuMacDinh();
+            panelControl1.HorizontalScroll.Visible = true;
+            panelControl1.VerticalScroll.Visible = true;
+            panelControl2.HorizontalScroll.Visible = true;
+            panelControl2.VerticalScroll.Visible = true;
+            panelControl3.HorizontalScroll.Visible = true;
+            panelControl3.VerticalScroll.Visible = true;
         }
 
         private void EnableControl()
@@ -39,6 +48,11 @@ namespace MedicalLink.Dashboard
                 cboChonNhanh.Enabled = false;
                 cboChonNhanh.Properties.Items.Clear();
                 spinThoiGianCapNhat.Value = 0;
+
+                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_02"))
+                {
+                    btnSettingAdvand.Enabled=true;
+                }
             }
             catch (Exception ex)
             {
@@ -57,6 +71,60 @@ namespace MedicalLink.Dashboard
                     cboKhoa.Properties.DisplayMember = "departmentgroupname";
                     cboKhoa.Properties.ValueMember = "departmentgroupid";
                 }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+        private void LoadDuLieuMacDinh()
+        {
+            try
+            {
+                lblBNHienDien.Text = "0";
+                lblBNChuyenDi.Text = "0";
+                lblBNChuyenDen.Text = "0";
+                lblBNRaVien.Text = "0";
+                lblDangDTSoTien.Text = "0";
+                lblDangDTKhamBenh.Text = "0";
+                lblDangDTXetNghiem.Text = "0";
+                lblDangDTCDHA.Text = "0";
+                lblDangDTPTTT.Text = "0";
+                lblDangDTDVKTC.Text = "0";
+                lblDangDTGiuong.Text = "0";
+                lblDangDTDVKhac.Text = "0";
+                lblDangDTMau.Text = "0";
+                lblDangDTVatTu.Text = "0";
+                lblDangDTThuoc.Text = "0";
+                lblDangDTTyLeThuoc.Text = "0";
+                lblDangDTTamUng.Text = "0";
+                lblDaRVSoLuong.Text = "0";
+                lblDaRVDoanhThu.Text = "0";
+                lblDaRVKhamBenh.Text = "0";
+                lblDaRVXetNghiem.Text = "0";
+                lblDaRVCDHA.Text = "0";
+                lblDaRVPTTT.Text = "0";
+                lblDaRVDVKTC.Text = "0";
+                lblDaRVGiuong.Text = "0";
+                lblDaRVDVKhac.Text = "0";
+                lblDaRVMau.Text = "0";
+                lblDaRVVatTu.Text = "0";
+                lblDaRVThuoc.Text = "0";
+                lblDaRVTyLeThuoc.Text = "0";
+                lblDaTTSoLuong.Text = "0";
+                lblDaTTDoanhThu.Text = "0";
+                lblDaTTKhamBenh.Text = "0";
+                lblDaTTXetNghiem.Text = "0";
+                lblDaTTCDHA.Text = "0";
+                lblDaTTPTTT.Text = "0";
+                lblDaTTDVKTC.Text = "0";
+                lblDaTTGiuong.Text = "0";
+                lblDaTTDVKhac.Text = "0";
+                lblDaTTMau.Text = "0";
+                lblDaTTVatTu.Text = "0";
+                lblDaTTThuoc.Text = "0";
+                lblDaTTTyLeThuoc.Text = "0";
             }
             catch (Exception ex)
             {
@@ -407,7 +475,54 @@ namespace MedicalLink.Dashboard
         }
         #endregion
 
+        private void btnSettingAdvand_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao frmCauHinh = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao();
+                frmCauHinh.MyGetData = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao.GetString(GetDataCaiDatNangCao);
+                frmCauHinh.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
+        private void btnFullScreen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        public void GetDataCaiDatNangCao(string thoigian)
+        {
+            KhoangThoiGianLayDuLieu = thoigian;
+        }
+
+        private void dateTuNgay_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
+                {
+                    dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
+                    timerThongBao.Start();
+                    lblThongBao.Visible = true;
+                    lblThongBao.Text = "Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu";
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
     }
 }

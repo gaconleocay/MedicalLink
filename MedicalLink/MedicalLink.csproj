@@ -53,10 +53,13 @@
     <ApplicationIcon>Martin-Berube-Flat-Animal-Crab.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="AutoMapper">
       <HintPath>Library\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.BonusSkins.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.BonusSkins.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -66,6 +69,7 @@
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -104,11 +108,21 @@
     <Reference Include="Npgsql">
       <HintPath>Library\Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Input.Manipulations" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -117,6 +131,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\ConnectDatabase.cs" />
@@ -256,6 +274,12 @@
     <Compile Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruFullSize.Designer.cs">
       <DependentUpon>BCBenhNhanNoiTruFullSize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruTuyChonNangCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruTuyChonNangCao.Designer.cs">
+      <DependentUpon>BCBenhNhanNoiTruTuyChonNangCao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -270,6 +294,12 @@
     </Compile>
     <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.Designer.cs">
       <DependentUpon>BCTongTheKhoaBNDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaTuyChonNangCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaTuyChonNangCao.Designer.cs">
+      <DependentUpon>BCTongTheKhoaTuyChonNangCao.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.cs">
       <SubType>UserControl</SubType>
@@ -522,11 +552,17 @@
     <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruFullSize.resx">
       <DependentUpon>BCBenhNhanNoiTruFullSize.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruTuyChonNangCao.resx">
+      <DependentUpon>BCBenhNhanNoiTruTuyChonNangCao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.resx">
       <DependentUpon>ucBaoCaoBenhNhanNoiTru.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.resx">
       <DependentUpon>BCTongTheKhoaBNDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaTuyChonNangCao.resx">
+      <DependentUpon>BCTongTheKhoaTuyChonNangCao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.resx">
       <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
@@ -643,6 +679,7 @@
     <None Include="Images\save-16.png" />
     <None Include="Images\recurring-appointment-16.png" />
     <None Include="Images\recurring-appointment-32.png" />
+    <None Include="Images\ok-16.png" />
     <Content Include="Martin-Berube-Flat-Animal-Crab.ico" />
     <None Include="Images\arrow-32-16.png" />
   </ItemGroup>

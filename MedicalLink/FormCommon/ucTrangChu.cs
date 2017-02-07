@@ -469,7 +469,7 @@ namespace MedicalLink.FormCommon
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-               // KetNoiSCDLProcess.CreateTableTblUser();
+               KetNoiSCDLProcess.CreateTableTblUser();
                 KetNoiSCDLProcess.CreateTableTblPermission();
                 KetNoiSCDLProcess.CreateTableTblDepartment();
                 KetNoiSCDLProcess.CreateTableTblLog();
@@ -480,9 +480,11 @@ namespace MedicalLink.FormCommon
                 KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew();
                 KetNoiSCDLProcess.CreateViewServicepriceDichVu();
                 KetNoiSCDLProcess.CreateViewServicepriceThuoc();
-                KetNoiSCDLProcess.CreateTableBCBNDangDTTmp();
+                KetNoiSCDLProcess.CreateTable_DangDT_Tmp();
+                KetNoiSCDLProcess.CreateTable_RaVienChuaTT_Tmp();
+                KetNoiSCDLProcess.CreateTable_RaVienDaTT_Tmp();
                 KetNoiSCDLProcess.CreateTableOption();
-
+                KetNoiSCDLProcess.CreateTable_ViewVienPhiMoney();
 
                 //if (KetNoiSCDLProcess.CreateTableTblUser() && KetNoiSCDLProcess.CreateTableTblPermission() && KetNoiSCDLProcess.CreateTableTblDepartment() && KetNoiSCDLProcess.CreateTableTblLog() && KetNoiSCDLProcess.CreateTableTblUpdateKhaDung() && KetNoiSCDLProcess.CreateTableTblServiceFull() && KetNoiSCDLProcess.CreateTableTblClients() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh() && KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew() && KetNoiSCDLProcess.CreateViewServicepriceDichVu() && KetNoiSCDLProcess.CreateViewServicepriceThuoc() && KetNoiSCDLProcess.CreateTableBCBNDangDTTmp() && KetNoiSCDLProcess.CreateTableOption())
                 //{

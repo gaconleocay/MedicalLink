@@ -331,6 +331,7 @@
     <Compile Include="ClassCommon\BCDashboardTongHopToanVien.cs" />
     <Compile Include="ClassCommon\BCDashboardBenhNhanNgoaiTru.cs" />
     <Compile Include="ClassCommon\classDanhMucDichVu.cs" />
+    <Compile Include="ClassCommon\classMedicineStore.cs" />
     <Compile Include="ClassCommon\classUserDepartment.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
       <SubType>Form</SubType>
@@ -403,6 +404,12 @@
     </Compile>
     <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoaProcess.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.Designer.cs">
+      <DependentUpon>ucBaoCaoXNTTuTruc.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseProcess\BCTongHopToanVien_Process.cs" />
     <Compile Include="DatabaseProcess\BCBenhNhanNgoaiTru_Process.cs" />
@@ -698,6 +705,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.resx">
       <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.resx">
+      <DependentUpon>ucBaoCaoXNTTuTruc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabTrangChu\frmThayPass.resx">
       <DependentUpon>frmThayPass.cs</DependentUpon>

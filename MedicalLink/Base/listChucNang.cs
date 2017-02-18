@@ -305,7 +305,13 @@ namespace MedicalLink.Base
                 REPORT_11.permissionnote = "Dashboard BC tổng hợp toàn viện";
                 lstresult.Add(REPORT_11);
 
-
+                ClassCommon.classPermission REPORT_14 = new ClassCommon.classPermission();
+                REPORT_14.permissioncheck = false;
+                REPORT_14.permissioncode = "REPORT_14";
+                REPORT_14.permissionname = "Dashboard BC xuất nhập tồn tủ trực";
+                REPORT_14.permissiontype = 5;
+                REPORT_14.permissionnote = "Dashboard BC xuất nhập tồn tủ trực";
+                lstresult.Add(REPORT_14);
 
             }
             catch (Exception ex)

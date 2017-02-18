@@ -34,9 +34,6 @@
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCTongHopToanVien = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
-            this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCBenhNhanNgoaiTru = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
@@ -46,6 +43,9 @@
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
+            this.navBarBCXNTTuTruc = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabControlChucNang = new DevExpress.XtraTab.XtraTabControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -81,7 +81,7 @@
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.navBarBCTongHopToanVien,
             this.navBarItem2,
-            this.navBarItem3,
+            this.navBarBCXNTTuTruc,
             this.navBarItem4,
             this.navBarBCBenhNhanNgoaiTru,
             this.navBarItem6,
@@ -122,33 +122,6 @@
             this.navBarItem2.Name = "navBarItem2";
             this.navBarItem2.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarItem2.Visible = false;
-            // 
-            // navBarGroup2
-            // 
-            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.navBarGroup2.Appearance.ForeColor = System.Drawing.Color.Fuchsia;
-            this.navBarGroup2.Appearance.Options.UseFont = true;
-            this.navBarGroup2.Appearance.Options.UseForeColor = true;
-            this.navBarGroup2.Caption = "DƯỢC";
-            this.navBarGroup2.Expanded = true;
-            this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem3),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
-            this.navBarGroup2.Name = "navBarGroup2";
-            // 
-            // navBarItem3
-            // 
-            this.navBarItem3.Caption = "navBarItem3";
-            this.navBarItem3.Name = "navBarItem3";
-            this.navBarItem3.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
-            this.navBarItem3.Visible = false;
-            // 
-            // navBarItem4
-            // 
-            this.navBarItem4.Caption = "navBarItem4";
-            this.navBarItem4.Name = "navBarItem4";
-            this.navBarItem4.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
-            this.navBarItem4.Visible = false;
             // 
             // navBarGroup3
             // 
@@ -231,6 +204,33 @@
             this.navBarItem10.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarItem10.Visible = false;
             // 
+            // navBarGroup2
+            // 
+            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup2.Appearance.ForeColor = System.Drawing.Color.Fuchsia;
+            this.navBarGroup2.Appearance.Options.UseFont = true;
+            this.navBarGroup2.Appearance.Options.UseForeColor = true;
+            this.navBarGroup2.Caption = "DƯỢC";
+            this.navBarGroup2.Expanded = true;
+            this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCXNTTuTruc),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem4)});
+            this.navBarGroup2.Name = "navBarGroup2";
+            // 
+            // navBarBCXNTTuTruc
+            // 
+            this.navBarBCXNTTuTruc.Caption = "BC xuất nhập tồn tủ trực";
+            this.navBarBCXNTTuTruc.Name = "navBarBCXNTTuTruc";
+            this.navBarBCXNTTuTruc.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCXNTTuTruc.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCXNTTuTruc_LinkClicked);
+            // 
+            // navBarItem4
+            // 
+            this.navBarItem4.Caption = "navBarItem4";
+            this.navBarItem4.Name = "navBarItem4";
+            this.navBarItem4.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarItem4.Visible = false;
+            // 
             // xtraTabControlChucNang
             // 
             this.xtraTabControlChucNang.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
@@ -269,7 +269,7 @@
         private DevExpress.XtraNavBar.NavBarItem navBarBCTongHopToanVien;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem3;
+        private DevExpress.XtraNavBar.NavBarItem navBarBCXNTTuTruc;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
         private DevExpress.XtraNavBar.NavBarItem navBarBCBenhNhanNgoaiTru;

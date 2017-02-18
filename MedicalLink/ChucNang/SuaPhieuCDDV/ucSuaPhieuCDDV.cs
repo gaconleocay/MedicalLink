@@ -533,7 +533,7 @@ namespace MedicalLink.ChucNang
                             condb.ExecuteNonQuery(delete_serviceprice);
                             condb.ExecuteNonQuery(update_medicine_store_bill);
                             condb.ExecuteNonQuery(sqlinsert_log);
-
+                            SplashScreenManager.CloseForm();
                             MessageBox.Show("Xóa phiếu thuốc/vật tư mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             gridControlDS_PhieuDichVu.DataSource = null;
                             btnTimKiem_Click(null, null);
@@ -556,6 +556,7 @@ namespace MedicalLink.ChucNang
                             condb.ExecuteNonQuery(sqlxecute_mbp);
                             condb.ExecuteNonQuery(sqlexcute_ser);
                             condb.ExecuteNonQuery(sqlinsert_log);
+                            SplashScreenManager.CloseForm();
                             MessageBox.Show("Xóa phiếu dịch vụ mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             gridControlDS_PhieuDichVu.DataSource = null;
                             btnTimKiem_Click(null, null);
@@ -564,6 +565,7 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
+                    SplashScreenManager.CloseForm();
                     MessageBox.Show("Thực hiện thất bại. \nPhiếu dịch vụ đã thu tiền hoặc bệnh án đã được duyệt viện phí.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -571,8 +573,8 @@ namespace MedicalLink.ChucNang
             {
                 MessageBox.Show("Thực hiện thất bại. Có lỗi xảy ra.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MedicalLink.Base.Logging.Error(ex);
+                SplashScreenManager.CloseForm();
             }
-            SplashScreenManager.CloseForm();
         }
         //Sua thoi gian chi dinh dich vu
         void itemSuaThoiGian_Click(object sender, EventArgs e)

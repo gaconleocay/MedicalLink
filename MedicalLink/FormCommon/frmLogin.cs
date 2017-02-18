@@ -44,6 +44,9 @@ namespace MedicalLink.FormCommon
                 {
                     SessionLogin.SessionUsercode = txtUsername.Text;
                     SessionLogin.SessionUsername = "Administrator";
+                    //Load data
+                    SessionLogin.SessionlstPhanQuyenChucNang = MedicalLink.Base.CheckPermission.GetPhanQuyenChucNang();
+                    SessionLogin.SessionlstPhanQuyenKhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyenKhoaPhong();
                     frmMain frmm = new frmMain();
                     frmm.Show();
                     this.Visible = false;
@@ -60,6 +63,7 @@ namespace MedicalLink.FormCommon
                             MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.KiemTraLicenseHopLe();
                             SessionLogin.SessionUsercode = txtUsername.Text;
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
+                            //Load data
                             SessionLogin.SessionlstPhanQuyenChucNang = MedicalLink.Base.CheckPermission.GetPhanQuyenChucNang();
                             SessionLogin.SessionlstPhanQuyenKhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyenKhoaPhong();
                             frmMain frmm = new frmMain();

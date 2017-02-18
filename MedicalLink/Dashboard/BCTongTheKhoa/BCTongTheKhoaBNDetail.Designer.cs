@@ -55,11 +55,11 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
+            this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
-            this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -84,6 +84,8 @@
             // 
             this.gridViewBNDetail.Appearance.FooterPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridViewBNDetail.Appearance.FooterPanel.Options.UseForeColor = true;
+            this.gridViewBNDetail.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.gridViewBNDetail.Appearance.SelectedRow.Options.UseBackColor = true;
             this.gridViewBNDetail.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.stt,
             this.gridColumn8,
@@ -108,10 +110,15 @@
             this.gridColumn21});
             this.gridViewBNDetail.GridControl = this.gridControlBNDetail;
             this.gridViewBNDetail.Name = "gridViewBNDetail";
+            this.gridViewBNDetail.OptionsFind.AlwaysVisible = true;
+            this.gridViewBNDetail.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
+            this.gridViewBNDetail.OptionsFind.ShowClearButton = false;
             this.gridViewBNDetail.OptionsView.ColumnAutoWidth = false;
+            this.gridViewBNDetail.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewBNDetail.OptionsView.ShowFooter = true;
             this.gridViewBNDetail.OptionsView.ShowGroupPanel = false;
             this.gridViewBNDetail.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewBNDetail_CustomDrawCell);
+            this.gridViewBNDetail.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewBNDetail_RowCellStyle);
             // 
             // stt
             // 
@@ -136,7 +143,6 @@
             this.gridColumn8.Caption = "Mã viện phí";
             this.gridColumn8.FieldName = "vienphiid";
             this.gridColumn8.Name = "gridColumn8";
-            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 1;
             this.gridColumn8.Width = 70;
@@ -150,7 +156,6 @@
             this.gridColumn2.Caption = "Mã bệnh nhân";
             this.gridColumn2.FieldName = "patientid";
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
             this.gridColumn2.Width = 70;
@@ -515,6 +520,15 @@
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
             // 
+            // lblTenThongTinChiTiet
+            // 
+            this.lblTenThongTinChiTiet.AutoSize = true;
+            this.lblTenThongTinChiTiet.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(236, 18);
+            this.lblTenThongTinChiTiet.Name = "lblTenThongTinChiTiet";
+            this.lblTenThongTinChiTiet.Size = new System.Drawing.Size(0, 18);
+            this.lblTenThongTinChiTiet.TabIndex = 9;
+            // 
             // tbnExport
             // 
             this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -556,15 +570,6 @@
             // 
             this.timerThongBao.Interval = 2000;
             this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
-            // lblTenThongTinChiTiet
-            // 
-            this.lblTenThongTinChiTiet.AutoSize = true;
-            this.lblTenThongTinChiTiet.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(236, 18);
-            this.lblTenThongTinChiTiet.Name = "lblTenThongTinChiTiet";
-            this.lblTenThongTinChiTiet.Size = new System.Drawing.Size(0, 18);
-            this.lblTenThongTinChiTiet.TabIndex = 9;
             // 
             // BCTongTheKhoaBNDetail
             // 

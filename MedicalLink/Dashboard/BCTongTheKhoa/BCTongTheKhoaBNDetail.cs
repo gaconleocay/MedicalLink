@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraSplashScreen;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -219,6 +220,16 @@ namespace MedicalLink.Dashboard.BCTongTheKhoa
         {
             timerThongBao.Stop();
             lblThongBao.Visible = false;
+        }
+
+        private void gridViewBNDetail_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
         }
 
 

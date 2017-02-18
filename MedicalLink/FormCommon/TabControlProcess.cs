@@ -251,7 +251,9 @@ namespace MedicalLink.FormCommon
                         ucResult = new Dashboard.ucBaoCaoTongHopToanVien();
                         break;
 
-
+                    case "REPORT_14":
+                        ucResult = new Dashboard.ucBaoCaoXNTTuTruc();
+                        break;
 
                     default:
                         break;

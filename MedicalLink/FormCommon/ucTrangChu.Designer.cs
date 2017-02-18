@@ -32,11 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucTrangChu));
             this.xtraTabControlHome = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabTTCoBan = new DevExpress.XtraTab.XtraTabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureLogo = new DevExpress.XtraEditors.PictureEdit();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.cboGiaoDien = new DevExpress.XtraEditors.ComboBoxEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.linkLabelThoiHan = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.pictureLogo = new DevExpress.XtraEditors.PictureEdit();
             this.xtraTabCaiDat = new DevExpress.XtraTab.XtraTabPage();
             this.splitContainerControlCaiDat = new DevExpress.XtraEditors.SplitContainerControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -62,9 +63,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlHome)).BeginInit();
             this.xtraTabControlHome.SuspendLayout();
             this.xtraTabTTCoBan.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureLogo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboGiaoDien.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureLogo.Properties)).BeginInit();
             this.xtraTabCaiDat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControlCaiDat)).BeginInit();
             this.splitContainerControlCaiDat.SuspendLayout();
@@ -96,25 +98,46 @@
             this.xtraTabTTCoBan.Appearance.Header.Options.UseForeColor = true;
             this.xtraTabTTCoBan.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
             this.xtraTabTTCoBan.Appearance.PageClient.Options.UseBackColor = true;
-            this.xtraTabTTCoBan.Controls.Add(this.panel1);
+            this.xtraTabTTCoBan.Controls.Add(this.panel2);
             this.xtraTabTTCoBan.Controls.Add(this.pictureLogo);
-            this.xtraTabTTCoBan.Controls.Add(this.lblThongBao);
-            this.xtraTabTTCoBan.Controls.Add(this.cboGiaoDien);
-            this.xtraTabTTCoBan.Controls.Add(this.label5);
-            this.xtraTabTTCoBan.Controls.Add(this.linkLabelThoiHan);
-            this.xtraTabTTCoBan.Controls.Add(this.linkLabelTenDatabase);
-            this.xtraTabTTCoBan.Controls.Add(this.linkLabelTenNguoiDung);
-            this.xtraTabTTCoBan.Controls.Add(this.label11);
-            this.xtraTabTTCoBan.Controls.Add(this.label9);
-            this.xtraTabTTCoBan.Controls.Add(this.label7);
-            this.xtraTabTTCoBan.Controls.Add(this.lblVersion);
-            this.xtraTabTTCoBan.Controls.Add(this.label6);
             this.xtraTabTTCoBan.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabTTCoBan.Image")));
             this.xtraTabTTCoBan.Name = "xtraTabTTCoBan";
             this.xtraTabTTCoBan.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabTTCoBan.Size = new System.Drawing.Size(1090, 582);
             this.xtraTabTTCoBan.Text = "Thông tin về phần mềm";
             this.xtraTabTTCoBan.Tooltip = "Thông tin về phần mềm";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblThongBao);
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.cboGiaoDien);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.linkLabelThoiHan);
+            this.panel2.Controls.Add(this.linkLabelTenDatabase);
+            this.panel2.Controls.Add(this.linkLabelTenNguoiDung);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.lblVersion);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(434, 582);
+            this.panel2.TabIndex = 26;
+            // 
+            // lblThongBao
+            // 
+            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblThongBao.Location = new System.Drawing.Point(148, 288);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(101, 23);
+            this.lblThongBao.TabIndex = 46;
+            this.lblThongBao.Text = "Thong bao";
+            this.lblThongBao.Visible = false;
             // 
             // panel1
             // 
@@ -123,7 +146,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 482);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(440, 100);
+            this.panel1.Size = new System.Drawing.Size(434, 100);
             this.panel1.TabIndex = 25;
             // 
             // label2
@@ -147,31 +170,10 @@
             this.label3.Text = "E-mail: hongminhnhat15@gmail.com\r\nPhone: 0868-915-456\r\n\r\n\r\n\r\n";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureLogo
-            // 
-            this.pictureLogo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureLogo.Location = new System.Drawing.Point(440, 0);
-            this.pictureLogo.Name = "pictureLogo";
-            this.pictureLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureLogo.Size = new System.Drawing.Size(650, 582);
-            this.pictureLogo.TabIndex = 0;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(349, 125);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(101, 23);
-            this.lblThongBao.TabIndex = 24;
-            this.lblThongBao.Text = "Thong bao";
-            this.lblThongBao.Visible = false;
-            // 
             // cboGiaoDien
             // 
             this.cboGiaoDien.EditValue = "";
-            this.cboGiaoDien.Location = new System.Drawing.Point(148, 209);
+            this.cboGiaoDien.Location = new System.Drawing.Point(148, 208);
             this.cboGiaoDien.Name = "cboGiaoDien";
             this.cboGiaoDien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboGiaoDien.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -182,17 +184,16 @@
             this.cboGiaoDien.Properties.DropDownRows = 10;
             this.cboGiaoDien.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboGiaoDien.Size = new System.Drawing.Size(271, 26);
-            this.cboGiaoDien.TabIndex = 23;
-            this.cboGiaoDien.SelectedIndexChanged += new System.EventHandler(this.cboGiaoDien_SelectedIndexChanged);
+            this.cboGiaoDien.TabIndex = 45;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(17, 212);
+            this.label5.Location = new System.Drawing.Point(17, 211);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 19);
-            this.label5.TabIndex = 22;
+            this.label5.TabIndex = 44;
             this.label5.Text = "Giao diện:";
             // 
             // linkLabelThoiHan
@@ -200,10 +201,10 @@
             this.linkLabelThoiHan.AutoSize = true;
             this.linkLabelThoiHan.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabelThoiHan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.linkLabelThoiHan.Location = new System.Drawing.Point(144, 78);
+            this.linkLabelThoiHan.Location = new System.Drawing.Point(144, 77);
             this.linkLabelThoiHan.Name = "linkLabelThoiHan";
             this.linkLabelThoiHan.Size = new System.Drawing.Size(124, 19);
-            this.linkLabelThoiHan.TabIndex = 20;
+            this.linkLabelThoiHan.TabIndex = 43;
             this.linkLabelThoiHan.TabStop = true;
             this.linkLabelThoiHan.Text = "Thời hạn license";
             // 
@@ -212,10 +213,10 @@
             this.linkLabelTenDatabase.AutoSize = true;
             this.linkLabelTenDatabase.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabelTenDatabase.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.linkLabelTenDatabase.Location = new System.Drawing.Point(144, 121);
+            this.linkLabelTenDatabase.Location = new System.Drawing.Point(144, 120);
             this.linkLabelTenDatabase.Name = "linkLabelTenDatabase";
             this.linkLabelTenDatabase.Size = new System.Drawing.Size(103, 19);
-            this.linkLabelTenDatabase.TabIndex = 19;
+            this.linkLabelTenDatabase.TabIndex = 42;
             this.linkLabelTenDatabase.TabStop = true;
             this.linkLabelTenDatabase.Text = "Tên database";
             // 
@@ -224,43 +225,42 @@
             this.linkLabelTenNguoiDung.AutoSize = true;
             this.linkLabelTenNguoiDung.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabelTenNguoiDung.LinkColor = System.Drawing.Color.Red;
-            this.linkLabelTenNguoiDung.Location = new System.Drawing.Point(144, 169);
+            this.linkLabelTenNguoiDung.Location = new System.Drawing.Point(144, 168);
             this.linkLabelTenNguoiDung.Name = "linkLabelTenNguoiDung";
             this.linkLabelTenNguoiDung.Size = new System.Drawing.Size(145, 19);
-            this.linkLabelTenNguoiDung.TabIndex = 18;
+            this.linkLabelTenNguoiDung.TabIndex = 41;
             this.linkLabelTenNguoiDung.TabStop = true;
-            this.linkLabelTenNguoiDung.Tag = "";
+            this.linkLabelTenNguoiDung.Tag = "Thay đổi mật khẩu";
             this.linkLabelTenNguoiDung.Text = "Tên người sử dụng";
-            this.linkLabelTenNguoiDung.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelTenNguoiDung_LinkClicked);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(17, 169);
+            this.label11.Location = new System.Drawing.Point(17, 168);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(121, 19);
-            this.label11.TabIndex = 16;
+            this.label11.TabIndex = 40;
             this.label11.Text = "Người sử dụng:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(17, 121);
+            this.label9.Location = new System.Drawing.Point(17, 120);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 19);
-            this.label9.TabIndex = 12;
+            this.label9.TabIndex = 39;
             this.label9.Text = "Database:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(17, 78);
+            this.label7.Location = new System.Drawing.Point(17, 77);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 19);
-            this.label7.TabIndex = 6;
+            this.label7.TabIndex = 38;
             this.label7.Text = "Thời hạn:";
             // 
             // lblVersion
@@ -268,21 +268,31 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblVersion.Location = new System.Drawing.Point(144, 34);
+            this.lblVersion.Location = new System.Drawing.Point(144, 33);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(60, 19);
-            this.lblVersion.TabIndex = 5;
+            this.lblVersion.TabIndex = 37;
             this.lblVersion.Text = "1.0.0.0";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 34);
+            this.label6.Location = new System.Drawing.Point(17, 33);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 19);
-            this.label6.TabIndex = 4;
+            this.label6.TabIndex = 36;
             this.label6.Text = "Phiên bản:";
+            // 
+            // pictureLogo
+            // 
+            this.pictureLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureLogo.Location = new System.Drawing.Point(0, 0);
+            this.pictureLogo.Name = "pictureLogo";
+            this.pictureLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureLogo.Size = new System.Drawing.Size(1090, 582);
+            this.pictureLogo.TabIndex = 0;
             // 
             // xtraTabCaiDat
             // 
@@ -408,10 +418,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlHome)).EndInit();
             this.xtraTabControlHome.ResumeLayout(false);
             this.xtraTabTTCoBan.ResumeLayout(false);
-            this.xtraTabTTCoBan.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureLogo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboGiaoDien.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureLogo.Properties)).EndInit();
             this.xtraTabCaiDat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControlCaiDat)).EndInit();
             this.splitContainerControlCaiDat.ResumeLayout(false);
@@ -425,19 +436,8 @@
 
         private DevExpress.XtraTab.XtraTabControl xtraTabControlHome;
         private DevExpress.XtraTab.XtraTabPage xtraTabTTCoBan;
-        private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label linkLabelThoiHan;
-        private System.Windows.Forms.Label linkLabelTenDatabase;
-        private System.Windows.Forms.LinkLabel linkLabelTenNguoiDung;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label5;
-        private DevExpress.XtraEditors.ComboBoxEdit cboGiaoDien;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraTab.XtraTabPage xtraTabCaiDat;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControlCaiDat;
@@ -452,5 +452,17 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemListOption;
         private DevExpress.XtraEditors.PictureEdit pictureLogo;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.LabelControl lblThongBao;
+        private DevExpress.XtraEditors.ComboBoxEdit cboGiaoDien;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label linkLabelThoiHan;
+        private System.Windows.Forms.Label linkLabelTenDatabase;
+        private System.Windows.Forms.LinkLabel linkLabelTenNguoiDung;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label label6;
     }
 }

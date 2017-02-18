@@ -164,6 +164,21 @@ namespace MedicalLink.FormCommon
             }
         }
 
+        private void navBarBCXNTTuTruc_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                UserControl ucControlActive = new UserControl();
+                ucControlActive = TabControlProcess.SelectUCControlActive("REPORT_14");
+                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "REPORT_14", "Dashboard BC xuất nhập tồn tủ trực", ucControlActive);
+                ucControlActive.Show();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
 
     }
 }

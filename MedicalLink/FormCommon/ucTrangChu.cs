@@ -298,6 +298,25 @@ namespace MedicalLink.FormCommon
         }
         #endregion
 
+        private void linkLabelTenNguoiDung_MouseHover(object sender, EventArgs e)
+        {
+            try
+            {
+                 timerThongBao.Start();
+                lblThongBao.Visible = true;
+                lblThongBao.Text = "Click vào để thay đổi mật khẩu"; 
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
 
 
 

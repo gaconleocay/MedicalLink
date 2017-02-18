@@ -53,7 +53,9 @@
     <ApplicationIcon>Martin-Berube-Flat-Animal-Crab.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Accessibility" />
+    <Reference Include="Accessibility">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="AutoMapper">
       <HintPath>Library\AutoMapper.dll</HintPath>
     </Reference>
@@ -69,7 +71,9 @@
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -94,8 +98,9 @@
     <Reference Include="log4net">
       <HintPath>Library\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel">
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>Library\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word">
@@ -104,37 +109,92 @@
     </Reference>
     <Reference Include="Mono.Security">
       <HintPath>Library\Mono.Security.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Npgsql">
       <HintPath>Library\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Runtime.Remoting" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Input.Manipulations" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationClient" />
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="UIAutomationTypes" />
-    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Management">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Input.Manipulations">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UIAutomationClient">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UIAutomationProvider">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UIAutomationTypes">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\ConnectDatabase.cs" />
@@ -267,7 +327,26 @@
     <Compile Include="ChucNang\ucXuLyMaVPTrang.Designer.cs">
       <DependentUpon>ucXuLyMaVPTrang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassCommon\BCDashboardQLTongTheKhoa.cs" />
+    <Compile Include="ClassCommon\BCDashboardTongHopToanVien.cs" />
+    <Compile Include="ClassCommon\BCDashboardBenhNhanNgoaiTru.cs" />
     <Compile Include="ClassCommon\classDanhMucDichVu.cs" />
+    <Compile Include="ClassCommon\classUserDepartment.cs" />
+    <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.Designer.cs">
+      <DependentUpon>BCBenhNhanNgoaiTruFullSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNgoaiTru\ucBaoCaoBenhNhanNgoaiTru.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNgoaiTru\ucBaoCaoBenhNhanNgoaiTru.Designer.cs">
+      <DependentUpon>ucBaoCaoBenhNhanNgoaiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCBenhNhanNgoaiTru\ucBaoCaoBenhNhanNgoaiTruProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruFullSize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -288,6 +367,21 @@
     </Compile>
     <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTruProcess.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVien.Designer.cs">
+      <DependentUpon>ucBaoCaoTongHopToanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVienProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaFullSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaFullSize.Designer.cs">
+      <DependentUpon>BCTongTheKhoaFullSize.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.cs">
       <SubType>Form</SubType>
@@ -310,24 +404,51 @@
     <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="DatabaseProcess\BCTongHopToanVien_Process.cs" />
+    <Compile Include="DatabaseProcess\BCBenhNhanNgoaiTru_Process.cs" />
+    <Compile Include="DatabaseProcess\DangDTRaVienChuaDaTT_Tmp_Process.cs" />
+    <Compile Include="DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
+    <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
+    <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
+    <Compile Include="FormCommon\TabTrangChu\frmThayPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabTrangChu\frmThayPass.Designer.cs">
+      <DependentUpon>frmThayPass.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\KetNoiSCDLProcess.cs" />
+    <Compile Include="FormCommon\TabTrangChu\ucSettingDatabase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabTrangChu\ucSettingDatabase.Designer.cs">
+      <DependentUpon>ucSettingDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCommon\TabTrangChu\ucSettingLicense.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabTrangChu\ucSettingLicense.Designer.cs">
+      <DependentUpon>ucSettingLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\ucDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FormCommon\ucDashboard.Designer.cs">
       <DependentUpon>ucDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalStore.cs" />
-    <Compile Include="HeThong\ucCauHinhHeThong.cs">
+    <Compile Include="FormCommon\ucTrangChu_TabCaiDat.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HeThong\ucCauHinhHeThong.Designer.cs">
+    <Compile Include="GlobalStore.cs" />
+    <Compile Include="FormCommon\TabCaiDat\ucCauHinhHeThong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucCauHinhHeThong.Designer.cs">
       <DependentUpon>ucCauHinhHeThong.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeThong\ucDanhSachNhanVien.cs">
+    <Compile Include="FormCommon\TabCaiDat\ucDanhSachNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HeThong\ucDanhSachNhanVien.Designer.cs">
+    <Compile Include="FormCommon\TabCaiDat\ucDanhSachNhanVien.Designer.cs">
       <DependentUpon>ucDanhSachNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\ucBCDSBNSDdv.cs">
@@ -354,10 +475,10 @@
     <Compile Include="ChucNang\ucKTTTDonThuocNoiTru.Designer.cs">
       <DependentUpon>ucKTTTDonThuocNoiTru.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeThong\ucQuanLyNguoiDung.cs">
+    <Compile Include="FormCommon\TabCaiDat\ucQuanLyNguoiDung.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HeThong\ucQuanLyNguoiDung.Designer.cs">
+    <Compile Include="FormCommon\TabCaiDat\ucQuanLyNguoiDung.Designer.cs">
       <DependentUpon>ucQuanLyNguoiDung.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\ucSuaTGDuyetVP.cs">
@@ -491,7 +612,6 @@
     <Compile Include="ThongBao\WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
-    <Compile Include="TimerService\TimerServiceProcess.cs" />
     <Compile Include="Utilities\Util_DateTime.cs" />
     <Compile Include="Utilities\Util_NumberConvert.cs" />
     <Compile Include="Utilities\Util_TypeConvertParse.cs" />
@@ -549,6 +669,12 @@
     <EmbeddedResource Include="ChucNang\ucXuLyMaVPTrang.resx">
       <DependentUpon>ucXuLyMaVPTrang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.resx">
+      <DependentUpon>BCBenhNhanNgoaiTruFullSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBenhNhanNgoaiTru\ucBaoCaoBenhNhanNgoaiTru.resx">
+      <DependentUpon>ucBaoCaoBenhNhanNgoaiTru.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\BCBenhNhanNoiTruFullSize.resx">
       <DependentUpon>BCBenhNhanNoiTruFullSize.cs</DependentUpon>
     </EmbeddedResource>
@@ -557,6 +683,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.resx">
       <DependentUpon>ucBaoCaoBenhNhanNoiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVien.resx">
+      <DependentUpon>ucBaoCaoTongHopToanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaFullSize.resx">
+      <DependentUpon>BCTongTheKhoaFullSize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.resx">
       <DependentUpon>BCTongTheKhoaBNDetail.cs</DependentUpon>
@@ -567,13 +699,22 @@
     <EmbeddedResource Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.resx">
       <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabTrangChu\frmThayPass.resx">
+      <DependentUpon>frmThayPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabTrangChu\ucSettingDatabase.resx">
+      <DependentUpon>ucSettingDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabTrangChu\ucSettingLicense.resx">
+      <DependentUpon>ucSettingLicense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\ucDashboard.resx">
       <DependentUpon>ucDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HeThong\ucCauHinhHeThong.resx">
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucCauHinhHeThong.resx">
       <DependentUpon>ucCauHinhHeThong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HeThong\ucDanhSachNhanVien.resx">
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhSachNhanVien.resx">
       <DependentUpon>ucDanhSachNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\ucBCDSBNSDdv.resx">
@@ -588,7 +729,7 @@
     <EmbeddedResource Include="ChucNang\ucKTTTDonThuocNoiTru.resx">
       <DependentUpon>ucKTTTDonThuocNoiTru.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HeThong\ucQuanLyNguoiDung.resx">
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucQuanLyNguoiDung.resx">
       <DependentUpon>ucQuanLyNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucSuaTGDuyetVP.resx">

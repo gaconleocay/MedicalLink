@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BCBenhNhanNoiTruFullSize));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDataBNNT = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewDataBNNT = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.departmentgroupname = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -61,26 +64,60 @@
             this.bandedGridColumn14 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn15 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn16 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBNNT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataBNNT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.lblTenThongTinChiTiet);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1350, 35);
+            this.panelControl1.TabIndex = 1;
+            // 
+            // lblTenThongTinChiTiet
+            // 
+            this.lblTenThongTinChiTiet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTenThongTinChiTiet.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenThongTinChiTiet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(2, 2);
+            this.lblTenThongTinChiTiet.Name = "lblTenThongTinChiTiet";
+            this.lblTenThongTinChiTiet.Size = new System.Drawing.Size(1346, 31);
+            this.lblTenThongTinChiTiet.TabIndex = 10;
+            this.lblTenThongTinChiTiet.Text = "BÁO CÁO BỆNH NHÂN NỘI TRÚ";
+            this.lblTenThongTinChiTiet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.gridControlDataBNNT);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 35);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1350, 695);
+            this.panelControl2.TabIndex = 2;
             // 
             // gridControlDataBNNT
             // 
             this.gridControlDataBNNT.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
             this.gridControlDataBNNT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlDataBNNT.EmbeddedNavigator.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.RelationName = "Level1";
             this.gridControlDataBNNT.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
-            this.gridControlDataBNNT.Location = new System.Drawing.Point(0, 0);
+            gridLevelNode2});
+            this.gridControlDataBNNT.Location = new System.Drawing.Point(2, 2);
             this.gridControlDataBNNT.MainView = this.bandedGridViewDataBNNT;
             this.gridControlDataBNNT.Name = "gridControlDataBNNT";
             this.gridControlDataBNNT.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButton_View});
-            this.gridControlDataBNNT.Size = new System.Drawing.Size(1350, 730);
-            this.gridControlDataBNNT.TabIndex = 28;
+            this.gridControlDataBNNT.Size = new System.Drawing.Size(1346, 691);
+            this.gridControlDataBNNT.TabIndex = 29;
             this.gridControlDataBNNT.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridViewDataBNNT});
             // 
@@ -135,11 +172,11 @@
             this.bandedGridViewDataBNNT.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
             this.bandedGridViewDataBNNT.OptionsBehavior.Editable = false;
             this.bandedGridViewDataBNNT.OptionsEditForm.EditFormColumnCount = 5;
+            this.bandedGridViewDataBNNT.OptionsView.ColumnAutoWidth = false;
             this.bandedGridViewDataBNNT.OptionsView.EnableAppearanceEvenRow = true;
             this.bandedGridViewDataBNNT.OptionsView.ShowFooter = true;
             this.bandedGridViewDataBNNT.OptionsView.ShowGroupPanel = false;
             this.bandedGridViewDataBNNT.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.bandedGridViewDataBNNT_CustomDrawRowIndicator);
-            this.bandedGridViewDataBNNT.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.bandedGridViewDataBNNT_RowCellStyle);
             // 
             // departmentgroupname
             // 
@@ -169,7 +206,7 @@
             // 
             this.repositoryItemButton_View.AutoHeight = false;
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
             // 
             // bandedGridColumn17
@@ -200,7 +237,7 @@
             this.gridBand2.Columns.Add(this.bandedGridColumn4);
             this.gridBand2.Name = "gridBand2";
             this.gridBand2.VisibleIndex = 1;
-            this.gridBand2.Width = 205;
+            this.gridBand2.Width = 295;
             // 
             // bandedGridColumn1
             // 
@@ -222,7 +259,7 @@
             this.bandedGridColumn1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dangdt_slbn_bhyt", "{0:#,##0}")});
             this.bandedGridColumn1.Visible = true;
-            this.bandedGridColumn1.Width = 41;
+            this.bandedGridColumn1.Width = 65;
             // 
             // bandedGridColumn2
             // 
@@ -244,7 +281,7 @@
             this.bandedGridColumn2.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dangdt_slbn_nhandan", "{0:#,##0}")});
             this.bandedGridColumn2.Visible = true;
-            this.bandedGridColumn2.Width = 41;
+            this.bandedGridColumn2.Width = 65;
             // 
             // bandedGridColumn3
             // 
@@ -266,7 +303,7 @@
             this.bandedGridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dangdt_slbn_tong", "{0:#,##0}")});
             this.bandedGridColumn3.Visible = true;
-            this.bandedGridColumn3.Width = 48;
+            this.bandedGridColumn3.Width = 65;
             // 
             // bandedGridColumn4
             // 
@@ -288,6 +325,7 @@
             this.bandedGridColumn4.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dangdt_tamung", "{0:#,##0}")});
             this.bandedGridColumn4.Visible = true;
+            this.bandedGridColumn4.Width = 100;
             // 
             // gridBand3
             // 
@@ -301,7 +339,7 @@
             this.gridBand3.Columns.Add(this.bandedGridColumn7);
             this.gridBand3.Name = "gridBand3";
             this.gridBand3.VisibleIndex = 2;
-            this.gridBand3.Width = 195;
+            this.gridBand3.Width = 265;
             // 
             // bandedGridColumn5
             // 
@@ -323,7 +361,7 @@
             this.bandedGridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ravienchuatt_slbn", "{0:#,##0}")});
             this.bandedGridColumn5.Visible = true;
-            this.bandedGridColumn5.Width = 64;
+            this.bandedGridColumn5.Width = 65;
             // 
             // bandedGridColumn6
             // 
@@ -345,7 +383,7 @@
             this.bandedGridColumn6.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ravienchuatt_tongtien", "{0:#,##0}")});
             this.bandedGridColumn6.Visible = true;
-            this.bandedGridColumn6.Width = 57;
+            this.bandedGridColumn6.Width = 100;
             // 
             // bandedGridColumn7
             // 
@@ -367,7 +405,7 @@
             this.bandedGridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ravienchuatt_tamung", "{0:#,##0}")});
             this.bandedGridColumn7.Visible = true;
-            this.bandedGridColumn7.Width = 74;
+            this.bandedGridColumn7.Width = 100;
             // 
             // gridBand4
             // 
@@ -381,7 +419,7 @@
             this.gridBand4.Columns.Add(this.bandedGridColumn10);
             this.gridBand4.Name = "gridBand4";
             this.gridBand4.VisibleIndex = 3;
-            this.gridBand4.Width = 214;
+            this.gridBand4.Width = 300;
             // 
             // bandedGridColumn8
             // 
@@ -403,7 +441,7 @@
             this.bandedGridColumn8.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dathanhtoan_sotien_bhyt", "{0:#,##0}")});
             this.bandedGridColumn8.Visible = true;
-            this.bandedGridColumn8.Width = 65;
+            this.bandedGridColumn8.Width = 100;
             // 
             // bandedGridColumn9
             // 
@@ -425,7 +463,7 @@
             this.bandedGridColumn9.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dathanhtoan_sotien_nhandan", "{0:#,##0}")});
             this.bandedGridColumn9.Visible = true;
-            this.bandedGridColumn9.Width = 65;
+            this.bandedGridColumn9.Width = 100;
             // 
             // bandedGridColumn10
             // 
@@ -447,7 +485,7 @@
             this.bandedGridColumn10.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dathanhtoan_sotien_tong", "{0:#,##0}")});
             this.bandedGridColumn10.Visible = true;
-            this.bandedGridColumn10.Width = 84;
+            this.bandedGridColumn10.Width = 100;
             // 
             // gridBand5
             // 
@@ -461,7 +499,7 @@
             this.gridBand5.Columns.Add(this.bandedGridColumn13);
             this.gridBand5.Name = "gridBand5";
             this.gridBand5.VisibleIndex = 4;
-            this.gridBand5.Width = 199;
+            this.gridBand5.Width = 300;
             // 
             // bandedGridColumn11
             // 
@@ -483,7 +521,7 @@
             this.bandedGridColumn11.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dathanhtoan_thuoc_bhyt", "{0:#,##0}")});
             this.bandedGridColumn11.Visible = true;
-            this.bandedGridColumn11.Width = 61;
+            this.bandedGridColumn11.Width = 100;
             // 
             // bandedGridColumn12
             // 
@@ -505,7 +543,7 @@
             this.bandedGridColumn12.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dathanhtoan_thuoc_nhandan", "{0:#,##0}")});
             this.bandedGridColumn12.Visible = true;
-            this.bandedGridColumn12.Width = 57;
+            this.bandedGridColumn12.Width = 100;
             // 
             // bandedGridColumn13
             // 
@@ -527,7 +565,7 @@
             this.bandedGridColumn13.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dathanhtoan_thuoc_tong", "{0:#,##0}")});
             this.bandedGridColumn13.Visible = true;
-            this.bandedGridColumn13.Width = 81;
+            this.bandedGridColumn13.Width = 100;
             // 
             // gridBand6
             // 
@@ -546,7 +584,7 @@
             this.gridBand6.Columns.Add(this.bandedGridColumn16);
             this.gridBand6.Name = "gridBand6";
             this.gridBand6.VisibleIndex = 5;
-            this.gridBand6.Width = 154;
+            this.gridBand6.Width = 180;
             // 
             // bandedGridColumn14
             // 
@@ -566,7 +604,7 @@
             this.bandedGridColumn14.FieldName = "dathanhtoan_tyle_thuoc_bhyt";
             this.bandedGridColumn14.Name = "bandedGridColumn14";
             this.bandedGridColumn14.Visible = true;
-            this.bandedGridColumn14.Width = 43;
+            this.bandedGridColumn14.Width = 60;
             // 
             // bandedGridColumn15
             // 
@@ -586,7 +624,7 @@
             this.bandedGridColumn15.FieldName = "dathanhtoan_tyle_thuoc_nhandan";
             this.bandedGridColumn15.Name = "bandedGridColumn15";
             this.bandedGridColumn15.Visible = true;
-            this.bandedGridColumn15.Width = 39;
+            this.bandedGridColumn15.Width = 60;
             // 
             // bandedGridColumn16
             // 
@@ -606,20 +644,25 @@
             this.bandedGridColumn16.FieldName = "dathanhtoan_tyle_thuoc_tong";
             this.bandedGridColumn16.Name = "bandedGridColumn16";
             this.bandedGridColumn16.Visible = true;
-            this.bandedGridColumn16.Width = 72;
+            this.bandedGridColumn16.Width = 60;
             // 
             // BCBenhNhanNoiTruFullSize
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 730);
-            this.Controls.Add(this.gridControlDataBNNT);
+            this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BCBenhNhanNoiTruFullSize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Báo cáo bệnh nhân nội trú";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BCBenhNhanNoiTruFullSize_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBNNT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataBNNT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).EndInit();
@@ -629,6 +672,9 @@
 
         #endregion
 
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.Label lblTenThongTinChiTiet;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraGrid.GridControl gridControlDataBNNT;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridViewDataBNNT;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand departmentgroupname;
@@ -656,5 +702,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn14;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn15;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn16;
+
     }
 }

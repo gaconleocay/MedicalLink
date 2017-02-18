@@ -197,6 +197,7 @@
             0});
             this.spinThoiGianCapNhat.Size = new System.Drawing.Size(83, 20);
             this.spinThoiGianCapNhat.TabIndex = 21;
+            this.spinThoiGianCapNhat.EditValueChanged += new System.EventHandler(this.spinThoiGianCapNhat_EditValueChanged);
             // 
             // groupBoxFile
             // 

@@ -11,6 +11,7 @@ using Npgsql;
 using System.Configuration;
 using System.Diagnostics;
 using MedicalLink.Base;
+using DevExpress.XtraSplashScreen;
 
 
 namespace MedicalLink.FormCommon
@@ -105,26 +106,24 @@ namespace MedicalLink.FormCommon
         //}
         private void btnDBUpdate_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                CreateTableTblUser();
-                CreateTableTblPermission();
-                CreateTableTblDepartment();
-                CreateTableTblLog();
-                CreateTableTblUpdateKhaDung();
-                CreateTableTblServiceFull();
-                CreateTableTblClients();
-                //CreateTableColumeBackupDichVu();
-                CreateTableTblDVKTBHYTChenh();
-                CreateTableTblDVKTBHYTChenhNew();
-                UpdateTableWithVersion();
-
-                MessageBox.Show("Cập nhật cơ sở dữ liệu thành công", "Thông báo");
+                if (KetNoiSCDLProcess.CapNhatCoSoDuLieu())
+                {
+                    MessageBox.Show("Cập nhật cơ sở dữ liệu thành công", "Thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật cơ sở dữ liệu thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi cập nhật cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MedicalLink.Base.Logging.Error("Lỗi cập nhật cơ sở dữ liệu!" + ex.ToString());
             }
+            SplashScreenManager.CloseForm();
         }
 
         #region Tao bang
@@ -211,20 +210,6 @@ namespace MedicalLink.FormCommon
                 condb.ExecuteNonQuery(sql_delete);
                 condb.ExecuteNonQuery(sql_insert_ser);
                 condb.ExecuteNonQuery(sql_insert_medi);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Có lỗi khi cập nhật cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void CreateTableTblClients()
-        {
-            try
-            {
-                //Tao bang luu tru danh sach may tram/license
-                string sql_tbltools_clients = "CREATE TABLE IF NOT EXISTS tools_clients (clientid serial NOT NULL, clientcode text NOT NULL, clientname text, clientlicense text, clientstatus integer, clientnhom integer, clientnote text, CONSTRAINT tools_client_pkey PRIMARY KEY (clientid));";
-
-                condb.ExecuteNonQuery(sql_tbltools_clients);
             }
             catch (Exception)
             {

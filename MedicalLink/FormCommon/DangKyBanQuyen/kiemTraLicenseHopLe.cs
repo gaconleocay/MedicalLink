@@ -21,11 +21,11 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                 SessionLogin.KiemTraLicenseSuDung = false;
                 string license_keydb = "";
                 //Load License tu DB ra
-                string kiemtra_licensetag = "SELECT * FROM tools_clients WHERE clientcode='" + SessionLogin.MaMayTinhNguoiDungMaHoa + "' ;";
+                string kiemtra_licensetag = "SELECT datakey,licensekey FROM tools_license WHERE datakey='" + SessionLogin.MaDatabase + "' ;";
                 DataView dv = new DataView(condb.getDataTable(kiemtra_licensetag));
                 if (dv != null && dv.Count > 0)
                 {
-                    license_keydb = dv[0]["clientlicense"].ToString();
+                    license_keydb = dv[0]["licensekey"].ToString();
                 }
 
                 if (license_keydb != "")
@@ -42,15 +42,15 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                         if (makichhoat_tach.Length == 4)
                         {
                             mamay_keykichhoat = makichhoat_tach[1];
-                            thoigianTu = Convert.ToInt64(makichhoat_tach[2].ToString().Trim() ?? "0");
-                            thoigianDen = Convert.ToInt64(makichhoat_tach[3].ToString().Trim() ?? "0");
+                            thoigianTu = Convert.ToInt64(makichhoat_tach[2].ToString().Trim() ?? "0" + "000000");
+                            thoigianDen = Convert.ToInt64(makichhoat_tach[3].ToString().Trim() ?? "0" + "235959");
 
                             //Thoi gian hien tai
-                            long datetime = Convert.ToInt64(DateTime.Now.ToString("yyyyMMddHHmmss"));
+                            long datetime = Convert.ToInt64(DateTime.Now.ToString("yyyyMMdd"));
                             string thoigianTu_text = DateTime.ParseExact(thoigianTu.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("HH:mm:ss dd-MM-yyyy");
                             string thoigianDen_text = DateTime.ParseExact(thoigianDen.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("HH:mm:ss dd-MM-yyyy");
                             //Kiem tra License hop le
-                            if (mamay_keykichhoat == SessionLogin.MaMayTinhNguoiDungMaHoa && datetime < thoigianDen)
+                            if (mamay_keykichhoat == SessionLogin.MaDatabase && datetime < thoigianDen)
                             {
                                 SessionLogin.KiemTraLicenseSuDung = true;
                             }
@@ -64,37 +64,23 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
             }
         }
 
-        internal static string LayThongTinMaMayVaMaHoa()
+        internal static string LayThongTinMaDatabase()
         {
-            string MaMayMaHoa = "";
+            string MaDatabase = "";
             try
             {
-                string cpuId = "";
-                string mainId = "";
-                string hddId = "";
-                string KeyPhanCungMayTinh = "";
-
-                //Lay ID CPU + main + ID HDD
-                cpuId = HardwareInfo.GetProcessorId();
-                mainId = HardwareInfo.GetBoardMaker();
-                hddId = HardwareInfo.GetHDDSerialNo();
-                KeyPhanCungMayTinh = cpuId.Replace(" ", "") + mainId.Replace(" ", "") + hddId.Replace(" ", "");
-                if (KeyPhanCungMayTinh != "")
+                string sqlLayMaDatabase = "SELECT datid, datname FROM pg_stat_activity where pid=(select pg_backend_pid());";
+                DataView dataMaDB = new DataView(condb.getDataTable(sqlLayMaDatabase));
+                if (dataMaDB != null && dataMaDB.Count > 0)
                 {
-                    //ma hoa chuoi
-                    MaMayMaHoa = EncryptAndDecryptLicense.Encrypt(KeyPhanCungMayTinh, true);
-                    //MaMayMaHoa = MedicalLink.FormCommon.DangKyBanQuyen.ClassEncoding.MaHoaCoDinhDang(KeyPhanCungMayTinh, "UTF-8_Bytes");
-                }
-                else
-                {
-                    MaMayMaHoa = EncryptAndDecryptLicense.Encrypt("", true);
+                    MaDatabase = dataMaDB[0]["datid"].ToString() + dataMaDB[0]["datname"].ToString();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn("Lay thong tin ma may va ma hoa " + ex.ToString());
+                MedicalLink.Base.Logging.Warn("Lay thong tin ma database " + ex.ToString());
             }
-            return MaMayMaHoa;
+            return MaDatabase;
         }
 
 

@@ -11,7 +11,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using MedicalLink.Base;
 
-namespace MedicalLink.HeThong
+namespace MedicalLink.FormCommon.TabCaiDat
 {
     public partial class ucCauHinhHeThong : UserControl
     {

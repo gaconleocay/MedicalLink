@@ -27,9 +27,10 @@ namespace MedicalLink.Base
         public static bool KiemTraLicenseSuDung { get; set; } //kiem tra license: neu false thi out phan mem, neu true thi cho su dung tiep
         public static string License_KeyDB { get; set; } //License lay tu DB
 
-        public static string MaMayTinhNguoiDungMaHoa { get; set; }//Lay thong tin phan cung may tinh va ma hoa
+        public static string MaDatabase { get; set; }//Lay thong tin database
 
-        public static List<ClassCommon.classPermission> SessionlstPhanQuyen { get; set; }
+        public static List<ClassCommon.classPermission> SessionlstPhanQuyenChucNang { get; set; }
+        public static List<ClassCommon.classUserDepartment> SessionlstPhanQuyenKhoaPhong { get; set; }
 
     }
 

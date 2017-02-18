@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraTab;
+using MedicalLink.FormCommon.TabCaiDat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -154,13 +155,13 @@ namespace MedicalLink.FormCommon
                 switch (ucName)
                 {
                     case "SYS_02":
-                        ucResult = new HeThong.ucQuanLyNguoiDung();
+                        ucResult = new ucQuanLyNguoiDung();
                         break;
                     case "SYS_03":
-                        ucResult = new HeThong.ucDanhSachNhanVien();
+                        ucResult = new ucDanhSachNhanVien();
                         break;
                     case "SYS_04":
-                        ucResult = new HeThong.ucCauHinhHeThong();
+                        ucResult = new ucCauHinhHeThong();
                         break;
                     //
                     case "TOOL_01":
@@ -243,6 +244,14 @@ namespace MedicalLink.FormCommon
                     case "REPORT_09":
                         ucResult = new Dashboard.ucBaoCaoBenhNhanNoiTru();
                         break;
+                    case "REPORT_10":
+                        ucResult = new Dashboard.ucBaoCaoBenhNhanNgoaiTru();
+                        break;
+                    case "REPORT_11":
+                        ucResult = new Dashboard.ucBaoCaoTongHopToanVien();
+                        break;
+
+
 
                     default:
                         break;

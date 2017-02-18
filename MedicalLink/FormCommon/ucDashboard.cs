@@ -19,6 +19,12 @@ namespace MedicalLink.FormCommon
         public string CurrentTabPage { get; set; }
         public int SelectedTabPageIndex { get; set; }
         internal frmMain frmMain;
+
+        // khai báo 1 hàm delegate
+        public delegate void GetString(string thoigian);
+        // khai báo 1 kiểu hàm delegate
+        public GetString MyGetData;
+
         #endregion
 
         public ucDashboard()
@@ -46,6 +52,8 @@ namespace MedicalLink.FormCommon
             {
                 navBarBCQLTongTheKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_08");
                 navBarBCBenhNhanNoiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_09");
+                navBarBCBenhNhanNgoaiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_10");
+                navBarBCBenhNhanNgoaiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_11");
             }
             catch (Exception ex)
             {
@@ -83,8 +91,11 @@ namespace MedicalLink.FormCommon
                 if (xtab != null)
                 {
                     this.SelectedTabPageIndex = xtab.SelectedTabPageIndex;
-                    //frmMain.StatusTenBC.Caption = e.Page.Tooltip;
-                    frmMain.HienThiTenChucNang();
+                    //delegate - thong tin chuc nang
+                    if (MyGetData != null)
+                    {// tại đây gọi nó
+                        MyGetData(xtab.TabPages[xtab.SelectedTabPageIndex].Tooltip);
+                    }
                 }
             }
             catch (Exception ex)
@@ -115,6 +126,36 @@ namespace MedicalLink.FormCommon
                 UserControl ucControlActive = new UserControl();
                 ucControlActive = TabControlProcess.SelectUCControlActive("REPORT_09");
                 MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "REPORT_09", "Dashboard BC bệnh nhân nội trú", ucControlActive);
+                ucControlActive.Show();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void navBarBCBenhNhanNgoaiTru_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                UserControl ucControlActive = new UserControl();
+                ucControlActive = TabControlProcess.SelectUCControlActive("REPORT_10");
+                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "REPORT_10", "Dashboard BC bệnh nhân ngoại trú", ucControlActive);
+                ucControlActive.Show();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void navBarBCTongHopToanVien_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                UserControl ucControlActive = new UserControl();
+                ucControlActive = TabControlProcess.SelectUCControlActive("REPORT_11");
+                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "REPORT_11", "Dashboard BC tổng hợp toàn viện", ucControlActive);
                 ucControlActive.Show();
             }
             catch (Exception ex)

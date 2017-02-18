@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 
-namespace MedicalLink.HeThong
+namespace MedicalLink.FormCommon.TabCaiDat
 {
     public partial class ucDanhSachNhanVien : UserControl
     {

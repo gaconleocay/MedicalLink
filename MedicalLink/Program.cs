@@ -20,6 +20,8 @@ namespace MedicalLink
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.AppendPrivatePath(AppDomain.CurrentDomain.BaseDirectory + @"\Library");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

@@ -32,13 +32,13 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem1 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarBCTongHopToanVien = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem2 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItem3 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem4 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem5 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarBCBenhNhanNgoaiTru = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCQLTongTheKhoa = new DevExpress.XtraNavBar.NavBarItem();
@@ -74,16 +74,16 @@
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1,
-            this.navBarGroup2,
             this.navBarGroup3,
             this.navBarGroup4,
-            this.navBarGroup5});
+            this.navBarGroup5,
+            this.navBarGroup2});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
-            this.navBarItem1,
+            this.navBarBCTongHopToanVien,
             this.navBarItem2,
             this.navBarItem3,
             this.navBarItem4,
-            this.navBarItem5,
+            this.navBarBCBenhNhanNgoaiTru,
             this.navBarItem6,
             this.navBarBCQLTongTheKhoa,
             this.navBarBCBenhNhanNoiTru,
@@ -102,19 +102,19 @@
             this.navBarGroup1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.navBarGroup1.Appearance.Options.UseFont = true;
             this.navBarGroup1.Appearance.Options.UseForeColor = true;
-            this.navBarGroup1.Caption = "TÀI CHÍNH";
+            this.navBarGroup1.Caption = "TỔNG HỢP";
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem1),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCTongHopToanVien),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem2)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
-            // navBarItem1
+            // navBarBCTongHopToanVien
             // 
-            this.navBarItem1.Caption = "Doanh thu";
-            this.navBarItem1.Name = "navBarItem1";
-            this.navBarItem1.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarItem1.SmallImage")));
-            this.navBarItem1.Visible = false;
+            this.navBarBCTongHopToanVien.Caption = "Tổng hợp toàn viện";
+            this.navBarBCTongHopToanVien.Name = "navBarBCTongHopToanVien";
+            this.navBarBCTongHopToanVien.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarBCTongHopToanVien.SmallImage")));
+            this.navBarBCTongHopToanVien.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCTongHopToanVien_LinkClicked);
             // 
             // navBarItem2
             // 
@@ -159,16 +159,16 @@
             this.navBarGroup3.Caption = "NGOẠI TRÚ";
             this.navBarGroup3.Expanded = true;
             this.navBarGroup3.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem5),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCBenhNhanNgoaiTru),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem6)});
             this.navBarGroup3.Name = "navBarGroup3";
             // 
-            // navBarItem5
+            // navBarBCBenhNhanNgoaiTru
             // 
-            this.navBarItem5.Caption = "navBarItem5";
-            this.navBarItem5.Name = "navBarItem5";
-            this.navBarItem5.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
-            this.navBarItem5.Visible = false;
+            this.navBarBCBenhNhanNgoaiTru.Caption = "BC bệnh nhân ngoại trú";
+            this.navBarBCBenhNhanNgoaiTru.Name = "navBarBCBenhNhanNgoaiTru";
+            this.navBarBCBenhNhanNgoaiTru.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCBenhNhanNgoaiTru.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCBenhNhanNgoaiTru_LinkClicked);
             // 
             // navBarItem6
             // 
@@ -192,14 +192,14 @@
             // 
             // navBarBCQLTongTheKhoa
             // 
-            this.navBarBCQLTongTheKhoa.Caption = "BC QL Tổng thể khoa";
+            this.navBarBCQLTongTheKhoa.Caption = "BC QL tổng thể khoa";
             this.navBarBCQLTongTheKhoa.Name = "navBarBCQLTongTheKhoa";
             this.navBarBCQLTongTheKhoa.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarBCQLTongTheKhoa.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCQLTongTheKhoa_LinkClicked);
             // 
             // navBarBCBenhNhanNoiTru
             // 
-            this.navBarBCBenhNhanNoiTru.Caption = "BC Bệnh nhân nội trú";
+            this.navBarBCBenhNhanNoiTru.Caption = "BC bệnh nhân nội trú";
             this.navBarBCBenhNhanNoiTru.Name = "navBarBCBenhNhanNoiTru";
             this.navBarBCBenhNhanNoiTru.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarBCBenhNhanNoiTru.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCBenhNhanNoiTru_LinkClicked);
@@ -266,13 +266,13 @@
         private DevExpress.XtraTab.XtraTabControl xtraTabControlChucNang;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup1;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem1;
+        private DevExpress.XtraNavBar.NavBarItem navBarBCTongHopToanVien;
         private DevExpress.XtraNavBar.NavBarItem navBarItem2;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup2;
         private DevExpress.XtraNavBar.NavBarItem navBarItem3;
         private DevExpress.XtraNavBar.NavBarItem navBarItem4;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup3;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem5;
+        private DevExpress.XtraNavBar.NavBarItem navBarBCBenhNhanNgoaiTru;
         private DevExpress.XtraNavBar.NavBarItem navBarItem6;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup4;
         private DevExpress.XtraNavBar.NavBarItem navBarBCQLTongTheKhoa;

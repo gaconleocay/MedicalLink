@@ -1,4 +1,4 @@
-﻿namespace MedicalLink.FormCommon
+﻿namespace MedicalLink.FormCommon.TabTrangChu
 {
     partial class frmThayPass
     {

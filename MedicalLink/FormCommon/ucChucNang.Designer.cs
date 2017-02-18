@@ -60,6 +60,8 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlChucNang)).BeginInit();
             this.xtraTabControlChucNang.SuspendLayout();
             this.xtraTabDSChucNang.SuspendLayout();
@@ -119,6 +121,7 @@
             this.xtraTabDSChucNang.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
             this.xtraTabDSChucNang.Size = new System.Drawing.Size(1090, 582);
             this.xtraTabDSChucNang.Text = "Chức năng";
+            this.xtraTabDSChucNang.Tooltip = "Danh sách chức năng";
             // 
             // layoutControl1
             // 
@@ -211,7 +214,8 @@
             this.gridDSBCColumeStt,
             this.gridColumn7,
             this.gridColumn8,
-            this.permissioncheck1});
+            this.permissioncheck1,
+            this.gridColumn4});
             this.gridViewDSBaoCao.GridControl = this.gridControlDSBaoCao;
             this.gridViewDSBaoCao.Name = "gridViewDSBaoCao";
             this.gridViewDSBaoCao.OptionsView.ShowGroupPanel = false;
@@ -351,7 +355,8 @@
             this.gridColumnstt,
             this.gridColumn2,
             this.gridColumn3,
-            this.permissioncheck});
+            this.permissioncheck,
+            this.gridColumn1});
             this.gridViewDSChucNang.GridControl = this.gridControlDSChucNang;
             this.gridViewDSChucNang.Name = "gridViewDSChucNang";
             this.gridViewDSChucNang.OptionsView.ShowGroupPanel = false;
@@ -497,6 +502,18 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "permissionnote";
+            this.gridColumn1.FieldName = "permissionnote";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "permissionnote";
+            this.gridColumn4.FieldName = "permissionnote";
+            this.gridColumn4.Name = "gridColumn4";
+            // 
             // ucChucNang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -571,6 +588,8 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
 
 
     }

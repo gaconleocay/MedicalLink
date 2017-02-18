@@ -15,6 +15,9 @@ using DevExpress.XtraGrid.Views.Grid;
 
 namespace MedicalLink.Dashboard
 {
+    /// <summary>
+    /// BC doanh thu theo khoa ra viện
+    /// </summary>
     public partial class ucBaoCaoBenhNhanNoiTru : UserControl
     {
         #region Declaration
@@ -151,7 +154,7 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                LayDuLieuBaoCao();
+                LayDuLieuBaoCao_ChayMoi();
             }
             catch (Exception ex)
             {
@@ -281,7 +284,14 @@ namespace MedicalLink.Dashboard
                 tickCurrentVal--;
                 if (tickCurrentVal == 0)
                 {
-                    LayDuLieuBaoCao();
+                    if (GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
+                    {
+                        LayDuLieuBaoCao_DaChayDuLieu();
+                    }
+                    else
+                    {
+                        LayDuLieuBaoCao_ChayMoi();
+                    }
                     tickCurrentVal = thoiGianCapNhat;
                 }
             }
@@ -358,8 +368,8 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao frmCauHinh = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao();
-                frmCauHinh.MyGetData = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao.GetString(GetDataCaiDatNangCao);
+                BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao frmCauHinh = new BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao();
+                frmCauHinh.MyGetData = new BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao.GetString(GetDataCaiDatNangCao);
                 frmCauHinh.ShowDialog();
             }
             catch (Exception ex)

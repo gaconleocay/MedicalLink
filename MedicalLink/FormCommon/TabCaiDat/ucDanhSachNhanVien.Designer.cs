@@ -1,4 +1,4 @@
-﻿namespace MedicalLink.HeThong
+﻿namespace MedicalLink.FormCommon.TabCaiDat
 {
     partial class ucDanhSachNhanVien
     {

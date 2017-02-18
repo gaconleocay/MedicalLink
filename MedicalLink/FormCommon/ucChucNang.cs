@@ -20,6 +20,12 @@ namespace MedicalLink.FormCommon
         public string CurrentTabPage { get; set; }
         public int SelectedTabPageIndex { get; set; }
         internal frmMain frmMain;
+
+        // khai báo 1 hàm delegate
+        public delegate void GetString(string thoigian);
+        // khai báo 1 kiểu hàm delegate
+        public GetString MyGetData;
+
         #endregion
         public ucChucNang()
         {
@@ -50,7 +56,6 @@ namespace MedicalLink.FormCommon
                 {
                     string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true) + "';";
                     DataView dv_per = new DataView(condb.getDataTable(sqlquerry_per));
-                    //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
                     if (dv_per != null && dv_per.Count > 0)
                     {
                         for (int i = 0; i < lstDSChucNang.Count; i++)
@@ -59,7 +64,7 @@ namespace MedicalLink.FormCommon
                             {
                                 if (lstDSChucNang[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
                                 {
-                                    lstDSChucNang[i].permissioncheck = Convert.ToBoolean(dv_per[j]["permissioncheck"]);
+                                    lstDSChucNang[i].permissioncheck = true;
                                 }
                             }
                         }
@@ -151,8 +156,11 @@ namespace MedicalLink.FormCommon
                 if (xtab != null)
                 {
                     this.SelectedTabPageIndex = xtab.SelectedTabPageIndex;
-                    //frmMain.StatusTenBC.Caption = e.Page.Tooltip;
-                    frmMain.HienThiTenChucNang();
+                    //delegate - thong tin chuc nang
+                    if (MyGetData != null)
+                    {// tại đây gọi nó
+                        MyGetData(xtab.TabPages[xtab.SelectedTabPageIndex].Tooltip);
+                    }
                 }
             }
             catch (Exception ex)
@@ -199,7 +207,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 var rowHandle = gridViewDSChucNang.FocusedRowHandle;
-                txtThongTinChiTiet.Text = gridViewDSChucNang.GetRowCellValue(rowHandle, "permissionname").ToString();
+                txtThongTinChiTiet.Text = gridViewDSChucNang.GetRowCellValue(rowHandle, "permissionnote").ToString();
             }
             catch (Exception ex)
             {
@@ -291,7 +299,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 var rowHandle = gridViewDSBaoCao.FocusedRowHandle;
-                txtThongTinChiTiet.Text = gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissionname").ToString();
+                txtThongTinChiTiet.Text = gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissionnote").ToString();
             }
             catch (Exception ex)
             {

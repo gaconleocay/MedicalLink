@@ -33,7 +33,7 @@
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
-            this.StatusTenBC = new DevExpress.XtraBars.BarStaticItem();
+            this.lblStatusTenBC = new DevExpress.XtraBars.BarStaticItem();
             this.StatusDBName = new DevExpress.XtraBars.BarStaticItem();
             this.StatusUsername = new DevExpress.XtraBars.BarStaticItem();
             this.StatusClock = new DevExpress.XtraBars.BarStaticItem();
@@ -65,7 +65,7 @@
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barStaticItem1,
-            this.StatusTenBC,
+            this.lblStatusTenBC,
             this.StatusClock,
             this.StatusUsername,
             this.StatusDBName});
@@ -81,7 +81,7 @@
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
             this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.StatusTenBC),
+            new DevExpress.XtraBars.LinkPersistInfo(this.lblStatusTenBC),
             new DevExpress.XtraBars.LinkPersistInfo(this.StatusDBName),
             new DevExpress.XtraBars.LinkPersistInfo(this.StatusUsername),
             new DevExpress.XtraBars.LinkPersistInfo(this.StatusClock)});
@@ -97,14 +97,14 @@
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
-            // StatusTenBC
+            // lblStatusTenBC
             // 
-            this.StatusTenBC.Caption = "Home";
-            this.StatusTenBC.Id = 1;
-            this.StatusTenBC.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
-            this.StatusTenBC.ItemAppearance.Normal.Options.UseForeColor = true;
-            this.StatusTenBC.Name = "StatusTenBC";
-            this.StatusTenBC.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.lblStatusTenBC.Caption = "Home";
+            this.lblStatusTenBC.Id = 1;
+            this.lblStatusTenBC.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
+            this.lblStatusTenBC.ItemAppearance.Normal.Options.UseForeColor = true;
+            this.lblStatusTenBC.Name = "lblStatusTenBC";
+            this.lblStatusTenBC.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // StatusDBName
             // 
@@ -187,7 +187,7 @@
             this.tabMenuTrangChu.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuTrangChu.Name = "tabMenuTrangChu";
             this.tabMenuTrangChu.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuTrangChu.Size = new System.Drawing.Size(1116, 569);
+            this.tabMenuTrangChu.Size = new System.Drawing.Size(1166, 569);
             // 
             // tabMenuDashboard
             // 
@@ -233,7 +233,7 @@
             // 
             // timerTblBNDangDT
             // 
-            this.timerTblBNDangDT.Tick += new System.EventHandler(this.timerTblBNDangDT_Tick);
+            this.timerTblBNDangDT.Tick += new System.EventHandler(this.timerTblBCNoiTru_Tick);
             // 
             // frmMain
             // 
@@ -278,7 +278,7 @@
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuTrangChu;
         private System.Windows.Forms.Timer timerClock;
         private System.Windows.Forms.Timer timerKiemTraLicense;
-        internal DevExpress.XtraBars.BarStaticItem StatusTenBC;
+        internal DevExpress.XtraBars.BarStaticItem lblStatusTenBC;
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuRestart;
         private System.Windows.Forms.Timer timerTblBNDangDT;
     }

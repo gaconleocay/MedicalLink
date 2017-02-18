@@ -1,4 +1,4 @@
-﻿namespace MedicalLink.HeThong
+﻿namespace MedicalLink.FormCommon.TabCaiDat
 {
     partial class ucQuanLyNguoiDung
     {
@@ -31,8 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucQuanLyNguoiDung));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             this.checker = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.panelControlThongTinUS = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxChucNang = new System.Windows.Forms.GroupBox();
             this.btnUserThem = new DevExpress.XtraEditors.SimpleButton();
@@ -48,6 +51,7 @@
             this.lblUsername = new DevExpress.XtraEditors.LabelControl();
             this.panelControlPhanQuyen = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDSUser = new DevExpress.XtraGrid.GridControl();
             this.gridViewDSUser = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.usercode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,18 +59,29 @@
             this.usergnhom = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.TabChucNang = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlChucNang = new DevExpress.XtraGrid.GridControl();
             this.gridViewChucNang = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.permissioncheck2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chucnangid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tenchucnang = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.TabKhoaPhong = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControlKhoaPhong = new DevExpress.XtraGrid.GridControl();
+            this.gridViewKhoaPhong = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinUS)).BeginInit();
             this.panelControlThongTinUS.SuspendLayout();
             this.groupBoxChucNang.SuspendLayout();
@@ -83,11 +98,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.TabChucNang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChucNang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewChucNang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
+            this.TabKhoaPhong.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlKhoaPhong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewKhoaPhong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,6 +133,29 @@
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
             this.repositoryItemCheckEdit1.PictureChecked = ((System.Drawing.Image)(resources.GetObject("repositoryItemCheckEdit1.PictureChecked")));
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.Caption = "#";
+            this.gridColumn2.ColumnEdit = this.repositoryItemCheckEdit3;
+            this.gridColumn2.FieldName = "departmentcheck";
+            this.gridColumn2.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn2.Image")));
+            this.gridColumn2.MaxWidth = 20;
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            this.gridColumn2.Width = 20;
+            // 
+            // repositoryItemCheckEdit3
+            // 
+            this.repositoryItemCheckEdit3.AutoHeight = false;
+            this.repositoryItemCheckEdit3.Name = "repositoryItemCheckEdit3";
+            this.repositoryItemCheckEdit3.PictureChecked = ((System.Drawing.Image)(resources.GetObject("repositoryItemCheckEdit3.PictureChecked")));
             // 
             // panelControlThongTinUS
             // 
@@ -271,17 +314,28 @@
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.lblThongBao);
             this.splitContainerControl1.Panel1.Controls.Add(this.gridControlDSUser);
             this.splitContainerControl1.Panel1.Controls.Add(this.panelControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.lblThongBao);
-            this.splitContainerControl1.Panel2.Controls.Add(this.gridControlChucNang);
-            this.splitContainerControl1.Panel2.Controls.Add(this.panelControl2);
+            this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControl1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1096, 534);
             this.splitContainerControl1.SplitterPosition = 465;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // lblThongBao
+            // 
+            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblThongBao.Location = new System.Drawing.Point(93, 178);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
+            this.lblThongBao.TabIndex = 20;
+            this.lblThongBao.Text = "Sửa thành công";
+            this.lblThongBao.Visible = false;
             // 
             // gridControlDSUser
             // 
@@ -374,30 +428,37 @@
             this.labelControl1.TabIndex = 7;
             this.labelControl1.Text = "Danh sách người sử dụng";
             // 
-            // lblThongBao
+            // xtraTabControl1
             // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(20, 149);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 20;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.TabChucNang;
+            this.xtraTabControl1.Size = new System.Drawing.Size(622, 530);
+            this.xtraTabControl1.TabIndex = 0;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.TabChucNang,
+            this.TabKhoaPhong});
+            // 
+            // TabChucNang
+            // 
+            this.TabChucNang.Controls.Add(this.gridControlChucNang);
+            this.TabChucNang.Name = "TabChucNang";
+            this.TabChucNang.Size = new System.Drawing.Size(616, 502);
+            this.TabChucNang.Text = "Chức năng";
             // 
             // gridControlChucNang
             // 
             this.gridControlChucNang.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
             this.gridControlChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlChucNang.Location = new System.Drawing.Point(0, 22);
+            this.gridControlChucNang.Location = new System.Drawing.Point(0, 0);
             this.gridControlChucNang.MainView = this.gridViewChucNang;
             this.gridControlChucNang.Name = "gridControlChucNang";
             this.gridControlChucNang.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemCheckEdit2});
-            this.gridControlChucNang.Size = new System.Drawing.Size(622, 508);
-            this.gridControlChucNang.TabIndex = 1;
+            this.gridControlChucNang.Size = new System.Drawing.Size(616, 502);
+            this.gridControlChucNang.TabIndex = 2;
             this.gridControlChucNang.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewChucNang});
             // 
@@ -416,10 +477,11 @@
             this.gridViewChucNang.GridControl = this.gridControlChucNang;
             this.gridViewChucNang.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, null, this.chucnangid, "")});
+            this.gridViewChucNang.IndicatorWidth = 35;
             this.gridViewChucNang.Name = "gridViewChucNang";
             this.gridViewChucNang.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
             this.gridViewChucNang.OptionsView.ShowGroupPanel = false;
-            this.gridViewChucNang.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewChucNang_RowCellStyle);
+            this.gridViewChucNang.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
             // 
             // permissioncheck2
             // 
@@ -460,27 +522,141 @@
             this.repositoryItemCheckEdit2.AutoHeight = false;
             this.repositoryItemCheckEdit2.Name = "repositoryItemCheckEdit2";
             // 
-            // panelControl2
+            // TabKhoaPhong
             // 
-            this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl2.Controls.Add(this.labelControl2);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(622, 22);
-            this.panelControl2.TabIndex = 2;
+            this.TabKhoaPhong.Controls.Add(this.gridControlKhoaPhong);
+            this.TabKhoaPhong.Name = "TabKhoaPhong";
+            this.TabKhoaPhong.Size = new System.Drawing.Size(616, 502);
+            this.TabKhoaPhong.Text = "Khoa phòng";
             // 
-            // labelControl2
+            // gridControlKhoaPhong
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl2.LineLocation = DevExpress.XtraEditors.LineLocation.Center;
-            this.labelControl2.LineOrientation = DevExpress.XtraEditors.LabelLineOrientation.Horizontal;
-            this.labelControl2.Location = new System.Drawing.Point(119, 4);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(127, 13);
-            this.labelControl2.TabIndex = 8;
-            this.labelControl2.Text = "Phân quyền chức năng";
+            this.gridControlKhoaPhong.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.gridControlKhoaPhong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlKhoaPhong.Location = new System.Drawing.Point(0, 0);
+            this.gridControlKhoaPhong.MainView = this.gridViewKhoaPhong;
+            this.gridControlKhoaPhong.Name = "gridControlKhoaPhong";
+            this.gridControlKhoaPhong.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit3,
+            this.repositoryItemCheckEdit4});
+            this.gridControlKhoaPhong.Size = new System.Drawing.Size(616, 502);
+            this.gridControlKhoaPhong.TabIndex = 3;
+            this.gridControlKhoaPhong.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewKhoaPhong});
+            // 
+            // gridViewKhoaPhong
+            // 
+            this.gridViewKhoaPhong.Appearance.GroupRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.gridViewKhoaPhong.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewKhoaPhong.Appearance.GroupRow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridViewKhoaPhong.Appearance.GroupRow.Options.UseBackColor = true;
+            this.gridViewKhoaPhong.Appearance.GroupRow.Options.UseFont = true;
+            this.gridViewKhoaPhong.Appearance.GroupRow.Options.UseForeColor = true;
+            this.gridViewKhoaPhong.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn6,
+            this.gridColumn5,
+            this.gridColumn7,
+            this.gridColumn8});
+            gridFormatRule2.Column = this.gridColumn2;
+            gridFormatRule2.ColumnApplyTo = this.gridColumn2;
+            gridFormatRule2.Name = "Format0";
+            gridFormatRule2.Rule = null;
+            this.gridViewKhoaPhong.FormatRules.Add(gridFormatRule2);
+            this.gridViewKhoaPhong.GridControl = this.gridControlKhoaPhong;
+            this.gridViewKhoaPhong.GroupCount = 1;
+            this.gridViewKhoaPhong.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, null, this.gridColumn3, "")});
+            this.gridViewKhoaPhong.Name = "gridViewKhoaPhong";
+            this.gridViewKhoaPhong.OptionsBehavior.AutoExpandAllGroups = true;
+            this.gridViewKhoaPhong.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            this.gridViewKhoaPhong.OptionsView.GroupDrawMode = DevExpress.XtraGrid.Views.Grid.GroupDrawMode.Office;
+            this.gridViewKhoaPhong.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
+            this.gridViewKhoaPhong.OptionsView.ShowGroupedColumns = true;
+            this.gridViewKhoaPhong.OptionsView.ShowGroupPanel = false;
+            this.gridViewKhoaPhong.OptionsView.ShowGroupPanelColumnsAsSingleRow = true;
+            this.gridViewKhoaPhong.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Ascending)});
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Check";
+            this.gridColumn1.FieldName = "permissioncheck2";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.Caption = "Mã phòng";
+            this.gridColumn3.FieldName = "departmentcode";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.Width = 145;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn4.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.Caption = "Tên phòng";
+            this.gridColumn4.FieldName = "departmentname";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 2;
+            this.gridColumn4.Width = 412;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn6.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.Caption = "Tên khoa";
+            this.gridColumn6.FieldName = "departmentgroupname";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 3;
+            this.gridColumn6.Width = 261;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn5.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn5.Caption = "departmentgroupid";
+            this.gridColumn5.FieldName = "departmentgroupid";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.Width = 79;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "departmentid";
+            this.gridColumn7.FieldName = "departmentid";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "departmenttype";
+            this.gridColumn8.FieldName = "departmenttype";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // repositoryItemCheckEdit4
+            // 
+            this.repositoryItemCheckEdit4.AutoHeight = false;
+            this.repositoryItemCheckEdit4.Name = "repositoryItemCheckEdit4";
             // 
             // timerThongBao
             // 
@@ -509,6 +685,7 @@
             this.Size = new System.Drawing.Size(1096, 613);
             this.Load += new System.EventHandler(this.ucQuanLyNguoiDung_Load);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinUS)).EndInit();
             this.panelControlThongTinUS.ResumeLayout(false);
             this.groupBoxChucNang.ResumeLayout(false);
@@ -527,12 +704,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.TabChucNang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChucNang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewChucNang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
+            this.TabKhoaPhong.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlKhoaPhong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewKhoaPhong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
             this.ResumeLayout(false);
 
@@ -553,10 +734,6 @@
         private DevExpress.XtraEditors.TextEdit txtUsername;
         private DevExpress.XtraEditors.TextEdit txtUserPassword;
         private DevExpress.XtraEditors.SimpleButton btnUserOK;
-        private DevExpress.XtraGrid.GridControl gridControlChucNang;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewChucNang;
-        private DevExpress.XtraGrid.Columns.GridColumn chucnangid;
-        private DevExpress.XtraGrid.Columns.GridColumn tenchucnang;
         private DevExpress.XtraGrid.GridControl gridControlDSUser;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewDSUser;
         private DevExpress.XtraGrid.Columns.GridColumn usercode;
@@ -564,16 +741,33 @@
         private DevExpress.XtraGrid.Columns.GridColumn usergnhom;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.Utils.ImageCollection imMenu;
-        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn checker;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage TabChucNang;
+        private DevExpress.XtraTab.XtraTabPage TabKhoaPhong;
+        private DevExpress.XtraGrid.GridControl gridControlChucNang;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewChucNang;
         private DevExpress.XtraGrid.Columns.GridColumn permissioncheck2;
+        private DevExpress.XtraGrid.Columns.GridColumn checker;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn chucnangid;
+        private DevExpress.XtraGrid.Columns.GridColumn tenchucnang;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
+        private DevExpress.XtraGrid.GridControl gridControlKhoaPhong;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewKhoaPhong;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
     }
 }

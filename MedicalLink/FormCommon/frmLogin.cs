@@ -29,8 +29,6 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                KiemTraInsertMayTram();
-                LoadDataFromDatabase();
                 // Mã hóa thông tin để so sánh trong DB
                 string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
                 string en_txtPassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtPassword.Text.Trim(), true);
@@ -55,7 +53,6 @@ namespace MedicalLink.FormCommon
                 {
                     try
                     {
-                        // Querry
                         string command = "SELECT usercode, username, userpassword FROM tools_tbluser WHERE usercode='" + en_txtUsername + "' and userpassword='" + en_txtPassword + "';";
                         DataView dv = new DataView(condb.getDataTable(command));
                         if (dv != null && dv.Count > 0)
@@ -63,7 +60,8 @@ namespace MedicalLink.FormCommon
                             MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.KiemTraLicenseHopLe();
                             SessionLogin.SessionUsercode = txtUsername.Text;
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
-                            SessionLogin.SessionlstPhanQuyen = MedicalLink.Base.CheckPermission.GetPhanQuyen();
+                            SessionLogin.SessionlstPhanQuyenChucNang = MedicalLink.Base.CheckPermission.GetPhanQuyenChucNang();
+                            SessionLogin.SessionlstPhanQuyenKhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyenKhoaPhong();
                             frmMain frmm = new frmMain();
                             frmm.Show();
                             this.Visible = false;
@@ -74,9 +72,9 @@ namespace MedicalLink.FormCommon
                             MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng", "Có lỗi xảy ra");
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng", "Có lỗi xảy ra");
+                        MedicalLink.Base.Logging.Error(ex);
                         txtUsername.Focus();
                     }
                 }
@@ -132,6 +130,8 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+                KiemTraInsertMayTram();
+                LoadDataFromDatabase();
                 if (ConfigurationManager.AppSettings["LoginUser"].ToString() != "" && ConfigurationManager.AppSettings["LoginPassword"].ToString() != "")
                 {
                     this.txtUsername.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["LoginUser"].ToString(), true);
@@ -176,7 +176,7 @@ namespace MedicalLink.FormCommon
         // nếu viết vào ô username = "config" thì mở ra bảng để cấu hình DB
         private void txtUsername_EditValueChanged(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "config")
+            if (txtUsername.Text.ToUpper() == "CONFIG")
             {
                 frmConnectDB frmcon = new frmConnectDB();
                 frmcon.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -201,11 +201,11 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                SessionLogin.MaMayTinhNguoiDungMaHoa = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaMayVaMaHoa();
+                SessionLogin.MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaDatabase();
                 string tenmay = MedicalLink.FormCommon.DangKyBanQuyen.HardwareInfo.GetComputerName();
                 string license_trang = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
 
-                string kiemtra_client = "SELECT * FROM tools_clients WHERE clientcode='" + SessionLogin.MaMayTinhNguoiDungMaHoa + "' ;";
+                string kiemtra_client = "SELECT * FROM tools_license WHERE datakey='" + SessionLogin.MaDatabase + "' ;";
                 DataView dv = new DataView(condb.getDataTable(kiemtra_client));
                 if (dv != null && dv.Count > 0)
                 {
@@ -214,7 +214,7 @@ namespace MedicalLink.FormCommon
                 }
                 else
                 {
-                    string insert_client = "INSERT INTO tools_clients(clientcode, clientname, clientlicense, clientstatus, clientnhom, clientnote) VALUES ('" + SessionLogin.MaMayTinhNguoiDungMaHoa + "','" + tenmay + "','" + license_trang + "','1','1','Client');";
+                    string insert_client = "INSERT INTO tools_license(datakey, licensekey) VALUES ('" + SessionLogin.MaDatabase + "','" + license_trang + "' );";
                     condb.ExecuteNonQuery(insert_client);
                 }
             }

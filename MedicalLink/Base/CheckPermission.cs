@@ -24,7 +24,7 @@ namespace MedicalLink.Base
                 }
                 else
                 {
-                    var checkPhanQuyen = SessionLogin.SessionlstPhanQuyen.Where(s => s.permissioncode.Contains(en_percode)).ToList();
+                    var checkPhanQuyen = SessionLogin.SessionlstPhanQuyenChucNang.Where(s => s.permissioncode.Contains(en_percode)).ToList();
                     if (checkPhanQuyen != null && checkPhanQuyen.Count > 0)
                     {
                         result = true;
@@ -39,7 +39,7 @@ namespace MedicalLink.Base
         }
 
         //Lay danh sach phan quyen khi nguoi dung dang nhap
-        public static List<ClassCommon.classPermission> GetPhanQuyen()
+        public static List<ClassCommon.classPermission> GetPhanQuyenChucNang()
         {
             List<ClassCommon.classPermission> lstPhanQuyen = new List<ClassCommon.classPermission>();
             try
@@ -65,6 +65,38 @@ namespace MedicalLink.Base
                 MedicalLink.Base.Logging.Error(ex);
             }
             return lstPhanQuyen;
+        }
+        //Phan quyen khoa phong nguoi dung
+        public static List<ClassCommon.classUserDepartment> GetPhanQuyenKhoaPhong()
+        {
+            List<ClassCommon.classUserDepartment> lstPhanQuyenKhoaPhong = new List<ClassCommon.classUserDepartment>();
+            try
+            {
+                string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
+                string sqlper = "SELECT ude.departmentgroupid,de.departmentgroupcode, de.departmentgroupname,de.departmentgrouptype, ude.departmentid,de.departmentcode,de.departmentname,ude.departmenttype, ude.usercode FROM tools_tbluser_departmentgroup ude inner join tools_depatment de on ude.departmentid=de.departmentid WHERE usercode = '" + en_usercode + "' ORDER BY de.departmentgroupname,de.departmentname,ude.departmenttype;";
+                DataView dv = new DataView(condb.getDataTable(sqlper));
+                if (dv.Count > 0)
+                {
+                    for (int i = 0; i < dv.Count; i++)
+                    {
+                        ClassCommon.classUserDepartment itemUdepart = new ClassCommon.classUserDepartment();
+                        itemUdepart.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmentgroupid"].ToString());
+                        itemUdepart.departmentgroupcode = dv[i]["departmentgroupcode"].ToString();
+                        itemUdepart.departmentgroupname = dv[i]["departmentgroupname"].ToString();
+                        itemUdepart.departmentgrouptype = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmentgrouptype"].ToString());
+                        itemUdepart.departmentid = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmentid"].ToString());
+                        itemUdepart.departmentcode = dv[i]["departmentcode"].ToString();
+                        itemUdepart.departmentname = dv[i]["departmentname"].ToString();
+                        itemUdepart.departmenttype = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmenttype"].ToString());
+                        lstPhanQuyenKhoaPhong.Add(itemUdepart);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+            return lstPhanQuyenKhoaPhong;
         }
     }
 }

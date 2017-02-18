@@ -11,7 +11,7 @@ using Npgsql;
 using System.Configuration;
 using MedicalLink.Base;
 
-namespace MedicalLink.FormCommon
+namespace MedicalLink.FormCommon.TabTrangChu
 {
     public partial class frmThayPass : Form
     {

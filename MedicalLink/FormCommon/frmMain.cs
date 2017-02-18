@@ -19,14 +19,10 @@ namespace MedicalLink.FormCommon
         public string serverdb = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString(), true);
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
 
-        DialogResult hoi;
-        private string _message;
+        internal string lblHienThiThongTinChucNang { get; set; }
 
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; }
-        }
+        DialogResult hoi;
+
         public frmMain()
         {
             InitializeComponent();
@@ -46,7 +42,7 @@ namespace MedicalLink.FormCommon
                 KiemTraPhanQuyen_EnableButton();
                 LoadPageMenu();
 
-                TimerChayChuongTrinhServiceAn();
+                TimerChayChuongTrinhServiceAn(); // Chay du lieu ngam   - TAM THOI KHONG SU DUNG
             }
             catch (Exception ex)
             {
@@ -224,16 +220,19 @@ namespace MedicalLink.FormCommon
                 //StatusTenBC.Caption = "";
                 tabMenuTrangChu.Controls.Clear();
                 MedicalLink.FormCommon.ucTrangChu ucTrangChu = new FormCommon.ucTrangChu();
+                ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
                 ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
                 tabMenuTrangChu.Controls.Add(ucTrangChu);
 
                 tabMenuChucNang.Controls.Clear();
                 MedicalLink.FormCommon.ucChucNang ucChucNang = new FormCommon.ucChucNang();
+                ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
                 ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
                 tabMenuChucNang.Controls.Add(ucChucNang);
 
                 tabMenuDashboard.Controls.Clear();
                 MedicalLink.FormCommon.ucDashboard ucDashboard = new FormCommon.ucDashboard();
+                ucDashboard.MyGetData = new FormCommon.ucDashboard.GetString(HienThiTenChucNang);
                 ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
                 tabMenuDashboard.Controls.Add(ucDashboard);
             }
@@ -242,16 +241,16 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-        internal void HienThiTenChucNang()
+        internal void HienThiTenChucNang(string _message)
         {
             try
             {
-                StatusTenBC.Caption = _message;
+                lblHienThiThongTinChucNang = _message;
+                lblStatusTenBC.Caption = lblHienThiThongTinChucNang;
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 

@@ -480,8 +480,10 @@
             this.gridViewChucNang.IndicatorWidth = 35;
             this.gridViewChucNang.Name = "gridViewChucNang";
             this.gridViewChucNang.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            this.gridViewChucNang.OptionsSelection.MultiSelect = true;
             this.gridViewChucNang.OptionsView.ShowGroupPanel = false;
             this.gridViewChucNang.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
+            this.gridViewChucNang.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewChucNang_SelectionChanged);
             // 
             // permissioncheck2
             // 
@@ -573,6 +575,7 @@
             this.gridViewKhoaPhong.Name = "gridViewKhoaPhong";
             this.gridViewKhoaPhong.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridViewKhoaPhong.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            this.gridViewKhoaPhong.OptionsSelection.MultiSelect = true;
             this.gridViewKhoaPhong.OptionsView.GroupDrawMode = DevExpress.XtraGrid.Views.Grid.GroupDrawMode.Office;
             this.gridViewKhoaPhong.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never;
             this.gridViewKhoaPhong.OptionsView.ShowGroupedColumns = true;
@@ -580,6 +583,7 @@
             this.gridViewKhoaPhong.OptionsView.ShowGroupPanelColumnsAsSingleRow = true;
             this.gridViewKhoaPhong.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridViewKhoaPhong.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewKhoaPhong_SelectionChanged);
             // 
             // gridColumn1
             // 

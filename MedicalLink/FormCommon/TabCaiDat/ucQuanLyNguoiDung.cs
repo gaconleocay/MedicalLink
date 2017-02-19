@@ -516,6 +516,56 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
 
+        private void gridViewChucNang_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var rowHandle = gridViewChucNang.FocusedRowHandle;
+                //string permissioncode = gridViewChucNang.GetRowCellValue(rowHandle, "permissioncode").ToString();
+                //var phanquyen = lstPer.Where(o => o.permissioncode == permissioncode).SingleOrDefault();
+                //if (phanquyen != null && gridViewChucNang.IsRowSelected(rowHandle))
+                //{
+                //    phanquyen.permissioncheck = true;
+                //}
+                //else
+                //{
+                //    phanquyen.permissioncheck = false;
+                //}
+                if (lstPer[rowHandle].permissioncheck)
+                {
+                    lstPer[rowHandle].permissioncheck = false;
+                }
+                else
+                {
+                    lstPer[rowHandle].permissioncheck = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Warn(ex);
+            }
+        }
+
+        private void gridViewKhoaPhong_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var rowHandle = gridViewKhoaPhong.FocusedRowHandle;
+                if (lstUserDepartment[rowHandle].departmentcheck)
+                {
+                    lstUserDepartment[rowHandle].departmentcheck = false;
+                }
+                else
+                {
+                    lstUserDepartment[rowHandle].departmentcheck = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Warn(ex);
+            }
+        }
+
 
     }
 }

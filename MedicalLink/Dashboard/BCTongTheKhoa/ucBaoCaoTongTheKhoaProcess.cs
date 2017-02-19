@@ -6,18 +6,20 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MedicalLink.Dashboard
 {
     public partial class ucBaoCaoTongTheKhoa : UserControl
     {
+        private DangDTRaVienChuaDaTTFilterDTO filter { get; set; }
         private void LayDuLieuBaoCao_ChayMoi()
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                DangDTRaVienChuaDaTTFilterDTO filter = new DangDTRaVienChuaDaTTFilterDTO();
+                filter = new DangDTRaVienChuaDaTTFilterDTO();
                 thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 filter.loaiBaoCao = "REPORT_08";
@@ -27,10 +29,23 @@ namespace MedicalLink.Dashboard
                 filter.departmentgroupid = Convert.ToInt16(cboKhoa.EditValue);
                 filter.loaivienphiid = 0;
                 filter.chayTuDong = 0;
+
+                //Thread t1 = new Thread(ThreadDangDieuTri);
+                //Thread t2 = new Thread(ThreadRaVienChuaThanhToan);
+                //Thread t3 = new Thread(ThreadRaVienDaThanhToan);
+                //Thread t4 = new Thread(SQLLayDuLieuBaoCao);
+
+                //t1.Start();
+                //t2.Start();
+                //t3.Start();
+                //t1.Join();
+                //t2.Join();
+                //t3.Join();
+
+                //t4.Start();
                 DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_DangDT_Tmp(filter);
                 DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienChuaTT_Tmp(filter);
                 DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienDaTT_Tmp(filter);
-
                 SQLLayDuLieuBaoCao();
             }
             catch (Exception ex)
@@ -39,6 +54,41 @@ namespace MedicalLink.Dashboard
             }
             SplashScreenManager.CloseForm();
         }
+
+        private void ThreadDangDieuTri()
+        {
+            try
+            {
+                DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_DangDT_Tmp(filter);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void ThreadRaVienChuaThanhToan()
+        {
+            try
+            {
+                DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienChuaTT_Tmp(filter);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void ThreadRaVienDaThanhToan()
+        {
+            try
+            {
+                DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienDaTT_Tmp(filter);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
 
         private void SQLLayDuLieuBaoCao()
         {

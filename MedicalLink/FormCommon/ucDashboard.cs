@@ -53,7 +53,9 @@ namespace MedicalLink.FormCommon
                 navBarBCQLTongTheKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_08");
                 navBarBCBenhNhanNoiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_09");
                 navBarBCBenhNhanNgoaiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_10");
-                navBarBCBenhNhanNgoaiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_11");
+                navBarBCTongHopToanVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_11");
+                //navBarBCBenhNhanNgoaiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_11");
+
             }
             catch (Exception ex)
             {

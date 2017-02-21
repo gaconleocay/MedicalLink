@@ -93,7 +93,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 if (!String.IsNullOrEmpty(txtKeyKichHoat.Text.Trim()))
                 {
                     //Giai ma
-                    string makichhoat_giaima = MedicalLink.FormCommon.DangKyBanQuyen.EncryptAndDecryptLicense.Decrypt(txtKeyKichHoat.Text.Trim(), true);
+                    string makichhoat_giaima = EncryptAndDecrypt.Decrypt(txtKeyKichHoat.Text.Trim(), true);
                     //Tach ma kich hoat:
                     string mamay_keykichhoat = "";
                     long thoigianTu = 0;
@@ -112,18 +112,18 @@ namespace MedicalLink.FormCommon.TabTrangChu
                         //Kiem tra License hop le
                         if (mamay_keykichhoat == SessionLogin.MaDatabase && datetime < thoigianDen)
                         {
-                            SessionLogin.KiemTraLicenseSuDung = true;
+                           // SessionLogin.KiemTraLicenseSuDung = true;
                             lblThoiGianSuDung.Text = "Từ: " + thoigianTu_text + " đến: " + thoigianDen_text;
                         }
                         else
                         {
-                            SessionLogin.KiemTraLicenseSuDung = false;
+                            //SessionLogin.KiemTraLicenseSuDung = false;
                             lblThoiGianSuDung.Text = "Mã kích hoạt hết hạn sử dụng";
                         }
                     }
                     else
                     {
-                        SessionLogin.KiemTraLicenseSuDung = false;
+                        //SessionLogin.KiemTraLicenseSuDung = false;
                         lblThoiGianSuDung.Text = "Sai mã kích hoạt";
                     }
                 }
@@ -193,7 +193,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
 
                     string MaDatabaseVaThoiGianSuDung = MedicalLink.Base.KeyTrongPhanMem.SaltEncrypt + "$" + txtTaoLicenseMaMay.Text + "$" + datetungay + "$" + datedenngay;
 
-                    txtTaoLicenseMaKichHoat.Text = MedicalLink.FormCommon.DangKyBanQuyen.EncryptAndDecryptLicense.Encrypt(MaDatabaseVaThoiGianSuDung, true);
+                    txtTaoLicenseMaKichHoat.Text = EncryptAndDecrypt.Encrypt(MaDatabaseVaThoiGianSuDung, true);
                 }
             }
             catch (Exception ex)

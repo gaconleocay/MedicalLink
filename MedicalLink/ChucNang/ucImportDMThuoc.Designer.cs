@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucImportDMThuoc));
             this.panelControlThongTinNV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
@@ -40,7 +39,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnNVOK = new DevExpress.XtraEditors.SimpleButton();
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
+            this.timerThongBao = new System.Windows.Forms.Timer();
             this.gridControlThuoc = new DevExpress.XtraGrid.GridControl();
             this.gridViewThuoc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();

@@ -102,10 +102,15 @@ namespace MedicalLink.Dashboard
 
                 string sqlBNRaVienChuyenDiChuyenDen = "(SELECT 'BN ra vien' as name, count(vp.vienphiid) as ravien_slbn FROM vienphi vp WHERE vp.vienphistatus=1 and vp.vienphidate_ravien>='" + thoiGianTu + "' and vp.vienphidate_ravien<='" + thoiGianDen + "' and vp.departmentgroupid='" + (cboKhoa.EditValue) + "') Union (SELECT 'BN chuyen di' as name, count(A1.vienphiid) as bn_chuyendi FROM( SELECT DISTINCT (mrd.vienphiid) FROM medicalrecord mrd  WHERE mrd.departmentgroupid='" + (cboKhoa.EditValue) + "' and mrd.hinhthucravienid=8 and mrd.thoigianravien>='" + thoiGianTu + "' and mrd.thoigianravien<='" + thoiGianDen + "') A1 ) Union (SELECT 'BN chuyen den' as name, count(A2.vienphiid) as bn_chuyenden FROM( SELECT DISTINCT (mrd.vienphiid) FROM medicalrecord mrd  WHERE mrd.departmentgroupid='" + (cboKhoa.EditValue) + "' and mrd.hinhthucvaovienid=3 and mrd.thoigianravien>='" + thoiGianTu + "' and mrd.thoigianravien<='" + thoiGianDen + "') A2);";
 
+                string sqlDoanhThu = "(SELECT serde.departmentgroupid,vp.vienphiid, sum(case when vp.doituongbenhnhanid=1 then 1 else 0 end) as doanhthu_slbn_bh, sum(case when vp.doituongbenhnhanid<>1 then 1 else 0 end) as doanhthu_slbn_vp, count(vp.*) as doanhthu_slbn, round(cast(sum(serde.money_khambenh_bh + serde.money_khambenh_vp) as numeric),0) as doanhthu_tienkb, round(cast(sum(serde.money_xetnghiem_bh + serde.money_xetnghiem_vp) as numeric),0) as doanhthu_tienxn, round(cast(sum(serde.money_cdha_bh + serde.money_cdha_vp + serde.money_tdcn_bh + serde.money_tdcn_vp) as numeric),0) as doanhthu_tiencdhatdcn, round(cast(sum(serde.money_pttt_bh + serde.money_pttt_vp) as numeric),0) as doanhthu_tienpttt, round(cast(sum(serde.money_dvktc_bh + serde.money_dvktc_vp) as numeric),0) as doanhthu_tiendvktc, round(cast(sum(serde.money_giuong_bh + serde.money_giuong_vp) as numeric),0) as doanhthu_tiengiuong, round(cast(sum(serde.money_khac_bh + serde.money_khac_vp + serde.money_phuthu_bh + serde.money_phuthu_vp + serde.money_vanchuyen_bh + serde.money_vanchuyen_vp) as numeric),0) as doanhthu_tienkhac, round(cast(sum(serde.money_vattu_bh + serde.money_vattu_vp) as numeric),0) as doanhthu_tienvattu, round(cast(sum(serde.money_mau_bh + serde.money_mau_vp) as numeric),0) as doanhthu_tienmau, round(cast(sum(serde.money_thuoc_bh) as numeric),0) as doanhthu_tienthuoc_bhyt,round(cast(sum(serde.money_thuoc_vp) as numeric),0) as doanhthu_tienthuoc_vp,round(cast(sum(serde.money_thuoc_bh + serde.money_thuoc_vp) as numeric),0) as doanhthu_tienthuoc,round(cast(sum(serde.money_khambenh_bh + serde.money_xetnghiem_bh + serde.money_cdha_bh + serde.money_tdcn_bh + serde.money_pttt_bh + serde.money_dvktc_bh + serde.money_giuong_bh + serde.money_khac_bh + serde.money_phuthu_bh + serde.money_vanchuyen_bh + serde.money_thuoc_bh + serde.money_mau_bh + serde.money_vattu_bh) as numeric),0) as doanhthu_tongtien_bhyt,round(cast(sum(serde.money_khambenh_vp + serde.money_xetnghiem_vp + serde.money_cdha_vp + serde.money_tdcn_vp + serde.money_pttt_vp + serde.money_dvktc_vp + serde.money_giuong_vp + serde.money_khac_vp + serde.money_phuthu_vp + serde.money_vanchuyen_vp + serde.money_thuoc_vp + serde.money_mau_vp + serde.money_vattu_vp) as numeric),0) as doanhthu_tongtien_vp, round(cast(sum(serde.money_khambenh_bh + serde.money_xetnghiem_bh + serde.money_cdha_bh + serde.money_tdcn_bh + serde.money_pttt_bh + serde.money_dvktc_bh + serde.money_giuong_bh + serde.money_khac_bh + serde.money_phuthu_bh + serde.money_vanchuyen_bh + serde.money_thuoc_bh + serde.money_mau_bh + serde.money_vattu_bh + serde.money_khambenh_vp + serde.money_xetnghiem_vp + serde.money_cdha_vp + serde.money_tdcn_vp + serde.money_pttt_vp + serde.money_dvktc_vp + serde.money_giuong_vp + serde.money_khac_vp + serde.money_phuthu_vp + serde.money_vanchuyen_vp + serde.money_thuoc_vp + serde.money_mau_vp + serde.money_vattu_vp) as numeric),0) as doanhthu_tongtien FROM vienphi vp inner join serviceprice_department serde on vp.vienphiid=serde.vienphiid WHERE COALESCE(vp.vienphistatus_vp,0)=1 and vp.loaivienphiid=0 and vp.duyet_ngayduyet_vp >= '" + thoiGianTu + "' and vp.duyet_ngayduyet_vp <= '" + thoiGianDen + "' and serde.departmentgroupid='" + Convert.ToInt32(cboKhoa.EditValue) + "' GROUP BY vp.vienphiid,serde.departmentgroupid) UNION (select 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 from tools_raviendatt_tmp ) ORDER BY departmentgroupid desc;";
+
+
                 DataView dataBCTongTheKhoa_DangDT = new DataView(condb.getDataTable(sqlBaoCao_DangDT));
                 DataView dataBCTongTheKhoa_RaVienChuaTT = new DataView(condb.getDataTable(sqlBaoCao_RaVienChuaTT));
                 DataView dataBCTongTheKhoa_RaVienDaTT = new DataView(condb.getDataTable(sqlBaoCao_RaVienDaTT));
                 DataView dataBNRaVienChuyenDiChuyenDen = new DataView(condb.getDataTable(sqlBNRaVienChuyenDiChuyenDen));
+                DataView dataDoanhThu = new DataView(condb.getDataTable(sqlDoanhThu));
+
                 List<DataView> dataBC = new List<DataView>();
                 if (dataBCTongTheKhoa_DangDT == null || dataBCTongTheKhoa_DangDT.Count == 0)
                 {
@@ -114,6 +119,7 @@ namespace MedicalLink.Dashboard
                 dataBC.Add(dataBCTongTheKhoa_DangDT);
                 dataBC.Add(dataBCTongTheKhoa_RaVienChuaTT);
                 dataBC.Add(dataBCTongTheKhoa_RaVienDaTT);
+                dataBC.Add(dataDoanhThu);
                 HienThiDuLieu(dataBC);
             }
             catch (Exception ex)
@@ -138,7 +144,7 @@ namespace MedicalLink.Dashboard
                 dataRow_1.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_slbn"]), 0);
                 dataRow_1.RaVienChuaTT_unit = "";
                 dataRow_1.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_slbn"]), 0);
-                //dataRow_1.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_slbn"]), 0);
+                dataRow_1.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_slbn"]), 0);
 
                 BCDashboardQLTongTheKhoa dataRow_2 = new BCDashboardQLTongTheKhoa();
                 dataRow_2.BNDangDT_stt = 2;
@@ -150,7 +156,7 @@ namespace MedicalLink.Dashboard
                 dataRow_2.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tongtien"]), 0) + " đ";
                 dataRow_2.RaVienChuaTT_unit = "";
                 dataRow_2.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tongtien"]), 0) + " đ";
-                //dataRow_2.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_2.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_3 = new BCDashboardQLTongTheKhoa();
                 dataRow_3.BNDangDT_stt = 3;
@@ -162,7 +168,7 @@ namespace MedicalLink.Dashboard
                 dataRow_3.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienkb"]), 0) + " đ";
                 dataRow_3.RaVienChuaTT_unit = "";
                 dataRow_3.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienkb"]), 0) + " đ";
-                //dataRow_3.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_3.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienkb"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_4 = new BCDashboardQLTongTheKhoa();
                 dataRow_4.BNDangDT_stt = 4;
@@ -174,7 +180,7 @@ namespace MedicalLink.Dashboard
                 dataRow_4.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienxn"]), 0) + " đ";
                 dataRow_4.RaVienChuaTT_unit = "";
                 dataRow_4.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienxn"]), 0) + " đ";
-                //dataRow_4.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_4.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienxn"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_5 = new BCDashboardQLTongTheKhoa();
                 dataRow_5.BNDangDT_stt = 5;
@@ -186,7 +192,7 @@ namespace MedicalLink.Dashboard
                 dataRow_5.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tiencdhatdcn"]), 0) + " đ";
                 dataRow_5.RaVienChuaTT_unit = "";
                 dataRow_5.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tiencdhatdcn"]), 0) + " đ";
-                // dataRow_5.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_5.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_slbn"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_6 = new BCDashboardQLTongTheKhoa();
                 dataRow_6.BNDangDT_stt = 6;
@@ -198,7 +204,7 @@ namespace MedicalLink.Dashboard
                 dataRow_6.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienpttt"]), 0) + " đ";
                 dataRow_6.RaVienChuaTT_unit = "";
                 dataRow_6.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienpttt"]), 0) + " đ";
-                //dataRow_6.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_6.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienpttt"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_7 = new BCDashboardQLTongTheKhoa();
                 dataRow_7.BNDangDT_stt = 7;
@@ -210,7 +216,7 @@ namespace MedicalLink.Dashboard
                 dataRow_7.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tiendvktc"]), 0) + " đ";
                 dataRow_7.RaVienChuaTT_unit = "";
                 dataRow_7.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tiendvktc"]), 0) + " đ";
-                //dataRow_7.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_7.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tiendvktc"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_8 = new BCDashboardQLTongTheKhoa();
                 dataRow_8.BNDangDT_stt = 8;
@@ -222,7 +228,7 @@ namespace MedicalLink.Dashboard
                 dataRow_8.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tiengiuong"]), 0) + " đ";
                 dataRow_8.RaVienChuaTT_unit = "";
                 dataRow_8.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tiengiuong"]), 0) + " đ";
-                //dataRow_8.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_8.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tiengiuong"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_9 = new BCDashboardQLTongTheKhoa();
                 dataRow_9.BNDangDT_stt = 9;
@@ -234,7 +240,7 @@ namespace MedicalLink.Dashboard
                 dataRow_9.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienkhac"]), 0) + " đ";
                 dataRow_9.RaVienChuaTT_unit = "";
                 dataRow_9.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienkhac"]), 0) + " đ";
-                //dataRow_9.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_9.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienkhac"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_10 = new BCDashboardQLTongTheKhoa();
                 dataRow_10.BNDangDT_stt = 10;
@@ -246,7 +252,7 @@ namespace MedicalLink.Dashboard
                 dataRow_10.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienmau"]), 0) + " đ";
                 dataRow_10.RaVienChuaTT_unit = "";
                 dataRow_10.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienmau"]), 0) + " đ";
-                //dataRow_10.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_10.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienmau"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_11 = new BCDashboardQLTongTheKhoa();
                 dataRow_11.BNDangDT_stt = 11;
@@ -258,7 +264,7 @@ namespace MedicalLink.Dashboard
                 dataRow_11.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienvattu"]), 0) + " đ";
                 dataRow_11.RaVienChuaTT_unit = "";
                 dataRow_11.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienvattu"]), 0) + " đ";
-                //dataRow_11.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_11.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienvattu"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_12 = new BCDashboardQLTongTheKhoa();
                 dataRow_12.BNDangDT_stt = 12;
@@ -270,7 +276,7 @@ namespace MedicalLink.Dashboard
                 dataRow_12.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienthuoc"]), 0) + " đ";
                 dataRow_12.RaVienChuaTT_unit = "";
                 dataRow_12.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienthuoc"]), 0) + " đ";
-                // dataRow_12.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0) + " đ";
+                dataRow_12.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienthuoc"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_13 = new BCDashboardQLTongTheKhoa();
                 dataRow_13.BNDangDT_stt = 13;
@@ -296,8 +302,14 @@ namespace MedicalLink.Dashboard
                 {
                     dataRow_13.DaTT_value = "0 %";
                 }
-                //dataRow_13.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[1][0]["dangdt_slbn"]), 0);
-
+                if (Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"]) != 0)
+                {
+                    dataRow_13.DaTT_value = Math.Round(((Convert.ToDecimal(dataBC[4][0]["doanhthu_tienthuoc"]) / Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"])) * 100), 1).ToString() + " %";
+                }
+                else
+                {
+                    dataRow_13.DaTT_value = "0 %";
+                }
                 BCDashboardQLTongTheKhoa dataRow_14 = new BCDashboardQLTongTheKhoa();
                 dataRow_14.BNDangDT_stt = 14;
                 dataRow_14.BNDangDT_name = "Vật tư";
@@ -359,178 +371,5 @@ namespace MedicalLink.Dashboard
 
         #endregion
 
-
-
-        //#region Hien thi du lieu
-        //private void HienThiDuLieuBaoCao_DangDT(DataView dataBCTongTheKhoa, DataView dataBCTongTheKhoa_DangDT_SLBNRV, string bn_chuyenden, string bn_chuyendi)
-        //{
-        //    try
-        //    {
-        //        if (dataBCTongTheKhoa != null && dataBCTongTheKhoa.Count > 0)
-        //        {
-        //            lblBNHienDien.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_slbn"]), 0);
-        //            lblBNChuyenDi.Text = bn_chuyendi;
-        //            lblBNChuyenDen.Text = bn_chuyenden;
-
-        //            Decimal tongtien = Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tongtien"]);
-        //            lblDangDTSoTien.Text = Util_NumberConvert.NumberToString(tongtien, 0);
-        //            lblDangDTKhamBenh.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienkb"]), 0);
-        //            lblDangDTXetNghiem.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienxn"]), 0);
-        //            lblDangDTCDHA.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tiencdhatdcn"]), 0);
-        //            lblDangDTPTTT.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienpttt"]), 0);
-        //            lblDangDTDVKTC.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tiendvktc"]), 0);
-        //            lblDangDTGiuong.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tiengiuong"]), 0);
-        //            lblDangDTDVKhac.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienkhac"]), 0);
-        //            lblDangDTMau.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienmau"]), 0);
-        //            lblDangDTVatTu.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienvattu"]), 0);
-        //            lblDangDTThuoc.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienthuoc"]), 0);
-        //            if (tongtien != 0)
-        //            {
-        //                lblDangDTTyLeThuoc.Text = Convert.ToString(Math.Round((Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tienthuoc"]) * 100 / tongtien), 2));
-        //            }
-        //            else
-        //            {
-        //                lblDangDTTyLeThuoc.Text = "0";
-        //            }
-        //            lblDangDTTamUng.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["dangdt_tamung"]), 0);
-        //        }
-        //        else
-        //        {
-        //            lblBNHienDien.Text = "0";
-        //            lblBNChuyenDi.Text = "0";
-        //            lblBNChuyenDen.Text = "0";
-        //            lblDangDTSoTien.Text = "0";
-        //            lblDangDTKhamBenh.Text = "0";
-        //            lblDangDTXetNghiem.Text = "0";
-        //            lblDangDTCDHA.Text = "0";
-        //            lblDangDTPTTT.Text = "0";
-        //            lblDangDTDVKTC.Text = "0";
-        //            lblDangDTGiuong.Text = "0";
-        //            lblDangDTDVKhac.Text = "0";
-        //            lblDangDTMau.Text = "0";
-        //            lblDangDTVatTu.Text = "0";
-        //            lblDangDTThuoc.Text = "0";
-        //            lblDangDTTyLeThuoc.Text = "0";
-        //            lblDangDTTamUng.Text = "0";
-        //        }
-        //        if (dataBCTongTheKhoa_DangDT_SLBNRV != null && dataBCTongTheKhoa_DangDT_SLBNRV.Count > 0)
-        //        {
-        //            lblBNRaVien.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa_DangDT_SLBNRV[0]["ravien_slbn"]), 0);
-        //        }
-        //        else
-        //        {
-        //            lblBNRaVien.Text = "0";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MedicalLink.Base.Logging.Error(ex);
-        //    }
-        //}
-        //private void HienThiDuLieuBaoCao_RaVienChuaTT(DataView dataBCTongTheKhoa)
-        //{
-        //    try
-        //    {
-        //        if (dataBCTongTheKhoa != null && dataBCTongTheKhoa.Count > 0)
-        //        {
-        //            lblDaRVSoLuong.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_slbn"]), 0);
-        //            Decimal tongtien = Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tongtien"]);
-
-        //            lblDaRVDoanhThu.Text = Util_NumberConvert.NumberToString(tongtien, 0);
-        //            lblDaRVKhamBenh.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienkb"]), 0);
-        //            lblDaRVXetNghiem.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienxn"]), 0);
-        //            lblDaRVCDHA.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tiencdhatdcn"]), 0);
-        //            lblDaRVPTTT.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienpttt"]), 0);
-        //            lblDaRVDVKTC.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tiendvktc"]), 0);
-        //            lblDaRVGiuong.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tiengiuong"]), 0);
-        //            lblDaRVDVKhac.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienkhac"]), 0);
-        //            lblDaRVVatTu.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienvattu"]), 0);
-        //            lblDaRVMau.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienmau"]), 0);
-        //            lblDaRVThuoc.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienthuoc"]), 0);
-        //            if (tongtien != 0)
-        //            {
-        //                lblDaRVTyLeThuoc.Text = Convert.ToString(Math.Round((Convert.ToDecimal(dataBCTongTheKhoa[0]["ravienchuatt_tienthuoc"]) * 100 / tongtien), 2));
-        //            }
-        //            else
-        //            {
-        //                lblDaRVTyLeThuoc.Text = "0";
-        //            }
-        //        }
-        //        else
-        //        {
-        //            lblDaRVSoLuong.Text = "0";
-        //            lblDaRVDoanhThu.Text = "0";
-        //            lblDaRVKhamBenh.Text = "0";
-        //            lblDaRVXetNghiem.Text = "0";
-        //            lblDaRVCDHA.Text = "0";
-        //            lblDaRVPTTT.Text = "0";
-        //            lblDaRVDVKTC.Text = "0";
-        //            lblDaRVGiuong.Text = "0";
-        //            lblDaRVDVKhac.Text = "0";
-        //            lblDaRVMau.Text = "0";
-        //            lblDaRVVatTu.Text = "0";
-        //            lblDaRVThuoc.Text = "0";
-        //            lblDaRVTyLeThuoc.Text = "0";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MedicalLink.Base.Logging.Error(ex);
-        //    }
-        //}
-
-        //private void HienThiDuLieuBaoCao_RaVienDaTT(DataView dataBCTongTheKhoa)
-        //{
-        //    try
-        //    {
-        //        if (dataBCTongTheKhoa != null && dataBCTongTheKhoa.Count > 0)
-        //        {
-        //            lblDaTTSoLuong.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_slbn"]), 0);
-
-        //            Decimal tongtien = Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tongtien"]);
-        //            lblDaTTDoanhThu.Text = Util_NumberConvert.NumberToString(tongtien, 0);
-        //            lblDaTTKhamBenh.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienkb"]), 0);
-        //            lblDaTTXetNghiem.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienxn"]), 0);
-        //            lblDaTTCDHA.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tiencdhatdcn"]), 0);
-        //            lblDaTTPTTT.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienpttt"]), 0);
-        //            lblDaTTDVKTC.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tiendvktc"]), 0);
-        //            lblDaTTGiuong.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tiengiuong"]), 0);
-        //            lblDaTTDVKhac.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienkhac"]), 0);
-        //            lblDaTTVatTu.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienvattu"]), 0);
-        //            lblDaTTMau.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienmau"]), 0);
-        //            lblDaTTThuoc.Text = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienthuoc"]), 0);
-        //            if (tongtien != 0)
-        //            {
-        //                lblDaTTTyLeThuoc.Text = Convert.ToString(Math.Round((Convert.ToDecimal(dataBCTongTheKhoa[0]["raviendatt_tienthuoc"]) * 100 / tongtien), 2));
-        //            }
-        //            else
-        //            {
-        //                lblDaTTTyLeThuoc.Text = "0";
-        //            }
-        //        }
-        //        else
-        //        {
-        //            lblDaTTSoLuong.Text = "0";
-        //            lblDaTTDoanhThu.Text = "0";
-        //            lblDaTTKhamBenh.Text = "0";
-        //            lblDaTTXetNghiem.Text = "0";
-        //            lblDaTTCDHA.Text = "0";
-        //            lblDaTTPTTT.Text = "0";
-        //            lblDaTTDVKTC.Text = "0";
-        //            lblDaTTGiuong.Text = "0";
-        //            lblDaTTDVKhac.Text = "0";
-        //            lblDaTTMau.Text = "0";
-        //            lblDaTTVatTu.Text = "0";
-        //            lblDaTTThuoc.Text = "0";
-        //            lblDaTTTyLeThuoc.Text = "0";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MedicalLink.Base.Logging.Error(ex);
-        //    }
-        //}
-
-        //#endregion
     }
 }

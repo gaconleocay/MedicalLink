@@ -34,12 +34,12 @@ namespace MedicalLink.FormCommon
             try
             {
                 timerClock.Start();
-                timerKiemTraLicense.Interval = MedicalLink.Base.KeyTrongPhanMem.ThoiGianKiemTraLicense;
-                timerKiemTraLicense.Start();
+                //timerKiemTraLicense.Interval = MedicalLink.Base.KeyTrongPhanMem.ThoiGianKiemTraLicense;
+                //timerKiemTraLicense.Start();
 
                 LoadThongTinVePhanMem_Version();
                 LoadGiaoDien();
-                KiemTraPhanQuyen_EnableButton();
+                //  KiemTraPhanQuyen_EnableButton();
                 LoadPageMenu();
 
                 TimerChayChuongTrinhServiceAn(); // Chay du lieu ngam   - TAM THOI KHONG SU DUNG
@@ -115,7 +115,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                // Kiểm tra phân quyền
+                //Kiểm tra phân quyền
                 //if (SessionLogin.SessionUsercode == MedicalLink.Base.KeyTrongPhanMem.AdminUser_key)
                 //{
                 //    EnableAndDisableChucNang(true); //admin              

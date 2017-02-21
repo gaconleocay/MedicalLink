@@ -39,6 +39,7 @@ namespace MedicalLink.FormCommon
             {
                 LoadDataDSChucNang();
                 LoadDataDSBaoCao();
+                KiemTraLicense_ChucNang();
             }
             catch (Exception ex)
             {
@@ -77,7 +78,7 @@ namespace MedicalLink.FormCommon
                         lstDSChucNang[i].permissioncheck = true;
                     }
                 }
-                gridControlDSChucNang.DataSource = lstDSChucNang;
+                gridControlDSChucNang.DataSource = lstDSChucNang.Where(o=>o.permissioncheck==true).ToList();
             }
             catch (Exception ex)
             {
@@ -116,7 +117,18 @@ namespace MedicalLink.FormCommon
                         lstDSBaoCao[i].permissioncheck = true;
                     }
                 }
-                gridControlDSBaoCao.DataSource = lstDSBaoCao;
+                gridControlDSBaoCao.DataSource = lstDSBaoCao.Where(o => o.permissioncheck == true).ToList();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void KiemTraLicense_ChucNang()
+        {
+            try
+            {
+
             }
             catch (Exception ex)
             {

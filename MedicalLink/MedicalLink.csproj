@@ -565,7 +565,6 @@
     <Compile Include="Base\ReadExcelFile.cs" />
     <Compile Include="Base\ThongBaoLable.cs" />
     <Compile Include="FormCommon\DangKyBanQuyen\ClassEncoding.cs" />
-    <Compile Include="FormCommon\DangKyBanQuyen\EncryptAndDecryptLicense.cs" />
     <Compile Include="FormCommon\DangKyBanQuyen\HardwareInfo.cs" />
     <Compile Include="FormCommon\DangKyBanQuyen\kiemTraLicenseHopLe.cs" />
     <Compile Include="FormCommon\frmConnectDB.cs">

@@ -31,7 +31,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                 if (license_keydb != "")
                 {
                     //Giai ma
-                    string makichhoat_giaima = MedicalLink.FormCommon.DangKyBanQuyen.EncryptAndDecryptLicense.Decrypt(license_keydb, true);
+                    string makichhoat_giaima = EncryptAndDecrypt.Decrypt(license_keydb, true);
                     //Tach ma kich hoat:
                     string mamay_keykichhoat = "";
                     long thoigianTu = 0;

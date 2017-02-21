@@ -145,7 +145,7 @@ namespace MedicalLink.FormCommon
                 DataView dv = new DataView(condb.getDataTable(kiemtra_licensetag));
                 if (dv != null && dv.Count > 0)
                 {
-                    string makichhoat_giaima = MedicalLink.FormCommon.DangKyBanQuyen.EncryptAndDecryptLicense.Decrypt(dv[0]["licensekey"].ToString(), true);
+                    string makichhoat_giaima = EncryptAndDecrypt.Decrypt(dv[0]["licensekey"].ToString(), true);
                     //Tach ma kich hoat:
                     string mamay_keykichhoat = "";
                     long thoigianTu = 0;
@@ -164,18 +164,18 @@ namespace MedicalLink.FormCommon
                         //Kiem tra License hop le
                         if (mamay_keykichhoat == SessionLogin.MaDatabase && datetime < thoigianDen)
                         {
-                            SessionLogin.KiemTraLicenseSuDung = true;
+                           // SessionLogin.KiemTraLicenseSuDung = true;
                             linkLabelThoiHan.Text = "Từ: " + thoigianTu_text + " đến: " + thoigianDen_text;
                         }
                         else
                         {
-                            SessionLogin.KiemTraLicenseSuDung = false;
+                            //SessionLogin.KiemTraLicenseSuDung = false;
                             linkLabelThoiHan.Text = "Mã kích hoạt hết hạn sử dụng";
                         }
                     }
                     else
                     {
-                        SessionLogin.KiemTraLicenseSuDung = false;
+                        //SessionLogin.KiemTraLicenseSuDung = false;
                         linkLabelThoiHan.Text = "Sai mã kích hoạt";
                     }
                 }

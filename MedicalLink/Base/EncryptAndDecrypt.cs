@@ -18,27 +18,35 @@ namespace MedicalLink.Base
         /// <returns>chuỗi đã mã hóa</returns>
         internal static string Encrypt(string toEncrypt, bool useHashing)
         {
-            byte[] keyArray;
-            byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);
-
-            if (useHashing)
+            try
             {
-                MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
-                keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
-                hashmd5.Clear();
+                byte[] keyArray;
+                byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(toEncrypt);
+
+                if (useHashing)
+                {
+                    MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                    keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                    hashmd5.Clear();
+                }
+                else
+                    keyArray = UTF8Encoding.UTF8.GetBytes(key);
+
+                TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
+                tdes.Key = keyArray;
+                tdes.Mode = CipherMode.ECB;
+                tdes.Padding = PaddingMode.PKCS7;
+
+                ICryptoTransform cTransform = tdes.CreateEncryptor();
+                byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+                tdes.Clear();
+                return Convert.ToBase64String(resultArray, 0, resultArray.Length);
             }
-            else
-                keyArray = UTF8Encoding.UTF8.GetBytes(key);
-
-            TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
-            tdes.Key = keyArray;
-            tdes.Mode = CipherMode.ECB;
-            tdes.Padding = PaddingMode.PKCS7;
-
-            ICryptoTransform cTransform = tdes.CreateEncryptor();
-            byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-            tdes.Clear();
-            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+            catch (Exception ex)
+            {
+                return "";
+                MedicalLink.Base.Logging.Warn("Ham ma hoa " + ex.ToString());
+            }
         }
         /// <summary>
         /// Giải mã 1 chuỗi
@@ -48,32 +56,39 @@ namespace MedicalLink.Base
         /// <returns>trả về chuỗi được giải mã</returns>
         internal static string Decrypt(string cipherString, bool useHashing)
         {
-            if (cipherString != "")
+            try
             {
-                byte[] keyArray;
-                byte[] toEncryptArray = Convert.FromBase64String(cipherString);
-                if (useHashing)
+                if (cipherString != "")
                 {
-                    MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
-                    keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
-                    hashmd5.Clear();
+                    byte[] keyArray;
+                    byte[] toEncryptArray = Convert.FromBase64String(cipherString);
+                    if (useHashing)
+                    {
+                        MD5CryptoServiceProvider hashmd5 = new MD5CryptoServiceProvider();
+                        keyArray = hashmd5.ComputeHash(UTF8Encoding.UTF8.GetBytes(key));
+                        hashmd5.Clear();
+                    }
+                    else
+                        keyArray = UTF8Encoding.UTF8.GetBytes(key);
+                    TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
+                    tdes.Key = keyArray;
+                    tdes.Mode = CipherMode.ECB;
+                    tdes.Padding = PaddingMode.PKCS7;
+                    ICryptoTransform cTransform = tdes.CreateDecryptor();
+                    byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+                    tdes.Clear();
+                    return UTF8Encoding.UTF8.GetString(resultArray);
                 }
                 else
-                    keyArray = UTF8Encoding.UTF8.GetBytes(key);
-                TripleDESCryptoServiceProvider tdes = new TripleDESCryptoServiceProvider();
-                tdes.Key = keyArray;
-                tdes.Mode = CipherMode.ECB;
-                tdes.Padding = PaddingMode.PKCS7;
-                ICryptoTransform cTransform = tdes.CreateDecryptor();
-                byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
-                tdes.Clear();
-                return UTF8Encoding.UTF8.GetString(resultArray);
+                {
+                    return "";
+                }
             }
-            else
+            catch (Exception ex)
             {
                 return "";
+                MedicalLink.Base.Logging.Warn("Ham giai ma " + ex.ToString());
             }
-
         }
 
     }

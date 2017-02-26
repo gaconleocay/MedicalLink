@@ -104,7 +104,7 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(900, 99);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1000, 115);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // layoutControl1
@@ -116,7 +116,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Padding = new System.Windows.Forms.Padding(2);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(896, 95);
+            this.layoutControl1.Size = new System.Drawing.Size(996, 111);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -129,7 +129,7 @@
             this.groupBoxFile.Margin = new System.Windows.Forms.Padding(0);
             this.groupBoxFile.Name = "groupBoxFile";
             this.groupBoxFile.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBoxFile.Size = new System.Drawing.Size(224, 91);
+            this.groupBoxFile.Size = new System.Drawing.Size(249, 107);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Import from Excel";
@@ -141,7 +141,7 @@
             this.btnExport.Appearance.Options.UseFont = true;
             this.btnExport.Appearance.Options.UseForeColor = true;
             this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.Location = new System.Drawing.Point(9, 24);
+            this.btnExport.Location = new System.Drawing.Point(9, 36);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 40);
             this.btnExport.TabIndex = 24;
@@ -156,7 +156,7 @@
             this.btnSelect.Appearance.Options.UseFont = true;
             this.btnSelect.Appearance.Options.UseForeColor = true;
             this.btnSelect.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.Image")));
-            this.btnSelect.Location = new System.Drawing.Point(115, 24);
+            this.btnSelect.Location = new System.Drawing.Point(115, 36);
             this.btnSelect.MinimumSize = new System.Drawing.Size(100, 40);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(100, 40);
@@ -167,7 +167,6 @@
             // 
             // groupBoxAction
             // 
-            this.groupBoxAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxAction.Controls.Add(this.radioButtonCapNhat);
             this.groupBoxAction.Controls.Add(this.radioButtonThemMoi);
             this.groupBoxAction.Controls.Add(this.txtFilePath);
@@ -179,11 +178,11 @@
             this.groupBoxAction.Controls.Add(this.labelControl2);
             this.groupBoxAction.Controls.Add(this.btnUpdateDVOK);
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(230, 2);
+            this.groupBoxAction.Location = new System.Drawing.Point(255, 2);
             this.groupBoxAction.Margin = new System.Windows.Forms.Padding(0);
             this.groupBoxAction.Name = "groupBoxAction";
             this.groupBoxAction.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBoxAction.Size = new System.Drawing.Size(664, 91);
+            this.groupBoxAction.Size = new System.Drawing.Size(739, 107);
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
@@ -191,9 +190,10 @@
             // radioButtonCapNhat
             // 
             this.radioButtonCapNhat.AutoSize = true;
-            this.radioButtonCapNhat.Location = new System.Drawing.Point(7, 47);
+            this.radioButtonCapNhat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonCapNhat.Location = new System.Drawing.Point(7, 54);
             this.radioButtonCapNhat.Name = "radioButtonCapNhat";
-            this.radioButtonCapNhat.Size = new System.Drawing.Size(118, 17);
+            this.radioButtonCapNhat.Size = new System.Drawing.Size(137, 20);
             this.radioButtonCapNhat.TabIndex = 27;
             this.radioButtonCapNhat.TabStop = true;
             this.radioButtonCapNhat.Text = "Cập nhật danh mục";
@@ -203,9 +203,10 @@
             // radioButtonThemMoi
             // 
             this.radioButtonThemMoi.AutoSize = true;
+            this.radioButtonThemMoi.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonThemMoi.Location = new System.Drawing.Point(7, 20);
             this.radioButtonThemMoi.Name = "radioButtonThemMoi";
-            this.radioButtonThemMoi.Size = new System.Drawing.Size(119, 17);
+            this.radioButtonThemMoi.Size = new System.Drawing.Size(144, 20);
             this.radioButtonThemMoi.TabIndex = 26;
             this.radioButtonThemMoi.TabStop = true;
             this.radioButtonThemMoi.Text = "Thêm mới danh mục";
@@ -214,41 +215,44 @@
             // 
             // txtFilePath
             // 
+            this.txtFilePath.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFilePath.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.txtFilePath.Location = new System.Drawing.Point(59, 71);
+            this.txtFilePath.Location = new System.Drawing.Point(67, 80);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(69, 13);
+            this.txtFilePath.Size = new System.Drawing.Size(82, 16);
             this.txtFilePath.TabIndex = 25;
             this.txtFilePath.Text = "Chưa chọn file";
             // 
             // cbbChonLoai
             // 
-            this.cbbChonLoai.Location = new System.Drawing.Point(229, 49);
+            this.cbbChonLoai.Location = new System.Drawing.Point(244, 56);
             this.cbbChonLoai.Name = "cbbChonLoai";
+            this.cbbChonLoai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbChonLoai.Properties.Appearance.Options.UseFont = true;
             this.cbbChonLoai.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbChonLoai.Properties.Items.AddRange(new object[] {
             "Sửa giá",
             "Sửa giá mới"});
             this.cbbChonLoai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbChonLoai.Size = new System.Drawing.Size(206, 20);
+            this.cbbChonLoai.Size = new System.Drawing.Size(206, 22);
             this.cbbChonLoai.TabIndex = 23;
             // 
             // labelControl3
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(166, 51);
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Location = new System.Drawing.Point(166, 58);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(57, 13);
+            this.labelControl3.Size = new System.Drawing.Size(69, 16);
             this.labelControl3.TabIndex = 22;
             this.labelControl3.Text = "Loại sửa giá";
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(7, 71);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(7, 80);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(45, 13);
+            this.labelControl1.Size = new System.Drawing.Size(54, 16);
             this.labelControl1.TabIndex = 10;
             this.labelControl1.Text = "File path:";
             // 
@@ -259,7 +263,7 @@
             this.btnBackupGia.Appearance.Options.UseFont = true;
             this.btnBackupGia.Appearance.Options.UseForeColor = true;
             this.btnBackupGia.Image = ((System.Drawing.Image)(resources.GetObject("btnBackupGia.Image")));
-            this.btnBackupGia.Location = new System.Drawing.Point(548, 24);
+            this.btnBackupGia.Location = new System.Drawing.Point(604, 36);
             this.btnBackupGia.Name = "btnBackupGia";
             this.btnBackupGia.Size = new System.Drawing.Size(100, 40);
             this.btnBackupGia.TabIndex = 21;
@@ -269,8 +273,10 @@
             // 
             // cbbChonKieu
             // 
-            this.cbbChonKieu.Location = new System.Drawing.Point(229, 21);
+            this.cbbChonKieu.Location = new System.Drawing.Point(244, 21);
             this.cbbChonKieu.Name = "cbbChonKieu";
+            this.cbbChonKieu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbChonKieu.Properties.Appearance.Options.UseFont = true;
             this.cbbChonKieu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbChonKieu.Properties.Items.AddRange(new object[] {
@@ -289,16 +295,16 @@
             "Giá Người nước ngoài",
             "Cả 4 giá (VP+BH+YC+NN)"});
             this.cbbChonKieu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbChonKieu.Size = new System.Drawing.Size(207, 20);
+            this.cbbChonKieu.Size = new System.Drawing.Size(207, 22);
             this.cbbChonKieu.TabIndex = 9;
             this.cbbChonKieu.EditValueChanged += new System.EventHandler(this.cbbChonKieu_EditValueChanged);
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Location = new System.Drawing.Point(158, 24);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(65, 13);
+            this.labelControl2.Size = new System.Drawing.Size(77, 16);
             this.labelControl2.TabIndex = 8;
             this.labelControl2.Text = "Kiểu cập nhật";
             // 
@@ -309,7 +315,7 @@
             this.btnUpdateDVOK.Appearance.Options.UseFont = true;
             this.btnUpdateDVOK.Appearance.Options.UseForeColor = true;
             this.btnUpdateDVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateDVOK.Image")));
-            this.btnUpdateDVOK.Location = new System.Drawing.Point(442, 24);
+            this.btnUpdateDVOK.Location = new System.Drawing.Point(482, 36);
             this.btnUpdateDVOK.Name = "btnUpdateDVOK";
             this.btnUpdateDVOK.Size = new System.Drawing.Size(100, 40);
             this.btnUpdateDVOK.TabIndex = 7;
@@ -326,15 +332,15 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(896, 95);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(996, 111);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.groupBoxAction;
-            this.layoutControlItem1.Location = new System.Drawing.Point(228, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(253, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(668, 95);
+            this.layoutControlItem1.Size = new System.Drawing.Size(743, 111);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -343,7 +349,7 @@
             this.layoutControlItem2.Control = this.groupBoxFile;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(228, 95);
+            this.layoutControlItem2.Size = new System.Drawing.Size(253, 111);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -352,10 +358,10 @@
             this.gridControlDichVu.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
             this.gridControlDichVu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlDichVu.EmbeddedNavigator.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
-            this.gridControlDichVu.Location = new System.Drawing.Point(0, 99);
+            this.gridControlDichVu.Location = new System.Drawing.Point(0, 115);
             this.gridControlDichVu.MainView = this.gridViewDichVu;
             this.gridControlDichVu.Name = "gridControlDichVu";
-            this.gridControlDichVu.Size = new System.Drawing.Size(900, 495);
+            this.gridControlDichVu.Size = new System.Drawing.Size(1000, 479);
             this.gridControlDichVu.TabIndex = 4;
             this.gridControlDichVu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDichVu});
@@ -663,7 +669,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucImportDMDichVu";
-            this.Size = new System.Drawing.Size(900, 594);
+            this.Size = new System.Drawing.Size(1000, 594);
             this.Load += new System.EventHandler(this.ucImportDMDichVu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);

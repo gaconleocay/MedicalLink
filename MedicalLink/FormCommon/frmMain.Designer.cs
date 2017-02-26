@@ -183,6 +183,7 @@
             // tabMenuTrangChu
             // 
             this.tabMenuTrangChu.Caption = "TRANG CHỦ";
+            this.tabMenuTrangChu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.tabMenuTrangChu.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuTrangChu.Image")));
             this.tabMenuTrangChu.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuTrangChu.Name = "tabMenuTrangChu";
@@ -199,11 +200,12 @@
             this.tabMenuDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tabMenuDashboard.Name = "tabMenuDashboard";
             this.tabMenuDashboard.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuDashboard.Size = new System.Drawing.Size(1116, 569);
+            this.tabMenuDashboard.Size = new System.Drawing.Size(1166, 569);
             // 
             // tabMenuChucNang
             // 
             this.tabMenuChucNang.Caption = "CHỨC NĂNG";
+            this.tabMenuChucNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.tabMenuChucNang.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuChucNang.Image")));
             this.tabMenuChucNang.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuChucNang.Margin = new System.Windows.Forms.Padding(0);
@@ -214,6 +216,7 @@
             // tabMenuRestart
             // 
             this.tabMenuRestart.Caption = "tabMenuRestart";
+            this.tabMenuRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.tabMenuRestart.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuRestart.Image")));
             this.tabMenuRestart.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.Image;
             this.tabMenuRestart.Name = "tabMenuRestart";

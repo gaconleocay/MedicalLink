@@ -36,7 +36,7 @@ namespace MedicalLink.FormCommon
                 timerClock.Start();
                 //timerKiemTraLicense.Interval = MedicalLink.Base.KeyTrongPhanMem.ThoiGianKiemTraLicense;
                 //timerKiemTraLicense.Start();
-
+                KiemTraPhanQuyenNguoiDung();
                 LoadThongTinVePhanMem_Version();
                 LoadGiaoDien();
                 //  KiemTraPhanQuyen_EnableButton();

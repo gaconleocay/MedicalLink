@@ -28,7 +28,7 @@ namespace MedicalLink.Dashboard
                 filter.dateTu = this.thoiGianTu;
                 filter.dateDen = this.thoiGianDen;
                 filter.chayTuDong = 0;
-                List<BCDashboardTongHopToanVien> lstBCBTongHopToanVien = BCTongHopToanVien_Process.BCTongHopToanVien_ChayMoi(filter);
+              lstBCBTongHopToanVien = BCTongHopToanVien_Process.BCTongHopToanVien_ChayMoi(filter);
                 HienThiDuLieuBaoCao(lstBCBTongHopToanVien);
             }
             catch (Exception ex)

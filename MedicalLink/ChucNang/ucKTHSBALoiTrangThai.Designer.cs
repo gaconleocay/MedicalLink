@@ -34,7 +34,9 @@
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
@@ -71,39 +73,57 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(896, 102);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1000, 102);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // groupBoxFile
             // 
             this.groupBoxFile.Controls.Add(this.labelControl1);
             this.groupBoxFile.Controls.Add(this.labelControl3);
+            this.groupBoxFile.Controls.Add(this.dateTimePicker2);
             this.groupBoxFile.Controls.Add(this.dateDenNgay);
+            this.groupBoxFile.Controls.Add(this.dateTimePicker1);
             this.groupBoxFile.Controls.Add(this.dateTuNgay);
             this.groupBoxFile.Controls.Add(this.btnTimKiem);
+            this.groupBoxFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxFile.Location = new System.Drawing.Point(4, 2);
+            this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(560, 98);
+            this.groupBoxFile.Size = new System.Drawing.Size(641, 98);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm theo thời gian duyệt VP";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(25, 54);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(19, 67);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(47, 13);
+            this.labelControl1.Size = new System.Drawing.Size(54, 16);
             this.labelControl1.TabIndex = 21;
             this.labelControl1.Text = "Đến ngày";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(26, 13);
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Location = new System.Drawing.Point(26, 29);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(40, 13);
+            this.labelControl3.Size = new System.Drawing.Size(47, 16);
             this.labelControl3.TabIndex = 20;
             this.labelControl3.Text = "Từ ngày";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.CustomFormat = "HH:mm:ss dd/MM/yyyy";
+            this.dateTimePicker2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(312, 144);
+            this.dateTimePicker2.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(190, 27);
+            this.dateTimePicker2.TabIndex = 19;
+            this.dateTimePicker2.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
             // dateDenNgay
             // 
@@ -111,12 +131,25 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(24, 71);
+            this.dateDenNgay.Location = new System.Drawing.Point(90, 62);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
-            this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
+            this.dateDenNgay.Size = new System.Drawing.Size(190, 23);
             this.dateDenNgay.TabIndex = 19;
             this.dateDenNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.CustomFormat = "HH:mm:ss dd/MM/yyyy";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(312, 106);
+            this.dateTimePicker1.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(190, 27);
+            this.dateTimePicker1.TabIndex = 18;
+            this.dateTimePicker1.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
             // dateTuNgay
             // 
@@ -124,10 +157,10 @@
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(24, 29);
+            this.dateTuNgay.Location = new System.Drawing.Point(90, 24);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
-            this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
+            this.dateTuNgay.Size = new System.Drawing.Size(190, 23);
             this.dateTuNgay.TabIndex = 18;
             this.dateTuNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
@@ -149,10 +182,11 @@
             // 
             this.groupBoxAction.Controls.Add(this.btnSuaTTHSBA);
             this.groupBoxAction.Controls.Add(this.tbnExport);
+            this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(568, 2);
+            this.groupBoxAction.Location = new System.Drawing.Point(643, 2);
             this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(328, 98);
+            this.groupBoxAction.Size = new System.Drawing.Size(355, 98);
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
@@ -180,7 +214,7 @@
             this.tbnExport.Appearance.Options.UseForeColor = true;
             this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(178, 33);
+            this.tbnExport.Location = new System.Drawing.Point(199, 33);
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(100, 40);
             this.tbnExport.TabIndex = 8;
@@ -195,7 +229,7 @@
             this.gridControlHSBA.Location = new System.Drawing.Point(0, 102);
             this.gridControlHSBA.MainView = this.gridViewHSBA;
             this.gridControlHSBA.Name = "gridControlHSBA";
-            this.gridControlHSBA.Size = new System.Drawing.Size(896, 492);
+            this.gridControlHSBA.Size = new System.Drawing.Size(1000, 492);
             this.gridControlHSBA.TabIndex = 4;
             this.gridControlHSBA.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewHSBA});
@@ -208,6 +242,7 @@
             this.gridViewHSBA.Appearance.HeaderPanel.Options.UseForeColor = true;
             this.gridViewHSBA.Appearance.HeaderPanel.Options.UseTextOptions = true;
             this.gridViewHSBA.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridViewHSBA.ColumnPanelRowHeight = 25;
             this.gridViewHSBA.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.stt,
             this.gridColumn2,
@@ -227,14 +262,19 @@
             this.gridViewHSBA.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridViewHSBA.OptionsBehavior.Editable = false;
             this.gridViewHSBA.OptionsView.ColumnAutoWidth = false;
+            this.gridViewHSBA.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewHSBA.OptionsView.ShowGroupPanel = false;
             this.gridViewHSBA.OptionsView.ShowIndicator = false;
+            this.gridViewHSBA.RowHeight = 25;
             this.gridViewHSBA.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDichVu_CustomDrawCell);
             // 
             // stt
             // 
+            this.stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stt.AppearanceCell.Options.UseFont = true;
             this.stt.AppearanceCell.Options.UseTextOptions = true;
             this.stt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.stt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.stt.AppearanceHeader.Options.UseFont = true;
             this.stt.AppearanceHeader.Options.UseForeColor = true;
@@ -250,8 +290,11 @@
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
             this.gridColumn2.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
@@ -267,8 +310,11 @@
             // 
             // gridColumn16
             // 
+            this.gridColumn16.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn16.AppearanceCell.Options.UseFont = true;
             this.gridColumn16.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn16.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn16.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn16.AppearanceHeader.Options.UseFont = true;
             this.gridColumn16.AppearanceHeader.Options.UseForeColor = true;
@@ -284,8 +330,11 @@
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
             this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
@@ -301,8 +350,11 @@
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
             this.gridColumn4.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn4.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn4.AppearanceHeader.Options.UseFont = true;
             this.gridColumn4.AppearanceHeader.Options.UseForeColor = true;
@@ -318,7 +370,9 @@
             // 
             // gridColumn7
             // 
+            this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn7.AppearanceCell.Options.UseFont = true;
+            this.gridColumn7.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn7.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn7.AppearanceHeader.Options.UseFont = true;
             this.gridColumn7.AppearanceHeader.Options.UseForeColor = true;
@@ -334,7 +388,9 @@
             // 
             // gridColumn1
             // 
-            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
@@ -350,6 +406,9 @@
             // 
             // gridColumn17
             // 
+            this.gridColumn17.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn17.AppearanceCell.Options.UseFont = true;
+            this.gridColumn17.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn17.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn17.AppearanceHeader.Options.UseFont = true;
             this.gridColumn17.AppearanceHeader.Options.UseForeColor = true;
@@ -365,6 +424,9 @@
             // 
             // gridColumn18
             // 
+            this.gridColumn18.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn18.AppearanceCell.Options.UseFont = true;
+            this.gridColumn18.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn18.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn18.AppearanceHeader.Options.UseFont = true;
             this.gridColumn18.AppearanceHeader.Options.UseForeColor = true;
@@ -380,8 +442,11 @@
             // 
             // gridColumn14
             // 
+            this.gridColumn14.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn14.AppearanceCell.Options.UseFont = true;
             this.gridColumn14.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn14.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn14.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn14.AppearanceHeader.Options.UseFont = true;
             this.gridColumn14.AppearanceHeader.Options.UseForeColor = true;
@@ -399,6 +464,9 @@
             // 
             // gridColumn15
             // 
+            this.gridColumn15.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn15.AppearanceCell.Options.UseFont = true;
+            this.gridColumn15.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn15.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn15.AppearanceHeader.Options.UseFont = true;
             this.gridColumn15.AppearanceHeader.Options.UseForeColor = true;
@@ -444,7 +512,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucKTHSBALoiTrangThai";
-            this.Size = new System.Drawing.Size(896, 594);
+            this.Size = new System.Drawing.Size(1000, 594);
             this.Load += new System.EventHandler(this.ucUpdateDataSerPrice_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);
@@ -486,5 +554,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.SimpleButton btnSuaTTHSBA;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

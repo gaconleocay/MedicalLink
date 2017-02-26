@@ -40,10 +40,11 @@
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(44, 68);
+            this.labelControl1.Location = new System.Drawing.Point(34, 66);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(82, 13);
+            this.labelControl1.Size = new System.Drawing.Size(101, 16);
             this.labelControl1.TabIndex = 20;
             this.labelControl1.Text = "Thời gian chỉ định";
             // 
@@ -51,12 +52,12 @@
             // 
             this.dateTGChiDinh.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTGChiDinh.CustomFormat = "HH:mm:ss dd/MM/yyyy";
-            this.dateTGChiDinh.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTGChiDinh.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTGChiDinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTGChiDinh.Location = new System.Drawing.Point(148, 61);
             this.dateTGChiDinh.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTGChiDinh.Name = "dateTGChiDinh";
-            this.dateTGChiDinh.Size = new System.Drawing.Size(203, 23);
+            this.dateTGChiDinh.Size = new System.Drawing.Size(203, 27);
             this.dateTGChiDinh.TabIndex = 1;
             this.dateTGChiDinh.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTGChiDinh.ValueChanged += new System.EventHandler(this.dateTGChiDinh_ValueChanged);
@@ -65,22 +66,23 @@
             // 
             this.dateTGSuDung.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTGSuDung.CustomFormat = "HH:mm:ss dd/MM/yyyy";
-            this.dateTGSuDung.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTGSuDung.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTGSuDung.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTGSuDung.Location = new System.Drawing.Point(148, 108);
             this.dateTGSuDung.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTGSuDung.Name = "dateTGSuDung";
-            this.dateTGSuDung.Size = new System.Drawing.Size(203, 23);
+            this.dateTGSuDung.Size = new System.Drawing.Size(203, 27);
             this.dateTGSuDung.TabIndex = 2;
             this.dateTGSuDung.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTGSuDung.ValueChanged += new System.EventHandler(this.dateTGSuDung_ValueChanged);
             // 
             // labelControl2
             // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl2.Location = new System.Drawing.Point(41, 115);
+            this.labelControl2.Location = new System.Drawing.Point(31, 113);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(85, 13);
+            this.labelControl2.Size = new System.Drawing.Size(103, 16);
             this.labelControl2.TabIndex = 22;
             this.labelControl2.Text = "Thời gian sử dụng";
             // 
@@ -112,10 +114,11 @@
             // 
             // labelControl5
             // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl5.Location = new System.Drawing.Point(83, 17);
+            this.labelControl5.Location = new System.Drawing.Point(82, 12);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(43, 13);
+            this.labelControl5.Size = new System.Drawing.Size(52, 16);
             this.labelControl5.TabIndex = 35;
             this.labelControl5.Text = "Mã phiếu";
             // 

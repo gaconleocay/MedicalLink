@@ -47,9 +47,9 @@ namespace MedicalLink.ChucNang
         #region Load
         private void SuaThongTin_ThucHien_Load(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                 if (SuaThongTinBenhAn != null)
                 {
                     LoadDataTinh_VeMay();
@@ -96,13 +96,12 @@ namespace MedicalLink.ChucNang
                     LoadXaHuyenTinh();
 
                 }
-                SplashScreenManager.CloseForm();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Base.Logging.Error(ex);
             }
+            SplashScreenManager.CloseForm();
         }
         private void LoadThongTinBenhNhan()
         {

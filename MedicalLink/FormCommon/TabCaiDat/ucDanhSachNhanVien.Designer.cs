@@ -78,22 +78,23 @@
             // groupBoxChucNang
             // 
             this.groupBoxChucNang.Controls.Add(this.btnNVThem);
+            this.groupBoxChucNang.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBoxChucNang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxChucNang.Location = new System.Drawing.Point(2, 2);
             this.groupBoxChucNang.Name = "groupBoxChucNang";
-            this.groupBoxChucNang.Size = new System.Drawing.Size(110, 80);
+            this.groupBoxChucNang.Size = new System.Drawing.Size(146, 81);
             this.groupBoxChucNang.TabIndex = 8;
             this.groupBoxChucNang.TabStop = false;
             this.groupBoxChucNang.Text = "Chức năng";
             // 
             // btnNVThem
             // 
-            this.btnNVThem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNVThem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVThem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnNVThem.Appearance.Options.UseFont = true;
             this.btnNVThem.Appearance.Options.UseForeColor = true;
             this.btnNVThem.Image = ((System.Drawing.Image)(resources.GetObject("btnNVThem.Image")));
-            this.btnNVThem.Location = new System.Drawing.Point(4, 22);
+            this.btnNVThem.Location = new System.Drawing.Point(15, 22);
             this.btnNVThem.Name = "btnNVThem";
             this.btnNVThem.Size = new System.Drawing.Size(100, 40);
             this.btnNVThem.TabIndex = 5;
@@ -111,39 +112,42 @@
             this.groupBoxThongTin.Controls.Add(this.lblUserId);
             this.groupBoxThongTin.Controls.Add(this.lblUsername);
             this.groupBoxThongTin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxThongTin.Location = new System.Drawing.Point(111, 2);
+            this.groupBoxThongTin.Location = new System.Drawing.Point(154, 2);
             this.groupBoxThongTin.Name = "groupBoxThongTin";
-            this.groupBoxThongTin.Size = new System.Drawing.Size(698, 80);
+            this.groupBoxThongTin.Size = new System.Drawing.Size(846, 80);
             this.groupBoxThongTin.TabIndex = 7;
             this.groupBoxThongTin.TabStop = false;
             this.groupBoxThongTin.Text = "Thông tin về tài khoản";
             // 
             // txtIDHIS
             // 
-            this.txtIDHIS.Location = new System.Drawing.Point(268, 19);
+            this.txtIDHIS.Location = new System.Drawing.Point(285, 19);
             this.txtIDHIS.Name = "txtIDHIS";
+            this.txtIDHIS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIDHIS.Properties.Appearance.Options.UseFont = true;
             this.txtIDHIS.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtIDHIS.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtIDHIS.Size = new System.Drawing.Size(145, 20);
+            this.txtIDHIS.Size = new System.Drawing.Size(145, 22);
             this.txtIDHIS.TabIndex = 10;
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(225, 22);
+            this.labelControl1.Location = new System.Drawing.Point(242, 22);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(31, 13);
+            this.labelControl1.Size = new System.Drawing.Size(36, 16);
             this.labelControl1.TabIndex = 9;
             this.labelControl1.Text = "ID HIS";
             // 
             // btnThemTuExcel
             // 
-            this.btnThemTuExcel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemTuExcel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemTuExcel.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnThemTuExcel.Appearance.Options.UseFont = true;
             this.btnThemTuExcel.Appearance.Options.UseForeColor = true;
             this.btnThemTuExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnThemTuExcel.Image")));
-            this.btnThemTuExcel.Location = new System.Drawing.Point(563, 22);
+            this.btnThemTuExcel.Location = new System.Drawing.Point(639, 22);
             this.btnThemTuExcel.Name = "btnThemTuExcel";
             this.btnThemTuExcel.Size = new System.Drawing.Size(130, 40);
             this.btnThemTuExcel.TabIndex = 8;
@@ -152,12 +156,12 @@
             // 
             // btnNVOK
             // 
-            this.btnNVOK.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNVOK.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNVOK.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnNVOK.Appearance.Options.UseFont = true;
             this.btnNVOK.Appearance.Options.UseForeColor = true;
             this.btnNVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnNVOK.Image")));
-            this.btnNVOK.Location = new System.Drawing.Point(444, 22);
+            this.btnNVOK.Location = new System.Drawing.Point(500, 22);
             this.btnNVOK.Name = "btnNVOK";
             this.btnNVOK.Size = new System.Drawing.Size(100, 40);
             this.btnNVOK.TabIndex = 7;
@@ -166,33 +170,39 @@
             // 
             // txtNVName
             // 
-            this.txtNVName.Location = new System.Drawing.Point(61, 54);
+            this.txtNVName.Location = new System.Drawing.Point(78, 54);
             this.txtNVName.Name = "txtNVName";
-            this.txtNVName.Size = new System.Drawing.Size(352, 20);
+            this.txtNVName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNVName.Properties.Appearance.Options.UseFont = true;
+            this.txtNVName.Size = new System.Drawing.Size(352, 22);
             this.txtNVName.TabIndex = 6;
             // 
             // txtNVID
             // 
-            this.txtNVID.Location = new System.Drawing.Point(61, 20);
+            this.txtNVID.Location = new System.Drawing.Point(78, 20);
             this.txtNVID.Name = "txtNVID";
-            this.txtNVID.Size = new System.Drawing.Size(145, 20);
+            this.txtNVID.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNVID.Properties.Appearance.Options.UseFont = true;
+            this.txtNVID.Size = new System.Drawing.Size(145, 22);
             this.txtNVID.TabIndex = 4;
             // 
             // lblUserId
             // 
+            this.lblUserId.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserId.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblUserId.Location = new System.Drawing.Point(18, 23);
+            this.lblUserId.Location = new System.Drawing.Point(20, 23);
             this.lblUserId.Name = "lblUserId";
-            this.lblUserId.Size = new System.Drawing.Size(36, 13);
+            this.lblUserId.Size = new System.Drawing.Size(42, 16);
             this.lblUserId.TabIndex = 1;
             this.lblUserId.Text = "User ID";
             // 
             // lblUsername
             // 
+            this.lblUsername.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblUsername.Location = new System.Drawing.Point(7, 56);
+            this.lblUsername.Location = new System.Drawing.Point(4, 57);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(48, 13);
+            this.lblUsername.Size = new System.Drawing.Size(58, 16);
             this.lblUsername.TabIndex = 3;
             this.lblUsername.Text = "Username";
             // 
@@ -232,6 +242,7 @@
             // 
             // gridViewDSNV
             // 
+            this.gridViewDSNV.ColumnPanelRowHeight = 25;
             this.gridViewDSNV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.stt,
             this.manv,
@@ -239,14 +250,20 @@
             this.gridColumn1});
             this.gridViewDSNV.GridControl = this.gridControlDSNV;
             this.gridViewDSNV.Name = "gridViewDSNV";
+            this.gridViewDSNV.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSNV.OptionsView.ShowGroupPanel = false;
+            this.gridViewDSNV.RowHeight = 25;
             this.gridViewDSNV.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSNV_CustomDrawCell);
             this.gridViewDSNV.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSNV_RowCellStyle);
             this.gridViewDSNV.Click += new System.EventHandler(this.gridViewDSNV_Click);
             // 
             // stt
             // 
+            this.stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stt.AppearanceCell.Options.UseFont = true;
+            this.stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.stt.AppearanceHeader.Options.UseFont = true;
             this.stt.AppearanceHeader.Options.UseForeColor = true;
             this.stt.Caption = "STT";
             this.stt.FieldName = "stt";
@@ -259,7 +276,11 @@
             // 
             // manv
             // 
+            this.manv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manv.AppearanceCell.Options.UseFont = true;
+            this.manv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manv.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.manv.AppearanceHeader.Options.UseFont = true;
             this.manv.AppearanceHeader.Options.UseForeColor = true;
             this.manv.AppearanceHeader.Options.UseTextOptions = true;
             this.manv.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -273,7 +294,11 @@
             // 
             // tennv
             // 
+            this.tennv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tennv.AppearanceCell.Options.UseFont = true;
+            this.tennv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tennv.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tennv.AppearanceHeader.Options.UseFont = true;
             this.tennv.AppearanceHeader.Options.UseForeColor = true;
             this.tennv.AppearanceHeader.Options.UseTextOptions = true;
             this.tennv.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -287,7 +312,11 @@
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;

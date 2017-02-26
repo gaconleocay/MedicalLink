@@ -70,6 +70,7 @@
             this.groupBoxDatabase.Controls.Add(this.btnDBLuu);
             this.groupBoxDatabase.Controls.Add(this.btnDBKiemTra);
             this.groupBoxDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxDatabase.Location = new System.Drawing.Point(0, 0);
             this.groupBoxDatabase.Name = "groupBoxDatabase";
             this.groupBoxDatabase.Size = new System.Drawing.Size(771, 582);
@@ -91,13 +92,13 @@
             // 
             // btnDBUpdate
             // 
-            this.btnDBUpdate.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDBUpdate.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDBUpdate.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnDBUpdate.Appearance.Options.UseFont = true;
             this.btnDBUpdate.Appearance.Options.UseForeColor = true;
-            this.btnDBUpdate.Location = new System.Drawing.Point(419, 146);
+            this.btnDBUpdate.Location = new System.Drawing.Point(443, 174);
             this.btnDBUpdate.Name = "btnDBUpdate";
-            this.btnDBUpdate.Size = new System.Drawing.Size(80, 23);
+            this.btnDBUpdate.Size = new System.Drawing.Size(100, 23);
             this.btnDBUpdate.TabIndex = 30;
             this.btnDBUpdate.Text = "Update DB";
             this.btnDBUpdate.Click += new System.EventHandler(this.btnDBUpdate_Click);
@@ -105,113 +106,128 @@
             // txtDBPort
             // 
             this.txtDBPort.EditValue = "";
-            this.txtDBPort.Location = new System.Drawing.Point(404, 26);
+            this.txtDBPort.Location = new System.Drawing.Point(420, 29);
             this.txtDBPort.Name = "txtDBPort";
             this.txtDBPort.Properties.AllowFocused = false;
             this.txtDBPort.Properties.AllowMouseWheel = false;
-            this.txtDBPort.Size = new System.Drawing.Size(200, 20);
+            this.txtDBPort.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDBPort.Properties.Appearance.Options.UseFont = true;
+            this.txtDBPort.Size = new System.Drawing.Size(200, 26);
             this.txtDBPort.TabIndex = 29;
             // 
             // txtDBName
             // 
             this.txtDBName.EditValue = "";
-            this.txtDBName.Location = new System.Drawing.Point(102, 101);
+            this.txtDBName.Location = new System.Drawing.Point(110, 106);
             this.txtDBName.Name = "txtDBName";
-            this.txtDBName.Size = new System.Drawing.Size(200, 20);
+            this.txtDBName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDBName.Properties.Appearance.Options.UseFont = true;
+            this.txtDBName.Size = new System.Drawing.Size(200, 26);
             this.txtDBName.TabIndex = 26;
             // 
             // txtDBPass
             // 
             this.txtDBPass.EditValue = "";
-            this.txtDBPass.Location = new System.Drawing.Point(404, 64);
+            this.txtDBPass.Location = new System.Drawing.Point(420, 67);
             this.txtDBPass.Name = "txtDBPass";
+            this.txtDBPass.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDBPass.Properties.Appearance.Options.UseFont = true;
             this.txtDBPass.Properties.PasswordChar = '*';
-            this.txtDBPass.Size = new System.Drawing.Size(200, 20);
+            this.txtDBPass.Size = new System.Drawing.Size(200, 26);
             this.txtDBPass.TabIndex = 25;
             // 
             // txtDBUser
             // 
             this.txtDBUser.EditValue = "";
-            this.txtDBUser.Location = new System.Drawing.Point(102, 62);
+            this.txtDBUser.Location = new System.Drawing.Point(110, 67);
             this.txtDBUser.Name = "txtDBUser";
-            this.txtDBUser.Size = new System.Drawing.Size(200, 20);
+            this.txtDBUser.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDBUser.Properties.Appearance.Options.UseFont = true;
+            this.txtDBUser.Size = new System.Drawing.Size(200, 26);
             this.txtDBUser.TabIndex = 24;
             // 
             // txtDBHost
             // 
             this.txtDBHost.EditValue = "";
-            this.txtDBHost.Location = new System.Drawing.Point(102, 24);
+            this.txtDBHost.Location = new System.Drawing.Point(110, 29);
             this.txtDBHost.Name = "txtDBHost";
-            this.txtDBHost.Size = new System.Drawing.Size(200, 20);
+            this.txtDBHost.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDBHost.Properties.Appearance.Options.UseFont = true;
+            this.txtDBHost.Size = new System.Drawing.Size(200, 26);
             this.txtDBHost.TabIndex = 23;
             // 
             // labelControl5
             // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl5.Location = new System.Drawing.Point(21, 104);
+            this.labelControl5.Location = new System.Drawing.Point(15, 113);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(75, 13);
+            this.labelControl5.Size = new System.Drawing.Size(84, 14);
             this.labelControl5.TabIndex = 22;
             this.labelControl5.Text = "Database name";
             // 
             // labelControl4
             // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl4.Location = new System.Drawing.Point(352, 67);
+            this.labelControl4.Location = new System.Drawing.Point(353, 71);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(46, 13);
+            this.labelControl4.Size = new System.Drawing.Size(51, 14);
             this.labelControl4.TabIndex = 21;
             this.labelControl4.Text = "Password";
             // 
             // labelControl3
             // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl3.Location = new System.Drawing.Point(74, 65);
+            this.labelControl3.Location = new System.Drawing.Point(75, 74);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(22, 13);
+            this.labelControl3.Size = new System.Drawing.Size(24, 14);
             this.labelControl3.TabIndex = 20;
             this.labelControl3.Text = "User";
             // 
             // labelControl2
             // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl2.Location = new System.Drawing.Point(74, 27);
+            this.labelControl2.Location = new System.Drawing.Point(74, 36);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(22, 13);
+            this.labelControl2.Size = new System.Drawing.Size(25, 14);
             this.labelControl2.TabIndex = 19;
             this.labelControl2.Text = "Host";
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(378, 33);
+            this.labelControl1.Location = new System.Drawing.Point(381, 36);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(20, 13);
+            this.labelControl1.Size = new System.Drawing.Size(23, 14);
             this.labelControl1.TabIndex = 18;
             this.labelControl1.Text = "Port";
             // 
             // btnDBLuu
             // 
-            this.btnDBLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDBLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDBLuu.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnDBLuu.Appearance.Options.UseFont = true;
             this.btnDBLuu.Appearance.Options.UseForeColor = true;
-            this.btnDBLuu.Location = new System.Drawing.Point(308, 146);
+            this.btnDBLuu.Location = new System.Drawing.Point(290, 174);
             this.btnDBLuu.Name = "btnDBLuu";
-            this.btnDBLuu.Size = new System.Drawing.Size(80, 23);
+            this.btnDBLuu.Size = new System.Drawing.Size(100, 23);
             this.btnDBLuu.TabIndex = 17;
             this.btnDBLuu.Text = "Lưu";
             this.btnDBLuu.Click += new System.EventHandler(this.btnDBLuu_Click);
             // 
             // btnDBKiemTra
             // 
-            this.btnDBKiemTra.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDBKiemTra.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDBKiemTra.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnDBKiemTra.Appearance.Options.UseFont = true;
             this.btnDBKiemTra.Appearance.Options.UseForeColor = true;
-            this.btnDBKiemTra.Location = new System.Drawing.Point(186, 146);
+            this.btnDBKiemTra.Location = new System.Drawing.Point(121, 174);
             this.btnDBKiemTra.Name = "btnDBKiemTra";
-            this.btnDBKiemTra.Size = new System.Drawing.Size(80, 23);
+            this.btnDBKiemTra.Size = new System.Drawing.Size(100, 23);
             this.btnDBKiemTra.TabIndex = 16;
             this.btnDBKiemTra.Text = "Kiểm tra";
             this.btnDBKiemTra.Click += new System.EventHandler(this.btnDBKiemTra_Click);

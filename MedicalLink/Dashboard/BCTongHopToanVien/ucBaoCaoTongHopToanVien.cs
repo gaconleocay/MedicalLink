@@ -27,7 +27,7 @@ namespace MedicalLink.Dashboard
         string thoiGianDen = "";
         private long tickCurrentVal = 0;
         private long thoiGianCapNhat = 0;
-        //private List<BCDashboardBenhNhanNgoaiTru> lstDataBCBNNgoaiTru { get; set; }
+        List<BCDashboardTongHopToanVien> lstBCBTongHopToanVien { get; set; }
 
         #endregion
 
@@ -151,6 +151,7 @@ namespace MedicalLink.Dashboard
         {
             try
             {
+                gridControlDataBNNT.DataSource = null;
                 LayDuLieuBaoCao_ChayMoi();
             }
             catch (Exception ex)
@@ -348,18 +349,18 @@ namespace MedicalLink.Dashboard
 
         private void btnFullSize_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (lstDataBCBNNgoaiTru != null && lstDataBCBNNgoaiTru.Count > 0)
-            //    {
-            //        MedicalLink.Dashboard.BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize fullSize = new BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize(lstDataBCBNNgoaiTru);
-            //        fullSize.ShowDialog();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MedicalLink.Base.Logging.Warn(ex);
-            //}
+            try
+            {
+                if (lstBCBTongHopToanVien != null && lstBCBTongHopToanVien.Count > 0)
+                {
+                    BCTongHopToanVien.BaoCaoTongHopToanVienFullSize fullSize = new BCTongHopToanVien.BaoCaoTongHopToanVienFullSize(lstBCBTongHopToanVien);
+                    fullSize.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
         }
 
     }

@@ -40,8 +40,10 @@
             this.navBarGroup4 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCQLTongTheKhoa = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarBCBenhNhanNoiTru = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarDBDTTungKhoa = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarDBBenhNhanNoiTru = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup5 = new DevExpress.XtraNavBar.NavBarGroup();
-            this.navBarItem9 = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarBCDTCLS = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem10 = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCXNTTuTruc = new DevExpress.XtraNavBar.NavBarItem();
@@ -64,7 +66,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControlChucNang);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1170, 613);
-            this.splitContainerControl1.SplitterPosition = 180;
+            this.splitContainerControl1.SplitterPosition = 207;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -87,18 +89,20 @@
             this.navBarItem6,
             this.navBarBCQLTongTheKhoa,
             this.navBarBCBenhNhanNoiTru,
-            this.navBarItem9,
-            this.navBarItem10});
+            this.navBarBCDTCLS,
+            this.navBarItem10,
+            this.navBarDBDTTungKhoa,
+            this.navBarDBBenhNhanNoiTru});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 180;
-            this.navBarControl1.Size = new System.Drawing.Size(180, 613);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 207;
+            this.navBarControl1.Size = new System.Drawing.Size(207, 613);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
             // navBarGroup1
             // 
-            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroup1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.navBarGroup1.Appearance.Options.UseFont = true;
             this.navBarGroup1.Appearance.Options.UseForeColor = true;
@@ -111,6 +115,16 @@
             // 
             // navBarBCTongHopToanVien
             // 
+            this.navBarBCTongHopToanVien.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCTongHopToanVien.Appearance.Options.UseFont = true;
+            this.navBarBCTongHopToanVien.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCTongHopToanVien.AppearanceDisabled.Options.UseFont = true;
+            this.navBarBCTongHopToanVien.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCTongHopToanVien.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarBCTongHopToanVien.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarBCTongHopToanVien.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarBCTongHopToanVien.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCTongHopToanVien.AppearancePressed.Options.UseFont = true;
             this.navBarBCTongHopToanVien.Caption = "Tổng hợp toàn viện";
             this.navBarBCTongHopToanVien.Name = "navBarBCTongHopToanVien";
             this.navBarBCTongHopToanVien.SmallImage = ((System.Drawing.Image)(resources.GetObject("navBarBCTongHopToanVien.SmallImage")));
@@ -118,6 +132,16 @@
             // 
             // navBarItem2
             // 
+            this.navBarItem2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem2.Appearance.Options.UseFont = true;
+            this.navBarItem2.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem2.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItem2.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem2.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarItem2.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItem2.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarItem2.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem2.AppearancePressed.Options.UseFont = true;
             this.navBarItem2.Caption = "Tạm ứng";
             this.navBarItem2.Name = "navBarItem2";
             this.navBarItem2.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
@@ -125,7 +149,7 @@
             // 
             // navBarGroup3
             // 
-            this.navBarGroup3.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroup3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.navBarGroup3.Appearance.Options.UseFont = true;
             this.navBarGroup3.Appearance.Options.UseForeColor = true;
@@ -138,6 +162,16 @@
             // 
             // navBarBCBenhNhanNgoaiTru
             // 
+            this.navBarBCBenhNhanNgoaiTru.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNgoaiTru.Appearance.Options.UseFont = true;
+            this.navBarBCBenhNhanNgoaiTru.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNgoaiTru.AppearanceDisabled.Options.UseFont = true;
+            this.navBarBCBenhNhanNgoaiTru.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNgoaiTru.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarBCBenhNhanNgoaiTru.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarBCBenhNhanNgoaiTru.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarBCBenhNhanNgoaiTru.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNgoaiTru.AppearancePressed.Options.UseFont = true;
             this.navBarBCBenhNhanNgoaiTru.Caption = "BC bệnh nhân ngoại trú";
             this.navBarBCBenhNhanNgoaiTru.Name = "navBarBCBenhNhanNgoaiTru";
             this.navBarBCBenhNhanNgoaiTru.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
@@ -145,6 +179,16 @@
             // 
             // navBarItem6
             // 
+            this.navBarItem6.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem6.Appearance.Options.UseFont = true;
+            this.navBarItem6.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem6.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItem6.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem6.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarItem6.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItem6.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarItem6.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem6.AppearancePressed.Options.UseFont = true;
             this.navBarItem6.Caption = "navBarItem6";
             this.navBarItem6.Name = "navBarItem6";
             this.navBarItem6.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
@@ -152,7 +196,7 @@
             // 
             // navBarGroup4
             // 
-            this.navBarGroup4.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroup4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.navBarGroup4.Appearance.Options.UseFont = true;
             this.navBarGroup4.Appearance.Options.UseForeColor = true;
@@ -160,11 +204,23 @@
             this.navBarGroup4.Expanded = true;
             this.navBarGroup4.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCQLTongTheKhoa),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCBenhNhanNoiTru)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCBenhNhanNoiTru),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarDBDTTungKhoa),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarDBBenhNhanNoiTru)});
             this.navBarGroup4.Name = "navBarGroup4";
             // 
             // navBarBCQLTongTheKhoa
             // 
+            this.navBarBCQLTongTheKhoa.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCQLTongTheKhoa.Appearance.Options.UseFont = true;
+            this.navBarBCQLTongTheKhoa.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCQLTongTheKhoa.AppearanceDisabled.Options.UseFont = true;
+            this.navBarBCQLTongTheKhoa.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCQLTongTheKhoa.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarBCQLTongTheKhoa.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarBCQLTongTheKhoa.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarBCQLTongTheKhoa.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCQLTongTheKhoa.AppearancePressed.Options.UseFont = true;
             this.navBarBCQLTongTheKhoa.Caption = "BC QL tổng thể khoa";
             this.navBarBCQLTongTheKhoa.Name = "navBarBCQLTongTheKhoa";
             this.navBarBCQLTongTheKhoa.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
@@ -172,33 +228,97 @@
             // 
             // navBarBCBenhNhanNoiTru
             // 
+            this.navBarBCBenhNhanNoiTru.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNoiTru.Appearance.Options.UseFont = true;
+            this.navBarBCBenhNhanNoiTru.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNoiTru.AppearanceDisabled.Options.UseFont = true;
+            this.navBarBCBenhNhanNoiTru.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNoiTru.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarBCBenhNhanNoiTru.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarBCBenhNhanNoiTru.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarBCBenhNhanNoiTru.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCBenhNhanNoiTru.AppearancePressed.Options.UseFont = true;
             this.navBarBCBenhNhanNoiTru.Caption = "BC bệnh nhân nội trú";
             this.navBarBCBenhNhanNoiTru.Name = "navBarBCBenhNhanNoiTru";
             this.navBarBCBenhNhanNoiTru.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarBCBenhNhanNoiTru.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCBenhNhanNoiTru_LinkClicked);
             // 
+            // navBarDBDTTungKhoa
+            // 
+            this.navBarDBDTTungKhoa.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarDBDTTungKhoa.Appearance.Options.UseFont = true;
+            this.navBarDBDTTungKhoa.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarDBDTTungKhoa.AppearanceDisabled.Options.UseFont = true;
+            this.navBarDBDTTungKhoa.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.navBarDBDTTungKhoa.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarDBDTTungKhoa.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarDBDTTungKhoa.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarDBDTTungKhoa.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarDBDTTungKhoa.AppearancePressed.Options.UseFont = true;
+            this.navBarDBDTTungKhoa.Caption = "Biểu đồ doanh thu khoa";
+            this.navBarDBDTTungKhoa.Name = "navBarDBDTTungKhoa";
+            this.navBarDBDTTungKhoa.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarDBDTTungKhoa.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarDBDTTungKhoa_LinkClicked);
+            // 
+            // navBarDBBenhNhanNoiTru
+            // 
+            this.navBarDBBenhNhanNoiTru.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarDBBenhNhanNoiTru.Appearance.Options.UseFont = true;
+            this.navBarDBBenhNhanNoiTru.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarDBBenhNhanNoiTru.AppearanceDisabled.Options.UseFont = true;
+            this.navBarDBBenhNhanNoiTru.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarDBBenhNhanNoiTru.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarDBBenhNhanNoiTru.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarDBBenhNhanNoiTru.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarDBBenhNhanNoiTru.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarDBBenhNhanNoiTru.AppearancePressed.Options.UseFont = true;
+            this.navBarDBBenhNhanNoiTru.Caption = "Biểu đồ doanh thu BN nội trú";
+            this.navBarDBBenhNhanNoiTru.Name = "navBarDBBenhNhanNoiTru";
+            this.navBarDBBenhNhanNoiTru.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarDBBenhNhanNoiTru.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarDBBenhNhanNoiTru_LinkClicked);
+            // 
             // navBarGroup5
             // 
-            this.navBarGroup5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroup5.Appearance.ForeColor = System.Drawing.Color.Red;
             this.navBarGroup5.Appearance.Options.UseFont = true;
             this.navBarGroup5.Appearance.Options.UseForeColor = true;
             this.navBarGroup5.Caption = "CẬN LÂM SÀNG";
             this.navBarGroup5.Expanded = true;
             this.navBarGroup5.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem9),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCDTCLS),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItem10)});
             this.navBarGroup5.Name = "navBarGroup5";
             // 
-            // navBarItem9
+            // navBarBCDTCLS
             // 
-            this.navBarItem9.Caption = "navBarItem9";
-            this.navBarItem9.Name = "navBarItem9";
-            this.navBarItem9.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
-            this.navBarItem9.Visible = false;
+            this.navBarBCDTCLS.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCDTCLS.Appearance.Options.UseFont = true;
+            this.navBarBCDTCLS.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCDTCLS.AppearanceDisabled.Options.UseFont = true;
+            this.navBarBCDTCLS.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCDTCLS.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarBCDTCLS.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarBCDTCLS.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarBCDTCLS.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCDTCLS.AppearancePressed.Options.UseFont = true;
+            this.navBarBCDTCLS.Caption = "BC doanh thu Cận lâm sàng";
+            this.navBarBCDTCLS.Name = "navBarBCDTCLS";
+            this.navBarBCDTCLS.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCDTCLS.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCDTCLS_LinkClicked);
             // 
             // navBarItem10
             // 
+            this.navBarItem10.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem10.Appearance.Options.UseFont = true;
+            this.navBarItem10.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem10.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItem10.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem10.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarItem10.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItem10.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarItem10.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem10.AppearancePressed.Options.UseFont = true;
             this.navBarItem10.Caption = "navBarItem10";
             this.navBarItem10.Name = "navBarItem10";
             this.navBarItem10.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
@@ -206,7 +326,7 @@
             // 
             // navBarGroup2
             // 
-            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.navBarGroup2.Appearance.ForeColor = System.Drawing.Color.Fuchsia;
             this.navBarGroup2.Appearance.Options.UseFont = true;
             this.navBarGroup2.Appearance.Options.UseForeColor = true;
@@ -219,6 +339,16 @@
             // 
             // navBarBCXNTTuTruc
             // 
+            this.navBarBCXNTTuTruc.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCXNTTuTruc.Appearance.Options.UseFont = true;
+            this.navBarBCXNTTuTruc.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCXNTTuTruc.AppearanceDisabled.Options.UseFont = true;
+            this.navBarBCXNTTuTruc.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCXNTTuTruc.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarBCXNTTuTruc.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarBCXNTTuTruc.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarBCXNTTuTruc.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarBCXNTTuTruc.AppearancePressed.Options.UseFont = true;
             this.navBarBCXNTTuTruc.Caption = "BC xuất nhập tồn tủ trực";
             this.navBarBCXNTTuTruc.Name = "navBarBCXNTTuTruc";
             this.navBarBCXNTTuTruc.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
@@ -226,6 +356,16 @@
             // 
             // navBarItem4
             // 
+            this.navBarItem4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem4.Appearance.Options.UseFont = true;
+            this.navBarItem4.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem4.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItem4.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem4.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarItem4.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItem4.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarItem4.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarItem4.AppearancePressed.Options.UseFont = true;
             this.navBarItem4.Caption = "navBarItem4";
             this.navBarItem4.Name = "navBarItem4";
             this.navBarItem4.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
@@ -238,8 +378,9 @@
             this.xtraTabControlChucNang.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControlChucNang.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabControlChucNang.Name = "xtraTabControlChucNang";
-            this.xtraTabControlChucNang.Size = new System.Drawing.Size(985, 613);
+            this.xtraTabControlChucNang.Size = new System.Drawing.Size(958, 613);
             this.xtraTabControlChucNang.TabIndex = 1;
+            this.xtraTabControlChucNang.TabPageWidth = 150;
             this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDashboard_SelectedPageChanged);
             this.xtraTabControlChucNang.CloseButtonClick += new System.EventHandler(this.xtraTabControlDashboard_CloseButtonClick);
             // 
@@ -278,7 +419,9 @@
         private DevExpress.XtraNavBar.NavBarItem navBarBCQLTongTheKhoa;
         private DevExpress.XtraNavBar.NavBarItem navBarBCBenhNhanNoiTru;
         private DevExpress.XtraNavBar.NavBarGroup navBarGroup5;
-        private DevExpress.XtraNavBar.NavBarItem navBarItem9;
+        private DevExpress.XtraNavBar.NavBarItem navBarBCDTCLS;
         private DevExpress.XtraNavBar.NavBarItem navBarItem10;
+        private DevExpress.XtraNavBar.NavBarItem navBarDBDTTungKhoa;
+        private DevExpress.XtraNavBar.NavBarItem navBarDBBenhNhanNoiTru;
     }
 }

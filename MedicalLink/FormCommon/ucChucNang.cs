@@ -78,7 +78,7 @@ namespace MedicalLink.FormCommon
                         lstDSChucNang[i].permissioncheck = true;
                     }
                 }
-                gridControlDSChucNang.DataSource = lstDSChucNang.Where(o=>o.permissioncheck==true).ToList();
+                gridControlDSChucNang.DataSource = lstDSChucNang.Where(o => o.permissioncheck == true).ToList();
             }
             catch (Exception ex)
             {
@@ -235,11 +235,12 @@ namespace MedicalLink.FormCommon
                 var rowHandle = gridViewDSChucNang.FocusedRowHandle;
                 string code = gridViewDSChucNang.GetRowCellValue(rowHandle, "permissioncode").ToString();
                 string name = gridViewDSChucNang.GetRowCellValue(rowHandle, "permissionname").ToString();
+                string note = gridViewDSChucNang.GetRowCellValue(rowHandle, "permissionnote").ToString();
                 if (Convert.ToBoolean(gridViewDSChucNang.GetRowCellValue(rowHandle, "permissioncheck")))
                 {
                     //Chon ucControl
                     ucControlActive = TabControlProcess.SelectUCControlActive(code);
-                    MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, code, name, ucControlActive);
+                    MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, code, name, note, ucControlActive);
                     ucControlActive.Show();
                 }
                 else
@@ -327,11 +328,12 @@ namespace MedicalLink.FormCommon
                 var rowHandle = gridViewDSBaoCao.FocusedRowHandle;
                 string code = gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissioncode").ToString();
                 string name = gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissionname").ToString();
+                string note = gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissionnote").ToString();
                 if (Convert.ToBoolean(gridViewDSBaoCao.GetRowCellValue(rowHandle, "permissioncheck"))) //xemlai...
                 {
                     //Chon ucControl
                     ucControlActive = TabControlProcess.SelectUCControlActive(code);
-                    MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, code, name, ucControlActive);
+                    MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, code, name, note, ucControlActive);
                     ucControlActive.Show();
                 }
                 else

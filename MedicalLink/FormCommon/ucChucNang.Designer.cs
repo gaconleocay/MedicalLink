@@ -44,6 +44,7 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.permissioncheck1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
@@ -54,14 +55,13 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.permissioncheck = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlChucNang)).BeginInit();
             this.xtraTabControlChucNang.SuspendLayout();
             this.xtraTabDSChucNang.SuspendLayout();
@@ -104,6 +104,7 @@
             this.xtraTabControlChucNang.TabIndex = 0;
             this.xtraTabControlChucNang.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabDSChucNang});
+            this.xtraTabControlChucNang.TabPageWidth = 150;
             this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlChucNang_SelectedPageChanged);
             this.xtraTabControlChucNang.CloseButtonClick += new System.EventHandler(this.xtraTabControlChucNang_CloseButtonClick);
             // 
@@ -210,6 +211,7 @@
             this.gridViewDSBaoCao.Appearance.SelectedRow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridViewDSBaoCao.Appearance.SelectedRow.Options.UseFont = true;
             this.gridViewDSBaoCao.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.gridViewDSBaoCao.ColumnPanelRowHeight = 25;
             this.gridViewDSBaoCao.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridDSBCColumeStt,
             this.gridColumn7,
@@ -219,6 +221,7 @@
             this.gridViewDSBaoCao.GridControl = this.gridControlDSBaoCao;
             this.gridViewDSBaoCao.Name = "gridViewDSBaoCao";
             this.gridViewDSBaoCao.OptionsView.ShowGroupPanel = false;
+            this.gridViewDSBaoCao.RowHeight = 25;
             this.gridViewDSBaoCao.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSBaoCao_CustomDrawCell);
             this.gridViewDSBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSBaoCao_RowCellStyle);
             this.gridViewDSBaoCao.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewDSBaoCao_RowStyle);
@@ -227,7 +230,11 @@
             // 
             // gridDSBCColumeStt
             // 
+            this.gridDSBCColumeStt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridDSBCColumeStt.AppearanceCell.Options.UseFont = true;
+            this.gridDSBCColumeStt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridDSBCColumeStt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridDSBCColumeStt.AppearanceHeader.Options.UseFont = true;
             this.gridDSBCColumeStt.AppearanceHeader.Options.UseForeColor = true;
             this.gridDSBCColumeStt.AppearanceHeader.Options.UseTextOptions = true;
             this.gridDSBCColumeStt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -238,11 +245,15 @@
             this.gridDSBCColumeStt.OptionsColumn.FixedWidth = true;
             this.gridDSBCColumeStt.Visible = true;
             this.gridDSBCColumeStt.VisibleIndex = 0;
-            this.gridDSBCColumeStt.Width = 30;
+            this.gridDSBCColumeStt.Width = 44;
             // 
             // gridColumn7
             // 
+            this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn7.AppearanceCell.Options.UseFont = true;
+            this.gridColumn7.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn7.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn7.AppearanceHeader.Options.UseFont = true;
             this.gridColumn7.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -258,7 +269,11 @@
             // 
             // gridColumn8
             // 
+            this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn8.AppearanceCell.Options.UseFont = true;
+            this.gridColumn8.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn8.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn8.AppearanceHeader.Options.UseFont = true;
             this.gridColumn8.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -268,11 +283,15 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 2;
-            this.gridColumn8.Width = 321;
+            this.gridColumn8.Width = 307;
             // 
             // permissioncheck1
             // 
+            this.permissioncheck1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.permissioncheck1.AppearanceCell.Options.UseFont = true;
+            this.permissioncheck1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.permissioncheck1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.permissioncheck1.AppearanceHeader.Options.UseFont = true;
             this.permissioncheck1.AppearanceHeader.Options.UseForeColor = true;
             this.permissioncheck1.AppearanceHeader.Options.UseTextOptions = true;
             this.permissioncheck1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -291,6 +310,16 @@
             // 
             this.repositoryItemCheckEdit2.AutoHeight = false;
             this.repositoryItemCheckEdit2.Name = "repositoryItemCheckEdit2";
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
+            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn4.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn4.Caption = "permissionnote";
+            this.gridColumn4.FieldName = "permissionnote";
+            this.gridColumn4.Name = "gridColumn4";
             // 
             // layoutControlGroup2
             // 
@@ -332,6 +361,7 @@
             // 
             // gridControlDSChucNang
             // 
+            this.gridControlDSChucNang.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridControlDSChucNang.Location = new System.Drawing.Point(2, 18);
             this.gridControlDSChucNang.MainView = this.gridViewDSChucNang;
             this.gridControlDSChucNang.Name = "gridControlDSChucNang";
@@ -345,12 +375,15 @@
             // 
             // gridViewDSChucNang
             // 
-            this.gridViewDSChucNang.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewDSChucNang.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewDSChucNang.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gridViewDSChucNang.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 12F);
             this.gridViewDSChucNang.Appearance.Row.Options.UseFont = true;
-            this.gridViewDSChucNang.Appearance.SelectedRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewDSChucNang.Appearance.SelectedRow.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.gridViewDSChucNang.Appearance.SelectedRow.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridViewDSChucNang.Appearance.SelectedRow.Options.UseFont = true;
             this.gridViewDSChucNang.Appearance.SelectedRow.Options.UseForeColor = true;
+            this.gridViewDSChucNang.ColumnPanelRowHeight = 25;
             this.gridViewDSChucNang.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnstt,
             this.gridColumn2,
@@ -360,6 +393,7 @@
             this.gridViewDSChucNang.GridControl = this.gridControlDSChucNang;
             this.gridViewDSChucNang.Name = "gridViewDSChucNang";
             this.gridViewDSChucNang.OptionsView.ShowGroupPanel = false;
+            this.gridViewDSChucNang.RowHeight = 25;
             this.gridViewDSChucNang.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSChucNang_CustomDrawCell);
             this.gridViewDSChucNang.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSChucNang_RowCellStyle);
             this.gridViewDSChucNang.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewDSChucNang_RowStyle);
@@ -368,7 +402,11 @@
             // 
             // gridColumnstt
             // 
+            this.gridColumnstt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumnstt.AppearanceCell.Options.UseFont = true;
+            this.gridColumnstt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumnstt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumnstt.AppearanceHeader.Options.UseFont = true;
             this.gridColumnstt.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumnstt.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumnstt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -379,11 +417,15 @@
             this.gridColumnstt.OptionsColumn.FixedWidth = true;
             this.gridColumnstt.Visible = true;
             this.gridColumnstt.VisibleIndex = 0;
-            this.gridColumnstt.Width = 30;
+            this.gridColumnstt.Width = 45;
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -392,14 +434,17 @@
             this.gridColumn2.MinWidth = 100;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.OptionsColumn.FixedWidth = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 100;
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -409,11 +454,15 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 317;
+            this.gridColumn3.Width = 298;
             // 
             // permissioncheck
             // 
+            this.permissioncheck.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.permissioncheck.AppearanceCell.Options.UseFont = true;
+            this.permissioncheck.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.permissioncheck.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.permissioncheck.AppearanceHeader.Options.UseFont = true;
             this.permissioncheck.AppearanceHeader.Options.UseForeColor = true;
             this.permissioncheck.AppearanceHeader.Options.UseTextOptions = true;
             this.permissioncheck.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -422,16 +471,25 @@
             this.permissioncheck.FieldName = "permissioncheck";
             this.permissioncheck.Name = "permissioncheck";
             this.permissioncheck.OptionsColumn.AllowEdit = false;
-            this.permissioncheck.OptionsColumn.FixedWidth = true;
             this.permissioncheck.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             this.permissioncheck.Visible = true;
             this.permissioncheck.VisibleIndex = 3;
-            this.permissioncheck.Width = 70;
+            this.permissioncheck.Width = 74;
             // 
             // repositoryItemCheckEdit1
             // 
             this.repositoryItemCheckEdit1.AutoHeight = false;
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn1.Caption = "permissionnote";
+            this.gridColumn1.FieldName = "permissionnote";
+            this.gridColumn1.Name = "gridColumn1";
             // 
             // Root
             // 
@@ -501,18 +559,6 @@
             this.layoutControlItem3.Size = new System.Drawing.Size(1090, 109);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "permissionnote";
-            this.gridColumn1.FieldName = "permissionnote";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "permissionnote";
-            this.gridColumn4.FieldName = "permissionnote";
-            this.gridColumn4.Name = "gridColumn4";
             // 
             // ucChucNang
             // 

@@ -278,7 +278,7 @@ namespace MedicalLink.Base
                 REPORT_08.permissioncode = "REPORT_08";
                 REPORT_08.permissionname = "Dashboard BC quản lý tổng thể khoa";
                 REPORT_08.permissiontype = 5;
-                REPORT_08.permissionnote = "Dashboard BC quản lý tổng thể khoa";
+                REPORT_08.permissionnote = "Dashboard BC quản lý tổng thể khoa. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
                 lstresult.Add(REPORT_08);
 
                 ClassCommon.classPermission REPORT_09 = new ClassCommon.classPermission();
@@ -286,7 +286,7 @@ namespace MedicalLink.Base
                 REPORT_09.permissioncode = "REPORT_09";
                 REPORT_09.permissionname = "Dashboard BC bệnh nhân nội trú";
                 REPORT_09.permissiontype = 5;
-                REPORT_09.permissionnote = "Dashboard BC bệnh nhân nội trú";
+                REPORT_09.permissionnote = "Dashboard BC bệnh nhân nội trú. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
                 lstresult.Add(REPORT_09);
 
                 ClassCommon.classPermission REPORT_10 = new ClassCommon.classPermission();
@@ -294,7 +294,7 @@ namespace MedicalLink.Base
                 REPORT_10.permissioncode = "REPORT_10";
                 REPORT_10.permissionname = "Dashboard BC bệnh nhân ngoại trú";
                 REPORT_10.permissiontype = 5;
-                REPORT_10.permissionnote = "Dashboard BC bệnh nhân ngoại trú";
+                REPORT_10.permissionnote = "Dashboard BC bệnh nhân ngoại trú. \n Lấy theo tiêu chí thời gian bệnh nhân đến khám; doanh thu chia theo khoa/phòng chỉ định";
                 lstresult.Add(REPORT_10);
 
                 ClassCommon.classPermission REPORT_11 = new ClassCommon.classPermission();
@@ -302,8 +302,16 @@ namespace MedicalLink.Base
                 REPORT_11.permissioncode = "REPORT_11";
                 REPORT_11.permissionname = "Dashboard BC tổng hợp toàn viện";
                 REPORT_11.permissiontype = 5;
-                REPORT_11.permissionnote = "Dashboard BC tổng hợp toàn viện";
+                REPORT_11.permissionnote = "Dashboard BC tổng hợp toàn viện. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
                 lstresult.Add(REPORT_11);
+
+                ClassCommon.classPermission REPORT_12 = new ClassCommon.classPermission();
+                REPORT_12.permissioncheck = false;
+                REPORT_12.permissioncode = "REPORT_12";
+                REPORT_12.permissionname = "Dashboard BC doanh thu cận lâm sàng";
+                REPORT_12.permissiontype = 5;
+                REPORT_12.permissionnote = "Dashboard BC doanh thu cận lâm sàng. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng chỉ định";
+                lstresult.Add(REPORT_12);
 
                 ClassCommon.classPermission REPORT_14 = new ClassCommon.classPermission();
                 REPORT_14.permissioncheck = false;
@@ -312,6 +320,27 @@ namespace MedicalLink.Base
                 REPORT_14.permissiontype = 5;
                 REPORT_14.permissionnote = "Dashboard BC xuất nhập tồn tủ trực";
                 lstresult.Add(REPORT_14);
+
+
+
+
+
+                //
+                ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();
+                DASHBOARD_01.permissioncheck = false;
+                DASHBOARD_01.permissioncode = "DASHBOARD_01";
+                DASHBOARD_01.permissionname = "Biểu đồ doanh thu khoa";
+                DASHBOARD_01.permissiontype = 5;
+                DASHBOARD_01.permissionnote = "Biểu đồ doanh thu khoa";
+                lstresult.Add(DASHBOARD_01);
+
+                ClassCommon.classPermission DASHBOARD_02 = new ClassCommon.classPermission();
+                DASHBOARD_02.permissioncheck = false;
+                DASHBOARD_02.permissioncode = "DASHBOARD_02";
+                DASHBOARD_02.permissionname = "Biểu đồ doanh thu theo khoa";
+                DASHBOARD_02.permissiontype = 5;
+                DASHBOARD_02.permissionnote = "Biểu đồ doanh thu theo khoa";
+                lstresult.Add(DASHBOARD_02);
 
             }
             catch (Exception ex)

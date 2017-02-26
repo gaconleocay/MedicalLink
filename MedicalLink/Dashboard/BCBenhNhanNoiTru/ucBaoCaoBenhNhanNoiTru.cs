@@ -154,6 +154,7 @@ namespace MedicalLink.Dashboard
         {
             try
             {
+                gridControlDataBNNT.DataSource = null;
                 LayDuLieuBaoCao_ChayMoi();
             }
             catch (Exception ex)

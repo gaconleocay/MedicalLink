@@ -566,6 +566,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
+        private void gridViewDSUser_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
 
     }
 }

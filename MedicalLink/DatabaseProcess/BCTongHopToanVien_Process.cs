@@ -18,7 +18,8 @@ namespace MedicalLink.DatabaseProcess
             List<BCDashboardTongHopToanVien> lstdataBCTHToanVien = new List<BCDashboardTongHopToanVien>();
             try
             {
-                string sqlLayBaoCao = "SELECT (case vpm.loaivienphiid when 1 then 'Ngoại trú' when 0 then 'Nội trú' else '' end) as loaivienphi, sum(case when vpm.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, sum(case when vpm.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp, sum(vpm.money_khambenh_bh+vpm.money_xetnghiem_bh+vpm.money_cdha_bh+vpm.money_tdcn_bh+vpm.money_pttt_bh+vpm.money_dvktc_bh+vpm.money_giuong_bh+vpm.money_phuthu_bh+vpm.money_vanchuyen_bh+vpm.money_khac_bh+vpm.money_mau_bh+vpm.money_thuoc_bh+vpm.money_vattu_bh +vpm.money_khambenh_vp+vpm.money_xetnghiem_vp+vpm.money_cdha_vp+vpm.money_tdcn_vp+vpm.money_pttt_vp+vpm.money_dvktc_vp+vpm.money_giuong_vp+vpm.money_phuthu_vp+vpm.money_vanchuyen_vp+vpm.money_khac_vp+vpm.money_mau_vp+vpm.money_thuoc_vp+vpm.money_vattu_vp) as tien_tong, sum(vpm.tam_ung) as tam_ung FROM vienphi_money vpm WHERE vpm.vienphistatus_vp=1 and vpm.duyet_ngayduyet_vp>='" + filter.dateTu + "' and vpm.duyet_ngayduyet_vp<='" + filter.dateDen + "' and vpm.vienphidate_ravien<='" + filter.dateDen + "' GROUP BY vpm.loaivienphiid;";
+                //string sqlLayBaoCao = "SELECT (case vpm.loaivienphiid when 1 then 'Ngoại trú' when 0 then 'Nội trú' else '' end) as loaivienphi, sum(case when vpm.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, sum(case when vpm.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp, sum(vpm.money_khambenh_bh+vpm.money_xetnghiem_bh+vpm.money_cdha_bh+vpm.money_tdcn_bh+vpm.money_pttt_bh+vpm.money_dvktc_bh+vpm.money_giuong_bh+vpm.money_phuthu_bh+vpm.money_vanchuyen_bh+vpm.money_khac_bh+vpm.money_mau_bh+vpm.money_thuoc_bh+vpm.money_vattu_bh +vpm.money_khambenh_vp+vpm.money_xetnghiem_vp+vpm.money_cdha_vp+vpm.money_tdcn_vp+vpm.money_pttt_vp+vpm.money_dvktc_vp+vpm.money_giuong_vp+vpm.money_phuthu_vp+vpm.money_vanchuyen_vp+vpm.money_khac_vp+vpm.money_mau_vp+vpm.money_thuoc_vp+vpm.money_vattu_vp) as tien_tong, sum(vpm.tam_ung) as tam_ung FROM vienphi_money vpm WHERE vpm.vienphistatus_vp=1 and vpm.duyet_ngayduyet_vp>='" + filter.dateTu + "' and vpm.duyet_ngayduyet_vp<='" + filter.dateDen + "' and vpm.vienphidate_ravien<='" + filter.dateDen + "' GROUP BY vpm.loaivienphiid;";
+                string sqlLayBaoCao = "SELECT (case vpm.loaivienphiid when 1 then 'Ngoại trú' when 0 then 'Nội trú' else '' end) as loaivienphi, sum(case when vpm.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, sum(case when vpm.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp, sum(vpm.money_khambenh_bh+vpm.money_xetnghiem_bh+vpm.money_cdha_bh+vpm.money_tdcn_bh+vpm.money_pttt_bh+vpm.money_dvktc_bh+vpm.money_giuong_bh+vpm.money_phuthu_bh+vpm.money_vanchuyen_bh+vpm.money_khac_bh+vpm.money_mau_bh+vpm.money_thuoc_bh+vpm.money_vattu_bh +vpm.money_khambenh_vp+vpm.money_xetnghiem_vp+vpm.money_cdha_vp+vpm.money_tdcn_vp+vpm.money_pttt_vp+vpm.money_dvktc_vp+vpm.money_giuong_vp+vpm.money_phuthu_vp+vpm.money_vanchuyen_vp+vpm.money_khac_vp+vpm.money_mau_vp+vpm.money_thuoc_vp+vpm.money_vattu_vp) as tien_tong, sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as money_khambenh, sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as money_xetnghiem, sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as money_cdhatdcn, sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as money_pttt, sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as money_dvktc, sum(vpm.money_giuong_bh + vpm.money_giuong_vp) as money_giuong, sum(vpm.money_mau_bh + vpm.money_mau_vp) as money_mau, sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as money_thuoc, sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as money_vattu, sum(vpm.money_phuthu_bh + vpm.money_phuthu_vp) as money_phuthu, sum(vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as money_vanchuyen, sum(vpm.money_khac_bh + vpm.money_khac_vp) as money_khac, sum(vpm.tam_ung) as tam_ung FROM vienphi_money vpm WHERE vpm.vienphistatus_vp=1 and vpm.duyet_ngayduyet_vp>='" + filter.dateTu + "' and vpm.duyet_ngayduyet_vp<='" + filter.dateDen + "' and vpm.vienphidate_ravien<='" + filter.dateDen + "' GROUP BY vpm.loaivienphiid;";
                 DataView BCTHToanVien = new DataView(condb.getDataTable(sqlLayBaoCao));
                 if (BCTHToanVien != null && BCTHToanVien.Count > 0)
                 {
@@ -26,6 +27,18 @@ namespace MedicalLink.DatabaseProcess
                     long slbn_vp_tong = 0;
                     decimal tien_tong_tong = 0;
                     decimal tam_ung_tong = 0;
+                    decimal money_khambenh_tong = 0;
+                    decimal money_xetnghiem_tong = 0;
+                    decimal money_cdhatdcn_tong = 0;
+                    decimal money_pttt_tong = 0;
+                    decimal money_dvktc_tong = 0;
+                    decimal money_giuong_tong = 0;
+                    decimal money_mau_tong = 0;
+                    decimal money_thuoc_tong = 0;
+                    decimal money_vattu_tong = 0;
+                    decimal money_phuthu_tong = 0;
+                    decimal money_vanchuyen_tong = 0;
+                    decimal money_khac_tong = 0;
                     for (int i = 0; i < BCTHToanVien.Count; i++)
                     {
                         BCDashboardTongHopToanVien bcBNTHToanVien = new BCDashboardTongHopToanVien();
@@ -36,12 +49,36 @@ namespace MedicalLink.DatabaseProcess
                         bcBNTHToanVien.slbn_tong = bcBNTHToanVien.slbn_bh + bcBNTHToanVien.slbn_vp;
                         bcBNTHToanVien.tien_tong = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["tien_tong"].ToString());
                         bcBNTHToanVien.tam_ung = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["tam_ung"].ToString());
+                        bcBNTHToanVien.money_khambenh = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_khambenh"].ToString());
+                        bcBNTHToanVien.money_xetnghiem = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_xetnghiem"].ToString());
+                        bcBNTHToanVien.money_cdhatdcn = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_cdhatdcn"].ToString());
+                        bcBNTHToanVien.money_pttt = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_pttt"].ToString());
+                        bcBNTHToanVien.money_dvktc = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_dvktc"].ToString());
+                        bcBNTHToanVien.money_giuong = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_giuong"].ToString());
+                        bcBNTHToanVien.money_mau = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_mau"].ToString());
+                        bcBNTHToanVien.money_thuoc = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_thuoc"].ToString());
+                        bcBNTHToanVien.money_vattu = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_vattu"].ToString());
+                        bcBNTHToanVien.money_phuthu = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_phuthu"].ToString());
+                        bcBNTHToanVien.money_vanchuyen = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_vanchuyen"].ToString());
+                        bcBNTHToanVien.money_khac = Utilities.Util_TypeConvertParse.ToDecimal(BCTHToanVien[i]["money_khac"].ToString());
                         lstdataBCTHToanVien.Add(bcBNTHToanVien);
 
                         slbn_bh_tong += bcBNTHToanVien.slbn_bh;
                         slbn_vp_tong += bcBNTHToanVien.slbn_vp;
                         tien_tong_tong += bcBNTHToanVien.tien_tong;
                         tam_ung_tong += bcBNTHToanVien.tam_ung;
+                        money_khambenh_tong += bcBNTHToanVien.money_khambenh;
+                        money_xetnghiem_tong += bcBNTHToanVien.money_xetnghiem;
+                        money_cdhatdcn_tong += bcBNTHToanVien.money_cdhatdcn;
+                        money_pttt_tong += bcBNTHToanVien.money_pttt;
+                        money_dvktc_tong += bcBNTHToanVien.money_dvktc;
+                        money_giuong_tong += bcBNTHToanVien.money_giuong;
+                        money_mau_tong += bcBNTHToanVien.money_mau;
+                        money_thuoc_tong += bcBNTHToanVien.money_thuoc;
+                        money_vattu_tong += bcBNTHToanVien.money_vattu;
+                        money_phuthu_tong += bcBNTHToanVien.money_phuthu;
+                        money_vanchuyen_tong += bcBNTHToanVien.money_vanchuyen;
+                        money_khac_tong += bcBNTHToanVien.money_khac;
                     }
                     BCDashboardTongHopToanVien bcBNTHToanVien_Tong = new BCDashboardTongHopToanVien();
                     bcBNTHToanVien_Tong.stt = 3;
@@ -51,6 +88,18 @@ namespace MedicalLink.DatabaseProcess
                     bcBNTHToanVien_Tong.slbn_tong = slbn_bh_tong + slbn_vp_tong;
                     bcBNTHToanVien_Tong.tien_tong = tien_tong_tong;
                     bcBNTHToanVien_Tong.tam_ung = tam_ung_tong;
+                    bcBNTHToanVien_Tong.money_khambenh = money_khambenh_tong;
+                    bcBNTHToanVien_Tong.money_xetnghiem = money_xetnghiem_tong;
+                    bcBNTHToanVien_Tong.money_cdhatdcn = money_cdhatdcn_tong;
+                    bcBNTHToanVien_Tong.money_pttt = money_pttt_tong;
+                    bcBNTHToanVien_Tong.money_dvktc = money_dvktc_tong;
+                    bcBNTHToanVien_Tong.money_giuong = money_giuong_tong;
+                    bcBNTHToanVien_Tong.money_mau = money_mau_tong;
+                    bcBNTHToanVien_Tong.money_thuoc = money_thuoc_tong;
+                    bcBNTHToanVien_Tong.money_vattu = money_vattu_tong;
+                    bcBNTHToanVien_Tong.money_phuthu = money_phuthu_tong;
+                    bcBNTHToanVien_Tong.money_vanchuyen = money_vanchuyen_tong;
+                    bcBNTHToanVien_Tong.money_khac = money_khac_tong;
                     lstdataBCTHToanVien.Add(bcBNTHToanVien_Tong);
                 }
             }

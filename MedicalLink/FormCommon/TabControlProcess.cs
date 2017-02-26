@@ -65,7 +65,7 @@ namespace MedicalLink.FormCommon
         /// </summary>
         /// <param name="tabControl">Tên TabControl để thêm tabpage mới vào</param>
         /// <param name="name">Tên tabpage mới</param>
-        internal static void TabCreating(XtraTabControl tabControl, string name, string text, UserControl uc)
+        internal static void TabCreating(XtraTabControl tabControl, string name, string text, string tooltip, UserControl uc)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace MedicalLink.FormCommon
                 else
                 {
                     KiemTraGioiHanSLTabpage(tabControl);
-                    XtraTabPage tabpage = new XtraTabPage { Text = name, Name = name, Tooltip = text };
+                    XtraTabPage tabpage = new XtraTabPage { Text = text, Name = name, Tooltip = tooltip };
                     tabControl.TabPages.Add(tabpage);
                     tabControl.SelectedTabPage = tabpage;
 
@@ -250,9 +250,22 @@ namespace MedicalLink.FormCommon
                     case "REPORT_11":
                         ucResult = new Dashboard.ucBaoCaoTongHopToanVien();
                         break;
+                    case "REPORT_12":
+                        ucResult = new Dashboard.ucBaoCaoCanLamSang();
+                        break;
+
 
                     case "REPORT_14":
                         ucResult = new Dashboard.ucBaoCaoXNTTuTruc();
+                        break;
+
+
+                    //
+                    case "DASHBOARD_01":
+                        ucResult = new Dashboard.ucDashboardDoanhThuTungKhoa();
+                        break;
+                    case "DASHBOARD_02":
+                        ucResult = new Dashboard.ucDashboardBenhNhanNoiTru();
                         break;
 
                     default:

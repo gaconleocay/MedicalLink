@@ -26,8 +26,8 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTableLicense();
                 result = KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh();
                 result = KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew();
-                result = KetNoiSCDLProcess.CreateViewServicepriceDichVu();
-                result = KetNoiSCDLProcess.CreateViewServicepriceThuoc();
+               // result = KetNoiSCDLProcess.CreateViewServicepriceDichVu();
+               // result = KetNoiSCDLProcess.CreateViewServicepriceThuoc();
                 result = KetNoiSCDLProcess.CreateTable_DangDT_Tmp();
                 result = KetNoiSCDLProcess.CreateTable_RaVienChuaTT_Tmp();
                 result = KetNoiSCDLProcess.CreateTable_RaVienDaTT_Tmp();
@@ -35,7 +35,8 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTable_ViewVienPhiMoney();
                 //result= KetNoiSCDLProcess.UpdateTableUser();
                 result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
-                result = KetNoiSCDLProcess.CreateTableSersion();
+                result = KetNoiSCDLProcess.CreateTableVersion();
+                result = KetNoiSCDLProcess.CreateFunctionByteaImport();
             }
             catch (Exception ex)
             {
@@ -291,7 +292,7 @@ namespace MedicalLink.FormCommon
             }
             return result;
         }
-        private static bool CreateTableSersion()
+        private static bool CreateTableVersion()
         {
             bool result = false;
             try
@@ -416,5 +417,26 @@ namespace MedicalLink.FormCommon
         }
 
         #endregion
+
+        #region Tao Function
+
+        private static bool CreateFunctionByteaImport()
+        {
+            bool result = false;
+            try
+            {
+                string sqloption = " create or replace function bytea_import(p_path text, p_result out bytea) language plpgsql as $$ declare l_oid oid; r record; begin p_result := ''; select lo_import(p_path) into l_oid; for r in ( select data from pg_largeobject where loid = l_oid order by pageno ) loop p_result = p_result || r.data; end loop; perform lo_unlink(l_oid); end;$$;";
+                if (condb.ExecuteNonQuery(sqloption))
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi CreateFunctionByteaimport" + ex.ToString());
+            }
+            return result;
+        }
+#endregion
     }
 }

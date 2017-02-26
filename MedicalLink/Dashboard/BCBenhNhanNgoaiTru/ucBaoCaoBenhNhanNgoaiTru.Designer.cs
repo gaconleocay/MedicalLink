@@ -36,11 +36,11 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.lblThoiGianConLai = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.spinThoiGianCapNhat = new DevExpress.XtraEditors.SpinEdit();
+            this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.bbbb = new DevExpress.XtraEditors.LabelControl();
             this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
@@ -98,57 +98,46 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnFullScreen);
             this.groupBox1.Controls.Add(this.lblThoiGianConLai);
             this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.spinThoiGianCapNhat);
+            this.groupBox1.Controls.Add(this.btnFullScreen);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(662, 2);
+            this.groupBox1.Location = new System.Drawing.Point(633, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(247, 116);
+            this.groupBox1.Size = new System.Drawing.Size(276, 116);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thiết lập";
             // 
-            // btnFullScreen
-            // 
-            this.btnFullScreen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullScreen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnFullScreen.Appearance.Options.UseFont = true;
-            this.btnFullScreen.Appearance.Options.UseForeColor = true;
-            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(138, 85);
-            this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(100, 25);
-            this.btnFullScreen.TabIndex = 27;
-            this.btnFullScreen.Text = "Full screen";
-            this.btnFullScreen.Click += new System.EventHandler(this.btnFullSize_Click);
-            // 
             // lblThoiGianConLai
             // 
+            this.lblThoiGianConLai.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThoiGianConLai.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.lblThoiGianConLai.Location = new System.Drawing.Point(17, 61);
+            this.lblThoiGianConLai.Location = new System.Drawing.Point(19, 55);
             this.lblThoiGianConLai.Name = "lblThoiGianConLai";
-            this.lblThoiGianConLai.Size = new System.Drawing.Size(116, 13);
-            this.lblThoiGianConLai.TabIndex = 25;
+            this.lblThoiGianConLai.Size = new System.Drawing.Size(136, 14);
+            this.lblThoiGianConLai.TabIndex = 35;
             this.lblThoiGianConLai.Text = "Không tự động cập nhật";
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(216, 29);
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Location = new System.Drawing.Point(235, 23);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(22, 13);
-            this.labelControl4.TabIndex = 23;
+            this.labelControl4.Size = new System.Drawing.Size(26, 14);
+            this.labelControl4.TabIndex = 34;
             this.labelControl4.Text = "phút";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(17, 29);
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Location = new System.Drawing.Point(19, 23);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(105, 13);
-            this.labelControl2.TabIndex = 22;
+            this.labelControl2.Size = new System.Drawing.Size(122, 14);
+            this.labelControl2.TabIndex = 33;
             this.labelControl2.Text = "Tự động cập nhật sau";
             // 
             // spinThoiGianCapNhat
@@ -158,8 +147,10 @@
             0,
             0,
             0});
-            this.spinThoiGianCapNhat.Location = new System.Drawing.Point(128, 26);
+            this.spinThoiGianCapNhat.Location = new System.Drawing.Point(147, 20);
             this.spinThoiGianCapNhat.Name = "spinThoiGianCapNhat";
+            this.spinThoiGianCapNhat.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spinThoiGianCapNhat.Properties.Appearance.Options.UseFont = true;
             this.spinThoiGianCapNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.spinThoiGianCapNhat.Properties.MaxValue = new decimal(new int[] {
@@ -167,9 +158,23 @@
             232,
             0,
             0});
-            this.spinThoiGianCapNhat.Size = new System.Drawing.Size(83, 20);
-            this.spinThoiGianCapNhat.TabIndex = 21;
+            this.spinThoiGianCapNhat.Size = new System.Drawing.Size(83, 22);
+            this.spinThoiGianCapNhat.TabIndex = 32;
             this.spinThoiGianCapNhat.EditValueChanged += new System.EventHandler(this.spinThoiGianCapNhat_EditValueChanged);
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullScreen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnFullScreen.Appearance.Options.UseFont = true;
+            this.btnFullScreen.Appearance.Options.UseForeColor = true;
+            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
+            this.btnFullScreen.Location = new System.Drawing.Point(161, 82);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(100, 25);
+            this.btnFullScreen.TabIndex = 27;
+            this.btnFullScreen.Text = "Full screen";
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullSize_Click);
             // 
             // groupBoxFile
             // 
@@ -197,29 +202,30 @@
             // 
             this.bbbb.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bbbb.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.bbbb.Location = new System.Drawing.Point(59, 87);
+            this.bbbb.Location = new System.Drawing.Point(66, 86);
             this.bbbb.Name = "bbbb";
             this.bbbb.Size = new System.Drawing.Size(179, 16);
-            this.bbbb.TabIndex = 70;
+            this.bbbb.TabIndex = 92;
             this.bbbb.Text = "Thời gian lấy dữ liệu cuối cùng:";
             // 
             // lblThoiGianLayBaoCao
             // 
             this.lblThoiGianLayBaoCao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThoiGianLayBaoCao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(244, 87);
+            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(251, 86);
             this.lblThoiGianLayBaoCao.Name = "lblThoiGianLayBaoCao";
             this.lblThoiGianLayBaoCao.Size = new System.Drawing.Size(122, 16);
-            this.lblThoiGianLayBaoCao.TabIndex = 71;
+            this.lblThoiGianLayBaoCao.TabIndex = 93;
             this.lblThoiGianLayBaoCao.Text = "00:00:00 01/01/0001";
             // 
             // radioNam
             // 
             this.radioNam.AutoSize = true;
-            this.radioNam.Location = new System.Drawing.Point(311, 26);
+            this.radioNam.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioNam.Location = new System.Drawing.Point(348, 23);
             this.radioNam.Name = "radioNam";
-            this.radioNam.Size = new System.Drawing.Size(46, 17);
-            this.radioNam.TabIndex = 24;
+            this.radioNam.Size = new System.Drawing.Size(49, 18);
+            this.radioNam.TabIndex = 91;
             this.radioNam.TabStop = true;
             this.radioNam.Text = "Năm";
             this.radioNam.UseVisualStyleBackColor = true;
@@ -228,10 +234,11 @@
             // radioQuy
             // 
             this.radioQuy.AutoSize = true;
-            this.radioQuy.Location = new System.Drawing.Point(260, 26);
+            this.radioQuy.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioQuy.Location = new System.Drawing.Point(297, 23);
             this.radioQuy.Name = "radioQuy";
-            this.radioQuy.Size = new System.Drawing.Size(45, 17);
-            this.radioQuy.TabIndex = 23;
+            this.radioQuy.Size = new System.Drawing.Size(47, 18);
+            this.radioQuy.TabIndex = 90;
             this.radioQuy.TabStop = true;
             this.radioQuy.Text = "Quý";
             this.radioQuy.UseVisualStyleBackColor = true;
@@ -240,10 +247,11 @@
             // radioThang
             // 
             this.radioThang.AutoSize = true;
-            this.radioThang.Location = new System.Drawing.Point(202, 26);
+            this.radioThang.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioThang.Location = new System.Drawing.Point(239, 23);
             this.radioThang.Name = "radioThang";
-            this.radioThang.Size = new System.Drawing.Size(55, 17);
-            this.radioThang.TabIndex = 22;
+            this.radioThang.Size = new System.Drawing.Size(60, 18);
+            this.radioThang.TabIndex = 89;
             this.radioThang.TabStop = true;
             this.radioThang.Text = "Tháng";
             this.radioThang.UseVisualStyleBackColor = true;
@@ -251,70 +259,74 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(6, 58);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(14, 57);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(20, 13);
-            this.labelControl1.TabIndex = 21;
+            this.labelControl1.Size = new System.Drawing.Size(22, 14);
+            this.labelControl1.TabIndex = 88;
             this.labelControl1.Text = "Đến";
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(13, 28);
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Location = new System.Drawing.Point(20, 27);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(13, 13);
-            this.labelControl3.TabIndex = 20;
+            this.labelControl3.Size = new System.Drawing.Size(16, 14);
+            this.labelControl3.TabIndex = 87;
             this.labelControl3.Text = "Từ";
             // 
             // dateDenNgay
             // 
             this.dateDenNgay.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
-            this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateDenNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(32, 52);
+            this.dateDenNgay.Location = new System.Drawing.Point(47, 50);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
-            this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
-            this.dateDenNgay.TabIndex = 19;
+            this.dateDenNgay.Size = new System.Drawing.Size(159, 22);
+            this.dateDenNgay.TabIndex = 86;
             this.dateDenNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
             // dateTuNgay
             // 
             this.dateTuNgay.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
-            this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTuNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(32, 21);
+            this.dateTuNgay.Location = new System.Drawing.Point(47, 20);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
-            this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
-            this.dateTuNgay.TabIndex = 18;
+            this.dateTuNgay.Size = new System.Drawing.Size(159, 22);
+            this.dateTuNgay.TabIndex = 85;
             this.dateTuNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
             // cboChonNhanh
             // 
-            this.cboChonNhanh.Location = new System.Drawing.Point(202, 53);
+            this.cboChonNhanh.Location = new System.Drawing.Point(239, 47);
             this.cboChonNhanh.Name = "cboChonNhanh";
-            this.cboChonNhanh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboChonNhanh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.cboChonNhanh.Properties.Appearance.Options.UseFont = true;
+            this.cboChonNhanh.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboChonNhanh.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cboChonNhanh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboChonNhanh.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboChonNhanh.Size = new System.Drawing.Size(155, 22);
-            this.cboChonNhanh.TabIndex = 9;
-            this.cboChonNhanh.SelectedValueChanged += new System.EventHandler(this.cboChonNhanh_SelectedValueChanged);
+            this.cboChonNhanh.TabIndex = 84;
+            this.cboChonNhanh.SelectedIndexChanged += new System.EventHandler(this.cboChonNhanh_SelectedValueChanged);
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnTimKiem.Location = new System.Drawing.Point(470, 40);
+            this.btnTimKiem.Location = new System.Drawing.Point(478, 34);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
-            this.btnTimKiem.TabIndex = 5;
+            this.btnTimKiem.TabIndex = 83;
             this.btnTimKiem.Text = "Refresh";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
@@ -681,16 +693,7 @@
 
         private DevExpress.XtraEditors.PanelControl panelControlThongTinDV;
         private System.Windows.Forms.GroupBox groupBoxFile;
-        private DevExpress.XtraEditors.SimpleButton btnTimKiem;
-        private DevExpress.XtraEditors.ComboBoxEdit cboChonNhanh;
         private System.Windows.Forms.Timer timerThongBao;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.DateTimePicker dateDenNgay;
-        private System.Windows.Forms.DateTimePicker dateTuNgay;
-        private System.Windows.Forms.RadioButton radioNam;
-        private System.Windows.Forms.RadioButton radioQuy;
-        private System.Windows.Forms.RadioButton radioThang;
         private System.Windows.Forms.Timer timerTuDongCapNhat;
         private DevExpress.XtraEditors.PanelControl panelControlData;
         private DevExpress.XtraGrid.GridControl gridControlDataBNNgT;
@@ -705,18 +708,27 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn7;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn18;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButton_View;
-        private DevExpress.XtraEditors.LabelControl bbbb;
-        private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.SimpleButton btnFullScreen;
-        private DevExpress.XtraEditors.LabelControl lblThoiGianConLai;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SpinEdit spinThoiGianCapNhat;
         private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand departmentgroupname;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn8;
+        private DevExpress.XtraEditors.LabelControl bbbb;
+        private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
+        private System.Windows.Forms.RadioButton radioNam;
+        private System.Windows.Forms.RadioButton radioQuy;
+        private System.Windows.Forms.RadioButton radioThang;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.DateTimePicker dateDenNgay;
+        private System.Windows.Forms.DateTimePicker dateTuNgay;
+        private DevExpress.XtraEditors.ComboBoxEdit cboChonNhanh;
+        private DevExpress.XtraEditors.SimpleButton btnTimKiem;
+        private DevExpress.XtraEditors.LabelControl lblThoiGianConLai;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.SpinEdit spinThoiGianCapNhat;
     }
 }

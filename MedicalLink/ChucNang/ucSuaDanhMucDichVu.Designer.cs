@@ -107,32 +107,34 @@
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(354, 43);
+            this.btnTimKiem.Location = new System.Drawing.Point(550, 18);
             this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(100, 23);
+            this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // txtTuKhoaTimKiem
             // 
-            this.txtTuKhoaTimKiem.Location = new System.Drawing.Point(8, 45);
+            this.txtTuKhoaTimKiem.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTuKhoaTimKiem.Location = new System.Drawing.Point(5, 46);
             this.txtTuKhoaTimKiem.Name = "txtTuKhoaTimKiem";
-            this.txtTuKhoaTimKiem.Size = new System.Drawing.Size(329, 21);
+            this.txtTuKhoaTimKiem.Size = new System.Drawing.Size(380, 27);
             this.txtTuKhoaTimKiem.TabIndex = 4;
             this.txtTuKhoaTimKiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTuKhoaTimKiem_KeyDown);
             // 
             // radioXetNghiem
             // 
             this.radioXetNghiem.AutoSize = true;
+            this.radioXetNghiem.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioXetNghiem.Location = new System.Drawing.Point(101, 9);
             this.radioXetNghiem.Name = "radioXetNghiem";
-            this.radioXetNghiem.Size = new System.Drawing.Size(78, 17);
+            this.radioXetNghiem.Size = new System.Drawing.Size(91, 20);
             this.radioXetNghiem.TabIndex = 3;
             this.radioXetNghiem.TabStop = true;
             this.radioXetNghiem.Text = "Xét nghiệm";
@@ -142,9 +144,10 @@
             // radioChuyenKhoa
             // 
             this.radioChuyenKhoa.AutoSize = true;
+            this.radioChuyenKhoa.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioChuyenKhoa.Location = new System.Drawing.Point(286, 9);
             this.radioChuyenKhoa.Name = "radioChuyenKhoa";
-            this.radioChuyenKhoa.Size = new System.Drawing.Size(88, 17);
+            this.radioChuyenKhoa.Size = new System.Drawing.Size(99, 20);
             this.radioChuyenKhoa.TabIndex = 2;
             this.radioChuyenKhoa.TabStop = true;
             this.radioChuyenKhoa.Text = "Chuyên khoa";
@@ -154,9 +157,10 @@
             // radioCDHA
             // 
             this.radioCDHA.AutoSize = true;
+            this.radioCDHA.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioCDHA.Location = new System.Drawing.Point(207, 9);
             this.radioCDHA.Name = "radioCDHA";
-            this.radioCDHA.Size = new System.Drawing.Size(54, 17);
+            this.radioCDHA.Size = new System.Drawing.Size(59, 20);
             this.radioCDHA.TabIndex = 1;
             this.radioCDHA.TabStop = true;
             this.radioCDHA.Text = "CĐHA";
@@ -166,9 +170,10 @@
             // radioKhamBenh
             // 
             this.radioKhamBenh.AutoSize = true;
+            this.radioKhamBenh.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioKhamBenh.Location = new System.Drawing.Point(5, 9);
             this.radioKhamBenh.Name = "radioKhamBenh";
-            this.radioKhamBenh.Size = new System.Drawing.Size(78, 17);
+            this.radioKhamBenh.Size = new System.Drawing.Size(90, 20);
             this.radioKhamBenh.TabIndex = 0;
             this.radioKhamBenh.TabStop = true;
             this.radioKhamBenh.Text = "Khám bệnh";
@@ -210,24 +215,25 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(2, 2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(638, 497);
+            this.panelControl2.Size = new System.Drawing.Size(638, 484);
             this.panelControl2.TabIndex = 1;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(66, 213);
+            this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(42, 257);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.Size = new System.Drawing.Size(41, 16);
             this.label10.TabIndex = 32;
             this.label10.Text = "Nhóm";
             // 
             // cbbNhomLoaiDichVu
             // 
             this.cbbNhomLoaiDichVu.Enabled = false;
-            this.cbbNhomLoaiDichVu.Location = new System.Drawing.Point(106, 208);
+            this.cbbNhomLoaiDichVu.Location = new System.Drawing.Point(94, 251);
             this.cbbNhomLoaiDichVu.Name = "cbbNhomLoaiDichVu";
-            this.cbbNhomLoaiDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbNhomLoaiDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbNhomLoaiDichVu.Properties.Appearance.Options.UseFont = true;
             this.cbbNhomLoaiDichVu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -236,169 +242,185 @@
             "Xét nghiệm",
             "Chẩn đoán hình ảnh",
             "Chuyên khoa"});
-            this.cbbNhomLoaiDichVu.Size = new System.Drawing.Size(200, 22);
+            this.cbbNhomLoaiDichVu.Size = new System.Drawing.Size(200, 26);
             this.cbbNhomLoaiDichVu.TabIndex = 35;
             this.cbbNhomLoaiDichVu.SelectedIndexChanged += new System.EventHandler(this.cbbNhomLoaiDichVu_SelectedIndexChanged);
             // 
             // cbbservicepricegroupcode
             // 
             this.cbbservicepricegroupcode.Enabled = false;
-            this.cbbservicepricegroupcode.Location = new System.Drawing.Point(425, 3);
+            this.cbbservicepricegroupcode.Location = new System.Drawing.Point(425, 13);
             this.cbbservicepricegroupcode.Name = "cbbservicepricegroupcode";
-            this.cbbservicepricegroupcode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbservicepricegroupcode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbservicepricegroupcode.Properties.Appearance.Options.UseFont = true;
             this.cbbservicepricegroupcode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbbservicepricegroupcode.Size = new System.Drawing.Size(200, 22);
+            this.cbbservicepricegroupcode.Size = new System.Drawing.Size(200, 26);
             this.cbbservicepricegroupcode.TabIndex = 37;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(369, 8);
+            this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(358, 18);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 13);
+            this.label9.Size = new System.Drawing.Size(61, 16);
             this.label9.TabIndex = 29;
             this.label9.Text = "Mã nhóm";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(311, 147);
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(326, 205);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(108, 13);
+            this.label5.Size = new System.Drawing.Size(93, 16);
             this.label5.TabIndex = 27;
-            this.label5.Text = "Giá người nước ngoài";
+            this.label5.Text = "Giá nước ngoài";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(37, 147);
+            this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(9, 205);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.Size = new System.Drawing.Size(74, 16);
             this.label8.TabIndex = 26;
             this.label8.Text = "Giá yêu cầu";
             // 
             // txtservicepricefeenuocngoai
             // 
-            this.txtservicepricefeenuocngoai.Location = new System.Drawing.Point(425, 144);
+            this.txtservicepricefeenuocngoai.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtservicepricefeenuocngoai.Location = new System.Drawing.Point(425, 199);
             this.txtservicepricefeenuocngoai.Name = "txtservicepricefeenuocngoai";
             this.txtservicepricefeenuocngoai.ReadOnly = true;
-            this.txtservicepricefeenuocngoai.Size = new System.Drawing.Size(200, 21);
+            this.txtservicepricefeenuocngoai.Size = new System.Drawing.Size(200, 27);
             this.txtservicepricefeenuocngoai.TabIndex = 25;
             this.txtservicepricefeenuocngoai.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtservicepricefee
             // 
-            this.txtservicepricefee.Location = new System.Drawing.Point(106, 144);
+            this.txtservicepricefee.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtservicepricefee.Location = new System.Drawing.Point(94, 199);
             this.txtservicepricefee.Name = "txtservicepricefee";
             this.txtservicepricefee.ReadOnly = true;
-            this.txtservicepricefee.Size = new System.Drawing.Size(200, 21);
+            this.txtservicepricefee.Size = new System.Drawing.Size(200, 27);
             this.txtservicepricefee.TabIndex = 24;
             this.txtservicepricefee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(357, 110);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(345, 157);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.Size = new System.Drawing.Size(74, 16);
             this.label6.TabIndex = 23;
             this.label6.Text = "Giá viện phí";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(50, 110);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(23, 157);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 13);
+            this.label7.Size = new System.Drawing.Size(60, 16);
             this.label7.TabIndex = 22;
             this.label7.Text = "Giá BHYT";
             // 
             // txtservicepricefeenhandan
             // 
-            this.txtservicepricefeenhandan.Location = new System.Drawing.Point(425, 107);
+            this.txtservicepricefeenhandan.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtservicepricefeenhandan.Location = new System.Drawing.Point(425, 151);
             this.txtservicepricefeenhandan.Name = "txtservicepricefeenhandan";
             this.txtservicepricefeenhandan.ReadOnly = true;
-            this.txtservicepricefeenhandan.Size = new System.Drawing.Size(200, 21);
+            this.txtservicepricefeenhandan.Size = new System.Drawing.Size(200, 27);
             this.txtservicepricefeenhandan.TabIndex = 21;
             this.txtservicepricefeenhandan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtservicepricefeebhyt
             // 
-            this.txtservicepricefeebhyt.Location = new System.Drawing.Point(106, 107);
+            this.txtservicepricefeebhyt.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtservicepricefeebhyt.Location = new System.Drawing.Point(94, 151);
             this.txtservicepricefeebhyt.Name = "txtservicepricefeebhyt";
             this.txtservicepricefeebhyt.ReadOnly = true;
-            this.txtservicepricefeebhyt.Size = new System.Drawing.Size(200, 21);
+            this.txtservicepricefeebhyt.Size = new System.Drawing.Size(200, 27);
             this.txtservicepricefeebhyt.TabIndex = 20;
             this.txtservicepricefeebhyt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(357, 213);
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(344, 257);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.Size = new System.Drawing.Size(75, 16);
             this.label4.TabIndex = 18;
             this.label4.Text = "Nhóm BHYT";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 75);
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(19, 113);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 17;
             this.label3.Text = "Tên BHYT";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 41);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(29, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(54, 16);
             this.label2.TabIndex = 16;
             this.label2.Text = "Mã user";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(42, 8);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(18, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(69, 16);
             this.label1.TabIndex = 15;
             this.label1.Text = "Mã dịch vụ";
             // 
             // txtservicepricenamebhyt
             // 
-            this.txtservicepricenamebhyt.Location = new System.Drawing.Point(106, 72);
+            this.txtservicepricenamebhyt.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtservicepricenamebhyt.Location = new System.Drawing.Point(94, 107);
             this.txtservicepricenamebhyt.Name = "txtservicepricenamebhyt";
             this.txtservicepricenamebhyt.ReadOnly = true;
-            this.txtservicepricenamebhyt.Size = new System.Drawing.Size(519, 21);
+            this.txtservicepricenamebhyt.Size = new System.Drawing.Size(531, 27);
             this.txtservicepricenamebhyt.TabIndex = 14;
             // 
             // txtservicepricecodeuser
             // 
-            this.txtservicepricecodeuser.Location = new System.Drawing.Point(106, 38);
+            this.txtservicepricecodeuser.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtservicepricecodeuser.Location = new System.Drawing.Point(93, 61);
             this.txtservicepricecodeuser.Name = "txtservicepricecodeuser";
             this.txtservicepricecodeuser.ReadOnly = true;
-            this.txtservicepricecodeuser.Size = new System.Drawing.Size(200, 21);
+            this.txtservicepricecodeuser.Size = new System.Drawing.Size(200, 27);
             this.txtservicepricecodeuser.TabIndex = 13;
             // 
             // txtservicepricecode
             // 
-            this.txtservicepricecode.Location = new System.Drawing.Point(106, 5);
+            this.txtservicepricecode.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtservicepricecode.Location = new System.Drawing.Point(93, 13);
             this.txtservicepricecode.Name = "txtservicepricecode";
             this.txtservicepricecode.ReadOnly = true;
-            this.txtservicepricecode.Size = new System.Drawing.Size(200, 21);
+            this.txtservicepricecode.Size = new System.Drawing.Size(200, 27);
             this.txtservicepricecode.TabIndex = 12;
             // 
             // cbbbhyt_groupcode
             // 
             this.cbbbhyt_groupcode.Enabled = false;
-            this.cbbbhyt_groupcode.Location = new System.Drawing.Point(425, 208);
+            this.cbbbhyt_groupcode.Location = new System.Drawing.Point(425, 251);
             this.cbbbhyt_groupcode.Name = "cbbbhyt_groupcode";
-            this.cbbbhyt_groupcode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbbhyt_groupcode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbbhyt_groupcode.Properties.Appearance.Options.UseFont = true;
             this.cbbbhyt_groupcode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -413,7 +435,7 @@
             "Ngày giường",
             "Dịch vụ khác",
             "Phụ thu"});
-            this.cbbbhyt_groupcode.Size = new System.Drawing.Size(200, 22);
+            this.cbbbhyt_groupcode.Size = new System.Drawing.Size(200, 26);
             this.cbbbhyt_groupcode.TabIndex = 36;
             // 
             // panelControl1
@@ -422,19 +444,19 @@
             this.panelControl1.Controls.Add(this.btnLuu);
             this.panelControl1.Controls.Add(this.btnSua);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(2, 499);
+            this.panelControl1.Location = new System.Drawing.Point(2, 486);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(638, 33);
+            this.panelControl1.Size = new System.Drawing.Size(638, 46);
             this.panelControl1.TabIndex = 0;
             // 
             // btnHuy
             // 
-            this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHuy.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHuy.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnHuy.Appearance.Options.UseFont = true;
             this.btnHuy.Appearance.Options.UseForeColor = true;
             this.btnHuy.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnHuy.Location = new System.Drawing.Point(417, 6);
+            this.btnHuy.Location = new System.Drawing.Point(417, 12);
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.Size = new System.Drawing.Size(100, 23);
             this.btnHuy.TabIndex = 8;
@@ -443,12 +465,12 @@
             // 
             // btnLuu
             // 
-            this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuu.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnLuu.Appearance.Options.UseFont = true;
             this.btnLuu.Appearance.Options.UseForeColor = true;
             this.btnLuu.Image = global::MedicalLink.Properties.Resources.save_16;
-            this.btnLuu.Location = new System.Drawing.Point(255, 6);
+            this.btnLuu.Location = new System.Drawing.Point(255, 12);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(100, 23);
             this.btnLuu.TabIndex = 7;
@@ -457,12 +479,12 @@
             // 
             // btnSua
             // 
-            this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSua.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnSua.Appearance.Options.UseFont = true;
             this.btnSua.Appearance.Options.UseForeColor = true;
             this.btnSua.Image = global::MedicalLink.Properties.Resources.edit_2_16;
-            this.btnSua.Location = new System.Drawing.Point(77, 6);
+            this.btnSua.Location = new System.Drawing.Point(77, 12);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(100, 23);
             this.btnSua.TabIndex = 6;
@@ -505,6 +527,7 @@
             // 
             // gridViewDMDichVu
             // 
+            this.gridViewDMDichVu.ColumnPanelRowHeight = 25;
             this.gridViewDMDichVu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
@@ -518,10 +541,15 @@
             this.gridViewDMDichVu.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDMDichVu.OptionsView.ShowGroupPanel = false;
             this.gridViewDMDichVu.OptionsView.ShowIndicator = false;
+            this.gridViewDMDichVu.RowHeight = 25;
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -535,7 +563,11 @@
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -549,7 +581,11 @@
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -563,7 +599,11 @@
             // 
             // gridColumn6
             // 
+            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn6.AppearanceCell.Options.UseFont = true;
+            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn6.AppearanceHeader.Options.UseFont = true;
             this.gridColumn6.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -576,7 +616,11 @@
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
+            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn4.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn4.AppearanceHeader.Options.UseFont = true;
             this.gridColumn4.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -590,7 +634,11 @@
             // 
             // gridColumn5
             // 
+            this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn5.AppearanceCell.Options.UseFont = true;
+            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn5.AppearanceHeader.Options.UseFont = true;
             this.gridColumn5.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;

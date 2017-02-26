@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils.Menu;
 
 namespace MedicalLink.Dashboard
 {
     public partial class ucBaoCaoXNTTuTruc : UserControl
     {
         private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        List<ClassCommon.classMedicineStore> lstMedicineStoreCurrent = new List<ClassCommon.classMedicineStore>();
-
+        private List<ClassCommon.classMedicineRef> lstMedicineStore { get; set; }
 
         public ucBaoCaoXNTTuTruc()
         {
@@ -28,6 +28,7 @@ namespace MedicalLink.Dashboard
             try
             {
                 LoadDanhSachTuTruc();
+                LoadDanhMucThuocVatTu();
             }
             catch (Exception ex)
             {
@@ -39,6 +40,8 @@ namespace MedicalLink.Dashboard
         {
             try
             {
+                List<ClassCommon.classMedicineStore> lstMedicineStoreCurrent = new List<ClassCommon.classMedicineStore>();
+
                 string sql_getmedistore = "SELECT medicinestoreid, departmentgroupid, medicinestoretype,medicinestorecode,medicinestorename FROM medicine_store WHERE  medicinestoretype in (8,9) ORDER BY departmentgroupid, medicinestoretype, medicinestorename;";
                 DataView dataStore = new DataView(condb.getDataTable(sql_getmedistore));
                 List<ClassCommon.classMedicineStore> lstMedicineStore = new List<ClassCommon.classMedicineStore>();
@@ -93,6 +96,33 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
+
+        private void LoadDanhMucThuocVatTu()
+        {
+            try
+            {
+                string sql_getmeref = "SELECT mef.medicinerefid, mef.medicinerefid_org, mef.medicinecode, mef.medicinename FROM medicine_ref mef WHERE mef.isremove=0;";
+                DataView dataStore = new DataView(condb.getDataTable(sql_getmeref));
+                lstMedicineStore = new List<ClassCommon.classMedicineRef>();
+
+                if (dataStore != null && dataStore.Count > 0)
+                {
+                    for (int i = 0; i < dataStore.Count; i++)
+                    {
+                        ClassCommon.classMedicineRef medicinestore = new ClassCommon.classMedicineRef();
+                        medicinestore.medicinerefid = Utilities.Util_TypeConvertParse.ToInt64(dataStore[i]["medicinerefid"].ToString());
+                        medicinestore.medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(dataStore[i]["medicinerefid_org"].ToString());
+                        medicinestore.medicinecode = dataStore[i]["medicinecode"].ToString();
+                        medicinestore.medicinename = dataStore[i]["medicinename"].ToString();
+                        lstMedicineStore.Add(medicinestore);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             try
@@ -105,6 +135,7 @@ namespace MedicalLink.Dashboard
                 }
                 else
                 {
+                    gridControlThuocTuTruc.DataSource = null;
                     LayDuLieuThuocTrongKho();
                 }
             }
@@ -138,8 +169,6 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.CloseForm();
         }
 
-
-
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -167,5 +196,58 @@ namespace MedicalLink.Dashboard
                 e.Appearance.ForeColor = Color.Black;
             }
         }
+        private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                itemXemLichSuNhapXuat_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        private void gridViewThuocTuTruc_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            try
+            {
+                if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
+                {
+                    e.Menu.Items.Clear();
+                    DXMenuItem itemXoaPhieuChiDinh = new DXMenuItem("Xem lịch sử nhập xuất thuốc/vật tư");
+                    itemXoaPhieuChiDinh.Image = imMenu.Images[0];
+                    //itemXoaToanBA.Shortcut = Shortcut.F6;
+                    itemXoaPhieuChiDinh.Click += new EventHandler(itemXemLichSuNhapXuat_Click);
+                    e.Menu.Items.Add(itemXoaPhieuChiDinh);
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+        void itemXemLichSuNhapXuat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // lấy giá trị tại dòng click chuột
+                var rowHandle = gridViewThuocTuTruc.FocusedRowHandle;
+                long medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(gridViewThuocTuTruc.GetRowCellValue(rowHandle, "medicinerefid_org").ToString());
+                if (medicinerefid_org != 0)
+                {
+                    BCXNTTuTruc.BCXNTTuTrucLichSu frmLichSu = new BCXNTTuTruc.BCXNTTuTrucLichSu(Utilities.Util_TypeConvertParse.ToInt64(cboTuTruc.EditValue.ToString()), medicinerefid_org, lstMedicineStore);
+                    frmLichSu.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+
+
+
     }
 }

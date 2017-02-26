@@ -27,12 +27,14 @@ namespace MedicalLinkUpdate
                 if (openFileDialogShelect.ShowDialog() == DialogResult.OK)
                 {
                     txtFilePath.Text = openFileDialogShelect.FileName;
-
+                    FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(openFileDialogShelect.FileName);
+                    txtVersion.Text = myFileVersionInfo.FileVersion.ToString();
+                    txtUpdate.Text = openFileDialogShelect.FileName;
                 }
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -50,7 +52,7 @@ namespace MedicalLinkUpdate
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -59,14 +61,29 @@ namespace MedicalLinkUpdate
         {
             try
             {
-                        System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                 string version = fvi.FileVersion;
                 this.Text = "Update version phần mềm (v" + version + ")";
             }
             catch (Exception)
             {
-                
+
+                throw;
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string sqlcommit = "update tools_version set sqlversion= '" + txtUpdate.Text.Trim() + "',appversion='" + txtVersion.Text.Trim() + "';";
+                condb.ExecuteNonQuery(sqlcommit);
+                MessageBox.Show("Update thành công.", "Thông báo");
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }

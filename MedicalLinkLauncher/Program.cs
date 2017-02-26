@@ -41,12 +41,23 @@ namespace MedicalLinkLauncher
                         CreateTempDirectory();
 
                         PhanQuyenFolder(Environment.CurrentDirectory + "\\" + TEMP_DIR);
-
                         //tải tệp tin MedicalLinkUpdate.zip từ Database về thư mục tạm
-                        DownloadFile(localPath);
-                        GiaiNenVaCopyFile();
-                        ////tiến hành ghi đè file
-                        //CopyFiles();
+                        try
+                        {
+                            DownloadFile(localPath);
+                            GiaiNenVaCopyFile();
+                        }
+                        catch (Exception)
+                        {
+                        }
+                        try
+                        {
+                            //tiến hành ghi đè file
+                            CopyFiles();
+                        }
+                        catch (Exception)
+                        {
+                        }
                     }
                 }
                 //sau khi copy đè tất cả các file xong, ta sẽ tiến hành gọi lại chương trình chính (MedicalLink.exe) để chạy lại chương trình
@@ -56,7 +67,9 @@ namespace MedicalLinkLauncher
             }
             catch (Exception ex)
             {
-
+                System.Diagnostics.Process.Start(@"MedicalLink.exe");
+                //và thoát khỏi chương trình update
+                Application.Exit();
             }
         }
 
@@ -118,10 +131,18 @@ namespace MedicalLinkLauncher
         {
             try
             {
+                string tempDirectory = "";
+                // Lay duong dan cau hinh luu luu file Share
+                DataView dataurlfile = new DataView(condb.getDataTable("select sqlversion from tools_version limit 1; "));
+                if (dataurlfile != null && dataurlfile.Count > 0)
+                {
+                    tempDirectory = dataurlfile[0]["sqlversion"].ToString();
+                }
+
                 //xác định thư mục hiện thời, nơi chương trình đang chạy
                 string currentDirectory = Environment.CurrentDirectory;
                 //xác định thư mục tạm, nơi Program1.exe đã tải các file cần cập nhật về
-                string tempDirectory = Environment.CurrentDirectory + "\\" + TEMP_DIR;
+                // string tempDirectory = Environment.CurrentDirectory + "\\" + TEMP_DIR;
                 //lấy danh sách tất cả các file trong thư mục tạm
                 string[] fileList = Directory.GetFiles(tempDirectory);
                 //duyệt từng file và copy đè lên file cũ trong thư mục đang chạy chương trình
@@ -154,7 +175,7 @@ namespace MedicalLinkLauncher
                 }
                 else
                 {
-                    System.IO.Directory.Delete(tempPath,true);
+                    System.IO.Directory.Delete(tempPath, true);
                     System.IO.Directory.CreateDirectory(tempPath);
                 }
             }

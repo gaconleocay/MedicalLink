@@ -93,16 +93,17 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(434, 312);
+            this.layoutControl1.Size = new System.Drawing.Size(484, 332);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(12, 143);
+            this.labelControl1.Location = new System.Drawing.Point(12, 154);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(89, 13);
+            this.labelControl1.Size = new System.Drawing.Size(107, 16);
             this.labelControl1.StyleController = this.layoutControl1;
             this.labelControl1.TabIndex = 11;
             this.labelControl1.Text = "Lý do mở bệnh án:";
@@ -111,9 +112,9 @@
             // 
             this.panelControl1.Controls.Add(this.lblThongBao);
             this.panelControl1.Controls.Add(this.memoEditLyDo);
-            this.panelControl1.Location = new System.Drawing.Point(12, 160);
+            this.panelControl1.Location = new System.Drawing.Point(12, 174);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(410, 104);
+            this.panelControl1.Size = new System.Drawing.Size(460, 110);
             this.panelControl1.TabIndex = 10;
             // 
             // lblThongBao
@@ -135,7 +136,7 @@
             this.memoEditLyDo.Name = "memoEditLyDo";
             this.memoEditLyDo.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.memoEditLyDo.Properties.Appearance.Options.UseFont = true;
-            this.memoEditLyDo.Size = new System.Drawing.Size(406, 100);
+            this.memoEditLyDo.Size = new System.Drawing.Size(456, 106);
             this.memoEditLyDo.TabIndex = 7;
             // 
             // navBarControl1
@@ -144,15 +145,17 @@
             this.navBarControl1.Controls.Add(this.navBarGroupControlContainer1);
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.navBarGroup1});
-            this.navBarControl1.Location = new System.Drawing.Point(12, 51);
+            this.navBarControl1.Location = new System.Drawing.Point(12, 52);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 410;
-            this.navBarControl1.Size = new System.Drawing.Size(410, 88);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 460;
+            this.navBarControl1.Size = new System.Drawing.Size(460, 98);
             this.navBarControl1.TabIndex = 9;
             this.navBarControl1.Text = "navBarControl1";
             // 
             // navBarGroup1
             // 
+            this.navBarGroup1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navBarGroup1.Appearance.Options.UseFont = true;
             this.navBarGroup1.Caption = "Thêm danh sách người yêu cầu";
             this.navBarGroup1.ControlContainer = this.navBarGroupControlContainer1;
             this.navBarGroup1.GroupClientHeight = 56;
@@ -169,15 +172,17 @@
             this.navBarGroupControlContainer1.Controls.Add(this.txtNVID);
             this.navBarGroupControlContainer1.Controls.Add(this.txtNVName);
             this.navBarGroupControlContainer1.Name = "navBarGroupControlContainer1";
-            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(402, 52);
+            this.navBarGroupControlContainer1.Size = new System.Drawing.Size(452, 52);
             this.navBarGroupControlContainer1.TabIndex = 0;
             // 
             // btnThemNhanVien
             // 
+            this.btnThemNhanVien.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemNhanVien.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnThemNhanVien.Appearance.Options.UseFont = true;
             this.btnThemNhanVien.Appearance.Options.UseForeColor = true;
             this.btnThemNhanVien.Image = ((System.Drawing.Image)(resources.GetObject("btnThemNhanVien.Image")));
-            this.btnThemNhanVien.Location = new System.Drawing.Point(307, 14);
+            this.btnThemNhanVien.Location = new System.Drawing.Point(369, 15);
             this.btnThemNhanVien.Name = "btnThemNhanVien";
             this.btnThemNhanVien.Size = new System.Drawing.Size(75, 23);
             this.btnThemNhanVien.TabIndex = 6;
@@ -187,34 +192,40 @@
             // 
             // labelControl3
             // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Location = new System.Drawing.Point(8, 32);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(72, 13);
+            this.labelControl3.Size = new System.Drawing.Size(86, 16);
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Tên nhân viên:";
             // 
             // labelControl2
             // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Location = new System.Drawing.Point(12, 6);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(68, 13);
+            this.labelControl2.Size = new System.Drawing.Size(81, 16);
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Mã nhân viên:";
             // 
             // txtNVID
             // 
-            this.txtNVID.Location = new System.Drawing.Point(89, 3);
+            this.txtNVID.Location = new System.Drawing.Point(99, 3);
             this.txtNVID.Name = "txtNVID";
-            this.txtNVID.Size = new System.Drawing.Size(193, 20);
+            this.txtNVID.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNVID.Properties.Appearance.Options.UseFont = true;
+            this.txtNVID.Size = new System.Drawing.Size(228, 22);
             this.txtNVID.TabIndex = 4;
             this.txtNVID.TabStop = false;
             this.txtNVID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNVID_KeyDown);
             // 
             // txtNVName
             // 
-            this.txtNVName.Location = new System.Drawing.Point(89, 29);
+            this.txtNVName.Location = new System.Drawing.Point(99, 29);
             this.txtNVName.Name = "txtNVName";
-            this.txtNVName.Size = new System.Drawing.Size(193, 20);
+            this.txtNVName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNVName.Properties.Appearance.Options.UseFont = true;
+            this.txtNVName.Size = new System.Drawing.Size(228, 22);
             this.txtNVName.TabIndex = 5;
             this.txtNVName.TabStop = false;
             this.txtNVName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNVName_KeyDown);
@@ -226,7 +237,7 @@
             this.btnMBAOK.Appearance.Options.UseFont = true;
             this.btnMBAOK.Appearance.Options.UseForeColor = true;
             this.btnMBAOK.Image = ((System.Drawing.Image)(resources.GetObject("btnMBAOK.Image")));
-            this.btnMBAOK.Location = new System.Drawing.Point(158, 268);
+            this.btnMBAOK.Location = new System.Drawing.Point(176, 288);
             this.btnMBAOK.Name = "btnMBAOK";
             this.btnMBAOK.Size = new System.Drawing.Size(100, 40);
             this.btnMBAOK.StyleController = this.layoutControl1;
@@ -238,11 +249,11 @@
             // 
             this.comboBoxNYC.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxNYC.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxNYC.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxNYC.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxNYC.FormattingEnabled = true;
-            this.comboBoxNYC.Location = new System.Drawing.Point(102, 12);
+            this.comboBoxNYC.Location = new System.Drawing.Point(112, 12);
             this.comboBoxNYC.Name = "comboBoxNYC";
-            this.comboBoxNYC.Size = new System.Drawing.Size(320, 24);
+            this.comboBoxNYC.Size = new System.Drawing.Size(360, 24);
             this.comboBoxNYC.TabIndex = 1;
             this.comboBoxNYC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxNYC_KeyDown);
             // 
@@ -262,28 +273,30 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 2);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(434, 312);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(484, 332);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
             // 
+            this.layoutControlItem1.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem1.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.layoutControlItem1.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem1.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem1.AppearanceItemCaption.Options.UseTextOptions = true;
             this.layoutControlItem1.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem1.Control = this.comboBoxNYC;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(414, 28);
+            this.layoutControlItem1.Size = new System.Drawing.Size(464, 28);
             this.layoutControlItem1.Text = "Người yêu cầu:";
             this.layoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize;
-            this.layoutControlItem1.TextSize = new System.Drawing.Size(85, 24);
+            this.layoutControlItem1.TextSize = new System.Drawing.Size(95, 24);
             this.layoutControlItem1.TextToControlDistance = 5;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnMBAOK;
-            this.layoutControlItem5.Location = new System.Drawing.Point(146, 256);
+            this.layoutControlItem5.Location = new System.Drawing.Point(164, 276);
             this.layoutControlItem5.MaxSize = new System.Drawing.Size(104, 44);
             this.layoutControlItem5.MinSize = new System.Drawing.Size(104, 44);
             this.layoutControlItem5.Name = "layoutControlItem5";
@@ -295,17 +308,17 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 256);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 276);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(146, 44);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(164, 44);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(250, 256);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(268, 276);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(164, 44);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(196, 44);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem3
@@ -313,33 +326,33 @@
             this.emptySpaceItem3.AllowHotTrack = false;
             this.emptySpaceItem3.Location = new System.Drawing.Point(0, 28);
             this.emptySpaceItem3.Name = "emptySpaceItem3";
-            this.emptySpaceItem3.Size = new System.Drawing.Size(414, 11);
+            this.emptySpaceItem3.Size = new System.Drawing.Size(464, 12);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.navBarControl1;
-            this.layoutControlItem6.Location = new System.Drawing.Point(0, 39);
+            this.layoutControlItem6.Location = new System.Drawing.Point(0, 40);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(414, 92);
+            this.layoutControlItem6.Size = new System.Drawing.Size(464, 102);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.panelControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 148);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 162);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(414, 108);
+            this.layoutControlItem2.Size = new System.Drawing.Size(464, 114);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.labelControl1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 131);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 142);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(414, 17);
+            this.layoutControlItem3.Size = new System.Drawing.Size(464, 20);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -352,13 +365,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 312);
+            this.ClientSize = new System.Drawing.Size(484, 332);
             this.Controls.Add(this.layoutControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(450, 350);
+            this.MaximumSize = new System.Drawing.Size(500, 370);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(450, 350);
+            this.MinimumSize = new System.Drawing.Size(500, 370);
             this.Name = "frmMoBenhAn_ThucHien_TT";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mở lại bệnh án";

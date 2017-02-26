@@ -1,5 +1,9 @@
-﻿using System;
+﻿using MedicalLink.Base;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace MedicalLink.FormCommon
 {
@@ -9,57 +13,41 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                //// Ket Noi DB
-                //Menu_KetNoiDB.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "SYS_01");
-                ////Quản lý người dùng
-                //MenuQuanLyNguoiDung.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "SYS_02");
-                //// Sửa thời gian ra viện
-                //navSuaTGRV.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_01");
-                //// Chuyển tiền tạm ứng
-                //navChuyenTien.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_02");
-                ////Mở bệnh án
-                //navMoBenhAn.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_03");
-                ////Sửa ngày duyệt kế toán
-                //navSuaNgayDuyetKT.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_04");
-                //// Xử lý bệnh nhân bỏ khoa
-                //navXuLyBNBoKhoa.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_05");
-                ////Update danh mục thuốc
-                //navDanhMucThuoc.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "UPD_01");
-                //// Update danh mục dịch vụ
-                //navDanhMucDichVu.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "UPD_02");
-                ////BC bệnh nhân sử dụng dịch vụ ...
-                //navDSBNSDDVz.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "REP_02");
-                ////Danh sách nhân viên
-                //MenuDSUserMoBA.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "MENU_01");
-                ////Sửa mã, tên, giá dịch vụ/thuốc của BN
-                //navSuaGiaDV.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_06");
-                ////TOL_07
-                //navUpdateDataSerPrice.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_07");
-                //// BC thống kê bệnh theo ICD10
-                //navThongKeTheoICD.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "REP_03");
-                //// Tìm phiếu tổng hợp y lệnh
-                //navTimTHYL.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "REP_04");
-                //// BC BHYT 21 - chênh
-                //navBHYT21ChenhTT37.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "REP_05");
-                ////BC chi dinh PTTT
-                //navBCSuDungPTTT.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "REP_06");
-                //// BC chi phí tăng thêm do thay đổi theo TT37 BHYT
-                //navBCCV1054HaiPhong.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "REP_07");
-
-                ////Chạy update khả dụng-tồn kho
-                //navChayKDTK.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_08");
-                ////Sửa phơi thanh toán của bệnh nhân
-                //navSuaPhoiThanhToan.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_09");
-                ////Sửa phiếu chỉ định dịch vụ
-                //navSuaMauBenhPham.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_10");
-                ////Tìm dịch vụ/thuốc không có mã trong danh mục
-                //navTimDVKhongMa.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "SUPPORT_01");
-                ////Sửa thông tin bệnh án
-                //navSuaThongTinBenhAn.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_11");
-                ////Kiểm tra HSBA sai trạng thái
-                //navKTTrangThaiHSBA.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_12");
-                ////Kiểm tra Đơn thuốc nội trú sai trạng thái
-                //navKTDonThuocNoiTru.Enabled = CheckPermission.ChkPerModule(SessionLogin.SessionUsercode.ToString(), "TOL_13");
+                List<ClassCommon.classPermission> lstDSChucNang = new List<ClassCommon.classPermission>();
+                lstDSChucNang = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 2).ToList();
+                if (SessionLogin.SessionUsercode != KeyTrongPhanMem.AdminUser_key)
+                {
+                    string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true) + "';";
+                    DataView dv_per = new DataView(condb.getDataTable(sqlquerry_per));
+                    if (dv_per != null && dv_per.Count > 0)
+                    {
+                        for (int i = 0; i < lstDSChucNang.Count; i++)
+                        {
+                            for (int j = 0; j < dv_per.Count; j++)
+                            {
+                                if (lstDSChucNang[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
+                                {
+                                    lstDSChucNang[i].permissioncheck = true;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < lstDSChucNang.Count; i++)
+                    {
+                        lstDSChucNang[i].permissioncheck = true;
+                    }
+                }
+                var lstchucnang= lstDSChucNang.Where(o=>o.permissioncheck==true).ToList();
+                if (lstchucnang.Count > 0)
+                { 
+                }
+                else
+                {
+                    tabMenuChucNang.PageVisible = false;
+                }
             }
             catch (Exception ex)
             {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucImportDMThuoc));
             this.panelControlThongTinNV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
@@ -39,7 +40,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnNVOK = new DevExpress.XtraEditors.SimpleButton();
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
-            this.timerThongBao = new System.Windows.Forms.Timer();
+            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.gridControlThuoc = new DevExpress.XtraGrid.GridControl();
             this.gridViewThuoc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -65,7 +66,7 @@
             this.panelControlThongTinNV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinNV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinNV.Name = "panelControlThongTinNV";
-            this.panelControlThongTinNV.Size = new System.Drawing.Size(812, 83);
+            this.panelControlThongTinNV.Size = new System.Drawing.Size(1000, 83);
             this.panelControlThongTinNV.TabIndex = 2;
             // 
             // groupBoxFile
@@ -73,28 +74,31 @@
             this.groupBoxFile.Controls.Add(this.labelControl1);
             this.groupBoxFile.Controls.Add(this.txtFilePath);
             this.groupBoxFile.Controls.Add(this.btnSelect);
+            this.groupBoxFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxFile.Location = new System.Drawing.Point(2, 3);
+            this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(430, 72);
+            this.groupBoxFile.Size = new System.Drawing.Size(556, 79);
             this.groupBoxFile.TabIndex = 8;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Import from Excel";
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(9, 24);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(17, 17);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(41, 13);
+            this.labelControl1.Size = new System.Drawing.Size(49, 16);
             this.labelControl1.TabIndex = 10;
             this.labelControl1.Text = "File path";
             // 
             // txtFilePath
             // 
-            this.txtFilePath.Location = new System.Drawing.Point(9, 43);
+            this.txtFilePath.Location = new System.Drawing.Point(17, 36);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(288, 20);
+            this.txtFilePath.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilePath.Properties.Appearance.Options.UseFont = true;
+            this.txtFilePath.Size = new System.Drawing.Size(288, 26);
             this.txtFilePath.TabIndex = 7;
             // 
             // btnSelect
@@ -104,7 +108,7 @@
             this.btnSelect.Appearance.Options.UseFont = true;
             this.btnSelect.Appearance.Options.UseForeColor = true;
             this.btnSelect.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.Image")));
-            this.btnSelect.Location = new System.Drawing.Point(313, 23);
+            this.btnSelect.Location = new System.Drawing.Point(358, 24);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(100, 40);
             this.btnSelect.TabIndex = 5;
@@ -116,10 +120,11 @@
             this.groupBoxAction.Controls.Add(this.cbbChonKieu);
             this.groupBoxAction.Controls.Add(this.labelControl2);
             this.groupBoxAction.Controls.Add(this.btnNVOK);
+            this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(435, 2);
+            this.groupBoxAction.Location = new System.Drawing.Point(558, 2);
             this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(370, 73);
+            this.groupBoxAction.Size = new System.Drawing.Size(440, 79);
             this.groupBoxAction.TabIndex = 7;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
@@ -128,6 +133,10 @@
             // 
             this.cbbChonKieu.Location = new System.Drawing.Point(11, 43);
             this.cbbChonKieu.Name = "cbbChonKieu";
+            this.cbbChonKieu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbChonKieu.Properties.Appearance.Options.UseFont = true;
+            this.cbbChonKieu.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbChonKieu.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbChonKieu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbChonKieu.Properties.Items.AddRange(new object[] {
@@ -141,15 +150,15 @@
             "Số đăng ký",
             "Số lô"});
             this.cbbChonKieu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbChonKieu.Size = new System.Drawing.Size(225, 20);
+            this.cbbChonKieu.Size = new System.Drawing.Size(225, 26);
             this.cbbChonKieu.TabIndex = 9;
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Location = new System.Drawing.Point(11, 24);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(65, 13);
+            this.labelControl2.Size = new System.Drawing.Size(77, 16);
             this.labelControl2.TabIndex = 8;
             this.labelControl2.Text = "Kiểu cập nhật";
             // 
@@ -160,7 +169,7 @@
             this.btnNVOK.Appearance.Options.UseFont = true;
             this.btnNVOK.Appearance.Options.UseForeColor = true;
             this.btnNVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnNVOK.Image")));
-            this.btnNVOK.Location = new System.Drawing.Point(259, 23);
+            this.btnNVOK.Location = new System.Drawing.Point(282, 24);
             this.btnNVOK.Name = "btnNVOK";
             this.btnNVOK.Size = new System.Drawing.Size(100, 40);
             this.btnNVOK.TabIndex = 7;
@@ -184,7 +193,7 @@
             this.gridControlThuoc.Location = new System.Drawing.Point(0, 0);
             this.gridControlThuoc.MainView = this.gridViewThuoc;
             this.gridControlThuoc.Name = "gridControlThuoc";
-            this.gridControlThuoc.Size = new System.Drawing.Size(812, 511);
+            this.gridControlThuoc.Size = new System.Drawing.Size(1000, 511);
             this.gridControlThuoc.TabIndex = 0;
             this.gridControlThuoc.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewThuoc});
@@ -233,7 +242,7 @@
             this.panelControlDT.Location = new System.Drawing.Point(0, 83);
             this.panelControlDT.Margin = new System.Windows.Forms.Padding(0);
             this.panelControlDT.Name = "panelControlDT";
-            this.panelControlDT.Size = new System.Drawing.Size(812, 511);
+            this.panelControlDT.Size = new System.Drawing.Size(1000, 511);
             this.panelControlDT.TabIndex = 3;
             // 
             // ucImportDMThuoc
@@ -244,7 +253,7 @@
             this.Controls.Add(this.panelControlThongTinNV);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucImportDMThuoc";
-            this.Size = new System.Drawing.Size(812, 594);
+            this.Size = new System.Drawing.Size(1000, 594);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinNV)).EndInit();
             this.panelControlThongTinNV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);

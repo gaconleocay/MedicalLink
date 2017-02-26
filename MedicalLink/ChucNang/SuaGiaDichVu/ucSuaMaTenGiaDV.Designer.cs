@@ -98,7 +98,7 @@
             this.panelControlTKDV_TK.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlTKDV_TK.Location = new System.Drawing.Point(0, 0);
             this.panelControlTKDV_TK.Name = "panelControlTKDV_TK";
-            this.panelControlTKDV_TK.Size = new System.Drawing.Size(812, 102);
+            this.panelControlTKDV_TK.Size = new System.Drawing.Size(1000, 107);
             this.panelControlTKDV_TK.TabIndex = 3;
             // 
             // groupBoxXuatBC
@@ -106,9 +106,9 @@
             this.groupBoxXuatBC.Controls.Add(this.tbnExport);
             this.groupBoxXuatBC.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxXuatBC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxXuatBC.Location = new System.Drawing.Point(705, 2);
+            this.groupBoxXuatBC.Location = new System.Drawing.Point(875, 2);
             this.groupBoxXuatBC.Name = "groupBoxXuatBC";
-            this.groupBoxXuatBC.Size = new System.Drawing.Size(105, 98);
+            this.groupBoxXuatBC.Size = new System.Drawing.Size(123, 103);
             this.groupBoxXuatBC.TabIndex = 14;
             this.groupBoxXuatBC.TabStop = false;
             this.groupBoxXuatBC.Text = "Xuất báo cáo";
@@ -146,24 +146,26 @@
             this.groupBoxBNBK_TK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxBNBK_TK.Location = new System.Drawing.Point(2, 2);
             this.groupBoxBNBK_TK.Name = "groupBoxBNBK_TK";
-            this.groupBoxBNBK_TK.Size = new System.Drawing.Size(808, 98);
+            this.groupBoxBNBK_TK.Size = new System.Drawing.Size(996, 103);
             this.groupBoxBNBK_TK.TabIndex = 5;
             this.groupBoxBNBK_TK.TabStop = false;
             this.groupBoxBNBK_TK.Text = "Tìm kiếm dịch vụ";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(199, 55);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(252, 55);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(47, 13);
+            this.labelControl1.Size = new System.Drawing.Size(54, 16);
             this.labelControl1.TabIndex = 17;
             this.labelControl1.Text = "Đến ngày";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(200, 9);
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Location = new System.Drawing.Point(253, 9);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(40, 13);
+            this.labelControl2.Size = new System.Drawing.Size(47, 16);
             this.labelControl2.TabIndex = 16;
             this.labelControl2.Text = "Từ ngày";
             // 
@@ -173,7 +175,7 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(198, 72);
+            this.dateDenNgay.Location = new System.Drawing.Point(251, 72);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
@@ -186,7 +188,7 @@
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(198, 25);
+            this.dateTuNgay.Location = new System.Drawing.Point(251, 25);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
@@ -196,28 +198,28 @@
             // chkVP
             // 
             this.chkVP.EditValue = true;
-            this.chkVP.Location = new System.Drawing.Point(496, 70);
+            this.chkVP.Location = new System.Drawing.Point(598, 70);
             this.chkVP.Name = "chkVP";
-            this.chkVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkVP.Properties.Appearance.Options.UseFont = true;
             this.chkVP.Properties.Caption = "Đối tượng VP";
-            this.chkVP.Size = new System.Drawing.Size(97, 19);
+            this.chkVP.Size = new System.Drawing.Size(120, 20);
             this.chkVP.TabIndex = 13;
             // 
             // chkBHYT
             // 
             this.chkBHYT.EditValue = true;
-            this.chkBHYT.Location = new System.Drawing.Point(495, 30);
+            this.chkBHYT.Location = new System.Drawing.Point(597, 30);
             this.chkBHYT.Name = "chkBHYT";
-            this.chkBHYT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBHYT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBHYT.Properties.Appearance.Options.UseFont = true;
             this.chkBHYT.Properties.Caption = "Đối tượng BHYT";
-            this.chkBHYT.Size = new System.Drawing.Size(98, 19);
+            this.chkBHYT.Size = new System.Drawing.Size(121, 20);
             this.chkBHYT.TabIndex = 12;
             // 
             // cbbLoaiBA
             // 
-            this.cbbLoaiBA.Location = new System.Drawing.Point(362, 73);
+            this.cbbLoaiBA.Location = new System.Drawing.Point(434, 73);
             this.cbbLoaiBA.Name = "cbbLoaiBA";
             this.cbbLoaiBA.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiBA.Properties.Appearance.Options.UseFont = true;
@@ -227,7 +229,7 @@
             "Ngoại trú",
             "Nội trú",
             "Ngoại trú+Nội trú"});
-            this.cbbLoaiBA.Size = new System.Drawing.Size(128, 22);
+            this.cbbLoaiBA.Size = new System.Drawing.Size(141, 22);
             this.cbbLoaiBA.TabIndex = 9;
             // 
             // mmeMaDV
@@ -236,14 +238,15 @@
             this.mmeMaDV.Name = "mmeMaDV";
             this.mmeMaDV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mmeMaDV.Properties.Appearance.Options.UseFont = true;
-            this.mmeMaDV.Size = new System.Drawing.Size(189, 74);
+            this.mmeMaDV.Size = new System.Drawing.Size(242, 74);
             this.mmeMaDV.TabIndex = 3;
             // 
             // labelControl4
             // 
-            this.labelControl4.Location = new System.Drawing.Point(363, 55);
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Location = new System.Drawing.Point(435, 55);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(61, 13);
+            this.labelControl4.Size = new System.Drawing.Size(73, 16);
             this.labelControl4.TabIndex = 11;
             this.labelControl4.Text = "Loại bệnh án";
             // 
@@ -254,7 +257,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(598, 32);
+            this.btnTimKiem.Location = new System.Drawing.Point(754, 33);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 2;
@@ -263,15 +266,16 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(364, 9);
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Location = new System.Drawing.Point(436, 9);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(89, 13);
+            this.labelControl3.Size = new System.Drawing.Size(107, 16);
             this.labelControl3.TabIndex = 10;
             this.labelControl3.Text = "Trạng thái viện phí";
             // 
             // cbbTrangThaiVP
             // 
-            this.cbbTrangThaiVP.Location = new System.Drawing.Point(362, 26);
+            this.cbbTrangThaiVP.Location = new System.Drawing.Point(434, 26);
             this.cbbTrangThaiVP.Name = "cbbTrangThaiVP";
             this.cbbTrangThaiVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTrangThaiVP.Properties.Appearance.Options.UseFont = true;
@@ -281,7 +285,7 @@
             "Đang điều trị",
             "Đóng BA nhưng chưa duyệt VP",
             "Đã duyệt viện phí"});
-            this.cbbTrangThaiVP.Size = new System.Drawing.Size(128, 22);
+            this.cbbTrangThaiVP.Size = new System.Drawing.Size(141, 22);
             this.cbbTrangThaiVP.TabIndex = 8;
             // 
             // panelControlDV_DT
@@ -290,9 +294,9 @@
             this.panelControlDV_DT.Controls.Add(this.lblThongBao);
             this.panelControlDV_DT.Controls.Add(this.gridControlDSDV);
             this.panelControlDV_DT.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlDV_DT.Location = new System.Drawing.Point(0, 102);
+            this.panelControlDV_DT.Location = new System.Drawing.Point(0, 107);
             this.panelControlDV_DT.Name = "panelControlDV_DT";
-            this.panelControlDV_DT.Size = new System.Drawing.Size(812, 492);
+            this.panelControlDV_DT.Size = new System.Drawing.Size(1000, 487);
             this.panelControlDV_DT.TabIndex = 4;
             // 
             // lblThongBao
@@ -314,13 +318,14 @@
             this.gridControlDSDV.Location = new System.Drawing.Point(0, 0);
             this.gridControlDSDV.MainView = this.gridViewDSDV;
             this.gridControlDSDV.Name = "gridControlDSDV";
-            this.gridControlDSDV.Size = new System.Drawing.Size(812, 492);
+            this.gridControlDSDV.Size = new System.Drawing.Size(1000, 487);
             this.gridControlDSDV.TabIndex = 0;
             this.gridControlDSDV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDSDV});
             // 
             // gridViewDSDV
             // 
+            this.gridViewDSDV.ColumnPanelRowHeight = 25;
             this.gridViewDSDV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.stt,
             this.servicepriceid,
@@ -348,15 +353,21 @@
             this.gridViewDSDV.GridControl = this.gridControlDSDV;
             this.gridViewDSDV.Name = "gridViewDSDV";
             this.gridViewDSDV.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDSDV.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSDV.OptionsView.ShowGroupPanel = false;
+            this.gridViewDSDV.RowHeight = 25;
             this.gridViewDSDV.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSDV_RowCellStyle);
             this.gridViewDSDV.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridViewDSDV_PopupMenuShowing);
             // 
             // stt
             // 
+            this.stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stt.AppearanceCell.Options.UseFont = true;
             this.stt.AppearanceCell.Options.UseTextOptions = true;
             this.stt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.stt.AppearanceHeader.Options.UseFont = true;
             this.stt.AppearanceHeader.Options.UseForeColor = true;
             this.stt.AppearanceHeader.Options.UseTextOptions = true;
             this.stt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -370,9 +381,13 @@
             // 
             // servicepriceid
             // 
+            this.servicepriceid.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.servicepriceid.AppearanceCell.Options.UseFont = true;
             this.servicepriceid.AppearanceCell.Options.UseTextOptions = true;
             this.servicepriceid.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.servicepriceid.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.servicepriceid.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.servicepriceid.AppearanceHeader.Options.UseFont = true;
             this.servicepriceid.AppearanceHeader.Options.UseForeColor = true;
             this.servicepriceid.AppearanceHeader.Options.UseTextOptions = true;
             this.servicepriceid.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -386,9 +401,13 @@
             // 
             // maphieu
             // 
+            this.maphieu.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maphieu.AppearanceCell.Options.UseFont = true;
             this.maphieu.AppearanceCell.Options.UseTextOptions = true;
             this.maphieu.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.maphieu.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maphieu.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.maphieu.AppearanceHeader.Options.UseFont = true;
             this.maphieu.AppearanceHeader.Options.UseForeColor = true;
             this.maphieu.AppearanceHeader.Options.UseTextOptions = true;
             this.maphieu.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -402,9 +421,13 @@
             // 
             // mabn
             // 
+            this.mabn.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mabn.AppearanceCell.Options.UseFont = true;
             this.mabn.AppearanceCell.Options.UseTextOptions = true;
             this.mabn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.mabn.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mabn.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.mabn.AppearanceHeader.Options.UseFont = true;
             this.mabn.AppearanceHeader.Options.UseForeColor = true;
             this.mabn.AppearanceHeader.Options.UseTextOptions = true;
             this.mabn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -418,9 +441,13 @@
             // 
             // mavp
             // 
+            this.mavp.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mavp.AppearanceCell.Options.UseFont = true;
             this.mavp.AppearanceCell.Options.UseTextOptions = true;
             this.mavp.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.mavp.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mavp.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.mavp.AppearanceHeader.Options.UseFont = true;
             this.mavp.AppearanceHeader.Options.UseForeColor = true;
             this.mavp.AppearanceHeader.Options.UseTextOptions = true;
             this.mavp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -434,7 +461,11 @@
             // 
             // tenbn
             // 
+            this.tenbn.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tenbn.AppearanceCell.Options.UseFont = true;
+            this.tenbn.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tenbn.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tenbn.AppearanceHeader.Options.UseFont = true;
             this.tenbn.AppearanceHeader.Options.UseForeColor = true;
             this.tenbn.AppearanceHeader.Options.UseTextOptions = true;
             this.tenbn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -448,7 +479,11 @@
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -462,7 +497,11 @@
             // 
             // tenkhoachidinh
             // 
+            this.tenkhoachidinh.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tenkhoachidinh.AppearanceCell.Options.UseFont = true;
+            this.tenkhoachidinh.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tenkhoachidinh.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tenkhoachidinh.AppearanceHeader.Options.UseFont = true;
             this.tenkhoachidinh.AppearanceHeader.Options.UseForeColor = true;
             this.tenkhoachidinh.AppearanceHeader.Options.UseTextOptions = true;
             this.tenkhoachidinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -476,7 +515,11 @@
             // 
             // tenphongchidinh
             // 
+            this.tenphongchidinh.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tenphongchidinh.AppearanceCell.Options.UseFont = true;
+            this.tenphongchidinh.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tenphongchidinh.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tenphongchidinh.AppearanceHeader.Options.UseFont = true;
             this.tenphongchidinh.AppearanceHeader.Options.UseForeColor = true;
             this.tenphongchidinh.AppearanceHeader.Options.UseTextOptions = true;
             this.tenphongchidinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -489,7 +532,11 @@
             // 
             // madv
             // 
+            this.madv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.madv.AppearanceCell.Options.UseFont = true;
+            this.madv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.madv.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.madv.AppearanceHeader.Options.UseFont = true;
             this.madv.AppearanceHeader.Options.UseForeColor = true;
             this.madv.AppearanceHeader.Options.UseTextOptions = true;
             this.madv.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -503,7 +550,11 @@
             // 
             // tendv
             // 
+            this.tendv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tendv.AppearanceCell.Options.UseFont = true;
+            this.tendv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tendv.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tendv.AppearanceHeader.Options.UseFont = true;
             this.tendv.AppearanceHeader.Options.UseForeColor = true;
             this.tendv.AppearanceHeader.Options.UseTextOptions = true;
             this.tendv.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -517,7 +568,11 @@
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
+            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn4.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn4.AppearanceHeader.Options.UseFont = true;
             this.gridColumn4.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -531,7 +586,11 @@
             // 
             // gridColumn3
             // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -545,7 +604,11 @@
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -559,9 +622,13 @@
             // 
             // dongiabhyt
             // 
+            this.dongiabhyt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dongiabhyt.AppearanceCell.Options.UseFont = true;
             this.dongiabhyt.AppearanceCell.Options.UseTextOptions = true;
             this.dongiabhyt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.dongiabhyt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dongiabhyt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dongiabhyt.AppearanceHeader.Options.UseFont = true;
             this.dongiabhyt.AppearanceHeader.Options.UseForeColor = true;
             this.dongiabhyt.AppearanceHeader.Options.UseTextOptions = true;
             this.dongiabhyt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -575,9 +642,13 @@
             // 
             // dongiavienphi
             // 
+            this.dongiavienphi.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dongiavienphi.AppearanceCell.Options.UseFont = true;
             this.dongiavienphi.AppearanceCell.Options.UseTextOptions = true;
             this.dongiavienphi.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.dongiavienphi.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dongiavienphi.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dongiavienphi.AppearanceHeader.Options.UseFont = true;
             this.dongiavienphi.AppearanceHeader.Options.UseForeColor = true;
             this.dongiavienphi.AppearanceHeader.Options.UseTextOptions = true;
             this.dongiavienphi.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -591,9 +662,13 @@
             // 
             // dongia
             // 
+            this.dongia.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dongia.AppearanceCell.Options.UseFont = true;
             this.dongia.AppearanceCell.Options.UseTextOptions = true;
             this.dongia.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.dongia.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dongia.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dongia.AppearanceHeader.Options.UseFont = true;
             this.dongia.AppearanceHeader.Options.UseForeColor = true;
             this.dongia.AppearanceHeader.Options.UseTextOptions = true;
             this.dongia.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -607,9 +682,13 @@
             // 
             // dongiannn
             // 
+            this.dongiannn.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dongiannn.AppearanceCell.Options.UseFont = true;
             this.dongiannn.AppearanceCell.Options.UseTextOptions = true;
             this.dongiannn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.dongiannn.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dongiannn.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dongiannn.AppearanceHeader.Options.UseFont = true;
             this.dongiannn.AppearanceHeader.Options.UseForeColor = true;
             this.dongiannn.AppearanceHeader.Options.UseTextOptions = true;
             this.dongiannn.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -623,7 +702,11 @@
             // 
             // thoigianchidinh
             // 
+            this.thoigianchidinh.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thoigianchidinh.AppearanceCell.Options.UseFont = true;
+            this.thoigianchidinh.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thoigianchidinh.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.thoigianchidinh.AppearanceHeader.Options.UseFont = true;
             this.thoigianchidinh.AppearanceHeader.Options.UseForeColor = true;
             this.thoigianchidinh.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianchidinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -639,7 +722,11 @@
             // 
             // soluong
             // 
+            this.soluong.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.soluong.AppearanceCell.Options.UseFont = true;
+            this.soluong.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.soluong.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.soluong.AppearanceHeader.Options.UseFont = true;
             this.soluong.AppearanceHeader.Options.UseForeColor = true;
             this.soluong.AppearanceHeader.Options.UseTextOptions = true;
             this.soluong.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -653,7 +740,11 @@
             // 
             // thoigianvaovien
             // 
+            this.thoigianvaovien.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thoigianvaovien.AppearanceCell.Options.UseFont = true;
+            this.thoigianvaovien.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thoigianvaovien.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.thoigianvaovien.AppearanceHeader.Options.UseFont = true;
             this.thoigianvaovien.AppearanceHeader.Options.UseForeColor = true;
             this.thoigianvaovien.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianvaovien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -669,7 +760,11 @@
             // 
             // thoigianravien
             // 
+            this.thoigianravien.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thoigianravien.AppearanceCell.Options.UseFont = true;
+            this.thoigianravien.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thoigianravien.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.thoigianravien.AppearanceHeader.Options.UseFont = true;
             this.thoigianravien.AppearanceHeader.Options.UseForeColor = true;
             this.thoigianravien.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianravien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -685,7 +780,11 @@
             // 
             // thoigianduyetvp
             // 
+            this.thoigianduyetvp.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thoigianduyetvp.AppearanceCell.Options.UseFont = true;
+            this.thoigianduyetvp.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.thoigianduyetvp.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.thoigianduyetvp.AppearanceHeader.Options.UseFont = true;
             this.thoigianduyetvp.AppearanceHeader.Options.UseForeColor = true;
             this.thoigianduyetvp.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianduyetvp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -719,7 +818,7 @@
             this.Controls.Add(this.panelControlDV_DT);
             this.Controls.Add(this.panelControlTKDV_TK);
             this.Name = "ucSuaMaTenGiaDV";
-            this.Size = new System.Drawing.Size(812, 594);
+            this.Size = new System.Drawing.Size(1000, 594);
             this.Load += new System.EventHandler(this.ucBCDSBNSDdv_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).EndInit();
             this.panelControlTKDV_TK.ResumeLayout(false);

@@ -151,6 +151,7 @@
             // 
             // gridViewNhomDV
             // 
+            this.gridViewNhomDV.ColumnPanelRowHeight = 25;
             this.gridViewNhomDV.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2});
@@ -160,11 +161,17 @@
             this.gridViewNhomDV.OptionsSelection.MultiSelect = true;
             this.gridViewNhomDV.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewNhomDV.OptionsView.ColumnAutoWidth = false;
+            this.gridViewNhomDV.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewNhomDV.OptionsView.ShowGroupPanel = false;
+            this.gridViewNhomDV.RowHeight = 25;
             // 
             // gridColumn1
             // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn1.Caption = "Mã nhóm dịch vụ";
             this.gridColumn1.FieldName = "servicepricegroupcode";
@@ -175,7 +182,11 @@
             // 
             // gridColumn2
             // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn2.Caption = "Tên nhóm dịch vụ";
             this.gridColumn2.FieldName = "servicepricename";

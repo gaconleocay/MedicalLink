@@ -62,27 +62,54 @@
     <Reference Include="DevExpress.BonusSkins.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Charts.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Dashboard.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v15.2.Win, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.DataAccess.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v15.2.UI, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Images.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Map.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.RichEdit.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Utils.v15.2.UI, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2.UI, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v15.2.Wizard, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraGauges.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v15.2.Presets, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v15.2.Win, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraMap.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -95,6 +122,10 @@
     <Reference Include="DevExpress.XtraNavBar.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraReports.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v15.2.Extensions, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="log4net">
       <HintPath>Library\log4net.dll</HintPath>
     </Reference>
@@ -331,6 +362,8 @@
     <Compile Include="ClassCommon\BCDashboardTongHopToanVien.cs" />
     <Compile Include="ClassCommon\BCDashboardBenhNhanNgoaiTru.cs" />
     <Compile Include="ClassCommon\classDanhMucDichVu.cs" />
+    <Compile Include="ClassCommon\classLichSuNhapXuatThuoc.cs" />
+    <Compile Include="ClassCommon\classMedicineRef.cs" />
     <Compile Include="ClassCommon\classMedicineStore.cs" />
     <Compile Include="ClassCommon\classUserDepartment.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
@@ -369,6 +402,21 @@
     <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTruProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.Designer.cs">
+      <DependentUpon>ucBaoCaoCanLamSang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSangProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.Designer.cs">
+      <DependentUpon>BaoCaoTongHopToanVienFullSize.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -405,11 +453,41 @@
     <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Dashboard\BCXNTTuTruc\BCXNTTuTrucLichSu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCXNTTuTruc\BCXNTTuTrucLichSu.Designer.cs">
+      <DependentUpon>BCXNTTuTrucLichSu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.Designer.cs">
       <DependentUpon>ucBaoCaoXNTTuTruc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\DBBenhNhanNoiTru\DashboardBenhNhanNoiTruFullSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\DBBenhNhanNoiTru\DashboardBenhNhanNoiTruFullSize.Designer.cs">
+      <DependentUpon>DashboardBenhNhanNoiTruFullSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\DBBenhNhanNoiTru\ucDashboardBenhNhanNoiTru.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\DBBenhNhanNoiTru\ucDashboardBenhNhanNoiTru.Designer.cs">
+      <DependentUpon>ucDashboardBenhNhanNoiTru.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\DBBenhNhanNoiTru\ucDashboardBenhNhanNoiTruProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.Designer.cs">
+      <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoaProcess.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DatabaseProcess\BCTongHopToanVien_Process.cs" />
     <Compile Include="DatabaseProcess\BCBenhNhanNgoaiTru_Process.cs" />
@@ -511,12 +589,6 @@
     </Compile>
     <Compile Include="BaoCao\ucBCTimPhieuTHYL.Designer.cs">
       <DependentUpon>ucBCTimPhieuTHYL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ChucNang\ucTuyChonBaoCao.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ChucNang\ucTuyChonBaoCao.Designer.cs">
-      <DependentUpon>ucTuyChonBaoCao.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\ucUpdateDataSerPrice.cs">
       <SubType>UserControl</SubType>
@@ -690,6 +762,12 @@
     <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.resx">
       <DependentUpon>ucBaoCaoBenhNhanNoiTru.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.resx">
+      <DependentUpon>ucBaoCaoCanLamSang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.resx">
+      <DependentUpon>BaoCaoTongHopToanVienFullSize.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVien.resx">
       <DependentUpon>ucBaoCaoTongHopToanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -705,8 +783,20 @@
     <EmbeddedResource Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.resx">
       <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCXNTTuTruc\BCXNTTuTrucLichSu.resx">
+      <DependentUpon>BCXNTTuTrucLichSu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.resx">
       <DependentUpon>ucBaoCaoXNTTuTruc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\DBBenhNhanNoiTru\DashboardBenhNhanNoiTruFullSize.resx">
+      <DependentUpon>DashboardBenhNhanNoiTruFullSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\DBBenhNhanNoiTru\ucDashboardBenhNhanNoiTru.resx">
+      <DependentUpon>ucDashboardBenhNhanNoiTru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.resx">
+      <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabTrangChu\frmThayPass.resx">
       <DependentUpon>frmThayPass.cs</DependentUpon>
@@ -752,9 +842,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\ucBCTimPhieuTHYL.resx">
       <DependentUpon>ucBCTimPhieuTHYL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\ucTuyChonBaoCao.resx">
-      <DependentUpon>ucTuyChonBaoCao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucUpdateDataSerPrice.resx">
       <DependentUpon>ucUpdateDataSerPrice.cs</DependentUpon>

@@ -46,55 +46,55 @@
             // txtUsername
             // 
             this.txtUsername.EditValue = "";
-            this.txtUsername.Location = new System.Drawing.Point(239, 16);
+            this.txtUsername.Location = new System.Drawing.Point(254, 16);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Properties.Appearance.Options.UseFont = true;
             this.txtUsername.Properties.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_Properties_KeyDown);
-            this.txtUsername.Size = new System.Drawing.Size(156, 20);
+            this.txtUsername.Size = new System.Drawing.Size(156, 24);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.EditValueChanged += new System.EventHandler(this.txtUsername_EditValueChanged);
             // 
             // txtPassword
             // 
             this.txtPassword.EditValue = "";
-            this.txtPassword.Location = new System.Drawing.Point(239, 54);
+            this.txtPassword.Location = new System.Drawing.Point(254, 54);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.PasswordChar = '*';
             this.txtPassword.Properties.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_Properties_KeyDown);
-            this.txtPassword.Size = new System.Drawing.Size(156, 20);
+            this.txtPassword.Size = new System.Drawing.Size(156, 24);
             this.txtPassword.TabIndex = 1;
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.labelControl1.Location = new System.Drawing.Point(155, 18);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(78, 16);
+            this.labelControl1.Size = new System.Drawing.Size(90, 18);
             this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "Tên tài khoản";
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.labelControl2.Location = new System.Drawing.Point(181, 56);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(52, 16);
+            this.labelControl2.Size = new System.Drawing.Size(61, 18);
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Mật khẩu";
             // 
             // btnLogin
             // 
-            this.btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnLogin.Appearance.Options.UseFont = true;
             this.btnLogin.Appearance.Options.UseForeColor = true;
             this.btnLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.Image")));
-            this.btnLogin.Location = new System.Drawing.Point(170, 130);
+            this.btnLogin.Location = new System.Drawing.Point(171, 130);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(110, 40);
             this.btnLogin.TabIndex = 4;
@@ -103,14 +103,14 @@
             // 
             // checkEditNhoPass
             // 
-            this.checkEditNhoPass.Location = new System.Drawing.Point(239, 89);
+            this.checkEditNhoPass.Location = new System.Drawing.Point(254, 86);
             this.checkEditNhoPass.Name = "checkEditNhoPass";
-            this.checkEditNhoPass.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkEditNhoPass.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkEditNhoPass.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.checkEditNhoPass.Properties.Appearance.Options.UseFont = true;
             this.checkEditNhoPass.Properties.Appearance.Options.UseForeColor = true;
             this.checkEditNhoPass.Properties.Caption = "Ghi nhớ";
-            this.checkEditNhoPass.Size = new System.Drawing.Size(109, 20);
+            this.checkEditNhoPass.Size = new System.Drawing.Size(109, 22);
             this.checkEditNhoPass.TabIndex = 5;
             // 
             // pictureEdit1
@@ -133,9 +133,10 @@
             // linkTroGiup
             // 
             this.linkTroGiup.AutoSize = true;
+            this.linkTroGiup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkTroGiup.Location = new System.Drawing.Point(21, 157);
             this.linkTroGiup.Name = "linkTroGiup";
-            this.linkTroGiup.Size = new System.Drawing.Size(46, 13);
+            this.linkTroGiup.Size = new System.Drawing.Size(58, 16);
             this.linkTroGiup.TabIndex = 27;
             this.linkTroGiup.TabStop = true;
             this.linkTroGiup.Text = "Trợ giúp";
@@ -145,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 182);
+            this.ClientSize = new System.Drawing.Size(449, 182);
             this.Controls.Add(this.linkTroGiup);
             this.Controls.Add(this.pictureEdit1);
             this.Controls.Add(this.checkEditNhoPass);
@@ -156,8 +157,8 @@
             this.Controls.Add(this.txtUsername);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(450, 220);
-            this.MinimumSize = new System.Drawing.Size(450, 220);
+            this.MaximumSize = new System.Drawing.Size(465, 220);
+            this.MinimumSize = new System.Drawing.Size(465, 220);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";

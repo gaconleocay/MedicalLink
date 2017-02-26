@@ -121,16 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnThemNhanVien.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAADYSURBVDhPY2AYdKCB4b8AEPcD8V4gXg7EBiQ5EqrpP5CG4ddANhfRhgAVP0fSDDPEjFIDjEgx
-        4DYWF2iRYsBMNAMeA/ksIAOAtBgQLwbiHJwGAiU1gPg3kiEFMMVAMSWo+EqsBgAlRYA4D4ifQhX+BdI+
-        QKwGxGEgm6Hix6H8ELBB0LhvB9Jfsfi/BGooctTC2N9BmgOA+C0WjTBFIAPMgLgGiEEJDCR+HYjrgLgK
-        ZAAooWAzHSa2FiifAcR+SGGwFh4GQMGDQAzyEyEMih0pqLpWoqOV5goBn6YFg9NQDIUAAAAASUVORK5C
-        YII=
-</value>
-  </data>
   <data name="btnMBAOK.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAiVJREFUSEud
@@ -144,6 +134,16 @@
         5K2sExIETKIhANLIvUXSdHkPSoUOgGInsWKXm3QfeAeWLlXGeTYkih2lagIuV5Qt1/kHD2a34A5SWKOY
         L9kDJ+kSwcHjlCundvk8A4qPTO2S8NDfwWz4BeFyC/em/KEflQHldzqHpQJ1X3Co+CBTny4PAD5lxPnZ
         8gfjWGx8fu1KdwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnThemNhanVien.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAADYSURBVDhPY2AYdKCB4b8AEPcD8V4gXg7EBiQ5EqrpP5CG4ddANhfRhgAVP0fSDDPEjFIDjEgx
+        4DYWF2iRYsBMNAMeA/ksIAOAtBgQLwbiHJwGAiU1gPg3kiEFMMVAMSWo+EqsBgAlRYA4D4ifQhX+BdI+
+        QKwGxGEgm6Hix6H8ELBB0LhvB9Jfsfi/BGooctTC2N9BmgOA+C0WjTBFIAPMgLgGiEEJDCR+HYjrgLgK
+        ZAAooWAzHSa2FiifAcR+SGGwFh4GQMGDQAzyEyEMih0pqLpWoqOV5goBn6YFg9NQDIUAAAAASUVORK5C
+        YII=
 </value>
   </data>
   <metadata name="timerThemNhanVien.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

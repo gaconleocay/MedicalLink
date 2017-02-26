@@ -392,6 +392,7 @@ namespace MedicalLink.Dashboard
                 }
                 else
                 {
+                    gridControlDataQLTTKhoa.DataSource = null;
                     LayDuLieuBaoCao_ChayMoi();
                 }
             }

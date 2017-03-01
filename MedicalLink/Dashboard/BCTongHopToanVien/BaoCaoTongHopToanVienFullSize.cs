@@ -46,7 +46,12 @@ namespace MedicalLink.Dashboard.BCTongHopToanVien
 
         private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
-
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
         }
 
         private void tbnExport_Click(object sender, EventArgs e)

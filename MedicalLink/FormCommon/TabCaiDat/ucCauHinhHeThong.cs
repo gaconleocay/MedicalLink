@@ -207,7 +207,21 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                //btnOptionOK.Enabled = true;
+                DialogResult hoi = MessageBox.Show("Bạn có chắc chắn muốn xóa tất cả option hiện tại và trở về mặc định?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (hoi == DialogResult.Yes)
+                {
+                    string sql_delete_option = "delete from tools_option;";
+                    string sql_default_option = "INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('ThoiGianCapNhatTbl_tools_bndangdt_tmp', 'Thời gian tự động cập nhật dữ liệu bảng tools_bndangdt_tmp', '0', 'Bảng tools_bndangdt_tmp phục vụ báo cáo Dashboard: BC QL tổng thể khoa; BC BN nội trú. Thời gian tính bằng phút - số', '0', now(), 'Administrator'); INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('KhoangThoiGianLayDuLieu', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard', '2016-01-01 00:00:00', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard từ -> hiện tại. Định dạng: yyyy-MM-dd HH:mm:ss. VD:  2016-01-01 00:00:00. Phục vụ cho báo cáo: REPORT_08; REPORT_09', '0', now(), 'Administrator');";
+                    if (condb.ExecuteNonQuery(sql_delete_option) && condb.ExecuteNonQuery(sql_default_option))
+                    {
+                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.THAO_TAC_THANH_CONG);
+                        ucCauHinhHeThong_Load(null,null);
+                    }
+                    else
+                    {
+                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                    }
+                }
             }
             catch (Exception ex)
             {

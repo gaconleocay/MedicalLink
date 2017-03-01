@@ -23,6 +23,7 @@ namespace MedicalLink.Base
         internal static string CAP_NHAT_THANH_CONG = "Cập nhật thành công.";
         internal static string CHUA_CHON_KHOA_PHONG = "Chưa chọn khoa phòng.";
         internal static string CHUA_CHON_KHO_TU_TRUC = "Chưa chọn kho/tủ trực.";
+        internal static string THAO_TAC_THANH_CONG = "Thao tác thành công.";
 
         internal static void HienThiThongBao(System.Windows.Forms.Timer timerThongBao, DevExpress.XtraEditors.LabelControl lblThongBao, string tenThongBao)
         {

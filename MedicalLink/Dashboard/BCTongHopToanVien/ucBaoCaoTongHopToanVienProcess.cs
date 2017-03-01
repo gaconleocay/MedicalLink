@@ -16,19 +16,25 @@ namespace MedicalLink.Dashboard
 {
     public partial class ucBaoCaoTongHopToanVien : UserControl
     {
-        internal void LayDuLieuBaoCao_ChayMoi()
+        /// <summary>
+        /// tieuchi">=0: theo khoa ra vien; =1: theo khoa chi dinh
+        /// kieuxem">=0: xem tong hop; =1: xem chi tiet
+        /// </summary>
+        /// <param name="tieuchi"></param>
+        /// <param name="kieuxem"></param>
+        internal void LayDuLieuBaoCao_ChayMoi(int tieuchi, int kieuxem)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 BCDashboardTongHopToanVienFilter filter = new BCDashboardTongHopToanVienFilter();
-                thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 filter.loaiBaoCao = "REPORT_10";
-                filter.dateTu = this.thoiGianTu;
-                filter.dateDen = this.thoiGianDen;
+                filter.dateTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                filter.dateDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 filter.chayTuDong = 0;
-              lstBCBTongHopToanVien = BCTongHopToanVien_Process.BCTongHopToanVien_ChayMoi(filter);
+                filter.kieuXem = kieuxem;
+                filter.tieuChi = tieuchi;
+                lstBCBTongHopToanVien = BCTongHopToanVien_Process.BCTongHopToanVien_ChayMoi(filter);
                 HienThiDuLieuBaoCao(lstBCBTongHopToanVien);
             }
             catch (Exception ex)
@@ -37,28 +43,7 @@ namespace MedicalLink.Dashboard
             }
             SplashScreenManager.CloseForm();
         }
-        private void LayDuLieuBaoCao_DaChayDuLieu()
-        {
-            try
-            {
-                //BCDashboardTongHopToanVienFilter filter = new BCDashboardTongHopToanVienFilter();
-                //thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                //thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                //filter.loaiBaoCao = "REPORT_09";
-                //filter.dateTu = this.thoiGianTu;
-                //filter.dateDen = this.thoiGianDen;
-                //filter.dateKhoangDLTu = this.KhoangThoiGianLayDuLieu;
-                //filter.departmentgroupid = 0;
-                //filter.loaivienphiid = 0;
-                //filter.chayTuDong = 0;
-                //DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienDaTT_Tmp(filter);
-                //SQLLayDuLieuBaoCao_DaChayDuLieu();
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
+
         private void HienThiDuLieuBaoCao(List<BCDashboardTongHopToanVien> dataBC)
         {
             try

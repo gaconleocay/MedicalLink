@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucQuanLyNguoiDung));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             this.checker = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -222,6 +222,7 @@
             // 
             // cbbUserNhom
             // 
+            this.cbbUserNhom.EditValue = "Nhân viên";
             this.cbbUserNhom.Location = new System.Drawing.Point(94, 45);
             this.cbbUserNhom.Name = "cbbUserNhom";
             this.cbbUserNhom.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -233,6 +234,7 @@
             "Nhân viên"});
             this.cbbUserNhom.Size = new System.Drawing.Size(167, 22);
             this.cbbUserNhom.TabIndex = 5;
+            this.cbbUserNhom.Visible = false;
             // 
             // labelControl3
             // 
@@ -243,6 +245,7 @@
             this.labelControl3.Size = new System.Drawing.Size(32, 14);
             this.labelControl3.TabIndex = 7;
             this.labelControl3.Text = "Nhóm";
+            this.labelControl3.Visible = false;
             // 
             // btnUserOK
             // 
@@ -440,8 +443,6 @@
             this.usergnhom.FieldName = "usergnhom";
             this.usergnhom.Name = "usergnhom";
             this.usergnhom.OptionsColumn.AllowEdit = false;
-            this.usergnhom.Visible = true;
-            this.usergnhom.VisibleIndex = 2;
             this.usergnhom.Width = 60;
             // 
             // panelControl1
@@ -510,11 +511,11 @@
             this.checker,
             this.chucnangid,
             this.tenchucnang});
-            gridFormatRule2.Column = this.checker;
-            gridFormatRule2.ColumnApplyTo = this.checker;
-            gridFormatRule2.Name = "Format0";
-            gridFormatRule2.Rule = null;
-            this.gridViewChucNang.FormatRules.Add(gridFormatRule2);
+            gridFormatRule3.Column = this.checker;
+            gridFormatRule3.ColumnApplyTo = this.checker;
+            gridFormatRule3.Name = "Format0";
+            gridFormatRule3.Rule = null;
+            this.gridViewChucNang.FormatRules.Add(gridFormatRule3);
             this.gridViewChucNang.GridControl = this.gridControlChucNang;
             this.gridViewChucNang.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, null, this.chucnangid, "")});
@@ -622,11 +623,11 @@
             this.gridColumn5,
             this.gridColumn7,
             this.gridColumn8});
-            gridFormatRule3.Column = this.gridColumn2;
-            gridFormatRule3.ColumnApplyTo = this.gridColumn2;
-            gridFormatRule3.Name = "Format0";
-            gridFormatRule3.Rule = null;
-            this.gridViewKhoaPhong.FormatRules.Add(gridFormatRule3);
+            gridFormatRule1.Column = this.gridColumn2;
+            gridFormatRule1.ColumnApplyTo = this.gridColumn2;
+            gridFormatRule1.Name = "Format0";
+            gridFormatRule1.Rule = null;
+            this.gridViewKhoaPhong.FormatRules.Add(gridFormatRule1);
             this.gridViewKhoaPhong.GridControl = this.gridControlKhoaPhong;
             this.gridViewKhoaPhong.GroupCount = 1;
             this.gridViewKhoaPhong.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {

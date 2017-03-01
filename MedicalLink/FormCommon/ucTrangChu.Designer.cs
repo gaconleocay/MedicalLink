@@ -60,6 +60,7 @@
             this.navBarItemListOption = new DevExpress.XtraNavBar.NavBarItem();
             this.panelCaiDatChiTiet = new DevExpress.XtraEditors.PanelControl();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlHome)).BeginInit();
             this.xtraTabControlHome.SuspendLayout();
             this.xtraTabTTCoBan.SuspendLayout();
@@ -72,6 +73,7 @@
             this.splitContainerControlCaiDat.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelCaiDatChiTiet)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // xtraTabControlHome
@@ -99,8 +101,8 @@
             this.xtraTabTTCoBan.Appearance.Header.Options.UseForeColor = true;
             this.xtraTabTTCoBan.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
             this.xtraTabTTCoBan.Appearance.PageClient.Options.UseBackColor = true;
+            this.xtraTabTTCoBan.Controls.Add(this.panel3);
             this.xtraTabTTCoBan.Controls.Add(this.panel2);
-            this.xtraTabTTCoBan.Controls.Add(this.pictureLogo);
             this.xtraTabTTCoBan.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabTTCoBan.Image")));
             this.xtraTabTTCoBan.Name = "xtraTabTTCoBan";
             this.xtraTabTTCoBan.ShowCloseButton = DevExpress.Utils.DefaultBoolean.False;
@@ -124,8 +126,9 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.MaximumSize = new System.Drawing.Size(420, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(434, 582);
+            this.panel2.Size = new System.Drawing.Size(420, 582);
             this.panel2.TabIndex = 26;
             // 
             // lblThongBao
@@ -147,7 +150,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 482);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(434, 100);
+            this.panel1.Size = new System.Drawing.Size(420, 100);
             this.panel1.TabIndex = 25;
             // 
             // label2
@@ -186,7 +189,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboGiaoDien.Properties.DropDownRows = 10;
             this.cboGiaoDien.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboGiaoDien.Size = new System.Drawing.Size(271, 26);
+            this.cboGiaoDien.Size = new System.Drawing.Size(255, 26);
             this.cboGiaoDien.TabIndex = 45;
             // 
             // label5
@@ -233,8 +236,10 @@
             this.linkLabelTenNguoiDung.Size = new System.Drawing.Size(145, 19);
             this.linkLabelTenNguoiDung.TabIndex = 41;
             this.linkLabelTenNguoiDung.TabStop = true;
-            this.linkLabelTenNguoiDung.Tag = "Thay đổi mật khẩu";
+            this.linkLabelTenNguoiDung.Tag = "Click vào đây để thay đổi mật khẩu";
             this.linkLabelTenNguoiDung.Text = "Tên người sử dụng";
+            this.linkLabelTenNguoiDung.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelTenNguoiDung_LinkClicked);
+            this.linkLabelTenNguoiDung.MouseHover += new System.EventHandler(this.linkLabelTenNguoiDung_MouseHover);
             // 
             // label11
             // 
@@ -294,7 +299,7 @@
             this.pictureLogo.Name = "pictureLogo";
             this.pictureLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureLogo.Size = new System.Drawing.Size(1090, 582);
+            this.pictureLogo.Size = new System.Drawing.Size(670, 582);
             this.pictureLogo.TabIndex = 0;
             // 
             // xtraTabCaiDat
@@ -460,6 +465,15 @@
             this.timerThongBao.Interval = 2000;
             this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.pictureLogo);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(420, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(670, 582);
+            this.panel3.TabIndex = 27;
+            // 
             // ucTrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,6 +495,7 @@
             this.splitContainerControlCaiDat.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelCaiDatChiTiet)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -517,5 +532,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel3;
     }
 }

@@ -34,23 +34,34 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                     string makichhoat_giaima = EncryptAndDecrypt.Decrypt(license_keydb, true);
                     //Tach ma kich hoat:
                     string mamay_keykichhoat = "";
-                    long thoigianTu = 0;
-                    long thoigianDen = 0;
+                    long datetimenow = Convert.ToInt64(DateTime.Now.ToString("yyyyMMdd"));
+                    //lay thoi gian may chu database: neu khong lay duoc thi lay thoi gian tren may client
+                    try
+                    {
+                        string sql_dateDB = "SELECT TO_CHAR(NOW(), 'yyyyMMdd') as sysdatedb;";
+                        DataView dtdatetime = new DataView(condb.getDataTable(sql_dateDB));
+                        if (dtdatetime != null && dtdatetime.Count > 0)
+                        {
+                            datetimenow = Utilities.Util_TypeConvertParse.ToInt64(dtdatetime[0]["sysdatedb"].ToString());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Base.Logging.Error(ex);
+                    }
+
+
                     if (!String.IsNullOrEmpty(makichhoat_giaima))
                     {
                         string[] makichhoat_tach = makichhoat_giaima.Split('$');
                         if (makichhoat_tach.Length == 4)
                         {
                             mamay_keykichhoat = makichhoat_tach[1];
-                            thoigianTu = Convert.ToInt64(makichhoat_tach[2].ToString().Trim() ?? "0" + "000000");
-                            thoigianDen = Convert.ToInt64(makichhoat_tach[3].ToString().Trim() ?? "0" + "235959");
-
                             //Thoi gian hien tai
-                            long datetime = Convert.ToInt64(DateTime.Now.ToString("yyyyMMdd"));
-                            string thoigianTu_text = DateTime.ParseExact(thoigianTu.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("HH:mm:ss dd-MM-yyyy");
-                            string thoigianDen_text = DateTime.ParseExact(thoigianDen.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("HH:mm:ss dd-MM-yyyy");
+                            datetimenow = Convert.ToInt64(DateTime.Now.ToString("yyyyMMdd"));
+
                             //Kiem tra License hop le
-                            if (mamay_keykichhoat == SessionLogin.MaDatabase && datetime < thoigianDen)
+                            if (mamay_keykichhoat == SessionLogin.MaDatabase && datetimenow < Convert.ToInt64(makichhoat_tach[3].ToString().Trim() ?? "0"))
                             {
                                 SessionLogin.KiemTraLicenseSuDung = true;
                             }

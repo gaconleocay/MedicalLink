@@ -390,6 +390,7 @@
             series1.Label = pieSeriesLabel1;
             series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             series1.Name = "Khoa";
+            series1.ToolTipPointPattern = "{S}: {V:#,##0}";
             series1.View = pieSeriesView1;
             this.chartControlDTKhoa.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1};

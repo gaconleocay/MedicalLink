@@ -149,9 +149,11 @@
             // 
             // txtThongTinChiTiet
             // 
-            this.txtThongTinChiTiet.Location = new System.Drawing.Point(2, 18);
+            this.txtThongTinChiTiet.Location = new System.Drawing.Point(2, 24);
             this.txtThongTinChiTiet.Name = "txtThongTinChiTiet";
-            this.txtThongTinChiTiet.Size = new System.Drawing.Size(1082, 85);
+            this.txtThongTinChiTiet.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtThongTinChiTiet.Properties.Appearance.Options.UseFont = true;
+            this.txtThongTinChiTiet.Size = new System.Drawing.Size(1082, 79);
             this.txtThongTinChiTiet.StyleController = this.layoutControl4;
             this.txtThongTinChiTiet.TabIndex = 4;
             // 
@@ -169,7 +171,7 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem6.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem6.AppearanceItemCaption.ForeColor = System.Drawing.Color.Blue;
             this.layoutControlItem6.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem6.AppearanceItemCaption.Options.UseForeColor = true;
@@ -179,7 +181,7 @@
             this.layoutControlItem6.Size = new System.Drawing.Size(1086, 105);
             this.layoutControlItem6.Text = "Thông tin";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(53, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(78, 19);
             // 
             // layoutControl3
             // 
@@ -220,6 +222,7 @@
             this.gridColumn4});
             this.gridViewDSBaoCao.GridControl = this.gridControlDSBaoCao;
             this.gridViewDSBaoCao.Name = "gridViewDSBaoCao";
+            this.gridViewDSBaoCao.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSBaoCao.OptionsView.ShowGroupPanel = false;
             this.gridViewDSBaoCao.RowHeight = 25;
             this.gridViewDSBaoCao.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSBaoCao_CustomDrawCell);
@@ -302,8 +305,6 @@
             this.permissioncheck1.OptionsColumn.AllowEdit = false;
             this.permissioncheck1.OptionsColumn.FixedWidth = true;
             this.permissioncheck1.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
-            this.permissioncheck1.Visible = true;
-            this.permissioncheck1.VisibleIndex = 3;
             this.permissioncheck1.Width = 70;
             // 
             // repositoryItemCheckEdit2
@@ -392,6 +393,7 @@
             this.gridColumn1});
             this.gridViewDSChucNang.GridControl = this.gridControlDSChucNang;
             this.gridViewDSChucNang.Name = "gridViewDSChucNang";
+            this.gridViewDSChucNang.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSChucNang.OptionsView.ShowGroupPanel = false;
             this.gridViewDSChucNang.RowHeight = 25;
             this.gridViewDSChucNang.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSChucNang_CustomDrawCell);
@@ -472,8 +474,6 @@
             this.permissioncheck.Name = "permissioncheck";
             this.permissioncheck.OptionsColumn.AllowEdit = false;
             this.permissioncheck.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
-            this.permissioncheck.Visible = true;
-            this.permissioncheck.VisibleIndex = 3;
             this.permissioncheck.Width = 74;
             // 
             // repositoryItemCheckEdit1

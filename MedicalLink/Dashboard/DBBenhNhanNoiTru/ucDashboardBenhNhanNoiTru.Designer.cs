@@ -392,6 +392,7 @@
             stackedBarSeriesLabel1.TextPattern = "{V:#,##0}";
             series1.Label = stackedBarSeriesLabel1;
             series1.Name = "BHYT";
+            series1.ToolTipPointPattern = "{S}: {V:#,##0}";
             stackedBarSeriesView1.Border.Color = System.Drawing.Color.Orange;
             stackedBarSeriesView1.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
             stackedBarSeriesView1.Color = System.Drawing.Color.PaleGreen;
@@ -399,11 +400,13 @@
             stackedBarSeriesLabel2.TextPattern = "{V:#,##0}";
             series2.Label = stackedBarSeriesLabel2;
             series2.Name = "Viện phí";
+            series2.ToolTipPointPattern = "{S}: {V:#,##0}";
             stackedBarSeriesView2.Border.Color = System.Drawing.Color.BlueViolet;
             stackedBarSeriesView2.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
             stackedBarSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
             series2.View = stackedBarSeriesView2;
             series3.Name = "Tạm ứng";
+            series3.ToolTipPointPattern = "{S}: {V:#,##0}";
             lineSeriesView1.Color = System.Drawing.Color.Fuchsia;
             lineSeriesView1.LineMarkerOptions.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             lineSeriesView1.MarkerVisibility = DevExpress.Utils.DefaultBoolean.True;
@@ -413,6 +416,7 @@
         series2,
         series3};
             this.chartControlBNNoiTru.Size = new System.Drawing.Size(907, 489);
+            this.chartControlBNNoiTru.SmallChartText.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chartControlBNNoiTru.TabIndex = 0;
             chartTitle1.Text = "Doanh thu giữa các khoa";
             this.chartControlBNNoiTru.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {

@@ -49,7 +49,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 LoadGiaoDienDevexpress();
-                EnablePhanQuyenNguoiDung();
+                EnablePhanQuyenVaLicense();
                 LoadThongTinCoBan();
                 LoadVersion();
                 LoadLogoThongTin();
@@ -79,17 +79,35 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        private void EnablePhanQuyenNguoiDung()
+        private void EnablePhanQuyenVaLicense()
         {
             try
             {
-                if (MedicalLink.Base.CheckPermission.ChkPerModule("SYS_05"))
+                //Kiểm tra phân quyền
+                if (SessionLogin.SessionUsercode != MedicalLink.Base.KeyTrongPhanMem.AdminUser_key)
                 {
-                    xtraTabCaiDat.PageVisible = true;
-                }
-                else
-                {
-                    xtraTabCaiDat.PageVisible = false;
+                    if (SessionLogin.KiemTraLicenseSuDung)
+                    {
+                        if (MedicalLink.Base.CheckPermission.ChkPerModule("SYS_05"))
+                        {
+                            xtraTabCaiDat.PageVisible = true;
+                            navBarItemConnectDB.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_01");
+                            navBarItemListNguoiDung.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
+                            navBarItemListNhanVien.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
+                            navBarItemListOption.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
+                        }
+                        else
+                        {
+                            xtraTabCaiDat.PageVisible = false;
+                        }
+                    }
+                    else
+                    {
+                        navBarItemConnectDB.Enabled = false;
+                        navBarItemListNguoiDung.Enabled = false;
+                        navBarItemListNhanVien.Enabled = false;
+                        navBarItemListOption.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -164,7 +182,7 @@ namespace MedicalLink.FormCommon
                         //Kiem tra License hop le
                         if (mamay_keykichhoat == SessionLogin.MaDatabase && datetime < thoigianDen)
                         {
-                           // SessionLogin.KiemTraLicenseSuDung = true;
+                            // SessionLogin.KiemTraLicenseSuDung = true;
                             linkLabelThoiHan.Text = "Từ: " + thoigianTu_text + " đến: " + thoigianDen_text;
                         }
                         else
@@ -221,26 +239,12 @@ namespace MedicalLink.FormCommon
         }
         #endregion
 
-        #region Thay doi mat khau
         private void linkLabelTenNguoiDung_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
                 TabTrangChu.frmThayPass frmPass = new TabTrangChu.frmThayPass();
                 frmPass.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        #endregion
-
-        private void cboGiaoDien_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //TODO
             }
             catch (Exception ex)
             {
@@ -302,21 +306,15 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                 timerThongBao.Start();
+                timerThongBao.Start();
                 lblThongBao.Visible = true;
-                lblThongBao.Text = "Click vào để thay đổi mật khẩu"; 
+                lblThongBao.Text = "Click vào đây để thay đổi mật khẩu";
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        private void panelControl1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
 
 
 

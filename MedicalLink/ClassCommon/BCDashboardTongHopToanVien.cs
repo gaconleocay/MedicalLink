@@ -13,6 +13,7 @@ namespace MedicalLink.ClassCommon
         public long slbn_bh { get; set; }
         public long slbn_vp { get; set; }
         public long slbn_tong { get; set; }
+        public decimal soluotbn_tong { get; set; }
         public decimal tien_tong { get; set; }
         public decimal tam_ung { get; set; }
         public decimal money_khambenh { get; set; }

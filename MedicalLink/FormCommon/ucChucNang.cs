@@ -37,9 +37,9 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+              //  KiemTraLicense_ChucNang();
                 LoadDataDSChucNang();
-                LoadDataDSBaoCao();
-                KiemTraLicense_ChucNang();
+                LoadDataDSBaoCao();             
             }
             catch (Exception ex)
             {
@@ -190,7 +190,7 @@ namespace MedicalLink.FormCommon
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.Salmon;
+                    e.Appearance.BackColor = Color.LightGreen;
                     e.Appearance.ForeColor = Color.Black;
                 }
             }
@@ -257,16 +257,16 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                GridView View = sender as GridView;
-                if (e.RowHandle >= 0)
-                {
-                    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["permissioncheck"]);
-                    if (category == "Checked")
-                    {
-                        e.Appearance.BackColor = Color.DeepSkyBlue;
-                        e.Appearance.BackColor2 = Color.LightCyan;
-                    }
-                }
+                //GridView View = sender as GridView;
+                //if (e.RowHandle >= 0)
+                //{
+                //    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["permissioncheck"]);
+                //    if (category == "Checked")
+                //    {
+                //        e.Appearance.BackColor = Color.DeepSkyBlue;
+                //        e.Appearance.BackColor2 = Color.LightCyan;
+                //    }
+                //}
             }
             catch (Exception ex)
             {
@@ -283,7 +283,7 @@ namespace MedicalLink.FormCommon
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.Salmon;
+                    e.Appearance.BackColor = Color.LightGreen;
                     e.Appearance.ForeColor = Color.Black;
                 }
             }
@@ -350,16 +350,16 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                GridView View = sender as GridView;
-                if (e.RowHandle >= 0)
-                {
-                    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["permissioncheck"]);
-                    if (category == "Checked")
-                    {
-                        e.Appearance.BackColor = Color.DeepSkyBlue;
-                        e.Appearance.BackColor2 = Color.LightCyan;
-                    }
-                }
+                //GridView View = sender as GridView;
+                //if (e.RowHandle >= 0)
+                //{
+                //    string category = View.GetRowCellDisplayText(e.RowHandle, View.Columns["permissioncheck"]);
+                //    if (category == "Checked")
+                //    {
+                //        e.Appearance.BackColor = Color.DeepSkyBlue;
+                //        e.Appearance.BackColor2 = Color.LightCyan;
+                //    }
+                //}
             }
             catch (Exception ex)
             {

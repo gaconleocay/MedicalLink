@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MedicalLink")]
-[assembly: AssemblyDescription("Công cụ sửa trong DB Alibobo HIS")]
+[assembly: AssemblyDescription("Phần mềm hỗ trợ quản lý tổng thể bệnh viện")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("HMN.Company")]
 [assembly: AssemblyProduct("MedicalLink")]
-[assembly: AssemblyCopyright("Copyright © HMN.Company 2017")]
+[assembly: AssemblyCopyright("Copyright © HMN.Company 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.3.12")]
-[assembly: AssemblyFileVersion("2.1.3.12")]
+[assembly: AssemblyVersion("2.1.3.13")]
+[assembly: AssemblyFileVersion("2.1.3.13")]

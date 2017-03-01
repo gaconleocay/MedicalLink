@@ -657,10 +657,10 @@
     <Compile Include="FormCommon\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCommon\frmMainChucNang.cs">
+    <Compile Include="FormCommon\frmMain_Service.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCommon\frmMainPlus.cs">
+    <Compile Include="FormCommon\frmMain_Plus.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormCommon\TabControlProcess.cs" />
@@ -917,6 +917,7 @@
     <None Include="Images\recurring-appointment-16.png" />
     <None Include="Images\recurring-appointment-32.png" />
     <None Include="Images\ok-16.png" />
+    <Content Include="Documents\SQL_CanThiet.SQL" />
     <Content Include="Martin-Berube-Flat-Animal-Crab.ico" />
     <None Include="Images\arrow-32-16.png" />
   </ItemGroup>

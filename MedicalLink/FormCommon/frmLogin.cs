@@ -35,7 +35,7 @@ namespace MedicalLink.FormCommon
 
                 if (txtUsername.Text == "" || txtPassword.Text == "")
                 {
-                    MessageBox.Show("Bạn chưa điền đầy đủ thông tin", "Có lỗi xảy ra!");
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Có lỗi xảy ra!");
                     txtUsername.Focus();
                     return;
                 }
@@ -134,8 +134,11 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                KiemTraInsertMayTram();
-                LoadDataFromDatabase();
+                if (KiemTraInsertMayTram()==false || LoadDataFromDatabase()==false)
+                {
+                    MessageBox.Show("Không thể kết nối đến cơ sở dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 if (ConfigurationManager.AppSettings["LoginUser"].ToString() != "" && ConfigurationManager.AppSettings["LoginPassword"].ToString() != "")
                 {
                     this.txtUsername.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["LoginUser"].ToString(), true);
@@ -201,8 +204,9 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        private void KiemTraInsertMayTram()
+        private bool KiemTraInsertMayTram()
         {
+            bool result = false;
             try
             {
                 SessionLogin.MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaDatabase();
@@ -221,13 +225,14 @@ namespace MedicalLink.FormCommon
                     string insert_client = "INSERT INTO tools_license(datakey, licensekey) VALUES ('" + SessionLogin.MaDatabase + "','" + license_trang + "' );";
                     condb.ExecuteNonQuery(insert_client);
                 }
+                result = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra" + ex.ToString());
             }
+            return result;
         }
-
         private void linkTroGiup_Click(object sender, EventArgs e)
         {
             try
@@ -241,8 +246,9 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        private void LoadDataFromDatabase()
+        private bool LoadDataFromDatabase()
         {
+            bool result = false;
             try
             {
                 //Set default
@@ -265,15 +271,15 @@ namespace MedicalLink.FormCommon
                         {
                             MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = dataOption[i]["toolsoptionvalue"].ToString();
                         }
-
-
                     }
                 }
+                result = true;
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+            return result;
         }
     }
 }

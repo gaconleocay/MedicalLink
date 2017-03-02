@@ -12,5 +12,6 @@ namespace MedicalLink.ClassCommon
         public long medicinerefid_org { get; set; }
         public string medicinecode { get; set; }
         public string medicinename { get; set; }
+        public decimal giaban { get; set; }
     }
 }

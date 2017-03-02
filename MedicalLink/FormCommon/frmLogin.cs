@@ -20,11 +20,148 @@ namespace MedicalLink.FormCommon
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         string adminuser = MedicalLink.Base.KeyTrongPhanMem.AdminUser_key;
         string adminpass = MedicalLink.Base.KeyTrongPhanMem.AdminPass_key;
+        NpgsqlConnection conn;
         public frmLogin()
         {
             InitializeComponent();
         }
 
+        #region Load
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                if (KiemTraKetNoiDenCoSoDuLieu() == false)
+                {
+                    MessageBox.Show("Không thể kết nối đến cơ sở dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                KiemTraInsertMayTram();
+                LoadDataFromDatabase();
+
+                if (ConfigurationManager.AppSettings["LoginUser"].ToString() != "" && ConfigurationManager.AppSettings["LoginPassword"].ToString() != "")
+                {
+                    this.txtUsername.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["LoginUser"].ToString(), true);
+                    this.txtPassword.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["LoginPassword"].ToString(), true);
+                    this.checkEditNhoPass.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["checkEditNhoPass"]);
+                }
+                else
+                {
+                    this.txtUsername.Text = "";
+                    this.txtPassword.Text = "";
+                }
+
+                txtUsername.Focus();
+
+                // Lưu biến Session
+                SessionLogin.SessionMachineName = Environment.MachineName;
+                // Địa chỉ Ip
+                String strHostName = Dns.GetHostName();
+                IPHostEntry iphostentry = Dns.GetHostByName(strHostName);
+                //int nIP = 0;
+                string listIP = "";
+                for (int i = 0; i < iphostentry.AddressList.Count(); i++)
+                {
+                    listIP += iphostentry.AddressList[i] + ";";
+                }
+                SessionLogin.SessionMyIP = listIP;
+                //foreach (IPAddress ipaddress in iphostentry.AddressList)
+                //{
+                //    SessionLogin.SessionMyIP = ipaddress.ToString();
+                //}
+                // Lấy version PM
+                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+                SessionLogin.SessionVersion = fvi.FileVersion;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private bool KiemTraKetNoiDenCoSoDuLieu()
+        {
+            bool result = false;
+            try
+            {
+                string serverhost = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost"].ToString().Trim() ?? "", true);
+                string serveruser = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Username"].ToString().Trim(), true);
+                string serverpass = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Password"].ToString().Trim(), true);
+                string serverdb = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString().Trim(), true);
+
+
+                if (conn == null)
+                    conn = new NpgsqlConnection("Server=" + serverhost + ";Port=5432;User Id=" + serveruser + "; " + "Password=" + serverpass + ";Database=" + serverdb + ";CommandTimeout=1800000;");
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Logging.Error("Loi ket noi den CSDL: " + ex.ToString());
+            }
+            return result;
+        }
+        private void KiemTraInsertMayTram()
+        {
+            try
+            {
+                SessionLogin.MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaDatabase();
+                string tenmay = MedicalLink.FormCommon.DangKyBanQuyen.HardwareInfo.GetComputerName();
+                string license_trang = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
+
+                string kiemtra_client = "SELECT * FROM tools_license WHERE datakey='" + SessionLogin.MaDatabase + "' ;";
+                DataView dv = new DataView(condb.getDataTable(kiemtra_client));
+                if (dv != null && dv.Count > 0)
+                {
+                    //Kiem tra license
+                    //MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.KiemTraLicenseHopLe();
+                }
+                else
+                {
+                    string insert_client = "INSERT INTO tools_license(datakey, licensekey) VALUES ('" + SessionLogin.MaDatabase + "','" + license_trang + "' );";
+                    condb.ExecuteNonQuery(insert_client);
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+        private void LoadDataFromDatabase()
+        {
+            try
+            {
+                //Set default
+                MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = 0;
+                MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = DateTime.Now.Year - 1 + "-01-01 00:00:00";
+
+                //Load thong tin Luu vao GlobalStore
+                string sqlDSOption = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote FROM tools_option WHERE toolsoptionlook<>'1' ;";
+                DataView dataOption = new DataView(condb.getDataTable(sqlDSOption));
+                if (dataOption != null && dataOption.Count > 0)
+                {
+                    for (int i = 0; i < dataOption.Count; i++)
+                    {
+                        if (dataOption[i]["toolsoptioncode"].ToString().ToUpper() == "ThoiGianCapNhatTbl_tools_bndangdt_tmp".ToUpper())
+                        {
+                            MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = Utilities.Util_TypeConvertParse.ToInt64(dataOption[i]["toolsoptionvalue"].ToString());
+                        }
+
+                        if (dataOption[i]["toolsoptioncode"].ToString().ToUpper() == "KhoangThoiGianLayDuLieu".ToUpper())
+                        {
+                            MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = dataOption[i]["toolsoptionvalue"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -129,57 +266,6 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        // Load giá trị đăng nhập đã nhớ trong file config
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                if (KiemTraInsertMayTram()==false || LoadDataFromDatabase()==false)
-                {
-                    MessageBox.Show("Không thể kết nối đến cơ sở dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (ConfigurationManager.AppSettings["LoginUser"].ToString() != "" && ConfigurationManager.AppSettings["LoginPassword"].ToString() != "")
-                {
-                    this.txtUsername.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["LoginUser"].ToString(), true);
-                    this.txtPassword.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["LoginPassword"].ToString(), true);
-                    this.checkEditNhoPass.Checked = Convert.ToBoolean(ConfigurationManager.AppSettings["checkEditNhoPass"]);
-                }
-                else
-                {
-                    this.txtUsername.Text = "";
-                    this.txtPassword.Text = "";
-                }
-
-                txtUsername.Focus();
-
-                // Lưu biến Session
-                SessionLogin.SessionMachineName = Environment.MachineName;
-                // Địa chỉ Ip
-                String strHostName = Dns.GetHostName();
-                IPHostEntry iphostentry = Dns.GetHostByName(strHostName);
-                //int nIP = 0;
-                string listIP = "";
-                for (int i = 0; i < iphostentry.AddressList.Count(); i++)
-                {
-                    listIP += iphostentry.AddressList[i] + ";";
-                }
-                SessionLogin.SessionMyIP = listIP;
-                //foreach (IPAddress ipaddress in iphostentry.AddressList)
-                //{
-                //    SessionLogin.SessionMyIP = ipaddress.ToString();
-                //}
-                // Lấy version PM
-                System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-                SessionLogin.SessionVersion = fvi.FileVersion;
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         // nếu viết vào ô username = "config" thì mở ra bảng để cấu hình DB
         private void txtUsername_EditValueChanged(object sender, EventArgs e)
         {
@@ -204,35 +290,6 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        private bool KiemTraInsertMayTram()
-        {
-            bool result = false;
-            try
-            {
-                SessionLogin.MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaDatabase();
-                string tenmay = MedicalLink.FormCommon.DangKyBanQuyen.HardwareInfo.GetComputerName();
-                string license_trang = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
-
-                string kiemtra_client = "SELECT * FROM tools_license WHERE datakey='" + SessionLogin.MaDatabase + "' ;";
-                DataView dv = new DataView(condb.getDataTable(kiemtra_client));
-                if (dv != null && dv.Count > 0)
-                {
-                    //Kiem tra license
-                    //MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.KiemTraLicenseHopLe();
-                }
-                else
-                {
-                    string insert_client = "INSERT INTO tools_license(datakey, licensekey) VALUES ('" + SessionLogin.MaDatabase + "','" + license_trang + "' );";
-                    condb.ExecuteNonQuery(insert_client);
-                }
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Có lỗi xảy ra" + ex.ToString());
-            }
-            return result;
-        }
         private void linkTroGiup_Click(object sender, EventArgs e)
         {
             try
@@ -246,40 +303,5 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        private bool LoadDataFromDatabase()
-        {
-            bool result = false;
-            try
-            {
-                //Set default
-                MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = 0;
-                MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = DateTime.Now.Year - 1 + "-01-01 00:00:00";
-
-                //Load thong tin Luu vao GlobalStore
-                string sqlDSOption = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote FROM tools_option WHERE toolsoptionlook<>'1' ;";
-                DataView dataOption = new DataView(condb.getDataTable(sqlDSOption));
-                if (dataOption != null && dataOption.Count > 0)
-                {
-                    for (int i = 0; i < dataOption.Count; i++)
-                    {
-                        if (dataOption[i]["toolsoptioncode"].ToString().ToUpper() == "ThoiGianCapNhatTbl_tools_bndangdt_tmp".ToUpper())
-                        {
-                            MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = Utilities.Util_TypeConvertParse.ToInt64(dataOption[i]["toolsoptionvalue"].ToString());
-                        }
-
-                        if (dataOption[i]["toolsoptioncode"].ToString().ToUpper() == "KhoangThoiGianLayDuLieu".ToUpper())
-                        {
-                            MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = dataOption[i]["toolsoptionvalue"].ToString();
-                        }
-                    }
-                }
-                result = true;
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-            return result;
-        }
     }
 }

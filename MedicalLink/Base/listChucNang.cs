@@ -321,7 +321,13 @@ namespace MedicalLink.Base
                 REPORT_14.permissionnote = "Dashboard BC xuất nhập tồn tủ trực";
                 lstresult.Add(REPORT_14);
 
-
+                ClassCommon.classPermission REPORT_15 = new ClassCommon.classPermission();
+                REPORT_15.permissioncheck = false;
+                REPORT_15.permissioncode = "REPORT_15";
+                REPORT_15.permissionname = "BC bệnh nhân sử dụng thuốc/vật tư tại khoa";
+                REPORT_15.permissiontype = 5;
+                REPORT_15.permissionnote = "BC bệnh nhân sử dụng thuốc/vật tư tại khoa";
+                lstresult.Add(REPORT_15);
 
 
 

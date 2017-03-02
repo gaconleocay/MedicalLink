@@ -402,6 +402,21 @@
     <Compile Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTruProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTaiKhoa\BCBNSuDungThuocTaiKhoaDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTaiKhoa\BCBNSuDungThuocTaiKhoaDetail.Designer.cs">
+      <DependentUpon>BCBNSuDungThuocTaiKhoaDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTaiKhoa\ucBCBNSuDungThuocTaiKhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTaiKhoa\ucBCBNSuDungThuocTaiKhoa.Designer.cs">
+      <DependentUpon>ucBCBNSuDungThuocTaiKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTaiKhoa\ucBCBNSuDungThuocTaiKhoaProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -409,6 +424,21 @@
       <DependentUpon>ucBaoCaoCanLamSang.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSangProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.Designer.cs">
+      <DependentUpon>BCTongHopDoanhThuKhoaFullSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.Designer.cs">
+      <DependentUpon>ucBCTongHopDoanhThuKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.cs">
@@ -762,8 +792,20 @@
     <EmbeddedResource Include="Dashboard\BCBenhNhanNoiTru\ucBaoCaoBenhNhanNoiTru.resx">
       <DependentUpon>ucBaoCaoBenhNhanNoiTru.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBNSuDungThuocTaiKhoa\BCBNSuDungThuocTaiKhoaDetail.resx">
+      <DependentUpon>BCBNSuDungThuocTaiKhoaDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBNSuDungThuocTaiKhoa\ucBCBNSuDungThuocTaiKhoa.resx">
+      <DependentUpon>ucBCBNSuDungThuocTaiKhoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.resx">
       <DependentUpon>ucBaoCaoCanLamSang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.resx">
+      <DependentUpon>BCTongHopDoanhThuKhoaFullSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.resx">
+      <DependentUpon>ucBCTongHopDoanhThuKhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.resx">
       <DependentUpon>BaoCaoTongHopToanVienFullSize.cs</DependentUpon>

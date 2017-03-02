@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucQuanLyNguoiDung));
-            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
             this.checker = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -480,6 +480,7 @@
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.TabChucNang,
             this.TabKhoaPhong});
+            this.xtraTabControl1.TabPageWidth = 80;
             // 
             // TabChucNang
             // 
@@ -511,11 +512,11 @@
             this.checker,
             this.chucnangid,
             this.tenchucnang});
-            gridFormatRule3.Column = this.checker;
-            gridFormatRule3.ColumnApplyTo = this.checker;
-            gridFormatRule3.Name = "Format0";
-            gridFormatRule3.Rule = null;
-            this.gridViewChucNang.FormatRules.Add(gridFormatRule3);
+            gridFormatRule1.Column = this.checker;
+            gridFormatRule1.ColumnApplyTo = this.checker;
+            gridFormatRule1.Name = "Format0";
+            gridFormatRule1.Rule = null;
+            this.gridViewChucNang.FormatRules.Add(gridFormatRule1);
             this.gridViewChucNang.GridControl = this.gridControlChucNang;
             this.gridViewChucNang.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, null, this.chucnangid, "")});
@@ -623,11 +624,11 @@
             this.gridColumn5,
             this.gridColumn7,
             this.gridColumn8});
-            gridFormatRule1.Column = this.gridColumn2;
-            gridFormatRule1.ColumnApplyTo = this.gridColumn2;
-            gridFormatRule1.Name = "Format0";
-            gridFormatRule1.Rule = null;
-            this.gridViewKhoaPhong.FormatRules.Add(gridFormatRule1);
+            gridFormatRule2.Column = this.gridColumn2;
+            gridFormatRule2.ColumnApplyTo = this.gridColumn2;
+            gridFormatRule2.Name = "Format0";
+            gridFormatRule2.Rule = null;
+            this.gridViewKhoaPhong.FormatRules.Add(gridFormatRule2);
             this.gridViewKhoaPhong.GridControl = this.gridControlKhoaPhong;
             this.gridViewKhoaPhong.GroupCount = 1;
             this.gridViewKhoaPhong.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {

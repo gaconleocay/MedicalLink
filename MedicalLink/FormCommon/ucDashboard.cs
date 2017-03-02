@@ -30,14 +30,12 @@ namespace MedicalLink.FormCommon
         public ucDashboard()
         {
             InitializeComponent();
-           // splitContainerControl1.SplitterPosition = 180;
         }
 
         private void ucDashboard_Load(object sender, EventArgs e)
         {
             try
             {
-               // splitContainerControl1.SplitterPosition = 180;
                 EnabledAndDisableControl();
             }
             catch (Exception ex)
@@ -55,7 +53,11 @@ namespace MedicalLink.FormCommon
                 navBarBCBenhNhanNgoaiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_10");
                 navBarBCTongHopToanVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_11");
                 navBarBCDTCLS.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_12");
+
                 navBarBCXNTTuTruc.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_14");
+                navBarBCBNSDThuocTaiKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("REPORT_15");
+
+
 
                 navBarDBDTTungKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_01");
                 navBarDBBenhNhanNoiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_02");
@@ -222,6 +224,21 @@ namespace MedicalLink.FormCommon
                 UserControl ucControlActive = new UserControl();
                 ucControlActive = TabControlProcess.SelectUCControlActive("DASHBOARD_02");
                 MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "DASHBOARD_02", "Biểu đồ doanh thu các khoa nội trú", "Biểu đồ doanh thu các khoa nội trú", ucControlActive);
+                ucControlActive.Show();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void navBarBCBNSDThuocTaiKhoa_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                UserControl ucControlActive = new UserControl();
+                ucControlActive = TabControlProcess.SelectUCControlActive("REPORT_15");
+                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "REPORT_15", "BCBN sử dụng thuốc/vật tư tại khoa", "BC bệnh nhân sử dụng thuốc/vật tư tại khoa", ucControlActive);
                 ucControlActive.Show();
             }
             catch (Exception ex)

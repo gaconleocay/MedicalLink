@@ -49,7 +49,7 @@ namespace MedicalLink.Dashboard.BCBenhNhanNgoaiTru
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.LightPink;
+                    e.Appearance.BackColor = Color.LightGreen;
                     e.Appearance.ForeColor = Color.Black;
                 }
             }

@@ -56,9 +56,9 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
-            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMenu)).BeginInit();
             this.panelControlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTuTruc.Properties)).BeginInit();
@@ -200,6 +200,8 @@
             // 
             // gridViewThuocTuTruc
             // 
+            this.gridViewThuocTuTruc.Appearance.GroupRow.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewThuocTuTruc.Appearance.GroupRow.Options.UseFont = true;
             this.gridViewThuocTuTruc.Appearance.SelectedRow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridViewThuocTuTruc.Appearance.SelectedRow.Options.UseBackColor = true;
             this.gridViewThuocTuTruc.ColumnPanelRowHeight = 25;
@@ -217,7 +219,7 @@
             this.gridColumn11});
             this.gridViewThuocTuTruc.GridControl = this.gridControlThuocTuTruc;
             this.gridViewThuocTuTruc.GroupCount = 1;
-            this.gridViewThuocTuTruc.GroupRowHeight = 23;
+            this.gridViewThuocTuTruc.GroupRowHeight = 25;
             this.gridViewThuocTuTruc.Name = "gridViewThuocTuTruc";
             this.gridViewThuocTuTruc.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridViewThuocTuTruc.OptionsFind.AlwaysVisible = true;
@@ -412,6 +414,12 @@
             this.gridColumn10.FieldName = "medicinerefid_org";
             this.gridColumn10.Name = "gridColumn10";
             // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "datatype";
+            this.gridColumn11.FieldName = "datatype";
+            this.gridColumn11.Name = "gridColumn11";
+            // 
             // timerThongBao
             // 
             this.timerThongBao.Interval = 2000;
@@ -421,12 +429,6 @@
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
             this.imMenu.Images.SetKeyName(0, "calendar-3-16.png");
-            // 
-            // gridColumn11
-            // 
-            this.gridColumn11.Caption = "datatype";
-            this.gridColumn11.FieldName = "datatype";
-            this.gridColumn11.Name = "gridColumn11";
             // 
             // ucBaoCaoXNTTuTruc
             // 

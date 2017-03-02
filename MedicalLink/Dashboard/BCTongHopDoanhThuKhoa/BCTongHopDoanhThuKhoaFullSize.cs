@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid.Views.Grid;
+using MedicalLink.ClassCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,31 +11,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MedicalLink.Dashboard.BCBenhNhanNoiTru
+namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
 {
-    public partial class BCBenhNhanNoiTruFullSize : Form
+    public partial class BCTongHopDoanhThuKhoaFullSize : Form
     {
-        public BCBenhNhanNoiTruFullSize()
+        public BCTongHopDoanhThuKhoaFullSize()
         {
             InitializeComponent();
         }
-        public BCBenhNhanNoiTruFullSize(DataView dataBCTongTheKhoa)
+        public BCTongHopDoanhThuKhoaFullSize(List<BCDashboardQLTongTheKhoa> dataBCQLTongTheKhoaSDO, string tenkhoa)
         {
             InitializeComponent();
-            gridControlDataBNNT.DataSource = dataBCTongTheKhoa;
-        }
+            gridControlDataQLTTKhoa.DataSource = dataBCQLTongTheKhoaSDO;
+            lblTenThongTinChiTiet.Text = "BÁO CÁO QUẢN LÝ TỔNG THỂ - " + tenkhoa.ToUpper();
 
-        private void BCBenhNhanNoiTruFullSize_Load(object sender, EventArgs e)
-        {
-            try
-            {
-               
-
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
         }
 
         private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
@@ -64,7 +54,7 @@ namespace MedicalLink.Dashboard.BCBenhNhanNoiTru
         {
             try
             {
-                if (bandedGridViewDataBNNT.RowCount > 0)
+                if (bandedGridViewDataQLTTKhoa.RowCount > 0)
                 {
                     try
                     {
@@ -79,22 +69,22 @@ namespace MedicalLink.Dashboard.BCBenhNhanNoiTru
                                 switch (fileExtenstion)
                                 {
                                     case ".xls":
-                                        bandedGridViewDataBNNT.ExportToXls(exportFilePath);
+                                        bandedGridViewDataQLTTKhoa.ExportToXls(exportFilePath);
                                         break;
                                     case ".xlsx":
-                                        bandedGridViewDataBNNT.ExportToXlsx(exportFilePath);
+                                        bandedGridViewDataQLTTKhoa.ExportToXlsx(exportFilePath);
                                         break;
                                     case ".rtf":
-                                        bandedGridViewDataBNNT.ExportToRtf(exportFilePath);
+                                        bandedGridViewDataQLTTKhoa.ExportToRtf(exportFilePath);
                                         break;
                                     case ".pdf":
-                                        bandedGridViewDataBNNT.ExportToPdf(exportFilePath);
+                                        bandedGridViewDataQLTTKhoa.ExportToPdf(exportFilePath);
                                         break;
                                     case ".html":
-                                        bandedGridViewDataBNNT.ExportToHtml(exportFilePath);
+                                        bandedGridViewDataQLTTKhoa.ExportToHtml(exportFilePath);
                                         break;
                                     case ".mht":
-                                        bandedGridViewDataBNNT.ExportToMht(exportFilePath);
+                                        bandedGridViewDataQLTTKhoa.ExportToMht(exportFilePath);
                                         break;
                                     default:
                                         break;
@@ -122,11 +112,13 @@ namespace MedicalLink.Dashboard.BCBenhNhanNoiTru
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
         private void timerThongBao_Tick(object sender, EventArgs e)
         {
             timerThongBao.Stop();
             lblThongBao.Visible = false;
         }
+
 
     }
 }

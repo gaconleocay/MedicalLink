@@ -131,7 +131,7 @@
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Size = new System.Drawing.Size(100, 25);
             this.btnFullScreen.TabIndex = 27;
-            this.btnFullScreen.Text = "Chi tiết";
+            this.btnFullScreen.Text = "Full screen";
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullSize_Click);
             // 
             // groupBoxFile

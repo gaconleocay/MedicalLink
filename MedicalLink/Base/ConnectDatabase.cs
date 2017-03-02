@@ -33,10 +33,9 @@ namespace MedicalLink.Base
             catch (Exception ex)
             {
                 kiemtraketnoi = false;
-                MessageBox.Show("Không kết nối được cơ sở dữ liệu", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               // MessageBox.Show("Không kết nối được cơ sở dữ liệu", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logging.Error("Loi ket noi den CSDL: " + ex.ToString());
             }
-
         }
 
         // Đóng kết nối

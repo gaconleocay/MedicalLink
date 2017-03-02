@@ -14,7 +14,7 @@ namespace MedicalLink.Dashboard
     /// <summary>
     /// BC doanh thu theo khoa ra viện
     /// </summary>
-    public partial class ucBaoCaoTongTheKhoa : UserControl
+    public partial class ucBCTongHopDoanhThuKhoa : UserControl
     {
         #region Declaration
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
@@ -28,12 +28,12 @@ namespace MedicalLink.Dashboard
         #endregion
 
         #region Load
-        public ucBaoCaoTongTheKhoa()
+        public ucBCTongHopDoanhThuKhoa()
         {
             InitializeComponent();
         }
 
-        private void ucBaoCaoTongTheKhoa_Load(object sender, EventArgs e)
+        private void ucBCTongHopDoanhThuKhoa_Load(object sender, EventArgs e)
         {
             KhoangThoiGianLayDuLieu = GlobalStore.KhoangThoiGianLayDuLieu;
             //Lấy thời gian lấy BC mặc định là ngày hiện tại

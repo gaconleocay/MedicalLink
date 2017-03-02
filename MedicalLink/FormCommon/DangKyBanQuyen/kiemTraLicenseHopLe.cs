@@ -61,7 +61,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                             datetimenow = Convert.ToInt64(DateTime.Now.ToString("yyyyMMdd"));
 
                             //Kiem tra License hop le
-                            if (mamay_keykichhoat == SessionLogin.MaDatabase && datetimenow < Convert.ToInt64(makichhoat_tach[3].ToString().Trim() ?? "0"))
+                            if (mamay_keykichhoat == SessionLogin.MaDatabase && datetimenow <= Convert.ToInt64(makichhoat_tach[3].ToString().Trim() ?? "0"))
                             {
                                 SessionLogin.KiemTraLicenseSuDung = true;
                             }

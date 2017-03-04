@@ -50,7 +50,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Martin-Berube-Flat-Animal-Crab.ico</ApplicationIcon>
+    <ApplicationIcon>Logo_VT_1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib">
@@ -109,6 +109,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logo_VT_1.ico" />
     <Content Include="Martin-Berube-Flat-Animal-Crab.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -50,11 +50,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Martin-Berube-Flat-Animal-Crab.ico</ApplicationIcon>
+    <ApplicationIcon>Logo_VT_1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility">
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Cells">
+      <HintPath>Library\Aspose.Cells.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>Library\Aspose.Words.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper">
       <HintPath>Library\AutoMapper.dll</HintPath>
@@ -181,6 +187,7 @@
     <Reference Include="System.Transactions">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions">
       <Private>False</Private>
     </Reference>
@@ -228,9 +235,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\bienTrongBaoCao.cs" />
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
-    <Compile Include="Base\ExportDataToFile.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
     <Compile Include="Base\SessionLogin.cs" />
     <Compile Include="Base\UtilsTable.cs" />
@@ -366,6 +373,7 @@
     <Compile Include="ClassCommon\classMedicineRef.cs" />
     <Compile Include="ClassCommon\classMedicineStore.cs" />
     <Compile Include="ClassCommon\classUserDepartment.cs" />
+    <Compile Include="ClassCommon\reportExcelDTO.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -720,6 +728,7 @@
     <Compile Include="ThongBao\WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Common.Excel\ExcelExport.cs" />
     <Compile Include="Utilities\Util_DateTime.cs" />
     <Compile Include="Utilities\Util_NumberConvert.cs" />
     <Compile Include="Utilities\Util_TypeConvertParse.cs" />
@@ -939,6 +948,8 @@
     <None Include="Documents\Tools_DMDV_chuan.xls" />
     <None Include="Documents\Tools_DMThuoc_chuan.xls" />
     <None Include="Documents\Tools_tblUser.xls" />
+    <None Include="Library\Aspose.Cells.lic" />
+    <None Include="Library\Aspose.Words.lic" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -948,10 +959,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Library\Aspose.Cells.dll" />
+    <Content Include="Library\Aspose.Words.dll" />
+    <Content Include="Library\AutoMapper.dll" />
+    <Content Include="Library\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Library\log4net.dll" />
+    <Content Include="Library\Microsoft.Office.Interop.Excel.dll" />
+    <Content Include="Library\Microsoft.Office.Interop.Word.dll" />
+    <Content Include="Library\Mono.Security.dll" />
+    <Content Include="Library\Npgsql.dll" />
+    <Content Include="Templates\BC_PhauThuatThuThuat_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HuongDan\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Documents\Huong dan.txt" />
     <None Include="Images\edit-2-16.png" />
@@ -960,7 +981,8 @@
     <None Include="Images\recurring-appointment-32.png" />
     <None Include="Images\ok-16.png" />
     <Content Include="Documents\SQL_CanThiet.SQL" />
-    <Content Include="Martin-Berube-Flat-Animal-Crab.ico" />
+    <None Include="Images\Logo_VT_1.png" />
+    <Content Include="Logo_VT_1.ico" />
     <None Include="Images\arrow-32-16.png" />
   </ItemGroup>
   <ItemGroup>

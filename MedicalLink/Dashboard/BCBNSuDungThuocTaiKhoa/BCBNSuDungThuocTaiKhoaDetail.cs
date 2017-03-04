@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace MedicalLink.Dashboard.BCBNSuDungThuocTaiKhoa
 {
     public partial class BCBNSuDungThuocTaiKhoaDetail : Form
@@ -22,6 +23,8 @@ namespace MedicalLink.Dashboard.BCBNSuDungThuocTaiKhoa
         private long departmentgroupid { get; set; }
         private string bhyt_groupcode { get; set; }
         List<ClassCommon.classMedicineRef> lstMedicineCurrent { get; set; }
+
+        DataTable dataExport = new DataTable();
         private string lstmedicinecode_string { get; set; }
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
 
@@ -101,29 +104,30 @@ namespace MedicalLink.Dashboard.BCBNSuDungThuocTaiKhoa
                 switch (this.tieuChiLayBaoCao)
                 {
                     case 1: //=1: BN dang dieu tri
-                        sqlGetData = "SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode,  ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0  inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid  inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid  inner join bhyt bhyt on vp.bhytid=bhyt.bhytid  WHERE vp.vienphistatus=0 and vp.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ")  ORDER BY ser.servicepricedate, vp.vienphiid;";
+                        sqlGetData = "SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode,  ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0  inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid  inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid  inner join bhyt bhyt on vp.bhytid=bhyt.bhytid  WHERE vp.vienphistatus=0 and vp.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ") and ser.loaidoituong in (0,1,3,4,6,8,9) ORDER BY ser.servicepricedate, vp.vienphiid;";
                         lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN SỬ DỤNG THUỐC/VẬT TƯ - ĐANG ĐIỀU TRỊ";
                         break;
 
                     case 2: //=2: BN da ra vien chua thanh toan
-                        sqlGetData = "SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode, ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0 inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid inner join bhyt bhyt on vp.bhytid=bhyt.bhytid WHERE COALESCE(vp.vienphistatus_vp,0)=0 and vp.vienphistatus<>0 and vp.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ") ORDER BY ser.servicepricedate, vp.vienphiid;";
+                        sqlGetData = "SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode, ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0 inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid inner join bhyt bhyt on vp.bhytid=bhyt.bhytid WHERE COALESCE(vp.vienphistatus_vp,0)=0 and vp.vienphistatus<>0 and vp.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ") and ser.loaidoituong in (0,1,3,4,6,8,9) ORDER BY ser.servicepricedate, vp.vienphiid;";
                         lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN SỬ DỤNG THUỐC/VẬT TƯ - RA VIỆN CHƯA THANH TOÁN";
                         break;
 
                     case 3:  //=3: BN da thanh toan
-                        sqlGetData = "SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode, ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0 and ser.servicepricedate<'" + dateDenNgay + "' inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid inner join bhyt bhyt on vp.bhytid=bhyt.bhytid WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='" + this.dateTuNgay + "' and vp.duyet_ngayduyet_vp<='" + dateDenNgay + "' and vp.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ") ORDER BY ser.servicepricedate, vp.vienphiid;";
+                        sqlGetData = "SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode, ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0 and ser.servicepricedate<'" + dateDenNgay + "' inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid inner join bhyt bhyt on vp.bhytid=bhyt.bhytid WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='" + this.dateTuNgay + "' and vp.duyet_ngayduyet_vp<='" + dateDenNgay + "' and vp.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ") and ser.loaidoituong in (0,1,3,4,6,8,9) ORDER BY ser.servicepricedate, vp.vienphiid;";
                         lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN SỬ DỤNG THUỐC/VẬT TƯ - ĐÃ THANH TOÁN";
 
                         break;
                     case 4:  //=4 doanh thu
-                        sqlGetData = " SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode, ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0 and ser.servicepricedate<'" + dateDenNgay + "' inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid inner join bhyt bhyt on vp.bhytid=bhyt.bhytid WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='" + this.dateTuNgay + "' and vp.duyet_ngayduyet_vp<='" + dateDenNgay + "' and ser.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ") ORDER BY ser.servicepricedate, vp.vienphiid;";
+                        sqlGetData = " SELECT depg.departmentgroupname, vp.patientid, vp.vienphiid, hsba.patientname, bhyt.bhytcode, ser.servicepricecode,ser.servicepricename, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong,ser.servicepricedate FROM serviceprice ser inner join vienphi vp on vp.vienphiid=ser.vienphiid and ser.bhyt_groupcode in (" + this.bhyt_groupcode + ") and ser.thuockhobanle=0 and ser.servicepricedate<'" + dateDenNgay + "' inner join departmentgroup depg on ser.departmentgroupid=depg.departmentgroupid inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid inner join bhyt bhyt on vp.bhytid=bhyt.bhytid WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='" + this.dateTuNgay + "' and vp.duyet_ngayduyet_vp<='" + dateDenNgay + "' and ser.departmentgroupid=" + this.departmentgroupid + " and ser.servicepricecode in (" + this.lstmedicinecode_string + ") and ser.loaidoituong in (0,1,3,4,6,8,9) ORDER BY ser.servicepricedate, vp.vienphiid;";
                         lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN SỬ DỤNG THUỐC/VẬT TƯ - DOANH THU";
                         break;
                     default:
                         break;
                 }
-                dataBNDetail = new DataView(condb.getDataTable(sqlGetData));
-                gridControlBNDetail.DataSource = dataBNDetail;
+               // dataBNDetail = new DataView(condb.getDataTable(sqlGetData));
+                dataExport = condb.getDataTable(sqlGetData);
+                gridControlBNDetail.DataSource = dataExport;
             }
             catch (Exception ex)
             {

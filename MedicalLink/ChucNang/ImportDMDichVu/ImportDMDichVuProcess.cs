@@ -1344,10 +1344,8 @@ namespace MedicalLink.ChucNang
                 if (dv_dataserviceref != null && dv_dataserviceref.Count > 0)
                 {
                     gridControlDataSerRef.DataSource = dv_dataserviceref;
-                    MedicalLink.Base.ExportDataToFile.ExportDataGridViewToFile(gridControlDataSerRef, gridViewDataSerRef);
-                    //gridControlData.DataSource = dv_dataserviceref;
-                    //gridViewData.DataSource = dv_dataserviceref;
-                    //Class.ExportDataToFile.ExportDataTable_ToExcel(condb.getDataTable(export_servicepriceref), "BAO CAO");
+                    Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                    export.ExportDataGridViewToFile(gridControlDataSerRef, gridViewDataSerRef);
                 }
 
             }

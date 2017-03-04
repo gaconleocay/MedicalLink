@@ -277,7 +277,7 @@
             // lblMaVienPhi
             // 
             this.lblMaVienPhi.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaVienPhi.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblMaVienPhi.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.lblMaVienPhi.Location = new System.Drawing.Point(323, 81);
             this.lblMaVienPhi.MaximumSize = new System.Drawing.Size(155, 16);
             this.lblMaVienPhi.MinimumSize = new System.Drawing.Size(154, 20);
@@ -290,7 +290,7 @@
             // lblTenBenhNhan
             // 
             this.lblTenBenhNhan.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenBenhNhan.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblTenBenhNhan.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.lblTenBenhNhan.Location = new System.Drawing.Point(83, 105);
             this.lblTenBenhNhan.MaximumSize = new System.Drawing.Size(395, 20);
             this.lblTenBenhNhan.MinimumSize = new System.Drawing.Size(395, 20);
@@ -303,7 +303,7 @@
             // lblMaBenhNhan
             // 
             this.lblMaBenhNhan.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaBenhNhan.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblMaBenhNhan.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.lblMaBenhNhan.Location = new System.Drawing.Point(83, 81);
             this.lblMaBenhNhan.MinimumSize = new System.Drawing.Size(154, 20);
             this.lblMaBenhNhan.Name = "lblMaBenhNhan";
@@ -315,7 +315,7 @@
             // lblServicepriceID
             // 
             this.lblServicepriceID.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServicepriceID.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblServicepriceID.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.lblServicepriceID.Location = new System.Drawing.Point(83, 37);
             this.lblServicepriceID.MinimumSize = new System.Drawing.Size(154, 20);
             this.lblServicepriceID.Name = "lblServicepriceID";
@@ -327,7 +327,7 @@
             // lblMaPhieuChiDinh
             // 
             this.lblMaPhieuChiDinh.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaPhieuChiDinh.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblMaPhieuChiDinh.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.lblMaPhieuChiDinh.Location = new System.Drawing.Point(322, 37);
             this.lblMaPhieuChiDinh.MinimumSize = new System.Drawing.Size(154, 20);
             this.lblMaPhieuChiDinh.Name = "lblMaPhieuChiDinh";
@@ -339,7 +339,7 @@
             // lblTenDichVu
             // 
             this.lblTenDichVu.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenDichVu.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lblTenDichVu.Appearance.ForeColor = System.Drawing.Color.Navy;
             this.lblTenDichVu.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
             this.lblTenDichVu.Location = new System.Drawing.Point(83, 61);
             this.lblTenDichVu.Name = "lblTenDichVu";

@@ -173,7 +173,8 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                Base.ExportDataToFile.ExportDataGridViewToFile(gridControlThuocTuTruc, gridViewThuocTuTruc);
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                export.ExportDataGridViewToFile(gridControlThuocTuTruc, gridViewThuocTuTruc);
             }
             catch (Exception ex)
             {

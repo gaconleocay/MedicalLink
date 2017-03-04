@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen1));
             this.marqueeProgressBarControl1 = new DevExpress.XtraEditors.MarqueeProgressBarControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -47,12 +46,13 @@
             // 
             // labelControl1
             // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.labelControl1.Location = new System.Drawing.Point(23, 270);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(188, 13);
+            this.labelControl1.Size = new System.Drawing.Size(190, 13);
             this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "Copyright 2015 Hong Minh Nhat Co.Ltd";
+            this.labelControl1.Text = "Copyright 2016 Hong Minh Nhat Co.Ltd";
             // 
             // labelControl2
             // 
@@ -64,7 +64,7 @@
             // 
             // pictureEdit2
             // 
-            this.pictureEdit2.EditValue = ((object)(resources.GetObject("pictureEdit2.EditValue")));
+            this.pictureEdit2.EditValue = global::MedicalLink.Properties.Resources.Logo_VT_1;
             this.pictureEdit2.Location = new System.Drawing.Point(12, 12);
             this.pictureEdit2.Name = "pictureEdit2";
             this.pictureEdit2.Properties.AllowFocused = false;
@@ -72,8 +72,8 @@
             this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
             this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit2.Properties.ShowMenu = false;
-            this.pictureEdit2.Properties.ZoomPercent = 26D;
-            this.pictureEdit2.Size = new System.Drawing.Size(426, 146);
+            this.pictureEdit2.Properties.ZoomPercent = 17D;
+            this.pictureEdit2.Size = new System.Drawing.Size(426, 178);
             this.pictureEdit2.TabIndex = 9;
             // 
             // SplashScreen1

@@ -66,7 +66,7 @@
             this.splitContainerControl1.Panel2.Controls.Add(this.xtraTabControlChucNang);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1170, 613);
-            this.splitContainerControl1.SplitterPosition = 207;
+            this.splitContainerControl1.SplitterPosition = 152;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -95,8 +95,8 @@
             this.navBarDBBenhNhanNoiTru});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
-            this.navBarControl1.OptionsNavPane.ExpandedWidth = 207;
-            this.navBarControl1.Size = new System.Drawing.Size(207, 613);
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 152;
+            this.navBarControl1.Size = new System.Drawing.Size(152, 613);
             this.navBarControl1.TabIndex = 0;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -378,7 +378,7 @@
             this.xtraTabControlChucNang.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControlChucNang.Margin = new System.Windows.Forms.Padding(0);
             this.xtraTabControlChucNang.Name = "xtraTabControlChucNang";
-            this.xtraTabControlChucNang.Size = new System.Drawing.Size(958, 613);
+            this.xtraTabControlChucNang.Size = new System.Drawing.Size(1013, 613);
             this.xtraTabControlChucNang.TabIndex = 1;
             this.xtraTabControlChucNang.TabPageWidth = 150;
             this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDashboard_SelectedPageChanged);

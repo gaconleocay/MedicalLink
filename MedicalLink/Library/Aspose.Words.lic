@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<License>
+  <Data>
+    <LicensedTo>Chau</LicensedTo>
+    <LicenseType>Developer OEM Subscription</LicenseType>
+    <LicenseNote>Limited to 1 developer.</LicenseNote>
+    <OrderID>091008103830</OrderID>
+    <OEM>This is a redistributable license</OEM>
+    <Products>
+      <Product>Aspose.Words</Product>
+    </Products>
+    <EditionType>Enterprise</EditionType>
+    <SerialNumber>c95d2e5f-cb09-422f-b163-d668b29ab000</SerialNumber>
+    <SubscriptionExpiry>20101008</SubscriptionExpiry>
+    <LicenseVersion>2.2</LicenseVersion>
+  </Data>
+  <Signature>P2UMPFVDbFErqZhnBMx/bCPRxTbyZjlrvwJ2ZbtkFMwoqSojpYxpTEHzzGNTaBNaRhpmnfNz09QePa17eHwyB8GiAtdBvheTDVJEkZuzvebck4kkSh+XL9JxrRF/9HvKNFup8RcScEqCwh2iackWKmc+/Amg3UksGH3MzgIFILc=</Signature>
+</License>

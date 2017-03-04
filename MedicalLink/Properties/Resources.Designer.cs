@@ -83,6 +83,16 @@ namespace MedicalLink.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logo_VT_1 {
+            get {
+                object obj = ResourceManager.GetObject("Logo_VT_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ok_16 {
             get {
                 object obj = ResourceManager.GetObject("ok-16", resourceCulture);

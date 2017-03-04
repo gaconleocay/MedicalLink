@@ -33,10 +33,10 @@
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
             this.checkEditNhoPass = new DevExpress.XtraEditors.CheckEdit();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.linkTroGiup = new System.Windows.Forms.LinkLabel();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditNhoPass.Properties)).BeginInit();
@@ -87,6 +87,47 @@
             this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Mật khẩu";
             // 
+            // checkEditNhoPass
+            // 
+            this.checkEditNhoPass.Location = new System.Drawing.Point(254, 86);
+            this.checkEditNhoPass.Name = "checkEditNhoPass";
+            this.checkEditNhoPass.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkEditNhoPass.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.checkEditNhoPass.Properties.Appearance.Options.UseFont = true;
+            this.checkEditNhoPass.Properties.Appearance.Options.UseForeColor = true;
+            this.checkEditNhoPass.Properties.Caption = "Ghi nhớ";
+            this.checkEditNhoPass.Size = new System.Drawing.Size(109, 22);
+            this.checkEditNhoPass.TabIndex = 5;
+            // 
+            // linkTroGiup
+            // 
+            this.linkTroGiup.AutoSize = true;
+            this.linkTroGiup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkTroGiup.Location = new System.Drawing.Point(21, 157);
+            this.linkTroGiup.Name = "linkTroGiup";
+            this.linkTroGiup.Size = new System.Drawing.Size(58, 16);
+            this.linkTroGiup.TabIndex = 27;
+            this.linkTroGiup.TabStop = true;
+            this.linkTroGiup.Text = "Trợ giúp";
+            this.linkTroGiup.Click += new System.EventHandler(this.linkTroGiup_Click);
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.CausesValidation = false;
+            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureEdit1.EditValue = global::MedicalLink.Properties.Resources.Logo_VT_1;
+            this.pictureEdit1.Location = new System.Drawing.Point(2, 9);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.AllowFocused = false;
+            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.ShowMenu = false;
+            this.pictureEdit1.Properties.ZoomPercent = 12D;
+            this.pictureEdit1.Size = new System.Drawing.Size(146, 125);
+            this.pictureEdit1.TabIndex = 9;
+            // 
             // btnLogin
             // 
             this.btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -100,47 +141,6 @@
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // checkEditNhoPass
-            // 
-            this.checkEditNhoPass.Location = new System.Drawing.Point(254, 86);
-            this.checkEditNhoPass.Name = "checkEditNhoPass";
-            this.checkEditNhoPass.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkEditNhoPass.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.checkEditNhoPass.Properties.Appearance.Options.UseFont = true;
-            this.checkEditNhoPass.Properties.Appearance.Options.UseForeColor = true;
-            this.checkEditNhoPass.Properties.Caption = "Ghi nhớ";
-            this.checkEditNhoPass.Size = new System.Drawing.Size(109, 22);
-            this.checkEditNhoPass.TabIndex = 5;
-            // 
-            // pictureEdit1
-            // 
-            this.pictureEdit1.CausesValidation = false;
-            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureEdit1.EditValue = ((object)(resources.GetObject("pictureEdit1.EditValue")));
-            this.pictureEdit1.Location = new System.Drawing.Point(2, 9);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.AllowFocused = false;
-            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.ShowMenu = false;
-            this.pictureEdit1.Properties.ZoomPercent = 17D;
-            this.pictureEdit1.Size = new System.Drawing.Size(146, 125);
-            this.pictureEdit1.TabIndex = 9;
-            // 
-            // linkTroGiup
-            // 
-            this.linkTroGiup.AutoSize = true;
-            this.linkTroGiup.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkTroGiup.Location = new System.Drawing.Point(21, 157);
-            this.linkTroGiup.Name = "linkTroGiup";
-            this.linkTroGiup.Size = new System.Drawing.Size(58, 16);
-            this.linkTroGiup.TabIndex = 27;
-            this.linkTroGiup.TabStop = true;
-            this.linkTroGiup.Text = "Trợ giúp";
-            this.linkTroGiup.Click += new System.EventHandler(this.linkTroGiup_Click);
             // 
             // frmLogin
             // 

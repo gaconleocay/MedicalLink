@@ -22,7 +22,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         private string currentUserCode;
         private List<MedicalLink.ClassCommon.classPermission> lstPer { get; set; }
         private List<MedicalLink.ClassCommon.classUserDepartment> lstUserDepartment { get; set; }
-
+        private List<MedicalLink.ClassCommon.classPermission> lstPerBaoCao { get; set; }
         public ucQuanLyNguoiDung()
         {
             InitializeComponent();
@@ -37,6 +37,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 LoadDanhSachNguoiDung();
                 LoadDanhSachChucNang();
                 LoadDanhSachKhoaPhong();
+                LoadDanhSachBaoCao();
             }
             catch (Exception ex)
             {
@@ -79,7 +80,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 lstPer = new List<ClassCommon.classPermission>();
-                lstPer = MedicalLink.Base.listChucNang.getDanhSachChucNang();
+                lstPer = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o=>o.permissiontype!=10).ToList();
                 gridControlChucNang.DataSource = lstPer;
             }
             catch (Exception ex)
@@ -107,6 +108,19 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     lstUserDepartment.Add(userDepartment);
                 }
                 gridControlKhoaPhong.DataSource = lstUserDepartment;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void LoadDanhSachBaoCao()
+        {
+            try
+            {
+                lstPerBaoCao = new List<ClassCommon.classPermission>();
+                lstPerBaoCao = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype== 10).ToList();
+                gridControlBaoCao.DataSource = lstPerBaoCao;
             }
             catch (Exception ex)
             {
@@ -146,15 +160,16 @@ namespace MedicalLink.FormCommon.TabCaiDat
 
                 LoadDanhSachChucNang();
                 LoadDanhSachKhoaPhong();
+                LoadDanhSachBaoCao();
                 LoadPhanQuyenChucNang();
                 LoadPhanQuyenKhoaPhong();
+                LoadPhanQuyenBaoCao();
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void LoadPhanQuyenChucNang()
         {
             try
@@ -210,6 +225,34 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void LoadPhanQuyenBaoCao()
+        {
+            try
+            {
+                gridControlBaoCao.DataSource = null;
+                string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "' and userpermissionnote='BAOCAO';";
+                DataView dv = new DataView(condb.getDataTable(sqlquerry_per));
+                //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
+                if (dv != null && dv.Count > 0)
+                {
+                    for (int i = 0; i < lstPerBaoCao.Count; i++)
+                    {
+                        for (int j = 0; j < dv.Count; j++)
+                        {
+                            if (lstPerBaoCao[i].permissioncode.ToString() == EncryptAndDecrypt.Decrypt(dv[j]["permissioncode"].ToString(), true))
+                            {
+                                lstPerBaoCao[i].permissioncheck = Convert.ToBoolean(dv[j]["permissioncheck"]);
+                            }
+                        }
+                    }
+                }
+                gridControlBaoCao.DataSource = lstPerBaoCao;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
         //Khi ấn nút thêm thì hiển thị textbox
         private void btnUserThem_Click(object sender, EventArgs e)
@@ -243,6 +286,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     CreateNewUser(en_txtUserID, en_txtUsername, en_txtUserPassword);
                     CreateNewPermission(en_txtUserID);
                     CreateNewUserDepartment(en_txtUserID);
+                    CreateNewPermissionBaoCao(en_txtUserID);
                     timerThongBao.Start();
                     lblThongBao.Visible = true;
                     lblThongBao.Text = "Thêm mới thành công";
@@ -253,6 +297,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     UpdateUser(en_txtUserID, en_txtUsername, en_txtUserPassword);
                     UpdatePermission(en_txtUserID);
                     UpdateUserDepartment(en_txtUserID);
+                    UpdatePermissionBaoCao(en_txtUserID);
                     timerThongBao.Start();
                     lblThongBao.Visible = true;
                     lblThongBao.Text = "Cập nhật thành công";
@@ -328,6 +373,29 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 Logging.Error(ex);
             }
         }
+        private void CreateNewPermissionBaoCao(string en_txtUserID)
+        {
+            try
+            {
+                string sqlinsert_per = "";
+                for (int i = 0; i < lstPerBaoCao.Count; i++)
+                {
+                    sqlinsert_per = "";
+                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissioncode.ToString(), true);
+                    string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissionname.ToString(), true);
+                    if (lstPerBaoCao[i].permissioncheck == true)
+                    {
+                        sqlinsert_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', 'BAOCAO');";
+                        condb.ExecuteNonQuery(sqlinsert_per);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Error(ex);
+            }
+        }
+
         private void UpdateUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword)
         {
             try
@@ -416,6 +484,42 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 Logging.Error(ex);
             }
         }
+        private void UpdatePermissionBaoCao(string en_txtUserID)
+        {
+            try
+            {
+                string sqlupdate_per = "";
+                for (int i = 0; i < lstPerBaoCao.Count; i++)
+                {
+                    sqlupdate_per = "";
+                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissioncode, true);
+                    string sqlkiemtratontai = "SELECT * FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
+                    DataView dvkt = new DataView(condb.getDataTable(sqlkiemtratontai));
+                    if (dvkt.Count > 0) //Nếu có quyền đó rồi thì Update
+                    {
+                        if (lstPerBaoCao[i].permissioncheck == false)
+                        {
+                            sqlupdate_per = "DELETE FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdate_per);
+                        }
+                    }
+                    else //nếu không có quyền đó thì Insert
+                    {
+                        if (lstPerBaoCao[i].permissioncheck == true)
+                        {
+                            string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissionname.ToString(), true);
+                            sqlupdate_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', 'BAOCAO');";
+                            condb.ExecuteNonQuery(sqlupdate_per);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Error(ex);
+            }
+        }
+
         #endregion
         private void txtUserID_KeyDown(object sender, KeyEventArgs e)
         {
@@ -491,31 +595,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
             lblThongBao.Visible = false;
         }
 
-        private void gridViewChucNang_RowCellStyle(object sender, RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
-            }
-        }
-        private void gridViewDSUser_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
-            }
-        }
-
-        private void gridViewChucNang_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
         private void gridViewChucNang_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             try
@@ -565,12 +644,73 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 Logging.Warn(ex);
             }
         }
+        private void gridViewBaoCao_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                var rowHandle = gridViewBaoCao.FocusedRowHandle;
+                if (lstPerBaoCao[rowHandle].permissioncheck)
+                {
+                    lstPerBaoCao[rowHandle].permissioncheck = false;
+                }
+                else
+                {
+                    lstPerBaoCao[rowHandle].permissioncheck = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Warn(ex);
+            }
+        }
 
+        #region GridView Design
+        private void gridViewChucNang_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+        private void gridViewDSUser_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+        private void gridViewBaoCao_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+        private void gridViewChucNang_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
         private void gridViewDSUser_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
+        private void gridViewBaoCao_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+
+        #endregion
+
 
 
     }

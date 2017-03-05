@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Net;
 using System.Diagnostics;
 using MedicalLink.Base;
+using System.IO;
 
 namespace MedicalLink.FormCommon
 {
@@ -33,7 +34,7 @@ namespace MedicalLink.FormCommon
             {
                 if (KiemTraKetNoiDenCoSoDuLieu() == false)
                 {
-                    MessageBox.Show("Không thể kết nối đến cơ sở dữ liệu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Không thể kết nối đến cơ sở dữ liệu.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 KiemTraInsertMayTram();
                 LoadDataFromDatabase();
@@ -52,7 +53,6 @@ namespace MedicalLink.FormCommon
 
                 txtUsername.Focus();
 
-                // Lưu biến Session
                 SessionLogin.SessionMachineName = Environment.MachineName;
                 // Địa chỉ Ip
                 String strHostName = Dns.GetHostName();
@@ -64,14 +64,10 @@ namespace MedicalLink.FormCommon
                     listIP += iphostentry.AddressList[i] + ";";
                 }
                 SessionLogin.SessionMyIP = listIP;
-                //foreach (IPAddress ipaddress in iphostentry.AddressList)
-                //{
-                //    SessionLogin.SessionMyIP = ipaddress.ToString();
-                //}
-                // Lấy version PM
                 System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                 SessionLogin.SessionVersion = fvi.FileVersion;
+                KiemTraVaCopyFileLaucherNew();
             }
             catch (Exception ex)
             {
@@ -161,6 +157,71 @@ namespace MedicalLink.FormCommon
             }
         }
 
+        private void KiemTraVaCopyFileLaucherNew()
+        {
+            try
+            {
+                string versionDatabase = "";
+                DataView dataVer = new DataView(condb.getDataTable("SELECT appversion from tools_version where app_type=1 LIMIT 1;"));
+                if (dataVer != null && dataVer.Count > 0)
+                {
+                    versionDatabase = dataVer[0]["appversion"].ToString();
+                }
+                //lấy thông tin version của phần mềm MedicalLinkLauncher.exe
+                FileVersionInfo.GetVersionInfo(Path.Combine(Environment.CurrentDirectory, "MedicalLinkLauncher.exe"));
+                FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(Environment.CurrentDirectory + "\\MedicalLinkLauncher.exe");
+                if (myFileVersionInfo.FileVersion.ToString() != versionDatabase)
+                {
+                    DataView dataurlfile = new DataView(condb.getDataTable("select app_link from tools_version where app_type=1 limit 1;"));
+                    if (dataurlfile != null && dataurlfile.Count > 0)
+                    {
+                        string tempDirectory = dataurlfile[0]["app_link"].ToString();
+                        CopyFolder(tempDirectory, Environment.CurrentDirectory);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+        private static void CopyFolder(string SourceFolder, string DestFolder)
+        {
+            try
+            {
+                Directory.CreateDirectory(DestFolder); //Tao folder moi
+                string[] files = Directory.GetFiles(SourceFolder);
+                //Neu co file thi phai copy file
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        string name = Path.GetFileName(file);
+                        string dest = Path.Combine(DestFolder, name);
+                        File.Copy(file, dest, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                    }
+                }
+                //string[] folders = Directory.GetDirectories(SourceFolder);
+                //foreach (string folder in folders)
+                //{
+                //    string name = Path.GetFileName(folder);
+                //    string dest = Path.Combine(DestFolder, name);
+                //    CopyFolder(folder, dest);
+                //}
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+
+
+
+
         #endregion
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -172,7 +233,7 @@ namespace MedicalLink.FormCommon
 
                 if (txtUsername.Text == "" || txtPassword.Text == "")
                 {
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Có lỗi xảy ra!");
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtUsername.Focus();
                     return;
                 }
@@ -210,7 +271,7 @@ namespace MedicalLink.FormCommon
                         }
                         else
                         {
-                            MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng", "Có lỗi xảy ra");
+                            MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     catch (Exception ex)

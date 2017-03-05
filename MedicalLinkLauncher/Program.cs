@@ -52,7 +52,6 @@ namespace MedicalLinkLauncher
                         }
                         try
                         {
-                            //tiến hành ghi đè file
                             CopyFiles();
                         }
                         catch (Exception)
@@ -62,13 +61,11 @@ namespace MedicalLinkLauncher
                 }
                 //sau khi copy đè tất cả các file xong, ta sẽ tiến hành gọi lại chương trình chính (MedicalLink.exe) để chạy lại chương trình
                 System.Diagnostics.Process.Start(@"MedicalLink.exe");
-                //và thoát khỏi chương trình update
                 Application.Exit();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Process.Start(@"MedicalLink.exe");
-                //và thoát khỏi chương trình update
                 Application.Exit();
             }
         }
@@ -79,7 +76,7 @@ namespace MedicalLinkLauncher
             try
             {
                 // string sqlgetVersion = "SELECT appversion from tools_version LIMIT 1;";
-                DataView dataVer = new DataView(condb.getDataTable("SELECT appversion from tools_version LIMIT 1;"));
+                DataView dataVer = new DataView(condb.getDataTable("SELECT appversion from tools_version where app_type=0 LIMIT 1;"));
                 if (dataVer != null && dataVer.Count > 0)
                 {
                     versionDatabase = dataVer[0]["appversion"].ToString();
@@ -131,38 +128,55 @@ namespace MedicalLinkLauncher
         {
             try
             {
-                string tempDirectory = "";
                 // Lay duong dan cau hinh luu luu file Share
-                DataView dataurlfile = new DataView(condb.getDataTable("select sqlversion from tools_version limit 1; "));
+                DataView dataurlfile = new DataView(condb.getDataTable("select app_link from tools_version where app_type=0 limit 1; "));
                 if (dataurlfile != null && dataurlfile.Count > 0)
                 {
-                    tempDirectory = dataurlfile[0]["sqlversion"].ToString();
-                }
-
-                //xác định thư mục hiện thời, nơi chương trình đang chạy
-                string currentDirectory = Environment.CurrentDirectory;
-                //xác định thư mục tạm, nơi Program1.exe đã tải các file cần cập nhật về
-                // string tempDirectory = Environment.CurrentDirectory + "\\" + TEMP_DIR;
-                //lấy danh sách tất cả các file trong thư mục tạm
-                string[] fileList = Directory.GetFiles(tempDirectory);
-                //duyệt từng file và copy đè lên file cũ trong thư mục đang chạy chương trình
-                foreach (string sourceFile in fileList)
-                {
-
-                    //tách tên file ra khỏi đường dẫn (tên file sẽ dùng để tạo đường dẫn đích cần copy đè)
-                    string fileName = Path.GetFileName(sourceFile);
-                    //tạo đường dẫn đích để copy file mới tới
-                    string destinationFile = currentDirectory + "\\" + fileName;
-
-
-                    File.Copy(sourceFile, destinationFile, true);
+                    string tempDirectory = dataurlfile[0]["app_link"].ToString();
+                    CopyFolder(tempDirectory, Environment.CurrentDirectory);
                 }
             }
             catch (Exception)
             {
-                throw;
             }
         }
+        private static void CopyFolder(string SourceFolder, string DestFolder)
+        {
+            //if (Directory.Exists(DestFolder)) // folder ton tai thi moi thuc hien copy
+            //{
+            Directory.CreateDirectory(DestFolder); //Tao folder moi
+            string[] files = Directory.GetFiles(SourceFolder);
+            //Neu co file thy phai copy file
+            foreach (string file in files)
+            {
+                try
+                {
+                    string name = Path.GetFileName(file);
+                    string dest = Path.Combine(DestFolder, name);
+                    File.Copy(file, dest, true);
+                }
+                catch (Exception ex)
+                {
+                    continue;
+                }
+            }
+
+            string[] folders = Directory.GetDirectories(SourceFolder);
+            foreach (string folder in folders)
+            {
+                string name = Path.GetFileName(folder);
+                string dest = Path.Combine(DestFolder, name);
+                CopyFolder(folder, dest);
+            }
+            //}
+            //else //chua co thi tao folder moi va copy
+            //{
+            //    Directory.CreateDirectory(DestFolder); //Tao folder moi
+            //    CopyFolder(SourceFolder,DestFolder);
+            //}
+        }
+
+
         private static void CreateTempDirectory()
         {
             try

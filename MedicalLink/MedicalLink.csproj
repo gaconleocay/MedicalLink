@@ -235,10 +235,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.Designer.cs">
+      <DependentUpon>BCPhauThuatThuThuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuatProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Base\bienTrongBaoCao.cs" />
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
     <Compile Include="Base\UtilsTable.cs" />
     <Compile Include="BaoCao\BaoCaoBHYT21\ucBBHYT21Chenh.cs">
@@ -738,6 +748,9 @@
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenh.resx">
       <DependentUpon>ucBaoCaoBHYT21_NewChenh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.resx">
+      <DependentUpon>BCPhauThuatThuThuat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCPTTT\frmLayNhomDichVu.resx">
       <DependentUpon>frmLayNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -942,12 +955,24 @@
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="Documents\Huongdansudung.docx" />
-    <None Include="Documents\Tools_DMDVChenh_New.xls" />
-    <None Include="Documents\Tools_DMDVTuongDuong.xls" />
-    <None Include="Documents\Tools_DMDV_chuan.xls" />
-    <None Include="Documents\Tools_DMThuoc_chuan.xls" />
-    <None Include="Documents\Tools_tblUser.xls" />
+    <Content Include="Documents\Huongdansudung.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Documents\Tools_DMDVChenh_New.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Documents\Tools_DMDVTuongDuong.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Documents\Tools_DMDV_chuan.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Documents\Tools_DMThuoc_chuan.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Documents\Tools_tblNhanVien.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Library\Aspose.Cells.lic" />
     <None Include="Library\Aspose.Words.lic" />
     <None Include="Properties\Settings.settings">
@@ -959,6 +984,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Images\excel-3-16.png" />
+    <None Include="Images\excel-3-24.png" />
+    <None Include="Images\excel-3-32.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -968,19 +996,41 @@
     <Content Include="Library\Microsoft.Office.Interop.Word.dll" />
     <Content Include="Library\Mono.Security.dll" />
     <Content Include="Library\Npgsql.dll" />
-    <Content Include="Templates\BC_PhauThuatThuThuat_01.xlsx">
+    <Content Include="Templates\BC_PhauThuatThuThuat_GMHT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_CHUNG.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_MAT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_RHM.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_TMH.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_TT_CHUNG.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_TT_KHOAKHAC.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_TT_MAT.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Documents\Huong dan.txt" />
+    <Content Include="Documents\Huong dan.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Images\edit-2-16.png" />
     <None Include="Images\save-16.png" />
     <None Include="Images\recurring-appointment-16.png" />
     <None Include="Images\recurring-appointment-32.png" />
     <None Include="Images\ok-16.png" />
-    <Content Include="Documents\SQL_CanThiet.SQL" />
     <None Include="Images\Logo_VT_1.png" />
     <Content Include="Logo_VT_1.ico" />
     <None Include="Images\arrow-32-16.png" />

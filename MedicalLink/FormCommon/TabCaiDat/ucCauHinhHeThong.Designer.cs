@@ -186,6 +186,8 @@
             // 
             this.txtOptionNote.Location = new System.Drawing.Point(98, 164);
             this.txtOptionNote.Name = "txtOptionNote";
+            this.txtOptionNote.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOptionNote.Properties.Appearance.Options.UseFont = true;
             this.txtOptionNote.Size = new System.Drawing.Size(309, 217);
             this.txtOptionNote.TabIndex = 6;
             // 
@@ -212,6 +214,8 @@
             // 
             this.txtOptionName.Location = new System.Drawing.Point(98, 50);
             this.txtOptionName.Name = "txtOptionName";
+            this.txtOptionName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOptionName.Properties.Appearance.Options.UseFont = true;
             this.txtOptionName.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtOptionName.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtOptionName.Size = new System.Drawing.Size(309, 62);

@@ -19,6 +19,8 @@ namespace MedicalLink.Base
                 //permissiontype = 3 bao cao
                 //permissiontype = 4 phan quyen thao tac
                 //permissiontype = 5 Dashboard
+                //permissiontype = 10 Bao cao in ra
+
                 //System
                 ClassCommon.classPermission SYS_01 = new ClassCommon.classPermission();
                 SYS_01.permissioncheck = false;
@@ -272,81 +274,160 @@ namespace MedicalLink.Base
                 REPORT_07.permissionnote = "Tìm dịch vụ/thuốc không có mã trong danh mục";
                 lstresult.Add(REPORT_07);
 
-                //Dashboard
                 ClassCommon.classPermission REPORT_08 = new ClassCommon.classPermission();
                 REPORT_08.permissioncheck = false;
                 REPORT_08.permissioncode = "REPORT_08";
-                REPORT_08.permissionname = "Dashboard BC quản lý tổng thể khoa";
-                REPORT_08.permissiontype = 5;
-                REPORT_08.permissionnote = "Dashboard BC quản lý tổng thể khoa. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
+                REPORT_08.permissionname = "Báo cáo phẫu thuật thủ thuật (doanh thu chia bác sĩ)";
+                REPORT_08.permissiontype = 3;
+                REPORT_08.permissionnote = "Báo cáo phẫu thuật thủ thuật (doanh thu chia bác sĩ)";
                 lstresult.Add(REPORT_08);
 
-                ClassCommon.classPermission REPORT_09 = new ClassCommon.classPermission();
-                REPORT_09.permissioncheck = false;
-                REPORT_09.permissioncode = "REPORT_09";
-                REPORT_09.permissionname = "Dashboard BC bệnh nhân nội trú";
-                REPORT_09.permissiontype = 5;
-                REPORT_09.permissionnote = "Dashboard BC bệnh nhân nội trú. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
-                lstresult.Add(REPORT_09);
-
-                ClassCommon.classPermission REPORT_10 = new ClassCommon.classPermission();
-                REPORT_10.permissioncheck = false;
-                REPORT_10.permissioncode = "REPORT_10";
-                REPORT_10.permissionname = "Dashboard BC bệnh nhân ngoại trú";
-                REPORT_10.permissiontype = 5;
-                REPORT_10.permissionnote = "Dashboard BC bệnh nhân ngoại trú. \n Lấy theo tiêu chí thời gian bệnh nhân đến khám; doanh thu chia theo khoa/phòng chỉ định";
-                lstresult.Add(REPORT_10);
-
-                ClassCommon.classPermission REPORT_11 = new ClassCommon.classPermission();
-                REPORT_11.permissioncheck = false;
-                REPORT_11.permissioncode = "REPORT_11";
-                REPORT_11.permissionname = "Dashboard BC tổng hợp toàn viện";
-                REPORT_11.permissiontype = 5;
-                REPORT_11.permissionnote = "Dashboard BC tổng hợp toàn viện. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
-                lstresult.Add(REPORT_11);
-
-                ClassCommon.classPermission REPORT_12 = new ClassCommon.classPermission();
-                REPORT_12.permissioncheck = false;
-                REPORT_12.permissioncode = "REPORT_12";
-                REPORT_12.permissionname = "Dashboard BC doanh thu cận lâm sàng";
-                REPORT_12.permissiontype = 5;
-                REPORT_12.permissionnote = "Dashboard BC doanh thu cận lâm sàng. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng chỉ định";
-                lstresult.Add(REPORT_12);
-
-                ClassCommon.classPermission REPORT_14 = new ClassCommon.classPermission();
-                REPORT_14.permissioncheck = false;
-                REPORT_14.permissioncode = "REPORT_14";
-                REPORT_14.permissionname = "Dashboard BC xuất nhập tồn tủ trực";
-                REPORT_14.permissiontype = 5;
-                REPORT_14.permissionnote = "Dashboard BC xuất nhập tồn tủ trực";
-                lstresult.Add(REPORT_14);
-
-                ClassCommon.classPermission REPORT_15 = new ClassCommon.classPermission();
-                REPORT_15.permissioncheck = false;
-                REPORT_15.permissioncode = "REPORT_15";
-                REPORT_15.permissionname = "BC bệnh nhân sử dụng thuốc/vật tư tại khoa";
-                REPORT_15.permissiontype = 5;
-                REPORT_15.permissionnote = "BC bệnh nhân sử dụng thuốc/vật tư tại khoa";
-                lstresult.Add(REPORT_15);
 
 
-
-                //
+                //Dashboard
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();
                 DASHBOARD_01.permissioncheck = false;
                 DASHBOARD_01.permissioncode = "DASHBOARD_01";
-                DASHBOARD_01.permissionname = "Biểu đồ doanh thu khoa";
+                DASHBOARD_01.permissionname = "Dashboard BC quản lý tổng thể khoa";
                 DASHBOARD_01.permissiontype = 5;
-                DASHBOARD_01.permissionnote = "Biểu đồ doanh thu khoa";
+                DASHBOARD_01.permissionnote = "Dashboard BC quản lý tổng thể khoa. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
                 lstresult.Add(DASHBOARD_01);
 
                 ClassCommon.classPermission DASHBOARD_02 = new ClassCommon.classPermission();
                 DASHBOARD_02.permissioncheck = false;
                 DASHBOARD_02.permissioncode = "DASHBOARD_02";
-                DASHBOARD_02.permissionname = "Biểu đồ doanh thu theo khoa";
+                DASHBOARD_02.permissionname = "Dashboard BC bệnh nhân nội trú";
                 DASHBOARD_02.permissiontype = 5;
-                DASHBOARD_02.permissionnote = "Biểu đồ doanh thu theo khoa";
+                DASHBOARD_02.permissionnote = "Dashboard BC bệnh nhân nội trú. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
                 lstresult.Add(DASHBOARD_02);
+
+                ClassCommon.classPermission DASHBOARD_03 = new ClassCommon.classPermission();
+                DASHBOARD_03.permissioncheck = false;
+                DASHBOARD_03.permissioncode = "DASHBOARD_03";
+                DASHBOARD_03.permissionname = "Dashboard BC bệnh nhân ngoại trú";
+                DASHBOARD_03.permissiontype = 5;
+                DASHBOARD_03.permissionnote = "Dashboard BC bệnh nhân ngoại trú. \n Lấy theo tiêu chí thời gian bệnh nhân đến khám; doanh thu chia theo khoa/phòng chỉ định";
+                lstresult.Add(DASHBOARD_03);
+
+                ClassCommon.classPermission DASHBOARD_04 = new ClassCommon.classPermission();
+                DASHBOARD_04.permissioncheck = false;
+                DASHBOARD_04.permissioncode = "DASHBOARD_04";
+                DASHBOARD_04.permissionname = "Dashboard BC tổng hợp toàn viện";
+                DASHBOARD_04.permissiontype = 5;
+                DASHBOARD_04.permissionnote = "Dashboard BC tổng hợp toàn viện. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
+                lstresult.Add(DASHBOARD_04);
+
+                ClassCommon.classPermission DASHBOARD_05 = new ClassCommon.classPermission();
+                DASHBOARD_05.permissioncheck = false;
+                DASHBOARD_05.permissioncode = "DASHBOARD_05";
+                DASHBOARD_05.permissionname = "Dashboard BC doanh thu cận lâm sàng";
+                DASHBOARD_05.permissiontype = 5;
+                DASHBOARD_05.permissionnote = "Dashboard BC doanh thu cận lâm sàng. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng chỉ định";
+                lstresult.Add(DASHBOARD_05);
+
+                ClassCommon.classPermission DASHBOARD_06 = new ClassCommon.classPermission();
+                DASHBOARD_06.permissioncheck = false;
+                DASHBOARD_06.permissioncode = "DASHBOARD_06";
+                DASHBOARD_06.permissionname = "Dashboard BC xuất nhập tồn tủ trực";
+                DASHBOARD_06.permissiontype = 5;
+                DASHBOARD_06.permissionnote = "Dashboard BC xuất nhập tồn tủ trực";
+                lstresult.Add(DASHBOARD_06);
+
+                ClassCommon.classPermission DASHBOARD_07 = new ClassCommon.classPermission();
+                DASHBOARD_07.permissioncheck = false;
+                DASHBOARD_07.permissioncode = "DASHBOARD_07";
+                DASHBOARD_07.permissionname = "BC bệnh nhân sử dụng thuốc/vật tư tại khoa";
+                DASHBOARD_07.permissiontype = 5;
+                DASHBOARD_07.permissionnote = "BC bệnh nhân sử dụng thuốc/vật tư tại khoa";
+                lstresult.Add(DASHBOARD_07);
+
+
+
+                //
+                ClassCommon.classPermission DASHBOARD_08 = new ClassCommon.classPermission();
+                DASHBOARD_08.permissioncheck = false;
+                DASHBOARD_08.permissioncode = "DASHBOARD_08";
+                DASHBOARD_08.permissionname = "Biểu đồ doanh thu khoa";
+                DASHBOARD_08.permissiontype = 5;
+                DASHBOARD_08.permissionnote = "Biểu đồ doanh thu khoa";
+                lstresult.Add(DASHBOARD_08);
+
+                ClassCommon.classPermission DASHBOARD_09 = new ClassCommon.classPermission();
+                DASHBOARD_09.permissioncheck = false;
+                DASHBOARD_09.permissioncode = "DASHBOARD_09";
+                DASHBOARD_09.permissionname = "Biểu đồ doanh thu theo khoa";
+                DASHBOARD_09.permissiontype = 5;
+                DASHBOARD_09.permissionnote = "Biểu đồ doanh thu theo khoa";
+                lstresult.Add(DASHBOARD_09);
+
+
+                //Bao cao in ra
+                ClassCommon.classPermission BAOCAO_001 = new ClassCommon.classPermission();
+                BAOCAO_001.permissioncheck = false;
+                BAOCAO_001.permissioncode = "BAOCAO_001";
+                BAOCAO_001.permissionname = "Báo cáo Phẫu thuật - Khoa Gây mê hồi tỉnh";
+                BAOCAO_001.permissiontype = 10;
+                BAOCAO_001.permissionnote = "Báo cáo Phẫu thuật - Khoa Gây mê hồi tỉnh";
+                lstresult.Add(BAOCAO_001);
+
+                ClassCommon.classPermission BAOCAO_002 = new ClassCommon.classPermission();
+                BAOCAO_002.permissioncheck = false;
+                BAOCAO_002.permissioncode = "BAOCAO_002";
+                BAOCAO_002.permissionname = "Báo cáo Phẫu thuật - Khoa Tai mũi họng";
+                BAOCAO_002.permissiontype = 10;
+                BAOCAO_002.permissionnote = "Báo cáo Phẫu thuật - Khoa Tai mũi họng";
+                lstresult.Add(BAOCAO_002);
+
+                ClassCommon.classPermission BAOCAO_003 = new ClassCommon.classPermission();
+                BAOCAO_003.permissioncheck = false;
+                BAOCAO_003.permissioncode = "BAOCAO_003";
+                BAOCAO_003.permissionname = "Báo cáo Phẫu thuật - Khoa Răng hàm mặt";
+                BAOCAO_003.permissiontype = 10;
+                BAOCAO_003.permissionnote = "Báo cáo Phẫu thuật - Khoa Răng hàm mặt";
+                lstresult.Add(BAOCAO_003);
+
+                ClassCommon.classPermission BAOCAO_004 = new ClassCommon.classPermission();
+                BAOCAO_004.permissioncheck = false;
+                BAOCAO_004.permissioncode = "BAOCAO_004";
+                BAOCAO_004.permissionname = "Báo cáo Phẫu thuật - Khoa Mắt";
+                BAOCAO_004.permissiontype = 10;
+                BAOCAO_004.permissionnote = "Báo cáo Phẫu thuật - Khoa Mắt";
+                lstresult.Add(BAOCAO_004);
+
+                ClassCommon.classPermission BAOCAO_005 = new ClassCommon.classPermission();
+                BAOCAO_005.permissioncheck = false;
+                BAOCAO_005.permissioncode = "BAOCAO_005";
+                BAOCAO_005.permissionname = "Báo cáo Phẫu thuật - Chung";
+                BAOCAO_005.permissiontype = 10;
+                BAOCAO_005.permissionnote = "Báo cáo Phẫu thuật - Chung";
+                lstresult.Add(BAOCAO_005);
+
+                ClassCommon.classPermission BAOCAO_006 = new ClassCommon.classPermission();
+                BAOCAO_006.permissioncheck = false;
+                BAOCAO_006.permissioncode = "BAOCAO_006";
+                BAOCAO_006.permissionname = "Báo cáo Thủ thuật - Khoa Mắt";
+                BAOCAO_006.permissiontype = 10;
+                BAOCAO_006.permissionnote = "Báo cáo Thủ thuật - Khoa Mắt";
+                lstresult.Add(BAOCAO_006);
+
+                ClassCommon.classPermission BAOCAO_007 = new ClassCommon.classPermission();
+                BAOCAO_007.permissioncheck = false;
+                BAOCAO_007.permissioncode = "BAOCAO_007";
+                BAOCAO_007.permissionname = "Báo cáo Thủ thuật - Các khoa khác (trừ khoa mắt & PK mắt)";
+                BAOCAO_007.permissiontype = 10;
+                BAOCAO_007.permissionnote = "Báo cáo Thủ thuật - Các khoa khác (trừ khoa mắt & PK mắt)";
+                lstresult.Add(BAOCAO_007);
+
+                ClassCommon.classPermission BAOCAO_008 = new ClassCommon.classPermission();
+                BAOCAO_008.permissioncheck = false;
+                BAOCAO_008.permissioncode = "BAOCAO_008";
+                BAOCAO_008.permissionname = "Báo cáo Thủ thuật - Chung";
+                BAOCAO_008.permissiontype = 10;
+                BAOCAO_008.permissionnote = "Báo cáo Thủ thuật - Chung";
+                lstresult.Add(BAOCAO_008);
+
+
+
 
             }
             catch (Exception ex)

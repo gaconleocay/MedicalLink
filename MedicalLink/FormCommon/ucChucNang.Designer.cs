@@ -248,7 +248,7 @@
             this.gridDSBCColumeStt.OptionsColumn.FixedWidth = true;
             this.gridDSBCColumeStt.Visible = true;
             this.gridDSBCColumeStt.VisibleIndex = 0;
-            this.gridDSBCColumeStt.Width = 44;
+            this.gridDSBCColumeStt.Width = 45;
             // 
             // gridColumn7
             // 
@@ -286,7 +286,7 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 2;
-            this.gridColumn8.Width = 307;
+            this.gridColumn8.Width = 376;
             // 
             // permissioncheck1
             // 
@@ -436,6 +436,7 @@
             this.gridColumn2.MinWidth = 100;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.FixedWidth = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 100;

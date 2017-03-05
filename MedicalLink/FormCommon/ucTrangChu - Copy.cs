@@ -53,7 +53,6 @@ namespace MedicalLink.FormCommon
                 LoadThongTinCoBan();
                 LoadVersion();
                 LoadLogoThongTin();
-                LoadThongTinVeCSYT();
             }
             catch (Exception ex)
             {
@@ -213,25 +212,6 @@ namespace MedicalLink.FormCommon
             try
             {
                 pictureLogo.Image = Image.FromFile(@"Picture\logo_user.jpg");
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        private void LoadThongTinVeCSYT()
-        {
-            try
-            {
-                string thongtinbv = "SELECT hospitalcode,hospitalname,hospitaladdress,giamdocname FROM hospital limit 1;";
-                DataView dtthongtindv = new DataView(condb.getDataTable(thongtinbv));
-                if (dtthongtindv!=null && dtthongtindv.Count>0)
-                {
-                    lblTenCSYT.Text = dtthongtindv[0]["hospitalname"].ToString();
-                    lblMaCSYT.Text = dtthongtindv[0]["hospitalcode"].ToString();
-                    lblDiaChi.Text = dtthongtindv[0]["hospitaladdress"].ToString();
-                    lblGiamDocBV.Text = dtthongtindv[0]["giamdocname"].ToString();
-                }
             }
             catch (Exception ex)
             {

@@ -172,7 +172,7 @@ namespace MedicalLink.FormCommon
             {
                 if (hoi != DialogResult.Retry)
                 {
-                    hoi = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    hoi = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình ?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                     if (hoi == DialogResult.No)
                         e.Cancel = true;
                 }

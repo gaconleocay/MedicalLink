@@ -117,35 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="panel1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="timerThongBao.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>15, 6</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="xtraTabTTCoBan.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="repositoryItemButton_View.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAE0SURBVDhPY2BAAw0M/7mAOASIJwLxWiBeDcSTgTgCiHnQ1cP5QEkWIC4C4rdA/B8Hfg8UrwCp
-        RTEIaut2PBrRDdyL4hogZzkJmmGGrQfqYWAAEi5kaIYZ4gcyABRQyE68D+TLAbECEM+HynlBxUCBi6x2
-        K8iAp2iCt2EBBBTvh8oZgcSAbBs0tW9Bgp/RBJ8D+SAbmZAMKACyZbAY8B1kwE0sYfAQFEBAvBBJzgrI
-        9kBT+xCkCJRIkP0FcpEdEPMB8UuoXDcWA0F65oIMUAHi70iGgGz3AeKTSGIpQDYsQGGW/QaKaYHDC8jI
-        wOINXKkRJl6Enho3E2kIyGYMzVJAwY8EDPgJlAelPgN0m0GaryJp/goKHGg4xAFpEAalVgGsOREoAcpd
-        W4F4KhCHATHuLIvFBADd+9+XKMSqwAAAAABJRU5ErkJggg==
+        YQUAAAEGSURBVDhPlVOrDsJAEDxRQRB8CgrFd/AlKCQWgUQj+QAUIahKJIqgqgiCENI0CELKzHWPLO1e
+        Ck2m2+5junuzdVNXroEbsAG6Tl14HwAn4CpgHsH3DBg53HKgFOw0CZ7nKhZytD2ToJCkF+wFWAEJG4Ht
+        AwfxM8YcTVBogky3X39G4cToxhM8JBAliBSzk3YCo3gmB9hOEClm11SABHl0BATHtZn5ZX80sHuJeRUa
+        ZwBfR/n5pU+xUmcB/9BUAYGekuyruKEUT9JSAT7ug1kMv9+TME+MIAkzGzuxRKxa+1gHLUtFFaq1pxQy
+        whP2+COYy8PdkuBek8v6aWI+v4mpSEY5/0X6Bq9FqScWGipzAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="xtraTabCaiDat.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAADXSURBVDhPrZPBDYMwDEVz6ACIY4dCiAGYpatx6hAdoEI99thD6hds9EVRK5Eifcl2/I2/46S0
-        +S4pnyJk9gTEX8+2vOJbcm94GUb3s9nZ7dHP+l2yJ3UQDA/D1W18bGLY3UcB/zPks+EpxNKBgDNyyF06
-        QbO3RmKQb2YPhsaBTUxzkLrMBM3SIontznBbKYKcMqf1E82DDHS2+D3a9a7KTJTIVanOxgtAjvjsMSRp
-        7kT7dQVkSeLaVALtf5dQPcR/XSMrfGyRNld5bJVlkHWPKVZbCv58zm/h1XdOLTnRFwAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
-  <metadata name="timerThongBao.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>26</value>
+    <value>33</value>
   </metadata>
 </root>

@@ -30,6 +30,9 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTable_RaVienChuaTT_Tmp();
                 result = KetNoiSCDLProcess.CreateTable_RaVienDaTT_Tmp();
                 result = KetNoiSCDLProcess.CreateTableOption();
+                result = KetNoiSCDLProcess.CreateTableTblNhanVien();
+
+
                 result = KetNoiSCDLProcess.CreateView_VienphiMoney();
                 result = KetNoiSCDLProcess.CreateView_ServicepriceDepartment();
                 //result= KetNoiSCDLProcess.UpdateTableUser();
@@ -296,7 +299,7 @@ namespace MedicalLink.FormCommon
             bool result = false;
             try
             {
-                string sqloption = "CREATE TABLE IF NOT EXISTS tools_version (versionid serial NOT NULL, appversion text, updateapp bytea, appsize integer, sqlversion text, updatesql bytea, sqlsize integer, sync_flag integer, update_flag integer, CONSTRAINT tools_version_pkey PRIMARY KEY (versionid));";
+                string sqloption = "CREATE TABLE IF NOT EXISTS tools_version (versionid serial NOT NULL, appversion text, app_link text,  app_type integer, updateapp bytea, appsize integer, sqlversion text, updatesql bytea, sqlsize integer, sync_flag integer,  update_flag integer,  CONSTRAINT tools_version_pkey PRIMARY KEY (versionid));   ";
                 if (condb.ExecuteNonQuery(sqloption))
                 {
                     result = true;
@@ -325,8 +328,23 @@ namespace MedicalLink.FormCommon
             }
             return result;
         }
-
-
+        private static bool CreateTableTblNhanVien()
+        {
+            bool result = false;
+            try
+            {
+                string sql_tbluser = "CREATE TABLE IF NOT EXISTS tools_tblnhanvien ( nhanvienid serial NOT NULL, usercode text NOT NULL, username text, userpassword text, userstatus integer, usergnhom integer, usernote text, userhisid integer, CONSTRAINT tools_tblnhanvien_pkey PRIMARY KEY (nhanvienid));";
+                if (condb.ExecuteNonQuery(sql_tbluser))
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi CreateTableTblNhanVien" + ex.ToString());
+            }
+            return result;
+        }
 
         #endregion
 

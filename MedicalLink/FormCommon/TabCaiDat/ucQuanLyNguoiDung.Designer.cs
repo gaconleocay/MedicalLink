@@ -32,10 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucQuanLyNguoiDung));
             DevExpress.XtraGrid.GridFormatRule gridFormatRule1 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule2 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
             this.checker = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit5 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.panelControlThongTinUS = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxChucNang = new System.Windows.Forms.GroupBox();
             this.btnUserThem = new DevExpress.XtraEditors.SimpleButton();
@@ -78,10 +81,18 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.TabBaoCao = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControlBaoCao = new DevExpress.XtraGrid.GridControl();
+            this.gridViewBaoCao = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinUS)).BeginInit();
             this.panelControlThongTinUS.SuspendLayout();
             this.groupBoxChucNang.SuspendLayout();
@@ -108,6 +119,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlKhoaPhong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewKhoaPhong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit4)).BeginInit();
+            this.TabBaoCao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlBaoCao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewBaoCao)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,6 +179,33 @@
             this.repositoryItemCheckEdit3.AutoHeight = false;
             this.repositoryItemCheckEdit3.Name = "repositoryItemCheckEdit3";
             this.repositoryItemCheckEdit3.PictureChecked = ((System.Drawing.Image)(resources.GetObject("repositoryItemCheckEdit3.PictureChecked")));
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn10.AppearanceCell.Options.UseFont = true;
+            this.gridColumn10.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn10.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn10.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn10.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn10.Caption = "#";
+            this.gridColumn10.ColumnEdit = this.repositoryItemCheckEdit5;
+            this.gridColumn10.FieldName = "permissioncheck";
+            this.gridColumn10.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn10.Image")));
+            this.gridColumn10.MaxWidth = 25;
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 0;
+            this.gridColumn10.Width = 25;
+            // 
+            // repositoryItemCheckEdit5
+            // 
+            this.repositoryItemCheckEdit5.AutoHeight = false;
+            this.repositoryItemCheckEdit5.Name = "repositoryItemCheckEdit5";
+            this.repositoryItemCheckEdit5.PictureChecked = ((System.Drawing.Image)(resources.GetObject("repositoryItemCheckEdit5.PictureChecked")));
             // 
             // panelControlThongTinUS
             // 
@@ -354,7 +396,7 @@
             this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(93, 178);
+            this.lblThongBao.Location = new System.Drawing.Point(300, 218);
             this.lblThongBao.Name = "lblThongBao";
             this.lblThongBao.Size = new System.Drawing.Size(149, 23);
             this.lblThongBao.TabIndex = 20;
@@ -479,7 +521,8 @@
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.TabChucNang,
-            this.TabKhoaPhong});
+            this.TabKhoaPhong,
+            this.TabBaoCao});
             this.xtraTabControl1.TabPageWidth = 80;
             // 
             // TabChucNang
@@ -756,6 +799,108 @@
             this.repositoryItemCheckEdit4.AutoHeight = false;
             this.repositoryItemCheckEdit4.Name = "repositoryItemCheckEdit4";
             // 
+            // TabBaoCao
+            // 
+            this.TabBaoCao.Controls.Add(this.gridControlBaoCao);
+            this.TabBaoCao.Name = "TabBaoCao";
+            this.TabBaoCao.Size = new System.Drawing.Size(616, 502);
+            this.TabBaoCao.Text = "Báo cáo";
+            // 
+            // gridControlBaoCao
+            // 
+            this.gridControlBaoCao.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.gridControlBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlBaoCao.Location = new System.Drawing.Point(0, 0);
+            this.gridControlBaoCao.MainView = this.gridViewBaoCao;
+            this.gridControlBaoCao.Name = "gridControlBaoCao";
+            this.gridControlBaoCao.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit5,
+            this.repositoryItemCheckEdit6});
+            this.gridControlBaoCao.Size = new System.Drawing.Size(616, 502);
+            this.gridControlBaoCao.TabIndex = 3;
+            this.gridControlBaoCao.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewBaoCao});
+            // 
+            // gridViewBaoCao
+            // 
+            this.gridViewBaoCao.ColumnPanelRowHeight = 25;
+            this.gridViewBaoCao.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn11,
+            this.gridColumn12});
+            gridFormatRule3.Column = this.gridColumn10;
+            gridFormatRule3.ColumnApplyTo = this.gridColumn10;
+            gridFormatRule3.Name = "Format0";
+            gridFormatRule3.Rule = null;
+            this.gridViewBaoCao.FormatRules.Add(gridFormatRule3);
+            this.gridViewBaoCao.GridControl = this.gridControlBaoCao;
+            this.gridViewBaoCao.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, null, this.gridColumn11, "")});
+            this.gridViewBaoCao.IndicatorWidth = 35;
+            this.gridViewBaoCao.Name = "gridViewBaoCao";
+            this.gridViewBaoCao.OptionsFind.AlwaysVisible = true;
+            this.gridViewBaoCao.OptionsFind.ShowClearButton = false;
+            this.gridViewBaoCao.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            this.gridViewBaoCao.OptionsSelection.MultiSelect = true;
+            this.gridViewBaoCao.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridViewBaoCao.OptionsView.ShowGroupPanel = false;
+            this.gridViewBaoCao.RowHeight = 25;
+            this.gridViewBaoCao.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBaoCao_CustomDrawRowIndicator);
+            this.gridViewBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewBaoCao_RowCellStyle);
+            this.gridViewBaoCao.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewBaoCao_SelectionChanged);
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn9.AppearanceCell.Options.UseFont = true;
+            this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn9.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn9.Caption = "Check";
+            this.gridColumn9.FieldName = "permissioncheck2";
+            this.gridColumn9.Name = "gridColumn9";
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn11.AppearanceCell.Options.UseFont = true;
+            this.gridColumn11.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn11.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn11.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn11.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn11.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn11.Caption = "Mã báo cáo";
+            this.gridColumn11.FieldName = "permissioncode";
+            this.gridColumn11.Name = "gridColumn11";
+            this.gridColumn11.OptionsColumn.AllowEdit = false;
+            this.gridColumn11.Visible = true;
+            this.gridColumn11.VisibleIndex = 1;
+            this.gridColumn11.Width = 128;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn12.AppearanceCell.Options.UseFont = true;
+            this.gridColumn12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn12.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn12.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn12.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn12.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn12.Caption = "Tên báo cáo";
+            this.gridColumn12.FieldName = "permissionname";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 2;
+            this.gridColumn12.Width = 426;
+            // 
+            // repositoryItemCheckEdit6
+            // 
+            this.repositoryItemCheckEdit6.AutoHeight = false;
+            this.repositoryItemCheckEdit6.Name = "repositoryItemCheckEdit6";
+            // 
             // timerThongBao
             // 
             this.timerThongBao.Interval = 2000;
@@ -784,6 +929,7 @@
             this.Load += new System.EventHandler(this.ucQuanLyNguoiDung_Load);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinUS)).EndInit();
             this.panelControlThongTinUS.ResumeLayout(false);
             this.groupBoxChucNang.ResumeLayout(false);
@@ -812,6 +958,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlKhoaPhong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewKhoaPhong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit4)).EndInit();
+            this.TabBaoCao.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlBaoCao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewBaoCao)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
             this.ResumeLayout(false);
 
@@ -867,5 +1017,14 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraTab.XtraTabPage TabBaoCao;
+        private DevExpress.XtraGrid.GridControl gridControlBaoCao;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewBaoCao;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit6;
     }
 }

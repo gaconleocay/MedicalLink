@@ -14,7 +14,7 @@ namespace MedicalLink.Base
         static MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         public static bool ChkPerModule(string percode)
         {
-            string en_percode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(percode, true);
+            //string en_percode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(percode, true);
             bool result = false;
             try
             {
@@ -24,7 +24,7 @@ namespace MedicalLink.Base
                 }
                 else
                 {
-                    var checkPhanQuyen = SessionLogin.SessionlstPhanQuyenChucNang.Where(s => s.permissioncode.Contains(en_percode)).ToList();
+                    var checkPhanQuyen = SessionLogin.SessionlstPhanQuyenChucNang.Where(s => s.permissioncode.Contains(percode)).ToList();
                     if (checkPhanQuyen != null && checkPhanQuyen.Count > 0)
                     {
                         result = true;
@@ -53,8 +53,10 @@ namespace MedicalLink.Base
                     {
                         ClassCommon.classPermission itemPer = new ClassCommon.classPermission();
                         //itemPer.permissionid = Convert.ToInt32(dv[i]["permissionid"]);
-                        itemPer.permissioncode = dv[i]["permissioncode"].ToString();
-                        itemPer.permissionname = dv[i]["permissionname"].ToString();
+                        itemPer.permissioncode = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissioncode"].ToString(),true);
+                        itemPer.permissionname = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissionname"].ToString(), true);
+                        itemPer.en_permissioncode = dv[i]["permissioncode"].ToString();
+                        itemPer.en_permissionname = dv[i]["permissionname"].ToString();
                         itemPer.permissioncheck = Convert.ToBoolean(dv[i]["permissioncheck"]);
                         lstPhanQuyen.Add(itemPer);
                     }

@@ -163,7 +163,9 @@ namespace MedicalLink.FormCommon
                     case "SYS_04":
                         ucResult = new ucCauHinhHeThong();
                         break;
-                    //
+
+
+                    //Chuc nang
                     case "TOOL_01":
                         ucResult = new ChucNang.ucSuaThoiGianRaVien();
                         break;
@@ -215,7 +217,10 @@ namespace MedicalLink.FormCommon
                     case "TOOL_17":
                         ucResult = new ChucNang.ucSuaDanhMucDichVu();
                         break;
-                    //
+
+
+
+                    //Bao cao
                     case "REPORT_01":
                         ucResult = new ChucNang.ucBCDSBNSDdv();
                         break;
@@ -237,38 +242,43 @@ namespace MedicalLink.FormCommon
                     case "REPORT_07":
                         ucResult = new ChucNang.ucTimThuocDVSaiMa();
                         break;
-                    //
                     case "REPORT_08":
+                        ucResult = new BaoCao.BCPhauThuatThuThuat();
+                        break;
+
+
+
+                    //Dashboard
+                    case "DASHBOARD_01":
                         ucResult = new Dashboard.ucBaoCaoTongTheKhoa();
                         break;
-                    case "REPORT_09":
+                    case "DASHBOARD_02":
                         ucResult = new Dashboard.ucBaoCaoBenhNhanNoiTru();
                         break;
-                    case "REPORT_10":
+                    case "DASHBOARD_03":
                         ucResult = new Dashboard.ucBaoCaoBenhNhanNgoaiTru();
                         break;
-                    case "REPORT_11":
+                    case "DASHBOARD_04":
                         ucResult = new Dashboard.ucBaoCaoTongHopToanVien();
                         break;
-                    case "REPORT_12":
+                    case "DASHBOARD_05":
                         ucResult = new Dashboard.ucBaoCaoCanLamSang();
                         break;
-
-
-                    case "REPORT_14":
+                    case "DASHBOARD_06":
                         ucResult = new Dashboard.ucBaoCaoXNTTuTruc();
                         break;
-                    case "REPORT_15":
+                    case "DASHBOARD_07":
                         ucResult = new Dashboard.ucBCBNSuDungThuocTaiKhoa();
                         break;
-
-                    //
-                    case "DASHBOARD_01":
+                    case "DASHBOARD_08":
                         ucResult = new Dashboard.ucDashboardDoanhThuTungKhoa();
                         break;
-                    case "DASHBOARD_02":
+                    case "DASHBOARD_09":
                         ucResult = new Dashboard.ucDashboardBenhNhanNoiTru();
                         break;
+
+
+
 
                     default:
                         break;

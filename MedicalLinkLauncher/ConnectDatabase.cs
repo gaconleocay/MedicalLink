@@ -32,7 +32,7 @@ namespace MedicalLinkLauncher
             catch (Exception ex)
             {
                 kiemtraketnoi = false;
-                MessageBox.Show("Không kết nối được cơ sở dữ liệu", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không kết nối được cơ sở dữ liệu.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -48,7 +48,7 @@ namespace MedicalLinkLauncher
             catch (Exception ex)
             {
                 kiemtraketnoi = false;
-                MessageBox.Show("Có lỗi khi đóng kết nối đến CSDL", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Có lỗi khi đóng kết nối đến CSDL.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -94,6 +94,10 @@
             // 
             this.barStaticItem1.Caption = "Chức năng:";
             this.barStaticItem1.Id = 0;
+            this.barStaticItem1.ItemAppearance.Disabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barStaticItem1.ItemAppearance.Disabled.Options.UseFont = true;
+            this.barStaticItem1.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barStaticItem1.ItemAppearance.Normal.Options.UseFont = true;
             this.barStaticItem1.Name = "barStaticItem1";
             this.barStaticItem1.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
@@ -101,7 +105,11 @@
             // 
             this.lblStatusTenBC.Caption = "Home";
             this.lblStatusTenBC.Id = 1;
+            this.lblStatusTenBC.ItemAppearance.Disabled.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatusTenBC.ItemAppearance.Disabled.Options.UseFont = true;
+            this.lblStatusTenBC.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatusTenBC.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Red;
+            this.lblStatusTenBC.ItemAppearance.Normal.Options.UseFont = true;
             this.lblStatusTenBC.ItemAppearance.Normal.Options.UseForeColor = true;
             this.lblStatusTenBC.Name = "lblStatusTenBC";
             this.lblStatusTenBC.TextAlignment = System.Drawing.StringAlignment.Near;
@@ -111,6 +119,8 @@
             this.StatusDBName.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.StatusDBName.Caption = "StatusDBName";
             this.StatusDBName.Id = 4;
+            this.StatusDBName.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusDBName.ItemAppearance.Normal.Options.UseFont = true;
             this.StatusDBName.Name = "StatusDBName";
             this.StatusDBName.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
@@ -119,6 +129,8 @@
             this.StatusUsername.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.StatusUsername.Caption = "StatusUsername";
             this.StatusUsername.Id = 3;
+            this.StatusUsername.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusUsername.ItemAppearance.Normal.Options.UseFont = true;
             this.StatusUsername.Name = "StatusUsername";
             this.StatusUsername.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
@@ -127,6 +139,8 @@
             this.StatusClock.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
             this.StatusClock.Caption = "StatusClock";
             this.StatusClock.Id = 2;
+            this.StatusClock.ItemAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusClock.ItemAppearance.Normal.Options.UseFont = true;
             this.StatusClock.Name = "StatusClock";
             this.StatusClock.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
@@ -135,28 +149,28 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1184, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1234, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 617);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1184, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 716);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1234, 26);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 617);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 716);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1184, 0);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 617);
+            this.barDockControlRight.Location = new System.Drawing.Point(1234, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 716);
             // 
             // tabPaneMenu
             // 
@@ -173,9 +187,9 @@
             this.tabMenuDashboard,
             this.tabMenuChucNang,
             this.tabMenuTrangChu});
-            this.tabPaneMenu.RegularSize = new System.Drawing.Size(1184, 617);
+            this.tabPaneMenu.RegularSize = new System.Drawing.Size(1234, 716);
             this.tabPaneMenu.SelectedPage = this.tabMenuTrangChu;
-            this.tabPaneMenu.Size = new System.Drawing.Size(1184, 617);
+            this.tabPaneMenu.Size = new System.Drawing.Size(1234, 716);
             this.tabPaneMenu.TabIndex = 5;
             this.tabPaneMenu.Text = "MENU";
             this.tabPaneMenu.SelectedPageChanged += new DevExpress.XtraBars.Navigation.SelectedPageChangedEventHandler(this.tabPaneMenu_SelectedPageChanged);
@@ -188,7 +202,7 @@
             this.tabMenuTrangChu.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuTrangChu.Name = "tabMenuTrangChu";
             this.tabMenuTrangChu.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuTrangChu.Size = new System.Drawing.Size(1166, 569);
+            this.tabMenuTrangChu.Size = new System.Drawing.Size(1216, 668);
             // 
             // tabMenuDashboard
             // 
@@ -242,7 +256,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 642);
+            this.ClientSize = new System.Drawing.Size(1234, 742);
             this.Controls.Add(this.tabPaneMenu);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

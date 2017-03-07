@@ -47,7 +47,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 //linq groupby
-                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
                     cboKhoa.Properties.DataSource = lstDSKhoa;
@@ -133,10 +133,18 @@ namespace MedicalLink.BaoCao
                     {
                         timerThongBao.Start();
                         lblThongBao.Visible = true;
-                        lblThongBao.Text = "Vui lòng chọn khoa/phòng";
+                        lblThongBao.Text = "Vui lòng chọn khoa";
+                        return;
+                    }
+                    if (chkcomboListDSPhong.Properties.Items.GetCheckedValues().Count==0)
+                    {
+                        timerThongBao.Start();
+                        lblThongBao.Visible = true;
+                        lblThongBao.Text = "Vui lòng chọn phòng/buồng điều trị";
                         return;
                     }
                 }
+                gridControlDataBCPTTT.DataSource = null;
                 LayDuLieuBaoCao_ChayMoi();
             }
             catch (Exception ex)
@@ -177,6 +185,7 @@ namespace MedicalLink.BaoCao
                 if (cboLoaiBaoCao.EditValue == "BAOCAO_001") //gay me
                 {
                     cboKhoa.Enabled = false;
+                    chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = true;
                     gridBand_phumo1.Visible = true;
@@ -188,17 +197,19 @@ namespace MedicalLink.BaoCao
                 else if (cboLoaiBaoCao.EditValue == "BAOCAO_002") //tai mui hong
                 {
                     cboKhoa.Enabled = false;
+                    chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = false;
                     gridBand_phumo1.Visible = true;
                     gridBand_phumo2.Visible = true;
                     gridBand_giupviec1.Visible = true;
-                    gridBand_giupviec2.Visible = true; 
+                    gridBand_giupviec2.Visible = true;
                     gridBand_PhuMe.Visible = false;
                 }
                 else if (cboLoaiBaoCao.EditValue == "BAOCAO_003")//rang ham mat
                 {
                     cboKhoa.Enabled = false;
+                    chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = false;
                     gridBand_phumo1.Visible = true;
@@ -210,6 +221,7 @@ namespace MedicalLink.BaoCao
                 else if (cboLoaiBaoCao.EditValue == "BAOCAO_004")//mat
                 {
                     cboKhoa.Enabled = false;
+                    chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = false;
                     gridBand_phumo1.Visible = true;
@@ -218,9 +230,10 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = true;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_005")//khoa khac
+                else if (cboLoaiBaoCao.EditValue == "BAOCAO_005")//khoa khac    ------
                 {
                     cboKhoa.Enabled = true;
+                    chkcomboListDSPhong.Enabled = true;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = true;
                     gridBand_phumo1.Visible = true;
@@ -232,6 +245,7 @@ namespace MedicalLink.BaoCao
                 else if (cboLoaiBaoCao.EditValue == "BAOCAO_006")//thu thuat - mat
                 {
                     cboKhoa.Enabled = false;
+                    chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = false;
                     gridBand_gayme.Visible = false;
                     gridBand_phumo1.Visible = false;
@@ -243,6 +257,7 @@ namespace MedicalLink.BaoCao
                 else if (cboLoaiBaoCao.EditValue == "BAOCAO_007")//thua thuat - tru mat
                 {
                     cboKhoa.Enabled = false;
+                    chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = false;
                     gridBand_gayme.Visible = false;
                     gridBand_phumo1.Visible = true;
@@ -251,9 +266,10 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_008")//thu thuat khac
+                else if (cboLoaiBaoCao.EditValue == "BAOCAO_008")//thu thuat khac    ---------
                 {
                     cboKhoa.Enabled = true;
+                    chkcomboListDSPhong.Enabled = true;
                     bandedGridColumn_tyle.Visible = false;
                     gridBand_gayme.Visible = false;
                     gridBand_phumo1.Visible = true;
@@ -321,6 +337,31 @@ namespace MedicalLink.BaoCao
                 }
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBCPTTT);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+        private void cboKhoa_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                chkcomboListDSPhong.Properties.Items.Clear();
+                if (cboKhoa.EditValue != null)
+                {
+                    //Load danh muc phong thuoc khoa
+                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(cboKhoa.EditValue.ToString())).OrderBy(o=>o.departmentname).ToList();
+                    if (lstDSPhong != null && lstDSPhong.Count > 0)
+                    {
+                        chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
+                        chkcomboListDSPhong.Properties.DisplayMember = "departmentname";
+                        chkcomboListDSPhong.Properties.ValueMember = "departmentid";
+                    }
+               
+                    chkcomboListDSPhong.CheckAll();
+                }
             }
             catch (Exception ex)
             {

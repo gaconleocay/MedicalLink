@@ -92,7 +92,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                string sql = "SELECT degp.departmentgroupid, degp.departmentgroupname, de.departmentid, de.departmentcode, de.departmentname, de.departmenttype FROM department de inner join departmentgroup degp on de.departmentgroupid=degp.departmentgroupid WHERE degp.departmentgrouptype in (1,4,11) and de.departmenttype in (2,3,9) ORDER BY degp.departmentgroupid,de.departmenttype, de.departmentname;";
+                string sql = "SELECT degp.departmentgroupid, degp.departmentgroupname, de.departmentid, de.departmentcode, de.departmentname, de.departmenttype FROM department de inner join departmentgroup degp on de.departmentgroupid=degp.departmentgroupid WHERE degp.departmentgrouptype in (1,4,10,11) and de.departmenttype in (2,3,9) ORDER BY degp.departmentgroupid,de.departmenttype, de.departmentname;";
                 DataView dataPhong = new DataView(condb.getDataTable(sql));
                 lstUserDepartment = new List<ClassCommon.classUserDepartment>();
                 for (int i = 0; i < dataPhong.Count; i++)

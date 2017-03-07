@@ -464,10 +464,7 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                for (int i = 0; i < chkcomboListDSKhoa.Properties.Items.Count; i++)
-                {
-                    chkcomboListDSKhoa.Properties.Items[i].CheckState = CheckState.Checked;
-                }
+                chkcomboListDSKhoa.CheckAll();
             }
             catch (Exception ex)
             {

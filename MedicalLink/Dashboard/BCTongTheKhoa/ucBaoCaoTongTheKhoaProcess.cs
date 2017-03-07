@@ -304,11 +304,11 @@ namespace MedicalLink.Dashboard
                 }
                 if (Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"]) != 0)
                 {
-                    dataRow_13.DaTT_value = Math.Round(((Convert.ToDecimal(dataBC[4][0]["doanhthu_tienthuoc"]) / Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"])) * 100), 1).ToString() + " %";
+                    dataRow_13.DoanhThu_value = Math.Round(((Convert.ToDecimal(dataBC[4][0]["doanhthu_tienthuoc"]) / Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"])) * 100), 1).ToString() + " %";
                 }
                 else
                 {
-                    dataRow_13.DaTT_value = "0 %";
+                    dataRow_13.DoanhThu_value = "0 %";
                 }
                 BCDashboardQLTongTheKhoa dataRow_14 = new BCDashboardQLTongTheKhoa();
                 dataRow_14.BNDangDT_stt = 14;

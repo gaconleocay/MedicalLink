@@ -1,19 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using MedicalLink.ClassCommon;
+using System.Collections.Generic;
+using System.Linq;
+using DevExpress.XtraGrid.Views.Grid;
+using System.Drawing;
+
 
 namespace MedicalLink.Dashboard
 {
-    public partial class ucDashboardDoanhThuTungKhoa : UserControl
+    /// <summary>
+    /// BC doanh thu theo khoa ra viện
+    /// </summary>
+    public partial class ucBCTongHopDoanhThuKhoa : UserControl
     {
-         #region Declaration
+        #region Declaration
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         string thoiGianTu = "";
         string thoiGianDen = "";
@@ -25,12 +28,12 @@ namespace MedicalLink.Dashboard
         #endregion
 
         #region Load
-        public ucDashboardDoanhThuTungKhoa()
+        public ucBCTongHopDoanhThuKhoa()
         {
             InitializeComponent();
         }
 
-        private void ucDashboardDoanhThuTungKhoa_Load(object sender, EventArgs e)
+        private void ucBCTongHopDoanhThuKhoa_Load(object sender, EventArgs e)
         {
             KhoangThoiGianLayDuLieu = GlobalStore.KhoangThoiGianLayDuLieu;
             //Lấy thời gian lấy BC mặc định là ngày hiện tại
@@ -84,6 +87,7 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+
         private void LoadDuLieuMacDinh()
         {
             try
@@ -287,7 +291,7 @@ namespace MedicalLink.Dashboard
                 dataBCSDO.Add(dataRow_16);
                 dataBCSDO.Add(dataRow_17);
 
-                chartControlDTKhoa.DataSource = dataBCSDO;
+                gridControlDataQLTTKhoa.DataSource = dataBCSDO;
             }
             catch (Exception ex)
             {
@@ -390,7 +394,7 @@ namespace MedicalLink.Dashboard
                 }
                 else
                 {
-                    chartControlDTKhoa.DataSource = null;
+                    gridControlDataQLTTKhoa.DataSource = null;
                     LayDuLieuBaoCao_ChayMoi();
                 }
             }
@@ -489,13 +493,86 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        private void spinThoiGianCapNhat_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (spinThoiGianCapNhat.Value != 0)
+                {
+                    if (cboKhoa.EditValue == null)
+                    {
+                        timerThongBao.Start();
+                        lblThongBao.Visible = true;
+                        lblThongBao.Text = MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG;
+                    }
+                    else
+                    {
+                        thoiGianCapNhat = Convert.ToInt64(spinThoiGianCapNhat.Value.ToString()) * 60;
+                        tickCurrentVal = thoiGianCapNhat;
+                        timerTuDongCapNhat.Start();
+                        //Lay thoi gian tu dong cap nhat = thoi gian trong 1 ngay
+                        dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                        dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                    }
+                }
+                else
+                {
+                    lblThoiGianConLai.Text = "Không tự động cập nhật";
+                    timerTuDongCapNhat.Stop();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void timerTuDongCapNhat_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                lblThoiGianConLai.Text = "Tự động cập nhật sau " + tickCurrentVal + " giây";
+                tickCurrentVal--;
+                if (tickCurrentVal == 0)
+                {
+                    //if (GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
+                    //{
+                    //    LayDuLieuBaoCao_DaChayDuLieu();
+                    //}
+                    //else
+                    //{
+                    LayDuLieuBaoCao_ChayMoi();
+                    //}
+                    tickCurrentVal = thoiGianCapNhat;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnSettingAdvand_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao frmCauHinh = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao();
+                frmCauHinh.MyGetData = new BCTongTheKhoa.BCTongTheKhoaTuyChonNangCao.GetString(GetDataCaiDatNangCao);
+                frmCauHinh.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
             try
             {
                 if (dataBCQLTongTheKhoaSDO != null && dataBCQLTongTheKhoaSDO.Count > 0)
                 {
-                    BCQLTongTheKhoa.BCTongTheKhoaFullSize fullSize = new BCQLTongTheKhoa.BCTongTheKhoaFullSize(dataBCQLTongTheKhoaSDO, cboKhoa.Text);
+                    BCTongTheKhoa.BCTongTheKhoaFullSize fullSize = new BCTongTheKhoa.BCTongTheKhoaFullSize(dataBCQLTongTheKhoaSDO, cboKhoa.Text);
                     fullSize.ShowDialog();
                 }
             }
@@ -528,7 +605,93 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        private void bandedGridViewDataQLTTKhoa_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            try
+            {
+                if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                    e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
+        private void bandedGridViewDataQLTTKhoa_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                int typeID = 0;
+                //loai:
+                //=1: BN hien dien
+                //=2: BN chuyen di
+                //=3: BN chuyen den
+                //=4: BN ra vien
+                //=9: SL BN da ra vien chua thanh toan
+                //=13: SL BN da thanh toan trong ngay
+                //=14: SL BN thanh toan trong ngay tinh theo doanh thu
+                int rowHandle = bandedGridViewDataQLTTKhoa.FocusedRowHandle;
+                string columeFieldName = bandedGridViewDataQLTTKhoa.FocusedColumn.FieldName.ToString();
+
+                //BN hien dien
+                if (rowHandle == 0 && columeFieldName == "BNDangDT_value")
+                {
+                    typeID = 1;
+                }
+                //BN chuyen di
+                else if (rowHandle == 1 && columeFieldName == "BNDangDT_value")
+                {
+                    typeID = 2;
+                }
+                //BN chuyen den
+                else if (rowHandle == 2 && columeFieldName == "BNDangDT_value")
+                {
+                    typeID = 3;
+                }
+                //Bn ra vien
+                else if (rowHandle == 3 && columeFieldName == "BNDangDT_value")
+                {
+                    typeID = 4;
+                }
+                //SL Bn ra vien chua thanh toan
+                else if (rowHandle == 0 && columeFieldName == "RaVienChuaTT_value")
+                {
+                    typeID = 9;
+                }
+                //SL BN ra vien da thanh toan
+                else if (rowHandle == 0 && columeFieldName == "DaTT_value")
+                {
+                    typeID = 13;
+                }
+                //Doanh thu slbn
+                else if (rowHandle == 0 && columeFieldName == "DoanhThu_value")
+                {
+                    typeID = 14;
+                }
+
+                if (typeID != 0 && thoiGianTu != "" && thoiGianDen!="")
+                {
+                    BCTongTheKhoa.BCTongTheKhoaBNDetail frmDetail = new BCTongTheKhoa.BCTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, Convert.ToInt64(cboKhoa.EditValue), KhoangThoiGianLayDuLieu);
+                    frmDetail.ShowDialog();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void bandedGridViewDataQLTTKhoa_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
 
     }
 }

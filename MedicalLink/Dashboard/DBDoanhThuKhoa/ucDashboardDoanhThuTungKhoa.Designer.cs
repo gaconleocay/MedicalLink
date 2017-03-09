@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDashboardDoanhThuTungKhoa));
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel1 = new DevExpress.XtraCharts.PieSeriesLabel();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView2 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
+            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel2 = new DevExpress.XtraCharts.PieSeriesLabel();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView3 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView4 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle2 = new DevExpress.XtraCharts.ChartTitle();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
@@ -59,7 +59,6 @@
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.chartControlDTKhoa = new DevExpress.XtraCharts.ChartControl();
-            this.timerTuDongCapNhat = new System.Windows.Forms.Timer(this.components);
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -72,10 +71,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView4)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -104,6 +103,7 @@
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thiết lập";
+            this.groupBox1.Visible = false;
             // 
             // btnFullScreen
             // 
@@ -385,26 +385,22 @@
             this.chartControlDTKhoa.Location = new System.Drawing.Point(2, 2);
             this.chartControlDTKhoa.Name = "chartControlDTKhoa";
             this.chartControlDTKhoa.PaletteName = "Metro";
-            series1.CheckableInLegend = false;
-            pieSeriesLabel1.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
-            series1.Label = pieSeriesLabel1;
-            series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            series1.Name = "Khoa";
-            series1.ToolTipPointPattern = "{S}: {V:#,##0}";
-            series1.View = pieSeriesView1;
+            series2.CheckableInLegend = false;
+            pieSeriesLabel2.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
+            series2.Label = pieSeriesLabel2;
+            series2.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            series2.Name = "Khoa";
+            series2.ToolTipPointPattern = "{S}: {V:#,##0}";
+            series2.View = pieSeriesView3;
             this.chartControlDTKhoa.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
-            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView2;
+        series2};
+            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView4;
             this.chartControlDTKhoa.Size = new System.Drawing.Size(996, 464);
             this.chartControlDTKhoa.TabIndex = 0;
-            chartTitle1.Text = "Doanh thu khoa BN đã thanh toán";
+            chartTitle2.Text = "Doanh thu khoa BN đã thanh toán";
             this.chartControlDTKhoa.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
-            chartTitle1});
+            chartTitle2});
             this.chartControlDTKhoa.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.True;
-            // 
-            // timerTuDongCapNhat
-            // 
-            this.timerTuDongCapNhat.Interval = 1000;
             // 
             // timerThongBao
             // 
@@ -444,10 +440,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -480,7 +476,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SpinEdit spinThoiGianCapNhat;
         private DevExpress.XtraCharts.ChartControl chartControlDTKhoa;
-        private System.Windows.Forms.Timer timerTuDongCapNhat;
         private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraEditors.LabelControl lblThongBao;
     }

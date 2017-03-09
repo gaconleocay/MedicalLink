@@ -1,4 +1,4 @@
-﻿namespace MedicalLink.Dashboard.BCQuanLyDoanhThuKhoa
+﻿namespace MedicalLink.Dashboard.BCQuanLyTongTheKhoa
 {
     partial class BCTongHopDoanhThuKhoaFullSize
     {

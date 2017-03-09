@@ -1,6 +1,6 @@
-﻿namespace MedicalLink.Dashboard.BCQuanLyDoanhThuKhoa
+﻿namespace MedicalLink.Dashboard.BCQLTongTheKhoa
 {
-    partial class BCTongHopDoanhThuKhoaFullSize
+    partial class BCTongTheKhoaFullSize
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BCTongHopDoanhThuKhoaFullSize));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BCTongTheKhoaFullSize));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -401,7 +401,7 @@
             this.timerThongBao.Interval = 2000;
             this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
             // 
-            // BCTongHopDoanhThuKhoaFullSize
+            // BCTongTheKhoaFullSize
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -409,7 +409,7 @@
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "BCTongHopDoanhThuKhoaFullSize";
+            this.Name = "BCTongTheKhoaFullSize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Báo cáo quản lý tổng thể khoa";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

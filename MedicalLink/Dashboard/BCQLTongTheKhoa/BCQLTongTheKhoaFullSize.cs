@@ -11,15 +11,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MedicalLink.Dashboard.BCQuanLyDoanhThuKhoa
+namespace MedicalLink.Dashboard.BCQLTongTheKhoa
 {
-    public partial class BCTongHopDoanhThuKhoaFullSize : Form
+    public partial class BCTongTheKhoaFullSize : Form
     {
-        public BCTongHopDoanhThuKhoaFullSize()
+        public BCTongTheKhoaFullSize()
         {
             InitializeComponent();
         }
-        public BCTongHopDoanhThuKhoaFullSize(List<BCDashboardQLTongTheKhoa> dataBCQLTongTheKhoaSDO, string tenkhoa)
+        public BCTongTheKhoaFullSize(List<BCDashboardQLTongTheKhoa> dataBCQLTongTheKhoaSDO, string tenkhoa)
         {
             InitializeComponent();
             gridControlDataQLTTKhoa.DataSource = dataBCQLTongTheKhoaSDO;

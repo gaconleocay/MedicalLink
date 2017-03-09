@@ -16,7 +16,7 @@ namespace MedicalLink.Base
             {
                 //permissiontype = 1 system
                 //permissiontype = 2 Tools
-                //permissiontype = 3 bao cao
+                //permissiontype = 3 report
                 //permissiontype = 4 phan quyen thao tac
                 //permissiontype = 5 Dashboard
                 //permissiontype = 10 Bao cao in ra
@@ -341,8 +341,6 @@ namespace MedicalLink.Base
                 DASHBOARD_07.permissionnote = "BC bệnh nhân sử dụng thuốc/vật tư tại khoa";
                 lstresult.Add(DASHBOARD_07);
 
-
-
                 //
                 ClassCommon.classPermission DASHBOARD_08 = new ClassCommon.classPermission();
                 DASHBOARD_08.permissioncheck = false;
@@ -359,6 +357,16 @@ namespace MedicalLink.Base
                 DASHBOARD_09.permissiontype = 5;
                 DASHBOARD_09.permissionnote = "Biểu đồ doanh thu theo khoa";
                 lstresult.Add(DASHBOARD_09);
+
+                ClassCommon.classPermission DASHBOARD_10 = new ClassCommon.classPermission();
+                DASHBOARD_10.permissioncheck = false;
+                DASHBOARD_10.permissioncode = "DASHBOARD_10";
+                DASHBOARD_10.permissionname = "Báo cáo tổng hợp doanh thu khoa - toàn viện";
+                DASHBOARD_10.permissiontype = 5;
+                DASHBOARD_10.permissionnote = "Báo cáo tổng hợp doanh thu khoa - toàn viện. Doanh thu chia theo khoa/phòng chỉ định";
+                lstresult.Add(DASHBOARD_10);
+
+
 
 
                 //Bao cao in ra

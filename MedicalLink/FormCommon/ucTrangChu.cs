@@ -92,10 +92,10 @@ namespace MedicalLink.FormCommon
                         if (MedicalLink.Base.CheckPermission.ChkPerModule("SYS_05"))
                         {
                             xtraTabCaiDat.PageVisible = true;
-                            navBarItemConnectDB.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_01");
-                            navBarItemListNguoiDung.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
-                            navBarItemListNhanVien.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
-                            navBarItemListOption.Enabled = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
+                            navBarItemConnectDB.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_01");
+                            navBarItemListNguoiDung.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
+                            navBarItemListNhanVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
+                            navBarItemListOption.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
                         }
                         else
                         {
@@ -104,10 +104,11 @@ namespace MedicalLink.FormCommon
                     }
                     else
                     {
-                        navBarItemConnectDB.Enabled = false;
-                        navBarItemListNguoiDung.Enabled = false;
-                        navBarItemListNhanVien.Enabled = false;
-                        navBarItemListOption.Enabled = false;
+                        xtraTabCaiDat.PageVisible = true;
+                        navBarItemConnectDB.Visible = false;
+                        navBarItemListNguoiDung.Visible = false;
+                        navBarItemListNhanVien.Visible = false;
+                        navBarItemListOption.Visible = false;
                     }
                 }
             }
@@ -225,7 +226,7 @@ namespace MedicalLink.FormCommon
             {
                 string thongtinbv = "SELECT hospitalcode,hospitalname,hospitaladdress,giamdocname FROM hospital limit 1;";
                 DataView dtthongtindv = new DataView(condb.getDataTable(thongtinbv));
-                if (dtthongtindv!=null && dtthongtindv.Count>0)
+                if (dtthongtindv != null && dtthongtindv.Count > 0)
                 {
                     lblTenCSYT.Text = dtthongtindv[0]["hospitalname"].ToString();
                     lblMaCSYT.Text = dtthongtindv[0]["hospitalcode"].ToString();

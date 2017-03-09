@@ -574,7 +574,6 @@
             this.gridViewChucNang.RowHeight = 25;
             this.gridViewChucNang.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
             this.gridViewChucNang.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewChucNang_RowCellStyle);
-            this.gridViewChucNang.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewChucNang_SelectionChanged);
             // 
             // permissioncheck2
             // 
@@ -692,7 +691,6 @@
             this.gridViewKhoaPhong.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn6, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridViewKhoaPhong.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewChucNang_RowCellStyle);
-            this.gridViewKhoaPhong.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewKhoaPhong_SelectionChanged);
             // 
             // gridColumn1
             // 
@@ -848,7 +846,6 @@
             this.gridViewBaoCao.RowHeight = 25;
             this.gridViewBaoCao.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBaoCao_CustomDrawRowIndicator);
             this.gridViewBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewBaoCao_RowCellStyle);
-            this.gridViewBaoCao.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gridViewBaoCao_SelectionChanged);
             // 
             // gridColumn9
             // 

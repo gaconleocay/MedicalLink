@@ -599,64 +599,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                var rowHandle = gridViewChucNang.FocusedRowHandle;
-                //string permissioncode = gridViewChucNang.GetRowCellValue(rowHandle, "permissioncode").ToString();
-                //var phanquyen = lstPer.Where(o => o.permissioncode == permissioncode).SingleOrDefault();
-                //if (phanquyen != null && gridViewChucNang.IsRowSelected(rowHandle))
+                //var rowHandle = gridViewChucNang.FocusedRowHandle;
+                //if (lstPer[rowHandle].permissioncheck)
                 //{
-                //    phanquyen.permissioncheck = true;
+                //    lstPer[rowHandle].permissioncheck = false;
                 //}
                 //else
                 //{
-                //    phanquyen.permissioncheck = false;
+                //    lstPer[rowHandle].permissioncheck = true;
                 //}
-                if (lstPer[rowHandle].permissioncheck)
-                {
-                    lstPer[rowHandle].permissioncheck = false;
-                }
-                else
-                {
-                    lstPer[rowHandle].permissioncheck = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logging.Warn(ex);
-            }
-        }
-
-        private void gridViewKhoaPhong_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
-        {
-            try
-            {
-                var rowHandle = gridViewKhoaPhong.FocusedRowHandle;
-                if (lstUserDepartment[rowHandle].departmentcheck)
-                {
-                    lstUserDepartment[rowHandle].departmentcheck = false;
-                }
-                else
-                {
-                    lstUserDepartment[rowHandle].departmentcheck = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logging.Warn(ex);
-            }
-        }
-        private void gridViewBaoCao_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
-        {
-            try
-            {
-                var rowHandle = gridViewBaoCao.FocusedRowHandle;
-                if (lstPerBaoCao[rowHandle].permissioncheck)
-                {
-                    lstPerBaoCao[rowHandle].permissioncheck = false;
-                }
-                else
-                {
-                    lstPerBaoCao[rowHandle].permissioncheck = true;
-                }
             }
             catch (Exception ex)
             {

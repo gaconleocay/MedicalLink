@@ -29,9 +29,13 @@ namespace MedicalLink.Base
 
         public static string MaDatabase { get; set; }//Lay thong tin database
 
-        public static List<ClassCommon.classPermission> SessionlstPhanQuyenChucNang { get; set; }
+        public static List<ClassCommon.classPermission> SessionLstPhanQuyenNguoiDung { get; set; }
         public static List<ClassCommon.classUserDepartment> SessionlstPhanQuyenKhoaPhong { get; set; }
 
+        public static List<ClassCommon.classPermission> SessionLstPhanQuyen_ChucNang { get; set; }
+        public static List<ClassCommon.classPermission> SessionLstPhanQuyen_Report { get; set; }
+        public static List<ClassCommon.classPermission> SessionLstPhanQuyen_Dashboard { get; set; }
+        public static List<ClassCommon.classPermission> SessionLstPhanQuyen_BaoCao { get; set; }
     }
 
 

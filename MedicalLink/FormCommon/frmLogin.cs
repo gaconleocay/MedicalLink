@@ -19,8 +19,8 @@ namespace MedicalLink.FormCommon
     public partial class frmLogin : Form
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        string adminuser = MedicalLink.Base.KeyTrongPhanMem.AdminUser_key;
-        string adminpass = MedicalLink.Base.KeyTrongPhanMem.AdminPass_key;
+      //  string adminuser = MedicalLink.Base.KeyTrongPhanMem.AdminUser_key;
+      //  string adminpass = MedicalLink.Base.KeyTrongPhanMem.AdminPass_key;
         NpgsqlConnection conn;
         public frmLogin()
         {
@@ -238,12 +238,12 @@ namespace MedicalLink.FormCommon
                     return;
                 }
                 // tạo 1 tài khoản ở trên PM, không chứa trong DB để làm tài khoản admin
-                else if (txtUsername.Text == adminuser && txtPassword.Text == adminpass)
+                else if (txtUsername.Text == Base.KeyTrongPhanMem.AdminUser_key && txtPassword.Text == Base.KeyTrongPhanMem.AdminPass_key)
                 {
                     SessionLogin.SessionUsercode = txtUsername.Text;
                     SessionLogin.SessionUsername = "Administrator";
                     //Load data
-                    SessionLogin.SessionlstPhanQuyenChucNang = MedicalLink.Base.CheckPermission.GetPhanQuyenChucNang();
+                    SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();
                     SessionLogin.SessionlstPhanQuyenKhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyenKhoaPhong();
                     frmMain frmm = new frmMain();
                     frmm.Show();
@@ -262,7 +262,7 @@ namespace MedicalLink.FormCommon
                             SessionLogin.SessionUsercode = txtUsername.Text;
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
                             //Load data
-                            SessionLogin.SessionlstPhanQuyenChucNang = MedicalLink.Base.CheckPermission.GetPhanQuyenChucNang();
+                            SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();
                             SessionLogin.SessionlstPhanQuyenKhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyenKhoaPhong();
                             frmMain frmm = new frmMain();
                             frmm.Show();

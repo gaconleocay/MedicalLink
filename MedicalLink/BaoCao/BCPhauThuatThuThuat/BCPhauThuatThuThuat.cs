@@ -68,36 +68,36 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                List<ClassCommon.classPermission> lstReportCurrent = new List<classPermission>();
-                List<ClassCommon.classPermission> lstReport = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 10).ToList();
-                if (Base.SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
-                {
-                    lstReportCurrent = lstReport;
-                }
-                else
-                {
-                    if (Base.SessionLogin.SessionlstPhanQuyenChucNang != null && Base.SessionLogin.SessionlstPhanQuyenChucNang.Count > 0)
-                    {
-                        lstReportCurrent = (from lstKho in lstReport
-                                            from lstKhoa in Base.SessionLogin.SessionlstPhanQuyenChucNang
-                                            where lstKho.permissioncode == lstKhoa.permissioncode
-                                            select new ClassCommon.classPermission
-                                                   {
-                                                       permissionid = lstKho.permissionid,
-                                                       permissioncode = lstKho.permissioncode,
-                                                       en_permissioncode = lstKho.en_permissioncode,
-                                                       permissionname = lstKho.permissionname,
-                                                       en_permissionname = lstKho.en_permissionname,
-                                                       permissiontype = lstKho.permissiontype,
-                                                       permissionnote = lstKho.permissionnote
-                                                   }).ToList();
-                    }
-                }
+                //List<ClassCommon.classPermission> lstReportCurrent = new List<classPermission>();
+                //List<ClassCommon.classPermission> lstReport = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 10).ToList();
+                //if (Base.SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
+                //{
+                //    lstReportCurrent = lstReport;
+                //}
+                //else
+                //{
+                //    if (Base.SessionLogin.SessionLstPhanQuyenNguoiDung != null && Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Count > 0)
+                //    {
+                //        lstReportCurrent = (from lstKho in lstReport
+                //                            from lstKhoa in Base.SessionLogin.SessionLstPhanQuyenNguoiDung
+                //                            where lstKho.permissioncode == lstKhoa.permissioncode
+                //                            select new ClassCommon.classPermission
+                //                                   {
+                //                                       permissionid = lstKho.permissionid,
+                //                                       permissioncode = lstKho.permissioncode,
+                //                                       en_permissioncode = lstKho.en_permissioncode,
+                //                                       permissionname = lstKho.permissionname,
+                //                                       en_permissionname = lstKho.en_permissionname,
+                //                                       permissiontype = lstKho.permissiontype,
+                //                                       permissionnote = lstKho.permissionnote
+                //                                   }).ToList();
+                //    }
+                //}
 
-                cboLoaiBaoCao.Properties.DataSource = lstReportCurrent;
+                cboLoaiBaoCao.Properties.DataSource = Base.SessionLogin.SessionLstPhanQuyen_BaoCao;
                 cboLoaiBaoCao.Properties.DisplayMember = "permissionname";
                 cboLoaiBaoCao.Properties.ValueMember = "permissioncode";
-                if (lstReport.Count > 0)
+                if (Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Count > 0)
                 {
                     cboLoaiBaoCao.ItemIndex = 0;
                 }
@@ -182,7 +182,7 @@ namespace MedicalLink.BaoCao
             {
                 cboKhoa.EditValue = null;
 
-                if (cboLoaiBaoCao.EditValue == "BAOCAO_001") //gay me
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_001") //gay me
                 {
                     cboKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
@@ -194,7 +194,7 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = true;
                     gridBand_PhuMe.Visible = false;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_002") //tai mui hong
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002") //tai mui hong
                 {
                     cboKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
@@ -206,7 +206,7 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = true;
                     gridBand_PhuMe.Visible = false;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_003")//rang ham mat
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003")//rang ham mat
                 {
                     cboKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
@@ -218,7 +218,7 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_004")//mat
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004")//mat
                 {
                     cboKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
@@ -230,7 +230,7 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = true;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_005")//khoa khac    ------
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005")//khoa khac    ------
                 {
                     cboKhoa.Enabled = true;
                     chkcomboListDSPhong.Enabled = true;
@@ -242,7 +242,7 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = true;
                     gridBand_PhuMe.Visible = false;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_006")//thu thuat - mat
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")//thu thuat - mat
                 {
                     cboKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
@@ -254,7 +254,7 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_007")//thua thuat - tru mat
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//thua thuat - tru mat
                 {
                     cboKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
@@ -266,7 +266,7 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
                 }
-                else if (cboLoaiBaoCao.EditValue == "BAOCAO_008")//thu thuat khac    ---------
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//thu thuat khac    ---------
                 {
                     cboKhoa.Enabled = true;
                     chkcomboListDSPhong.Enabled = true;

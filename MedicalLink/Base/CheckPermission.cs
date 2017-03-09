@@ -18,13 +18,13 @@ namespace MedicalLink.Base
             bool result = false;
             try
             {
-                if (SessionLogin.SessionUsercode == "admin")
+                if (SessionLogin.SessionUsercode == KeyTrongPhanMem.AdminUser_key)
                 {
                     result = true;
                 }
                 else
                 {
-                    var checkPhanQuyen = SessionLogin.SessionlstPhanQuyenChucNang.Where(s => s.permissioncode.Contains(percode)).ToList();
+                    var checkPhanQuyen = SessionLogin.SessionLstPhanQuyenNguoiDung.Where(s => s.permissioncode.Contains(percode)).ToList();
                     if (checkPhanQuyen != null && checkPhanQuyen.Count > 0)
                     {
                         result = true;
@@ -39,26 +39,46 @@ namespace MedicalLink.Base
         }
 
         //Lay danh sach phan quyen khi nguoi dung dang nhap
-        public static List<ClassCommon.classPermission> GetPhanQuyenChucNang()
+        public static List<ClassCommon.classPermission> GetListPhanQuyenNguoiDung()
         {
             List<ClassCommon.classPermission> lstPhanQuyen = new List<ClassCommon.classPermission>();
             try
             {
-                string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
-                string sqlper = "SELECT permissionid, permissioncode, permissionname, userid, usercode, permissioncheck FROM tools_tbluser_permission WHERE usercode = '" + en_usercode + "' and permissioncheck='1';";
-                DataView dv = new DataView(condb.getDataTable(sqlper));
-                if (dv.Count > 0)
+                if (SessionLogin.SessionUsercode == KeyTrongPhanMem.AdminUser_key)
                 {
-                    for (int i = 0; i < dv.Count; i++)
+                    lstPhanQuyen = Base.listChucNang.getDanhSachChucNang();
+                    foreach (var item in lstPhanQuyen)
                     {
-                        ClassCommon.classPermission itemPer = new ClassCommon.classPermission();
-                        //itemPer.permissionid = Convert.ToInt32(dv[i]["permissionid"]);
-                        itemPer.permissioncode = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissioncode"].ToString(),true);
-                        itemPer.permissionname = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissionname"].ToString(), true);
-                        itemPer.en_permissioncode = dv[i]["permissioncode"].ToString();
-                        itemPer.en_permissionname = dv[i]["permissionname"].ToString();
-                        itemPer.permissioncheck = Convert.ToBoolean(dv[i]["permissioncheck"]);
-                        lstPhanQuyen.Add(itemPer);
+                        item.permissioncheck = true;
+                    }
+                }
+                else
+                {
+                    string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
+                    string sqlper = "SELECT permissionid, permissioncode, permissionname, userid, usercode, permissioncheck FROM tools_tbluser_permission WHERE usercode = '" + en_usercode + "' and permissioncheck='1';";
+                    DataView dv = new DataView(condb.getDataTable(sqlper));
+                    if (dv.Count > 0)
+                    {
+                        for (int i = 0; i < dv.Count; i++)
+                        {
+                            ClassCommon.classPermission itemPer = new ClassCommon.classPermission();
+                            //itemPer.permissionid = Convert.ToInt32(dv[i]["permissionid"]);
+                            itemPer.permissioncode = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissioncode"].ToString(), true);
+                            itemPer.permissionname = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissionname"].ToString(), true);
+                            itemPer.en_permissioncode = dv[i]["permissioncode"].ToString();
+                            itemPer.en_permissionname = dv[i]["permissionname"].ToString();
+                            itemPer.permissioncheck = Convert.ToBoolean(dv[i]["permissioncheck"]);
+                            lstPhanQuyen.Add(itemPer);
+                        }
+                        foreach (var item_chucnang in lstPhanQuyen)
+                        {
+                            var chucnang = Base.listChucNang.getDanhSachChucNang().Where(o => o.permissioncode == item_chucnang.permissioncode).SingleOrDefault();
+                            if (chucnang != null)
+                            {
+                                item_chucnang.permissiontype = chucnang.permissiontype;
+                                item_chucnang.permissionnote = chucnang.permissionnote;
+                            }
+                        }
                     }
                 }
             }

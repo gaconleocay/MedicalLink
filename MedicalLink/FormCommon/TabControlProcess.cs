@@ -250,7 +250,7 @@ namespace MedicalLink.FormCommon
 
                     //Dashboard
                     case "DASHBOARD_01":
-                        ucResult = new Dashboard.ucBaoCaoTongTheKhoa();
+                        ucResult = new Dashboard.ucBCQLTongTheKhoa();
                         break;
                     case "DASHBOARD_02":
                         ucResult = new Dashboard.ucBaoCaoBenhNhanNoiTru();
@@ -276,7 +276,9 @@ namespace MedicalLink.FormCommon
                     case "DASHBOARD_09":
                         ucResult = new Dashboard.ucDashboardBenhNhanNoiTru();
                         break;
-
+                    case "DASHBOARD_10":
+                        ucResult = new Dashboard.BCTongHopDoanhThuKhoa();
+                        break;
 
 
 

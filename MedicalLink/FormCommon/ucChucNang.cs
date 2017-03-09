@@ -37,9 +37,9 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-              //  KiemTraLicense_ChucNang();
+                //  KiemTraLicense_ChucNang();
                 LoadDataDSChucNang();
-                LoadDataDSBaoCao();             
+                LoadDataDSBaoCao();
             }
             catch (Exception ex)
             {
@@ -51,34 +51,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                List<ClassCommon.classPermission> lstDSChucNang = new List<ClassCommon.classPermission>();
-                lstDSChucNang = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 2).ToList();
-                if (SessionLogin.SessionUsercode != KeyTrongPhanMem.AdminUser_key)
-                {
-                    string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true) + "';";
-                    DataView dv_per = new DataView(condb.getDataTable(sqlquerry_per));
-                    if (dv_per != null && dv_per.Count > 0)
-                    {
-                        for (int i = 0; i < lstDSChucNang.Count; i++)
-                        {
-                            for (int j = 0; j < dv_per.Count; j++)
-                            {
-                                if (lstDSChucNang[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
-                                {
-                                    lstDSChucNang[i].permissioncheck = true;
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < lstDSChucNang.Count; i++)
-                    {
-                        lstDSChucNang[i].permissioncheck = true;
-                    }
-                }
-                gridControlDSChucNang.DataSource = lstDSChucNang.Where(o => o.permissioncheck == true).ToList();
+                gridControlDSChucNang.DataSource = Base.SessionLogin.SessionLstPhanQuyen_ChucNang;
             }
             catch (Exception ex)
             {
@@ -89,46 +62,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                List<ClassCommon.classPermission> lstDSBaoCao = new List<ClassCommon.classPermission>();
-                lstDSBaoCao = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 3).ToList();
-                if (SessionLogin.SessionUsercode != KeyTrongPhanMem.AdminUser_key)
-                {
-                    string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true) + "';";
-                    DataView dv_per = new DataView(condb.getDataTable(sqlquerry_per));
-                    //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
-                    if (dv_per != null && dv_per.Count > 0)
-                    {
-                        for (int i = 0; i < lstDSBaoCao.Count; i++)
-                        {
-                            for (int j = 0; j < dv_per.Count; j++)
-                            {
-                                if (lstDSBaoCao[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
-                                {
-                                    lstDSBaoCao[i].permissioncheck = Convert.ToBoolean(dv_per[j]["permissioncheck"]);
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < lstDSBaoCao.Count; i++)
-                    {
-                        lstDSBaoCao[i].permissioncheck = true;
-                    }
-                }
-                gridControlDSBaoCao.DataSource = lstDSBaoCao.Where(o => o.permissioncheck == true).ToList();
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        private void KiemTraLicense_ChucNang()
-        {
-            try
-            {
-
+                gridControlDSBaoCao.DataSource = Base.SessionLogin.SessionLstPhanQuyen_Report;
             }
             catch (Exception ex)
             {

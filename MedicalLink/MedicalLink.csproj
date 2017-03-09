@@ -444,19 +444,13 @@
     <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSangProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.Designer.cs">
-      <DependentUpon>BCTongHopDoanhThuKhoaFullSize.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.cs">
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.Designer.cs">
-      <DependentUpon>ucBCTongHopDoanhThuKhoa.cs</DependentUpon>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoa.Designer.cs">
+      <DependentUpon>BCTongHopDoanhThuKhoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoaProcess.cs">
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.cs">
@@ -474,31 +468,31 @@
     <Compile Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVienProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaFullSize.cs">
+    <Compile Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaFullSize.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaFullSize.Designer.cs">
-      <DependentUpon>BCTongTheKhoaFullSize.cs</DependentUpon>
+    <Compile Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaFullSize.Designer.cs">
+      <DependentUpon>BCQLTongTheKhoaFullSize.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.cs">
+    <Compile Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaBNDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.Designer.cs">
-      <DependentUpon>BCTongTheKhoaBNDetail.cs</DependentUpon>
+    <Compile Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaBNDetail.Designer.cs">
+      <DependentUpon>BCQLTongTheKhoaBNDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaTuyChonNangCao.cs">
+    <Compile Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaTuyChonNangCao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaTuyChonNangCao.Designer.cs">
-      <DependentUpon>BCTongTheKhoaTuyChonNangCao.cs</DependentUpon>
+    <Compile Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaTuyChonNangCao.Designer.cs">
+      <DependentUpon>BCQLTongTheKhoaTuyChonNangCao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.cs">
+    <Compile Include="Dashboard\BCQLTongTheKhoa\ucBCQLTongTheKhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.Designer.cs">
-      <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
+    <Compile Include="Dashboard\BCQLTongTheKhoa\ucBCQLTongTheKhoa.Designer.cs">
+      <DependentUpon>ucBCQLTongTheKhoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoaProcess.cs">
+    <Compile Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Dashboard\BCXNTTuTruc\BCXNTTuTrucLichSu.cs">
@@ -823,11 +817,8 @@
     <EmbeddedResource Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.resx">
       <DependentUpon>ucBaoCaoCanLamSang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.resx">
-      <DependentUpon>BCTongHopDoanhThuKhoaFullSize.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.resx">
-      <DependentUpon>ucBCTongHopDoanhThuKhoa.cs</DependentUpon>
+    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoa.resx">
+      <DependentUpon>BCTongHopDoanhThuKhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.resx">
       <DependentUpon>BaoCaoTongHopToanVienFullSize.cs</DependentUpon>
@@ -835,17 +826,17 @@
     <EmbeddedResource Include="Dashboard\BCTongHopToanVien\ucBaoCaoTongHopToanVien.resx">
       <DependentUpon>ucBaoCaoTongHopToanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaFullSize.resx">
-      <DependentUpon>BCTongTheKhoaFullSize.cs</DependentUpon>
+    <EmbeddedResource Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaFullSize.resx">
+      <DependentUpon>BCQLTongTheKhoaFullSize.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaBNDetail.resx">
-      <DependentUpon>BCTongTheKhoaBNDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaBNDetail.resx">
+      <DependentUpon>BCQLTongTheKhoaBNDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\BCTongTheKhoaTuyChonNangCao.resx">
-      <DependentUpon>BCTongTheKhoaTuyChonNangCao.cs</DependentUpon>
+    <EmbeddedResource Include="Dashboard\BCQLTongTheKhoa\BCQLTongTheKhoaTuyChonNangCao.resx">
+      <DependentUpon>BCQLTongTheKhoaTuyChonNangCao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\BCTongTheKhoa\ucBaoCaoTongTheKhoa.resx">
-      <DependentUpon>ucBaoCaoTongTheKhoa.cs</DependentUpon>
+    <EmbeddedResource Include="Dashboard\BCQLTongTheKhoa\ucBCQLTongTheKhoa.resx">
+      <DependentUpon>ucBCQLTongTheKhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCXNTTuTruc\BCXNTTuTrucLichSu.resx">
       <DependentUpon>BCXNTTuTrucLichSu.cs</DependentUpon>

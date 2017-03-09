@@ -13,55 +13,16 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                List<ClassCommon.classPermission> lstDSChucNang = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 2).ToList();
-                List<ClassCommon.classPermission> lstDSDashboard = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 5).ToList();
+                Base.SessionLogin.SessionLstPhanQuyen_ChucNang = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 2).OrderBy(o=>o.permissioncode).ToList();
+                Base.SessionLogin.SessionLstPhanQuyen_Report = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 3).OrderBy(o => o.permissioncode).ToList();
+                Base.SessionLogin.SessionLstPhanQuyen_BaoCao = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 10).OrderBy(o => o.permissioncode).ToList();
+                Base.SessionLogin.SessionLstPhanQuyen_Dashboard = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 5).ToList();
 
-                if (SessionLogin.SessionUsercode != KeyTrongPhanMem.AdminUser_key)
-                {
-                    string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true) + "';";
-                    DataView dv_per = new DataView(condb.getDataTable(sqlquerry_per));
-                    if (dv_per != null && dv_per.Count > 0)
-                    {
-                        for (int i = 0; i < lstDSChucNang.Count; i++)
-                        {
-                            for (int j = 0; j < dv_per.Count; j++)
-                            {
-                                if (lstDSChucNang[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
-                                {
-                                    lstDSChucNang[i].permissioncheck = true;
-                                }
-                            }
-                        }
-                        for (int i = 0; i < lstDSDashboard.Count; i++)
-                        {
-                            for (int j = 0; j < dv_per.Count; j++)
-                            {
-                                if (lstDSDashboard[i].permissioncode == EncryptAndDecrypt.Decrypt(dv_per[j]["permissioncode"].ToString(), true))
-                                {
-                                    lstDSDashboard[i].permissioncheck = true;
-                                }
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < lstDSChucNang.Count; i++)
-                    {
-                        lstDSChucNang[i].permissioncheck = true;
-                    }
-                    for (int i = 0; i < lstDSDashboard.Count; i++)
-                    {
-                        lstDSDashboard[i].permissioncheck = true;
-                    }
-                }
-                var lstchucnang = lstDSChucNang.Where(o => o.permissioncheck == true).ToList();
-                var lstdashboard = lstDSDashboard.Where(o => o.permissioncheck == true).ToList();
-                if (lstchucnang == null || lstchucnang.Count <= 0)
+                if ((SessionLogin.SessionLstPhanQuyen_ChucNang == null || SessionLogin.SessionLstPhanQuyen_ChucNang.Count <= 0) && (SessionLogin.SessionLstPhanQuyen_Report == null || SessionLogin.SessionLstPhanQuyen_Report.Count <= 0))
                 {
                     tabMenuChucNang.PageVisible = false;
                 }
-                if (lstdashboard == null || lstdashboard.Count <= 0)
+                if (SessionLogin.SessionLstPhanQuyen_Dashboard == null || SessionLogin.SessionLstPhanQuyen_Dashboard.Count <= 0)
                 {
                     tabMenuDashboard.PageVisible = false;
                 }

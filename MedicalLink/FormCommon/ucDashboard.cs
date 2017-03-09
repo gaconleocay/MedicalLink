@@ -56,10 +56,9 @@ namespace MedicalLink.FormCommon
                 navBarBCXNTTuTruc.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_06");
                 navBarBCBNSDThuocTaiKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_07");
 
-
                 navBarDBDTTungKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_08");
                 navBarDBBenhNhanNoiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_09");
-
+                //navBarBCTHDTKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_10");
             }
             catch (Exception ex)
             {
@@ -229,6 +228,21 @@ namespace MedicalLink.FormCommon
                 UserControl ucControlActive = new UserControl();
                 ucControlActive = TabControlProcess.SelectUCControlActive("DASHBOARD_09");
                 MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "DASHBOARD_09", "Biểu đồ doanh thu các khoa nội trú", "Biểu đồ doanh thu các khoa nội trú", ucControlActive);
+                ucControlActive.Show();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void navBarBCTHDTKhoa_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                UserControl ucControlActive = new UserControl();
+                ucControlActive = TabControlProcess.SelectUCControlActive("DASHBOARD_10");
+                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "DASHBOARD_10", "Báo cáo tổng hợp doanh thu khoa - toàn viện", "Báo cáo tổng hợp doanh thu khoa - toàn viện. Doanh thu chia theo khoa/phòng chỉ định", ucControlActive);
                 ucControlActive.Show();
             }
             catch (Exception ex)

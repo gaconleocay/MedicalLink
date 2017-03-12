@@ -673,7 +673,7 @@ namespace MedicalLink.Dashboard
 
                 if (typeID != 0 && thoiGianTu != "" && thoiGianDen!="")
                 {
-                    BCQLTongTheKhoaBNDetail frmDetail = new BCQLTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, Convert.ToInt64(cboKhoa.EditValue), KhoangThoiGianLayDuLieu);
+                    Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail frmDetail = new Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, Convert.ToInt64(cboKhoa.EditValue), KhoangThoiGianLayDuLieu);
                     frmDetail.ShowDialog();
                 }
 

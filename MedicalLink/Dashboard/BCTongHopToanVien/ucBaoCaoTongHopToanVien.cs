@@ -27,7 +27,7 @@ namespace MedicalLink.Dashboard
         //string thoiGianDen = "";
         //private long tickCurrentVal = 0;
         //private long thoiGianCapNhat = 0;
-        List<BCDashboardTongHopToanVien> lstBCBTongHopToanVien { get; set; }
+        DataTable dataBCBTongHopToanVien { get; set; }
 
         #endregion
 
@@ -326,9 +326,13 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (lstBCBTongHopToanVien != null && lstBCBTongHopToanVien.Count > 0)
+                if (dataBCBTongHopToanVien != null && dataBCBTongHopToanVien.Rows.Count > 0)
                 {
-                    BCTongHopToanVien.BaoCaoTongHopToanVienFullSize fullSize = new BCTongHopToanVien.BaoCaoTongHopToanVienFullSize(lstBCBTongHopToanVien);
+                    string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                    string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                    string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
+                    BCTongHopToanVien.BaoCaoTongHopToanVienFullSize fullSize = new BCTongHopToanVien.BaoCaoTongHopToanVienFullSize(dataBCBTongHopToanVien, tungaydenngay);
                     fullSize.ShowDialog();
                 }
             }

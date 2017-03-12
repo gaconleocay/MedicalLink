@@ -128,21 +128,8 @@
         whP2+COYy8PdkuBek8v6aWI+v4mpSEY5/0X6Bq9FqScWGipzAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btnSettingAdvand.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAADXSURBVDhPrZPBDYMwDEVz6ACIY4dCiAGYpatx6hAdoEI99thD6hds9EVRK5Eifcl2/I2/46S0
-        +S4pnyJk9gTEX8+2vOJbcm94GUb3s9nZ7dHP+l2yJ3UQDA/D1W18bGLY3UcB/zPks+EpxNKBgDNyyF06
-        QbO3RmKQb2YPhsaBTUxzkLrMBM3SIontznBbKYKcMqf1E82DDHS2+D3a9a7KTJTIVanOxgtAjvjsMSRp
-        7kT7dQVkSeLaVALtf5dQPcR/XSMrfGyRNld5bJVlkHWPKVZbCv58zm/h1XdOLTnRFwAAAABJRU5ErkJg
-        gg==
-</value>
-  </data>
   <metadata name="timerThongBao.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>27, 3</value>
-  </metadata>
-  <metadata name="timerTuDongCapNhat.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>148, 1</value>
   </metadata>
   <data name="repositoryItemButton_View.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

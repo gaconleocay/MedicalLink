@@ -355,7 +355,11 @@ namespace MedicalLink.Dashboard
             {
                 if (dataBCTongTheKhoa != null && dataBCTongTheKhoa.Count > 0)
                 {
-                    MedicalLink.Dashboard.BCBenhNhanNoiTru.BCBenhNhanNoiTruFullSize fullSize = new BCBenhNhanNoiTru.BCBenhNhanNoiTruFullSize(dataBCTongTheKhoa);
+                    string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                    string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                    string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
+                    MedicalLink.Dashboard.BCBenhNhanNoiTru.BCBenhNhanNoiTruFullSize fullSize = new BCBenhNhanNoiTru.BCBenhNhanNoiTruFullSize(dataBCTongTheKhoa, tungaydenngay);
                     fullSize.ShowDialog();
                 }
             }

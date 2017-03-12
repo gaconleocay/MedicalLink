@@ -248,6 +248,7 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
     <Compile Include="Base\UtilsTable.cs" />
@@ -275,16 +276,16 @@
     <Compile Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenhPlus_LayBaoCao.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCPTTT\frmLayNhomDichVu.cs">
+    <Compile Include="BaoCao\BCChiDinhPTTT\frmLayNhomDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCPTTT\frmLayNhomDichVu.Designer.cs">
+    <Compile Include="BaoCao\BCChiDinhPTTT\frmLayNhomDichVu.Designer.cs">
       <DependentUpon>frmLayNhomDichVu.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCPTTT\ucBCChiDinhPTTT.cs">
+    <Compile Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCPTTT\ucBCChiDinhPTTT.Designer.cs">
+    <Compile Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.Designer.cs">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\ImportDMDichVu\ClassDichVu.cs" />
@@ -444,13 +445,19 @@
     <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSangProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoa.cs">
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoa.Designer.cs">
-      <DependentUpon>BCTongHopDoanhThuKhoa.cs</DependentUpon>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.Designer.cs">
+      <DependentUpon>ucBCTongHopDoanhThuKhoa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaProcess.cs">
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.Designer.cs">
+      <DependentUpon>BCTongHopDoanhThuKhoaFullSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.cs">
@@ -537,6 +544,7 @@
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
+    <Compile Include="DatabaseProcess\TinhMuaHuongBHYT.cs" />
     <Compile Include="FormCommon\TabTrangChu\frmThayPass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -745,10 +753,10 @@
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.resx">
       <DependentUpon>BCPhauThuatThuThuat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPTTT\frmLayNhomDichVu.resx">
+    <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\frmLayNhomDichVu.resx">
       <DependentUpon>frmLayNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPTTT\ucBCChiDinhPTTT.resx">
+    <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.resx">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ImportDMDichVu\ucImportDMDichVu.resx">
@@ -817,8 +825,11 @@
     <EmbeddedResource Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.resx">
       <DependentUpon>ucBaoCaoCanLamSang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoa.resx">
-      <DependentUpon>BCTongHopDoanhThuKhoa.cs</DependentUpon>
+    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.resx">
+      <DependentUpon>ucBCTongHopDoanhThuKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCTongHopDoanhThuKhoa\BCTongHopDoanhThuKhoaFullSize.resx">
+      <DependentUpon>BCTongHopDoanhThuKhoaFullSize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCTongHopToanVien\BaoCaoTongHopToanVienFullSize.resx">
       <DependentUpon>BaoCaoTongHopToanVienFullSize.cs</DependentUpon>
@@ -1009,6 +1020,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_PhauThuatThuThuat_TT_MAT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BenhNhanNoiTru_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_TongHopDoanhThuTheoKhoa_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_TongHopToanVien_01.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

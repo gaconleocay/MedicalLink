@@ -27,15 +27,28 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                BCDashboardTongHopToanVienFilter filter = new BCDashboardTongHopToanVienFilter();
-                filter.loaiBaoCao = "REPORT_10";
-                filter.dateTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                filter.dateDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                filter.chayTuDong = 0;
-                filter.kieuXem = kieuxem;
-                filter.tieuChi = tieuchi;
-                lstBCBTongHopToanVien = BCTongHopToanVien_Process.BCTongHopToanVien_ChayMoi(filter);
-                HienThiDuLieuBaoCao(lstBCBTongHopToanVien);
+                string dateTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string dateDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string sqlLayBaoCao = "";
+
+                //=0: theo khoa ra vien; =1: theo khoa chi dinh
+                //=0: xem tong hop; =1: xem chi tiet theo khoa
+                if (tieuchi == 0 && kieuxem == 0)//theo khoa ra vien + xem tong hop
+                {
+                    sqlLayBaoCao = "SELECT ROW_NUMBER () OVER (ORDER BY O.loaivienphi) as stt, O.*, money_khambenh+money_xetnghiem+money_cdhatdcn+money_pttt+money_dvktc+money_giuong+money_mau+money_thuoc+money_vattu+money_phuthu+money_vanchuyen+money_khac as tien_tong FROM (SELECT (case vpm.loaivienphiid when 1 then 'Ngoại trú' when 0 then 'Nội trú' else '' end) as loaivienphi, sum(case when vpm.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, sum(case when vpm.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp, count(vpm.*) as slbn_tong, sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as money_khambenh, sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as money_xetnghiem, sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as money_cdhatdcn, sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as money_pttt, sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as money_dvktc, sum(vpm.money_giuong_bh + vpm.money_giuong_vp) as money_giuong, sum(vpm.money_mau_bh + vpm.money_mau_vp) as money_mau, sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as money_thuoc, sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as money_vattu, sum(vpm.money_phuthu_bh + vpm.money_phuthu_vp) as money_phuthu, sum(vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as money_vanchuyen, sum(vpm.money_khac_bh + vpm.money_khac_vp) as money_khac, sum(vpm.tam_ung) as tam_ung FROM vienphi_money vpm WHERE vpm.vienphistatus_vp=1 and vpm.duyet_ngayduyet_vp>='" + dateTu + "' and vpm.duyet_ngayduyet_vp<='" + dateDen + "' GROUP BY vpm.loaivienphiid) O;";
+                }
+                else if (tieuchi == 0 && kieuxem == 1) //Theo khoa ra vien + xem chi tiet tung khoa
+                {
+                    sqlLayBaoCao = "SELECT ROW_NUMBER () OVER (ORDER BY O.loaivienphi) as stt, O.*, money_khambenh+money_xetnghiem+money_cdhatdcn+money_pttt+money_dvktc+money_giuong+money_mau+money_thuoc+money_vattu+money_phuthu+money_vanchuyen+money_khac as tien_tong FROM (SELECT depg.departmentgroupname as loaivienphi, A.*  FROM departmentgroup depg  LEFT JOIN (SELECT vpm.departmentgroupid as departmentgroupid, sum(case when vpm.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, sum(case when vpm.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp, count(vpm.*) as slbn_tong, sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as money_khambenh, sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as money_xetnghiem, sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as money_cdhatdcn, sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as money_pttt, sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as money_dvktc, sum(vpm.money_giuong_bh + vpm.money_giuong_vp) as money_giuong, sum(vpm.money_mau_bh + vpm.money_mau_vp) as money_mau, sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as money_thuoc, sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as money_vattu, sum(vpm.money_phuthu_bh + vpm.money_phuthu_vp) as money_phuthu, sum(vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as money_vanchuyen, sum(vpm.money_khac_bh + vpm.money_khac_vp) as money_khac, sum(vpm.tam_ung) as tam_ung FROM vienphi_money vpm WHERE vpm.vienphistatus_vp=1 and vpm.duyet_ngayduyet_vp>='" + dateTu + "' and vpm.duyet_ngayduyet_vp<='" + dateDen + "'  GROUP BY vpm.departmentgroupid) A ON depg.departmentgroupid=A.departmentgroupid  WHERE depg.departmentgrouptype in (1,4,11,10,100)  ORDER BY depg.departmentgroupname) O;";
+                }
+                else if (tieuchi == 1 && kieuxem == 0)//theo khoa chi dinh + xem tong hop
+                {
+                }
+                else if (tieuchi == 1 && kieuxem == 1)//theo khoa chi dinh + xem chi tiet tung khoa
+                {
+                }
+                DataTable DataBaoCao = condb.getDataTable(sqlLayBaoCao);
+                HienThiDuLieuBaoCao(DataBaoCao);
             }
             catch (Exception ex)
             {
@@ -43,14 +56,14 @@ namespace MedicalLink.Dashboard
             }
             SplashScreenManager.CloseForm();
         }
-
-        private void HienThiDuLieuBaoCao(List<BCDashboardTongHopToanVien> dataBC)
+        private void HienThiDuLieuBaoCao(DataTable dataBC)
         {
             try
             {
-                if (dataBC != null && dataBC.Count > 0)
+                if (dataBC != null && dataBC.Rows.Count > 0)
                 {
-                    gridControlDataBNNT.DataSource = dataBC;
+                    this.dataBCBTongHopToanVien = dataBC;
+                    gridControlDataBNNT.DataSource = this.dataBCBTongHopToanVien;
                 }
                 else
                 {

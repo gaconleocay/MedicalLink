@@ -145,7 +145,6 @@
             this.navBarBCTHDTKhoa.Caption = "Tổng hợp doanh thu khoa";
             this.navBarBCTHDTKhoa.Name = "navBarBCTHDTKhoa";
             this.navBarBCTHDTKhoa.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
-            this.navBarBCTHDTKhoa.Visible = false;
             this.navBarBCTHDTKhoa.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCTHDTKhoa_LinkClicked);
             // 
             // navBarGroup3

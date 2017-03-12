@@ -11,20 +11,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MedicalLink.Dashboard.BCQuanLyDoanhThuKhoa
+namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
 {
     public partial class BCTongHopDoanhThuKhoaFullSize : Form
     {
+        DataTable dataBaoCao { get; set; }
+        string tungaydenngay { get; set; }
         public BCTongHopDoanhThuKhoaFullSize()
         {
             InitializeComponent();
         }
-        public BCTongHopDoanhThuKhoaFullSize(List<BCDashboardQLTongTheKhoa> dataBCQLTongTheKhoaSDO, string tenkhoa)
+        public BCTongHopDoanhThuKhoaFullSize(DataTable dataBaoCao, string tungaydenngay)
         {
             InitializeComponent();
-            gridControlDataQLTTKhoa.DataSource = dataBCQLTongTheKhoaSDO;
-            lblTenThongTinChiTiet.Text = "BÁO CÁO QUẢN LÝ TỔNG THỂ - " + tenkhoa.ToUpper();
-
+            this.dataBaoCao = dataBaoCao;
+            this.tungaydenngay = tungaydenngay;
+            gridControlTTDTKhoa.DataSource = this.dataBaoCao;
+            lblTenThongTinChiTiet.Text = "BÁO CÁO TỔNG HỢP DOANH THU KHOA";
         }
 
         private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
@@ -54,58 +57,15 @@ namespace MedicalLink.Dashboard.BCQuanLyDoanhThuKhoa
         {
             try
             {
-                if (bandedGridViewDataQLTTKhoa.RowCount > 0)
-                {
-                    try
-                    {
-                        using (SaveFileDialog saveDialog = new SaveFileDialog())
-                        {
-                            saveDialog.Filter = "Excel 2003 (.xls)|*.xls|Excel 2010 (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
-                            if (saveDialog.ShowDialog() != DialogResult.Cancel)
-                            {
-                                string exportFilePath = saveDialog.FileName;
-                                string fileExtenstion = new FileInfo(exportFilePath).Extension;
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = this.tungaydenngay;
+                thongTinThem.Add(reportitem);
 
-                                switch (fileExtenstion)
-                                {
-                                    case ".xls":
-                                        bandedGridViewDataQLTTKhoa.ExportToXls(exportFilePath);
-                                        break;
-                                    case ".xlsx":
-                                        bandedGridViewDataQLTTKhoa.ExportToXlsx(exportFilePath);
-                                        break;
-                                    case ".rtf":
-                                        bandedGridViewDataQLTTKhoa.ExportToRtf(exportFilePath);
-                                        break;
-                                    case ".pdf":
-                                        bandedGridViewDataQLTTKhoa.ExportToPdf(exportFilePath);
-                                        break;
-                                    case ".html":
-                                        bandedGridViewDataQLTTKhoa.ExportToHtml(exportFilePath);
-                                        break;
-                                    case ".mht":
-                                        bandedGridViewDataQLTTKhoa.ExportToMht(exportFilePath);
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                timerThongBao.Start();
-                                lblThongBao.Visible = true;
-                                lblThongBao.Text = "Export dữ liệu thành công!";
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Có lỗi xảy ra", "Thông báo !");
-                    }
-                }
-                else
-                {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không có dữ liệu!";
-                }
+                string fileTemplatePath = "BC_TongHopDoanhThuTheoKhoa_01.xlsx";
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBaoCao);
             }
             catch (Exception ex)
             {

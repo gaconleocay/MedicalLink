@@ -32,13 +32,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtFilePath = new System.Windows.Forms.TextBox();
-            this.txtVersion = new System.Windows.Forms.TextBox();
+            this.txtVersionMecicalLink = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.btnCommit = new System.Windows.Forms.Button();
             this.openFileDialogShelect = new System.Windows.Forms.OpenFileDialog();
-            this.txtUpdate = new System.Windows.Forms.TextBox();
+            this.txtUpdateLink = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnUpdateLink = new System.Windows.Forms.Button();
+            this.btnUpdateMedicalLink = new System.Windows.Forms.Button();
+            this.btnUpdateLauncher = new System.Windows.Forms.Button();
+            this.txtVersionLauncher = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -59,9 +63,9 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.label2.Location = new System.Drawing.Point(25, 164);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 16);
+            this.label2.Size = new System.Drawing.Size(120, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Version";
+            this.label2.Text = "Version MedicalLink";
             // 
             // txtFilePath
             // 
@@ -71,13 +75,13 @@
             this.txtFilePath.Size = new System.Drawing.Size(625, 26);
             this.txtFilePath.TabIndex = 2;
             // 
-            // txtVersion
+            // txtVersionMecicalLink
             // 
-            this.txtVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVersion.Location = new System.Drawing.Point(28, 184);
-            this.txtVersion.Name = "txtVersion";
-            this.txtVersion.Size = new System.Drawing.Size(243, 26);
-            this.txtVersion.TabIndex = 3;
+            this.txtVersionMecicalLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVersionMecicalLink.Location = new System.Drawing.Point(28, 184);
+            this.txtVersionMecicalLink.Name = "txtVersionMecicalLink";
+            this.txtVersionMecicalLink.Size = new System.Drawing.Size(243, 26);
+            this.txtVersionMecicalLink.TabIndex = 3;
             // 
             // btnBrowse
             // 
@@ -91,27 +95,13 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // btnCommit
+            // txtUpdateLink
             // 
-            this.btnCommit.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCommit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnCommit.Image = ((System.Drawing.Image)(resources.GetObject("btnCommit.Image")));
-            this.btnCommit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCommit.Location = new System.Drawing.Point(354, 239);
-            this.btnCommit.Name = "btnCommit";
-            this.btnCommit.Size = new System.Drawing.Size(120, 40);
-            this.btnCommit.TabIndex = 5;
-            this.btnCommit.Text = "Commit";
-            this.btnCommit.UseVisualStyleBackColor = true;
-            this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
-            // 
-            // txtUpdate
-            // 
-            this.txtUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdate.Location = new System.Drawing.Point(28, 111);
-            this.txtUpdate.Name = "txtUpdate";
-            this.txtUpdate.Size = new System.Drawing.Size(625, 26);
-            this.txtUpdate.TabIndex = 7;
+            this.txtUpdateLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateLink.Location = new System.Drawing.Point(28, 111);
+            this.txtUpdateLink.Name = "txtUpdateLink";
+            this.txtUpdateLink.Size = new System.Drawing.Size(625, 26);
+            this.txtUpdateLink.TabIndex = 7;
             // 
             // label3
             // 
@@ -124,29 +114,88 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Update link";
             // 
-            // btnUpdate
+            // btnUpdateLink
             // 
-            this.btnUpdate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnUpdate.Location = new System.Drawing.Point(673, 111);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(100, 26);
-            this.btnUpdate.TabIndex = 8;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdateLink.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnUpdateLink.Location = new System.Drawing.Point(673, 111);
+            this.btnUpdateLink.Name = "btnUpdateLink";
+            this.btnUpdateLink.Size = new System.Drawing.Size(100, 26);
+            this.btnUpdateLink.TabIndex = 8;
+            this.btnUpdateLink.Text = "Update";
+            this.btnUpdateLink.UseVisualStyleBackColor = true;
+            this.btnUpdateLink.Click += new System.EventHandler(this.btnUpdateLink_Click);
+            // 
+            // btnUpdateMedicalLink
+            // 
+            this.btnUpdateMedicalLink.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateMedicalLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnUpdateMedicalLink.Location = new System.Drawing.Point(303, 184);
+            this.btnUpdateMedicalLink.Name = "btnUpdateMedicalLink";
+            this.btnUpdateMedicalLink.Size = new System.Drawing.Size(100, 26);
+            this.btnUpdateMedicalLink.TabIndex = 9;
+            this.btnUpdateMedicalLink.Text = "Update";
+            this.btnUpdateMedicalLink.UseVisualStyleBackColor = true;
+            this.btnUpdateMedicalLink.Click += new System.EventHandler(this.btnUpdateMedicalLink_Click);
+            // 
+            // btnUpdateLauncher
+            // 
+            this.btnUpdateLauncher.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateLauncher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnUpdateLauncher.Location = new System.Drawing.Point(303, 257);
+            this.btnUpdateLauncher.Name = "btnUpdateLauncher";
+            this.btnUpdateLauncher.Size = new System.Drawing.Size(100, 26);
+            this.btnUpdateLauncher.TabIndex = 12;
+            this.btnUpdateLauncher.Text = "Update";
+            this.btnUpdateLauncher.UseVisualStyleBackColor = true;
+            this.btnUpdateLauncher.Click += new System.EventHandler(this.btnUpdateLauncher_Click);
+            // 
+            // txtVersionLauncher
+            // 
+            this.txtVersionLauncher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtVersionLauncher.Location = new System.Drawing.Point(28, 257);
+            this.txtVersionLauncher.Name = "txtVersionLauncher";
+            this.txtVersionLauncher.Size = new System.Drawing.Size(243, 26);
+            this.txtVersionLauncher.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label4.Location = new System.Drawing.Point(25, 237);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 16);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Version Launcher";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.button1.Location = new System.Drawing.Point(653, 225);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 40);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Update";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             // 
             // Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 362);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.txtUpdate);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUpdateLauncher);
+            this.Controls.Add(this.txtVersionLauncher);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnUpdateMedicalLink);
+            this.Controls.Add(this.btnUpdateLink);
+            this.Controls.Add(this.txtUpdateLink);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.txtVersion);
+            this.Controls.Add(this.txtVersionMecicalLink);
             this.Controls.Add(this.txtFilePath);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -165,12 +214,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtFilePath;
-        private System.Windows.Forms.TextBox txtVersion;
+        private System.Windows.Forms.TextBox txtVersionMecicalLink;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.Button btnCommit;
         private System.Windows.Forms.OpenFileDialog openFileDialogShelect;
-        private System.Windows.Forms.TextBox txtUpdate;
+        private System.Windows.Forms.TextBox txtUpdateLink;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnUpdateLink;
+        private System.Windows.Forms.Button btnUpdateMedicalLink;
+        private System.Windows.Forms.Button btnUpdateLauncher;
+        private System.Windows.Forms.TextBox txtVersionLauncher;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }

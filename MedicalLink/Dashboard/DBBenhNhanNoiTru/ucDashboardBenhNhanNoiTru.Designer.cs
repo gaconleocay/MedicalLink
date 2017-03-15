@@ -380,11 +380,14 @@
             // 
             // chartControlBNNoiTru
             // 
+            xyDiagram1.AxisX.Title.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.Label.TextPattern = "{V:#,##0}";
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             this.chartControlBNNoiTru.Diagram = xyDiagram1;
             this.chartControlBNNoiTru.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartControlBNNoiTru.EmptyChartText.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartControlBNNoiTru.Legend.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chartControlBNNoiTru.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
             this.chartControlBNNoiTru.Location = new System.Drawing.Point(2, 2);
             this.chartControlBNNoiTru.Name = "chartControlBNNoiTru";
@@ -397,6 +400,7 @@
             stackedBarSeriesView1.Border.Visibility = DevExpress.Utils.DefaultBoolean.True;
             stackedBarSeriesView1.Color = System.Drawing.Color.PaleGreen;
             series1.View = stackedBarSeriesView1;
+            stackedBarSeriesLabel2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             stackedBarSeriesLabel2.TextPattern = "{V:#,##0}";
             series2.Label = stackedBarSeriesLabel2;
             series2.Name = "Viện phí";
@@ -416,7 +420,7 @@
         series2,
         series3};
             this.chartControlBNNoiTru.Size = new System.Drawing.Size(907, 489);
-            this.chartControlBNNoiTru.SmallChartText.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartControlBNNoiTru.SmallChartText.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chartControlBNNoiTru.TabIndex = 0;
             chartTitle1.Text = "Doanh thu giữa các khoa";
             this.chartControlBNNoiTru.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {

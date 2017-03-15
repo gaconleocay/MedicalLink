@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDashboardDoanhThuTungKhoa));
-            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel1 = new DevExpress.XtraCharts.PieSeriesLabel();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
             DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel2 = new DevExpress.XtraCharts.PieSeriesLabel();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView3 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView4 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.ChartTitle chartTitle2 = new DevExpress.XtraCharts.ChartTitle();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView2 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
@@ -71,10 +72,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -380,26 +382,29 @@
             // chartControlDTKhoa
             // 
             this.chartControlDTKhoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartControlDTKhoa.Legend.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chartControlDTKhoa.Legend.UseCheckBoxes = true;
             this.chartControlDTKhoa.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
             this.chartControlDTKhoa.Location = new System.Drawing.Point(2, 2);
             this.chartControlDTKhoa.Name = "chartControlDTKhoa";
             this.chartControlDTKhoa.PaletteName = "Metro";
-            series2.CheckableInLegend = false;
-            pieSeriesLabel2.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
-            series2.Label = pieSeriesLabel2;
-            series2.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            series2.Name = "Khoa";
-            series2.ToolTipPointPattern = "{S}: {V:#,##0}";
-            series2.View = pieSeriesView3;
+            series1.CheckableInLegend = false;
+            pieSeriesLabel1.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
+            series1.Label = pieSeriesLabel1;
+            series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            series1.Name = "Khoa";
+            series1.ToolTipPointPattern = "{A}: {V:#,##0}";
+            series1.View = pieSeriesView1;
             this.chartControlDTKhoa.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series2};
-            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView4;
+        series1};
+            pieSeriesLabel2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartControlDTKhoa.SeriesTemplate.Label = pieSeriesLabel2;
+            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView2;
             this.chartControlDTKhoa.Size = new System.Drawing.Size(996, 464);
             this.chartControlDTKhoa.TabIndex = 0;
-            chartTitle2.Text = "Doanh thu khoa BN đã thanh toán";
+            chartTitle1.Text = "Doanh thu khoa BN đã thanh toán";
             this.chartControlDTKhoa.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
-            chartTitle2});
+            chartTitle1});
             this.chartControlDTKhoa.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.True;
             // 
             // timerThongBao
@@ -440,10 +445,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -235,6 +235,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.Designer.cs">
+      <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -728,6 +734,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThongBao\frmThongBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongBao\frmThongBao.Designer.cs">
+      <DependentUpon>frmThongBao.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThongBao\SplashScreen1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -749,6 +761,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenh.resx">
       <DependentUpon>ucBaoCaoBHYT21_NewChenh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
+      <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.resx">
       <DependentUpon>BCPhauThuatThuThuat.cs</DependentUpon>
@@ -950,6 +965,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ThongBao\frmThongBao.resx">
+      <DependentUpon>frmThongBao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ThongBao\SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </EmbeddedResource>

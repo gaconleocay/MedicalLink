@@ -45,6 +45,8 @@ namespace MedicalLink.Base
             {
                 if ((conn != null) && (conn.State == ConnectionState.Open))
                     conn.Close();
+                conn.Dispose();
+                conn = null;
             }
             catch (Exception ex)
             {

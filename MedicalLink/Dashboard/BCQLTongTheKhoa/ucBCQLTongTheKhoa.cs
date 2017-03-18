@@ -8,6 +8,7 @@ using System.Linq;
 using DevExpress.XtraGrid.Views.Grid;
 using System.Drawing;
 using MedicalLink.Dashboard.BCQLTongTheKhoa;
+using DevExpress.XtraSplashScreen;
 
 
 namespace MedicalLink.Dashboard
@@ -25,6 +26,7 @@ namespace MedicalLink.Dashboard
         private long thoiGianCapNhat = 0;
         internal string KhoangThoiGianLayDuLieu { get; set; }
         private List<BCDashboardQLTongTheKhoa> dataBCQLTongTheKhoaSDO { get; set; }
+        string lstPhongChonLayBC { get; set; }
 
         #endregion
 
@@ -71,16 +73,16 @@ namespace MedicalLink.Dashboard
             try
             {
                 //linq groupby
-                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
-                    cboKhoa.Properties.DataSource = lstDSKhoa;
-                    cboKhoa.Properties.DisplayMember = "departmentgroupname";
-                    cboKhoa.Properties.ValueMember = "departmentgroupid";
+                    chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
+                    chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
+                    chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
                 }
                 if (lstDSKhoa.Count == 1)
                 {
-                    cboKhoa.ItemIndex = 0;
+                    chkcomboListDSKhoa.CheckAll();
                 }
             }
             catch (Exception ex)
@@ -88,7 +90,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
         private void LoadDuLieuMacDinh()
         {
             try
@@ -184,7 +185,7 @@ namespace MedicalLink.Dashboard
                 dataRow_8.BNDangDT_value = "0";
                 dataRow_8.BNDangDT_unit = "";
                 dataRow_8.RaVienChuaTT_stt = 8;
-                dataRow_8.RaVienChuaTT_name = "Ngày giường";
+                dataRow_8.RaVienChuaTT_name = "Giường thường";
                 dataRow_8.RaVienChuaTT_value = "0";
                 dataRow_8.RaVienChuaTT_unit = "";
                 dataRow_8.DaTT_value = "0";
@@ -196,7 +197,7 @@ namespace MedicalLink.Dashboard
                 dataRow_9.BNDangDT_value = "0";
                 dataRow_9.BNDangDT_unit = "";
                 dataRow_9.RaVienChuaTT_stt = 9;
-                dataRow_9.RaVienChuaTT_name = "DV khác";
+                dataRow_9.RaVienChuaTT_name = "Giường yêu cầu";
                 dataRow_9.RaVienChuaTT_value = "0";
                 dataRow_9.RaVienChuaTT_unit = "";
                 dataRow_9.DaTT_value = "0";
@@ -208,7 +209,7 @@ namespace MedicalLink.Dashboard
                 dataRow_10.BNDangDT_value = "0";
                 dataRow_10.BNDangDT_unit = "";
                 dataRow_10.RaVienChuaTT_stt = 10;
-                dataRow_10.RaVienChuaTT_name = "Máu, chế phẩm";
+                dataRow_10.RaVienChuaTT_name = "DV khác";
                 dataRow_10.RaVienChuaTT_value = "0";
                 dataRow_10.RaVienChuaTT_unit = "";
                 dataRow_10.DaTT_value = "0";
@@ -216,11 +217,11 @@ namespace MedicalLink.Dashboard
 
                 BCDashboardQLTongTheKhoa dataRow_11 = new BCDashboardQLTongTheKhoa();
                 dataRow_11.BNDangDT_stt = 11;
-                dataRow_11.BNDangDT_name = "Ngày giường";
+                dataRow_11.BNDangDT_name = "Giường thường";
                 dataRow_11.BNDangDT_value = "0";
                 dataRow_11.BNDangDT_unit = "";
                 dataRow_11.RaVienChuaTT_stt = 11;
-                dataRow_11.RaVienChuaTT_name = "Vật tư";
+                dataRow_11.RaVienChuaTT_name = "Máu, chế phẩm";
                 dataRow_11.RaVienChuaTT_value = "0";
                 dataRow_11.RaVienChuaTT_unit = "";
                 dataRow_11.DaTT_value = "0";
@@ -228,11 +229,11 @@ namespace MedicalLink.Dashboard
 
                 BCDashboardQLTongTheKhoa dataRow_12 = new BCDashboardQLTongTheKhoa();
                 dataRow_12.BNDangDT_stt = 12;
-                dataRow_12.BNDangDT_name = "DV khác";
+                dataRow_12.BNDangDT_name = "Giường yêu cầu";
                 dataRow_12.BNDangDT_value = "0";
                 dataRow_12.BNDangDT_unit = "";
                 dataRow_12.RaVienChuaTT_stt = 12;
-                dataRow_12.RaVienChuaTT_name = "Thuốc";
+                dataRow_12.RaVienChuaTT_name = "Vật tư";
                 dataRow_12.RaVienChuaTT_value = "0";
                 dataRow_12.RaVienChuaTT_unit = "";
                 dataRow_12.DaTT_value = "0";
@@ -240,11 +241,11 @@ namespace MedicalLink.Dashboard
 
                 BCDashboardQLTongTheKhoa dataRow_13 = new BCDashboardQLTongTheKhoa();
                 dataRow_13.BNDangDT_stt = 13;
-                dataRow_13.BNDangDT_name = "Máu, chế phẩm";
+                dataRow_13.BNDangDT_name = "DV khác";
                 dataRow_13.BNDangDT_value = "0";
                 dataRow_13.BNDangDT_unit = "";
                 dataRow_13.RaVienChuaTT_stt = 13;
-                dataRow_13.RaVienChuaTT_name = "Tỷ lệ thuốc";
+                dataRow_13.RaVienChuaTT_name = "Thuốc";
                 dataRow_13.RaVienChuaTT_value = "0";
                 dataRow_13.RaVienChuaTT_unit = "";
                 dataRow_13.DaTT_value = "0";
@@ -252,27 +253,39 @@ namespace MedicalLink.Dashboard
 
                 BCDashboardQLTongTheKhoa dataRow_14 = new BCDashboardQLTongTheKhoa();
                 dataRow_14.BNDangDT_stt = 14;
-                dataRow_14.BNDangDT_name = "Vật tư";
+                dataRow_14.BNDangDT_name = "Máu, chế phẩm";
                 dataRow_14.BNDangDT_value = "0";
                 dataRow_14.BNDangDT_unit = "";
+                dataRow_14.RaVienChuaTT_stt = 14;
+                dataRow_14.RaVienChuaTT_name = "Tỷ lệ thuốc";
+                dataRow_14.RaVienChuaTT_value = "0";
+                dataRow_14.RaVienChuaTT_unit = "";
+                dataRow_14.DaTT_value = "0";
+                dataRow_14.DoanhThu_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_15 = new BCDashboardQLTongTheKhoa();
                 dataRow_15.BNDangDT_stt = 15;
-                dataRow_15.BNDangDT_name = "Thuốc";
+                dataRow_15.BNDangDT_name = "Vật tư";
                 dataRow_15.BNDangDT_value = "0";
                 dataRow_15.BNDangDT_unit = "";
 
                 BCDashboardQLTongTheKhoa dataRow_16 = new BCDashboardQLTongTheKhoa();
                 dataRow_16.BNDangDT_stt = 16;
-                dataRow_16.BNDangDT_name = "Tỷ lệ thuốc";
+                dataRow_16.BNDangDT_name = "Thuốc";
                 dataRow_16.BNDangDT_value = "0";
                 dataRow_16.BNDangDT_unit = "";
 
                 BCDashboardQLTongTheKhoa dataRow_17 = new BCDashboardQLTongTheKhoa();
                 dataRow_17.BNDangDT_stt = 17;
-                dataRow_17.BNDangDT_name = "Tạm ứng";
+                dataRow_17.BNDangDT_name = "Tỷ lệ thuốc";
                 dataRow_17.BNDangDT_value = "0";
                 dataRow_17.BNDangDT_unit = "";
+
+                BCDashboardQLTongTheKhoa dataRow_18 = new BCDashboardQLTongTheKhoa();
+                dataRow_18.BNDangDT_stt = 18;
+                dataRow_18.BNDangDT_name = "Tạm ứng";
+                dataRow_18.BNDangDT_value = "0";
+                dataRow_18.BNDangDT_unit = "";
 
                 dataBCSDO.Add(dataRow_1);
                 dataBCSDO.Add(dataRow_2);
@@ -291,6 +304,7 @@ namespace MedicalLink.Dashboard
                 dataBCSDO.Add(dataRow_15);
                 dataBCSDO.Add(dataRow_16);
                 dataBCSDO.Add(dataRow_17);
+                dataBCSDO.Add(dataRow_18);
 
                 gridControlDataQLTTKhoa.DataSource = dataBCSDO;
             }
@@ -300,11 +314,6 @@ namespace MedicalLink.Dashboard
             }
         }
         #endregion
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {
@@ -387,11 +396,20 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (cboKhoa.EditValue == null)
+                lstPhongChonLayBC = "";
+                List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
+                if (lstPhongCheck.Count > 0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG;
+                    for (int i = 0; i < lstPhongCheck.Count - 1; i++)
+                    {
+                        lstPhongChonLayBC += lstPhongCheck[i] + ",";
+                    }
+                    lstPhongChonLayBC += lstPhongCheck[lstPhongCheck.Count - 1];
+                }
+                if (lstPhongChonLayBC == "")
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                    frmthongbao.Show();
                 }
                 else
                 {
@@ -500,11 +518,11 @@ namespace MedicalLink.Dashboard
             {
                 if (spinThoiGianCapNhat.Value != 0)
                 {
-                    if (cboKhoa.EditValue == null)
+                    List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
+                    if (lstPhongCheck.Count <= 0)
                     {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG;
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                        frmthongbao.Show();
                     }
                     else
                     {
@@ -573,7 +591,7 @@ namespace MedicalLink.Dashboard
             {
                 if (dataBCQLTongTheKhoaSDO != null && dataBCQLTongTheKhoaSDO.Count > 0)
                 {
-                    BCQLTongTheKhoa.BCTongTheKhoaFullSize fullSize = new BCQLTongTheKhoa.BCTongTheKhoaFullSize(dataBCQLTongTheKhoaSDO, cboKhoa.Text);
+                    BCQLTongTheKhoa.BCTongTheKhoaFullSize fullSize = new BCQLTongTheKhoa.BCTongTheKhoaFullSize(dataBCQLTongTheKhoaSDO, chkcomboListDSKhoa.Text);
                     fullSize.ShowDialog();
                 }
             }
@@ -595,9 +613,8 @@ namespace MedicalLink.Dashboard
                 if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
                 {
                     dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -629,9 +646,9 @@ namespace MedicalLink.Dashboard
                 //=2: BN chuyen di
                 //=3: BN chuyen den
                 //=4: BN ra vien
-                //=9: SL BN da ra vien chua thanh toan
-                //=13: SL BN da thanh toan trong ngay
-                //=14: SL BN thanh toan trong ngay tinh theo doanh thu
+                //=5: SL BN da ra vien chua thanh toan
+                //=6: SL BN da thanh toan trong ngay
+                //=7: SL BN thanh toan trong ngay tinh theo doanh thu
                 int rowHandle = bandedGridViewDataQLTTKhoa.FocusedRowHandle;
                 string columeFieldName = bandedGridViewDataQLTTKhoa.FocusedColumn.FieldName.ToString();
 
@@ -658,22 +675,22 @@ namespace MedicalLink.Dashboard
                 //SL Bn ra vien chua thanh toan
                 else if (rowHandle == 0 && columeFieldName == "RaVienChuaTT_value")
                 {
-                    typeID = 9;
+                    typeID = 5;
                 }
                 //SL BN ra vien da thanh toan
                 else if (rowHandle == 0 && columeFieldName == "DaTT_value")
                 {
-                    typeID = 13;
+                    typeID = 6;
                 }
                 //Doanh thu slbn
                 else if (rowHandle == 0 && columeFieldName == "DoanhThu_value")
                 {
-                    typeID = 14;
+                    typeID = 7;
                 }
 
-                if (typeID != 0 && thoiGianTu != "" && thoiGianDen!="")
+                if (typeID != 0 && thoiGianTu != "" && thoiGianDen != "")
                 {
-                    Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail frmDetail = new Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, Convert.ToInt64(cboKhoa.EditValue), KhoangThoiGianLayDuLieu);
+                    Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail frmDetail = new Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, this.lstPhongChonLayBC, KhoangThoiGianLayDuLieu);
                     frmDetail.ShowDialog();
                 }
 
@@ -691,6 +708,36 @@ namespace MedicalLink.Dashboard
             {
                 e.Appearance.BackColor = Color.LightGreen;
                 e.Appearance.ForeColor = Color.Black;
+            }
+        }
+
+        private void chkcomboListDSKhoa_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                chkcomboListDSPhong.Properties.Items.Clear();
+                List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
+                if (lstKhoaCheck.Count > 0)
+                {
+                    //Load danh muc phong theo khoa da chon
+                    List<ClassCommon.classUserDepartment> lstDSPhong = new List<classUserDepartment>();
+                    for (int i = 0; i < lstKhoaCheck.Count; i++)
+                    {
+                        List<ClassCommon.classUserDepartment> lstdsphongthuockhoa = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
+                        lstDSPhong.AddRange(lstdsphongthuockhoa);
+                    }
+                    if (lstDSPhong != null && lstDSPhong.Count > 0)
+                    {
+                        chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
+                        chkcomboListDSPhong.Properties.DisplayMember = "departmentname";
+                        chkcomboListDSPhong.Properties.ValueMember = "departmentid";
+                    }
+                    chkcomboListDSPhong.CheckAll();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
             }
         }
 

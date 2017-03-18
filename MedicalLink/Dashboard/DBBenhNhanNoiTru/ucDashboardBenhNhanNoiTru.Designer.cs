@@ -419,6 +419,7 @@
         series1,
         series2,
         series3};
+            this.chartControlBNNoiTru.SeriesTemplate.ToolTipPointPattern = "{S}:{V:#,###0}";
             this.chartControlBNNoiTru.Size = new System.Drawing.Size(907, 489);
             this.chartControlBNNoiTru.SmallChartText.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chartControlBNNoiTru.TabIndex = 0;
@@ -426,6 +427,8 @@
             this.chartControlBNNoiTru.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
             chartTitle1});
             this.chartControlBNNoiTru.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.True;
+            this.chartControlBNNoiTru.ToolTipOptions.ShowForSeries = true;
+            this.chartControlBNNoiTru.ToolTipOptions.Tag = "111";
             // 
             // ucDashboardBenhNhanNoiTru
             // 

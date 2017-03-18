@@ -244,9 +244,9 @@ namespace MedicalLink.Base
                 ClassCommon.classPermission REPORT_04 = new ClassCommon.classPermission();
                 REPORT_04.permissioncheck = false;
                 REPORT_04.permissioncode = "REPORT_04";
-                REPORT_04.permissionname = "BC chỉ định PTTT ";
+                REPORT_04.permissionname = "BC chỉ định PTTT theo nhóm";
                 REPORT_04.permissiontype = 3;
-                REPORT_04.permissionnote = "BC chỉ định PTTT ";
+                REPORT_04.permissionnote = "BC chỉ định PTTT theo nhóm";
                 lstresult.Add(REPORT_04);
 
                 ClassCommon.classPermission REPORT_05 = new ClassCommon.classPermission();
@@ -281,6 +281,15 @@ namespace MedicalLink.Base
                 REPORT_08.permissiontype = 3;
                 REPORT_08.permissionnote = "Báo cáo phẫu thuật thủ thuật (doanh thu chia bác sĩ)";
                 lstresult.Add(REPORT_08);
+
+                ClassCommon.classPermission REPORT_09 = new ClassCommon.classPermission();
+                REPORT_09.permissioncheck = false;
+                REPORT_09.permissioncode = "REPORT_09";
+                REPORT_09.permissionname = "Báo cáo bệnh nhân sử dụng nhóm dịch vụ - Xuất ăn";
+                REPORT_09.permissiontype = 3;
+                REPORT_09.permissionnote = "Báo cáo bệnh nhân sử dụng nhóm dịch vụ - Xuất ăn";
+                lstresult.Add(REPORT_09);
+
 
 
 

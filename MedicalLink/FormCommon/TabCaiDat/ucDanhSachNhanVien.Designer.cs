@@ -250,8 +250,13 @@
             this.gridColumn1});
             this.gridViewDSNV.GridControl = this.gridControlDSNV;
             this.gridViewDSNV.Name = "gridViewDSNV";
+            this.gridViewDSNV.OptionsFind.AlwaysVisible = true;
+            this.gridViewDSNV.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
+            this.gridViewDSNV.OptionsFind.ShowClearButton = false;
+            this.gridViewDSNV.OptionsFind.ShowCloseButton = false;
             this.gridViewDSNV.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSNV.OptionsView.ShowGroupPanel = false;
+            this.gridViewDSNV.OptionsView.ShowIndicator = false;
             this.gridViewDSNV.RowHeight = 25;
             this.gridViewDSNV.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSNV_CustomDrawCell);
             this.gridViewDSNV.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSNV_RowCellStyle);
@@ -314,6 +319,8 @@
             // 
             this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn1.AppearanceHeader.Options.UseFont = true;
@@ -326,7 +333,7 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 3;
-            this.gridColumn1.Width = 100;
+            this.gridColumn1.Width = 154;
             // 
             // openFileDialogSelect
             // 

@@ -83,7 +83,8 @@ namespace MedicalLink.ChucNang.MoBenhAn
                         condb.ExecuteNonQuery(sqlinsert);
                         condb.ExecuteNonQuery(sqlinsert_log);
                         this.Enabled = false;
-                        Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                        frmthongbao.Show();
                     }
                 }
                 else // không là khoa cuối
@@ -106,8 +107,8 @@ namespace MedicalLink.ChucNang.MoBenhAn
                             condb.ExecuteNonQuery(sqlinsert_log);
                             this.Enabled = false;
 
-                            Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
-
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                            frmthongbao.Show();
                         }
                         else
                         {
@@ -123,7 +124,8 @@ namespace MedicalLink.ChucNang.MoBenhAn
                                 condb.ExecuteNonQuery(sqlinsert_log);
                                 this.Enabled = false;
 
-                                Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
 
@@ -140,7 +142,8 @@ namespace MedicalLink.ChucNang.MoBenhAn
                             condb.ExecuteNonQuery(sqlinsert_log);
                             this.Enabled = false;
 
-                            Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Mở bệnh án thành công.");
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                            frmthongbao.Show();
                         }
                     }
                 }
@@ -212,14 +215,6 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
         }
 
-        private void timerTB_Tick(object sender, EventArgs e)
-        {
-            timerTB.Stop();
-            lblThongBao.Visible = false;
-            this.Visible = false;
-            //this.Close();
-        }
-
         private void comboBoxNYC_KeyDown(object sender, KeyEventArgs e)
         {
             try
@@ -248,14 +243,15 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 DataView dv_dsnv = new DataView(condb.getDataTable(sql_kttontai));
                 if (dv_dsnv != null && dv_dsnv.Count > 0)
                 {
-                    Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Đã tồn tại mã nhân viên trong hệ thống.");
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã tồn tại mã nhân viên trong hệ thống!");
+                    frmthongbao.Show();
                 }
                 else
                 {
                     string sql = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','Nhân viên');";
                     condb.ExecuteNonQuery(sql);
-
-                    Base.ThongBaoLable.HienThiThongBao(timerTB, lblThongBao, "Thêm nhân viên mới thành công.");
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thêm nhân viên mới thành công!");
+                    frmthongbao.Show();
 
                     frmMoBenhAn_ThucHien_TT_Load(null, null);
                     //ucMoBenhAn ucmba = new ucMoBenhAn();
@@ -296,12 +292,6 @@ namespace MedicalLink.ChucNang.MoBenhAn
             {
                 throw;
             }
-        }
-
-        private void timerThemNhanVien_Tick(object sender, EventArgs e)
-        {
-            timerThemNhanVien.Stop();
-            lblThongBao.Visible = false;
         }
 
 

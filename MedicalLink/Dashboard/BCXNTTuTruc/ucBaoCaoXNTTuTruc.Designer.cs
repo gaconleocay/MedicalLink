@@ -42,7 +42,6 @@
             this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
             this.cboTuTruc = new DevExpress.XtraEditors.LookUpEdit();
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlThuocTuTruc = new DevExpress.XtraGrid.GridControl();
             this.gridViewThuocTuTruc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -57,7 +56,6 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMenu)).BeginInit();
             this.panelControlMenu.SuspendLayout();
@@ -165,25 +163,12 @@
             // 
             // panelControlData
             // 
-            this.panelControlData.Controls.Add(this.lblThongBao);
             this.panelControlData.Controls.Add(this.gridControlThuocTuTruc);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlData.Location = new System.Drawing.Point(0, 73);
             this.panelControlData.Name = "panelControlData";
             this.panelControlData.Size = new System.Drawing.Size(1000, 540);
             this.panelControlData.TabIndex = 1;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(418, 188);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 30;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlThuocTuTruc
             // 
@@ -420,11 +405,6 @@
             this.gridColumn11.FieldName = "datatype";
             this.gridColumn11.Name = "gridColumn11";
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // imMenu
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
@@ -445,7 +425,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboTuTruc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
-            this.panelControlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlThuocTuTruc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewThuocTuTruc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
@@ -473,8 +452,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;

@@ -106,21 +106,14 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewSuaPhoiThanhToan.RowCount == 0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         // Tạo menu chức năng
@@ -170,12 +163,12 @@ namespace MedicalLink.ChucNang
                         itemDKPTTT.Image = imMenu.Images[7];
                         menuChuyenTT.Items.Add(itemDKPTTT);
                         itemDKPTTT.Click += new EventHandler(itemDKPTTT_Click);
-                        
+
                         DXMenuItem itemHPPTTT = new DXMenuItem("Hao phí PTTT");
                         itemHPPTTT.Image = imMenu.Images[9];
                         menuChuyenTT.Items.Add(itemHPPTTT);
                         itemHPPTTT.Click += new EventHandler(itemHPPTTT_Click);
-                  
+
                         DXMenuItem itemHPKhac = new DXMenuItem("Hao phí khác");
                         itemHPKhac.Image = imMenu.Images[8];
                         menuChuyenTT.Items.Add(itemHPKhac);
@@ -192,9 +185,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã thanh toán, không thể sửa được.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_AN_DA_THANH_TOAN);
+                    frmthongbao.Show();
                 }
 
 
@@ -221,9 +213,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 5 (Hao phí giường, công khám)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang Hao phí giường, công khám thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Hao phí giường, công khám thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -251,9 +242,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 0 (BHYT)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang BHYT thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang BHYT thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -281,9 +271,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 4 (BHYT + Yêu cầu)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang BHYT + Yêu cầu thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang BHYT + Yêu cầu thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -311,9 +300,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 1 (Viện phí)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang Viện phí thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Viện phí thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -341,9 +329,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 3 (Yêu cầu)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang Yêu cầu thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Yêu cầu thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -371,9 +358,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 2 (Đi kèm PTTT)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang Đi kèm PTTT thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Đi kèm PTTT thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -401,9 +387,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 7 (Hao phí PTTT)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang Hao phí PTTT thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Hao phí PTTT thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -431,9 +416,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 9 (Hao phí khác)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Chuyển loại hình thanh toán sang Hao phí khác thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Hao phí khác thành công!");
+                frmthongbao.Show();
                 // load lại dữ liệu của form
                 gridControlSuaPhoiThanhToan.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
@@ -558,9 +542,8 @@ namespace MedicalLink.ChucNang
                                     default:
                                         break;
                                 }
-                                timerThongBao.Start();
-                                lblThongBao.Visible = true;
-                                lblThongBao.Text = "Export dữ liệu thành công!";
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
                     }
@@ -571,9 +554,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không có dữ liệu!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception)

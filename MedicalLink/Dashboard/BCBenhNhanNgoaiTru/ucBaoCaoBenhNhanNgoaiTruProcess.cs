@@ -119,9 +119,8 @@ namespace MedicalLink.Dashboard
                 {
                     lstDataBCBNNgoaiTru = null;
                     gridControlDataBNNgT.DataSource = null;
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

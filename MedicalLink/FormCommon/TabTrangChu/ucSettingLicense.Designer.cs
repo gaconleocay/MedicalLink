@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSettingLicense));
             this.groupBoxLicense = new System.Windows.Forms.GroupBox();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.lblThoiGianSuDung = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
@@ -54,7 +52,6 @@
             this.txtTaoLicensePassword = new DevExpress.XtraEditors.TextEdit();
             this.txtTaoLicenseMaMay = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.groupBoxLicense.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaMay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKeyKichHoat.Properties)).BeginInit();
@@ -66,7 +63,6 @@
             // 
             // groupBoxLicense
             // 
-            this.groupBoxLicense.Controls.Add(this.lblThongBao);
             this.groupBoxLicense.Controls.Add(this.lblThoiGianSuDung);
             this.groupBoxLicense.Controls.Add(this.labelControl3);
             this.groupBoxLicense.Controls.Add(this.labelControl10);
@@ -83,18 +79,6 @@
             this.groupBoxLicense.TabIndex = 29;
             this.groupBoxLicense.TabStop = false;
             this.groupBoxLicense.Text = "Nhập license";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(269, 122);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(101, 23);
-            this.lblThongBao.TabIndex = 30;
-            this.lblThongBao.Text = "Thong bao";
-            this.lblThongBao.Visible = false;
             // 
             // lblThoiGianSuDung
             // 
@@ -351,11 +335,6 @@
             this.labelControl14.TabIndex = 25;
             this.labelControl14.Text = "Mã máy:";
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // ucSettingLicense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,8 +382,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl lblThoiGianSuDung;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
 
     }
 }

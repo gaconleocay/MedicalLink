@@ -105,21 +105,14 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewBNBK.RowCount == 0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         // Tạo menu chức năng
@@ -178,27 +171,22 @@ namespace MedicalLink.ChucNang
                 {
                     if (codvnt == 1)
                     {
-                        //MessageBox.Show("Có dịch vụ phát sinh trong nội trú");
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị!");
+                        frmthongbao.Show();
                     }
                     else
                     {
                         if (tenph == "Hành chính")
                         {
-                            timerThongBao.Start();
-                            lblThongBao.Visible = true;
-                            lblThongBao.Text = "Mã điều trị đang ở phòng hành chính !";
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Mã điều trị đang ở phòng hành chính !");
+                            frmthongbao.Show();
                         }
                         else
                         {
                             if (loaiba == 24)
                             {
-                                //MessageBox.Show("Là bệnh án ngoại trú");
-                                timerThongBao.Start();
-                                lblThongBao.Visible = true;
-                                lblThongBao.Text = "Không thể thực hiện được!\nBệnh nhân đang ở ngoại trú !";
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
+                                frmthongbao.Show();
                             }
                             else
                             {
@@ -213,10 +201,8 @@ namespace MedicalLink.ChucNang
                                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển BN: " + mabn + " mã VP: " + mavp + " mã điều trị: " + madt + " ra phòng hành chính','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                                         condb.ExecuteNonQuery(sqlxecute);
                                         condb.ExecuteNonQuery(sqlinsert_log);
-                                        //MessageBox.Show("Chuyển mã điều trị ra phòng hành chính thành công.\nVui lòng kiểm tra lại", "Thông báo");
-                                        timerThongBao.Start();
-                                        lblThongBao.Visible = true;
-                                        lblThongBao.Text = "Chuyển mã điều trị ra phòng hành chính thành công.\nVui lòng kiểm tra lại";
+                                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển mã điều trị ra phòng hành chính thành công!");
+                                        frmthongbao.Show();
                                         // load lại dữ liệu của form
                                         gridControlBNBK.DataSource = null;
                                         btnBNBKTimKiem_Click(null, null);
@@ -237,9 +223,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không thể thực hiện được!\n   Mã điều trị đã kết thúc";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc!");
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -269,17 +254,15 @@ namespace MedicalLink.ChucNang
                 {
                     if (codvnt == 1)
                     {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
+                        frmthongbao.Show();
                     }
                     else
                     {
                         if (loaiba == 24)
                         {
-                            timerThongBao.Start();
-                            lblThongBao.Visible = true;
-                            lblThongBao.Text = "Không thể thực hiện được!\nBệnh nhân đang ở ngoại trú !";
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
+                            frmthongbao.Show();
                         }
                         else
                         {
@@ -294,9 +277,8 @@ namespace MedicalLink.ChucNang
                                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa mã điều trị: " + madt + " của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                                     condb.ExecuteNonQuery(sqlxecute);
                                     condb.ExecuteNonQuery(sqlinsert_log);
-                                    timerThongBao.Start();
-                                    lblThongBao.Visible = true;
-                                    lblThongBao.Text = "Xóa mã điều trị thành công.\nVui lòng kiểm tra lại";
+                                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị thành công!");
+                                    frmthongbao.Show();
                                     // load lại dữ liệu của form
                                     gridControlBNBK.DataSource = null;
                                     btnBNBKTimKiem_Click(null, null);
@@ -316,9 +298,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không thể thực hiện được!\n   Mã điều trị đã kết thúc";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc!");
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -348,17 +329,15 @@ namespace MedicalLink.ChucNang
                 {
                     if (codvnt == 1)
                     {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
+                        frmthongbao.Show();
                     }
                     else
                     {
                         if (loaiba == 24)
                         {
-                            timerThongBao.Start();
-                            lblThongBao.Visible = true;
-                            lblThongBao.Text = "Không thể thực hiện được!\nBệnh nhân đang ở ngoại trú !";
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
+                            frmthongbao.Show();
                         }
                         else
                         {
@@ -375,9 +354,8 @@ namespace MedicalLink.ChucNang
                                     condb.ExecuteNonQuery(sqldelete);
                                     condb.ExecuteNonQuery(sqlchuyenngt);
                                     condb.ExecuteNonQuery(sqlinsert_log);
-                                    timerThongBao.Start();
-                                    lblThongBao.Visible = true;
-                                    lblThongBao.Text = "Xóa mã điều trị và chuyển thành phơi ngoại trú thành công.\nVui lòng kiểm tra lại";
+                                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị và chuyển thành phơi ngoại trú thành công!");
+                                    frmthongbao.Show();
                                     // load lại dữ liệu của form
                                     gridControlBNBK.DataSource = null;
                                     btnBNBKTimKiem_Click(null, null);
@@ -397,9 +375,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không thể thực hiện được!\n   Mã điều trị đã kết thúc";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc");
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -429,9 +406,8 @@ namespace MedicalLink.ChucNang
                 {
                     if (codvnt == 1)
                     {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị!");
+                        frmthongbao.Show();
                     }
                     else
                     {
@@ -448,9 +424,8 @@ namespace MedicalLink.ChucNang
                                 condb.ExecuteNonQuery(sqldeletemedi);
                                 condb.ExecuteNonQuery(sqldeletevp);
                                 condb.ExecuteNonQuery(sqlinsert_log);
-                                timerThongBao.Start();
-                                lblThongBao.Visible = true;
-                                lblThongBao.Text = "Xóa toàn bộ bệnh án thành công.\nVui lòng kiểm tra lại";
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa toàn bộ bệnh án thành công.\nVui lòng kiểm tra lại");
+                                frmthongbao.Show();
                             }
                             catch (Exception)
                             {
@@ -465,9 +440,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không thể thực hiện được!\n   Mã điều trị đã kết thúc";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được.Mã điều trị đã kết thúc");
+                    frmthongbao.Show();
                 }
 
                 // load lại dữ liệu của form

@@ -103,7 +103,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     string sql = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','Nhân viên', '" + txtIDHIS.Text.Trim() + "');";
                     if (condb.ExecuteNonQuery(sql))
                     {
-                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                        frmthongbao.Show();
                     }
                     gridControlDSNV.DataSource = null;
                     ucDanhSachNhanVien_Load(null, null);
@@ -113,7 +114,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     string sql = "UPDATE tools_tblnhanvien SET usercode='" + en_txtNVID + "', username='" + en_txtNVName + "', userpassword='" + en_pass + "', userstatus='0', usergnhom='2', usernote='' , userhisid = '" + txtIDHIS.Text.Trim() + "' WHERE usercode='" + en_txtNVID + "';";
                     if (condb.ExecuteNonQuery(sql))
                     {
-                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
+                        frmthongbao.Show();
                     }
                     gridControlDSNV.DataSource = null;
                     ucDanhSachNhanVien_Load(null, null);
@@ -218,25 +220,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
-        private void HienThiThongBao(string tenThongBao)
-        {
-            try
-            {
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = tenThongBao; 
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
 
     }
 }

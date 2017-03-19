@@ -134,7 +134,6 @@ namespace MedicalLink.BaoCao
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            lblThongBao.Visible = false;
             gridControlDSDV.DataSource = null;
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             string dsnhomdv = "'" + mmeMaDV.Text + "'";
@@ -225,7 +224,8 @@ namespace MedicalLink.BaoCao
                 }
                 else
                 {
-                    Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO_THEO_YEU_CAU);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -233,12 +233,6 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
             SplashScreenManager.CloseForm();
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         private void tbnExport_Click(object sender, EventArgs e)
@@ -278,7 +272,8 @@ namespace MedicalLink.BaoCao
                                 default:
                                     break;
                             }
-                            Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            frmthongbao.Show();
 
                         }
                     }
@@ -290,7 +285,8 @@ namespace MedicalLink.BaoCao
             }
             else
             {
-                Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                frmthongbao.Show();
             }
 
         }

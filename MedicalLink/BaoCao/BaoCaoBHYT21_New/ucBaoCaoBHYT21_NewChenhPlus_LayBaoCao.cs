@@ -470,7 +470,8 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.CO_LOI_XAY_RA);
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                frmthongbao.Show();
             }
         }
 

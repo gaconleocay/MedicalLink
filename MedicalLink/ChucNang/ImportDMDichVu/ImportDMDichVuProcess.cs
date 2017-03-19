@@ -107,9 +107,9 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Vui lòng nhập đầy đủ thông tin";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
+
                 }
 
                 SplashScreenManager.CloseForm();

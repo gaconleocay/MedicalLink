@@ -101,12 +101,14 @@ namespace MedicalLink.Utilities.Common.Excel
                                         designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
                                         break;
                                 }
-                                MessageBox.Show("Export dữ liệu thành công!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Không tìm thấy file template báo cáo!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_TEMPLATE_BAO_CAO);
+                            frmthongbao.Show();
                         }
                     }
                 }

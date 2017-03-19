@@ -45,9 +45,8 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa số lượng của servicepriceid=" + servicepriceid + " từ " + soluong_old + " thành " + spinSoLuong.Text + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery(sqlxecute);
                 condb.ExecuteNonQuery(sqlinsert_log);
-                suaPhoiTT.timerThongBao.Start();
-                suaPhoiTT.lblThongBao.Visible = true;
-                suaPhoiTT.lblThongBao.Text = "Sửa số lượng từ " + soluong_old + " thành " + spinSoLuong.Value.ToString() + " thành công.\nVui lòng kiểm tra lại";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Sửa số lượng từ " + soluong_old + " thành " + spinSoLuong.Value.ToString() + " thành công.\nVui lòng kiểm tra lại");
+                frmthongbao.Show();
                 this.Close();
                 // load lại dữ liệu của form
                 suaPhoiTT.gridControlSuaPhoiThanhToan.DataSource = null;

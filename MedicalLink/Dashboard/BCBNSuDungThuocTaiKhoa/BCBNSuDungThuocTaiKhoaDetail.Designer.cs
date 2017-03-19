@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BCBNSuDungThuocTaiKhoaDetail));
             this.gridControlBNDetail = new DevExpress.XtraGrid.GridControl();
             this.gridViewBNDetail = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -57,8 +56,6 @@
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -580,30 +577,12 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.lblThongBao);
             this.panelControl2.Controls.Add(this.gridControlBNDetail);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 47);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1184, 515);
             this.panelControl2.TabIndex = 2;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(538, 202);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 21;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
-            // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
             // 
             // BCBNSuDungThuocTaiKhoaDetail
             // 
@@ -623,7 +602,6 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            this.panelControl2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -655,8 +633,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
         private System.Windows.Forms.Label lblTenThongTinChiTiet;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
     }

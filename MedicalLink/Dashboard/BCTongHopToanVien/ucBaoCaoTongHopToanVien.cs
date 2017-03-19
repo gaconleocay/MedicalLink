@@ -64,11 +64,6 @@ namespace MedicalLink.Dashboard
         }
 
         #endregion
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {
@@ -173,9 +168,8 @@ namespace MedicalLink.Dashboard
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Vui lòng chọn tiêu chí và kiểu xem.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Vui lòng chọn tiêu chí và kiểu xem.");
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

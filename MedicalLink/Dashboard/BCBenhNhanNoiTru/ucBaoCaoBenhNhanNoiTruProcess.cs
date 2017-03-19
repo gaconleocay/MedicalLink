@@ -27,8 +27,8 @@ namespace MedicalLink.Dashboard
                 filter.dateTu = this.thoiGianTu;
                 filter.dateDen = this.thoiGianDen;
                 filter.dateKhoangDLTu = this.KhoangThoiGianLayDuLieu;
-                filter.departmentgroupid = 0;
-                filter.loaivienphiid = 0;
+                filter.departmentgroupid = 0;//tat ca khoa
+                filter.loaivienphiid = 0; //noi tru
                 filter.chayTuDong = 0;
                 DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_DangDT_Tmp(filter);
                 DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienChuaTT_Tmp(filter);
@@ -112,9 +112,8 @@ namespace MedicalLink.Dashboard
                 {
                     dataBCTongTheKhoa = null;
                     gridControlDataBNNT.DataSource = null;
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

@@ -65,7 +65,6 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlMoBenhAn = new DevExpress.XtraGrid.GridControl();
             this.gridViewMoBenhAn = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.mavienphi = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -77,9 +76,7 @@
             this.khoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.phong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imageCollectionMBA = new DevExpress.Utils.ImageCollection(this.components);
-            this.timerTB = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMBA_TK)).BeginInit();
             this.panelControlMBA_TK.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -542,25 +539,12 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.lblThongBao);
             this.panelControl1.Controls.Add(this.gridControlMoBenhAn);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1000, 205);
             this.panelControl1.TabIndex = 20;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(299, 122);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(133, 23);
-            this.lblThongBao.TabIndex = 20;
-            this.lblThongBao.Text = "Thông báo TK";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlMoBenhAn
             // 
@@ -772,20 +756,10 @@
             this.gridColumn11.VisibleIndex = 8;
             this.gridColumn11.Width = 162;
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // imageCollectionMBA
             // 
             this.imageCollectionMBA.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionMBA.ImageStream")));
             this.imageCollectionMBA.Images.SetKeyName(0, "unlocked_01.png");
-            // 
-            // timerTB
-            // 
-            this.timerTB.Interval = 1000;
-            this.timerTB.Tick += new System.EventHandler(this.timerTB_Tick);
             // 
             // ucMoBenhAn
             // 
@@ -813,7 +787,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit_MBA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlMoBenhAn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMoBenhAn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionMBA)).EndInit();
@@ -839,7 +812,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn trangthai;
         private DevExpress.XtraGrid.Columns.GridColumn khoa;
         private DevExpress.XtraGrid.Columns.GridColumn phong;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gridControlMBA_TH;
@@ -854,7 +826,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.LabelControl labelmabenhnhan;
         private DevExpress.XtraEditors.LabelControl labelControl2;
@@ -863,7 +834,6 @@
         private DevExpress.XtraEditors.LabelControl labeltenbenhnhan;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.Utils.ImageCollection imageCollectionMBA;
-        private System.Windows.Forms.Timer timerTB;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit_MBA;
         private DevExpress.XtraEditors.LabelControl labelControl5;

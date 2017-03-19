@@ -168,9 +168,8 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Có lỗi xảy ra khi lấy báo cáo.";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                frmthongbao.Show();
             }
         }
 

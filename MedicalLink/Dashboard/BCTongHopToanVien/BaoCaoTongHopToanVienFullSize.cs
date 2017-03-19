@@ -58,11 +58,6 @@ namespace MedicalLink.Dashboard.BCTongHopToanVien
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
     }
 }

@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSuaGiaDV_TH));
             this.groupBoxXuatBC = new System.Windows.Forms.GroupBox();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -42,7 +40,6 @@
             this.txtGiaVP = new DevExpress.XtraEditors.TextEdit();
             this.btnSuaGiaMoi = new DevExpress.XtraEditors.SimpleButton();
             this.btnHuyBo = new DevExpress.XtraEditors.SimpleButton();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.lblMaVienPhi = new DevExpress.XtraEditors.LabelControl();
@@ -82,7 +79,6 @@
             // 
             // groupBoxXuatBC
             // 
-            this.groupBoxXuatBC.Controls.Add(this.lblThongBao);
             this.groupBoxXuatBC.Controls.Add(this.labelControl7);
             this.groupBoxXuatBC.Controls.Add(this.labelControl5);
             this.groupBoxXuatBC.Controls.Add(this.labelControl3);
@@ -98,19 +94,6 @@
             this.groupBoxXuatBC.TabIndex = 15;
             this.groupBoxXuatBC.TabStop = false;
             this.groupBoxXuatBC.Text = "Giá dịch vụ/thuốc, vật tư";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(181, 0);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(133, 23);
-            this.lblThongBao.TabIndex = 21;
-            this.lblThongBao.Text = "Thông báo TK";
-            this.lblThongBao.Visible = false;
             // 
             // labelControl7
             // 
@@ -236,10 +219,6 @@
             this.btnHuyBo.TabIndex = 17;
             this.btnHuyBo.Text = "Hủy Bỏ";
             this.btnHuyBo.Click += new System.EventHandler(this.btnHuyBo_Click);
-            // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
             // 
             // layoutControl1
             // 
@@ -564,8 +543,6 @@
         private DevExpress.XtraEditors.TextEdit txtGiaBHYT;
         private DevExpress.XtraEditors.TextEdit txtGiaYC;
         private DevExpress.XtraEditors.TextEdit txtGiaVP;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.LabelControl lblServicepriceID;

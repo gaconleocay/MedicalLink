@@ -46,20 +46,14 @@ namespace MedicalLink.Dashboard.BCBenhNhanNoiTru
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không có dữ liệu!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
-        }
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)

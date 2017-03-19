@@ -108,11 +108,6 @@ namespace MedicalLink.Dashboard
         }
 
         #endregion
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {
@@ -197,9 +192,8 @@ namespace MedicalLink.Dashboard
             {
                 if (cboKhoa.EditValue == null)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                    frmthongbao.Show();
                 }
                 else
                 {

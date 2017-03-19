@@ -65,9 +65,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Danh sách rỗng";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -267,8 +266,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
             btnUserOK.Enabled = true;
             gridControlChucNang.DataSource = null;
             gridControlKhoaPhong.DataSource = null;
+            gridControlBaoCao.DataSource = null;
             LoadDanhSachChucNang();
             LoadDanhSachKhoaPhong();
+            LoadDanhSachBaoCao();
             currentUserCode = null;
         }
 
@@ -287,9 +288,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     CreateNewPermission(en_txtUserID);
                     CreateNewUserDepartment(en_txtUserID);
                     CreateNewPermissionBaoCao(en_txtUserID);
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Thêm mới thành công";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                    frmthongbao.Show();
                     LoadDanhSachNguoiDung();
                 }
                 else //Update 
@@ -298,9 +298,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     UpdatePermission(en_txtUserID);
                     UpdateUserDepartment(en_txtUserID);
                     UpdatePermissionBaoCao(en_txtUserID);
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Cập nhật thành công";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                    frmthongbao.Show();
                 }      
             }
             catch (Exception ex)
@@ -574,26 +573,19 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     condb.ExecuteNonQuery(sqlxoatk_pq);
                     condb.ExecuteNonQuery(sqlinsert_log);
 
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Đã xóa bỏ tài khoản: " + currentUserCode;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
+                    frmthongbao.Show();
                     gridControlDSUser.DataSource = null;
                     ucQuanLyNguoiDung_Load(null, null);
                 }
                 catch
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Có lỗi xảy ra";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                    frmthongbao.Show();
                 }
             }
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void gridViewChucNang_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {

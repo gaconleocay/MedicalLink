@@ -51,9 +51,8 @@ namespace MedicalLink.ChucNang
                     {
                         soluonghoso = 0;
                         gridControlHSBA.DataSource = null;
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu.";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        frmthongbao.Show();
                     }
 
                 }
@@ -64,12 +63,6 @@ namespace MedicalLink.ChucNang
                 SplashScreenManager.CloseForm();
                 MedicalLink.Base.Logging.Warn(ex);
             }
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         private void ucUpdateDataSerPrice_Load(object sender, EventArgs e)
@@ -128,9 +121,8 @@ namespace MedicalLink.ChucNang
                                     default:
                                         break;
                                 }
-                                timerThongBao.Start();
-                                lblThongBao.Visible = true;
-                                lblThongBao.Text = "Export dữ liệu thành công!";
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
                     }
@@ -141,9 +133,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không có dữ liệu!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -178,9 +169,8 @@ namespace MedicalLink.ChucNang
                     string sqlupdate = "UPDATE medicalrecord SET medicalrecordstatus ='99' WHERE medicalrecordid IN (SELECT medicalrecord.medicalrecordid FROM vienphi INNER JOIN medicalrecord ON vienphi.medicalrecordid_end=medicalrecord.medicalrecordid  INNER JOIN tools_depatment ON medicalrecord.departmentid=tools_depatment.departmentid INNER JOIN hosobenhan ON hosobenhan.hosobenhanid=vienphi.hosobenhanid INNER JOIN bhyt ON bhyt.bhytid=vienphi.bhytid  WHERE medicalrecord.medicalrecordstatus <>'99' and vienphi.duyet_ngayduyet_vp > '" + datetungay + "' and vienphi.duyet_ngayduyet_vp < '" + datedenngay + "') ;";
                     condb.ExecuteNonQuery(sqlupdate);
 
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Cập nhật thành công [ " + soluonghoso.ToString() + " ] hồ sơ";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Cập nhật thành công [ " + soluonghoso.ToString() + " ] hồ sơ");
+                    frmthongbao.Show();
                 }
                 SplashScreenManager.CloseForm();
             }

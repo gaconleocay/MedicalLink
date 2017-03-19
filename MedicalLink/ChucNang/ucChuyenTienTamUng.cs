@@ -136,9 +136,8 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewChuyenTien.RowCount == 0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
                 /*
                 NpgsqlCommand command = new NpgsqlCommand(sqlquerry, conn);
@@ -171,9 +170,8 @@ namespace MedicalLink.ChucNang
                 string trangth = Convert.ToString(gridViewChuyenTien.GetRowCellValue(rowHandle, "trangthai").ToString());
                 if (trangth == "Đã duyệt VP")
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã duyệt viện phí";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                 }
                 else
                 {
@@ -252,11 +250,6 @@ namespace MedicalLink.ChucNang
             txtChuyenTienVP1.Focus();
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
 
     }

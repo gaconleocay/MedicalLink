@@ -88,9 +88,8 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewSuaTGDuyetVP.RowCount==0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -165,9 +164,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân chưa duyệt kế toán viện phí";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_CHUA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                 }
             }
             catch
@@ -192,9 +190,8 @@ namespace MedicalLink.ChucNang
                     condb.ExecuteNonQuery(sqlupdate);
                     string sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG duyệt VP BN: " + txtMaBenhNhan.Text + " mã VP: " + mavp + " từ TG: " + dateThoiGianHienTai.Text + " thành TG: " + dateThoiGianSua.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                     condb.ExecuteNonQuery(sqlluulog);
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Đã sửa thành công, xin vui lòng kiểm tra lại!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
+                    frmthongbao.Show();
                     gridControlSuaTGDuyetVP.DataSource = null;
                     btnTimKiemMaVP_Click(null, null);
 
@@ -211,11 +208,6 @@ namespace MedicalLink.ChucNang
 
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void txtMaVienPhi_EditValueChanged(object sender, EventArgs e)
         {

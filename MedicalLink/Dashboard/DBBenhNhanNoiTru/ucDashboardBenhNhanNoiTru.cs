@@ -67,11 +67,6 @@ namespace MedicalLink.Dashboard
             }
         }
         #endregion
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {
@@ -342,9 +337,8 @@ namespace MedicalLink.Dashboard
                 if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
                 {
                     dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

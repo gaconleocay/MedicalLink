@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMoBenhAn_ThucHien_TT));
-            this.timerTB = new System.Windows.Forms.Timer(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.memoEditLyDo = new DevExpress.XtraEditors.MemoEdit();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
@@ -55,7 +52,6 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.timerThemNhanVien = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -76,11 +72,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // timerTB
-            // 
-            this.timerTB.Interval = 1000;
-            this.timerTB.Tick += new System.EventHandler(this.timerTB_Tick);
             // 
             // layoutControl1
             // 
@@ -110,24 +101,11 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.lblThongBao);
             this.panelControl1.Controls.Add(this.memoEditLyDo);
             this.panelControl1.Location = new System.Drawing.Point(12, 174);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(460, 110);
             this.panelControl1.TabIndex = 10;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(46, 40);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(224, 23);
-            this.lblThongBao.TabIndex = 6;
-            this.lblThongBao.Text = "Mở bệnh án thành công";
-            this.lblThongBao.Visible = false;
             // 
             // memoEditLyDo
             // 
@@ -356,11 +334,6 @@
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // timerThemNhanVien
-            // 
-            this.timerThemNhanVien.Interval = 2000;
-            this.timerThemNhanVien.Tick += new System.EventHandler(this.timerThemNhanVien_Tick);
-            // 
             // frmMoBenhAn_ThucHien_TT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,7 +353,6 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEditLyDo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.navBarControl1.ResumeLayout(false);
@@ -403,7 +375,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timerTB;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private System.Windows.Forms.ComboBox comboBoxNYC;
@@ -425,9 +396,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.MemoEdit memoEditLyDo;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
-        private System.Windows.Forms.Timer timerThemNhanVien;
     }
 }

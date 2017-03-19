@@ -139,9 +139,8 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewMoBenhAn.RowCount == 0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
 
             }
@@ -166,10 +165,8 @@ namespace MedicalLink.ChucNang
                 if (trangth == "Đã duyệt VP")
                 {
                     HienThiThongTinBenhNhanDangChon(mabenhnhan, mavienphi, tenbenhnhan);
-                    //MessageBox.Show("Bệnh nhân đã duyệt viện phí", "Thông báo");
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã duyệt viện phí!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                 }
                 else
                 {
@@ -202,12 +199,6 @@ namespace MedicalLink.ChucNang
             txtMBAMaBenhNhan.Focus();
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
-
         private void gridControlMoBenhAn_Click(object sender, EventArgs e)
         {
             try
@@ -223,10 +214,8 @@ namespace MedicalLink.ChucNang
                 if (trangth == "Đã duyệt VP")
                 {
                     HienThiThongTinBenhNhanDangChon(mabenhnhan, mavienphi, tenbenhnhan);
-                    //MessageBox.Show("Bệnh nhân đã duyệt viện phí", "Thông báo");
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã duyệt viện phí!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                 }
                 else
                 {
@@ -370,10 +359,8 @@ namespace MedicalLink.ChucNang
                 }
                 else // trangth="Đang điều trị"
                 {
-                    //MessageBox.Show("Bệnh án đang mở", "Thông báo");
-                    timerTB.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh án đang mở";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_AN_DANG_MO);
+                    frmthongbao.Show();
                 }
             }
             else // Không phải là khoa cuối cùng. Thì sẽ duyệt tất cả các mã điều trị để kiểm tra xem mã điều trị cuối cùng đóng hay mở
@@ -390,10 +377,8 @@ namespace MedicalLink.ChucNang
                     }
                     if (dem == 1)
                     {
-                        //MessageBox.Show("Khoa cuối cùng đang đóng. \nYêu cầu mở ở khoa cuối cùng trước", "Thông báo!");
-                        timerTB.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "        Khoa cuối cùng đang đóng. \nYêu cầu mở ở khoa cuối cùng trước";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Khoa cuối cùng đang đóng. Yêu cầu mở ở khoa cuối cùng trước!");
+                        frmthongbao.Show();
                     }
                     else // else = khoa cuối cùng đang mở thì thực hiện mở bệnh án.
                     {
@@ -419,18 +404,10 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    // MessageBox.Show("Bệnh án đang mở", "Thông báo");
-                    timerTB.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh án đang mở";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_AN_DANG_MO);
+                    frmthongbao.Show();
                 }
             }
-        }
-
-        private void timerTB_Tick(object sender, EventArgs e)
-        {
-            timerTB.Stop();
-            lblThongBao.Visible = false;
         }
 
         private void repositoryItemButtonEdit_MBA_Click(object sender, EventArgs e)
@@ -450,7 +427,10 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                moBenhAnItem_Click(null, null);
+                if (gridViewMBA_TH.RowCount > 0)
+                {
+                    moBenhAnItem_Click(null, null);
+                }
             }
             catch (Exception)
             {

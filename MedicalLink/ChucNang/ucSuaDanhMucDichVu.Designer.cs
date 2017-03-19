@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSuaDanhMucDichVu));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
@@ -64,7 +63,6 @@
             this.btnLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnSua = new DevExpress.XtraEditors.SimpleButton();
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDMDichVu = new DevExpress.XtraGrid.GridControl();
             this.gridViewDMDichVu = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -73,7 +71,6 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlChucNang)).BeginInit();
@@ -493,25 +490,12 @@
             // 
             // panelControlData
             // 
-            this.panelControlData.Controls.Add(this.lblThongBao);
             this.panelControlData.Controls.Add(this.gridControlDMDichVu);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlData.Location = new System.Drawing.Point(0, 79);
             this.panelControlData.Name = "panelControlData";
             this.panelControlData.Size = new System.Drawing.Size(454, 534);
             this.panelControlData.TabIndex = 7;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(274, 159);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 21;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlDMDichVu
             // 
@@ -650,11 +634,6 @@
             this.gridColumn5.VisibleIndex = 5;
             this.gridColumn5.Width = 128;
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // ucSuaDanhMucDichVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -680,7 +659,6 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
-            this.panelControlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDMDichVu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDMDichVu)).EndInit();
             this.ResumeLayout(false);
@@ -731,7 +709,5 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private DevExpress.XtraEditors.ComboBoxEdit cbbNhomLoaiDichVu;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
     }
 }

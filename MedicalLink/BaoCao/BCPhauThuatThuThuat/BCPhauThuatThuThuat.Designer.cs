@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BCPhauThuatThuThuat));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -52,9 +51,7 @@
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDataBCPTTT = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewDataBCPTTT = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -372,32 +369,14 @@
             this.btnTimKiem.Text = "Refresh";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // panelControlData
             // 
-            this.panelControlData.Controls.Add(this.lblThongBao);
             this.panelControlData.Controls.Add(this.gridControlDataBCPTTT);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlData.Location = new System.Drawing.Point(0, 120);
             this.panelControlData.Name = "panelControlData";
             this.panelControlData.Size = new System.Drawing.Size(1100, 493);
             this.panelControlData.TabIndex = 4;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(563, 185);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 28;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlDataBCPTTT
             // 
@@ -1394,7 +1373,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
-            this.panelControlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBCPTTT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataBCPTTT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).EndInit();
@@ -1407,13 +1385,11 @@
         private DevExpress.XtraEditors.PanelControl panelControlThongTinDV;
         private System.Windows.Forms.GroupBox groupBoxFile;
         private DevExpress.XtraEditors.SimpleButton btnTimKiem;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.DateTimePicker dateDenNgay;
         private System.Windows.Forms.DateTimePicker dateTuNgay;
         private DevExpress.XtraEditors.PanelControl panelControlData;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraGrid.GridControl gridControlDataBCPTTT;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridViewDataBCPTTT;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButton_View;

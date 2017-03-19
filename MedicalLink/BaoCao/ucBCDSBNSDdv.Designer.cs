@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCDSBNSDdv));
             this.panelControlTKDV_TK = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxXuatBC = new System.Windows.Forms.GroupBox();
@@ -47,7 +46,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.cbbTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
             this.panelControlDV_DT = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDSDV = new DevExpress.XtraGrid.GridControl();
             this.gridViewDSDV = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.stt = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -74,7 +72,6 @@
             this.benhchinh_name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -300,25 +297,12 @@
             // panelControlDV_DT
             // 
             this.panelControlDV_DT.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControlDV_DT.Controls.Add(this.lblThongBao);
             this.panelControlDV_DT.Controls.Add(this.gridControlDSDV);
             this.panelControlDV_DT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlDV_DT.Location = new System.Drawing.Point(0, 115);
             this.panelControlDV_DT.Name = "panelControlDV_DT";
             this.panelControlDV_DT.Size = new System.Drawing.Size(1000, 479);
             this.panelControlDV_DT.TabIndex = 4;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(188, 89);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 19;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlDSDV
             // 
@@ -814,11 +798,6 @@
             this.benhkemtheo_name.VisibleIndex = 23;
             this.benhkemtheo_name.Width = 145;
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // ucBCDSBNSDdv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -840,7 +819,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbbTieuChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDV_DT)).EndInit();
             this.panelControlDV_DT.ResumeLayout(false);
-            this.panelControlDV_DT.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSDV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSDV)).EndInit();
             this.ResumeLayout(false);
@@ -875,8 +853,6 @@
         private DevExpress.XtraEditors.CheckEdit chkBHYT;
         private System.Windows.Forms.GroupBox groupBoxXuatBC;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
-        private System.Windows.Forms.Timer timerThongBao;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.DateTimePicker dateDenNgay;

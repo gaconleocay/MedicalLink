@@ -125,9 +125,8 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewSuaThoiGianRV.RowCount == 0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -149,10 +148,8 @@ namespace MedicalLink.ChucNang
                 // Kiểm tra nếu chưa có TG ra viện thì hiển thị hộp thoại thông báo, đồng thời không có sửa ngày ra viện
                 if (trangth == "Đã duyệt VP")
                 {
-                    //MessageBox.Show("Bệnh nhân đã duyệt viện phí", "Thông báo");
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã duyệt viện phí";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                     dateThoiGianSua.Enabled = false;
                     btnSuaThoiGianOK.Enabled = false;
                 }
@@ -174,10 +171,8 @@ namespace MedicalLink.ChucNang
                     }
                     else
                     {
-                        //MessageBox.Show("Bệnh nhân chưa ra viện", "Thông báo");
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Bệnh nhân chưa ra viện";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("bệnh nhân chưa ra viện!");
+                        frmthongbao.Show();
                         dateThoiGianSua.Enabled = false;
                         btnSuaThoiGianOK.Enabled = false;
                     }
@@ -209,9 +204,8 @@ namespace MedicalLink.ChucNang
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG ra viện BN VP: " + mavp + " mã ĐT: " + medireco + " từ TG: " + dateThoiGianHienTai.Text + " thành TG: " + dateThoiGianSua.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                     condb.ExecuteNonQuery(sqlxecute);
                     condb.ExecuteNonQuery(sqlinsert_log);
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Đã sửa thành công, xin vui lòng kiểm tra lại!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
+                    frmthongbao.Show();
                     gridControlSuaThoiGianRaVien.DataSource = null;
                     btnSuaThoiGianRV_Click(null, null);
 
@@ -241,12 +235,6 @@ namespace MedicalLink.ChucNang
         private void usSuaThoiGianRaVien_Load(object sender, EventArgs e)
         {
             txtMaBN.Focus();
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         private void txtMaVienPhi_EditValueChanged(object sender, EventArgs e)

@@ -129,9 +129,8 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Chưa nhập mã kích hoạt!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chưa nhập mã kích hoạt!");
+                    frmthongbao.Show();
                     lblThoiGianSuDung.Text = "none";
                 }
             }
@@ -149,15 +148,13 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 string update_license = "UPDATE tools_license SET licensekey='" + txtKeyKichHoat.Text.Trim() + "' WHERE datakey='" + MaDatabase + "' ;";
                 if (condb.ExecuteNonQuery(update_license))
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Lưu mã kích hoạt thành công";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Lưu mã kích hoạt thành công!");
+                    frmthongbao.Show();
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -235,11 +232,6 @@ namespace MedicalLink.FormCommon.TabTrangChu
         }
         #endregion
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
 
 

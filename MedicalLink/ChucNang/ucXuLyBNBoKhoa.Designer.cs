@@ -39,7 +39,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtBNBKMaBN = new DevExpress.XtraEditors.TextEdit();
             this.panelControlBNBK_DT = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlBNBK = new DevExpress.XtraGrid.GridControl();
             this.gridViewBNBK = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.madieutri = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,7 +51,6 @@
             this.khoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.phong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.codvnoitru = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlBNBK_TK)).BeginInit();
             this.panelControlBNBK_TK.SuspendLayout();
@@ -166,25 +164,12 @@
             // panelControlBNBK_DT
             // 
             this.panelControlBNBK_DT.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControlBNBK_DT.Controls.Add(this.lblThongBao);
             this.panelControlBNBK_DT.Controls.Add(this.gridControlBNBK);
             this.panelControlBNBK_DT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlBNBK_DT.Location = new System.Drawing.Point(0, 94);
             this.panelControlBNBK_DT.Name = "panelControlBNBK_DT";
             this.panelControlBNBK_DT.Size = new System.Drawing.Size(1000, 500);
             this.panelControlBNBK_DT.TabIndex = 3;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(224, 140);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 19;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlBNBK
             // 
@@ -413,11 +398,6 @@
             this.codvnoitru.VisibleIndex = 9;
             this.codvnoitru.Width = 101;
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // imMenu
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
@@ -443,7 +423,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtBNBKMaBN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlBNBK_DT)).EndInit();
             this.panelControlBNBK_DT.ResumeLayout(false);
-            this.panelControlBNBK_DT.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBNBK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNBK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
@@ -473,8 +452,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn codvnoitru;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtBNBKMaVP;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.Utils.ImageCollection imMenu;
         private DevExpress.XtraEditors.LabelControl labelControl3;
     }

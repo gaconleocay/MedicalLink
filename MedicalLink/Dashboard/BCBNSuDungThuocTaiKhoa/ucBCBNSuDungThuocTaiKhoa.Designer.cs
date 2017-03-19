@@ -52,9 +52,7 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.cboChonNhanh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDataQLTTKhoa = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewDataQLTTKhoa = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.gridBand6 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -332,32 +330,14 @@
             this.btnTimKiem.Text = "Refresh";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // panelControlData
             // 
-            this.panelControlData.Controls.Add(this.lblThongBao);
             this.panelControlData.Controls.Add(this.gridControlDataQLTTKhoa);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlData.Location = new System.Drawing.Point(0, 140);
             this.panelControlData.Name = "panelControlData";
             this.panelControlData.Size = new System.Drawing.Size(1000, 473);
             this.panelControlData.TabIndex = 4;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(395, 148);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 29;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlDataQLTTKhoa
             // 
@@ -855,7 +835,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
-            this.panelControlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataQLTTKhoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataQLTTKhoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).EndInit();
@@ -870,7 +849,6 @@
         private System.Windows.Forms.GroupBox groupBoxFile;
         private DevExpress.XtraEditors.SimpleButton btnTimKiem;
         private DevExpress.XtraEditors.ComboBoxEdit cboChonNhanh;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.DateTimePicker dateDenNgay;
@@ -892,7 +870,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn6;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn9;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn10;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
         private System.Windows.Forms.RadioButton radioVatTu;
         private System.Windows.Forms.RadioButton radioThuoc;

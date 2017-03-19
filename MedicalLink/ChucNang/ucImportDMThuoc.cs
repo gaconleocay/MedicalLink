@@ -41,15 +41,13 @@ namespace MedicalLink.ChucNang
                 // Thông báo hiển thị dữ liệu
                 if (gridViewThuoc.RowCount > 0)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Hiển thị dữ liệu thành công !";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.HIEN_THI_DU_LIEU_THANH_CONG);
+                    frmthongbao.Show();
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "             Có lỗi xảy ra ! \nKiểm tra lại định dạng file excel";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA_KIEM_TRA_LAI_TEMPLATE);
+                    frmthongbao.Show();
                 }
 
             }
@@ -455,12 +453,6 @@ namespace MedicalLink.ChucNang
                     }
             }
             SplashScreenManager.CloseForm();
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         // Đánh số thứ tự ở cột Indicator gridView

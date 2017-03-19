@@ -120,9 +120,8 @@ namespace MedicalLink.ChucNang
                                     default:
                                         break;
                                 }
-                                timerThongBao.Start();
-                                lblThongBao_CaiDat.Visible = true;
-                                lblThongBao_CaiDat.Text = "Export dữ liệu thành công!";
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
                     }
@@ -133,9 +132,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao_CaiDat.Visible = true;
-                    lblThongBao_CaiDat.Text = "Không có dữ liệu!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception)
@@ -167,9 +165,8 @@ namespace MedicalLink.ChucNang
                                 condb.ExecuteNonQuery(sql_updateDVKT);
                             }
 
-                            timerThongBao.Start();
-                            lblThongBao_CaiDat.Visible = true;
-                            lblThongBao_CaiDat.Text = "Cập nhật thành công!";
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                            frmthongbao.Show();
                             LoadDanhMucDichVuGanMaTuongDuong();
                         }
                         catch (Exception)
@@ -188,9 +185,8 @@ namespace MedicalLink.ChucNang
                                 string sql_insertDVKT = "INSERT INTO tools_dvktbhytchenh(MaDDVKT_CODE, MaDVKT_Cu, TenDVKT_Cu, MaDVKTBHYT_Cu, DonGia_Cu, MaDVKT_TuongDuong, MaDVKT_Moi, TenDVKT_Moi, MaDVKTBHYT_Moi, DonGia_Moi, is_lock) VALUES ('" + dv_dv_insert_code + "', '" + data_tk_cu[0]["dv_ma"].ToString() + "','" + data_tk_cu[0]["dv_tenbhyt"].ToString() + "','" + data_tk_cu[0]["dv_matuongduong"].ToString() + "','" + data_tk_cu[0]["gia_bhyt"].ToString() + "','" + data_tk_cu[0]["dv_matuongduong"].ToString() + "','" + data_tk_moi[0]["dv_ma"].ToString() + "','" + data_tk_moi[0]["dv_tenbhyt"].ToString() + "','" + data_tk_moi[0]["dv_matuongduong"].ToString() + "','" + data_tk_moi[0]["gia_bhyt"].ToString() + "','0');";
                                 condb.ExecuteNonQuery(sql_insertDVKT);
 
-                                timerThongBao.Start();
-                                lblThongBao_CaiDat.Visible = true;
-                                lblThongBao_CaiDat.Text = "Thêm mới thành công!";
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                                frmthongbao.Show();
                                 LoadDanhMucDichVuGanMaTuongDuong();
                             }
                         }
@@ -200,9 +196,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao_CaiDat.Visible = true;
-                    lblThongBao_CaiDat.Text = "Chưa nhập đầy đủ thông tin!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

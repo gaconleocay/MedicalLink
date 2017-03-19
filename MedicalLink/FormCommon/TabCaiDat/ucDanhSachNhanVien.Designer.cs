@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDanhSachNhanVien));
             this.panelControlThongTinNV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxChucNang = new System.Windows.Forms.GroupBox();
@@ -43,7 +42,6 @@
             this.lblUserId = new DevExpress.XtraEditors.LabelControl();
             this.lblUsername = new DevExpress.XtraEditors.LabelControl();
             this.panelControlNV_DT = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDSNV = new DevExpress.XtraGrid.GridControl();
             this.gridViewDSNV = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.stt = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,7 +49,6 @@
             this.tennv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinNV)).BeginInit();
             this.panelControlThongTinNV.SuspendLayout();
             this.groupBoxChucNang.SuspendLayout();
@@ -209,25 +206,12 @@
             // panelControlNV_DT
             // 
             this.panelControlNV_DT.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControlNV_DT.Controls.Add(this.lblThongBao);
             this.panelControlNV_DT.Controls.Add(this.gridControlDSNV);
             this.panelControlNV_DT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlNV_DT.Location = new System.Drawing.Point(0, 85);
             this.panelControlNV_DT.Name = "panelControlNV_DT";
             this.panelControlNV_DT.Size = new System.Drawing.Size(1096, 528);
             this.panelControlNV_DT.TabIndex = 2;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(406, 163);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 21;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlDSNV
             // 
@@ -340,11 +324,6 @@
             this.openFileDialogSelect.Filter = "Excel 2003|*.xls|Excel 2007-2013|*.xlsx";
             this.openFileDialogSelect.Title = "Mở file Excel";
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // ucDanhSachNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,7 +343,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNVID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlNV_DT)).EndInit();
             this.panelControlNV_DT.ResumeLayout(false);
-            this.panelControlNV_DT.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSNV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSNV)).EndInit();
             this.ResumeLayout(false);
@@ -393,8 +371,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.TextEdit txtIDHIS;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
 
     }
 }

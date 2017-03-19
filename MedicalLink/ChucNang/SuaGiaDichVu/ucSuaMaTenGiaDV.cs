@@ -64,9 +64,8 @@ namespace MedicalLink.ChucNang
 
             if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,)") || (cbbTrangThaiVP.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
             {
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Vui lòng nhập đầy đủ thông tin";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                frmthongbao.Show();
             }
             else
             {
@@ -140,9 +139,8 @@ namespace MedicalLink.ChucNang
 
                     if (gridViewDSDV.RowCount == 0)
                     {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        frmthongbao.Show();
                     }
                 }
                 catch (Exception ex)
@@ -151,12 +149,6 @@ namespace MedicalLink.ChucNang
                 }
             }
             SplashScreenManager.CloseForm();
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         private void ucBCDSBNSDdv_Load(object sender, EventArgs e)
@@ -206,9 +198,9 @@ namespace MedicalLink.ChucNang
                                 default:
                                     break;
                             }
-                            timerThongBao.Start();
-                            lblThongBao.Visible = true;
-                            lblThongBao.Text = "Export dữ liệu thành công!";
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            frmthongbao.Show();
+
                         }
                     }
                 }
@@ -219,9 +211,8 @@ namespace MedicalLink.ChucNang
             }
             else
             {
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Không có dữ liệu!";
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                frmthongbao.Show();
             }
 
         }
@@ -302,9 +293,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã được duyệt viện phí nên không thể sửa được !";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                 }
                 
             }
@@ -350,9 +340,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã được duyệt viện phí nên không thể sửa được !";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -380,9 +369,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Bệnh nhân đã được duyệt viện phí nên không thể sửa được !";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

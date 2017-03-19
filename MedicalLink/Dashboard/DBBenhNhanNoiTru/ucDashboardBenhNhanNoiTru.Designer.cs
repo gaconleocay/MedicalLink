@@ -49,7 +49,6 @@
             this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.btnSettingAdvand = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.bbbb = new DevExpress.XtraEditors.LabelControl();
             this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
             this.radioNam = new System.Windows.Forms.RadioButton();
@@ -61,7 +60,6 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.cboChonNhanh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.timerTuDongCapNhat = new System.Windows.Forms.Timer(this.components);
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
             this.chartControlBNNoiTru = new DevExpress.XtraCharts.ChartControl();
@@ -193,7 +191,6 @@
             // 
             // groupBoxFile
             // 
-            this.groupBoxFile.Controls.Add(this.lblThongBao);
             this.groupBoxFile.Controls.Add(this.bbbb);
             this.groupBoxFile.Controls.Add(this.lblThoiGianLayBaoCao);
             this.groupBoxFile.Controls.Add(this.radioNam);
@@ -213,18 +210,6 @@
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(377, 86);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 28;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // bbbb
             // 
@@ -359,11 +344,6 @@
             this.btnTimKiem.Text = "Refresh";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // timerTuDongCapNhat
             // 
             this.timerTuDongCapNhat.Interval = 1000;
@@ -469,13 +449,11 @@
 
         private DevExpress.XtraEditors.PanelControl panelControlThongTinDV;
         private System.Windows.Forms.GroupBox groupBoxFile;
-        private System.Windows.Forms.Timer timerThongBao;
         private System.Windows.Forms.Timer timerTuDongCapNhat;
         private DevExpress.XtraEditors.PanelControl panelControlData;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.SimpleButton btnFullScreen;
         private DevExpress.XtraEditors.SimpleButton btnSettingAdvand;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.LabelControl bbbb;
         private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
         private System.Windows.Forms.RadioButton radioNam;

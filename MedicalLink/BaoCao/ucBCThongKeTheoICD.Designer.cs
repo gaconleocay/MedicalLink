@@ -86,8 +86,6 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlChiTiet = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlTongHop = new DevExpress.XtraLayout.LayoutControlItem();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
@@ -350,7 +348,6 @@
             // 
             this.panelControlDV_DT.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.panelControlDV_DT.Controls.Add(this.layoutControl1);
-            this.panelControlDV_DT.Controls.Add(this.lblThongBao);
             this.panelControlDV_DT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlDV_DT.Location = new System.Drawing.Point(0, 117);
             this.panelControlDV_DT.Name = "panelControlDV_DT";
@@ -1022,23 +1019,6 @@
             this.layoutControlTongHop.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlTongHop.TextVisible = false;
             // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(188, 89);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 19;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
-            // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // imMenu
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
@@ -1066,7 +1046,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cbbTrangThaiVP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDV_DT)).EndInit();
             this.panelControlDV_DT.ResumeLayout(false);
-            this.panelControlDV_DT.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSDV_TH)).EndInit();
@@ -1104,8 +1083,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.ComboBoxEdit cbbTrangThaiVP;
-        private System.Windows.Forms.Timer timerThongBao;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.DateTimePicker dateDenNgay;

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuaThongTin_ThucHien));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
@@ -47,7 +46,6 @@
             this.cboHuyen = new System.Windows.Forms.ComboBox();
             this.cboTinh = new System.Windows.Forms.ComboBox();
             this.txtGioiTinh = new DevExpress.XtraEditors.TextEdit();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.txtTinh = new DevExpress.XtraEditors.TextEdit();
             this.txtHuyen = new DevExpress.XtraEditors.TextEdit();
             this.lblTrangThai = new DevExpress.XtraEditors.LabelControl();
@@ -78,7 +76,6 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -277,7 +274,6 @@
             this.groupBox1.Controls.Add(this.cboHuyen);
             this.groupBox1.Controls.Add(this.cboTinh);
             this.groupBox1.Controls.Add(this.txtGioiTinh);
-            this.groupBox1.Controls.Add(this.lblThongBao);
             this.groupBox1.Controls.Add(this.txtTinh);
             this.groupBox1.Controls.Add(this.txtHuyen);
             this.groupBox1.Controls.Add(this.lblTrangThai);
@@ -354,19 +350,6 @@
             this.txtGioiTinh.Size = new System.Drawing.Size(55, 22);
             this.txtGioiTinh.TabIndex = 37;
             this.txtGioiTinh.TabStop = false;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(572, 180);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(133, 23);
-            this.lblThongBao.TabIndex = 22;
-            this.lblThongBao.Text = "Thông báo TK";
-            this.lblThongBao.Visible = false;
             // 
             // txtTinh
             // 
@@ -703,10 +686,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            // 
             // SuaThongTin_ThucHien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -797,8 +776,6 @@
         private DevExpress.XtraEditors.LabelControl lblPatientId;
         private DevExpress.XtraEditors.TextEdit txtTinh;
         private DevExpress.XtraEditors.TextEdit txtHuyen;
-        private System.Windows.Forms.Timer timerThongBao;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.TextEdit txtGioiTinh;
         private System.Windows.Forms.ComboBox cboXa;
         private System.Windows.Forms.ComboBox cboHuyen;

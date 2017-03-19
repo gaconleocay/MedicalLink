@@ -35,10 +35,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureLogo = new DevExpress.XtraEditors.PictureEdit();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.cboGiaoDien = new DevExpress.XtraEditors.ComboBoxEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.linkLabelThoiHan = new System.Windows.Forms.Label();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.linkLabelTenDatabase = new System.Windows.Forms.Label();
             this.linkLabelTenNguoiDung = new System.Windows.Forms.LinkLabel();
             this.label11 = new System.Windows.Forms.Label();
@@ -141,10 +141,10 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.lblThongBao);
             this.panel1.Controls.Add(this.cboGiaoDien);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.linkLabelThoiHan);
-            this.panel1.Controls.Add(this.lblThongBao);
             this.panel1.Controls.Add(this.linkLabelTenDatabase);
             this.panel1.Controls.Add(this.linkLabelTenNguoiDung);
             this.panel1.Controls.Add(this.label11);
@@ -161,6 +161,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(340, 582);
             this.panel1.TabIndex = 0;
+            // 
+            // lblThongBao
+            // 
+            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Blue;
+            this.lblThongBao.Location = new System.Drawing.Point(62, 340);
+            this.lblThongBao.Name = "lblThongBao";
+            this.lblThongBao.Size = new System.Drawing.Size(110, 19);
+            this.lblThongBao.TabIndex = 79;
+            this.lblThongBao.Text = "labelControl1";
+            this.lblThongBao.Visible = false;
             // 
             // cboGiaoDien
             // 
@@ -201,18 +213,6 @@
             this.linkLabelThoiHan.TabIndex = 76;
             this.linkLabelThoiHan.TabStop = true;
             this.linkLabelThoiHan.Text = "Thời hạn license";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(52, 408);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(101, 23);
-            this.lblThongBao.TabIndex = 68;
-            this.lblThongBao.Text = "Thong bao";
-            this.lblThongBao.Visible = false;
             // 
             // linkLabelTenDatabase
             // 
@@ -598,7 +598,6 @@
 
         private DevExpress.XtraTab.XtraTabControl xtraTabControlHome;
         private DevExpress.XtraTab.XtraTabPage xtraTabTTCoBan;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraTab.XtraTabPage xtraTabCaiDat;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControlCaiDat;
         private DevExpress.XtraEditors.PanelControl panelCaiDatChiTiet;
@@ -625,7 +624,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cboGiaoDien;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label linkLabelThoiHan;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private System.Windows.Forms.Label linkLabelTenDatabase;
         private System.Windows.Forms.LinkLabel linkLabelTenNguoiDung;
         private System.Windows.Forms.Label label11;
@@ -635,5 +633,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblDiaChi;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Timer timerThongBao;
+        private DevExpress.XtraEditors.LabelControl lblThongBao;
     }
 }

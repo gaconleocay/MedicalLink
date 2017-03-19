@@ -23,12 +23,7 @@ namespace MedicalLink.ChucNang
         {
             InitializeComponent();
         }
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-            lblThongBao_CaiDat.Visible = false;
-        }
+
         private void ucBCBHYT21Chenh_Load(object sender, EventArgs e)
         {
             try
@@ -70,7 +65,8 @@ namespace MedicalLink.ChucNang
             {
                 if (cbbLoaiBA.Text.Trim() == "" || cbbTieuChi.Text.Trim() == "")
                 {
-                    Base.ThongBaoLable.HienThiThongBao(timerThongBao,lblThongBao,Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
                 }
                 else
                 {
@@ -134,7 +130,8 @@ namespace MedicalLink.ChucNang
                                     default:
                                         break;
                                 }
-                                Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
                     }
@@ -145,7 +142,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

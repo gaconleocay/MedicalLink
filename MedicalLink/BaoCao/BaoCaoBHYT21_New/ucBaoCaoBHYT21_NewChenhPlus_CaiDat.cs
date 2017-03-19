@@ -124,7 +124,8 @@ namespace MedicalLink.ChucNang
                                     default:
                                         break;
                                 }
-                                Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
                     }
@@ -135,7 +136,8 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao_CaiDat, Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception)

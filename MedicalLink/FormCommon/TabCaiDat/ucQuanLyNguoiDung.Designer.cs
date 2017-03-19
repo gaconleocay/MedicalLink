@@ -54,7 +54,6 @@
             this.lblUsername = new DevExpress.XtraEditors.LabelControl();
             this.panelControlPhanQuyen = new DevExpress.XtraEditors.PanelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDSUser = new DevExpress.XtraGrid.GridControl();
             this.gridViewDSUser = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.usercode = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -88,7 +87,6 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit6 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
@@ -380,7 +378,6 @@
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.lblThongBao);
             this.splitContainerControl1.Panel1.Controls.Add(this.gridControlDSUser);
             this.splitContainerControl1.Panel1.Controls.Add(this.panelControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
@@ -390,18 +387,6 @@
             this.splitContainerControl1.SplitterPosition = 465;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(166, 230);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 20;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlDSUser
             // 
@@ -898,11 +883,6 @@
             this.repositoryItemCheckEdit6.AutoHeight = false;
             this.repositoryItemCheckEdit6.Name = "repositoryItemCheckEdit6";
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // imMenu
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
@@ -988,8 +968,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.Timer timerThongBao;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.Utils.ImageCollection imMenu;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage TabChucNang;

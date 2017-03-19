@@ -129,9 +129,8 @@ namespace MedicalLink.Dashboard
             {
                 if (cboTuTruc.EditValue == null)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHO_TU_TRUC;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHO_TU_TRUC);
+                    frmthongbao.Show();
                 }
                 else
                 {
@@ -180,12 +179,6 @@ namespace MedicalLink.Dashboard
             {
                 Base.Logging.Warn(ex);
             }
-        }
-
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
         }
 
         private void gridViewThuocTuTruc_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)

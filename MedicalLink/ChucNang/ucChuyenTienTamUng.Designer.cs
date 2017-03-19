@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucChuyenTienTamUng));
             this.gridControlChuyenTien = new DevExpress.XtraGrid.GridControl();
             this.gridViewChuyenTien = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -51,8 +50,6 @@
             this.btnChuyenTienTK = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtChuyenTienVP1 = new DevExpress.XtraEditors.TextEdit();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChuyenTien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewChuyenTien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -394,29 +391,10 @@
             this.txtChuyenTienVP1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtChuyenTienVP1_KeyDown);
             this.txtChuyenTienVP1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtChuyenTienVP1_KeyPress);
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(182, 198);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(133, 23);
-            this.lblThongBao.TabIndex = 20;
-            this.lblThongBao.Text = "Thông báo TK";
-            this.lblThongBao.Visible = false;
-            // 
             // ucChuyenTienTamUng
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblThongBao);
             this.Controls.Add(this.gridControlChuyenTien);
             this.Controls.Add(this.panelControl1);
             this.Name = "ucChuyenTienTamUng";
@@ -434,7 +412,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtChuyenTienVP1.Properties)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -459,8 +436,6 @@
         private DevExpress.XtraEditors.TextEdit txtChuyenTienVP1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private System.Windows.Forms.Timer timerThongBao;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit txtSoTheBHYT;
     }

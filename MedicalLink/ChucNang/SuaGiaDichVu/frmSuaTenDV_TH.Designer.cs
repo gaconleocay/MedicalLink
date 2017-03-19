@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -63,10 +62,8 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaDV_Moi = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.btnSuaTenMoi_Row = new DevExpress.XtraEditors.SimpleButton();
             this.btnHuyBo = new DevExpress.XtraEditors.SimpleButton();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.lblMaDichVu = new DevExpress.XtraEditors.LabelControl();
             this.lblTatCaDichVuMa = new DevExpress.XtraEditors.LabelControl();
@@ -126,7 +123,6 @@
             this.groupBoxXuatBC.Controls.Add(this.labelControl1);
             this.groupBoxXuatBC.Controls.Add(this.txtMaDV_Moi);
             this.groupBoxXuatBC.Controls.Add(this.labelControl2);
-            this.groupBoxXuatBC.Controls.Add(this.lblThongBao);
             this.groupBoxXuatBC.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxXuatBC.ForeColor = System.Drawing.Color.Black;
             this.groupBoxXuatBC.Location = new System.Drawing.Point(6, 164);
@@ -462,19 +458,6 @@
             this.labelControl2.TabIndex = 22;
             this.labelControl2.Text = "Mã dịch vụ/thuốc:";
             // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.FontStyleDelta = System.Drawing.FontStyle.Bold;
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(276, 16);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(133, 23);
-            this.lblThongBao.TabIndex = 21;
-            this.lblThongBao.Text = "Thông báo TK";
-            this.lblThongBao.Visible = false;
-            // 
             // btnSuaTenMoi_Row
             // 
             this.btnSuaTenMoi_Row.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -504,10 +487,6 @@
             this.btnHuyBo.TabIndex = 17;
             this.btnHuyBo.Text = "Hủy Bỏ";
             this.btnHuyBo.Click += new System.EventHandler(this.btnHuyBo_Click);
-            // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
             // 
             // layoutControl1
             // 
@@ -875,8 +854,6 @@
         private System.Windows.Forms.GroupBox groupBoxXuatBC;
         private DevExpress.XtraEditors.SimpleButton btnSuaTenMoi_Row;
         private DevExpress.XtraEditors.SimpleButton btnHuyBo;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.LabelControl lblServicepriceID;

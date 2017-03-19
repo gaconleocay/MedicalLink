@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucImportDMThuoc));
             this.panelControlThongTinNV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
@@ -40,11 +39,9 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnNVOK = new DevExpress.XtraEditors.SimpleButton();
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.gridControlThuoc = new DevExpress.XtraGrid.GridControl();
             this.gridViewThuoc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.panelControlDT = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinNV)).BeginInit();
             this.panelControlThongTinNV.SuspendLayout();
@@ -181,11 +178,6 @@
             this.openFileDialogSelect.Filter = "Excel 2003|*.xls|Excel 2007-2013|*.xlsx";
             this.openFileDialogSelect.Title = "Mở file Excel";
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // gridControlThuoc
             // 
             this.gridControlThuoc.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
@@ -221,22 +213,9 @@
             // 
             this.gridView1.Name = "gridView1";
             // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(188, 98);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 19;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
-            // 
             // panelControlDT
             // 
             this.panelControlDT.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControlDT.Controls.Add(this.lblThongBao);
             this.panelControlDT.Controls.Add(this.gridControlThuoc);
             this.panelControlDT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlDT.Location = new System.Drawing.Point(0, 83);
@@ -267,7 +246,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDT)).EndInit();
             this.panelControlDT.ResumeLayout(false);
-            this.panelControlDT.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -284,11 +262,9 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbbChonKieu;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtFilePath;
-        private System.Windows.Forms.Timer timerThongBao;
         private DevExpress.XtraGrid.GridControl gridControlThuoc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewThuoc;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraEditors.PanelControl panelControlDT;
     }
 }

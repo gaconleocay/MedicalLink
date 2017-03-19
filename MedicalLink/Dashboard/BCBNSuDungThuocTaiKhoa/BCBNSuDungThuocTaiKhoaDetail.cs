@@ -188,9 +188,8 @@ namespace MedicalLink.Dashboard.BCBNSuDungThuocTaiKhoa
                                     default:
                                         break;
                                 }
-                                timerThongBao.Start();
-                                lblThongBao.Visible = true;
-                                lblThongBao.Text = "Export dữ liệu thành công!";
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
                             }
                         }
                     }
@@ -201,9 +200,8 @@ namespace MedicalLink.Dashboard.BCBNSuDungThuocTaiKhoa
                 }
                 else
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Không có dữ liệu!";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)
@@ -212,11 +210,6 @@ namespace MedicalLink.Dashboard.BCBNSuDungThuocTaiKhoa
             }
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void gridViewBNDetail_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {

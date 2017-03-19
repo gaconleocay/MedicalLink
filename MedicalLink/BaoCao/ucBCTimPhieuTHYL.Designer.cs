@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCTimPhieuTHYL));
             this.panelControlTKDV_TK = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxXuatBC = new System.Windows.Forms.GroupBox();
@@ -42,7 +41,6 @@
             this.mmeMaPhieuYC = new DevExpress.XtraEditors.MemoEdit();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.panelControlDV_DT = new DevExpress.XtraEditors.PanelControl();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.gridControlDS_THYL = new DevExpress.XtraGrid.GridControl();
             this.gridViewDS_THYL = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.madv = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -67,7 +65,6 @@
             this.benhchinh_name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -222,25 +219,12 @@
             // panelControlDV_DT
             // 
             this.panelControlDV_DT.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControlDV_DT.Controls.Add(this.lblThongBao);
             this.panelControlDV_DT.Controls.Add(this.gridControlDS_THYL);
             this.panelControlDV_DT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlDV_DT.Location = new System.Drawing.Point(0, 102);
             this.panelControlDV_DT.Name = "panelControlDV_DT";
             this.panelControlDV_DT.Size = new System.Drawing.Size(1000, 492);
             this.panelControlDV_DT.TabIndex = 4;
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(188, 89);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(149, 23);
-            this.lblThongBao.TabIndex = 19;
-            this.lblThongBao.Text = "Sửa thành công";
-            this.lblThongBao.Visible = false;
             // 
             // gridControlDS_THYL
             // 
@@ -696,11 +680,6 @@
             this.benhkemtheo_name.OptionsColumn.AllowEdit = false;
             this.benhkemtheo_name.Width = 145;
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // ucBCTimPhieuTHYL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -719,7 +698,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.mmeMaPhieuYC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlDV_DT)).EndInit();
             this.panelControlDV_DT.ResumeLayout(false);
-            this.panelControlDV_DT.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDS_THYL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDS_THYL)).EndInit();
             this.ResumeLayout(false);
@@ -748,8 +726,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn thoigianlinh;
         private System.Windows.Forms.GroupBox groupBoxXuatBC;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
-        private System.Windows.Forms.Timer timerThongBao;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
         private DevExpress.XtraGrid.Columns.GridColumn madv;
         private DevExpress.XtraGrid.Columns.GridColumn dongia;
         private DevExpress.XtraGrid.Columns.GridColumn trangthai;

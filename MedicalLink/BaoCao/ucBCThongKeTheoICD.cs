@@ -248,12 +248,6 @@ namespace MedicalLink.ChucNang
             SplashScreenManager.CloseForm();
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
-
         private void ucBCDSBNSDdv_Load(object sender, EventArgs e)
         {
             //Lấy thời gian lấy BC mặc định là ngày hiện tại
@@ -304,10 +298,8 @@ namespace MedicalLink.ChucNang
                                 default:
                                     break;
                             }
-                            timerThongBao.Start();
-                            lblThongBao.Visible = true;
-                            lblThongBao.Text = "Export dữ liệu thành công!";
-                            MessageBox.Show("Export dữ liệu thành công!");
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            frmthongbao.Show();
                         }
                     }
                 }
@@ -318,10 +310,8 @@ namespace MedicalLink.ChucNang
             }
             else
             {
-                //timerThongBao.Start();
-                //lblThongBao.Visible = true;
-                //lblThongBao.Text = "Không có dữ liệu!";
-                MessageBox.Show("Không có dữ liệu!");
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                frmthongbao.Show();
             }
             //
             if (gridViewDSDV_TH.RowCount > 0)
@@ -359,10 +349,8 @@ namespace MedicalLink.ChucNang
                                 default:
                                     break;
                             }
-                            timerThongBao.Start();
-                            lblThongBao.Visible = true;
-                            lblThongBao.Text = "Export dữ liệu thành công!";
-                            MessageBox.Show("Export dữ liệu thành công!");
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            frmthongbao.Show();
                         }
                     }
                 }
@@ -373,10 +361,8 @@ namespace MedicalLink.ChucNang
             }
             else
             {
-                //timerThongBao.Start();
-                //lblThongBao.Visible = true;
-                //lblThongBao.Text = "Không có dữ liệu!";
-                MessageBox.Show("Không có dữ liệu!");
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                frmthongbao.Show();
             }
 
         }

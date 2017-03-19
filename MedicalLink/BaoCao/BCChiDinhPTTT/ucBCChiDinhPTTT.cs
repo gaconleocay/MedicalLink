@@ -104,7 +104,6 @@ namespace MedicalLink.ChucNang
         //Sự kiện tìm kiếm
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            lblThongBao.Visible = false;
             gridControlDSDV.DataSource = null;
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             string[] dsnhomdv_temp;
@@ -115,7 +114,8 @@ namespace MedicalLink.ChucNang
 
             if ((mmeMaDV.Text == "Nhập mã nhóm dịch vụ PTTT cách nhau bởi dấu phẩy (,)") || (cbbTieuChi.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
             {
-                Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                frmthongbao.Show();
             }
             else
             {
@@ -373,7 +373,8 @@ namespace MedicalLink.ChucNang
 
                     if (gridViewDSDV.RowCount == 0)
                     {
-                        Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO_THEO_YEU_CAU);
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        frmthongbao.Show();
                     }
                 }
                 catch (Exception ex)
@@ -385,11 +386,6 @@ namespace MedicalLink.ChucNang
             SplashScreenManager.CloseForm();
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         #region Load
         private void ucBCChiDinhPTTT_Load(object sender, EventArgs e)
@@ -530,8 +526,8 @@ namespace MedicalLink.ChucNang
                                 default:
                                     break;
                             }
-                            Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
-
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            frmthongbao.Show();
                         }
                     }
                 }
@@ -542,7 +538,8 @@ namespace MedicalLink.ChucNang
             }
             else
             {
-                Base.ThongBaoLable.HienThiThongBao(timerThongBao, lblThongBao, Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                frmthongbao.Show();
             }
 
         }

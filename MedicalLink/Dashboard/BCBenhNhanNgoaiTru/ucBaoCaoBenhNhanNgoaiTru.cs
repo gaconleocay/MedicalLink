@@ -92,11 +92,6 @@ namespace MedicalLink.Dashboard
         }
 
         #endregion
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {

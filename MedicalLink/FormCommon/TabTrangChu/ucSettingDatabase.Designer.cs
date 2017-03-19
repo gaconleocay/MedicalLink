@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBoxDatabase = new System.Windows.Forms.GroupBox();
-            this.lblThongBao = new DevExpress.XtraEditors.LabelControl();
             this.btnDBUpdate = new DevExpress.XtraEditors.SimpleButton();
             this.txtDBPort = new DevExpress.XtraEditors.TextEdit();
             this.txtDBName = new DevExpress.XtraEditors.TextEdit();
@@ -44,7 +42,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnDBLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnDBKiemTra = new DevExpress.XtraEditors.SimpleButton();
-            this.timerThongBao = new System.Windows.Forms.Timer(this.components);
             this.groupBoxDatabase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDBPort.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDBName.Properties)).BeginInit();
@@ -55,7 +52,6 @@
             // 
             // groupBoxDatabase
             // 
-            this.groupBoxDatabase.Controls.Add(this.lblThongBao);
             this.groupBoxDatabase.Controls.Add(this.btnDBUpdate);
             this.groupBoxDatabase.Controls.Add(this.txtDBPort);
             this.groupBoxDatabase.Controls.Add(this.txtDBName);
@@ -77,18 +73,6 @@
             this.groupBoxDatabase.TabIndex = 16;
             this.groupBoxDatabase.TabStop = false;
             this.groupBoxDatabase.Text = "Chi tiết database";
-            // 
-            // lblThongBao
-            // 
-            this.lblThongBao.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.lblThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThongBao.Location = new System.Drawing.Point(264, 232);
-            this.lblThongBao.Name = "lblThongBao";
-            this.lblThongBao.Size = new System.Drawing.Size(101, 23);
-            this.lblThongBao.TabIndex = 31;
-            this.lblThongBao.Text = "Thong bao";
-            this.lblThongBao.Visible = false;
             // 
             // btnDBUpdate
             // 
@@ -232,11 +216,6 @@
             this.btnDBKiemTra.Text = "Kiểm tra";
             this.btnDBKiemTra.Click += new System.EventHandler(this.btnDBKiemTra_Click);
             // 
-            // timerThongBao
-            // 
-            this.timerThongBao.Interval = 2000;
-            this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
             // ucSettingDatabase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,7 +251,5 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btnDBLuu;
         private DevExpress.XtraEditors.SimpleButton btnDBKiemTra;
-        private DevExpress.XtraEditors.LabelControl lblThongBao;
-        private System.Windows.Forms.Timer timerThongBao;
     }
 }

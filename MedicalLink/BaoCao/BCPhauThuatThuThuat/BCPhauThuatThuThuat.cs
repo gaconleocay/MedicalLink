@@ -110,11 +110,6 @@ namespace MedicalLink.BaoCao
 
 
         #endregion
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -122,25 +117,22 @@ namespace MedicalLink.BaoCao
             {
                 if (cboLoaiBaoCao.EditValue == null)
                 {
-                    timerThongBao.Start();
-                    lblThongBao.Visible = true;
-                    lblThongBao.Text = "Vui lòng chọn loại báo cáo";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_LOAI_BAO_CAO);
+                    frmthongbao.Show();
                     return;
                 }
                 if (cboLoaiBaoCao.EditValue == "BAOCAO_005" || cboLoaiBaoCao.EditValue == "BAOCAO_008")
                 {
                     if (cboKhoa.EditValue == null)
                     {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Vui lòng chọn khoa";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                        frmthongbao.Show();
                         return;
                     }
                     if (chkcomboListDSPhong.Properties.Items.GetCheckedValues().Count==0)
                     {
-                        timerThongBao.Start();
-                        lblThongBao.Visible = true;
-                        lblThongBao.Text = "Vui lòng chọn phòng/buồng điều trị";
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                        frmthongbao.Show();
                         return;
                     }
                 }

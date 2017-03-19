@@ -117,17 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblThongBao.Appearance.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAEJSURBVDhPfZNBCwFRFIUnWcwvsJZkIUl+mvwAG0mzspC11Sz9AFnIymqShSxkbSlJkjgnd3hu
-        776p04x3zv3enTteFKmrF73KUB9aQycRnwdQRee/v2EWJXTH/WXogfUhs38gKZ6pIoLOIg1l9gcRqt41
-        yXeBn3g6+vgwqhBb04DUAaQenzU1Anx0wlYOYGnMJCEgM8yjAzgYmYwADso3dQ6uILoZmXMIQGhJZH3W
-        CwGbwHdvw2sF/C0Bo0DgCo+yOhgRUIeeRqiL9Y7hs6aR/xfGHgDPATeg+Ky7GLvnIEZg7glNsUbp4gXW
-        Yn0eCJkEXocQts3Mf7FLkqnzlXYyQA5xD3GtqY/zG3NA9aryCe50AAAAAElFTkSuQmCC
-</value>
-  </data>
   <metadata name="timerThongBao.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 35</value>
   </metadata>

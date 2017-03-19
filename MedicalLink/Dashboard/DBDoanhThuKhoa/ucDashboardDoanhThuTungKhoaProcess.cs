@@ -22,21 +22,10 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                filter = new DangDTRaVienChuaDaTTFilterDTO();
+                string lstdepartmentid = " and vpm.departmentid in (" + this.lstPhongChonLayBC + ")";
                 thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                filter.loaiBaoCao = "REPORT_08";
-                filter.dateTu = this.thoiGianTu;
-                filter.dateDen = this.thoiGianDen;
-                filter.dateKhoangDLTu = this.KhoangThoiGianLayDuLieu;
-                filter.departmentgroupid = Convert.ToInt16(cboKhoa.EditValue);
-                filter.loaivienphiid = 0;
-                filter.chayTuDong = 0;
-
-                //DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_DangDT_Tmp(filter);
-                //DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienChuaTT_Tmp(filter);
-                DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienDaTT_Tmp(filter);
-                SQLLayDuLieuBaoCao();
+                SQLLayDuLieuBaoCao(lstdepartmentid);
             }
             catch (Exception ex)
             {
@@ -46,13 +35,13 @@ namespace MedicalLink.Dashboard
         }
 
 
-        private void SQLLayDuLieuBaoCao()
+        private void SQLLayDuLieuBaoCao(string lstdepartmentid)
         {
             try
             {
                 lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
 
-                string sqlBaoCao_RaVienDaTT = "(SELECT departmentgroupid, raviendatt_slbn_bh, raviendatt_slbn_vp, raviendatt_slbn, raviendatt_tienkb, raviendatt_tienxn, raviendatt_tiencdhatdcn, raviendatt_tienpttt, raviendatt_tiendvktc, raviendatt_tiengiuongthuong,raviendatt_tiengiuongyeucau, raviendatt_tienkhac, raviendatt_tienvattu, raviendatt_tienmau, raviendatt_tienthuoc_bhyt, raviendatt_tienthuoc_vp, raviendatt_tienthuoc, raviendatt_tongtien_bhyt, raviendatt_tongtien_vp, raviendatt_tongtien, raviendatt_tamung FROM tools_raviendatt_tmp raviendatt WHERE raviendatt.departmentgroupid = '" + Convert.ToInt32(cboKhoa.EditValue) + "' and loaibaocao='REPORT_08' and chaytudong=0 ORDER BY raviendatt_date DESC LIMIT 1) Union (select 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 from tools_raviendatt_tmp  limit 1) order by departmentgroupid desc; ";
+                string sqlBaoCao_RaVienDaTT = "SELECT count(vpm.*) as raviendatt_slbn, COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as numeric),0),0) as raviendatt_tienkb, COALESCE(round(cast(sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as numeric),0),0) as raviendatt_tienxn, COALESCE(round(cast(sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as numeric),0),0) as raviendatt_tiencdhatdcn, COALESCE(round(cast(sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as numeric),0),0) as raviendatt_tienpttt, COALESCE(round(cast(sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as numeric),0),0) as raviendatt_tiendvktc, COALESCE(round(cast(sum(vpm.money_giuongthuong_bh + vpm.money_giuongthuong_vp) as numeric),0),0) as raviendatt_tiengiuongthuong, COALESCE(round(cast(sum(vpm.money_giuongyeucau_bh + vpm.money_giuongyeucau_vp) as numeric),0),0) as raviendatt_tiengiuongyeucau, COALESCE(round(cast(sum(vpm.money_khac_bh + vpm.money_khac_vp + vpm.money_phuthu_bh + vpm.money_phuthu_vp + vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as numeric),0),0) as raviendatt_tienkhac, COALESCE(round(cast(sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as numeric),0),0) as raviendatt_tienvattu, COALESCE(round(cast(sum(vpm.money_mau_bh + vpm.money_mau_vp) as numeric),0),0) as raviendatt_tienmau, COALESCE(round(cast(sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric),0),0) as raviendatt_tienthuoc, COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_xetnghiem_bh + vpm.money_cdha_bh + vpm.money_tdcn_bh + vpm.money_pttt_bh + vpm.money_dvktc_bh + vpm.money_giuongthuong_bh + vpm.money_giuongyeucau_bh + vpm.money_khac_bh + vpm.money_phuthu_bh + vpm.money_vanchuyen_bh + vpm.money_thuoc_bh + vpm.money_mau_bh + vpm.money_vattu_bh + vpm.money_khambenh_vp + vpm.money_xetnghiem_vp + vpm.money_cdha_vp + vpm.money_tdcn_vp + vpm.money_pttt_vp + vpm.money_dvktc_vp + vpm.money_giuongthuong_vp + vpm.money_giuongyeucau_vp + vpm.money_khac_vp + vpm.money_phuthu_vp + vpm.money_vanchuyen_vp + vpm.money_thuoc_vp + vpm.money_mau_vp + vpm.money_vattu_vp) as numeric),0),0) as raviendatt_tongtien, COALESCE(round(cast(sum(vpm.tam_ung) as numeric),0),0) as raviendatt_tamung FROM vienphi_money vpm WHERE vpm.vienphistatus_vp=1 " + lstdepartmentid + " and vpm.duyet_ngayduyet_vp >= '" + this.thoiGianTu + "' and vpm.duyet_ngayduyet_vp <= '" + this.thoiGianDen + "';";
 
                 DataView dataBCTongTheKhoa_RaVienDaTT = new DataView(condb.getDataTable(sqlBaoCao_RaVienDaTT));
 

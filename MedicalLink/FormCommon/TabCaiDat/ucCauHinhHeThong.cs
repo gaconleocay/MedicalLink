@@ -102,18 +102,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
-        private void timerThongBao_Tick(object sender, EventArgs e)
-        {
-            timerThongBao.Stop();
-            lblThongBao.Visible = false;
-        }
         private void HienThiThongBao(string tenThongBao)
         {
             try
             {
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = tenThongBao;
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(tenThongBao);
+                frmthongbao.Show();
             }
             catch (Exception ex)
             {

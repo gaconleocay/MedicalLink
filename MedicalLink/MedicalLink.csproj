@@ -255,6 +255,7 @@
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\classUserMedicineStore.cs" />
     <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
     <Compile Include="Base\UtilsTable.cs" />

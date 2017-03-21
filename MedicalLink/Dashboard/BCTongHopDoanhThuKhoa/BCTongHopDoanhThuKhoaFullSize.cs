@@ -30,12 +30,6 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
             lblTenThongTinChiTiet.Text = "BÁO CÁO TỔNG HỢP DOANH THU KHOA";
         }
 
-        private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
         private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try

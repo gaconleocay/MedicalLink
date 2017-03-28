@@ -10,13 +10,13 @@ using System.Windows.Forms;
 using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using System.IO;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace MedicalLink.ChucNang
 {
     public partial class ucTimThuocDVSaiMa : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        //DataView dv_bhytgroup;
         public ucTimThuocDVSaiMa()
         {
             InitializeComponent();
@@ -25,48 +25,33 @@ namespace MedicalLink.ChucNang
         // Mở file Excel hiển thị lên DataGridView
         private void btnSelect_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 gridControlDichVu.DataSource = null;
-                string datetungay = "";
-                string datedenngay = "";
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 if (dateTuNgay.Text != "" && dateDenNgay.Text != "")
                 {
-                    // Lấy từ ngày, đến ngày
-                    datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                    datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-
-                    string sql_timkiem = "SELECT serviceprice.servicepriceid, serviceprice.medicalrecordid, vienphi.patientid,  serviceprice.vienphiid, serviceprice.hosobenhanid, serviceprice.maubenhphamid,tools_depatment.departmentgroupname, tools_depatment.departmentname, serviceprice.servicepricecode, serviceprice.servicepricename, serviceprice.servicepricename_bhyt,serviceprice.servicepricemoney,serviceprice.servicepricemoney_nhandan,serviceprice.servicepricemoney_bhyt, serviceprice.servicepricemoney_nuocngoai, serviceprice.soluong,serviceprice.servicepricedate FROM serviceprice, vienphi,tools_depatment WHERE vienphi.vienphiid = serviceprice.vienphiid and serviceprice.departmentid=tools_depatment.departmentid and serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' and serviceprice.servicepricecode not in (SELECT tools_servicefull.service_code FROM tools_servicefull)";
+                    string sql_timkiem = "SELECT row_number() over() as stt, serv.servicepriceid, serv.medicalrecordid, vp.patientid, serv.vienphiid, serv.hosobenhanid, serv.maubenhphamid, de.departmentgroupname, de.departmentname, serv.servicepricecode, serv.servicepricename, serv.servicepricename_bhyt, serv.servicepricemoney, serv.servicepricemoney_nhandan, serv.servicepricemoney_bhyt, serv.servicepricemoney_nuocngoai, serv.soluong,serv.servicepricedate FROM (SELECT ser.servicepriceid, ser.medicalrecordid, ser.vienphiid, ser.hosobenhanid, ser.maubenhphamid, ser.departmentid, ser.servicepricecode, ser.servicepricename, ser.servicepricename_bhyt, ser.servicepricemoney, ser.servicepricemoney_nhandan, ser.servicepricemoney_bhyt, ser.servicepricemoney_nuocngoai, ser.soluong, ser.servicepricedate FROM serviceprice ser WHERE ser.servicepricedate >= '" + datetungay + "' and ser.servicepricedate <= '" + datedenngay + "' and ser.servicepricecode not in (SELECT serf.service_code FROM tools_servicefull serf)) serv inner join vienphi vp on vp.vienphiid=serv.vienphiid inner join tools_depatment de on de.departmentid=serv.departmentid and de.departmenttype in (2,3,9);  ";
                     DataView dv = new DataView(condb.getDataTable(sql_timkiem));
                     if (dv != null && dv.Count > 0)
                     {
                         gridControlDichVu.DataSource = dv;
                     }
-                    else
-                    {
-                        gridControlDichVu.DataSource = null;
-                    }
-
                 }
-                SplashScreenManager.CloseForm();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                SplashScreenManager.CloseForm();
+                Base.Logging.Warn(ex);
             }
-
-
-
+            SplashScreenManager.CloseForm();
         }
 
         private void ucUpdateDataSerPrice_Load(object sender, EventArgs e)
         {
-            //Lấy thời gian lấy BC mặc định là ngày hiện tại
-            DateTime date_tu = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateTuNgay.Value = date_tu;
-            DateTime date_den = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            dateDenNgay.Value = date_den;
+            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             gridControlDichVu.DataSource = null;
         }
 
@@ -124,19 +109,22 @@ namespace MedicalLink.ChucNang
             }
         }
 
-        private void gridViewDichVu_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        private void gridViewDichVu_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
             {
-                if (e.Column == stt)
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
+                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.ForeColor = Color.Black;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
     }
 }

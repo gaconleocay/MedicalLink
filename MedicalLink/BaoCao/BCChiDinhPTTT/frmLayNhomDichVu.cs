@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +30,7 @@ namespace MedicalLink.ChucNang.BCPTTT
         {
             try
             {
-                string sql_laynhomdv = "SELECT DISTINCT servicepricegroupcode,servicepricename FROM servicepriceref WHERE  servicepricegroupcode <>'' and servicepricegroupcode is NOT NULL and bhyt_groupcode in ('06PTTT','07KTC');";
+                string sql_laynhomdv = " SELECT ref.servicepricecode, ref.servicepricename FROM servicepriceref ref WHERE ref.servicepricecode in (SELECT servicepricegroupcode FROM servicepriceref WHERE servicepricegroupcode <>'' and servicepricegroupcode is NOT NULL and bhyt_groupcode in ('06PTTT','07KTC') GROUP BY servicepricegroupcode ) ORDER BY ref.bhyt_groupcode, ref.servicepricecode; ";
                 DataView data_dsnguoidung = new DataView(condb.getDataTable(sql_laynhomdv));
                 gridControlNhomDV.DataSource = data_dsnguoidung;
             }
@@ -45,17 +46,34 @@ namespace MedicalLink.ChucNang.BCPTTT
             try
             {
                 string dsnhomdichvu = "";
-                for (int i = 0; i < gridViewNhomDV.SelectedRowsCount; i++)
+                for (int i = 0; i < gridViewNhomDV.SelectedRowsCount-1; i++)
                 {
-                    dsnhomdichvu += Convert.ToString(gridViewNhomDV.GetRowCellValue(i, "servicepricegroupcode").ToString()) + ",";
+                    dsnhomdichvu += Convert.ToString(gridViewNhomDV.GetRowCellValue(i, "servicepricecode").ToString()) + ",";
                 }
-
+                dsnhomdichvu += Convert.ToString(gridViewNhomDV.GetRowCellValue(gridViewNhomDV.SelectedRowsCount - 1, "servicepricecode").ToString());
                 MyGetData(dsnhomdichvu);
             }
             catch (Exception)
             {
                 
                 throw;
+            }
+        }
+
+        private void gridViewNhomDV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
     }

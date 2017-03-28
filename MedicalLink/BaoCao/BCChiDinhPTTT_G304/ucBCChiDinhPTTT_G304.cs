@@ -10,12 +10,15 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
 using DevExpress.XtraSplashScreen;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace MedicalLink.BaoCao
 {
     public partial class ucBCChiDinhPTTT_G304 : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DataTable data_BCChiDinhPTTT { get; set; }
+
         private string danhSachIdKhoa = "";
         public ucBCChiDinhPTTT_G304()
         {
@@ -217,8 +220,8 @@ namespace MedicalLink.BaoCao
 
                 string sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY ser.servicepricename) as stt, ser.servicepriceid, vp.patientid, vp.vienphiid, mbp.maubenhphamid, hsba.patientname, degp.departmentgroupname as tenkhoaravien, dep.departmentname as tenphongravien, ser.servicepricecode, ser.servicepricename, ser.servicepricemoney, ser.servicepricemoney_bhyt, ser.soluong, ser.soluong * ser.servicepricemoney as thanhtien, ser.soluong * ser.servicepricemoney_bhyt as thanhtienbhyt, ser.servicepricedate, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet_vp, vp.duyet_ngayduyet, nv.usercode as mauserchidinh, mbp.userid, nv.username as tenuserchidinh, serf.servicepricegroupcode, (case when ser.billid_thutien<>0 or ser.billid_clbh_thutien<>0 then 'Đã thu tiền' else '' end) as trangthaithutien, bh.bhytcode, serf.bhyt_groupcode, serf.servicegrouptype, ser.chiphidauvao, ser.chiphimaymoc, ser.chiphipttt FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN hosobenhan hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN departmentgroup degp ON vp.departmentgroupid=degp.departmentgroupid INNER JOIN department dep ON vp.departmentid=dep.departmentid and dep.departmenttype in (2,3,9) INNER JOIN departmentgroup kcd ON ser.departmentgroupid=kcd.departmentgroupid INNER JOIN department pcd ON ser.departmentid=pcd.departmentid and pcd.departmenttype in (2,3,9) INNER JOIN maubenhpham mbp ON mbp.maubenhphamid=ser.maubenhphamid and mbp.maubenhphamgrouptype=4 INNER JOIN servicepriceref serf ON ser.servicepricecode=serf.servicepricecode LEFT JOIN bhyt bh ON vp.bhytid=bh.bhytid LEFT JOIN tools_tblnhanvien nv ON nv.userhisid=mbp.userid WHERE serf.servicepricegroupcode in (" + dsnhomdv + ") " + tieuchi + " >= '" + datetungay + "' " + tieuchi + " <= '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + danhSachIdKhoa + ";";
 
-                DataView data_BCChiDinhPTTT = new DataView(condb.getDataTable(sqlquerry));
-                if (data_BCChiDinhPTTT != null && data_BCChiDinhPTTT.Count > 0)
+                data_BCChiDinhPTTT = condb.getDataTable(sqlquerry);
+                if (data_BCChiDinhPTTT.Rows.Count > 0 && data_BCChiDinhPTTT != null)
                 {
                     gridControlDSDV.DataSource = data_BCChiDinhPTTT;
                 }
@@ -237,58 +240,36 @@ namespace MedicalLink.BaoCao
 
         private void tbnExport_Click(object sender, EventArgs e)
         {
-            if (gridViewDSDV.RowCount > 0)
+            try
             {
-                try
+                if (data_BCChiDinhPTTT != null && data_BCChiDinhPTTT.Rows.Count > 0)
                 {
-                    using (SaveFileDialog saveDialog = new SaveFileDialog())
-                    {
-                        saveDialog.Filter = "Excel 2003 (.xls)|*.xls|Excel 2010 (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
-                        if (saveDialog.ShowDialog() != DialogResult.Cancel)
-                        {
-                            string exportFilePath = saveDialog.FileName;
-                            string fileExtenstion = new FileInfo(exportFilePath).Extension;
+                    string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                    string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
-                            switch (fileExtenstion)
-                            {
-                                case ".xls":
-                                    gridControlDSDV.ExportToXls(exportFilePath);
-                                    break;
-                                case ".xlsx":
-                                    gridControlDSDV.ExportToXlsx(exportFilePath);
-                                    break;
-                                case ".rtf":
-                                    gridControlDSDV.ExportToRtf(exportFilePath);
-                                    break;
-                                case ".pdf":
-                                    gridControlDSDV.ExportToPdf(exportFilePath);
-                                    break;
-                                case ".html":
-                                    gridControlDSDV.ExportToHtml(exportFilePath);
-                                    break;
-                                case ".mht":
-                                    gridControlDSDV.ExportToMht(exportFilePath);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
-                            frmthongbao.Show();
+                    string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
-                        }
-                    }
+                    List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                    ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                    reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                    reportitem.value = tungaydenngay;
+
+                    thongTinThem.Add(reportitem);
+
+                    string fileTemplatePath = "BC_BenhNhanSuDungDichVuTheoNhom_XuatAn.xlsx";
+                    Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                    export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_BCChiDinhPTTT);
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Có lỗi xảy ra", "Thông báo !");
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
-                frmthongbao.Show();
+                MedicalLink.Base.Logging.Warn(ex);
             }
-
         }
 
         private void cbbLoaiBA_SelectedIndexChanged(object sender, EventArgs e)
@@ -311,6 +292,23 @@ namespace MedicalLink.BaoCao
                 {
                     lblKhoaPhong.Text = "Khoa chỉ định";
                     chkcomboListDSKhoa.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void gridViewDSDV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.ForeColor = Color.Black;
                 }
             }
             catch (Exception ex)

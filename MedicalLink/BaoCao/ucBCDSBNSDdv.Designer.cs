@@ -102,9 +102,9 @@
             this.groupBoxXuatBC.Controls.Add(this.tbnExport);
             this.groupBoxXuatBC.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxXuatBC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxXuatBC.Location = new System.Drawing.Point(829, 2);
+            this.groupBoxXuatBC.Location = new System.Drawing.Point(868, 2);
             this.groupBoxXuatBC.Name = "groupBoxXuatBC";
-            this.groupBoxXuatBC.Size = new System.Drawing.Size(169, 111);
+            this.groupBoxXuatBC.Size = new System.Drawing.Size(130, 111);
             this.groupBoxXuatBC.TabIndex = 14;
             this.groupBoxXuatBC.TabStop = false;
             this.groupBoxXuatBC.Text = "Xuất báo cáo";
@@ -117,7 +117,7 @@
             this.tbnExport.Appearance.Options.UseForeColor = true;
             this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(39, 37);
+            this.tbnExport.Location = new System.Drawing.Point(13, 37);
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(100, 40);
             this.tbnExport.TabIndex = 7;
@@ -150,7 +150,7 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(209, 59);
+            this.labelControl1.Location = new System.Drawing.Point(216, 59);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(54, 16);
             this.labelControl1.TabIndex = 17;
@@ -159,7 +159,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(210, 13);
+            this.labelControl2.Location = new System.Drawing.Point(217, 13);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(47, 16);
             this.labelControl2.TabIndex = 16;
@@ -171,7 +171,7 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(208, 76);
+            this.dateDenNgay.Location = new System.Drawing.Point(215, 76);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
@@ -184,7 +184,7 @@
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(208, 29);
+            this.dateTuNgay.Location = new System.Drawing.Point(215, 29);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
@@ -194,7 +194,7 @@
             // chkVP
             // 
             this.chkVP.EditValue = true;
-            this.chkVP.Location = new System.Drawing.Point(544, 79);
+            this.chkVP.Location = new System.Drawing.Point(588, 79);
             this.chkVP.Name = "chkVP";
             this.chkVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkVP.Properties.Appearance.Options.UseFont = true;
@@ -205,7 +205,7 @@
             // chkBHYT
             // 
             this.chkBHYT.EditValue = true;
-            this.chkBHYT.Location = new System.Drawing.Point(544, 32);
+            this.chkBHYT.Location = new System.Drawing.Point(588, 32);
             this.chkBHYT.Name = "chkBHYT";
             this.chkBHYT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBHYT.Properties.Appearance.Options.UseFont = true;
@@ -216,7 +216,7 @@
             // cbbLoaiBA
             // 
             this.cbbLoaiBA.EditValue = "Ngoại trú+Nội trú";
-            this.cbbLoaiBA.Location = new System.Drawing.Point(395, 77);
+            this.cbbLoaiBA.Location = new System.Drawing.Point(400, 77);
             this.cbbLoaiBA.Name = "cbbLoaiBA";
             this.cbbLoaiBA.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiBA.Properties.Appearance.Options.UseFont = true;
@@ -229,7 +229,7 @@
             "Nội trú",
             "Ngoại trú+Nội trú"});
             this.cbbLoaiBA.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbLoaiBA.Size = new System.Drawing.Size(128, 22);
+            this.cbbLoaiBA.Size = new System.Drawing.Size(155, 22);
             this.cbbLoaiBA.TabIndex = 9;
             // 
             // mmeMaDV
@@ -245,7 +245,7 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(396, 59);
+            this.labelControl4.Location = new System.Drawing.Point(401, 59);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(73, 16);
             this.labelControl4.TabIndex = 11;
@@ -258,7 +258,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(700, 37);
+            this.btnTimKiem.Location = new System.Drawing.Point(733, 37);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 2;
@@ -268,7 +268,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(398, 14);
+            this.labelControl3.Location = new System.Drawing.Point(403, 14);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(46, 16);
             this.labelControl3.TabIndex = 10;
@@ -276,7 +276,8 @@
             // 
             // cbbTieuChi
             // 
-            this.cbbTieuChi.Location = new System.Drawing.Point(396, 31);
+            this.cbbTieuChi.EditValue = "Theo ngày chỉ định";
+            this.cbbTieuChi.Location = new System.Drawing.Point(401, 31);
             this.cbbTieuChi.Name = "cbbTieuChi";
             this.cbbTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTieuChi.Properties.Appearance.Options.UseFont = true;
@@ -291,7 +292,7 @@
             "Theo ngày duyệt VP",
             "Theo ngày duyệt BHYT"});
             this.cbbTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbTieuChi.Size = new System.Drawing.Size(128, 22);
+            this.cbbTieuChi.Size = new System.Drawing.Size(155, 22);
             this.cbbTieuChi.TabIndex = 8;
             // 
             // panelControlDV_DT
@@ -349,14 +350,16 @@
             this.gridViewDSDV.OptionsView.ColumnAutoWidth = false;
             this.gridViewDSDV.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSDV.OptionsView.ShowGroupPanel = false;
+            this.gridViewDSDV.OptionsView.ShowIndicator = false;
             this.gridViewDSDV.RowHeight = 25;
+            this.gridViewDSDV.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSDV_RowCellStyle);
             // 
             // stt
             // 
             this.stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.stt.AppearanceCell.Options.UseFont = true;
             this.stt.AppearanceCell.Options.UseTextOptions = true;
-            this.stt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.stt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.stt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.stt.AppearanceHeader.Options.UseFont = true;

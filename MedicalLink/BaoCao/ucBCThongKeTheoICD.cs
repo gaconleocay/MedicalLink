@@ -43,10 +43,8 @@ namespace MedicalLink.ChucNang
 
             if ((cbbTrangThaiVP.Text == "") || (cbbLoaiBA.Text == ""))
             {
-                //timerThongBao.Start();
-                //lblThongBao.Visible = true;
-                //lblThongBao.Text = "Vui lòng nhập đầy đủ thông tin";
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                frmthongbao.Show();
             }
             else
             {
@@ -132,10 +130,8 @@ namespace MedicalLink.ChucNang
 
                         if (gridViewDSDV.RowCount == 0)
                         {
-                            //timerThongBao.Start();
-                            //lblThongBao.Visible = true;
-                            //lblThongBao.Text = "Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.";
-                            MessageBox.Show("Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.");
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                            frmthongbao.Show();
                         }
                     }
                     else // xem tổng hợp
@@ -172,7 +168,8 @@ namespace MedicalLink.ChucNang
                         }
                         else
                         {
-                            MessageBox.Show("Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.");
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                            frmthongbao.Show();
                         }
                         // SUM tong ma benh kem theo
                         if (dv_mabenh_2.Count > 0)
@@ -193,9 +190,7 @@ namespace MedicalLink.ChucNang
                             // hien thi
                             //gridControlDSDV_TH.DataSource = dv_mabenh_2;
                         }
-                        else
-                        {
-                        }
+
                         // Tong hop cua 2 dataview: 
                         if (dv_mabenh_1.Count > 0 && dv_mabenh_2.Count > 0)
                         {
@@ -242,7 +237,7 @@ namespace MedicalLink.ChucNang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    Base.Logging.Error(ex);
                 }
             }
             SplashScreenManager.CloseForm();
@@ -250,11 +245,8 @@ namespace MedicalLink.ChucNang
 
         private void ucBCDSBNSDdv_Load(object sender, EventArgs e)
         {
-            //Lấy thời gian lấy BC mặc định là ngày hiện tại
-            DateTime date_tu = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateTuNgay.Value = date_tu;
-            DateTime date_den = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            dateDenNgay.Value = date_den;
+            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             kieuXem = 0;
             // Ẩn layoutControl tong hop
             layoutControlChiTiet.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -367,16 +359,6 @@ namespace MedicalLink.ChucNang
 
         }
 
-        private void gridViewDSDV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
-            }
-        }
-
         private void radioKieuXem_SelectedIndexChanged(object sender, EventArgs e)
         {
             RadioGroup edit = sender as RadioGroup;
@@ -403,6 +385,15 @@ namespace MedicalLink.ChucNang
         }
 
         private void gridViewDSDV_TH_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+        private void gridViewDSDV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
             if (e.RowHandle == view.FocusedRowHandle)

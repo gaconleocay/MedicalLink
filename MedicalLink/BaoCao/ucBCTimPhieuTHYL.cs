@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.IO;
 using DevExpress.XtraSplashScreen;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace MedicalLink.ChucNang
 {
@@ -119,7 +120,7 @@ namespace MedicalLink.ChucNang
                     }
                     dsphieu += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString() + "'";
 
-                    sqlquerry = "SELECT maubenhpham.maubenhphamid as maphieuchidinh, medicine_store_bill.medicinestorebillcode as maphieutonghop, maubenhpham.medicalrecordid as madieutri, tools_depatment.departmentgroupname as khoachidinh, tools_depatment.departmentname as phongchidinh, maubenhpham.maubenhphamdate as thoigianchidinh, medicine_store_bill.medicinestorebilldate as thoigianlinh, hosobenhan.patientid as mabn, maubenhpham.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoaravien, hosobenhan.hosobenhandate as tgvaovien, hosobenhan.hosobenhandate_ravien as tgravien FROM maubenhpham, medicine_store_bill, hosobenhan, tools_depatment, departmentgroup WHERE maubenhpham.hosobenhanid = hosobenhan.hosobenhanid and maubenhpham.departmentid = tools_depatment.departmentid and hosobenhan.departmentgroupid = departmentgroup.departmentgroupid and maubenhpham.medicinestorebillid = medicine_store_bill.medicinestorebillid and maubenhpham.maubenhphamid in(" + dsphieu + ") ORDER BY madieutri ;";
+                    sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY maubenhpham.medicalrecordid) as stt, maubenhpham.maubenhphamid as maphieuchidinh, medicine_store_bill.medicinestorebillcode as maphieutonghop, maubenhpham.medicalrecordid as madieutri, tools_depatment.departmentgroupname as khoachidinh, tools_depatment.departmentname as phongchidinh, maubenhpham.maubenhphamdate as thoigianchidinh, medicine_store_bill.medicinestorebilldate as thoigianlinh, hosobenhan.patientid as mabn, maubenhpham.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoaravien, hosobenhan.hosobenhandate as tgvaovien, hosobenhan.hosobenhandate_ravien as tgravien FROM maubenhpham, medicine_store_bill, hosobenhan, tools_depatment, departmentgroup WHERE maubenhpham.hosobenhanid = hosobenhan.hosobenhanid and maubenhpham.departmentid = tools_depatment.departmentid and hosobenhan.departmentgroupid = departmentgroup.departmentgroupid and maubenhpham.medicinestorebillid = medicine_store_bill.medicinestorebillid and maubenhpham.maubenhphamid in (" + dsphieu + ") ;";
                 }
                 catch (Exception ex)
                 {
@@ -130,13 +131,13 @@ namespace MedicalLink.ChucNang
             // Tìm kiếm theo mã viện phí
             else if (txtMaVP.Text != "Mã viện phí")
             {
-                sqlquerry = "SELECT maubenhpham.maubenhphamid as maphieuchidinh, medicine_store_bill.medicinestorebillcode as maphieutonghop, maubenhpham.medicalrecordid as madieutri, tools_depatment.departmentgroupname as khoachidinh, tools_depatment.departmentname as phongchidinh, maubenhpham.maubenhphamdate as thoigianchidinh, medicine_store_bill.medicinestorebilldate as thoigianlinh, hosobenhan.patientid as mabn, maubenhpham.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoaravien,  hosobenhan.hosobenhandate as tgvaovien, hosobenhan.hosobenhandate_ravien as tgravien FROM maubenhpham, medicine_store_bill, hosobenhan, tools_depatment, departmentgroup WHERE maubenhpham.hosobenhanid = hosobenhan.hosobenhanid and maubenhpham.departmentid = tools_depatment.departmentid and hosobenhan.departmentgroupid = departmentgroup.departmentgroupid and maubenhpham.medicinestorebillid = medicine_store_bill.medicinestorebillid and maubenhpham.vienphiid = " + txtMaVP.Text.Trim() + " ORDER BY madieutri; ";
+                sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY maubenhpham.medicalrecordid) as stt, maubenhpham.maubenhphamid as maphieuchidinh, medicine_store_bill.medicinestorebillcode as maphieutonghop, maubenhpham.medicalrecordid as madieutri, tools_depatment.departmentgroupname as khoachidinh, tools_depatment.departmentname as phongchidinh, maubenhpham.maubenhphamdate as thoigianchidinh, medicine_store_bill.medicinestorebilldate as thoigianlinh, hosobenhan.patientid as mabn, maubenhpham.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoaravien,  hosobenhan.hosobenhandate as tgvaovien, hosobenhan.hosobenhandate_ravien as tgravien FROM maubenhpham, medicine_store_bill, hosobenhan, tools_depatment, departmentgroup WHERE maubenhpham.hosobenhanid = hosobenhan.hosobenhanid and maubenhpham.departmentid = tools_depatment.departmentid and hosobenhan.departmentgroupid = departmentgroup.departmentgroupid and maubenhpham.medicinestorebillid = medicine_store_bill.medicinestorebillid and maubenhpham.vienphiid = " + txtMaVP.Text.Trim() + " ; ";
 
             }
             // Tìm kiếm theo mã bệnh nhân
             else if (txtMaBN.Text != "Mã bệnh nhân")
             {
-                sqlquerry = "SELECT maubenhpham.maubenhphamid as maphieuchidinh, medicine_store_bill.medicinestorebillcode as maphieutonghop, maubenhpham.medicalrecordid as madieutri, tools_depatment.departmentgroupname as khoachidinh, tools_depatment.departmentname as phongchidinh, maubenhpham.maubenhphamdate as thoigianchidinh, medicine_store_bill.medicinestorebilldate as thoigianlinh, hosobenhan.patientid as mabn, maubenhpham.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoaravien,  hosobenhan.hosobenhandate as tgvaovien, hosobenhan.hosobenhandate_ravien as tgravien FROM maubenhpham, medicine_store_bill, hosobenhan, tools_depatment, departmentgroup WHERE maubenhpham.hosobenhanid = hosobenhan.hosobenhanid and maubenhpham.departmentid = tools_depatment.departmentid and hosobenhan.departmentgroupid = departmentgroup.departmentgroupid and maubenhpham.medicinestorebillid = medicine_store_bill.medicinestorebillid and maubenhpham.patientid = " + txtMaBN.Text.Trim() + " ORDER BY madieutri; ";
+                sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY maubenhpham.medicalrecordid) as stt, maubenhpham.maubenhphamid as maphieuchidinh, medicine_store_bill.medicinestorebillcode as maphieutonghop, maubenhpham.medicalrecordid as madieutri, tools_depatment.departmentgroupname as khoachidinh, tools_depatment.departmentname as phongchidinh, maubenhpham.maubenhphamdate as thoigianchidinh, medicine_store_bill.medicinestorebilldate as thoigianlinh, hosobenhan.patientid as mabn, maubenhpham.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoaravien,  hosobenhan.hosobenhandate as tgvaovien, hosobenhan.hosobenhandate_ravien as tgravien FROM maubenhpham, medicine_store_bill, hosobenhan, tools_depatment, departmentgroup WHERE maubenhpham.hosobenhanid = hosobenhan.hosobenhanid and maubenhpham.departmentid = tools_depatment.departmentid and hosobenhan.departmentgroupid = departmentgroup.departmentgroupid and maubenhpham.medicinestorebillid = medicine_store_bill.medicinestorebillid and maubenhpham.patientid = " + txtMaBN.Text.Trim() + " ; ";
             }
 
             try
@@ -152,7 +153,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra" + ex.ToString(), "Thông báo !");
+                Base.Logging.Error(ex);
             }
 
             SplashScreenManager.CloseForm();
@@ -211,7 +212,6 @@ namespace MedicalLink.ChucNang
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                 frmthongbao.Show();
             }
-
         }
 
         private void txtMaBN_KeyDown(object sender, KeyEventArgs e)
@@ -294,12 +294,6 @@ namespace MedicalLink.ChucNang
             }
         }
 
-        private void gridViewDS_THYL_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
         // Chỉ cho nhập số và ký từ điểu khiển và dấu phẩy.
         private void mmeMaPhieuYC_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -309,5 +303,21 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        private void gridViewDS_THYL_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
     }
 }

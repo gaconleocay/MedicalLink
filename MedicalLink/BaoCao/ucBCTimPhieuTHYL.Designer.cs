@@ -43,6 +43,7 @@
             this.panelControlDV_DT = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDS_THYL = new DevExpress.XtraGrid.GridControl();
             this.gridViewDS_THYL = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.madv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tendv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -56,15 +57,6 @@
             this.tenkhoa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thoigianvaovien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thoigianravien = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.soluong = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.trangthai = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.stt = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dongia = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tenphong = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.benhchinh_code = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.benhchinh_name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.benhkemtheo_code = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.benhkemtheo_name = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -242,6 +234,7 @@
             // 
             this.gridViewDS_THYL.ColumnPanelRowHeight = 25;
             this.gridViewDS_THYL.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
             this.madv,
             this.tendv,
             this.gridColumn2,
@@ -254,24 +247,35 @@
             this.tenbn,
             this.tenkhoa,
             this.thoigianvaovien,
-            this.thoigianravien,
-            this.soluong,
-            this.trangthai,
-            this.stt,
-            this.dongia,
-            this.tenphong,
-            this.benhchinh_code,
-            this.benhchinh_name,
-            this.benhkemtheo_code,
-            this.benhkemtheo_name});
+            this.thoigianravien});
             this.gridViewDS_THYL.GridControl = this.gridControlDS_THYL;
             this.gridViewDS_THYL.IndicatorWidth = 25;
             this.gridViewDS_THYL.Name = "gridViewDS_THYL";
             this.gridViewDS_THYL.OptionsView.ColumnAutoWidth = false;
             this.gridViewDS_THYL.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDS_THYL.OptionsView.ShowGroupPanel = false;
+            this.gridViewDS_THYL.OptionsView.ShowIndicator = false;
             this.gridViewDS_THYL.RowHeight = 25;
-            this.gridViewDS_THYL.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewDS_THYL_CustomDrawRowIndicator);
+            this.gridViewDS_THYL.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDS_THYL_RowCellStyle);
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.Caption = "STT";
+            this.gridColumn1.FieldName = "stt";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 40;
             // 
             // madv
             // 
@@ -290,15 +294,13 @@
             this.madv.Name = "madv";
             this.madv.OptionsColumn.AllowEdit = false;
             this.madv.Visible = true;
-            this.madv.VisibleIndex = 0;
+            this.madv.VisibleIndex = 1;
             this.madv.Width = 116;
             // 
             // tendv
             // 
             this.tendv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.tendv.AppearanceCell.Options.UseFont = true;
-            this.tendv.AppearanceCell.Options.UseTextOptions = true;
-            this.tendv.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.tendv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.tendv.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.tendv.AppearanceHeader.Options.UseFont = true;
@@ -310,7 +312,7 @@
             this.tendv.Name = "tendv";
             this.tendv.OptionsColumn.AllowEdit = false;
             this.tendv.Visible = true;
-            this.tendv.VisibleIndex = 1;
+            this.tendv.VisibleIndex = 2;
             this.tendv.Width = 170;
             // 
             // gridColumn2
@@ -330,7 +332,7 @@
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 6;
+            this.gridColumn2.VisibleIndex = 7;
             // 
             // khoachidinh
             // 
@@ -347,8 +349,8 @@
             this.khoachidinh.Name = "khoachidinh";
             this.khoachidinh.OptionsColumn.AllowEdit = false;
             this.khoachidinh.Visible = true;
-            this.khoachidinh.VisibleIndex = 4;
-            this.khoachidinh.Width = 143;
+            this.khoachidinh.VisibleIndex = 5;
+            this.khoachidinh.Width = 177;
             // 
             // phongchidinh
             // 
@@ -365,8 +367,8 @@
             this.phongchidinh.Name = "phongchidinh";
             this.phongchidinh.OptionsColumn.AllowEdit = false;
             this.phongchidinh.Visible = true;
-            this.phongchidinh.VisibleIndex = 5;
-            this.phongchidinh.Width = 125;
+            this.phongchidinh.VisibleIndex = 6;
+            this.phongchidinh.Width = 180;
             // 
             // thoigianchidinh
             // 
@@ -381,14 +383,14 @@
             this.thoigianchidinh.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianchidinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianchidinh.Caption = "Thời gian chỉ định";
-            this.thoigianchidinh.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianchidinh.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianchidinh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianchidinh.FieldName = "thoigianchidinh";
             this.thoigianchidinh.Name = "thoigianchidinh";
             this.thoigianchidinh.OptionsColumn.AllowEdit = false;
             this.thoigianchidinh.Visible = true;
-            this.thoigianchidinh.VisibleIndex = 2;
-            this.thoigianchidinh.Width = 120;
+            this.thoigianchidinh.VisibleIndex = 3;
+            this.thoigianchidinh.Width = 130;
             // 
             // thoigianlinh
             // 
@@ -403,14 +405,14 @@
             this.thoigianlinh.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianlinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianlinh.Caption = "Thời gian lĩnh thuốc/VT";
-            this.thoigianlinh.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianlinh.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianlinh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianlinh.FieldName = "thoigianlinh";
             this.thoigianlinh.Name = "thoigianlinh";
             this.thoigianlinh.OptionsColumn.AllowEdit = false;
             this.thoigianlinh.Visible = true;
-            this.thoigianlinh.VisibleIndex = 3;
-            this.thoigianlinh.Width = 120;
+            this.thoigianlinh.VisibleIndex = 4;
+            this.thoigianlinh.Width = 130;
             // 
             // mabn
             // 
@@ -429,7 +431,7 @@
             this.mabn.Name = "mabn";
             this.mabn.OptionsColumn.AllowEdit = false;
             this.mabn.Visible = true;
-            this.mabn.VisibleIndex = 7;
+            this.mabn.VisibleIndex = 8;
             this.mabn.Width = 70;
             // 
             // mavp
@@ -449,7 +451,7 @@
             this.mavp.Name = "mavp";
             this.mavp.OptionsColumn.AllowEdit = false;
             this.mavp.Visible = true;
-            this.mavp.VisibleIndex = 8;
+            this.mavp.VisibleIndex = 9;
             this.mavp.Width = 70;
             // 
             // tenbn
@@ -467,7 +469,7 @@
             this.tenbn.Name = "tenbn";
             this.tenbn.OptionsColumn.AllowEdit = false;
             this.tenbn.Visible = true;
-            this.tenbn.VisibleIndex = 9;
+            this.tenbn.VisibleIndex = 10;
             this.tenbn.Width = 135;
             // 
             // tenkhoa
@@ -485,7 +487,7 @@
             this.tenkhoa.Name = "tenkhoa";
             this.tenkhoa.OptionsColumn.AllowEdit = false;
             this.tenkhoa.Visible = true;
-            this.tenkhoa.VisibleIndex = 10;
+            this.tenkhoa.VisibleIndex = 11;
             this.tenkhoa.Width = 125;
             // 
             // thoigianvaovien
@@ -501,14 +503,14 @@
             this.thoigianvaovien.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianvaovien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianvaovien.Caption = "Thời gian vào viện";
-            this.thoigianvaovien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianvaovien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianvaovien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianvaovien.FieldName = "tgvaovien";
             this.thoigianvaovien.Name = "thoigianvaovien";
             this.thoigianvaovien.OptionsColumn.AllowEdit = false;
             this.thoigianvaovien.Visible = true;
-            this.thoigianvaovien.VisibleIndex = 11;
-            this.thoigianvaovien.Width = 120;
+            this.thoigianvaovien.VisibleIndex = 12;
+            this.thoigianvaovien.Width = 130;
             // 
             // thoigianravien
             // 
@@ -523,162 +525,14 @@
             this.thoigianravien.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianravien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianravien.Caption = "Thời gian ra viện";
-            this.thoigianravien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianravien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianravien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianravien.FieldName = "tgravien";
             this.thoigianravien.Name = "thoigianravien";
             this.thoigianravien.OptionsColumn.AllowEdit = false;
             this.thoigianravien.Visible = true;
-            this.thoigianravien.VisibleIndex = 12;
-            this.thoigianravien.Width = 120;
-            // 
-            // soluong
-            // 
-            this.soluong.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.soluong.AppearanceCell.Options.UseFont = true;
-            this.soluong.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.soluong.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.soluong.AppearanceHeader.Options.UseFont = true;
-            this.soluong.AppearanceHeader.Options.UseForeColor = true;
-            this.soluong.AppearanceHeader.Options.UseTextOptions = true;
-            this.soluong.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.soluong.Caption = "Số lượng";
-            this.soluong.FieldName = "soluong";
-            this.soluong.Name = "soluong";
-            this.soluong.OptionsColumn.AllowEdit = false;
-            this.soluong.Width = 60;
-            // 
-            // trangthai
-            // 
-            this.trangthai.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.trangthai.AppearanceCell.Options.UseFont = true;
-            this.trangthai.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.trangthai.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.trangthai.AppearanceHeader.Options.UseFont = true;
-            this.trangthai.AppearanceHeader.Options.UseForeColor = true;
-            this.trangthai.AppearanceHeader.Options.UseTextOptions = true;
-            this.trangthai.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.trangthai.Caption = "Trạng thái";
-            this.trangthai.FieldName = "trangthai";
-            this.trangthai.Name = "trangthai";
-            this.trangthai.OptionsColumn.AllowEdit = false;
-            this.trangthai.Width = 80;
-            // 
-            // stt
-            // 
-            this.stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.stt.AppearanceCell.Options.UseFont = true;
-            this.stt.AppearanceCell.Options.UseTextOptions = true;
-            this.stt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
-            this.stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.stt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.stt.AppearanceHeader.Options.UseFont = true;
-            this.stt.AppearanceHeader.Options.UseForeColor = true;
-            this.stt.AppearanceHeader.Options.UseTextOptions = true;
-            this.stt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.stt.Caption = "STT";
-            this.stt.FieldName = "stt";
-            this.stt.Name = "stt";
-            this.stt.OptionsColumn.AllowEdit = false;
-            this.stt.Width = 45;
-            // 
-            // dongia
-            // 
-            this.dongia.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.dongia.AppearanceCell.Options.UseFont = true;
-            this.dongia.AppearanceCell.Options.UseTextOptions = true;
-            this.dongia.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.dongia.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.dongia.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dongia.AppearanceHeader.Options.UseFont = true;
-            this.dongia.AppearanceHeader.Options.UseForeColor = true;
-            this.dongia.AppearanceHeader.Options.UseTextOptions = true;
-            this.dongia.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.dongia.Caption = "Đơn giá";
-            this.dongia.FieldName = "dongia";
-            this.dongia.Name = "dongia";
-            this.dongia.OptionsColumn.AllowEdit = false;
-            this.dongia.Width = 90;
-            // 
-            // tenphong
-            // 
-            this.tenphong.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.tenphong.AppearanceCell.Options.UseFont = true;
-            this.tenphong.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.tenphong.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tenphong.AppearanceHeader.Options.UseFont = true;
-            this.tenphong.AppearanceHeader.Options.UseForeColor = true;
-            this.tenphong.AppearanceHeader.Options.UseTextOptions = true;
-            this.tenphong.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.tenphong.Caption = "Tên phòng ra viện";
-            this.tenphong.FieldName = "tenphong";
-            this.tenphong.Name = "tenphong";
-            this.tenphong.OptionsColumn.AllowEdit = false;
-            this.tenphong.Width = 125;
-            // 
-            // benhchinh_code
-            // 
-            this.benhchinh_code.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhchinh_code.AppearanceCell.Options.UseFont = true;
-            this.benhchinh_code.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhchinh_code.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.benhchinh_code.AppearanceHeader.Options.UseFont = true;
-            this.benhchinh_code.AppearanceHeader.Options.UseForeColor = true;
-            this.benhchinh_code.AppearanceHeader.Options.UseTextOptions = true;
-            this.benhchinh_code.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.benhchinh_code.Caption = "Mã bệnh chính";
-            this.benhchinh_code.FieldName = "benhchinh_code";
-            this.benhchinh_code.Name = "benhchinh_code";
-            this.benhchinh_code.OptionsColumn.AllowEdit = false;
-            this.benhchinh_code.Width = 96;
-            // 
-            // benhchinh_name
-            // 
-            this.benhchinh_name.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhchinh_name.AppearanceCell.Options.UseFont = true;
-            this.benhchinh_name.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhchinh_name.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.benhchinh_name.AppearanceHeader.Options.UseFont = true;
-            this.benhchinh_name.AppearanceHeader.Options.UseForeColor = true;
-            this.benhchinh_name.AppearanceHeader.Options.UseTextOptions = true;
-            this.benhchinh_name.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.benhchinh_name.Caption = "Tên bệnh chính";
-            this.benhchinh_name.FieldName = "benhchinh_name";
-            this.benhchinh_name.Name = "benhchinh_name";
-            this.benhchinh_name.OptionsColumn.AllowEdit = false;
-            this.benhchinh_name.Width = 145;
-            // 
-            // benhkemtheo_code
-            // 
-            this.benhkemtheo_code.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhkemtheo_code.AppearanceCell.Options.UseFont = true;
-            this.benhkemtheo_code.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhkemtheo_code.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.benhkemtheo_code.AppearanceHeader.Options.UseFont = true;
-            this.benhkemtheo_code.AppearanceHeader.Options.UseForeColor = true;
-            this.benhkemtheo_code.AppearanceHeader.Options.UseTextOptions = true;
-            this.benhkemtheo_code.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.benhkemtheo_code.Caption = "Mã bệnh kèm theo";
-            this.benhkemtheo_code.FieldName = "benhkemtheo_code";
-            this.benhkemtheo_code.Name = "benhkemtheo_code";
-            this.benhkemtheo_code.OptionsColumn.AllowEdit = false;
-            this.benhkemtheo_code.Width = 96;
-            // 
-            // benhkemtheo_name
-            // 
-            this.benhkemtheo_name.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhkemtheo_name.AppearanceCell.Options.UseFont = true;
-            this.benhkemtheo_name.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.benhkemtheo_name.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.benhkemtheo_name.AppearanceHeader.Options.UseFont = true;
-            this.benhkemtheo_name.AppearanceHeader.Options.UseForeColor = true;
-            this.benhkemtheo_name.AppearanceHeader.Options.UseTextOptions = true;
-            this.benhkemtheo_name.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.benhkemtheo_name.Caption = "Tên bệnh kèm theo";
-            this.benhkemtheo_name.FieldName = "benhkemtheo_name";
-            this.benhkemtheo_name.Name = "benhkemtheo_name";
-            this.benhkemtheo_name.OptionsColumn.AllowEdit = false;
-            this.benhkemtheo_name.Width = 145;
+            this.thoigianravien.VisibleIndex = 13;
+            this.thoigianravien.Width = 130;
             // 
             // ucBCTimPhieuTHYL
             // 
@@ -713,34 +567,26 @@
         private DevExpress.XtraEditors.PanelControl panelControlDV_DT;
         private DevExpress.XtraGrid.GridControl gridControlDS_THYL;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewDS_THYL;
-        private DevExpress.XtraGrid.Columns.GridColumn stt;
         private DevExpress.XtraGrid.Columns.GridColumn mabn;
         private DevExpress.XtraGrid.Columns.GridColumn mavp;
         private DevExpress.XtraGrid.Columns.GridColumn tenbn;
         private DevExpress.XtraGrid.Columns.GridColumn tenkhoa;
         private DevExpress.XtraGrid.Columns.GridColumn tendv;
         private DevExpress.XtraGrid.Columns.GridColumn thoigianchidinh;
-        private DevExpress.XtraGrid.Columns.GridColumn soluong;
         private DevExpress.XtraGrid.Columns.GridColumn thoigianvaovien;
         private DevExpress.XtraGrid.Columns.GridColumn thoigianravien;
         private DevExpress.XtraGrid.Columns.GridColumn thoigianlinh;
         private System.Windows.Forms.GroupBox groupBoxXuatBC;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
         private DevExpress.XtraGrid.Columns.GridColumn madv;
-        private DevExpress.XtraGrid.Columns.GridColumn dongia;
-        private DevExpress.XtraGrid.Columns.GridColumn trangthai;
         private DevExpress.XtraGrid.Columns.GridColumn khoachidinh;
         private DevExpress.XtraGrid.Columns.GridColumn phongchidinh;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn benhchinh_code;
-        private DevExpress.XtraGrid.Columns.GridColumn benhchinh_name;
-        private DevExpress.XtraGrid.Columns.GridColumn benhkemtheo_code;
-        private DevExpress.XtraGrid.Columns.GridColumn benhkemtheo_name;
-        private DevExpress.XtraGrid.Columns.GridColumn tenphong;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtMaVP;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtMaBN;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

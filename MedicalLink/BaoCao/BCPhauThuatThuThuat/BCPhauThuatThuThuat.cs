@@ -47,7 +47,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 //linq groupby
-                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
                     cboKhoa.Properties.DataSource = lstDSKhoa;
@@ -344,7 +344,7 @@ namespace MedicalLink.BaoCao
                 if (cboKhoa.EditValue != null)
                 {
                     //Load danh muc phong thuoc khoa
-                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyenKhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(cboKhoa.EditValue.ToString())).OrderBy(o=>o.departmentname).ToList();
+                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(cboKhoa.EditValue.ToString())).OrderBy(o=>o.departmentname).ToList();
                     if (lstDSPhong != null && lstDSPhong.Count > 0)
                     {
                         chkcomboListDSPhong.Properties.DataSource = lstDSPhong;

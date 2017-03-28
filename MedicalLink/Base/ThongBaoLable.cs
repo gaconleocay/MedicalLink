@@ -21,6 +21,7 @@ namespace MedicalLink.Base
         internal static string EXPORT_DU_LIEU_THANH_CONG = "Xuất dữ liệu thành công!";
         internal static string CAP_NHAT_THANH_CONG = "Cập nhật thành công!";
         internal static string CHUA_CHON_KHOA_PHONG = "Chưa chọn khoa/phòng!";
+        internal static string CHUA_CHON_PHONG_THUC_HIEN = "Chưa chọn phòng thực hiện!";
         internal static string CHUA_CHON_KHO_TU_TRUC = "Chưa chọn kho/tủ trực!";
         internal static string THAO_TAC_THANH_CONG = "Thao tác thành công!";
         internal static string KHONG_TIM_THAY_TEMPLATE_BAO_CAO = "Không tìm thấy file template báo cáo!";

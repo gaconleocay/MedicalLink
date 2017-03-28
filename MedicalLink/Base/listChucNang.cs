@@ -306,6 +306,14 @@ namespace MedicalLink.Base
                 REPORT_11.permissionnote = "Báo cáo thuốc theo người kê - Nhà thuốc. Lấy theo thời gian xuất thuốc";
                 lstresult.Add(REPORT_11);
 
+                ClassCommon.classPermission REPORT_12 = new ClassCommon.classPermission();
+                REPORT_12.permissioncheck = false;
+                REPORT_12.permissioncode = "REPORT_12";
+                REPORT_12.permissionname = "Báo cáo thực hiện Cận lâm sàng (doanh thu chia bác sĩ)";
+                REPORT_12.permissiontype = 3;
+                REPORT_12.permissionnote = "Báo cáo thực hiện Cận lâm sàng (doanh thu chia bác sĩ)";
+                lstresult.Add(REPORT_12);
+
 
                 //Dashboard
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();

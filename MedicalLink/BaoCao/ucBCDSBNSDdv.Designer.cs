@@ -571,7 +571,7 @@
             this.thoigianchidinh.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianchidinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianchidinh.Caption = "Ngày chỉ định";
-            this.thoigianchidinh.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianchidinh.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianchidinh.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianchidinh.FieldName = "thoigianchidinh";
             this.thoigianchidinh.Name = "thoigianchidinh";
@@ -662,7 +662,7 @@
             this.thoigianvaovien.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianvaovien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianvaovien.Caption = "Thời gian vào viện";
-            this.thoigianvaovien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianvaovien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianvaovien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianvaovien.FieldName = "thoigianvaovien";
             this.thoigianvaovien.Name = "thoigianvaovien";
@@ -682,7 +682,7 @@
             this.thoigianravien.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianravien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianravien.Caption = "Thời gian ra viện";
-            this.thoigianravien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianravien.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianravien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianravien.FieldName = "thoigianravien";
             this.thoigianravien.Name = "thoigianravien";
@@ -702,7 +702,7 @@
             this.thoigianduyetvp.AppearanceHeader.Options.UseTextOptions = true;
             this.thoigianduyetvp.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.thoigianduyetvp.Caption = "Thời gian thanh toán";
-            this.thoigianduyetvp.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.thoigianduyetvp.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.thoigianduyetvp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.thoigianduyetvp.FieldName = "thoigianduyetvp";
             this.thoigianduyetvp.Name = "thoigianduyetvp";

@@ -96,6 +96,7 @@ namespace MedicalLink.FormCommon
                             navBarItemListNguoiDung.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
                             navBarItemListNhanVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
                             navBarItemListOption.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
+                            navBarItemMaHoaGiaiMa.Visible = false;//luon luon false
                         }
                         else
                         {
@@ -109,6 +110,7 @@ namespace MedicalLink.FormCommon
                         navBarItemListNguoiDung.Visible = false;
                         navBarItemListNhanVien.Visible = false;
                         navBarItemListOption.Visible = false;
+                        navBarItemMaHoaGiaiMa.Visible = false; //luon luon false
                     }
                 }
             }
@@ -336,6 +338,8 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+
 
 
 

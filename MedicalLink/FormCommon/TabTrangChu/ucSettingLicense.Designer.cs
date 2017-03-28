@@ -33,15 +33,12 @@
             this.lblThoiGianSuDung = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.btnLicenseCopy = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaMay = new DevExpress.XtraEditors.MemoEdit();
             this.btnLicenseLuu = new DevExpress.XtraEditors.SimpleButton();
             this.btnLicenseKiemTra = new DevExpress.XtraEditors.SimpleButton();
             this.txtKeyKichHoat = new DevExpress.XtraEditors.MemoEdit();
             this.groupBoxTaoLicense = new System.Windows.Forms.GroupBox();
-            this.btnTaoLicenseTao = new DevExpress.XtraEditors.SimpleButton();
-            this.btnTaoLicenseCopy = new DevExpress.XtraEditors.SimpleButton();
             this.txtTaoLicenseMaKichHoat = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
@@ -52,6 +49,9 @@
             this.txtTaoLicensePassword = new DevExpress.XtraEditors.TextEdit();
             this.txtTaoLicenseMaMay = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.btnTaoLicenseTao = new DevExpress.XtraEditors.SimpleButton();
+            this.btnTaoLicenseCopy = new DevExpress.XtraEditors.SimpleButton();
+            this.btnLicenseCopy = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxLicense.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaMay.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKeyKichHoat.Properties)).BeginInit();
@@ -109,21 +109,6 @@
             this.labelControl10.TabIndex = 27;
             this.labelControl10.Text = "Mã kích hoạt:";
             // 
-            // btnLicenseCopy
-            // 
-            this.btnLicenseCopy.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLicenseCopy.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnLicenseCopy.Appearance.Options.UseFont = true;
-            this.btnLicenseCopy.Appearance.Options.UseForeColor = true;
-            this.btnLicenseCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnLicenseCopy.Image")));
-            this.btnLicenseCopy.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.btnLicenseCopy.Location = new System.Drawing.Point(608, 19);
-            this.btnLicenseCopy.Name = "btnLicenseCopy";
-            this.btnLicenseCopy.Size = new System.Drawing.Size(40, 55);
-            this.btnLicenseCopy.TabIndex = 26;
-            this.btnLicenseCopy.Text = "Copy";
-            this.btnLicenseCopy.Click += new System.EventHandler(this.btnLicenseCopy_Click);
-            // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -140,7 +125,7 @@
             this.txtMaMay.Name = "txtMaMay";
             this.txtMaMay.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaMay.Properties.Appearance.Options.UseFont = true;
-            this.txtMaMay.Size = new System.Drawing.Size(481, 56);
+            this.txtMaMay.Size = new System.Drawing.Size(495, 56);
             this.txtMaMay.TabIndex = 18;
             // 
             // btnLicenseLuu
@@ -175,7 +160,7 @@
             this.txtKeyKichHoat.Name = "txtKeyKichHoat";
             this.txtKeyKichHoat.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKeyKichHoat.Properties.Appearance.Options.UseFont = true;
-            this.txtKeyKichHoat.Size = new System.Drawing.Size(481, 93);
+            this.txtKeyKichHoat.Size = new System.Drawing.Size(495, 93);
             this.txtKeyKichHoat.TabIndex = 15;
             // 
             // groupBoxTaoLicense
@@ -201,49 +186,20 @@
             this.groupBoxTaoLicense.Text = "Tạo license";
             this.groupBoxTaoLicense.Visible = false;
             // 
-            // btnTaoLicenseTao
-            // 
-            this.btnTaoLicenseTao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaoLicenseTao.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnTaoLicenseTao.Appearance.Options.UseFont = true;
-            this.btnTaoLicenseTao.Appearance.Options.UseForeColor = true;
-            this.btnTaoLicenseTao.Image = global::MedicalLink.Properties.Resources.arrow_32_16;
-            this.btnTaoLicenseTao.Location = new System.Drawing.Point(291, 141);
-            this.btnTaoLicenseTao.Name = "btnTaoLicenseTao";
-            this.btnTaoLicenseTao.Size = new System.Drawing.Size(110, 23);
-            this.btnTaoLicenseTao.TabIndex = 35;
-            this.btnTaoLicenseTao.Text = "Tạo license";
-            this.btnTaoLicenseTao.Click += new System.EventHandler(this.btnTaoLicenseTao_Click);
-            // 
-            // btnTaoLicenseCopy
-            // 
-            this.btnTaoLicenseCopy.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaoLicenseCopy.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnTaoLicenseCopy.Appearance.Options.UseFont = true;
-            this.btnTaoLicenseCopy.Appearance.Options.UseForeColor = true;
-            this.btnTaoLicenseCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoLicenseCopy.Image")));
-            this.btnTaoLicenseCopy.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter;
-            this.btnTaoLicenseCopy.Location = new System.Drawing.Point(576, 185);
-            this.btnTaoLicenseCopy.Name = "btnTaoLicenseCopy";
-            this.btnTaoLicenseCopy.Size = new System.Drawing.Size(40, 55);
-            this.btnTaoLicenseCopy.TabIndex = 34;
-            this.btnTaoLicenseCopy.Text = "Copy";
-            this.btnTaoLicenseCopy.Click += new System.EventHandler(this.btnTaoLicenseCopy_Click);
-            // 
             // txtTaoLicenseMaKichHoat
             // 
-            this.txtTaoLicenseMaKichHoat.Location = new System.Drawing.Point(121, 173);
+            this.txtTaoLicenseMaKichHoat.Location = new System.Drawing.Point(121, 188);
             this.txtTaoLicenseMaKichHoat.Name = "txtTaoLicenseMaKichHoat";
             this.txtTaoLicenseMaKichHoat.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTaoLicenseMaKichHoat.Properties.Appearance.Options.UseFont = true;
-            this.txtTaoLicenseMaKichHoat.Size = new System.Drawing.Size(449, 84);
+            this.txtTaoLicenseMaKichHoat.Size = new System.Drawing.Size(495, 84);
             this.txtTaoLicenseMaKichHoat.TabIndex = 32;
             // 
             // labelControl15
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl15.Location = new System.Drawing.Point(29, 205);
+            this.labelControl15.Location = new System.Drawing.Point(29, 220);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(80, 16);
             this.labelControl15.TabIndex = 33;
@@ -253,7 +209,7 @@
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl11.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl11.Location = new System.Drawing.Point(352, 105);
+            this.labelControl11.Location = new System.Drawing.Point(352, 117);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(83, 16);
             this.labelControl11.TabIndex = 31;
@@ -263,7 +219,7 @@
             // 
             this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl12.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl12.Location = new System.Drawing.Point(34, 105);
+            this.labelControl12.Location = new System.Drawing.Point(34, 117);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(74, 16);
             this.labelControl12.TabIndex = 30;
@@ -275,7 +231,7 @@
             this.dtTaoLicenseKeyTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dtTaoLicenseKeyTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTaoLicenseKeyTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtTaoLicenseKeyTuNgay.Location = new System.Drawing.Point(121, 99);
+            this.dtTaoLicenseKeyTuNgay.Location = new System.Drawing.Point(121, 111);
             this.dtTaoLicenseKeyTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dtTaoLicenseKeyTuNgay.Name = "dtTaoLicenseKeyTuNgay";
             this.dtTaoLicenseKeyTuNgay.Size = new System.Drawing.Size(175, 23);
@@ -288,7 +244,7 @@
             this.dtTaoLicenseKeyDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dtTaoLicenseKeyDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTaoLicenseKeyDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtTaoLicenseKeyDenNgay.Location = new System.Drawing.Point(441, 99);
+            this.dtTaoLicenseKeyDenNgay.Location = new System.Drawing.Point(441, 111);
             this.dtTaoLicenseKeyDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dtTaoLicenseKeyDenNgay.Name = "dtTaoLicenseKeyDenNgay";
             this.dtTaoLicenseKeyDenNgay.Size = new System.Drawing.Size(175, 23);
@@ -318,7 +274,7 @@
             // 
             // txtTaoLicenseMaMay
             // 
-            this.txtTaoLicenseMaMay.Location = new System.Drawing.Point(121, 47);
+            this.txtTaoLicenseMaMay.Location = new System.Drawing.Point(121, 54);
             this.txtTaoLicenseMaMay.Name = "txtTaoLicenseMaMay";
             this.txtTaoLicenseMaMay.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTaoLicenseMaMay.Properties.Appearance.Options.UseFont = true;
@@ -329,11 +285,55 @@
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl14.Location = new System.Drawing.Point(58, 62);
+            this.labelControl14.Location = new System.Drawing.Point(58, 69);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(50, 16);
             this.labelControl14.TabIndex = 25;
             this.labelControl14.Text = "Mã máy:";
+            // 
+            // btnTaoLicenseTao
+            // 
+            this.btnTaoLicenseTao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaoLicenseTao.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnTaoLicenseTao.Appearance.Options.UseFont = true;
+            this.btnTaoLicenseTao.Appearance.Options.UseForeColor = true;
+            this.btnTaoLicenseTao.Image = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.btnTaoLicenseTao.Location = new System.Drawing.Point(291, 153);
+            this.btnTaoLicenseTao.Name = "btnTaoLicenseTao";
+            this.btnTaoLicenseTao.Size = new System.Drawing.Size(110, 23);
+            this.btnTaoLicenseTao.TabIndex = 35;
+            this.btnTaoLicenseTao.Text = "Tạo license";
+            this.btnTaoLicenseTao.Click += new System.EventHandler(this.btnTaoLicenseTao_Click);
+            // 
+            // btnTaoLicenseCopy
+            // 
+            this.btnTaoLicenseCopy.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaoLicenseCopy.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnTaoLicenseCopy.Appearance.Options.UseFont = true;
+            this.btnTaoLicenseCopy.Appearance.Options.UseForeColor = true;
+            this.btnTaoLicenseCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoLicenseCopy.Image")));
+            this.btnTaoLicenseCopy.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.btnTaoLicenseCopy.Location = new System.Drawing.Point(622, 201);
+            this.btnTaoLicenseCopy.Name = "btnTaoLicenseCopy";
+            this.btnTaoLicenseCopy.Size = new System.Drawing.Size(40, 55);
+            this.btnTaoLicenseCopy.TabIndex = 34;
+            this.btnTaoLicenseCopy.Text = "Copy";
+            this.btnTaoLicenseCopy.Click += new System.EventHandler(this.btnTaoLicenseCopy_Click);
+            // 
+            // btnLicenseCopy
+            // 
+            this.btnLicenseCopy.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLicenseCopy.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnLicenseCopy.Appearance.Options.UseFont = true;
+            this.btnLicenseCopy.Appearance.Options.UseForeColor = true;
+            this.btnLicenseCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnLicenseCopy.Image")));
+            this.btnLicenseCopy.ImageLocation = DevExpress.XtraEditors.ImageLocation.TopCenter;
+            this.btnLicenseCopy.Location = new System.Drawing.Point(622, 20);
+            this.btnLicenseCopy.Name = "btnLicenseCopy";
+            this.btnLicenseCopy.Size = new System.Drawing.Size(40, 55);
+            this.btnLicenseCopy.TabIndex = 26;
+            this.btnLicenseCopy.Text = "Copy";
+            this.btnLicenseCopy.Click += new System.EventHandler(this.btnLicenseCopy_Click);
             // 
             // ucSettingLicense
             // 

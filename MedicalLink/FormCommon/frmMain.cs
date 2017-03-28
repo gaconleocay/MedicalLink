@@ -82,7 +82,7 @@ namespace MedicalLink.FormCommon
                 System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
                 string version = fvi.FileVersion;
-                this.Text = "Phần mềm hỗ trợ quản lý tổng thể bệnh viện (v" + version + ")";
+                this.Text = "Phần mềm quản lý tổng thể bệnh viện (v" + version + ")";
                 StatusUsername.Caption = SessionLogin.SessionUsername;
                 StatusDBName.Caption = serverhost + " [ " + serverdb + " ]";
             }

@@ -258,6 +258,15 @@
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuatProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="BaoCao\BCThucHienCLS\ucBCThucHienCLS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCThucHienCLS\ucBCThucHienCLS.Designer.cs">
+      <DependentUpon>ucBCThucHienCLS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BCThucHienCLS\ucBCThucHienCLSProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BaoCao\BCXuatThuocNhaThuoc\BCXuatThuocNhaThuocDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -579,6 +588,12 @@
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
     <Compile Include="DatabaseProcess\TinhMuaHuongBHYT.cs" />
+    <Compile Include="FormCommon\TabCaiDat\ucMaHoaVaGiaiMa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucMaHoaVaGiaiMa.Designer.cs">
+      <DependentUpon>ucMaHoaVaGiaiMa.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\TabTrangChu\frmThayPass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -808,6 +823,9 @@
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.resx">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCThucHienCLS\ucBCThucHienCLS.resx">
+      <DependentUpon>ucBCThucHienCLS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCXuatThuocNhaThuoc\BCXuatThuocNhaThuocDetail.resx">
       <DependentUpon>BCXuatThuocNhaThuocDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -921,6 +939,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.resx">
       <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucMaHoaVaGiaiMa.resx">
+      <DependentUpon>ucMaHoaVaGiaiMa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabTrangChu\frmThayPass.resx">
       <DependentUpon>frmThayPass.cs</DependentUpon>
@@ -1115,6 +1136,9 @@
     <Content Include="Templates\BC_BenhNhanSuDungDichVuTheoNhom_XuatAn.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_CLS.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -1152,6 +1176,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

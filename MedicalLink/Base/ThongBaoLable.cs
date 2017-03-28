@@ -18,7 +18,7 @@ namespace MedicalLink.Base
         internal static string VIEN_PHI_DA_KHOA_KHONG_THE_THAO_TAC_DUOC = "Viện phí đã khóa, không thể thao tác được!";
         internal static string VIEN_PHI_DA_KHOA = "Viện phí đã khóa!";
         internal static string VUI_LONG_NHAP_DAY_DU_THONG_TIN = "Vui lòng nhập đầy đủ thông tin!";
-        internal static string EXPORT_DU_LIEU_THANH_CONG = "Export dữ liệu thành công!";
+        internal static string EXPORT_DU_LIEU_THANH_CONG = "Xuất dữ liệu thành công!";
         internal static string CAP_NHAT_THANH_CONG = "Cập nhật thành công!";
         internal static string CHUA_CHON_KHOA_PHONG = "Chưa chọn khoa/phòng!";
         internal static string CHUA_CHON_KHO_TU_TRUC = "Chưa chọn kho/tủ trực!";
@@ -32,8 +32,8 @@ namespace MedicalLink.Base
         internal static string BENH_NHAN_DA_DUYET_VIEN_PHI = "Bệnh nhân đã duyệt viện phí!";
         internal static string BENH_AN_DA_THANH_TOAN ="Bệnh án đã thanh toán!";
         internal static string BENH_NHAN_CHUA_DUYET_VIEN_PHI = "Bệnh nhân chưa duyệt viện phí!";
-
-        
+        internal static string CHUA_CHON_KHO_THUOC = "Chưa chọn kho thuốc!";
+        internal static string CHUA_CHON_NHOM_THUOC = "Chưa chọn nhóm thuốc!";
 
 
 

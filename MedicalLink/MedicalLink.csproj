@@ -258,11 +258,30 @@
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuatProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="BaoCao\BCXuatThuocNhaThuoc\BCXuatThuocNhaThuocDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCXuatThuocNhaThuoc\BCXuatThuocNhaThuocDetail.Designer.cs">
+      <DependentUpon>BCXuatThuocNhaThuocDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BCXuatThuocNhaThuoc\ucBCThuocTheoNguoiKe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCXuatThuocNhaThuoc\ucBCThuocTheoNguoiKe.Designer.cs">
+      <DependentUpon>ucBCThuocTheoNguoiKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BCXuatThuocNhaThuoc\ucBCXuatThuocNhaThuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCXuatThuocNhaThuoc\ucBCXuatThuocNhaThuoc.Designer.cs">
+      <DependentUpon>ucBCXuatThuocNhaThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\bienTrongBaoCao.cs" />
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\classUserMedicineNhomThuoc.cs" />
     <Compile Include="ClassCommon\classUserMedicineStore.cs" />
     <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
@@ -303,7 +322,7 @@
     <Compile Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.Designer.cs">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\ImportDMDichVu\ClassDichVu.cs" />
+    <Compile Include="ChucNang\ImportDMDichVu\classServicePriceRef.cs" />
     <Compile Include="ChucNang\ImportDMDichVu\ImportDMDichVuProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -553,11 +572,6 @@
     <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DatabaseContent.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseContent.dbml</DependentUpon>
-    </Compile>
     <Compile Include="DatabaseProcess\BCTongHopToanVien_Process.cs" />
     <Compile Include="DatabaseProcess\BCBenhNhanNgoaiTru_Process.cs" />
     <Compile Include="DatabaseProcess\DangDTRaVienChuaDaTT_Tmp_Process.cs" />
@@ -746,11 +760,6 @@
     <Compile Include="FormCommon\ucTrangChu.Designer.cs">
       <DependentUpon>ucTrangChu.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelData.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThongBao\frmThongBao.cs">
@@ -764,6 +773,12 @@
     </Compile>
     <Compile Include="ThongBao\SplashScreen1.Designer.cs">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ThongBao\WaitForm_MBA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThongBao\WaitForm_MBA.Designer.cs">
+      <DependentUpon>WaitForm_MBA.cs</DependentUpon>
     </Compile>
     <Compile Include="ThongBao\WaitForm1.cs">
       <SubType>Form</SubType>
@@ -792,6 +807,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.resx">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCXuatThuocNhaThuoc\BCXuatThuocNhaThuocDetail.resx">
+      <DependentUpon>BCXuatThuocNhaThuocDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCXuatThuocNhaThuoc\ucBCThuocTheoNguoiKe.resx">
+      <DependentUpon>ucBCThuocTheoNguoiKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCXuatThuocNhaThuoc\ucBCXuatThuocNhaThuoc.resx">
+      <DependentUpon>ucBCXuatThuocNhaThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ImportDMDichVu\ucImportDMDichVu.resx">
       <DependentUpon>ucImportDMDichVu.cs</DependentUpon>
@@ -898,9 +922,6 @@
     <EmbeddedResource Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.resx">
       <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DatabaseContent.dbml.layout">
-      <DependentUpon>DatabaseContent.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="FormCommon\TabTrangChu\frmThayPass.resx">
       <DependentUpon>frmThayPass.cs</DependentUpon>
     </EmbeddedResource>
@@ -993,6 +1014,9 @@
     <EmbeddedResource Include="ThongBao\SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ThongBao\WaitForm_MBA.resx">
+      <DependentUpon>WaitForm_MBA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ThongBao\WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
@@ -1015,20 +1039,8 @@
     <Content Include="Documents\Tools_tblNhanVien.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="DatabaseContent.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DatabaseContent.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Library\Aspose.Cells.lic" />
     <None Include="Library\Aspose.Words.lic" />
-    <EntityDeploy Include="ModelData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelData.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ModelData.edmx.diagram">
-      <DependentUpon>ModelData.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1051,6 +1063,7 @@
     <Content Include="Library\Microsoft.Office.Interop.Word.dll" />
     <Content Include="Library\Mono.Security.dll" />
     <Content Include="Library\Npgsql.dll" />
+    <Content Include="Picture\logo_user.jpg" />
     <Content Include="Templates\BC_PhauThuatThuThuat_GMHT.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1082,6 +1095,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_TongHopToanVien_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_DangKyBaoHiemYTe.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_ThuocTheoNguoiKeNhaThuoc.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_ThuTienNhaThuocHangNgay.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BenhNhanSuDungDichVu.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BenhNhanSuDungDichVuPTTTTheoNhom.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BenhNhanSuDungDichVuTheoNhom_XuatAn.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -62,6 +62,8 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
                 condb.ExecuteNonQuery(sqlinsert_log);
                 MessageBox.Show("Sửa thời gian chỉ định/sử dụng phiếu DV: [" + this.maubenhphamid + "] thành công", "Thông báo !");
                 this.Visible = false;
+                this.Close();
+                this.Dispose();
             }
             catch (Exception ex)
             {

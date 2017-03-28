@@ -15,6 +15,7 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraEditors.Popup;
 using DevExpress.XtraGrid.Editors;
 using MedicalLink.Base;
+using DevExpress.XtraSplashScreen;
 
 namespace MedicalLink.ChucNang.MoBenhAn
 {
@@ -82,9 +83,14 @@ namespace MedicalLink.ChucNang.MoBenhAn
                     {
                         condb.ExecuteNonQuery(sqlinsert);
                         condb.ExecuteNonQuery(sqlinsert_log);
-                        this.Enabled = false;
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
-                        frmthongbao.Show();
+                        //this.Enabled = false;
+                        //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                        //frmthongbao.Show();
+                        SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
+                        System.Threading.Thread.Sleep(2000);
+                        SplashScreenManager.CloseForm();
+                        this.Close();
+                        this.Dispose();
                     }
                 }
                 else // không là khoa cuối
@@ -105,10 +111,14 @@ namespace MedicalLink.ChucNang.MoBenhAn
                             condb.ExecuteNonQuery(sqlchuyenngt);
                             condb.ExecuteNonQuery(sqlinsert);
                             condb.ExecuteNonQuery(sqlinsert_log);
-                            this.Enabled = false;
-
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
-                            frmthongbao.Show();
+                            //this.Enabled = false;
+                            //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                            //frmthongbao.Show();
+                            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
+                            System.Threading.Thread.Sleep(2000);
+                            SplashScreenManager.CloseForm();
+                            this.Close();
+                            this.Dispose();
                         }
                         else
                         {
@@ -124,8 +134,13 @@ namespace MedicalLink.ChucNang.MoBenhAn
                                 condb.ExecuteNonQuery(sqlinsert_log);
                                 this.Enabled = false;
 
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
-                                frmthongbao.Show();
+                                //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                                //frmthongbao.Show();
+                                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
+                                System.Threading.Thread.Sleep(2000);
+                                SplashScreenManager.CloseForm();
+                                this.Close();
+                                this.Dispose();
                             }
                         }
 
@@ -140,17 +155,21 @@ namespace MedicalLink.ChucNang.MoBenhAn
                         {
                             condb.ExecuteNonQuery(sqlinsert);
                             condb.ExecuteNonQuery(sqlinsert_log);
-                            this.Enabled = false;
-
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
-                            frmthongbao.Show();
+                            //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                            //frmthongbao.Show();
+                            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
+                            System.Threading.Thread.Sleep(2000);
+                            SplashScreenManager.CloseForm();
+                            this.Close();
+                            this.Dispose();
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
+                SplashScreenManager.CloseForm();
             }
         }
 
@@ -164,10 +183,11 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 LoadDanhSachNguoiYeuCau();
                 comboBoxNYC.SelectAll();
                 comboBoxNYC.Focus();
+                comboBoxNYC.ResetText();
             }
             catch (Exception ex)
             {
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -175,34 +195,19 @@ namespace MedicalLink.ChucNang.MoBenhAn
         {
             try
             {
-                string sqldsnv = "SELECT usercode as manv, username as tennv FROM tools_tbluser ORDER BY usercode";
+                string sqldsnv = "SELECT usercode as manv, username as tennv FROM tools_tblnhanvien ORDER BY usercode";
                 DataTable da_dt = condb.getDataTable(sqldsnv);
-                for (int i = 0; i < da_dt.Rows.Count; i++)
-                {
-                    string manv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(da_dt.Rows[i]["manv"].ToString(), true);
-                    string tennv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(da_dt.Rows[i]["tennv"].ToString(), true);
-                    da_dt.Rows[i]["manv"] = manv_de;
-                    da_dt.Rows[i]["tennv"] = tennv_de;
-                }
-                //dv = new DataView(condb.getDataTable(sqldsnv));
-                //for (int i = 0; i < dv.Count; i++)
+                //for (int i = 0; i < da_dt.Rows.Count; i++)
                 //{
-                //    string manv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[i]["manv"].ToString(), true);
-                //    string tennv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[i]["tennv"].ToString(), true);
-                //    dv[i]["manv"] = manv_de;
-                //    dv[i]["tennv"] = tennv_de;
+                //    string manv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(da_dt.Rows[i]["manv"].ToString(), true);
+                //    string tennv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(da_dt.Rows[i]["tennv"].ToString(), true);
+                //    da_dt.Rows[i]["manv"] = manv_de;
+                //    da_dt.Rows[i]["tennv"] = tennv_de;
                 //}
 
                 //searchLookUpEditDSNV.Properties.DataSource = dv;
                 //searchLookUpEditDSNV.Properties.DisplayMember = "tennv";
                 //searchLookUpEditDSNV.Properties.ValueMember = "manv";
-
-                //comboBoxNYC.DataSource = dv;
-                //comboBoxNYC.DisplayMember = "tennv";
-                //comboBoxNYC.ValueMember = "manv";
-
-                //Hien thi ca manv va tennv
-
                 //comboBoxNYC.ValueMember = "InvtID"; 
                 DataView v = new DataView(MedicalLink.Base.UtilsTable.getTableDisplayWrapper(da_dt, " | ", "InvtDisplay", "manv", "tennv"));
                 comboBoxNYC.DataSource = v;
@@ -211,7 +216,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -224,43 +229,37 @@ namespace MedicalLink.ChucNang.MoBenhAn
                     memoEditLyDo.Focus();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
         private void btnThemNhanVien_Click(object sender, EventArgs e)
         {
-            // Mã hóa tài khoản
-            string en_txtNVID = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtNVID.Text.Trim(), true);
-            string en_txtNVName = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtNVName.Text.Trim(), true);
             string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
-
             try
             {
-                string sql_kttontai = "SELECT userid as stt, usercode as manv, username as tennv FROM tools_tbluser WHERE usercode='" + en_txtNVID + "' ORDER BY manv";
+                string sql_kttontai = "SELECT usercode as manv, username as tennv FROM tools_tblnhanvien WHERE usercode='" + txtNVID.Text.Trim() + "' ORDER BY manv";
                 DataView dv_dsnv = new DataView(condb.getDataTable(sql_kttontai));
                 if (dv_dsnv != null && dv_dsnv.Count > 0)
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã tồn tại mã nhân viên trong hệ thống!");
-                    frmthongbao.Show();
+                    //su dung form thong bao nay thi khong hien thi duoc
+                    //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã tồn tại mã nhân viên trong hệ thống!");
+                    //frmthongbao.Show();
+                    MessageBox.Show("Đã tồn tại mã nhân viên trong hệ thống!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
-                    string sql = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','Nhân viên');";
+                    string sql = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + txtNVID.Text.Trim() + "','" + txtNVName.Text.Trim() + "','" + en_pass + "','0','3','Nhân viên');";
                     condb.ExecuteNonQuery(sql);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thêm nhân viên mới thành công!");
-                    frmthongbao.Show();
-
+                    MessageBox.Show("Thêm nhân viên mới thành công!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frmMoBenhAn_ThucHien_TT_Load(null, null);
-                    //ucMoBenhAn ucmba = new ucMoBenhAn();
-                    //ucmba.moBenhAnItem_Click(null,null);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -273,9 +272,9 @@ namespace MedicalLink.ChucNang.MoBenhAn
                     txtNVName.Focus();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -288,9 +287,9 @@ namespace MedicalLink.ChucNang.MoBenhAn
                     btnThemNhanVien.Focus();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 

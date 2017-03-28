@@ -150,7 +150,7 @@ namespace MedicalLink.ChucNang
             }
         }
 
-        public void gridViewMoBenhAn_DoubleClick(object sender, EventArgs e)
+        private void gridControlMoBenhAn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -172,9 +172,6 @@ namespace MedicalLink.ChucNang
                 {
                     HienThiThongTinBenhNhanDangChon(mabenhnhan, mavienphi, tenbenhnhan);
                     gridControlMBA_TH_Load();
-                    //frmMoBenhAn_ThucHien frmmobenhan = new frmMoBenhAn_ThucHien(obj, mabenhnhan, tenbenhnhan);
-                    //frmmobenhan.ShowDialog();
-                    ////MessageBox.Show(obj);
                 }
             }
             catch (Exception ex)
@@ -199,52 +196,17 @@ namespace MedicalLink.ChucNang
             txtMBAMaBenhNhan.Focus();
         }
 
-        private void gridControlMoBenhAn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                gridControlMBA_TH.DataSource = null;
-                // lấy giá trị tại dòng click chuột, lấy giá trị tại biến "mavienphi", "trangthai"
-                var rowHandle = gridViewMoBenhAn.FocusedRowHandle;
-                string mavienphi = gridViewMoBenhAn.GetRowCellValue(rowHandle, "mavienphi").ToString();
-                string trangth = gridViewMoBenhAn.GetRowCellValue(rowHandle, "trangthai").ToString();
-                string mabenhnhan = gridViewMoBenhAn.GetRowCellValue(rowHandle, "mabenhnhan").ToString();
-                string tenbenhnhan = gridViewMoBenhAn.GetRowCellValue(rowHandle, "tenbenhnhan").ToString();
-                // Kiểm tra nếu đã duyệt VP thì không cho mở bệnh án, nếu không thì hiển thị frmMoBenhAn_ThucHien
-                if (trangth == "Đã duyệt VP")
-                {
-                    HienThiThongTinBenhNhanDangChon(mabenhnhan, mavienphi, tenbenhnhan);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
-                    frmthongbao.Show();
-                }
-                else
-                {
-                    HienThiThongTinBenhNhanDangChon(mabenhnhan, mavienphi, tenbenhnhan);
-                    gridControlMBA_TH_Load();
-                    //frmMoBenhAn_ThucHien frmmobenhan = new frmMoBenhAn_ThucHien(obj, mabenhnhan, tenbenhnhan);
-                    //frmmobenhan.ShowDialog();
-                    //MessageBox.Show(obj);
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         internal void gridControlMBA_TH_Load()
         {
-            //lblmavienphi_frm1.Visible = false;
             try
             {
-                // Querry lấy dữ liệu về bn có VP nhập vào
                 string sqlquerry = "select distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.medicalrecordid_next as madieutrisau, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then 'Kết thúc' else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, CASE medicalrecord.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where medicalrecord.departmentid=department.departmentid) END as tenphong, medicalrecord.departmentgroupid as idkhoa, medicalrecord.departmentid as idphong, case medicalrecord.nextdepartmentid when 0 then 'Khoa cuối' else 'None' end as lakhoacuoi, medicalrecord.hosobenhanid as mahosobenhan, medicalrecord.loaibenhanid as loaibenhanid FROM medicalrecord, hosobenhan,departmentgroup,department WHERE medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.hosobenhanid=hosobenhan.hosobenhanid and vienphiid=" + lblmavienphi_frm1.Text + " order by madieutri;";
                 DataView dv_madieutri = new DataView(condb.getDataTable(sqlquerry));
                 gridControlMBA_TH.DataSource = dv_madieutri;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
             }
         }
 

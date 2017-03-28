@@ -310,7 +310,6 @@
             this.gridViewMBA_TH.GridControl = this.gridControlMBA_TH;
             this.gridViewMBA_TH.IndicatorWidth = 20;
             this.gridViewMBA_TH.Name = "gridViewMBA_TH";
-            this.gridViewMBA_TH.OptionsView.ColumnAutoWidth = false;
             this.gridViewMBA_TH.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewMBA_TH.OptionsView.ShowGroupPanel = false;
             this.gridViewMBA_TH.RowHeight = 25;
@@ -334,7 +333,7 @@
             this.gridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 0;
-            this.gridColumn10.Width = 20;
+            this.gridColumn10.Width = 30;
             // 
             // repositoryItemButtonEdit_MBA
             // 
@@ -365,7 +364,7 @@
             this.madieutri.OptionsColumn.AllowEdit = false;
             this.madieutri.Visible = true;
             this.madieutri.VisibleIndex = 1;
-            this.madieutri.Width = 85;
+            this.madieutri.Width = 77;
             // 
             // gridColumn1
             // 
@@ -385,7 +384,7 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
-            this.gridColumn1.Width = 85;
+            this.gridColumn1.Width = 77;
             // 
             // gridColumn2
             // 
@@ -405,7 +404,7 @@
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 3;
-            this.gridColumn2.Width = 85;
+            this.gridColumn2.Width = 77;
             // 
             // gridColumn3
             // 
@@ -423,7 +422,7 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 4;
-            this.gridColumn3.Width = 120;
+            this.gridColumn3.Width = 108;
             // 
             // gridColumn4
             // 
@@ -441,7 +440,7 @@
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 5;
-            this.gridColumn4.Width = 80;
+            this.gridColumn4.Width = 72;
             // 
             // gridColumn5
             // 
@@ -461,7 +460,7 @@
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 6;
-            this.gridColumn5.Width = 125;
+            this.gridColumn5.Width = 112;
             // 
             // gridColumn6
             // 
@@ -481,7 +480,7 @@
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 7;
-            this.gridColumn6.Width = 125;
+            this.gridColumn6.Width = 112;
             // 
             // gridColumn7
             // 
@@ -499,7 +498,7 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 8;
-            this.gridColumn7.Width = 120;
+            this.gridColumn7.Width = 108;
             // 
             // gridColumn8
             // 
@@ -517,7 +516,7 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 9;
-            this.gridColumn8.Width = 120;
+            this.gridColumn8.Width = 108;
             // 
             // gridColumn9
             // 
@@ -535,7 +534,7 @@
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 10;
-            this.gridColumn9.Width = 92;
+            this.gridColumn9.Width = 93;
             // 
             // panelControl1
             // 
@@ -575,12 +574,10 @@
             this.gridColumn11});
             this.gridViewMoBenhAn.GridControl = this.gridControlMoBenhAn;
             this.gridViewMoBenhAn.Name = "gridViewMoBenhAn";
-            this.gridViewMoBenhAn.OptionsView.ColumnAutoWidth = false;
             this.gridViewMoBenhAn.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewMoBenhAn.OptionsView.ShowGroupPanel = false;
             this.gridViewMoBenhAn.RowHeight = 25;
             this.gridViewMoBenhAn.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewMoBenhAn_RowCellStyle);
-            this.gridViewMoBenhAn.DoubleClick += new System.EventHandler(this.gridViewMoBenhAn_DoubleClick);
             // 
             // mavienphi
             // 

@@ -23,19 +23,18 @@ namespace MedicalLink.Base
         public static string SessionMachineName { get; set; }   // Tên máy
         public static string SessionMyIP { get; set; }  // Địa chỉ IP máy
         public static string SessionVersion { get; set; } // Version phần mềm
-        //public static string SessionDateTime { get; set; }  // Lấy thời gian
         public static bool KiemTraLicenseSuDung { get; set; } //kiem tra license: neu false thi out phan mem, neu true thi cho su dung tiep
         public static string License_KeyDB { get; set; } //License lay tu DB
-
         public static string MaDatabase { get; set; }//Lay thong tin database
-
         public static List<ClassCommon.classPermission> SessionLstPhanQuyenNguoiDung { get; set; }
-        public static List<ClassCommon.classUserDepartment> SessionlstPhanQuyenKhoaPhong { get; set; }
-
+        public static List<ClassCommon.classUserDepartment> SessionlstPhanQuyen_KhoaPhong { get; set; }
         public static List<ClassCommon.classPermission> SessionLstPhanQuyen_ChucNang { get; set; }
         public static List<ClassCommon.classPermission> SessionLstPhanQuyen_Report { get; set; }
         public static List<ClassCommon.classPermission> SessionLstPhanQuyen_Dashboard { get; set; }
         public static List<ClassCommon.classPermission> SessionLstPhanQuyen_BaoCao { get; set; }
+        public static List<ClassCommon.classUserMedicineStore> SessionLstPhanQuyen_KhoThuoc { get; set; }
+        public static List<ClassCommon.classUserMedicineNhomThuoc> SessionLstPhanQuyen_NhomThuoc { get; set; }
+
     }
 
 

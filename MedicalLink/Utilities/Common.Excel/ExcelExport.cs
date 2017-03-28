@@ -59,7 +59,7 @@ namespace MedicalLink.Utilities.Common.Excel
                 WorkbookDesigner designer;
                 using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
-                    saveDialog.Filter = "Excel 2003 (.xls)|*.xls|Excel 2010 (.xlsx)|*.xlsx |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                    saveDialog.Filter = "Excel 2010 (.xlsx)|*.xlsx |Excel 2003 (.xls)|*.xls|Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
                     if (saveDialog.ShowDialog() != DialogResult.Cancel)
                     {
                         string exportFilePath = saveDialog.FileName;

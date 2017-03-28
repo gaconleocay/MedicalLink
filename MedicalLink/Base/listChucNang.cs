@@ -271,7 +271,7 @@ namespace MedicalLink.Base
                 REPORT_07.permissioncode = "REPORT_07";
                 REPORT_07.permissionname = "Tìm dịch vụ/thuốc không có mã trong danh mục";
                 REPORT_07.permissiontype = 3;
-                REPORT_07.permissionnote = "Tìm dịch vụ/thuốc không có mã trong danh mục";
+                REPORT_07.permissionnote = "Tìm dịch vụ/thuốc không có mã trong danh mục. Lấy theo thời gian chỉ định dịch vụ.";
                 lstresult.Add(REPORT_07);
 
                 ClassCommon.classPermission REPORT_08 = new ClassCommon.classPermission();
@@ -290,7 +290,21 @@ namespace MedicalLink.Base
                 REPORT_09.permissionnote = "Báo cáo bệnh nhân sử dụng nhóm dịch vụ - Xuất ăn";
                 lstresult.Add(REPORT_09);
 
+                ClassCommon.classPermission REPORT_10 = new ClassCommon.classPermission();
+                REPORT_10.permissioncheck = false;
+                REPORT_10.permissioncode = "REPORT_10";
+                REPORT_10.permissionname = "Báo cáo thu tiền hàng ngày - Nhà thuốc";
+                REPORT_10.permissiontype = 3;
+                REPORT_10.permissionnote = "Báo cáo thu tiền hàng ngày - Nhà thuốc. Lấy theo thời gian xuất thuốc";
+                lstresult.Add(REPORT_10);
 
+                ClassCommon.classPermission REPORT_11 = new ClassCommon.classPermission();
+                REPORT_11.permissioncheck = false;
+                REPORT_11.permissioncode = "REPORT_11";
+                REPORT_11.permissionname = "Báo cáo thuốc theo người kê - Nhà thuốc";
+                REPORT_11.permissiontype = 3;
+                REPORT_11.permissionnote = "Báo cáo thuốc theo người kê - Nhà thuốc. Lấy theo thời gian xuất thuốc";
+                lstresult.Add(REPORT_11);
 
 
                 //Dashboard

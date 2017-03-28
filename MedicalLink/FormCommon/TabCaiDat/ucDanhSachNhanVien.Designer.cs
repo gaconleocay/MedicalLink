@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDanhSachNhanVien));
             this.panelControlThongTinNV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxChucNang = new System.Windows.Forms.GroupBox();
@@ -49,6 +50,7 @@
             this.tennv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
+            this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinNV)).BeginInit();
             this.panelControlThongTinNV.SuspendLayout();
             this.groupBoxChucNang.SuspendLayout();
@@ -60,6 +62,7 @@
             this.panelControlNV_DT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSNV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSNV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imMenu)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinNV
@@ -126,6 +129,7 @@
             this.txtIDHIS.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.txtIDHIS.Size = new System.Drawing.Size(145, 22);
             this.txtIDHIS.TabIndex = 10;
+            this.txtIDHIS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDHIS_KeyPress);
             // 
             // labelControl1
             // 
@@ -244,6 +248,7 @@
             this.gridViewDSNV.RowHeight = 25;
             this.gridViewDSNV.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSNV_CustomDrawCell);
             this.gridViewDSNV.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSNV_RowCellStyle);
+            this.gridViewDSNV.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridViewDSNV_PopupMenuShowing);
             this.gridViewDSNV.Click += new System.EventHandler(this.gridViewDSNV_Click);
             // 
             // stt
@@ -324,6 +329,18 @@
             this.openFileDialogSelect.Filter = "Excel 2003|*.xls|Excel 2007-2013|*.xlsx";
             this.openFileDialogSelect.Title = "Mở file Excel";
             // 
+            // imMenu
+            // 
+            this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
+            this.imMenu.InsertGalleryImage("HanhChinh.png", "images/actions/hide_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/hide_16x16.png"), 0);
+            this.imMenu.Images.SetKeyName(0, "HanhChinh.png");
+            this.imMenu.InsertGalleryImage("XoaDT.png", "images/actions/clear_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/clear_16x16.png"), 1);
+            this.imMenu.Images.SetKeyName(1, "XoaDT.png");
+            this.imMenu.InsertGalleryImage("XoaDTHC.png", "images/actions/remove_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/remove_16x16.png"), 2);
+            this.imMenu.Images.SetKeyName(2, "XoaDTHC.png");
+            this.imMenu.InsertGalleryImage("Xoa.png", "images/actions/cancel_16x16.png", DevExpress.Images.ImageResourceCache.Default.GetImage("images/actions/cancel_16x16.png"), 3);
+            this.imMenu.Images.SetKeyName(3, "Xoa.png");
+            // 
             // ucDanhSachNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,6 +362,7 @@
             this.panelControlNV_DT.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSNV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSNV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -371,6 +389,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.TextEdit txtIDHIS;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.Utils.ImageCollection imMenu;
 
     }
 }

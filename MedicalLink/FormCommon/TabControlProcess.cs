@@ -248,7 +248,12 @@ namespace MedicalLink.FormCommon
                     case "REPORT_09":
                         ucResult = new BaoCao.ucBCChiDinhPTTT_G304();
                         break;
-
+                    case "REPORT_10":
+                        ucResult = new BaoCao.ucBCXuatThuocNhaThuoc();
+                        break;
+                    case "REPORT_11":
+                        ucResult = new BaoCao.ucBCThuocTheoNguoiKe();
+                        break;
 
                     //Dashboard
                     case "DASHBOARD_01":

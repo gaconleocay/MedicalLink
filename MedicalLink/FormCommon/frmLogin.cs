@@ -244,7 +244,9 @@ namespace MedicalLink.FormCommon
                     SessionLogin.SessionUsername = "Administrator";
                     //Load data
                     SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();
-                    SessionLogin.SessionlstPhanQuyenKhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyenKhoaPhong();
+                    SessionLogin.SessionlstPhanQuyen_KhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoaPhong();
+                    SessionLogin.SessionLstPhanQuyen_KhoThuoc = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoThuoc();
+                    SessionLogin.SessionLstPhanQuyen_NhomThuoc = MedicalLink.Base.CheckPermission.GetPhanQuyen_NhomThuoc();
                     frmMain frmm = new frmMain();
                     frmm.Show();
                     this.Visible = false;
@@ -263,7 +265,9 @@ namespace MedicalLink.FormCommon
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
                             //Load data
                             SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();
-                            SessionLogin.SessionlstPhanQuyenKhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyenKhoaPhong();
+                            SessionLogin.SessionlstPhanQuyen_KhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoaPhong();
+                            SessionLogin.SessionLstPhanQuyen_KhoThuoc = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoThuoc();
+                            SessionLogin.SessionLstPhanQuyen_NhomThuoc = MedicalLink.Base.CheckPermission.GetPhanQuyen_NhomThuoc();
                             frmMain frmm = new frmMain();
                             frmm.Show();
                             this.Visible = false;

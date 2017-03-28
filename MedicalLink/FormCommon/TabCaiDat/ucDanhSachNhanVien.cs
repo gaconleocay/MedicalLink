@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
+using DevExpress.Utils.Menu;
+using MedicalLink.Base;
 
 namespace MedicalLink.FormCommon.TabCaiDat
 {
@@ -49,18 +51,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 DataView dv = new DataView(condb.getDataTable(sqldsnv));
                 if (dv.Count > 0)
                 {
-                    ////Giải mã hiển thị lên Gridview
-                    //for (int i = 0; i < dv.Count; i++)
-                    //{
-                    //    //itemcode += dataGridView1.Rows[i].Cells[2].Value.ToString();
-                    //    string usercode_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[i]["manv"].ToString(), true);
-                    //    string username_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[i]["tennv"].ToString(), true);
-                    //    dv[i]["manv"] = usercode_de;
-                    //    dv[i]["tennv"] = username_de;
-                    //}
                     gridControlDSNV.DataSource = dv;
                 }
-
             }
             catch (Exception ex)
             {
@@ -217,6 +209,49 @@ namespace MedicalLink.FormCommon.TabCaiDat
             catch (Exception)
             {
 
+            }
+        }
+
+        private void gridViewDSNV_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                e.Menu.Items.Clear();
+                DXMenuItem itemXoaNguoiDung = new DXMenuItem("Xóa tài khoản");
+                itemXoaNguoiDung.Image = imMenu.Images["Xoa.png"];
+                itemXoaNguoiDung.Click += new EventHandler(itemXoaNguoiDung_Click);
+                e.Menu.Items.Add(itemXoaNguoiDung);
+            }
+        }
+        void itemXoaNguoiDung_Click(object sender, EventArgs e)
+        {
+            var rowHandle = gridViewDSNV.FocusedRowHandle;
+            string usercode = Convert.ToString(gridViewDSNV.GetRowCellValue(rowHandle, "manv").ToString());
+
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản: " + usercode + " không?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    string sqlxoatk = "DELETE FROM tools_tblnhanvien WHERE usercode='" + usercode + "';";
+                    condb.ExecuteNonQuery(sqlxoatk);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + usercode);
+                    frmthongbao.Show();
+                    gridControlDSNV.DataSource = null;
+                    ucDanhSachNhanVien_Load(null, null);
+                }
+                catch (Exception ex)
+                {
+                    Base.Logging.Warn(ex);
+                }
+            }
+        }
+
+        private void txtIDHIS_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
 

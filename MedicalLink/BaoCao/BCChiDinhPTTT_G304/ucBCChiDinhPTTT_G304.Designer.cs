@@ -152,7 +152,7 @@
             this.chkcomboListDSKhoa.Properties.AllowMultiSelect = true;
             this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkcomboListDSKhoa.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
             this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -257,6 +257,8 @@
             this.cbbLoaiBA.Name = "cbbLoaiBA";
             this.cbbLoaiBA.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiBA.Properties.Appearance.Options.UseFont = true;
+            this.cbbLoaiBA.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbLoaiBA.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbLoaiBA.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbLoaiBA.Properties.Items.AddRange(new object[] {
@@ -319,6 +321,8 @@
             this.cbbTieuChi.Name = "cbbTieuChi";
             this.cbbTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTieuChi.Properties.Appearance.Options.UseFont = true;
+            this.cbbTieuChi.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbTieuChi.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbTieuChi.Properties.Items.AddRange(new object[] {
@@ -436,7 +440,6 @@
             this.mabn.Caption = "Mã BN";
             this.mabn.FieldName = "patientid";
             this.mabn.Name = "mabn";
-            this.mabn.OptionsColumn.AllowEdit = false;
             this.mabn.Visible = true;
             this.mabn.VisibleIndex = 1;
             this.mabn.Width = 70;
@@ -456,7 +459,6 @@
             this.mavp.Caption = "Mã VP";
             this.mavp.FieldName = "vienphiid";
             this.mavp.Name = "mavp";
-            this.mavp.OptionsColumn.AllowEdit = false;
             this.mavp.Visible = true;
             this.mavp.VisibleIndex = 2;
             this.mavp.Width = 70;
@@ -474,7 +476,6 @@
             this.sothebhyt.Caption = "Số thẻ BHYT";
             this.sothebhyt.FieldName = "bhytcode";
             this.sothebhyt.Name = "sothebhyt";
-            this.sothebhyt.OptionsColumn.AllowEdit = false;
             this.sothebhyt.Visible = true;
             this.sothebhyt.VisibleIndex = 3;
             this.sothebhyt.Width = 130;
@@ -512,7 +513,6 @@
             this.tenbn.Caption = "Tên bệnh nhân";
             this.tenbn.FieldName = "patientname";
             this.tenbn.Name = "tenbn";
-            this.tenbn.OptionsColumn.AllowEdit = false;
             this.tenbn.Visible = true;
             this.tenbn.VisibleIndex = 5;
             this.tenbn.Width = 135;
@@ -600,7 +600,6 @@
             this.madv.Caption = "Mã dịch vụ";
             this.madv.FieldName = "servicepricecode";
             this.madv.Name = "madv";
-            this.madv.OptionsColumn.AllowEdit = false;
             this.madv.Visible = true;
             this.madv.VisibleIndex = 9;
             this.madv.Width = 94;
@@ -618,7 +617,6 @@
             this.tendv.Caption = "Tên dịch vụ";
             this.tendv.FieldName = "servicepricename";
             this.tendv.Name = "tendv";
-            this.tendv.OptionsColumn.AllowEdit = false;
             this.tendv.Visible = true;
             this.tendv.VisibleIndex = 10;
             this.tendv.Width = 230;

@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCChiDinhPTTT));
             this.panelControlTKDV_TK = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxBNBK_TK = new System.Windows.Forms.GroupBox();
+            this.chkPTTTAll = new DevExpress.XtraEditors.CheckEdit();
             this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.lblKhoaPhong = new DevExpress.XtraEditors.LabelControl();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.btnChonNhomDV = new System.Windows.Forms.Button();
-            this.chkPTTTAll = new System.Windows.Forms.CheckBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
@@ -88,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxBNBK_TK.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPTTTAll.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkVP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBHYT.Properties)).BeginInit();
@@ -111,11 +112,11 @@
             // 
             // groupBoxBNBK_TK
             // 
+            this.groupBoxBNBK_TK.Controls.Add(this.chkPTTTAll);
             this.groupBoxBNBK_TK.Controls.Add(this.chkcomboListDSKhoa);
             this.groupBoxBNBK_TK.Controls.Add(this.lblKhoaPhong);
             this.groupBoxBNBK_TK.Controls.Add(this.tbnExport);
             this.groupBoxBNBK_TK.Controls.Add(this.btnChonNhomDV);
-            this.groupBoxBNBK_TK.Controls.Add(this.chkPTTTAll);
             this.groupBoxBNBK_TK.Controls.Add(this.labelControl1);
             this.groupBoxBNBK_TK.Controls.Add(this.labelControl2);
             this.groupBoxBNBK_TK.Controls.Add(this.dateDenNgay);
@@ -136,6 +137,17 @@
             this.groupBoxBNBK_TK.TabIndex = 5;
             this.groupBoxBNBK_TK.TabStop = false;
             this.groupBoxBNBK_TK.Text = "Tìm kiếm theo nhóm dịch vụ";
+            // 
+            // chkPTTTAll
+            // 
+            this.chkPTTTAll.Location = new System.Drawing.Point(198, 81);
+            this.chkPTTTAll.Name = "chkPTTTAll";
+            this.chkPTTTAll.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPTTTAll.Properties.Appearance.Options.UseFont = true;
+            this.chkPTTTAll.Properties.Caption = "Tất cả PTTT";
+            this.chkPTTTAll.Size = new System.Drawing.Size(98, 20);
+            this.chkPTTTAll.TabIndex = 33;
+            this.chkPTTTAll.CheckedChanged += new System.EventHandler(this.chkPTTTAll_CheckedChanged);
             // 
             // chkcomboListDSKhoa
             // 
@@ -186,18 +198,6 @@
             this.btnChonNhomDV.Text = "Chọn nhanh";
             this.btnChonNhomDV.UseVisualStyleBackColor = true;
             this.btnChonNhomDV.Click += new System.EventHandler(this.btnChonNhomDV_Click);
-            // 
-            // chkPTTTAll
-            // 
-            this.chkPTTTAll.AutoSize = true;
-            this.chkPTTTAll.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPTTTAll.Location = new System.Drawing.Point(198, 83);
-            this.chkPTTTAll.Name = "chkPTTTAll";
-            this.chkPTTTAll.Size = new System.Drawing.Size(98, 20);
-            this.chkPTTTAll.TabIndex = 18;
-            this.chkPTTTAll.Text = "Tất cả PTTT";
-            this.chkPTTTAll.UseVisualStyleBackColor = true;
-            this.chkPTTTAll.CheckedChanged += new System.EventHandler(this.chkPTTTAll_CheckedChanged);
             // 
             // labelControl1
             // 
@@ -449,7 +449,6 @@
             this.mabn.Caption = "Mã BN";
             this.mabn.FieldName = "mabn";
             this.mabn.Name = "mabn";
-            this.mabn.OptionsColumn.AllowEdit = false;
             this.mabn.Visible = true;
             this.mabn.VisibleIndex = 1;
             this.mabn.Width = 70;
@@ -469,7 +468,6 @@
             this.mavp.Caption = "Mã VP";
             this.mavp.FieldName = "mavp";
             this.mavp.Name = "mavp";
-            this.mavp.OptionsColumn.AllowEdit = false;
             this.mavp.Visible = true;
             this.mavp.VisibleIndex = 2;
             this.mavp.Width = 70;
@@ -487,7 +485,6 @@
             this.sothebhyt.Caption = "Số thẻ BHYT";
             this.sothebhyt.FieldName = "sothebhyt";
             this.sothebhyt.Name = "sothebhyt";
-            this.sothebhyt.OptionsColumn.AllowEdit = false;
             this.sothebhyt.Visible = true;
             this.sothebhyt.VisibleIndex = 3;
             this.sothebhyt.Width = 130;
@@ -525,7 +522,6 @@
             this.tenbn.Caption = "Tên bệnh nhân";
             this.tenbn.FieldName = "tenbn";
             this.tenbn.Name = "tenbn";
-            this.tenbn.OptionsColumn.AllowEdit = false;
             this.tenbn.Visible = true;
             this.tenbn.VisibleIndex = 5;
             this.tenbn.Width = 145;
@@ -614,7 +610,6 @@
             this.madv.Caption = "Mã dịch vụ";
             this.madv.FieldName = "madv";
             this.madv.Name = "madv";
-            this.madv.OptionsColumn.AllowEdit = false;
             this.madv.Visible = true;
             this.madv.VisibleIndex = 10;
             this.madv.Width = 90;
@@ -632,7 +627,6 @@
             this.tendv.Caption = "Tên dịch vụ";
             this.tendv.FieldName = "tendv";
             this.tendv.Name = "tendv";
-            this.tendv.OptionsColumn.AllowEdit = false;
             this.tendv.Visible = true;
             this.tendv.VisibleIndex = 11;
             this.tendv.Width = 230;
@@ -1097,6 +1091,7 @@
             this.panelControlTKDV_TK.ResumeLayout(false);
             this.groupBoxBNBK_TK.ResumeLayout(false);
             this.groupBoxBNBK_TK.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPTTTAll.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkVP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBHYT.Properties)).EndInit();
@@ -1155,7 +1150,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private System.Windows.Forms.Button btnChonNhomDV;
-        private System.Windows.Forms.CheckBox chkPTTTAll;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraEditors.LabelControl lblKhoaPhong;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSKhoa;
@@ -1169,5 +1163,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
+        private DevExpress.XtraEditors.CheckEdit chkPTTTAll;
     }
 }

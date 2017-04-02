@@ -170,7 +170,6 @@ namespace MedicalLink.ChucNang
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
-
             SplashScreenManager.CloseForm();
         }
 
@@ -426,24 +425,9 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                //var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
-                //string trangthai = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString();
-
-                //if (trangthai != "Đã duyệt VP")
-                //{
                 if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
                 {
                     e.Menu.Items.Clear();
-
-                    //DXSubMenuItem menuChuyenTT = new DXSubMenuItem("Xóa phiếu chỉ định"); // caption menu
-                    //menuChuyenTT.Image = imMenu.Images[0]; // icon cho menu
-                    //e.Menu.Items.Add(menuChuyenTT);
-
-                    //DXMenuItem itemHaoPhi = new DXMenuItem("Hao phí giường, Công khám");
-                    //itemHaoPhi.Image = imMenu.Images[5];
-                    //menuChuyenTT.Items.Add(itemHaoPhi);
-                    //itemHaoPhi.Click += new EventHandler(itemHaoPhi_Click);// thêm sự kiện click
-
                     DXMenuItem itemXoaPhieuChiDinh = new DXMenuItem("Xóa phiếu chỉ định");
                     itemXoaPhieuChiDinh.Image = imMenu.Images[1];
                     //itemXoaToanBA.Shortcut = Shortcut.F6;
@@ -458,21 +442,15 @@ namespace MedicalLink.ChucNang
                     //itemXoaPhieuChiDinh.BeginGroup = true;
 
                 }
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Bệnh nhân đã thanh toán, không thể sửa được.", "Thông báo!");
-                //}
-
             }
-            catch
+            catch (Exception ex)
             {
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
         void itemXoaPhieuChiDinh_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 // lấy giá trị tại dòng click chuột
@@ -491,52 +469,55 @@ namespace MedicalLink.ChucNang
                     {
                         if (maubenhphamstatus == "Đã xuất tủ trực" && medicinestorebillid_ex != 0)
                         {
-                            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-                            string delete_maubenhpham = "DELETE FROM maubenhpham WHERE maubenhphamid='" + maubenhphamid + "';";
-                            string delete_serviceprice = "DELETE FROM serviceprice WHERE maubenhphamid='" + maubenhphamid + "';";
-                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và thuốc/vật tư mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            string update_medicine_store_bill = "UPDATE medicine_store_bill SET isremove=1 WHERE maubenhphamid='" + maubenhphamid + "';";
-
-                            if (maubenhphamphieutypeid == 0) //phieu chi dinh
+                            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu mã: " + maubenhphamid + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                            if (dialogResult == DialogResult.Yes)
                             {
-                                //Lay so luong thuoc da xuat
-                                string laysoluongthuoc = "SELECT me.medicinestorerefid, me.medicinestorebillid, me.medicinestorebillcode, me.accept_soluong FROM medicine me WHERE me.medicinestorebillid=" + medicinestorebillid_ex + "; ";
-                                DataView listsoluongthuoc = new DataView(condb.getDataTable(laysoluongthuoc));
-                                if (listsoluongthuoc != null && listsoluongthuoc.Count > 0)
+                                String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                                string delete_maubenhpham = "DELETE FROM maubenhpham WHERE maubenhphamid='" + maubenhphamid + "';";
+                                string delete_serviceprice = "DELETE FROM serviceprice WHERE maubenhphamid='" + maubenhphamid + "';";
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và thuốc/vật tư mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                                string update_medicine_store_bill = "UPDATE medicine_store_bill SET isremove=1 WHERE maubenhphamid='" + maubenhphamid + "';";
+
+                                if (maubenhphamphieutypeid == 0) //phieu chi dinh
                                 {
-                                    for (int i = 0; i < listsoluongthuoc.Count; i++)
+                                    //Lay so luong thuoc da xuat
+                                    string laysoluongthuoc = "SELECT me.medicinestorerefid, me.medicinestorebillid, me.medicinestorebillcode, me.accept_soluong FROM medicine me WHERE me.medicinestorebillid=" + medicinestorebillid_ex + "; ";
+                                    DataView listsoluongthuoc = new DataView(condb.getDataTable(laysoluongthuoc));
+                                    if (listsoluongthuoc != null && listsoluongthuoc.Count > 0)
                                     {
-                                        string update_medicine_store_ref = "UPDATE medicine_store_ref SET soluongtonkho=soluongtonkho + " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + ", soluongkhadung=soluongkhadung + " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + " WHERE medicinestorerefid= '" + listsoluongthuoc[i]["medicinestorerefid"].ToString() + "';";
-                                        condb.ExecuteNonQuery(update_medicine_store_ref);
+                                        for (int i = 0; i < listsoluongthuoc.Count; i++)
+                                        {
+                                            string update_medicine_store_ref = "UPDATE medicine_store_ref SET soluongtonkho=soluongtonkho + " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + ", soluongkhadung=soluongkhadung + " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + " WHERE medicinestorerefid= '" + listsoluongthuoc[i]["medicinestorerefid"].ToString() + "';";
+                                            condb.ExecuteNonQuery(update_medicine_store_ref);
+                                        }
                                     }
                                 }
-                            }
-                            else //phieu tra
-                            {
-                                //Lay so luong thuoc da xuat
-                                string laysoluongthuoc = "SELECT me.medicinestorerefid, me.medicinestorebillid, me.medicinestorebillcode, me.accept_soluong FROM medicine me WHERE me.medicinestorebillid=" + medicinestorebillid_ex + "; ";
-                                DataView listsoluongthuoc = new DataView(condb.getDataTable(laysoluongthuoc));
-                                if (listsoluongthuoc != null && listsoluongthuoc.Count > 0)
+                                else //phieu tra
                                 {
-                                    for (int i = 0; i < listsoluongthuoc.Count; i++)
+                                    //Lay so luong thuoc da xuat
+                                    string laysoluongthuoc = "SELECT me.medicinestorerefid, me.medicinestorebillid, me.medicinestorebillcode, me.accept_soluong FROM medicine me WHERE me.medicinestorebillid=" + medicinestorebillid_ex + "; ";
+                                    DataView listsoluongthuoc = new DataView(condb.getDataTable(laysoluongthuoc));
+                                    if (listsoluongthuoc != null && listsoluongthuoc.Count > 0)
                                     {
-                                        string update_medicine_store_ref = "UPDATE medicine_store_ref SET soluongtonkho=soluongtonkho - " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + ", soluongkhadung=soluongkhadung - " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + " WHERE medicinestorerefid= '" + listsoluongthuoc[i]["medicinestorerefid"].ToString() + "';";
-                                        condb.ExecuteNonQuery(update_medicine_store_ref);
+                                        for (int i = 0; i < listsoluongthuoc.Count; i++)
+                                        {
+                                            string update_medicine_store_ref = "UPDATE medicine_store_ref SET soluongtonkho=soluongtonkho - " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + ", soluongkhadung=soluongkhadung - " + Utilities.Util_TypeConvertParse.ToDecimal(listsoluongthuoc[i]["accept_soluong"].ToString()) + " WHERE medicinestorerefid= '" + listsoluongthuoc[i]["medicinestorerefid"].ToString() + "';";
+                                            condb.ExecuteNonQuery(update_medicine_store_ref);
+                                        }
                                     }
                                 }
+                                string delete_medicine = "DELETE FROM medicine WHERE medicinestorebillid in (select medicinestorebillid from medicine_store_bill where maubenhphamid=" + maubenhphamid + ");";
+                                //-------                    
+                                condb.ExecuteNonQuery(delete_medicine);
+                                condb.ExecuteNonQuery(delete_maubenhpham);
+                                condb.ExecuteNonQuery(delete_serviceprice);
+                                condb.ExecuteNonQuery(update_medicine_store_bill);
+                                condb.ExecuteNonQuery(sqlinsert_log);
+                                MessageBox.Show("Xóa phiếu thuốc/vật tư mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                gridControlDS_PhieuDichVu.DataSource = null;
+                                btnTimKiem_Click(null, null);
                             }
-                            string delete_medicine = "DELETE FROM medicine WHERE medicinestorebillid in (select medicinestorebillid from medicine_store_bill where maubenhphamid=" + maubenhphamid + ");";
-                            //-------                    
-                            condb.ExecuteNonQuery(delete_medicine);
-                            condb.ExecuteNonQuery(delete_maubenhpham);
-                            condb.ExecuteNonQuery(delete_serviceprice);
-                            condb.ExecuteNonQuery(update_medicine_store_bill);
-                            condb.ExecuteNonQuery(sqlinsert_log);
-                            SplashScreenManager.CloseForm();
-                            MessageBox.Show("Xóa phiếu thuốc/vật tư mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            gridControlDS_PhieuDichVu.DataSource = null;
-                            btnTimKiem_Click(null, null);
                         }
                         else
                         {
@@ -556,7 +537,6 @@ namespace MedicalLink.ChucNang
                             condb.ExecuteNonQuery(sqlxecute_mbp);
                             condb.ExecuteNonQuery(sqlexcute_ser);
                             condb.ExecuteNonQuery(sqlinsert_log);
-                            SplashScreenManager.CloseForm();
                             MessageBox.Show("Xóa phiếu dịch vụ mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             gridControlDS_PhieuDichVu.DataSource = null;
                             btnTimKiem_Click(null, null);
@@ -565,7 +545,6 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    SplashScreenManager.CloseForm();
                     MessageBox.Show("Thực hiện thất bại. \nPhiếu dịch vụ đã thu tiền hoặc bệnh án đã được duyệt viện phí.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -573,7 +552,6 @@ namespace MedicalLink.ChucNang
             {
                 MessageBox.Show("Thực hiện thất bại. Có lỗi xảy ra.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MedicalLink.Base.Logging.Error(ex);
-                SplashScreenManager.CloseForm();
             }
         }
         //Sua thoi gian chi dinh dich vu

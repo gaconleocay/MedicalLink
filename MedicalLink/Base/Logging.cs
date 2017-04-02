@@ -40,6 +40,10 @@ namespace MedicalLink.Base
         {
             logFile.Info(message);
         }
+        public static void Info(Exception ex)
+        {
+            logFile.Info(null, ex);
+        }
 
         public static void Warn(string message)
         {

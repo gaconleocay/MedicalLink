@@ -134,8 +134,16 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                gridControlTTDTKhoa.DataSource = null;
-                LayDuLieuBaoCao_ChayMoi();
+                if (chkBHYT.Checked == false && chkVP.Checked == false)
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_DOI_TUONG_BENH_NHAN);
+                    frmthongbao.Show();
+                }
+                else
+                {
+                    gridControlTTDTKhoa.DataSource = null;
+                    LayDuLieuBaoCao_ChayMoi();
+                }
             }
             catch (Exception ex)
             {

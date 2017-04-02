@@ -389,7 +389,6 @@
             this.mabn.Caption = "Mã BN";
             this.mabn.FieldName = "mabn";
             this.mabn.Name = "mabn";
-            this.mabn.OptionsColumn.AllowEdit = false;
             this.mabn.Visible = true;
             this.mabn.VisibleIndex = 1;
             this.mabn.Width = 70;
@@ -409,7 +408,6 @@
             this.mavp.Caption = "Mã VP";
             this.mavp.FieldName = "mavp";
             this.mavp.Name = "mavp";
-            this.mavp.OptionsColumn.AllowEdit = false;
             this.mavp.Visible = true;
             this.mavp.VisibleIndex = 2;
             this.mavp.Width = 70;
@@ -427,7 +425,6 @@
             this.tenbn.Caption = "Tên bệnh nhân";
             this.tenbn.FieldName = "tenbn";
             this.tenbn.Name = "tenbn";
-            this.tenbn.OptionsColumn.AllowEdit = false;
             this.tenbn.Visible = true;
             this.tenbn.VisibleIndex = 3;
             this.tenbn.Width = 135;
@@ -517,7 +514,6 @@
             this.madv.Caption = "Mã dịch vụ/thuốc";
             this.madv.FieldName = "madv";
             this.madv.Name = "madv";
-            this.madv.OptionsColumn.AllowEdit = false;
             this.madv.Visible = true;
             this.madv.VisibleIndex = 8;
             this.madv.Width = 90;
@@ -535,7 +531,6 @@
             this.tendv.Caption = "Tên dịch vụ/thuốc";
             this.tendv.FieldName = "tendv";
             this.tendv.Name = "tendv";
-            this.tendv.OptionsColumn.AllowEdit = false;
             this.tendv.Visible = true;
             this.tendv.VisibleIndex = 10;
             this.tendv.Width = 230;

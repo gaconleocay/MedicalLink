@@ -35,7 +35,7 @@ namespace MedicalLink.Base
         internal static string BENH_NHAN_CHUA_DUYET_VIEN_PHI = "Bệnh nhân chưa duyệt viện phí!";
         internal static string CHUA_CHON_KHO_THUOC = "Chưa chọn kho thuốc!";
         internal static string CHUA_CHON_NHOM_THUOC = "Chưa chọn nhóm thuốc!";
-
+        internal static string CHUA_CHON_DOI_TUONG_BENH_NHAN = "Chưa chọn đối tượng bệnh nhân!";
 
 
         internal static void HienThiThongBao(System.Windows.Forms.Timer timerThongBao, DevExpress.XtraEditors.LabelControl lblThongBao, string tenThongBao)

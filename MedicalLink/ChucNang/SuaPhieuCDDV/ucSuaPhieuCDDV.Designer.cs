@@ -38,8 +38,6 @@
             this.groupBoxXuatBC = new System.Windows.Forms.GroupBox();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxBNBK_TK = new System.Windows.Forms.GroupBox();
-            this.chkPhieuThuocVT = new System.Windows.Forms.CheckBox();
-            this.chkPhieuDichVu = new System.Windows.Forms.CheckBox();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaVP = new DevExpress.XtraEditors.TextEdit();
@@ -94,6 +92,8 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.chkPhieuDichVu = new DevExpress.XtraEditors.CheckEdit();
+            this.chkPhieuThuocVT = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -115,6 +115,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuDichVu.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuThuocVT.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlTKDV_TK
@@ -173,28 +175,6 @@
             this.groupBoxBNBK_TK.TabIndex = 5;
             this.groupBoxBNBK_TK.TabStop = false;
             this.groupBoxBNBK_TK.Text = "Tìm kiếm phiếu dịch vụ/thuốc";
-            // 
-            // chkPhieuThuocVT
-            // 
-            this.chkPhieuThuocVT.AutoSize = true;
-            this.chkPhieuThuocVT.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPhieuThuocVT.Location = new System.Drawing.Point(598, 69);
-            this.chkPhieuThuocVT.Name = "chkPhieuThuocVT";
-            this.chkPhieuThuocVT.Size = new System.Drawing.Size(131, 20);
-            this.chkPhieuThuocVT.TabIndex = 12;
-            this.chkPhieuThuocVT.Text = "Phiếu thuốc/vật tư";
-            this.chkPhieuThuocVT.UseVisualStyleBackColor = true;
-            // 
-            // chkPhieuDichVu
-            // 
-            this.chkPhieuDichVu.AutoSize = true;
-            this.chkPhieuDichVu.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPhieuDichVu.Location = new System.Drawing.Point(598, 25);
-            this.chkPhieuDichVu.Name = "chkPhieuDichVu";
-            this.chkPhieuDichVu.Size = new System.Drawing.Size(102, 20);
-            this.chkPhieuDichVu.TabIndex = 11;
-            this.chkPhieuDichVu.Text = "Phiếu dịch vụ";
-            this.chkPhieuDichVu.UseVisualStyleBackColor = true;
             // 
             // labelControl3
             // 
@@ -1104,6 +1084,26 @@
             this.imMenu.Images.SetKeyName(9, "rotate-16.png");
             this.imMenu.Images.SetKeyName(10, "partly-cloudy-day-16.png");
             // 
+            // chkPhieuDichVu
+            // 
+            this.chkPhieuDichVu.Location = new System.Drawing.Point(598, 24);
+            this.chkPhieuDichVu.Name = "chkPhieuDichVu";
+            this.chkPhieuDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPhieuDichVu.Properties.Appearance.Options.UseFont = true;
+            this.chkPhieuDichVu.Properties.Caption = "Phiếu dịch vụ";
+            this.chkPhieuDichVu.Size = new System.Drawing.Size(121, 20);
+            this.chkPhieuDichVu.TabIndex = 13;
+            // 
+            // chkPhieuThuocVT
+            // 
+            this.chkPhieuThuocVT.Location = new System.Drawing.Point(598, 68);
+            this.chkPhieuThuocVT.Name = "chkPhieuThuocVT";
+            this.chkPhieuThuocVT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPhieuThuocVT.Properties.Appearance.Options.UseFont = true;
+            this.chkPhieuThuocVT.Properties.Caption = "Phiếu thuốc/vật tư";
+            this.chkPhieuThuocVT.Size = new System.Drawing.Size(133, 20);
+            this.chkPhieuThuocVT.TabIndex = 14;
+            // 
             // ucSuaPhieuCDDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1134,6 +1134,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuDichVu.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuThuocVT.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1196,9 +1198,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.Utils.ImageCollection imMenu;
-        private System.Windows.Forms.CheckBox chkPhieuThuocVT;
-        private System.Windows.Forms.CheckBox chkPhieuDichVu;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonDelete;
+        internal DevExpress.XtraEditors.CheckEdit chkPhieuDichVu;
+        internal DevExpress.XtraEditors.CheckEdit chkPhieuThuocVT;
     }
 }

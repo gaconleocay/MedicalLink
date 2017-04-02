@@ -185,6 +185,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = true;
                     gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = true;
+                    gridBand_MoiGayMe.Visible = true;
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002") //tai mui hong
                 {
@@ -197,6 +199,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = true;
                     gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = true;
+                    gridBand_MoiGayMe.Visible = true;
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003")//rang ham mat
                 {
@@ -209,6 +213,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = true;
+                    gridBand_MoiGayMe.Visible = true;
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004")//mat
                 {
@@ -221,6 +227,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = true;
+                    gridBand_MoiMoChinh.Visible = true;
+                    gridBand_MoiGayMe.Visible = true;
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005")//khoa khac    ------
                 {
@@ -233,6 +241,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = true;
                     gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = true;
+                    gridBand_MoiGayMe.Visible = true;
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")//thu thuat - mat
                 {
@@ -245,6 +255,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = false;
+                    gridBand_MoiGayMe.Visible = false;
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//thua thuat - tru mat
                 {
@@ -257,6 +269,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = false;
+                    gridBand_MoiGayMe.Visible = false;
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//thu thuat khac    ---------
                 {
@@ -269,6 +283,8 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = false;
                     gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = false;
+                    gridBand_MoiGayMe.Visible = false;
                 }
             }
             catch (Exception ex)

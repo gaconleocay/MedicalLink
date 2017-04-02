@@ -18,7 +18,7 @@ namespace MedicalLink.ChucNang
     public partial class ucSuaMaTenGiaDV : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        internal string string_loctimkiem="";
+        // internal string string_loctimkiem="";
         public ucSuaMaTenGiaDV()
         {
             InitializeComponent();
@@ -52,87 +52,82 @@ namespace MedicalLink.ChucNang
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Chức năng đang phát triển","Thông báo!");
-            gridControlDSDV.DataSource = null;
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-            string[] dsdv_temp;
-            string dsdv = "";
-            string trangthaiVP = "";
-            string loaivienphiid = "";
-            string doituongbenhnhanid = "";
-            string datetungay = "";
-            string datedenngay = "";
-
-            if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,)") || (cbbTrangThaiVP.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
+            try
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
-                frmthongbao.Show();
-            }
-            else
-            {
-                // Lấy dữ liệu danh sách dịch vụ nhập vào
-                dsdv_temp = mmeMaDV.Text.Split(',');
-                for (int i = 0; i < dsdv_temp.Length - 1; i++)
-                {
-                    dsdv += "'" + dsdv_temp[i].ToString() + "',";
-                }
-                dsdv += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString() + "'";
+                string[] dsdv_temp;
+                string dsdv = "";
+                string trangthaiVP = "";
+                string loaivienphiid = "";
+                string doituongbenhnhanid = "";
+                string datetungay = "";
+                string datedenngay = "";
 
-                // Lấy Tiêu chí trạng thai vien phi: vienphistatus
-                if (cbbTrangThaiVP.Text.Trim() == "Đang điều trị")
+                if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,)") || (cbbTrangThaiVP.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
                 {
-                    trangthaiVP = "and vienphi.vienphistatus=0";
-                }
-                else if (cbbTrangThaiVP.Text.Trim() == "Đóng BA nhưng chưa duyệt VP")
-                {
-                    trangthaiVP = " and vienphi.vienphidate_ravien != '0001-01-01 00:00:00' and (vienphi.vienphistatus_vp IS NULL or vienphi.vienphistatus_vp=0) and vienphi.vienphistatus<>2 ";
-                }
-                else if (cbbTrangThaiVP.Text.Trim() == "Đã duyệt viện phí")
-                {
-                    trangthaiVP = " and vienphi.vienphistatus_vp=1 ";
-                }
-
-
-                // Lấy loaivienphiid
-                if (cbbLoaiBA.Text == "Ngoại trú")
-                {
-                    loaivienphiid = "and vienphi.loaivienphiid=1 ";
-                }
-                else if (cbbLoaiBA.Text == "Nội trú")
-                {
-                    loaivienphiid = "and vienphi.loaivienphiid=0 ";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
                 }
                 else
                 {
-                    loaivienphiid = " ";
-                }
+                    gridControlDSDV.DataSource = null;
+                    // Lấy dữ liệu danh sách dịch vụ nhập vào
+                    dsdv_temp = mmeMaDV.Text.Split(',');
+                    for (int i = 0; i < dsdv_temp.Length - 1; i++)
+                    {
+                        dsdv += "'" + dsdv_temp[i].ToString() + "',";
+                    }
+                    dsdv += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString() + "'";
 
-                // Lấy trường đối tượng BN: loaidoituong
-                if (chkBHYT.Checked == true && chkVP.Checked == false)
-                {
-                    doituongbenhnhanid = "and vienphi.doituongbenhnhanid=1 ";
-                }
-                else if (chkBHYT.Checked == false && chkVP.Checked == true)
-                {
-                    doituongbenhnhanid = "and vienphi.doituongbenhnhanid<>1 ";
-                }
-                else if (chkBHYT.Checked == true && chkVP.Checked == true)
-                {
-                    doituongbenhnhanid = " ";
-                }
+                    // Lấy Tiêu chí trạng thai vien phi: vienphistatus
+                    if (cbbTrangThaiVP.Text.Trim() == "Đang điều trị")
+                    {
+                        trangthaiVP = "and vp.vienphistatus=0";
+                    }
+                    else if (cbbTrangThaiVP.Text.Trim() == "Đóng BA nhưng chưa duyệt VP")
+                    {
+                        trangthaiVP = " and vp.vienphidate_ravien != '0001-01-01 00:00:00' and (vp.vienphistatus_vp IS NULL or vp.vienphistatus_vp=0) and vp.vienphistatus<>2 ";
+                    }
+                    else if (cbbTrangThaiVP.Text.Trim() == "Đã duyệt viện phí")
+                    {
+                        trangthaiVP = " and vp.vienphistatus_vp=1 ";
+                    }
 
+                    // Lấy loaivienphiid
+                    if (cbbLoaiBA.Text == "Ngoại trú")
+                    {
+                        loaivienphiid = "and vp.loaivienphiid=1 ";
+                    }
+                    else if (cbbLoaiBA.Text == "Nội trú")
+                    {
+                        loaivienphiid = "and vp.loaivienphiid=0 ";
+                    }
+                    else
+                    {
+                        loaivienphiid = " ";
+                    }
 
-                // Lấy từ ngày, đến ngày
-                datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    // Lấy trường đối tượng BN: loaidoituong
+                    if (chkBHYT.Checked == true && chkVP.Checked == false)
+                    {
+                        doituongbenhnhanid = "and vp.doituongbenhnhanid=1 ";
+                    }
+                    else if (chkBHYT.Checked == false && chkVP.Checked == true)
+                    {
+                        doituongbenhnhanid = "and vp.doituongbenhnhanid<>1 ";
+                    }
+                    else if (chkBHYT.Checked == true && chkVP.Checked == true)
+                    {
+                        doituongbenhnhanid = " ";
+                    }
 
-                // */ Lấy xong dữ liệu các trường chọn
+                    // Lấy từ ngày, đến ngày
+                    datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
-                // Thực thi câu lệnh SQL
-                try
-                {
-                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY serviceprice.servicepriceid) as stt, serviceprice.servicepriceid as servicepriceid, serviceprice.maubenhphamid as maphieu, vienphi.patientid as mabn,vienphi.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoachidinh, department.departmentname as tenphongchidinh, serviceprice.servicepricecode as madv, serviceprice.servicepricename as tendv_yc, serviceprice.servicepricename_bhyt as tendv_bhyt, serviceprice.servicepricename_nhandan as tendv_vp, serviceprice.servicepricename_nuocngoai as tendv_nnn, serviceprice.servicepricemoney as dongia, serviceprice.servicepricemoney_nhandan as dongiavienphi, serviceprice.servicepricemoney_bhyt as dongiabhyt, serviceprice.servicepricemoney_nuocngoai as dongiannn, serviceprice.servicepricedate as thoigianchidinh, serviceprice.soluong as soluong, vienphi.vienphidate as thoigianvaovien, vienphi.vienphidate_ravien as thoigianravien, vienphi.duyet_ngayduyet_vp as thoigianduyetvp, vienphi.duyet_ngayduyet as thoigianduyetbh, case vienphi.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai FROM serviceprice, vienphi, hosobenhan, departmentgroup,department WHERE serviceprice.vienphiid=vienphi.vienphiid and vienphi.hosobenhanid=hosobenhan.hosobenhanid and serviceprice.departmentgroupid=departmentgroup.departmentgroupid and serviceprice.departmentid=department.departmentid and serviceprice.servicepricecode in (" + dsdv + ") and serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ;";
+                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepriceid) as stt, ser.servicepriceid as servicepriceid, ser.maubenhphamid as maphieu, vp.patientid as mabn,vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoachidinh, de.departmentname as tenphongchidinh, ser.servicepricecode as madv, ser.servicepricename as tendv_yc, ser.servicepricename_bhyt as tendv_bhyt, ser.servicepricename_nhandan as tendv_vp, ser.servicepricename_nuocngoai as tendv_nnn, ser.servicepricemoney as dongia, ser.servicepricemoney_nhandan as dongiavienphi, ser.servicepricemoney_bhyt as dongiabhyt, ser.servicepricemoney_nuocngoai as dongiannn, ser.servicepricedate as thoigianchidinh, ser.soluong as soluong, vp.vienphidate as thoigianvaovien, (case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai FROM serviceprice ser inner join vienphi vp on ser.vienphiid=vp.vienphiid inner join hosobenhan hsba on vp.hosobenhanid=hsba.hosobenhanid inner join departmentgroup degp on ser.departmentgroupid=degp.departmentgroupid inner join department de on ser.departmentid=de.departmentid and de.departmenttype in (0,2,3,9) WHERE ser.servicepricecode in (" + dsdv + ") and ser.servicepricedate >= '" + datetungay + "' and ser.servicepricedate <= '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ;";
 
-                    string_loctimkiem= "serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ";
+                    // string_loctimkiem= "serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ";
 
                     DataView dv = new DataView(condb.getDataTable(sqlquerry));
                     gridControlDSDV.DataSource = dv;
@@ -143,21 +138,18 @@ namespace MedicalLink.ChucNang
                         frmthongbao.Show();
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
 
         private void ucBCDSBNSDdv_Load(object sender, EventArgs e)
         {
-            //Lấy thời gian lấy BC mặc định là ngày hiện tại
-            DateTime date_tu = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateTuNgay.Value = date_tu;
-            DateTime date_den = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            dateDenNgay.Value = date_den;
+             dateTuNgay.Value= Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
         }
 
         //xuat ra excel
@@ -258,8 +250,6 @@ namespace MedicalLink.ChucNang
                 //itemXoaToanBA.Shortcut = Shortcut.F6;
                 itemSuaTenNhieuDV.Click += new EventHandler(itemSuaTenNhieuDV_Click);
                 e.Menu.Items.Add(itemSuaTenNhieuDV);
-
-
             }
         }
 
@@ -296,28 +286,28 @@ namespace MedicalLink.ChucNang
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
                     frmthongbao.Show();
                 }
-                
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
             }
         }
-        
+
         //Sửa giá tất cả dịch vụ có mã đang chọn
         void itemSuaGiaNhieuDV_Click(object sender, EventArgs e)
         {
 
             try
             {
-                MessageBox.Show("Chức năng nguy hiểm, nghiêm cấm trẻ em dưới 18 tuổi :D !","Thông báo");
+                MessageBox.Show("Chức năng đang phát triển !", "Thông báo");
                 //timerThongBao.Start();
                 //lblThongBao.Visible = true;
                 //lblThongBao.Text = "Chức năng nguy hiểm, nghiêm cấm trẻ em dưới 18 tuổi :D !";
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
             }
         }
 
@@ -326,7 +316,7 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                int kieusua=1;
+                int kieusua = 1;
                 // lấy giá trị tại dòng click chuột
                 var rowHandle = gridViewDSDV.FocusedRowHandle;
                 string trangthai_kt = Convert.ToString(gridViewDSDV.GetRowCellValue(rowHandle, "trangthai").ToString());
@@ -346,10 +336,10 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Warn(ex);
             }
         }
-       
+
         //Sửa tên tất cả dịch vụ có mã đang chọn
         void itemSuaTenNhieuDV_Click(object sender, EventArgs e)
         {
@@ -375,9 +365,10 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Warn(ex);
             }
         }
+
 
 
 

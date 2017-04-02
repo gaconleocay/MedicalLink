@@ -112,6 +112,8 @@
             this.cbbPhatSinhChiDinh.Name = "cbbPhatSinhChiDinh";
             this.cbbPhatSinhChiDinh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbPhatSinhChiDinh.Properties.Appearance.Options.UseFont = true;
+            this.cbbPhatSinhChiDinh.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbPhatSinhChiDinh.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbPhatSinhChiDinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbPhatSinhChiDinh.Properties.Items.AddRange(new object[] {
@@ -170,6 +172,8 @@
             this.cbbLoaiBenhAn.Name = "cbbLoaiBenhAn";
             this.cbbLoaiBenhAn.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiBenhAn.Properties.Appearance.Options.UseFont = true;
+            this.cbbLoaiBenhAn.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbLoaiBenhAn.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbLoaiBenhAn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbLoaiBenhAn.Properties.Items.AddRange(new object[] {

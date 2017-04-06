@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucUpdateDataSerPrice));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cbbTrangThaiVP = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -63,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTrangThaiVP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbChonKieu.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
@@ -82,6 +85,8 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.cboTieuChi);
+            this.groupBoxFile.Controls.Add(this.labelControl5);
             this.groupBoxFile.Controls.Add(this.labelControl4);
             this.groupBoxFile.Controls.Add(this.cbbTrangThaiVP);
             this.groupBoxFile.Controls.Add(this.labelControl1);
@@ -100,18 +105,49 @@
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
             // 
+            // cboTieuChi
+            // 
+            this.cboTieuChi.EditValue = "Theo ngày chỉ định";
+            this.cboTieuChi.Location = new System.Drawing.Point(502, 67);
+            this.cboTieuChi.Name = "cboTieuChi";
+            this.cboTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTieuChi.Properties.Appearance.Options.UseFont = true;
+            this.cboTieuChi.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTieuChi.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboTieuChi.Properties.Items.AddRange(new object[] {
+            "Theo ngày chỉ định",
+            "Theo ngày ra viện",
+            "Theo ngày duyệt viện phí"});
+            this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboTieuChi.Size = new System.Drawing.Size(165, 22);
+            this.cboTieuChi.TabIndex = 25;
+            this.cboTieuChi.SelectedIndexChanged += new System.EventHandler(this.comboBoxEdit1_SelectedIndexChanged);
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Location = new System.Drawing.Point(502, 45);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(48, 16);
+            this.labelControl5.TabIndex = 24;
+            this.labelControl5.Text = "Tiêu chí";
+            this.labelControl5.Click += new System.EventHandler(this.labelControl5_Click);
+            // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(234, 70);
+            this.labelControl4.Location = new System.Drawing.Point(233, 70);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(109, 16);
+            this.labelControl4.Size = new System.Drawing.Size(60, 16);
             this.labelControl4.TabIndex = 23;
-            this.labelControl4.Text = "Trạng thái viện phí";
+            this.labelControl4.Text = "Trạng thái";
             // 
             // cbbTrangThaiVP
             // 
-            this.cbbTrangThaiVP.Location = new System.Drawing.Point(355, 67);
+            this.cbbTrangThaiVP.EditValue = "Đang điều trị";
+            this.cbbTrangThaiVP.Location = new System.Drawing.Point(303, 67);
             this.cbbTrangThaiVP.Name = "cbbTrangThaiVP";
             this.cbbTrangThaiVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTrangThaiVP.Properties.Appearance.Options.UseFont = true;
@@ -124,13 +160,13 @@
             "Đóng BA nhưng chưa duyệt VP",
             "Đã duyệt viện phí"});
             this.cbbTrangThaiVP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbTrangThaiVP.Size = new System.Drawing.Size(225, 22);
+            this.cbbTrangThaiVP.Size = new System.Drawing.Size(165, 22);
             this.cbbTrangThaiVP.TabIndex = 22;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(11, 70);
+            this.labelControl1.Location = new System.Drawing.Point(7, 70);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(24, 16);
             this.labelControl1.TabIndex = 21;
@@ -139,7 +175,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(19, 28);
+            this.labelControl3.Location = new System.Drawing.Point(15, 28);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(16, 16);
             this.labelControl3.TabIndex = 20;
@@ -151,7 +187,7 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(46, 65);
+            this.dateDenNgay.Location = new System.Drawing.Point(42, 65);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
@@ -164,7 +200,7 @@
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(46, 23);
+            this.dateTuNgay.Location = new System.Drawing.Point(42, 23);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
@@ -173,7 +209,7 @@
             // 
             // cbbChonKieu
             // 
-            this.cbbChonKieu.Location = new System.Drawing.Point(355, 25);
+            this.cbbChonKieu.Location = new System.Drawing.Point(303, 25);
             this.cbbChonKieu.Name = "cbbChonKieu";
             this.cbbChonKieu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbChonKieu.Properties.Appearance.Options.UseFont = true;
@@ -185,13 +221,13 @@
             "Update nhóm BHYT-Thuốc/VT",
             "Update nhóm BHYT-Dịch vụ"});
             this.cbbChonKieu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbChonKieu.Size = new System.Drawing.Size(225, 22);
+            this.cbbChonKieu.Size = new System.Drawing.Size(165, 22);
             this.cbbChonKieu.TabIndex = 9;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(263, 28);
+            this.labelControl2.Location = new System.Drawing.Point(213, 28);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(80, 16);
             this.labelControl2.TabIndex = 8;
@@ -204,7 +240,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(703, 34);
+            this.btnTimKiem.Location = new System.Drawing.Point(707, 34);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -584,6 +620,7 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTrangThaiVP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbChonKieu.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
@@ -626,5 +663,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ComboBoxEdit cbbTrangThaiVP;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
+        private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
     }
 }

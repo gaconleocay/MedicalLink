@@ -186,7 +186,9 @@ namespace MedicalLink.ChucNang
 
                 try
                 {
-                    string sqlupdate = "UPDATE vienphi SET duyet_ngayduyet_bh='" + dateThoiGianSua.Text + "',  duyet_ngayduyet_vp='" + dateThoiGianSua.Text + "' WHERE vienphiid='" + mavp + "';";
+                    string sqlupdate_stt0 = "UPDATE vienphi SET vienphistatus_vp=0 WHERE vienphiid='" + mavp + "';";
+                    condb.ExecuteNonQuery(sqlupdate_stt0); //mục đích để Trigger hoạt động
+                    string sqlupdate = "UPDATE vienphi SET vienphistatus_vp=1, duyet_ngayduyet_bh='" + dateThoiGianSua.Text + "',  duyet_ngayduyet_vp='" + dateThoiGianSua.Text + "' WHERE vienphiid='" + mavp + "';";
                     condb.ExecuteNonQuery(sqlupdate);
                     string sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG duyệt VP BN: " + txtMaBenhNhan.Text + " mã VP: " + mavp + " từ TG: " + dateThoiGianHienTai.Text + " thành TG: " + dateThoiGianSua.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                     condb.ExecuteNonQuery(sqlluulog);

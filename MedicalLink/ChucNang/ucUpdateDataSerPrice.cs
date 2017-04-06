@@ -32,6 +32,7 @@ namespace MedicalLink.ChucNang
             gridControlDichVu.DataSource = null;
             string datetungay = "";
             string datedenngay = "";
+            string tieuchi = "";
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             if (cbbChonKieu.Text != "" && dateTuNgay.Text != "" && dateDenNgay.Text != "" && cbbTrangThaiVP.Text != "")
             {
@@ -51,6 +52,18 @@ namespace MedicalLink.ChucNang
                     trangthaiVP = " and vienphi.vienphistatus_vp=1 ";
                 }
 
+                if (cboTieuChi.Text == "Theo ngày chỉ định")
+                {
+                    tieuchi = " serviceprice.servicepricedate ";
+                }
+                else if (cboTieuChi.Text == "Theo ngày ra viện")
+                {
+                    tieuchi = " vienphi.vienphidate_ravien ";
+                }
+                else if (cboTieuChi.Text == "Theo ngày duyệt viện phí")
+                {
+                    tieuchi = " vienphi.duyet_ngayduyet_vp ";
+                }
 
                 switch (chonkieuimport)
                 {
@@ -58,7 +71,7 @@ namespace MedicalLink.ChucNang
                         {
                             try
                             {
-                                string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice,medicine_ref, vienphi WHERE medicine_ref.medicinecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' and serviceprice.bhyt_groupcode='' " + trangthaiVP + " ORDER BY servicepriceid ;";
+                                string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice,medicine_ref, vienphi WHERE medicine_ref.medicinecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and " + tieuchi + " >= '" + datetungay + "' and " + tieuchi + " <= '" + datedenngay + "' and serviceprice.bhyt_groupcode is null " + trangthaiVP + " ORDER BY servicepriceid ;";
                                 DataView dv_bhytgroup = new DataView(condb.getDataTable(sqlquerythuoc));
 
                                 // Hiển thị
@@ -83,7 +96,7 @@ namespace MedicalLink.ChucNang
                         {
                             try
                             {
-                                string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice, servicepriceref, vienphi WHERE servicepriceref.servicepricecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' and serviceprice.bhyt_groupcode='' " + trangthaiVP + " ORDER BY servicepriceid ;";
+                                string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice, servicepriceref, vienphi WHERE servicepriceref.servicepricecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and " + tieuchi + " >= '" + datetungay + "' and " + tieuchi + " <= '" + datedenngay + "' and serviceprice.bhyt_groupcode is null " + trangthaiVP + " ORDER BY servicepriceid ;";
                                 DataView dv_bhytgroup = new DataView(condb.getDataTable(sqlquerythuoc));
 
                                 // Hiển thị
@@ -313,6 +326,16 @@ namespace MedicalLink.ChucNang
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                 frmthongbao.Show();
             }
+        }
+
+        private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

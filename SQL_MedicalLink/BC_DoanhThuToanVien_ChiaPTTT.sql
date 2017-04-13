@@ -6,7 +6,7 @@ FROM
 	(SELECT dep.departmentgroupid, 
 		dep.departmentgroupname, 
 		sum(A.soluot) as soluot,
-		sum(C.count_vp) as soluong_bh,
+		sum(C.count_bh) as soluong_bh,
 		sum(C.count_vp) as soluong_vp,
 		sum(C.count) as soluong,
 		COALESCE(sum(A.money_khambenh),0)+COALESCE(sum(B.money_khambenh),0) as money_khambenh, 

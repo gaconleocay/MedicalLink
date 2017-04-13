@@ -25,13 +25,20 @@ FROM
 		(B.money_tong) as money_tong
 			
 FROM
-	(SELECT sum(b.datra) as tam_ung,
-			vp.loaivienphiid,
-			sum(case when vp.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, 
-			sum(case when vp.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp
-		FROM vienphi vp LEFT JOIN bill b on vp.vienphiid=b.vienphiid and b.loaiphieuthuid=2 and b.dahuyphieu=0
-		WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='2017-01-04 00:00:00' and vp.duyet_ngayduyet_vp<='2017-01-04 23:59:59'
-		GROUP BY vp.loaivienphiid) A
+	(SELECT V.loaivienphiid,
+			sum(case when V.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, 
+			sum(case when V.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp,
+			count(V.*) as slbn,
+			SUM(V.tam_ung) as tam_ung
+		FROM
+		(SELECT sum(b.datra) as tam_ung,
+					vp.loaivienphiid,
+					vp.vienphiid,
+					vp.doituongbenhnhanid
+				FROM vienphi vp LEFT JOIN bill b on vp.vienphiid=b.vienphiid and b.loaiphieuthuid=2 and b.dahuyphieu=0
+				WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='2017-01-04 00:00:00' and vp.duyet_ngayduyet_vp<='2017-01-04 23:59:59'
+				GROUP BY vp.vienphiid) V		
+		GROUP BY V.loaivienphiid) A	
 	LEFT JOIN
 	(SELECT spt.loaivienphiid,
 		sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as money_khambenh, 
@@ -80,14 +87,21 @@ FROM
 		(B.money_tong) as money_tong
 			
 FROM departmentgroup depg
-	INNER JOIN		
-	(SELECT sum(b.datra) as tam_ung,
-			vp.departmentgroupid,
-			sum(case when vp.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, 
-			sum(case when vp.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp
-		FROM vienphi vp LEFT JOIN bill b on vp.vienphiid=b.vienphiid and b.loaiphieuthuid=2 and b.dahuyphieu=0
-		WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='2017-01-04 00:00:00' and vp.duyet_ngayduyet_vp<='2017-01-04 23:59:59'
-		GROUP BY vp.departmentgroupid) A ON A.departmentgroupid=depg.departmentgroupid
+	LEFT JOIN		
+	(SELECT V.departmentgroupid,
+			sum(case when V.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, 
+			sum(case when V.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp,
+			count(V.*) as slbn,
+			SUM(V.tam_ung) as tam_ung
+		FROM
+		(SELECT sum(b.datra) as tam_ung,
+					vp.departmentgroupid,
+					vp.vienphiid,
+					vp.doituongbenhnhanid
+				FROM vienphi vp LEFT JOIN bill b on vp.vienphiid=b.vienphiid and b.loaiphieuthuid=2 and b.dahuyphieu=0
+				WHERE vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='2017-01-04 00:00:00' and vp.duyet_ngayduyet_vp<='2017-01-04 23:59:59'
+				GROUP BY vp.vienphiid, vp.departmentgroupid) V		
+		GROUP BY V.departmentgroupid) A ON A.departmentgroupid=depg.departmentgroupid
 	LEFT JOIN
 	(SELECT spt.khoaravien,
 		sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as money_khambenh, 
@@ -108,7 +122,6 @@ FROM departmentgroup depg
 		FROM tools_serviceprice_pttt spt 
 		WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp>='2017-01-04 00:00:00' and spt.duyet_ngayduyet_vp<='2017-01-04 23:59:59' GROUP BY spt.khoaravien) B ON B.khoaravien=depg.departmentgroupid
 WHERE depg.departmentgrouptype in (1,4,11,10,100)) O;
------==========
 
 
 

@@ -1,11 +1,14 @@
-﻿CREATE OR REPLACE FUNCTION serviceprice_pttt_tinh()
+﻿--Ver 1.2 ngay 5/4/2017
+CREATE OR REPLACE FUNCTION serviceprice_pttt_tinh()
   RETURNS trigger AS
 $BODY$
-/*DECLARE
-  patientname text	:= '';
-  tongtienvienphi double precision	:= 0; */
 BEGIN
+ IF TG_OP = 'DELETE' THEN
+  DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
+   RETURN OLD;
+ END IF;
  IF NEW.vienphidate_ravien<>'0001-01-01 00:00:00' THEN
+	DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
 	INSERT INTO tools_serviceprice_pttt
 	SELECT nextval('tools_serviceprice_pttt_servicepriceptttid_seq'),
 			vp.vienphiid, 
@@ -174,11 +177,7 @@ BEGIN
 				(case when ser.doituongbenhnhanid=4 then (case when ser.maubenhphamphieutype=0 then servicepricemoney_nuocngoai*ser.soluong else 0-(servicepricemoney_nuocngoai*ser.soluong) end) else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney*ser.soluong else 0-(ser.servicepricemoney*ser.soluong) end) end)
 			 else 0 end) as money_vattu_vp,
 		-------================= 
-		(sum(case when ser.bhyt_groupcode in ('103VTtyle') and ser.loaidoituong in (0,6) 
-					then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) 
-				 else 0 end)
-		 +
-		sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT') and ser.loaidoituong in (0,4,6) 
+		(sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT') and ser.loaidoituong in (0,4,6) 
 					then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) 
 				 else 0 end) 
 				 ) as money_vtthaythe_bh, 
@@ -292,31 +291,21 @@ vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet
 vp.vienphistatus_bh, vp.duyet_ngayduyet_bh, vp.bhyt_tuyenbenhvien, ser.departmentid, ser.departmentgroupid,
 (case when ser.departmentid in (34,335,269,285) then (select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid)
 		  else ser.departmentgroupid end);	
-
- ELSIF NEW.vienphidate_ravien='0001-01-01 00:00:00' OR NEW.vienphidate_ravien is null THEN
+ RETURN NEW;
+ ELSIF NEW.vienphidate_ravien='0001-01-01 00:00:00' THEN
  DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
+  RETURN NEW;
  END IF;
  
- RETURN NEW;
+ 
 END;
 $BODY$
 
 LANGUAGE plpgsql;
 
-
----------
 -- DROP TRIGGER vienphidate_ravien_change ON vienphi;
 CREATE TRIGGER vienphidate_ravien_change
   AFTER UPDATE OF vienphidate_ravien OR DELETE
   ON vienphi
   FOR EACH ROW
   EXECUTE PROCEDURE serviceprice_pttt_tinh();
-
-
-
-
-
-
-
-
-  

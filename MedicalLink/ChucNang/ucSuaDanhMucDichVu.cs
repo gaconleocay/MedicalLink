@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraSplashScreen;
 
 namespace MedicalLink.ChucNang
 {
@@ -112,6 +113,7 @@ namespace MedicalLink.ChucNang
 
         private void GetDataDanhMucDichVu()
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 string servicegrouptype = "";
@@ -132,7 +134,7 @@ namespace MedicalLink.ChucNang
                     servicegrouptype = "4";
                 }
 
-                string sqlLayDanhMuc = "SELECT serf.servicepricerefid, serf.servicepricegroupcode, serf.servicepricetype, serf.servicegrouptype, serf.servicepricecode, serf.bhyt_groupcode, serf.report_groupcode, serf.report_tkcode, serf.servicepricenamenhandan,  serf.servicepricenamebhyt, serf.servicepriceunit, serf.servicepricefee, serf.servicepricefeenhandan, serf.servicepricefeebhyt,  serf.servicepricefeenuocngoai, serf.listdepartmentphongthuchien, serf.servicepricefee_old_date, serf.servicepricefee_old, serf.servicepricefeenhandan_old, serf.servicepricefeebhyt_old, serf.servicepricefeenuocngoai_old, serf.pttt_hangid,  serf.khongchuyendoituonghaophi, serf.cdha_soluongthuoc, serf.cdha_soluongvattu, serf.tylelaichidinh, serf.tylelaithuchien, serf.luonchuyendoituonghaophi,  serf.tinhtoanlaigiadvktc, serf.servicepricecodeuser,  serf.servicepricebhytdinhmuc, serf.listdepartmentphongthuchienkhamgoi,  serf.ck_groupcode, serf.servicepricecode_ng, serf.pttt_dinhmucvtth, serf.pttt_dinhmucthuoc, serf.servicepricefee_old_type, serf.servicepricesttuser, serf.pttt_loaiid FROM servicepriceref serf WHERE serf.servicegrouptype = " + servicegrouptype + " and serf.isremove is null or serf.isremove=0 and serf.servicelock=0 ORDER BY serf.servicepricegroupcode, serf.servicepricename;";
+                string sqlLayDanhMuc = "SELECT serf.servicepricerefid, serf.servicepricegroupcode, serf.servicepricetype, serf.servicegrouptype, serf.servicepricecode, serf.bhyt_groupcode, serf.report_groupcode, serf.report_tkcode, serf.servicepricenamenhandan,  serf.servicepricenamebhyt, serf.servicepriceunit, serf.servicepricefee, serf.servicepricefeenhandan, serf.servicepricefeebhyt,  serf.servicepricefeenuocngoai, serf.listdepartmentphongthuchien, serf.servicepricefee_old_date, serf.servicepricefee_old, serf.servicepricefeenhandan_old, serf.servicepricefeebhyt_old, serf.servicepricefeenuocngoai_old, serf.pttt_hangid,  serf.khongchuyendoituonghaophi, serf.cdha_soluongthuoc, serf.cdha_soluongvattu, serf.tylelaichidinh, serf.tylelaithuchien, serf.luonchuyendoituonghaophi,  serf.tinhtoanlaigiadvktc, serf.servicepricecodeuser,  serf.servicepricebhytdinhmuc, serf.listdepartmentphongthuchienkhamgoi,  serf.ck_groupcode, serf.servicepricecode_ng, serf.pttt_dinhmucvtth, serf.pttt_dinhmucthuoc, serf.servicepricefee_old_type, serf.servicepricesttuser, serf.pttt_loaiid FROM servicepriceref serf WHERE serf.servicegrouptype = " + servicegrouptype + " and (serf.isremove is null or serf.isremove=0) and serf.servicelock=0 ORDER BY serf.servicepricegroupcode, serf.servicepricename;";
                 DataView dv_DanhMucDichVu = new DataView(condb.getDataTable(sqlLayDanhMuc));
                 if (dv_DanhMucDichVu.Count > 0)
                 {
@@ -167,7 +169,7 @@ namespace MedicalLink.ChucNang
                         dmDichVu.servicepriceunit = dv_DanhMucDichVu[i]["servicepriceunit"].ToString();
                         if (dv_DanhMucDichVu[i]["servicepricefee"].ToString() != "")
                         {
-                            dmDichVu.servicepricefee = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefee"].ToString());
+                            dmDichVu.servicepricefee = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefee"].ToString());
                         }
                         else
                         {
@@ -175,7 +177,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenhandan"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeenhandan = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenhandan"].ToString());
+                            dmDichVu.servicepricefeenhandan = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenhandan"].ToString());
                         }
                         else
                         {
@@ -183,7 +185,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeebhyt"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeebhyt = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeebhyt"].ToString());
+                            dmDichVu.servicepricefeebhyt = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeebhyt"].ToString());
                         }
                         else
                         {
@@ -191,7 +193,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString() != "" && dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString() != "NULL")
                         {
-                            dmDichVu.servicepricefeenuocngoai = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString());
+                            dmDichVu.servicepricefeenuocngoai = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString());
                         }
                         else
                         {
@@ -203,7 +205,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefee_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefee_old = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefee_old"].ToString());
+                            dmDichVu.servicepricefee_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefee_old"].ToString());
                         }
                         else
                         {
@@ -211,7 +213,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenhandan_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeenhandan_old = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenhandan_old"].ToString());
+                            dmDichVu.servicepricefeenhandan_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenhandan_old"].ToString());
                         }
                         else
                         {
@@ -219,7 +221,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeebhyt_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeebhyt_old = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeebhyt_old"].ToString());
+                            dmDichVu.servicepricefeebhyt_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeebhyt_old"].ToString());
                         }
                         else
                         {
@@ -227,7 +229,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenuocngoai_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeenuocngoai_old = Convert.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenuocngoai_old"].ToString());
+                            dmDichVu.servicepricefeenuocngoai_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenuocngoai_old"].ToString());
                         }
                         else
                         {
@@ -262,7 +264,7 @@ namespace MedicalLink.ChucNang
                         dmDichVu.ck_groupcode = dv_DanhMucDichVu[i]["ck_groupcode"].ToString();
                         if (dv_DanhMucDichVu[i]["pttt_dinhmucvtth"].ToString() != "")
                         {
-                            dmDichVu.pttt_dinhmucvtth = Convert.ToDecimal(dv_DanhMucDichVu[i]["pttt_dinhmucvtth"].ToString());
+                            dmDichVu.pttt_dinhmucvtth = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["pttt_dinhmucvtth"].ToString());
                         }
                         else
                         {
@@ -270,7 +272,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["pttt_dinhmucthuoc"].ToString() != "")
                         {
-                            dmDichVu.pttt_dinhmucthuoc = Convert.ToDecimal(dv_DanhMucDichVu[i]["pttt_dinhmucthuoc"].ToString());
+                            dmDichVu.pttt_dinhmucthuoc = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["pttt_dinhmucthuoc"].ToString());
                         }
                         else
                         {
@@ -286,8 +288,9 @@ namespace MedicalLink.ChucNang
                         }
                         lstDanhMucDichVu.Add(dmDichVu);
                     }
-                    gridControlDMDichVu.DataSource = lstDanhMucDichVu;
+                    // gridControlDMDichVu.DataSource = lstDanhMucDichVu;
                     LayDanhMucNhomDichVu();
+                    gridControlDMDichVu.DataSource = dv_DanhMucDichVu;
                 }
                 else
                 {
@@ -297,8 +300,10 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
-                gridControlDMDichVu.DataSource = null;
+                // gridControlDMDichVu.DataSource = null;
             }
+            SplashScreenManager.CloseForm();
+
         }
 
         private void LayDanhMucNhomDichVu()
@@ -358,7 +363,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 GetDataDanhMucDichVu();
-                if (lstDanhMucDichVu.Count > 0)
+                if (lstDanhMucDichVu.Count > 0 && txtTuKhoaTimKiem.Text.Trim() != "")
                 {
                     var lstDanhMucDichVuTimKiem = lstDanhMucDichVu.Where(o => o.servicepricenamebhyt.ToUpper().Contains(txtTuKhoaTimKiem.Text.ToUpper()) || o.servicepricecode.ToUpper().Contains(txtTuKhoaTimKiem.Text.ToUpper()));
                     gridControlDMDichVu.DataSource = null;

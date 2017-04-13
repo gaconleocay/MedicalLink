@@ -14,7 +14,7 @@ namespace MedicalLink.Base
       public static string DEPARTMENTGROUPNAME = "DEPARTMENTGROUPNAME";
       public static string CURRENTDATETIME = "CURRENTDATETIME";
       public static string LST_MECICINESTORENAME = "LST_MECICINESTORENAME";
-
+      public static string TENBAOCAO = "TENBAOCAO";
 
 
 

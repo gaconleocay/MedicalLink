@@ -17,10 +17,6 @@ namespace MedicalLink.FormCommon.TabTrangChu
         private string MaDatabase = String.Empty;
         private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
 
-
-
-
-
         public ucSettingLicense()
         {
             InitializeComponent();
@@ -42,7 +38,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
         {
             try
             {
-                MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaDatabase();
+                MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.KiemTraLicense.LayThongTinMaDatabase();
                 txtMaMay.Text = MaDatabase;
                 txtMaMay.ReadOnly = true;
                 //Load License tu DB ra
@@ -92,40 +88,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             {
                 if (!String.IsNullOrEmpty(txtKeyKichHoat.Text.Trim()))
                 {
-                    //Giai ma
-                    string makichhoat_giaima = EncryptAndDecrypt.Decrypt(txtKeyKichHoat.Text.Trim(), true);
-                    //Tach ma kich hoat:
-                    string mamay_keykichhoat = "";
-                    long thoigianTu = 0;
-                    long thoigianDen = 0;
-                    string[] makichhoat_tach = makichhoat_giaima.Split('$');
-
-                    if (makichhoat_tach.Length == 4)
-                    {
-                        mamay_keykichhoat = makichhoat_tach[1];
-                        thoigianTu = Convert.ToInt64((makichhoat_tach[2].ToString().Trim() ?? "0") + "000000");
-                        thoigianDen = Convert.ToInt64((makichhoat_tach[3].ToString().Trim() ?? "0") + "235959");
-                        //Thoi gian hien tai
-                        long datetime = Convert.ToInt64(DateTime.Now.ToString("yyyyMMddHHmmss"));
-                        string thoigianTu_text = DateTime.ParseExact(thoigianTu.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy");
-                        string thoigianDen_text = DateTime.ParseExact(thoigianDen.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy");
-                        //Kiem tra License hop le
-                        if (mamay_keykichhoat == SessionLogin.MaDatabase && datetime < thoigianDen)
-                        {
-                           // SessionLogin.KiemTraLicenseSuDung = true;
-                            lblThoiGianSuDung.Text = "Từ: " + thoigianTu_text + " đến: " + thoigianDen_text;
-                        }
-                        else
-                        {
-                            //SessionLogin.KiemTraLicenseSuDung = false;
-                            lblThoiGianSuDung.Text = "Mã kích hoạt hết hạn sử dụng";
-                        }
-                    }
-                    else
-                    {
-                        //SessionLogin.KiemTraLicenseSuDung = false;
-                        lblThoiGianSuDung.Text = "Sai mã kích hoạt";
-                    }
+                    lblThoiGianSuDung.Text = FormCommon.DangKyBanQuyen.KiemTraLicense.KiemTraThoiHanLicense(txtKeyKichHoat.Text.Trim());
                 }
                 else
                 {
@@ -184,12 +147,17 @@ namespace MedicalLink.FormCommon.TabTrangChu
             {
                 if (txtTaoLicenseMaMay.Text != "")
                 {
-                    // Lấy từ ngày, đến ngày
-                    string datetungay = DateTime.ParseExact(dtTaoLicenseKeyTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd");
-                    string datedenngay = DateTime.ParseExact(dtTaoLicenseKeyDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd");
-
-                    string MaDatabaseVaThoiGianSuDung = MedicalLink.Base.KeyTrongPhanMem.SaltEncrypt + "$" + txtTaoLicenseMaMay.Text + "$" + datetungay + "$" + datedenngay;
-
+                    string MaDatabaseVaThoiGianSuDung = "";
+                    if (chkKhongThoiHan.Checked)
+                    {
+                        MaDatabaseVaThoiGianSuDung = MedicalLink.Base.KeyTrongPhanMem.SaltEncrypt + "$" + txtTaoLicenseMaMay.Text + "$" + Base.KeyTrongPhanMem.BanQuyenKhongThoiHan;
+                    }
+                    else
+                    {
+                        string datetungay = DateTime.ParseExact(dtTaoLicenseKeyTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd");
+                        string datedenngay = DateTime.ParseExact(dtTaoLicenseKeyDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd");
+                        MaDatabaseVaThoiGianSuDung = MedicalLink.Base.KeyTrongPhanMem.SaltEncrypt + "$" + txtTaoLicenseMaMay.Text + "$" + datetungay + "$" + datedenngay;
+                    }
                     txtTaoLicenseMaKichHoat.Text = EncryptAndDecrypt.Encrypt(MaDatabaseVaThoiGianSuDung, true);
                 }
             }
@@ -231,6 +199,27 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
         }
         #endregion
+
+        private void chkKhongThoiHan_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkKhongThoiHan.Checked)
+                {
+                    dtTaoLicenseKeyTuNgay.Enabled = false;
+                    dtTaoLicenseKeyDenNgay.Enabled = false;
+                }
+                else
+                {
+                    dtTaoLicenseKeyTuNgay.Enabled = false;
+                    dtTaoLicenseKeyDenNgay.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
 
 

@@ -232,6 +232,8 @@
             this.cbbNhomLoaiDichVu.Name = "cbbNhomLoaiDichVu";
             this.cbbNhomLoaiDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbNhomLoaiDichVu.Properties.Appearance.Options.UseFont = true;
+            this.cbbNhomLoaiDichVu.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.cbbNhomLoaiDichVu.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbNhomLoaiDichVu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbNhomLoaiDichVu.Properties.Items.AddRange(new object[] {
@@ -250,6 +252,8 @@
             this.cbbservicepricegroupcode.Name = "cbbservicepricegroupcode";
             this.cbbservicepricegroupcode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbservicepricegroupcode.Properties.Appearance.Options.UseFont = true;
+            this.cbbservicepricegroupcode.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.cbbservicepricegroupcode.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbservicepricegroupcode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbservicepricegroupcode.Size = new System.Drawing.Size(200, 26);
@@ -419,6 +423,8 @@
             this.cbbbhyt_groupcode.Name = "cbbbhyt_groupcode";
             this.cbbbhyt_groupcode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbbhyt_groupcode.Properties.Appearance.Options.UseFont = true;
+            this.cbbbhyt_groupcode.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.cbbbhyt_groupcode.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbbhyt_groupcode.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbbhyt_groupcode.Properties.Items.AddRange(new object[] {
@@ -521,6 +527,9 @@
             this.gridColumn5});
             this.gridViewDMDichVu.GridControl = this.gridControlDMDichVu;
             this.gridViewDMDichVu.Name = "gridViewDMDichVu";
+            this.gridViewDMDichVu.OptionsFind.AlwaysVisible = true;
+            this.gridViewDMDichVu.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
+            this.gridViewDMDichVu.OptionsFind.ShowClearButton = false;
             this.gridViewDMDichVu.OptionsView.ColumnAutoWidth = false;
             this.gridViewDMDichVu.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDMDichVu.OptionsView.ShowGroupPanel = false;

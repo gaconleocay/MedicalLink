@@ -345,7 +345,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         private void btnUserOK_Click(object sender, EventArgs e)
         {
             // Mã hóa tài khoản
-            string en_txtUserID = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserID.Text.Trim(), true);
+            string en_txtUserID = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserID.Text.Trim().ToLower(), true);
             string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
             string en_txtUserPassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserPassword.Text.Trim(), true);
             try

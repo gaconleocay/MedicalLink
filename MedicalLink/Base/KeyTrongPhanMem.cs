@@ -8,7 +8,7 @@ namespace MedicalLink.Base
 {
     internal static class KeyTrongPhanMem
     {
-        internal static int ThoiGianKiemTraLicense = 3600000;// 60 phut
+        internal static int ThoiGianKiemTraLicense = 3600000;// 60 phut 3600000
         internal static string LayLicense_key = "yeuemvanvanlaN$";
         internal static string MaHoaVaGiaiMaLicense_key = "khongchO@License";
         internal static string MaHoaVaGiaiMa_key = "yeuEmvanvanlaN!@#";
@@ -17,7 +17,7 @@ namespace MedicalLink.Base
         internal static string SaltEncrypt = "yevvl";
         internal static int SoLuongTabPageChucNang = 5;
         internal static int SoLuongTabPageDashboard = 10;
-
+        internal static string BanQuyenKhongThoiHan = "BanQuyenKhongThoiHan";
 
 
 

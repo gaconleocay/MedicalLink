@@ -16,13 +16,13 @@ namespace MedicalLink.ChucNang
         //Cap nhat danh muc dich vu
         private void CapNhatDanhMucDichVuProcess()
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                 string chonkieuimport = cbbChonKieu.Text.Trim();
                 if (cbbChonKieu.Text.Trim() != "")
                 {
-                    DialogResult dialogResult = MessageBox.Show("Hãy backup trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    DialogResult dialogResult = MessageBox.Show("Hãy backup dữ liệu trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
                         switch (chonkieuimport)
@@ -109,13 +109,14 @@ namespace MedicalLink.ChucNang
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
-
                 }
 
-                SplashScreenManager.CloseForm();
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            SplashScreenManager.CloseForm();
         }
 
         #region Xu ly Cap nhat
@@ -126,47 +127,37 @@ namespace MedicalLink.ChucNang
             String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    if (gridViewDichVu.GetRowCellValue(i, "TEN_BH").ToString().Trim() != "")
+                    try
                     {
-                        condb.connect();
-                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                         DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
-                            for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                            {
-                                // Lấy ID dịch vụ:
-                                string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                try
-                                {
-                                    // Update tên dịch vụ
-                                    string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceNameBHYT = '" + gridViewDichVu.GetRowCellValue(i, "TEN_BH") + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                    condb.ExecuteNonQuery(sqlupdatetendv);
-                                    count_dv += dv_kt.Count;
-                                }
-                                catch (Exception)
-                                {
-                                    continue;
-                                }
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceNameBHYT = '" + item_servicep.servicepricenamebhyt + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
+                    }
                 }
-
                 //lưu lại log
                 if (count_dv > 0)
                 {
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ BHYT thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                     condb.ExecuteNonQuery(sqlinsert_log);
                 }
-                // Thông báo đã Update Tên dịch vụ
                 MessageBox.Show("Update " + count_dv + " danh mục \"Tên dịch vụ BHYT\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
         }
         //Ten dich vu Vien phi
@@ -176,47 +167,37 @@ namespace MedicalLink.ChucNang
             String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    if (gridViewDichVu.GetRowCellValue(i, "TEN_VP").ToString().Trim() != "")
+                    try
                     {
-                        condb.connect();
-                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                         DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
-                            for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                            {
-                                // Lấy ID dịch vụ:
-                                string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                try
-                                {
-                                    // Update tên dịch vụ
-                                    string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceName = '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "', ServicePriceNameNhanDan = '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                    condb.ExecuteNonQuery(sqlupdatetendv);
-                                    count_dv += dv_kt.Count;
-                                }
-                                catch (Exception)
-                                {
-                                    continue;
-                                }
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricenamenhandan = '" + item_servicep.servicepricenamenhandan + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
+                    }
                 }
-
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ viện phí thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ Nhân dân thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                     condb.ExecuteNonQuery(sqlinsert_log);
                 }
-                // Thông báo đã Update Tên dịch vụ
-                MessageBox.Show("Update " + count_dv + " danh mục \"Tên dịch vụ viện phí\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Update " + count_dv + " danh mục \"Tên dịch vụ Nhân dân\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
         }
         //Ten dich vu PTTT
@@ -226,32 +207,23 @@ namespace MedicalLink.ChucNang
             String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    if (gridViewDichVu.GetRowCellValue(i, "TEN_PTTT").ToString().Trim() != "")
+                    try
                     {
-                        condb.connect();
-                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                         DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
-                            for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                            {
-                                // Lấy ID dịch vụ:
-                                string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                try
-                                {
-                                    // Update tên dịch vụ
-                                    string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceNameNuocNgoai = '" + gridViewDichVu.GetRowCellValue(i, "TEN_PTTT") + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                    condb.ExecuteNonQuery(sqlupdatetendv);
-                                    count_dv += dv_kt.Count;
-                                }
-                                catch (Exception)
-                                {
-                                    continue;
-                                }
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricenamenuocngoai = '" + item_servicep.servicepricenamenuocngoai + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
                     }
                 }
 
@@ -266,40 +238,35 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
         }
 
         // Mã DM BYT (mã User)
         private void CapNhatProcess_MaUser()
         {
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             int count_dv = 0;
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    condb.connect();
-                    string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
-                    DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
-                    if (dv_kt.Count > 0)
+                    try
                     {
-                        for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        if (dv_kt.Count > 0)
                         {
-                            // Lấy ID dịch vụ:
-                            string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                            try
-                            {
-                                // Update mã User
-                                string sqlupdatemauser = "UPDATE ServicePriceRef SET ServicePriceCodeUser = '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_USER") + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                condb.ExecuteNonQuery(sqlupdatemauser);
-                                count_dv += dv_kt.Count;
-                            }
-                            catch (Exception)
-                            {
-                                continue;
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricecodeuser = '" + item_servicep.servicepricecodeuser + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
                     }
                 }
 
@@ -309,47 +276,39 @@ namespace MedicalLink.ChucNang
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục mã user dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                     condb.ExecuteNonQuery(sqlinsert_log);
                 }
-
-                // Thông báo đã Update mã dịch vụ
                 MessageBox.Show("Update " + count_dv + " danh mục \"Mã DM BYT (mã User)\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
-
         }
 
         //Mã STT thầu BHYT
         private void CapNhatProcess_MaSTTThau()
         {
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             int count_dv = 0;
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    condb.connect();
-                    string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
-                    DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
-                    if (dv_kt.Count > 0)
+                    try
                     {
-                        for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        if (dv_kt.Count > 0)
                         {
-                            // Lấy ID dịch vụ:
-                            string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                            try
-                            {
-                                // Update mã STT Thầu BHYT
-                                string sqlupdatesttthau = "UPDATE ServicePriceRef SET ServicePriceSTTUser = '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_STTTHAU") + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                condb.ExecuteNonQuery(sqlupdatesttthau);
-                                count_dv += dv_kt.Count;
-                            }
-                            catch (Exception)
-                            {
-                                continue;
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricesttuser = '" + item_servicep.servicepricesttuser + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
                     }
                 }
 
@@ -365,41 +324,35 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
-
         }
 
         //Don vi tinh
         private void CapNhatProcess_DonViTinh()
         {
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             int count_dv = 0;
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    condb.connect();
-                    string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
-                    DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
-                    if (dv_kt.Count > 0)
+                    try
                     {
-                        for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        if (dv_kt.Count > 0)
                         {
-                            // Lấy ID dịch vụ:
-                            string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                            try
-                            {
-                                // Update Đơn vị tính
-                                string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceUnit = '" + gridViewDichVu.GetRowCellValue(i, "DVT") + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                condb.ExecuteNonQuery(sqlupdatedvt);
-                                count_dv += dv_kt.Count;
-                            }
-                            catch (Exception)
-                            {
-                                continue;
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepriceunit = '" + item_servicep.servicepriceunit + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
                     }
                 }
 
@@ -415,44 +368,35 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
-
         }
 
         //Hang PTTT
         private void CapNhatProcess_HangPTTT()
         {
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             int count_dv = 0;
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    if (gridViewDichVu.GetRowCellValue(i, "HANG_PTTT") != null && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "HANG_PTTT").ToString()) == true)
+                    try
                     {
-                        condb.connect();
-                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                         DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
-                            for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                            {
-                                // Lấy ID dịch vụ:
-                                string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                try
-                                {
-                                    // Update Đơn Loai PTTT
-                                    string sqlupdateloaipttt = "UPDATE ServicePriceRef SET PTTT_HangID = '" + gridViewDichVu.GetRowCellValue(i, "HANG_PTTT").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                    condb.ExecuteNonQuery(sqlupdateloaipttt);
-                                    count_dv += dv_kt.Count;
-                                }
-                                catch (Exception)
-                                {
-                                    continue;
-                                }
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET pttt_hangid = '" + item_servicep.pttt_hangid + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
                     }
                 }
 
@@ -468,44 +412,35 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
-
         }
 
         //Loai PTTT
         private void CapNhatProcess_LoaiPTTT()
         {
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             int count_dv = 0;
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    if (gridViewDichVu.GetRowCellValue(i, "LOAI_PTTT") != null && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "LOAI_PTTT").ToString()) == true)
+                    try
                     {
-                        condb.connect();
-                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                         DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
-                            for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                            {
-                                // Lấy ID dịch vụ:
-                                string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                try
-                                {
-                                    // Update Đơn Loai PTTT
-                                    string sqlupdateloaipttt = "UPDATE ServicePriceRef SET PTTT_LoaiID = '" + gridViewDichVu.GetRowCellValue(i, "LOAI_PTTT").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                    condb.ExecuteNonQuery(sqlupdateloaipttt);
-                                    count_dv += dv_kt.Count;
-                                }
-                                catch (Exception)
-                                {
-                                    continue;
-                                }
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET pttt_loaiid = '" + item_servicep.pttt_loaiid + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
                     }
                 }
 
@@ -521,44 +456,35 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
-
         }
 
         //Khoa dich vu
         private void CapNhatProcess_KhoaDichVu()
         {
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             int count_dv = 0;
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             try
             {
-                for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                foreach (var item_servicep in lstServicePriceRef)
                 {
-                    if (gridViewDichVu.GetRowCellValue(i, "KHOA") != null && (gridViewDichVu.GetRowCellValue(i, "KHOA").ToString().Trim() == "0" || gridViewDichVu.GetRowCellValue(i, "KHOA").ToString().Trim() == "1"))
+                    try
                     {
-                        condb.connect();
-                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                        string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                         DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
-                            for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                            {
-                                // Lấy ID dịch vụ:
-                                string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                try
-                                {
-                                    // Update Đơn vị tính
-                                    string sqlupdatedvt = "UPDATE ServicePriceRef SET ServiceLock = '" + gridViewDichVu.GetRowCellValue(i, "KHOA").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                    condb.ExecuteNonQuery(sqlupdatedvt);
-                                    count_dv += dv_kt.Count;
-                                }
-                                catch (Exception)
-                                {
-                                    continue;
-                                }
-                            }
+                            string sqlupdatetendv = "UPDATE ServicePriceRef SET servicelock = '" + item_servicep.servicelock + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                            condb.ExecuteNonQuery(sqlupdatetendv);
+                            count_dv += dv_kt.Count;
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        continue;
+                        Base.Logging.Warn(ex);
                     }
                 }
 
@@ -574,7 +500,8 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Base.Logging.Error(ex);
             }
         }
 
@@ -587,48 +514,37 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (gridViewDichVu.GetRowCellValue(i, "GIA_VP") != null && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString()) == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        // Update Giá Nhân dân
-                                        string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatedvt);
-                                        count_dv += dv_kt.Count;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricefeenhandan = '" + item_servicep.servicepricefeenhandan + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatetendv);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá nhân dân của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
-
-                    // Thông báo đã Update giá nhân dân
                     MessageBox.Show("Update " + count_dv + " danh mục \"giá Viện phí\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá Viện phí" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -636,42 +552,29 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (gridViewDichVu.GetRowCellValue(i, "GIA_VP") != null && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString()) == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        if (Base.classCheckInputString.CheckFormatDatetime(gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() ?? "") == true && (gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "1" || gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "0"))
-                                        {
-                                            // Thực hiện việc chuyển từ cột giá sang cột giá cũ
-                                            string sql_chuyen_giaNhanDan = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan_OLD = ServicePriceFeeNhanDan WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sql_chuyen_giaNhanDan);
-                                            // Update Giá Nhân dân
-                                            string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString().Trim() + "', ServicePriceFee_OLD_DATE = '" + gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() + "', ServicePriceFee_OLD_Type = '" + gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sqlupdatedvt);
-                                            count_dv += dv_kt.Count;
-                                        }
-
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                // Thực hiện việc chuyển từ cột giá sang cột giá cũ
+                                string sql_chuyen_giaNhanDan = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan_OLD = ServicePriceFeeNhanDan WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sql_chuyen_giaNhanDan);
+                                // Update Giá Nhân dân
+                                string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + item_servicep.servicepricefeenhandan + "', ServicePriceFee_OLD_DATE = '" + item_servicep.servicepricefee_old_date + "', ServicePriceFee_OLD_Type = '" + item_servicep.servicepricefee_old_type + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatedvt);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
@@ -684,7 +587,8 @@ namespace MedicalLink.ChucNang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá Viện phí" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else
@@ -702,35 +606,25 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (gridViewDichVu.GetRowCellValue(i, "GIA_BH") != null && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString()) == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        // Update Giá BHYT
-                                        string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeBHYT = '" + gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatedvt);
-                                        count_dv += dv_kt.Count;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceFeeBHYT = '" + item_servicep.servicepricefeebhyt + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatetendv);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
@@ -738,12 +632,13 @@ namespace MedicalLink.ChucNang
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
 
-                    // Thông báo đã Update giá nhân dân
+                    // Thông báo đã Update giá BHYT
                     MessageBox.Show("Update " + count_dv + " danh mục \"giá BHYT\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá BHYT" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -751,41 +646,29 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString() ?? "") == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        if (Base.classCheckInputString.CheckFormatDatetime(gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() ?? "") == true && (gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "1" || gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "0"))
-                                        {
-                                            // Thực hiện việc chuyển từ cột giá sang cột giá cũ
-                                            string sql_chuyen_giaBHYT = "UPDATE ServicePriceRef SET ServicePriceFeeBHYT_OLD = ServicePriceFeeBHYT WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sql_chuyen_giaBHYT);
-                                            // Update Giá BHYT
-                                            string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeBHYT = '" + gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString().Trim() + "', ServicePriceFee_OLD_DATE = '" + gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() + "', ServicePriceFee_OLD_Type = '" + gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sqlupdatedvt);
-                                            count_dv += dv_kt.Count;
-                                        }
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                // Thực hiện việc chuyển từ cột giá sang cột giá cũ
+                                string sql_chuyen_giaNhanDan = "UPDATE ServicePriceRef SET ServicePriceFeeBHYT_OLD = ServicePriceFeeBHYT WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sql_chuyen_giaNhanDan);
+                                // Update Giá BHYT
+                                string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeBHYT = '" + item_servicep.servicepricefeebhyt + "', ServicePriceFee_OLD_DATE = '" + item_servicep.servicepricefee_old_date + "', ServicePriceFee_OLD_Type = '" + item_servicep.servicepricefee_old_type + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatedvt);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
@@ -798,7 +681,8 @@ namespace MedicalLink.ChucNang
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá BHYT" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else
@@ -816,48 +700,37 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() ?? "") == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        // Update Giá Nhân dân
-                                        string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFee = '" + gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatedvt);
-                                        count_dv += dv_kt.Count;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceFee = '" + item_servicep.servicepricefee + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatetendv);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá yêu cầu của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
-
-                    // Thông báo đã Update giá nhân dân
                     MessageBox.Show("Update " + count_dv + " danh mục \"giá Yêu cầu\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá Yêu cầu" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -865,42 +738,29 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() ?? "") == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        if (Base.classCheckInputString.CheckFormatDatetime(gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() ?? "") == true && (gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "1" || gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "0"))
-                                        {
-                                            // Thực hiện việc chuyển từ cột giá sang cột giá cũ
-                                            string sql_chuyen_giaNhanDan = "UPDATE ServicePriceRef SET ServicePriceFee_OLD = ServicePriceFee  WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sql_chuyen_giaNhanDan);
-
-                                            // Update Giá Nhân dân
-                                            string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFee = '" + gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() + "', ServicePriceFee_OLD_DATE = '" + gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() + "', ServicePriceFee_OLD_Type = '" + gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sqlupdatedvt);
-                                            count_dv += dv_kt.Count;
-                                        }
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                // Thực hiện việc chuyển từ cột giá sang cột giá cũ
+                                string sql_chuyen_giaNhanDan = "UPDATE ServicePriceRef SET ServicePriceFee_OLD = ServicePriceFee WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sql_chuyen_giaNhanDan);
+                                // Update Giá Yeu cau
+                                string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFee = '" + item_servicep.servicepricefee + "', ServicePriceFee_OLD_DATE = '" + item_servicep.servicepricefee_old_date + "', ServicePriceFee_OLD_Type = '" + item_servicep.servicepricefee_old_type + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatedvt);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
@@ -908,14 +768,14 @@ namespace MedicalLink.ChucNang
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
 
-                    // Thông báo đã Update giá nhân dân
+                    // Thông báo đã Update giá yeu cau
                     MessageBox.Show("Backup và Update " + count_dv + " danh mục \"giá Yêu cầu\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá Yêu cầu" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
-
             }
             else
             {
@@ -932,48 +792,37 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() ?? "") == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        // Update Giá Người nước ngoài
-                                        string sqlupdategiaNNN = "UPDATE ServicePriceRef SET ServicePriceFeeNuocNgoai = '" + gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdategiaNNN);
-                                        count_dv += dv_kt.Count;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceFeeNuocNgoai = '" + item_servicep.servicepricefeenuocngoai + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatetendv);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá người nước ngoài của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
-
-                    // Thông báo đã Update giá Người nước ngoài
                     MessageBox.Show("Update " + count_dv + " danh mục \"giá Người nước ngoài\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá Người nước ngoài" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -981,55 +830,41 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() ?? "") == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        if (Base.classCheckInputString.CheckFormatDatetime(gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() ?? "") == true && (gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "1" || gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "0"))
-                                        {
-                                            // Thực hiện việc chuyển từ cột giá sang cột giá cũ
-                                            string sql_chuyen_giaNNN = "UPDATE ServicePriceRef SET ServicePriceFeeNuocNgoai_OLD = ServicePriceFeeNuocNgoai WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sql_chuyen_giaNNN);
-
-                                            // Update Giá Người nước ngoài
-                                            string sqlupdategiaNNN = "UPDATE ServicePriceRef SET ServicePriceFeeNuocNgoai = '" + gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() + "', ServicePriceFee_OLD_DATE = '" + gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() + "', ServicePriceFee_OLD_Type = '" + gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sqlupdategiaNNN);
-                                            count_dv += dv_kt.Count;
-                                        }
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                // Thực hiện việc chuyển từ cột giá sang cột giá cũ
+                                string sql_chuyen_giaNhanDan = "UPDATE ServicePriceRef SET ServicePriceFeeNuocNgoai_OLD = ServicePriceFeeNuocNgoai WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sql_chuyen_giaNhanDan);
+                                // Update Giá nguoi nuoc ngoai
+                                string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeNuocNgoai = '" + item_servicep.servicepricefeenuocngoai + "', ServicePriceFee_OLD_DATE = '" + item_servicep.servicepricefee_old_date + "', ServicePriceFee_OLD_Type = '" + item_servicep.servicepricefee_old_type + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatedvt);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá người nước ngoài của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
-
-                    // Thông báo đã Update giá nhân dân
                     MessageBox.Show("Backup và Update " + count_dv + " danh mục \"giá Người nước ngoài\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá Người nước ngoài" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else
@@ -1047,48 +882,37 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString().Trim() ?? "") == true && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString().Trim() ?? "") == true && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() ?? "") == true && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() ?? "") == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        // Update cả 4 loại giá
-                                        string sqlupdategiaNNN = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString().Trim() + "', ServicePriceFeeBHYT = '" + gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString().Trim() + "', ServicePriceFee = '" + gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() + "', ServicePriceFeeNuocNgoai = '" + gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdategiaNNN);
-                                        count_dv += dv_kt.Count;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                string sqlupdategiaNNN = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + item_servicep.servicepricefeenhandan + "', ServicePriceFeeBHYT = '" + item_servicep.servicepricefeebhyt + "', ServicePriceFee = '" + item_servicep.servicepricefee + "', ServicePriceFeeNuocNgoai = '" + item_servicep.servicepricefeenuocngoai + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdategiaNNN);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " 4 loại giá của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
-
-                    // Thông báo đã Update giá nhân dân
                     MessageBox.Show("Update " + count_dv + " danh mục \"4 loại giá (VP+BH+YC+NN)\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -1096,56 +920,42 @@ namespace MedicalLink.ChucNang
                 int count_dv = 0;
                 try
                 {
-                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString().Trim() ?? "") == true && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString().Trim() ?? "") == true && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() ?? "") == true && Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() ?? "") == true)
+                        try
                         {
-                            condb.connect();
-                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                            string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                             DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
-                                for (int j = 0; j < dv_kt.Count; j++)   //Phòng trường hợp có mã trùng nhau
-                                {
-                                    // Lấy ID dịch vụ:
-                                    string id_dv = dv_kt[j]["ServicePriceRefID"].ToString();
-                                    try
-                                    {
-                                        if (Base.classCheckInputString.CheckFormatDatetime(gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG").ToString().Trim() ?? "") == true && (gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "1" || gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH").ToString().Trim() == "0"))
-                                        {
-                                            // Thực hiện việc chuyển từ cột giá sang cột giá cũ
-                                            string sql_chuyen_gia = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan_OLD = ServicePriceFeeNhanDan, ServicePriceFeeBHYT_OLD = ServicePriceFeeBHYT, ServicePriceFee_OLD = ServicePriceFee, ServicePriceFeeNuocNgoai_OLD = ServicePriceFeeNuocNgoai WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sql_chuyen_gia);
-                                            // Update cả 4 loại giá
-                                            string sqlupdategia = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + gridViewDichVu.GetRowCellValue(i, "GIA_VP") + "', ServicePriceFeeBHYT = '" + gridViewDichVu.GetRowCellValue(i, "GIA_BH") + "', ServicePriceFee = '" + gridViewDichVu.GetRowCellValue(i, "GIA_YC") + "', ServicePriceFeeNuocNgoai = '" + gridViewDichVu.GetRowCellValue(i, "GIA_NNN") + "', ServicePriceFee_OLD_DATE = '" + gridViewDichVu.GetRowCellValue(i, "THOIGIAN_APDUNG") + "', ServicePriceFee_OLD_Type = '" + gridViewDichVu.GetRowCellValue(i, "THEO_NGAY_CHI_DINH") + "' WHERE ServicePriceRefID = '" + id_dv + "' ;";
-                                            condb.ExecuteNonQuery(sqlupdategia);
-                                            count_dv += dv_kt.Count;
-                                        }
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
+                                // Thực hiện việc chuyển từ cột giá sang cột giá cũ
+                                string sql_chuyen_giaNhanDan = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan_OLD = ServicePriceFeeNhanDan, ServicePriceFeeBHYT_OLD = ServicePriceFeeBHYT, ServicePriceFee_OLD = ServicePriceFee, ServicePriceFeeNuocNgoai_OLD = ServicePriceFeeNuocNgoai WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sql_chuyen_giaNhanDan);
+                                // Update 4 loai gia
+                                string sqlupdatedvt = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + item_servicep.servicepricefeenhandan + "', ServicePriceFeeBHYT = '" + item_servicep.servicepricefeebhyt + "', ServicePriceFee = '" + item_servicep.servicepricefee + "', ServicePriceFeeNuocNgoai = '" + item_servicep.servicepricefeenuocngoai + "', ServicePriceFee_OLD_DATE = '" + item_servicep.servicepricefee_old_date + "', ServicePriceFee_OLD_Type = '" + item_servicep.servicepricefee_old_type + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
+                                condb.ExecuteNonQuery(sqlupdatedvt);
+                                count_dv += dv_kt.Count;
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            continue;
+                            Base.Logging.Warn(ex);
+                        }
                     }
-
                     //lưu lại log
                     if (count_dv > 0)
                     {
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " 4 loại giá của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
-
-                    // Thông báo đã Update giá nhân dân
                     MessageBox.Show("Update " + count_dv + " danh mục \"4 loại giá (VP+BH+YC+NN)\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi xảy ra trong quá trình cập nhật giá" + ex, "Thông báo");
+                    MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Base.Logging.Error(ex);
                 }
-
             }
             else
             {
@@ -1159,173 +969,56 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                //string chonkieuimport = cbbChonKieu.Text.Trim();
-                // Lấy thời gian hiện tại
                 String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
                 int dem_dv_themmoi = 0;
                 int dem_dv_trungma = 0;
 
                 DialogResult dialogResult = MessageBox.Show("Hãy backup trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    List<MedicalLink.ChucNang.ImportDMDichVu.ClassDichVu> lstDichVuTrungMa = new List<ChucNang.ImportDMDichVu.ClassDichVu>();
-                    try
+                    foreach (var item_servicep in lstServicePriceRef)
                     {
-                        for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                        try
                         {
-                            //if (gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString().Trim() != null && gridViewDichVu.GetRowCellValue(i, "MA_DV").ToString().Trim() != "")
-                            if (gridViewDichVu.GetRowCellValue(i, "MA_DV").ToString().Trim() != "" && gridViewDichVu.GetRowCellValue(i, "LOAI_DV").ToString().Trim() != "")
+                            if (item_servicep.servicepricecode != "" && item_servicep.servicegrouptype != 0)
                             {
-                                condb.connect();
-                                string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode, servicepricename FROM ServicePriceRef WHERE ServicePriceCode= '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "' ;";
+                                string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
                                 DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
-                                    dem_dv_trungma += dv_kt.Count;
-                                    for (int j = 0; j < dv_kt.Count; j++)
-                                    {
-                                        ClassDichVu dichvu_them = new ClassDichVu();
-                                        dichvu_them.MA_DV = dv_kt[j]["ServicePriceCode"].ToString();
-                                        dichvu_them.TEN_VP = dv_kt[j]["servicepricename"].ToString();
-                                        lstDichVuTrungMa.Add(dichvu_them);
-                                    }
+                                    //Update
                                 }
                                 else if (dv_kt.Count == 0)
                                 {
-                                    if (gridViewDichVu.GetRowCellValue(i, "MA_NHOM").ToString().Trim() != null && gridViewDichVu.GetRowCellValue(i, "MA_NHOM").ToString().Trim() != "")
-                                    {
-                                        string giaVienPhi = gridViewDichVu.GetRowCellValue(i, "GIA_VP").ToString().Trim() ?? "0";
-                                        string giaBHYT = gridViewDichVu.GetRowCellValue(i, "GIA_BH").ToString().Trim() ?? "0";
-                                        string giaYeuCau = gridViewDichVu.GetRowCellValue(i, "GIA_YC").ToString().Trim() ?? "0";
-                                        string giaNNN = gridViewDichVu.GetRowCellValue(i, "GIA_NNN").ToString().Trim() ?? "0";
+                                    //TODO Them moi
+                                    //string sql_insertserviceref = "INSERT INTO ServicePriceRef ( ServicePriceRefID_Master, ServicePriceGroupCode, ServicePriceCode, ServicePriceCodeUser, ServicePriceSTTUser, ServicePriceCode_NG, BHYT_GroupCode, Report_GroupCode, CK_GroupCode, Report_TKCode, ServicePriceName, ServicePriceNameNhanDan, ServicePriceNameBHYT, ServicePriceNameNuocNgoai, ServicePriceFee, ServicePriceFeeNhanDan, ServicePriceFeeBHYT, ServicePriceFeeNuocNgoai, ListDepartmentPhongThucHien, ListDepartmentPhongThucHienKhamGoi, ServicePriceFee_OLD, ServicePriceFeeNhanDan_OLD, ServicePriceFeeBHYT_OLD, ServicePriceFeeNuocNgoai_OLD, ServicePriceFee_OLD_Type, KhongChuyenDoiTuongHaoPhi, LuonChuyenDoiTuongHaoPhi, CDHA_SoLuongThuoc, CDHA_SoLuongVatTu, PTTT_DinhMucVTTH, PTTT_DinhMucThuoc, TyLeLaiChiDinh, TyLeLaiThucHien, TinhToanLaiGiaDVKTC,  ServicePriceUnit, LayMauPhongThucHien, ServicePriceType, ServiceGroupType, ServicePricePrintOrder, ServiceLock, ServicePriceBHYTQuyDoi, ServicePriceBHYTQuyDoi_TT, ServicePriceBHYTDinhMuc, PTTT_HangID)  VALUES( '0', '" + gridViewDichVu.GetRowCellValue(i, "MA_NHOM") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_USER") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_STTTHAU") + "', '', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_BHYT") + "', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_BAOCAO") + "', '', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_TAIKHOAN") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_BH") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_PTTT") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_YC") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_BH") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_NNN") + "', '" + listPhongThucHien + "', '', '', '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '" + gridViewDichVu.GetRowCellValue(i, "DVT") + "', '0', '" + la_nhom + "', '" + loai_dv + "', '0', '0', '', '', '', '" + loai_pttt + "')";
+                                    //condb.ExecuteNonQuery(sql_insertserviceref);
 
-                                        if (giaVienPhi == "")
-                                        {
-                                            giaVienPhi = "0";
-                                        }
-                                        if (Base.classCheckInputString.CheckISNumber(giaVienPhi) == false)
-                                        {
-                                            giaVienPhi = "0";
-                                        }
-                                        if (giaBHYT == "")
-                                        {
-                                            giaBHYT = "0";
-                                        }
-                                        if (Base.classCheckInputString.CheckISNumber(giaBHYT) == false)
-                                        {
-                                            giaBHYT = "0";
-                                        }
-                                        if (giaYeuCau == "")
-                                        {
-                                            giaYeuCau = "0";
-                                        }
-                                        if (Base.classCheckInputString.CheckISNumber(giaYeuCau) == false)
-                                        {
-                                            giaYeuCau = "0";
-                                        }
-                                        if (giaNNN == "")
-                                        {
-                                            giaNNN = "0";
-                                        }
-                                        if (Base.classCheckInputString.CheckISNumber(giaNNN) == false)
-                                        {
-                                            giaNNN = "0";
-                                        }
-                                        int la_nhom = 0;
-                                        int loai_pttt = 0;
-                                        int loai_dv = 0;
-                                        string[] dspth_temp;
-                                        string listPhongThucHien = "";
-
-                                        if (gridViewDichVu.GetRowCellValue(i, "LA_NHOM").ToString().Trim() == "1")
-                                        {
-                                            la_nhom = 1;
-                                        }
-                                        if (Base.classCheckInputString.CheckISNumber(gridViewDichVu.GetRowCellValue(i, "LOAI_PTTT").ToString().Trim() ?? "") == true)
-                                        {
-                                            loai_pttt = Convert.ToInt16(gridViewDichVu.GetRowCellValue(i, "LOAI_PTTT").ToString().Trim());
-                                        }
-                                        //Loại DV:
-                                        //1 = Khám bệnh
-                                        //2: Xét nghiệm
-                                        //3: Chẩn đoán hình ảnh
-                                        //4: Chuyên khoa
-                                        if (gridViewDichVu.GetRowCellValue(i, "LOAI_DV").ToString().Trim().ToUpper() == "KB")
-                                        {
-                                            loai_dv = 1;
-                                        }
-                                        else if (gridViewDichVu.GetRowCellValue(i, "LOAI_DV").ToString().Trim().ToUpper() == "XN")
-                                        {
-                                            loai_dv = 2;
-                                        }
-                                        else if (gridViewDichVu.GetRowCellValue(i, "LOAI_DV").ToString().Trim().ToUpper() == "CDHA")
-                                        {
-                                            loai_dv = 3;
-                                        }
-                                        else if (gridViewDichVu.GetRowCellValue(i, "LOAI_DV").ToString().Trim().ToUpper() == "CK")
-                                        {
-                                            loai_dv = 4;
-                                        }
-                                        //Phong thuc hien
-                                        dspth_temp = gridViewDichVu.GetRowCellValue(i, "PHONG_THUCHIEN").ToString().Split(';');
-                                        for (int m = 0; m < dspth_temp.Length; m++)
-                                        {
-                                            var phongId = lstDanhSachPhongThucHien.FirstOrDefault(o => o.departmentcode == dspth_temp[m].ToString());
-                                            if (phongId!=null)
-                                            {
-                                                listPhongThucHien += phongId.departmentid + ";";
-                                            }
-                                        }
-                                        listPhongThucHien = listPhongThucHien.Substring(0, (listPhongThucHien.Length - 1));
-
-                                        //TODO Them moi
-                                        string sql_insertserviceref = "INSERT INTO ServicePriceRef ( ServicePriceRefID_Master, ServicePriceGroupCode, ServicePriceCode, ServicePriceCodeUser, ServicePriceSTTUser, ServicePriceCode_NG, BHYT_GroupCode, Report_GroupCode, CK_GroupCode, Report_TKCode, ServicePriceName, ServicePriceNameNhanDan, ServicePriceNameBHYT, ServicePriceNameNuocNgoai, ServicePriceFee, ServicePriceFeeNhanDan, ServicePriceFeeBHYT, ServicePriceFeeNuocNgoai, ListDepartmentPhongThucHien, ListDepartmentPhongThucHienKhamGoi, ServicePriceFee_OLD, ServicePriceFeeNhanDan_OLD, ServicePriceFeeBHYT_OLD, ServicePriceFeeNuocNgoai_OLD, ServicePriceFee_OLD_Type, KhongChuyenDoiTuongHaoPhi, LuonChuyenDoiTuongHaoPhi, CDHA_SoLuongThuoc, CDHA_SoLuongVatTu, PTTT_DinhMucVTTH, PTTT_DinhMucThuoc, TyLeLaiChiDinh, TyLeLaiThucHien, TinhToanLaiGiaDVKTC,  ServicePriceUnit, LayMauPhongThucHien, ServicePriceType, ServiceGroupType, ServicePricePrintOrder, ServiceLock, ServicePriceBHYTQuyDoi, ServicePriceBHYTQuyDoi_TT, ServicePriceBHYTDinhMuc, PTTT_HangID)  VALUES( '0', '" + gridViewDichVu.GetRowCellValue(i, "MA_NHOM") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_USER") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_STTTHAU") + "', '', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_BHYT") + "', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_BAOCAO") + "', '', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_TAIKHOAN") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_BH") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_PTTT") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_YC") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_BH") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_NNN") + "', '" + listPhongThucHien + "', '', '', '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '" + gridViewDichVu.GetRowCellValue(i, "DVT") + "', '0', '" + la_nhom + "', '" + loai_dv + "', '0', '0', '', '', '', '" + loai_pttt + "')";
-                                        condb.ExecuteNonQuery(sql_insertserviceref);
-
-                                        string sql_insertketqua = "INSERT INTO serviceref4price(servicepricecode, servicecode) VALUES ('" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_CLS") + "') ;";
-                                        condb.ExecuteNonQuery(sql_insertketqua);
-                                        dem_dv_themmoi += 1;
-
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Có lỗi xảy ra ", "Thông báo");
+                                    //string sql_insertketqua = "INSERT INTO serviceref4price(servicepricecode, servicecode) VALUES ('" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_CLS") + "') ;";
+                                    //condb.ExecuteNonQuery(sql_insertketqua);
+                                    dem_dv_themmoi += 1;
                                 }
                             }
                         }
-
-                        //lưu lại log
-                        if (dem_dv_themmoi > 0)
+                        catch (Exception ex)
                         {
-                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Insert " + dem_dv_themmoi + " dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
-                        }
-
-                        if (dem_dv_trungma != 0)
-                        {
-                            MessageBox.Show("Thêm mới thành công SL=" + dem_dv_themmoi + ".\nDịch vụ có mã tồn tại trong database SL=" + dem_dv_trungma, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            gridControlDichVu.DataSource = null;
-                            //gridControlDichVu = new DevExpress.XtraGrid.GridControl();
-                            //gridViewDichVu = new DevExpress.XtraGrid.Views.Grid.GridView();
-                            gridControlDichVu.DataSource = lstDichVuTrungMa;
-                            btnUpdateDVOK.Enabled = false;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Thêm mới thành công SL=" + dem_dv_themmoi, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            continue;
+                            Base.Logging.Error(ex);
                         }
                     }
-                    catch (Exception ex)
+                    //lưu lại log
+                    if (dem_dv_themmoi > 0)
                     {
-                        MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Insert " + dem_dv_themmoi + " dịch vụ thành công. Update thành công=" + dem_dv_trungma + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        condb.ExecuteNonQuery(sqlinsert_log);
                     }
+                    MessageBox.Show("Thêm mới thành công SL=" + dem_dv_themmoi + ".\nUpdate thành công=" + dem_dv_trungma, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -1343,14 +1036,15 @@ namespace MedicalLink.ChucNang
                 //DataTable dv_ddd = new DataTable(condb.getDataTable(export_servicepriceref));
                 if (dv_dataserviceref != null && dv_dataserviceref.Count > 0)
                 {
-                    gridControlDataSerRef.DataSource = dv_dataserviceref;
-                    Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                    export.ExportDataGridViewToFile(gridControlDataSerRef, gridViewDataSerRef);
+                    //gridControlDataSerRef.DataSource = dv_dataserviceref;
+                    //Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                    //export.ExportDataGridViewToFile(gridControlDataSerRef, gridViewDataSerRef);
                 }
 
             }
             catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
             }
         }
     }

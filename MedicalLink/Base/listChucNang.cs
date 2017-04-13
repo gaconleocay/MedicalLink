@@ -314,6 +314,19 @@ namespace MedicalLink.Base
                 REPORT_12.permissionnote = "Báo cáo thực hiện Cận lâm sàng (doanh thu chia bác sĩ)";
                 lstresult.Add(REPORT_12);
 
+                ClassCommon.classPermission REPORT_13 = new ClassCommon.classPermission();
+                REPORT_13.permissioncheck = false;
+                REPORT_13.permissioncode = "REPORT_13";
+                REPORT_13.permissionname = "Sổ chuẩn đoán hình ảnh";
+                REPORT_13.permissiontype = 3;
+                REPORT_13.permissionnote = "Sổ chẩn đoán hình ảnh";
+                lstresult.Add(REPORT_13);
+
+
+
+
+
+
 
                 //Dashboard
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();

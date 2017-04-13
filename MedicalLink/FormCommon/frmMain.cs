@@ -201,7 +201,7 @@ namespace MedicalLink.FormCommon
             {
                 if (SessionLogin.SessionUsercode != MedicalLink.Base.KeyTrongPhanMem.AdminUser_key)
                 {
-                    kiemTraLicenseHopLe.KiemTraLicenseHopLe();
+                    KiemTraLicense.KiemTraLicenseHopLe();
                     if (SessionLogin.KiemTraLicenseSuDung == false)
                     {
                         timerKiemTraLicense.Stop();

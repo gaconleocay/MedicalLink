@@ -76,6 +76,6 @@ namespace MedicalLink.ChucNang.ImportDMDichVu
         public string bhyt_groupcode_name { get; set; }
 
 
-
+        public string servicecode { get; set; }
     }
 }

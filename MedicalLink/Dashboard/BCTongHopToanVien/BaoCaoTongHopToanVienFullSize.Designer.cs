@@ -446,9 +446,7 @@
             // 
             // bandedGridColumn3
             // 
-            this.bandedGridColumn3.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn3.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn3.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn3.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -471,9 +469,7 @@
             // 
             // bandedGridColumn7
             // 
-            this.bandedGridColumn7.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn7.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn7.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn7.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn7.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -496,9 +492,7 @@
             // 
             // bandedGridColumn9
             // 
-            this.bandedGridColumn9.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn9.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn9.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn9.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn9.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -521,9 +515,7 @@
             // 
             // bandedGridColumn10
             // 
-            this.bandedGridColumn10.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn10.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn10.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn10.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn10.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -546,9 +538,7 @@
             // 
             // bandedGridColumn11
             // 
-            this.bandedGridColumn11.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn11.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn11.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn11.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn11.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn11.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -571,9 +561,7 @@
             // 
             // bandedGridColumn12
             // 
-            this.bandedGridColumn12.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn12.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn12.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn12.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn12.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -596,9 +584,7 @@
             // 
             // bandedGridColumn21
             // 
-            this.bandedGridColumn21.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn21.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn21.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn21.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn21.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -621,9 +607,7 @@
             // 
             // bandedGridColumn13
             // 
-            this.bandedGridColumn13.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn13.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn13.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn13.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn13.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -646,9 +630,7 @@
             // 
             // bandedGridColumn14
             // 
-            this.bandedGridColumn14.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn14.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn14.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn14.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn14.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn14.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -671,9 +653,7 @@
             // 
             // bandedGridColumn15
             // 
-            this.bandedGridColumn15.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn15.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn15.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn15.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn15.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -696,9 +676,7 @@
             // 
             // bandedGridColumn22
             // 
-            this.bandedGridColumn22.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn22.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn22.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn22.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn22.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -721,9 +699,7 @@
             // 
             // bandedGridColumn16
             // 
-            this.bandedGridColumn16.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn16.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn16.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn16.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn16.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -746,9 +722,7 @@
             // 
             // bandedGridColumn19
             // 
-            this.bandedGridColumn19.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn19.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn19.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn19.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn19.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -771,9 +745,7 @@
             // 
             // bandedGridColumn20
             // 
-            this.bandedGridColumn20.AppearanceCell.BackColor = System.Drawing.Color.Honeydew;
             this.bandedGridColumn20.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.bandedGridColumn20.AppearanceCell.Options.UseBackColor = true;
             this.bandedGridColumn20.AppearanceCell.Options.UseFont = true;
             this.bandedGridColumn20.AppearanceCell.Options.UseTextOptions = true;
             this.bandedGridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;

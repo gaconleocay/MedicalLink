@@ -282,7 +282,7 @@ namespace MedicalLink.Dashboard
                 {
                     if (GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
                     {
-                        LayDuLieuBaoCao_DaChayDuLieu();
+                        LayDuLieuBaoCao_ChayMoi();
                     }
                     else
                     {

@@ -4,18 +4,20 @@ using System.Data;
 using System.Windows.Forms;
 using MedicalLink.ClassCommon;
 using MedicalLink.Base;
+using MedicalLink.ChucNang.ImportDMDichVu;
+using Aspose.Cells;
+using Excel = Microsoft.Office.Interop.Excel;
+using DevExpress.XtraGrid.Views.Grid;
+using System.Drawing;
+
 
 namespace MedicalLink.ChucNang
 {
     public partial class ucImportDMDichVu : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        string worksheetName = "DanhMucDichVu";      // Tên Sheet 
-
-        internal List<ClassCommon.classDanhMucPhong> lstDanhSachPhongThucHien { get; set; }
-
-
-
+        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private string worksheetName = "DanhMucDichVu";      // Tên Sheet 
+        private List<classServicePriceRef> lstServicePriceRef { get; set; }
         public ucImportDMDichVu()
         {
             InitializeComponent();
@@ -31,11 +33,10 @@ namespace MedicalLink.ChucNang
                 radioButtonThemMoi.Checked = false;
                 cbbChonKieu.EditValue = "";
                 cbbChonLoai.EditValue = "";
-                btnUpdateDVOK.Enabled = false;
-                LoadDanhMucPhongThucHienDichVu();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
             }
         }
         #endregion
@@ -43,33 +44,69 @@ namespace MedicalLink.ChucNang
         // Mở file Excel hiển thị lên DataGridView
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            // Xóa dữ liệu để import mới
-            gridControlDichVu.DataSource = null;
-            gridViewDichVu.Columns.Clear();
-            gridControlDichVu.Refresh();
-
-            if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
+            try
             {
-                txtFilePath.Text = openFileDialogSelect.FileName;
-                ReadExcelFile _excel = new ReadExcelFile(openFileDialogSelect.FileName);
-                var data = _excel.GetDataTable("SELECT LOAI_DV, MA_DV, MA_NHOM, MA_DV_USER, MA_DV_STTTHAU, TEN_VP, TEN_BH, TEN_PTTT, DVT, GIA_BH, GIA_VP, GIA_YC, GIA_NNN, THOIGIAN_APDUNG, THEO_NGAY_CHI_DINH, HANG_PTTT, LOAI_PTTT, KHOA, NHOM_BHYT, NHOM_BAOCAO, NHOM_TAIKHOAN, PHONG_THUCHIEN, LA_NHOM, MA_CLS FROM [" + worksheetName + "$]");
-                if (data != null)
+                if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
-                    gridControlDichVu.DataSource = data;
+                    gridControlDichVu.DataSource = null;
+                    lstServicePriceRef = new List<classServicePriceRef>();
+                    Workbook workbook = new Workbook(openFileDialogSelect.FileName);
+                    Worksheet worksheet = workbook.Worksheets[worksheetName];
+                    DataTable data_Excel = worksheet.Cells.ExportDataTable(6, 0, worksheet.Cells.MaxDataRow - 6, worksheet.Cells.MaxDataColumn + 1, true);
+                    data_Excel.TableName = "DATA";
+                    if (data_Excel != null && data_Excel.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in data_Excel.Rows)
+                        {
+                            if (row["STT"].ToString() != "")
+                            {
+                                classServicePriceRef servicePriceRef = new classServicePriceRef();
+                                servicePriceRef.stt = Utilities.Util_TypeConvertParse.ToInt64(row["STT"].ToString());
+                                servicePriceRef.servicegrouptype = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICEGROUPTYPE"].ToString());
+                                servicePriceRef.servicegrouptype_name = row["SERVICEGROUPTYPE_NAME"].ToString();
+                                servicePriceRef.servicepricecode = row["SERVICEPRICECODE"].ToString().Trim();
+                                servicePriceRef.servicepricegroupcode = row["SERVICEPRICEGROUPCODE"].ToString();
+                                servicePriceRef.servicepricecodeuser = row["SERVICEPRICECODEUSER"].ToString();
+                                servicePriceRef.servicepricesttuser = row["SERVICEPRICESTTUSER"].ToString();
+                                servicePriceRef.servicepricename = row["SERVICEPRICENAME"].ToString();
+                                servicePriceRef.servicepricenamebhyt = row["SERVICEPRICENAMEBHYT"].ToString();
+                                servicePriceRef.servicepriceunit = row["SERVICEPRICEUNIT"].ToString();
+                                servicePriceRef.servicepricefeebhyt = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEEBHYT"].ToString());
+                                servicePriceRef.servicepricefeenhandan = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEENHANDAN"].ToString());
+                                servicePriceRef.servicepricefee = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEE"].ToString());
+                                servicePriceRef.servicepricefeenuocngoai = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEENUOCNGOAI"].ToString());
+                                servicePriceRef.servicepricefee_old_date = row["SERVICEPRICEFEE_OLD_DATE"].ToString();
+                                servicePriceRef.servicepricefee_old_type = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICEPRICEFEE_OLD_TYPE"].ToString());
+                                servicePriceRef.servicepricefee_old_type_name = row["SERVICEPRICEFEE_OLD_TYPE_NAME"].ToString();
+                                servicePriceRef.pttt_hangid = Utilities.Util_TypeConvertParse.ToInt64(row["PTTT_HANGID"].ToString());
+                                servicePriceRef.pttt_hangid_name = row["PTTT_HANGID_NAME"].ToString();
+                                servicePriceRef.pttt_loaiid = Utilities.Util_TypeConvertParse.ToInt64(row["PTTT_LOAIID"].ToString());
+                                servicePriceRef.pttt_loaiid_name = row["PTTT_LOAIID_NAME"].ToString();
+                                servicePriceRef.servicelock = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICELOCK"].ToString());
+                                servicePriceRef.bhyt_groupcode = row["BHYT_GROUPCODE"].ToString();
+                                servicePriceRef.bhyt_groupcode_name = row["BHYT_GROUPCODE_NAME"].ToString();
+                                servicePriceRef.report_groupcode = row["REPORT_GROUPCODE"].ToString();
+                                servicePriceRef.report_tkcode = row["REPORT_TKCODE"].ToString();
+                                servicePriceRef.servicepricetype = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICEPRICETYPE"].ToString());
+                                servicePriceRef.servicecode = row["SERVICECODE"].ToString();
+                                lstServicePriceRef.Add(servicePriceRef);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        frmthongbao.Show();
+                        return;
+                    }
+                    gridControlDichVu.DataSource = lstServicePriceRef;
                 }
-
-                // Thông báo hiển thị dữ liệu
-                if (gridViewDichVu.RowCount > 0)
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.HIEN_THI_DU_LIEU_THANH_CONG);
-                    frmthongbao.Show();
-                    btnUpdateDVOK.Enabled = true;
-                }
-                else
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA_KIEM_TRA_LAI_TEMPLATE);
-                    frmthongbao.Show();
-                }
+            }
+            catch (Exception ex)
+            {
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA_KIEM_TRA_LAI_TEMPLATE);
+                frmthongbao.Show();
+                Base.Logging.Error(ex);
             }
         }
 
@@ -78,34 +115,31 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                if (radioButtonCapNhat.Checked == true && radioButtonThemMoi.Checked == false)
+                if (lstServicePriceRef != null && lstServicePriceRef.Count > 0)
                 {
-                    CapNhatDanhMucDichVuProcess();
-                }
-                else if (radioButtonCapNhat.Checked == false && radioButtonThemMoi.Checked == true)
-                {
-                    ThemMoiDanhMucDichVuProcess();
+                    if (radioButtonCapNhat.Checked == true && radioButtonThemMoi.Checked == false)
+                    {
+                        CapNhatDanhMucDichVuProcess();
+                    }
+                    else if (radioButtonCapNhat.Checked == false && radioButtonThemMoi.Checked == true)
+                    {
+                        ThemMoiDanhMucDichVuProcess();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không xác định được loại yêu cầu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Không xác định được loại yêu cầu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
             }
-        }
-
-        // Đánh số thứ tự ở cột Indicator gridView
-        private void gridViewDichVu_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
-        private void gridControlDichVu_Click(object sender, EventArgs e)
-        {
-
         }
 
         // Backup lại bảng giá dịch vụ cũ
@@ -164,9 +198,9 @@ namespace MedicalLink.ChucNang
                     cbbChonLoai.EditValue = "";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -190,10 +224,9 @@ namespace MedicalLink.ChucNang
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -215,55 +248,29 @@ namespace MedicalLink.ChucNang
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
-        private void gridViewDichVu_CustomUnboundColumnData(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs e)
+        private void gridViewDichVu_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
             {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        private void LoadDanhMucPhongThucHienDichVu()
-        {
-            try
-            {
-                lstDanhSachPhongThucHien = new List<classDanhMucPhong>();
-
-                condb.connect();
-                string sql_kt = "SELECT departmentid, departmentgroupid, departmentcode,departmentname,departmenttype FROM department WHERE departmenttype in (6,7);";
-                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
-                if (dv_kt.Count > 0)
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    for (int i=0;i<dv_kt.Count;i++)
-                    {
-                        classDanhMucPhong danhmucphong = new classDanhMucPhong();
-                        danhmucphong.departmentid = dv_kt[i]["departmentid"].ToString();
-                        danhmucphong.departmentgroupid = dv_kt[i]["departmentgroupid"].ToString();
-                        danhmucphong.departmentcode = dv_kt[i]["departmentcode"].ToString();
-                        danhmucphong.departmentname = dv_kt[i]["departmentname"].ToString();
-                        danhmucphong.departmenttype = dv_kt[i]["departmenttype"].ToString();
-                        lstDanhSachPhongThucHien.Add(danhmucphong);
-                    }
+                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.ForeColor = Color.Black;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
 
 
     }

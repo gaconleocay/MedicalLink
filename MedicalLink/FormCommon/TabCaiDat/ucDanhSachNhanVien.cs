@@ -84,7 +84,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         // Thêm, sửa danh sách nhân viên
         private void btnNVOK_Click_1(object sender, EventArgs e)
         {
-            string en_txtNVID = txtNVID.Text.Trim();
+            string en_txtNVID = txtNVID.Text.Trim().ToLower();
             string en_txtNVName = txtNVName.Text.Trim();
             string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
 

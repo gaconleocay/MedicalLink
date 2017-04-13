@@ -102,7 +102,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                SessionLogin.MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaDatabase();
+                SessionLogin.MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.KiemTraLicense.LayThongTinMaDatabase();
                 string tenmay = MedicalLink.FormCommon.DangKyBanQuyen.HardwareInfo.GetComputerName();
                 string license_trang = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
 
@@ -228,7 +228,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 // Mã hóa thông tin để so sánh trong DB
-                string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
+                string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim().ToLower(), true);
                 string en_txtPassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtPassword.Text.Trim(), true);
 
                 if (txtUsername.Text == "" || txtPassword.Text == "")
@@ -238,9 +238,9 @@ namespace MedicalLink.FormCommon
                     return;
                 }
                 // tạo 1 tài khoản ở trên PM, không chứa trong DB để làm tài khoản admin
-                else if (txtUsername.Text == Base.KeyTrongPhanMem.AdminUser_key && txtPassword.Text == Base.KeyTrongPhanMem.AdminPass_key)
+                else if (txtUsername.Text.ToLower() == Base.KeyTrongPhanMem.AdminUser_key && txtPassword.Text == Base.KeyTrongPhanMem.AdminPass_key)
                 {
-                    SessionLogin.SessionUsercode = txtUsername.Text;
+                    SessionLogin.SessionUsercode = txtUsername.Text.Trim().ToLower();
                     SessionLogin.SessionUsername = "Administrator";
                     //Load data
                     SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();
@@ -260,8 +260,8 @@ namespace MedicalLink.FormCommon
                         DataView dv = new DataView(condb.getDataTable(command));
                         if (dv != null && dv.Count > 0)
                         {
-                            MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.KiemTraLicenseHopLe();
-                            SessionLogin.SessionUsercode = txtUsername.Text;
+                            MedicalLink.FormCommon.DangKyBanQuyen.KiemTraLicense.KiemTraLicenseHopLe();
+                            SessionLogin.SessionUsercode = txtUsername.Text.Trim().ToLower();
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
                             //Load data
                             SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();

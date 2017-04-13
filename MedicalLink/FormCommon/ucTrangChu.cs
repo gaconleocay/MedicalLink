@@ -96,7 +96,7 @@ namespace MedicalLink.FormCommon
                             navBarItemListNguoiDung.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
                             navBarItemListNhanVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
                             navBarItemListOption.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
-                          
+
                         }
                         else
                         {
@@ -163,45 +163,13 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                string MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.kiemTraLicenseHopLe.LayThongTinMaDatabase();
+                string MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.KiemTraLicense.LayThongTinMaDatabase();
                 //Load License tu DB ra
                 string kiemtra_licensetag = "SELECT datakey, licensekey FROM tools_license WHERE datakey='" + MaDatabase + "' limit 1;";
-                DataView dv = new DataView(condb.getDataTable(kiemtra_licensetag));
-                if (dv != null && dv.Count > 0)
+                DataView dataLicense = new DataView(condb.getDataTable(kiemtra_licensetag));
+                if (dataLicense != null && dataLicense.Count > 0)
                 {
-                    string makichhoat_giaima = EncryptAndDecrypt.Decrypt(dv[0]["licensekey"].ToString(), true);
-                    //Tach ma kich hoat:
-                    string mamay_keykichhoat = "";
-                    long thoigianTu = 0;
-                    long thoigianDen = 0;
-                    string[] makichhoat_tach = makichhoat_giaima.Split('$');
-
-                    if (makichhoat_tach.Length == 4)
-                    {
-                        mamay_keykichhoat = makichhoat_tach[1];
-                        thoigianTu = Convert.ToInt64((makichhoat_tach[2].ToString().Trim() ?? "0") + "000000");
-                        thoigianDen = Convert.ToInt64((makichhoat_tach[3].ToString().Trim() ?? "0") + "235959");
-                        //Thoi gian hien tai
-                        long datetime = Convert.ToInt64(DateTime.Now.ToString("yyyyMMddHHmmss"));
-                        string thoigianTu_text = DateTime.ParseExact(thoigianTu.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy");
-                        string thoigianDen_text = DateTime.ParseExact(thoigianDen.ToString(), "yyyyMMddHHmmss", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy");
-                        //Kiem tra License hop le
-                        if (mamay_keykichhoat == SessionLogin.MaDatabase && datetime < thoigianDen)
-                        {
-                            // SessionLogin.KiemTraLicenseSuDung = true;
-                            linkLabelThoiHan.Text = "Từ: " + thoigianTu_text + " đến: " + thoigianDen_text;
-                        }
-                        else
-                        {
-                            //SessionLogin.KiemTraLicenseSuDung = false;
-                            linkLabelThoiHan.Text = "Mã kích hoạt hết hạn sử dụng";
-                        }
-                    }
-                    else
-                    {
-                        //SessionLogin.KiemTraLicenseSuDung = false;
-                        linkLabelThoiHan.Text = "Sai mã kích hoạt";
-                    }
+                    linkLabelThoiHan.Text = FormCommon.DangKyBanQuyen.KiemTraLicense.KiemTraThoiHanLicense(dataLicense[0]["licensekey"].ToString());
                 }
                 else
                 {

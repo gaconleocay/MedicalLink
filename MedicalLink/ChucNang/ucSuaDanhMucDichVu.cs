@@ -169,7 +169,7 @@ namespace MedicalLink.ChucNang
                         dmDichVu.servicepriceunit = dv_DanhMucDichVu[i]["servicepriceunit"].ToString();
                         if (dv_DanhMucDichVu[i]["servicepricefee"].ToString() != "")
                         {
-                            dmDichVu.servicepricefee = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefee"].ToString());
+                            dmDichVu.servicepricefee = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefee"].ToString());
                         }
                         else
                         {
@@ -177,7 +177,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenhandan"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeenhandan = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenhandan"].ToString());
+                            dmDichVu.servicepricefeenhandan = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenhandan"].ToString());
                         }
                         else
                         {
@@ -185,7 +185,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeebhyt"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeebhyt = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeebhyt"].ToString());
+                            dmDichVu.servicepricefeebhyt = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeebhyt"].ToString());
                         }
                         else
                         {
@@ -193,7 +193,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString() != "" && dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString() != "NULL")
                         {
-                            dmDichVu.servicepricefeenuocngoai = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString());
+                            dmDichVu.servicepricefeenuocngoai = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenuocngoai"].ToString());
                         }
                         else
                         {
@@ -205,7 +205,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefee_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefee_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefee_old"].ToString());
+                            dmDichVu.servicepricefee_old = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefee_old"].ToString());
                         }
                         else
                         {
@@ -213,7 +213,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenhandan_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeenhandan_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenhandan_old"].ToString());
+                            dmDichVu.servicepricefeenhandan_old = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenhandan_old"].ToString());
                         }
                         else
                         {
@@ -221,7 +221,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeebhyt_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeebhyt_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeebhyt_old"].ToString());
+                            dmDichVu.servicepricefeebhyt_old = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeebhyt_old"].ToString());
                         }
                         else
                         {
@@ -229,7 +229,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["servicepricefeenuocngoai_old"].ToString() != "")
                         {
-                            dmDichVu.servicepricefeenuocngoai_old = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["servicepricefeenuocngoai_old"].ToString());
+                            dmDichVu.servicepricefeenuocngoai_old = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["servicepricefeenuocngoai_old"].ToString());
                         }
                         else
                         {
@@ -264,7 +264,7 @@ namespace MedicalLink.ChucNang
                         dmDichVu.ck_groupcode = dv_DanhMucDichVu[i]["ck_groupcode"].ToString();
                         if (dv_DanhMucDichVu[i]["pttt_dinhmucvtth"].ToString() != "")
                         {
-                            dmDichVu.pttt_dinhmucvtth = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["pttt_dinhmucvtth"].ToString());
+                            dmDichVu.pttt_dinhmucvtth = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["pttt_dinhmucvtth"].ToString());
                         }
                         else
                         {
@@ -272,7 +272,7 @@ namespace MedicalLink.ChucNang
                         }
                         if (dv_DanhMucDichVu[i]["pttt_dinhmucthuoc"].ToString() != "")
                         {
-                            dmDichVu.pttt_dinhmucthuoc = Utilities.Util_TypeConvertParse.ToDecimal (dv_DanhMucDichVu[i]["pttt_dinhmucthuoc"].ToString());
+                            dmDichVu.pttt_dinhmucthuoc = Utilities.Util_TypeConvertParse.ToDecimal(dv_DanhMucDichVu[i]["pttt_dinhmucthuoc"].ToString());
                         }
                         else
                         {
@@ -303,7 +303,6 @@ namespace MedicalLink.ChucNang
                 // gridControlDMDichVu.DataSource = null;
             }
             SplashScreenManager.CloseForm();
-
         }
 
         private void LayDanhMucNhomDichVu()
@@ -362,6 +361,13 @@ namespace MedicalLink.ChucNang
         {
             try
             {
+                if (radioKhamBenh.Checked == false && radioXetNghiem.Checked == false && radioCDHA.Checked == false && radioChuyenKhoa.Checked == false)
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
+                    return;
+                }
+
                 GetDataDanhMucDichVu();
                 if (lstDanhMucDichVu.Count > 0 && txtTuKhoaTimKiem.Text.Trim() != "")
                 {

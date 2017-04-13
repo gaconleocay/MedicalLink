@@ -99,7 +99,7 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(1096, 79);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1096, 62);
             this.panelControlThongTinDV.TabIndex = 4;
             // 
             // btnTimKiem
@@ -109,7 +109,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(550, 18);
+            this.btnTimKiem.Location = new System.Drawing.Point(881, 10);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -119,7 +119,7 @@
             // txtTuKhoaTimKiem
             // 
             this.txtTuKhoaTimKiem.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTuKhoaTimKiem.Location = new System.Drawing.Point(5, 46);
+            this.txtTuKhoaTimKiem.Location = new System.Drawing.Point(456, 19);
             this.txtTuKhoaTimKiem.Name = "txtTuKhoaTimKiem";
             this.txtTuKhoaTimKiem.Size = new System.Drawing.Size(380, 27);
             this.txtTuKhoaTimKiem.TabIndex = 4;
@@ -128,10 +128,10 @@
             // radioXetNghiem
             // 
             this.radioXetNghiem.AutoSize = true;
-            this.radioXetNghiem.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioXetNghiem.Location = new System.Drawing.Point(101, 9);
+            this.radioXetNghiem.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioXetNghiem.Location = new System.Drawing.Point(121, 23);
             this.radioXetNghiem.Name = "radioXetNghiem";
-            this.radioXetNghiem.Size = new System.Drawing.Size(91, 20);
+            this.radioXetNghiem.Size = new System.Drawing.Size(107, 23);
             this.radioXetNghiem.TabIndex = 3;
             this.radioXetNghiem.TabStop = true;
             this.radioXetNghiem.Text = "Xét nghiệm";
@@ -141,10 +141,10 @@
             // radioChuyenKhoa
             // 
             this.radioChuyenKhoa.AutoSize = true;
-            this.radioChuyenKhoa.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioChuyenKhoa.Location = new System.Drawing.Point(286, 9);
+            this.radioChuyenKhoa.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioChuyenKhoa.Location = new System.Drawing.Point(323, 23);
             this.radioChuyenKhoa.Name = "radioChuyenKhoa";
-            this.radioChuyenKhoa.Size = new System.Drawing.Size(99, 20);
+            this.radioChuyenKhoa.Size = new System.Drawing.Size(119, 23);
             this.radioChuyenKhoa.TabIndex = 2;
             this.radioChuyenKhoa.TabStop = true;
             this.radioChuyenKhoa.Text = "Chuyên khoa";
@@ -154,10 +154,10 @@
             // radioCDHA
             // 
             this.radioCDHA.AutoSize = true;
-            this.radioCDHA.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioCDHA.Location = new System.Drawing.Point(207, 9);
+            this.radioCDHA.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioCDHA.Location = new System.Drawing.Point(234, 23);
             this.radioCDHA.Name = "radioCDHA";
-            this.radioCDHA.Size = new System.Drawing.Size(59, 20);
+            this.radioCDHA.Size = new System.Drawing.Size(70, 23);
             this.radioCDHA.TabIndex = 1;
             this.radioCDHA.TabStop = true;
             this.radioCDHA.Text = "CĐHA";
@@ -167,10 +167,10 @@
             // radioKhamBenh
             // 
             this.radioKhamBenh.AutoSize = true;
-            this.radioKhamBenh.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioKhamBenh.Location = new System.Drawing.Point(5, 9);
+            this.radioKhamBenh.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioKhamBenh.Location = new System.Drawing.Point(8, 23);
             this.radioKhamBenh.Name = "radioKhamBenh";
-            this.radioKhamBenh.Size = new System.Drawing.Size(90, 20);
+            this.radioKhamBenh.Size = new System.Drawing.Size(107, 23);
             this.radioKhamBenh.TabIndex = 0;
             this.radioKhamBenh.TabStop = true;
             this.radioKhamBenh.Text = "Khám bệnh";
@@ -182,9 +182,9 @@
             this.panelControlChucNang.Controls.Add(this.panelControl2);
             this.panelControlChucNang.Controls.Add(this.panelControl1);
             this.panelControlChucNang.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelControlChucNang.Location = new System.Drawing.Point(454, 79);
+            this.panelControlChucNang.Location = new System.Drawing.Point(454, 62);
             this.panelControlChucNang.Name = "panelControlChucNang";
-            this.panelControlChucNang.Size = new System.Drawing.Size(642, 534);
+            this.panelControlChucNang.Size = new System.Drawing.Size(642, 551);
             this.panelControlChucNang.TabIndex = 6;
             // 
             // panelControl2
@@ -212,7 +212,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(2, 2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(638, 484);
+            this.panelControl2.Size = new System.Drawing.Size(638, 501);
             this.panelControl2.TabIndex = 1;
             // 
             // label10
@@ -241,6 +241,7 @@
             "Xét nghiệm",
             "Chẩn đoán hình ảnh",
             "Chuyên khoa"});
+            this.cbbNhomLoaiDichVu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbbNhomLoaiDichVu.Size = new System.Drawing.Size(200, 26);
             this.cbbNhomLoaiDichVu.TabIndex = 35;
             this.cbbNhomLoaiDichVu.SelectedIndexChanged += new System.EventHandler(this.cbbNhomLoaiDichVu_SelectedIndexChanged);
@@ -438,6 +439,7 @@
             "Ngày giường",
             "Dịch vụ khác",
             "Phụ thu"});
+            this.cbbbhyt_groupcode.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbbbhyt_groupcode.Size = new System.Drawing.Size(200, 26);
             this.cbbbhyt_groupcode.TabIndex = 36;
             // 
@@ -447,7 +449,7 @@
             this.panelControl1.Controls.Add(this.btnLuu);
             this.panelControl1.Controls.Add(this.btnSua);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(2, 486);
+            this.panelControl1.Location = new System.Drawing.Point(2, 503);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(638, 46);
             this.panelControl1.TabIndex = 0;
@@ -498,9 +500,9 @@
             // 
             this.panelControlData.Controls.Add(this.gridControlDMDichVu);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlData.Location = new System.Drawing.Point(0, 79);
+            this.panelControlData.Location = new System.Drawing.Point(0, 62);
             this.panelControlData.Name = "panelControlData";
-            this.panelControlData.Size = new System.Drawing.Size(454, 534);
+            this.panelControlData.Size = new System.Drawing.Size(454, 551);
             this.panelControlData.TabIndex = 7;
             // 
             // gridControlDMDichVu
@@ -509,7 +511,7 @@
             this.gridControlDMDichVu.Location = new System.Drawing.Point(2, 2);
             this.gridControlDMDichVu.MainView = this.gridViewDMDichVu;
             this.gridControlDMDichVu.Name = "gridControlDMDichVu";
-            this.gridControlDMDichVu.Size = new System.Drawing.Size(450, 530);
+            this.gridControlDMDichVu.Size = new System.Drawing.Size(450, 547);
             this.gridControlDMDichVu.TabIndex = 0;
             this.gridControlDMDichVu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDMDichVu});

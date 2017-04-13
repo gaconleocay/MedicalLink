@@ -109,9 +109,9 @@ namespace MedicalLink.ChucNang
                     btnChuyenTienTK.PerformClick();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -151,8 +151,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -180,9 +179,9 @@ namespace MedicalLink.ChucNang
                     //txtChuyenTienVP2.EditValue = obj.ToString();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -223,7 +222,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
         // Đổi màu row khi được chọn

@@ -14,6 +14,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using System.Globalization;
 using System.IO;
 using MedicalLink.Base;
+using DevExpress.XtraSplashScreen;
 
 
 namespace MedicalLink.ChucNang
@@ -195,9 +196,9 @@ namespace MedicalLink.ChucNang
                 thoiGianCapNhat = Convert.ToInt64(spinEditCheDoThuong.Value.ToString()) * 60;
                 lblThoiGianConLai.Text = "Tự động cập nhật sau " + thoiGianCapNhat.ToString() + " giây";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -270,7 +271,7 @@ namespace MedicalLink.ChucNang
                     chkChayDung.Text = "Chạy";
                     chkChayDung.ForeColor = Color.Blue;
                     chkChayDung.Image = imageCollectionIcon.Images[0];
-                    if (radioCheDoThongThuong.Checked==true)
+                    if (radioCheDoThongThuong.Checked == true)
                     {
                         lblCheDoChay.Text = "Đang cài đặt ở chế độ đơn giản";
                     }
@@ -300,7 +301,7 @@ namespace MedicalLink.ChucNang
 
                 if (tickCurrentVal == 0)
                 {
-					btnChay_CheckedChanged(null, null);
+                    btnChay_CheckedChanged(null, null);
                     tickCurrentVal = thoiGianCapNhat;
                     try
                     {
@@ -320,16 +321,15 @@ namespace MedicalLink.ChucNang
 
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        MedicalLink.Base.Logging.Warn(ex);
                     }
                 }
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
         #endregion
@@ -337,6 +337,7 @@ namespace MedicalLink.ChucNang
         #region btn Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 string datetungay = "";
@@ -349,10 +350,11 @@ namespace MedicalLink.ChucNang
                 DataView dv_timkiem = new DataView(condb.getDataTable(sqltimkiem));
                 gridControlLogUpdateKDTK.DataSource = dv_timkiem;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                MedicalLink.Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
         }
         #endregion
 
@@ -368,9 +370,9 @@ namespace MedicalLink.ChucNang
         #region Export data
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            if (gridViewLogUpdateKDTK.RowCount > 0)
+            try
             {
-                try
+                if (gridViewLogUpdateKDTK.RowCount > 0)
                 {
                     using (SaveFileDialog saveDialog = new SaveFileDialog())
                     {
@@ -403,18 +405,20 @@ namespace MedicalLink.ChucNang
                                 default:
                                     break;
                             }
-                            MessageBox.Show("Export dữ liệu thành công!");
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            frmthongbao.Show();
                         }
                     }
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Có lỗi xảy ra", "Thông báo !");
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Không có dữ liệu!");
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
         #endregion

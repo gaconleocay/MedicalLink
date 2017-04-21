@@ -114,7 +114,7 @@
             this.groupBoxThongTin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxThongTin.Location = new System.Drawing.Point(154, 2);
             this.groupBoxThongTin.Name = "groupBoxThongTin";
-            this.groupBoxThongTin.Size = new System.Drawing.Size(846, 80);
+            this.groupBoxThongTin.Size = new System.Drawing.Size(937, 80);
             this.groupBoxThongTin.TabIndex = 7;
             this.groupBoxThongTin.TabStop = false;
             this.groupBoxThongTin.Text = "Thông tin về tài khoản";
@@ -148,7 +148,7 @@
             this.btnThemTuExcel.Appearance.Options.UseFont = true;
             this.btnThemTuExcel.Appearance.Options.UseForeColor = true;
             this.btnThemTuExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnThemTuExcel.Image")));
-            this.btnThemTuExcel.Location = new System.Drawing.Point(639, 22);
+            this.btnThemTuExcel.Location = new System.Drawing.Point(723, 22);
             this.btnThemTuExcel.Name = "btnThemTuExcel";
             this.btnThemTuExcel.Size = new System.Drawing.Size(130, 40);
             this.btnThemTuExcel.TabIndex = 8;
@@ -162,7 +162,7 @@
             this.btnNVOK.Appearance.Options.UseFont = true;
             this.btnNVOK.Appearance.Options.UseForeColor = true;
             this.btnNVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnNVOK.Image")));
-            this.btnNVOK.Location = new System.Drawing.Point(500, 22);
+            this.btnNVOK.Location = new System.Drawing.Point(584, 22);
             this.btnNVOK.Name = "btnNVOK";
             this.btnNVOK.Size = new System.Drawing.Size(100, 40);
             this.btnNVOK.TabIndex = 7;

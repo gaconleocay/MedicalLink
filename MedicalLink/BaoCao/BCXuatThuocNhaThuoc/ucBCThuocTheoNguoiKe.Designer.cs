@@ -34,7 +34,7 @@
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.chkNhom_TatCa = new DevExpress.XtraEditors.CheckEdit();
             this.label1 = new System.Windows.Forms.Label();
-            this.chkcomboListNhomThuoc = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.chkcomboListPhongLuu = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.label2 = new System.Windows.Forms.Label();
             this.chkcomboListDSKho = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -60,7 +60,7 @@
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkNhom_TatCa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListNhomThuoc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListPhongLuu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKho.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlTheoNguoiKe)).BeginInit();
@@ -82,7 +82,7 @@
             // 
             this.groupBoxFile.Controls.Add(this.chkNhom_TatCa);
             this.groupBoxFile.Controls.Add(this.label1);
-            this.groupBoxFile.Controls.Add(this.chkcomboListNhomThuoc);
+            this.groupBoxFile.Controls.Add(this.chkcomboListPhongLuu);
             this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSKho);
             this.groupBoxFile.Controls.Add(this.labelControl1);
@@ -101,7 +101,7 @@
             // 
             // chkNhom_TatCa
             // 
-            this.chkNhom_TatCa.Location = new System.Drawing.Point(260, 23);
+            this.chkNhom_TatCa.Location = new System.Drawing.Point(259, 60);
             this.chkNhom_TatCa.Name = "chkNhom_TatCa";
             this.chkNhom_TatCa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkNhom_TatCa.Properties.Appearance.Options.UseFont = true;
@@ -116,34 +116,34 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(357, 25);
+            this.label1.Location = new System.Drawing.Point(345, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 16);
+            this.label1.Size = new System.Drawing.Size(65, 16);
             this.label1.TabIndex = 85;
-            this.label1.Text = "Nhóm thuốc";
+            this.label1.Text = "Phòng lưu";
             // 
-            // chkcomboListNhomThuoc
+            // chkcomboListPhongLuu
             // 
-            this.chkcomboListNhomThuoc.EditValue = "";
-            this.chkcomboListNhomThuoc.Location = new System.Drawing.Point(439, 22);
-            this.chkcomboListNhomThuoc.Name = "chkcomboListNhomThuoc";
-            this.chkcomboListNhomThuoc.Properties.AllowMultiSelect = true;
-            this.chkcomboListNhomThuoc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListNhomThuoc.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListNhomThuoc.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListNhomThuoc.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.chkcomboListNhomThuoc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.chkcomboListPhongLuu.EditValue = "";
+            this.chkcomboListPhongLuu.Location = new System.Drawing.Point(416, 58);
+            this.chkcomboListPhongLuu.Name = "chkcomboListPhongLuu";
+            this.chkcomboListPhongLuu.Properties.AllowMultiSelect = true;
+            this.chkcomboListPhongLuu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListPhongLuu.Properties.Appearance.Options.UseFont = true;
+            this.chkcomboListPhongLuu.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListPhongLuu.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.chkcomboListPhongLuu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.chkcomboListNhomThuoc.Properties.DropDownRows = 15;
-            this.chkcomboListNhomThuoc.Size = new System.Drawing.Size(256, 22);
-            this.chkcomboListNhomThuoc.TabIndex = 84;
+            this.chkcomboListPhongLuu.Properties.DropDownRows = 15;
+            this.chkcomboListPhongLuu.Size = new System.Drawing.Size(378, 22);
+            this.chkcomboListPhongLuu.TabIndex = 84;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(238, 62);
+            this.label2.Location = new System.Drawing.Point(237, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 16);
             this.label2.TabIndex = 83;
@@ -152,7 +152,7 @@
             // chkcomboListDSKho
             // 
             this.chkcomboListDSKho.EditValue = "";
-            this.chkcomboListDSKho.Location = new System.Drawing.Point(310, 59);
+            this.chkcomboListDSKho.Location = new System.Drawing.Point(309, 22);
             this.chkcomboListDSKho.Name = "chkcomboListDSKho";
             this.chkcomboListDSKho.Properties.AllowMultiSelect = true;
             this.chkcomboListDSKho.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -162,8 +162,9 @@
             this.chkcomboListDSKho.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.chkcomboListDSKho.Properties.DropDownRows = 15;
-            this.chkcomboListDSKho.Size = new System.Drawing.Size(385, 22);
+            this.chkcomboListDSKho.Size = new System.Drawing.Size(485, 22);
             this.chkcomboListDSKho.TabIndex = 82;
+            this.chkcomboListDSKho.EditValueChanged += new System.EventHandler(this.chkcomboListDSKho_EditValueChanged);
             // 
             // labelControl1
             // 
@@ -216,7 +217,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(765, 33);
+            this.btnTimKiem.Location = new System.Drawing.Point(815, 33);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -499,7 +500,7 @@
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkNhom_TatCa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListNhomThuoc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListPhongLuu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKho.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlTheoNguoiKe)).EndInit();
@@ -535,7 +536,7 @@
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSKho;
         private DevExpress.Utils.ImageCollection imMenu;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListNhomThuoc;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListPhongLuu;
         private DevExpress.XtraEditors.CheckEdit chkNhom_TatCa;
     }
 }

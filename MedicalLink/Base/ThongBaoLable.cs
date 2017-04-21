@@ -34,7 +34,7 @@ namespace MedicalLink.Base
         internal static string BENH_AN_DA_THANH_TOAN ="Bệnh án đã thanh toán!";
         internal static string BENH_NHAN_CHUA_DUYET_VIEN_PHI = "Bệnh nhân chưa duyệt viện phí!";
         internal static string CHUA_CHON_KHO_THUOC = "Chưa chọn kho thuốc!";
-        internal static string CHUA_CHON_NHOM_THUOC = "Chưa chọn nhóm thuốc!";
+        internal static string CHUA_CHON_PHONG_LUU = "Chưa chọn phòng lưu!";
         internal static string CHUA_CHON_DOI_TUONG_BENH_NHAN = "Chưa chọn đối tượng bệnh nhân!";
 
 

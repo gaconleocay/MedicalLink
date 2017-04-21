@@ -221,12 +221,12 @@ namespace MedicalLink.BaoCao
                     cboKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
-                    gridBand_gayme.Visible = false;
+                    gridBand_gayme.Visible = true;
                     gridBand_phumo1.Visible = true;
                     gridBand_phumo2.Visible = false;
                     gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = false;
-                    gridBand_PhuMe.Visible = true;
+                    gridBand_PhuMe.Visible = false;
                     gridBand_MoiMoChinh.Visible = true;
                     gridBand_MoiGayMe.Visible = true;
                 }

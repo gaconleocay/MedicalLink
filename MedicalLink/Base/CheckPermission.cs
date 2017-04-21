@@ -169,61 +169,45 @@ namespace MedicalLink.Base
             return lstPhanQuyen_KhoThuoc;
         }
 
-        public static List<ClassCommon.classUserMedicineNhomThuoc> GetPhanQuyen_NhomThuoc()
+        public static List<ClassCommon.classUserMedicinePhongLuu> GetPhanQuyen_PhongLuu()
         {
-            List<ClassCommon.classUserMedicineNhomThuoc> lstPhanQuyen_KhoThuoc = new List<ClassCommon.classUserMedicineNhomThuoc>();
+            List<ClassCommon.classUserMedicinePhongLuu> lstPhanQuyen_PhongLuu = new List<ClassCommon.classUserMedicinePhongLuu>();
             try
             {
-                //string sqlper = "";
-                //if (SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
-                //{
-                //    sqlper = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM medicine_store ms WHERE ms.medicinestoretype in (1,2,3,4,7) ORDER BY ms.medicinestoretype,ms.medicinestorename;";
-                //}
-                //else
-                //{
-                //    string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
-                //    sqlper = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM medicine_store ms INNER JOIN tools_tbluser_medicinestore ttm on ms.medicinestoreid=ttm.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestoretype,ms.medicinestorename;";
-                //}
+                string sqlper = "";
+                if (SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
+                {
+                    sqlper = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, pl.medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename from medicinephongluu pl inner join medicine_store ms on pl.medicinestoreid=ms.medicinestoreid where pl.medicinephongluucode<>'' and pl.medicinephongluuname<>'' order by ms.medicinestorename, pl.medicinephongluuname;";
+                }
+                else
+                {
+                    string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
+                    sqlper = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, pl.medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename FROM medicinephongluu pl INNER JOIN tools_tbluser_medicinephongluu ttm on pl.medicinephongluuid=ttm.medicinephongluuid inner join medicine_store ms on pl.medicinestoreid=ms.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestorename, pl.medicinephongluuname;";
+                }
 
-                //DataView dataKhoThuoc = new DataView(condb.getDataTable(sqlper));
-                //if (dataKhoThuoc.Count > 0)
-                //{
-                //    for (int i = 0; i < dataKhoThuoc.Count; i++)
-                //    {
-                //        ClassCommon.classUserMedicineNhomThuoc userNhomThuoc = new ClassCommon.classUserMedicineNhomThuoc();
-                //        userNhomThuoc.NhomThuocCheck = false;
-                //        userNhomThuoc.NhomThuocId = Utilities.Util_TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoreid"].ToString());
-                //        userNhomThuoc.NhomThuocCode = dataKhoThuoc[i]["medicinestorecode"].ToString();
-                //        userNhomThuoc.NhomThuocName = dataKhoThuoc[i]["medicinestorename"].ToString();
-                //        userNhomThuoc.NhomThuocType = Utilities.Util_TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoretype"].ToString());
-                //        userNhomThuoc.NhomThuocTypeName = dataKhoThuoc[i]["medicinestoretypename"].ToString();
+                DataView dataPhongluu = new DataView(condb.getDataTable(sqlper));
+                if (dataPhongluu.Count > 0)
+                {
+                    for (int i = 0; i < dataPhongluu.Count; i++)
+                    {
+                        ClassCommon.classUserMedicinePhongLuu userMedicineStore = new ClassCommon.classUserMedicinePhongLuu();
+                        userMedicineStore.MedicinePhongLuuCheck = false;
+                        userMedicineStore.MedicinePhongLuuId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongluu[i]["medicinephongluuid"].ToString());
+                        userMedicineStore.MedicinePhongLuuCode = dataPhongluu[i]["medicinephongluucode"].ToString();
+                        userMedicineStore.MedicinePhongLuuName = dataPhongluu[i]["medicinephongluuname"].ToString();
+                        userMedicineStore.MedicineStoreId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongluu[i]["medicinestoreid"].ToString());
+                        userMedicineStore.MedicineStoreCode = dataPhongluu[i]["medicinestorecode"].ToString();
+                        userMedicineStore.MedicineStoreName = dataPhongluu[i]["medicinestorename"].ToString();
 
-                //        lstPhanQuyen_KhoThuoc.Add(userNhomThuoc);
-                //    }
-                //}
-                ClassCommon.classUserMedicineNhomThuoc userNhomThuoc = new ClassCommon.classUserMedicineNhomThuoc();
-                userNhomThuoc.NhomThuocCheck = false;
-                userNhomThuoc.NhomThuocId = 1;
-                userNhomThuoc.NhomThuocCode = "NT_TPDD";
-                userNhomThuoc.NhomThuocName = "Thực Phẩm Dinh Dưỡng";
-                userNhomThuoc.NhomThuocType = 1;
-                userNhomThuoc.NhomThuocTypeName = "Nhà thuốc";
-                lstPhanQuyen_KhoThuoc.Add(userNhomThuoc);
-
-                ClassCommon.classUserMedicineNhomThuoc userNhomThuoc_2 = new ClassCommon.classUserMedicineNhomThuoc();
-                userNhomThuoc_2.NhomThuocCheck = false;
-                userNhomThuoc_2.NhomThuocId = 2;
-                userNhomThuoc_2.NhomThuocCode = "NT_VTYT";
-                userNhomThuoc_2.NhomThuocName = "Vật Tư Y Tế - Nhà Thuốc";
-                userNhomThuoc_2.NhomThuocType = 1;
-                userNhomThuoc_2.NhomThuocTypeName = "Nhà thuốc";
-                lstPhanQuyen_KhoThuoc.Add(userNhomThuoc_2);
+                        lstPhanQuyen_PhongLuu.Add(userMedicineStore);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
-            return lstPhanQuyen_KhoThuoc;
+            return lstPhanQuyen_PhongLuu;
         }
 
     }

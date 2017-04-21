@@ -17,9 +17,11 @@ namespace MedicalLink.ChucNang
     public partial class frmSuaTenDV_TH : Form
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        internal ucSuaMaTenGiaDV ucsuagiadv;
-        internal int kieu_capnhat;
-        internal DataView dv_dmdv;
+        private ucSuaMaTenGiaDV ucsuagiadv;
+        private int kieu_capnhat;
+        private DataView dv_dmdv;
+        private int trangthai_kt;
+        private string current_loaidichvu; //"": dich vu; !="": thuoc, vat tu
 
 
         public frmSuaTenDV_TH()
@@ -27,15 +29,17 @@ namespace MedicalLink.ChucNang
             InitializeComponent();
         }
 
-        //sua 1 row
-        public frmSuaTenDV_TH(ucSuaMaTenGiaDV control, int kieusua)
+        //sua 1 row : kieusua=1; kieusua=2 sửa nhiều
+        //trangthai_kt: =0 chua duyet VP; = 1 da duyet VP
+        public frmSuaTenDV_TH(ucSuaMaTenGiaDV control, int kieusua, int trangthai_kt)
         {
             InitializeComponent();
-            ucsuagiadv = control;
-            kieu_capnhat = kieusua;
+            this.ucsuagiadv = control;
+            this.kieu_capnhat = kieusua;
+            this.trangthai_kt = trangthai_kt;
         }
 
-        //Load
+        #region Load
         private void frmSuaTenDV_TH_Load(object sender, EventArgs e)
         {
             try
@@ -49,6 +53,8 @@ namespace MedicalLink.ChucNang
                 long mavp = Convert.ToInt64(ucsuagiadv.gridViewDSDV.GetRowCellValue(rowHandle, "mavp").ToString());
                 string tenbn = Convert.ToString(ucsuagiadv.gridViewDSDV.GetRowCellValue(rowHandle, "tenbn").ToString());
                 long maphieu = Convert.ToInt64(ucsuagiadv.gridViewDSDV.GetRowCellValue(rowHandle, "maphieu").ToString());
+
+                current_loaidichvu = Convert.ToString(ucsuagiadv.gridViewDSDV.GetRowCellValue(rowHandle, "huongdansudung").ToString());
 
                 if (kieu_capnhat == 1)
                 {
@@ -66,7 +72,7 @@ namespace MedicalLink.ChucNang
                     lblTenDichVuBHYT.Text = tendv;
 
                     txtMaDV_Moi.Focus();
-                    DanhMucDichVu_Load();
+                    DanhMucDichVu_Load(current_loaidichvu, madv);
                 }
                 else if (kieu_capnhat == 2)
                 {
@@ -85,7 +91,7 @@ namespace MedicalLink.ChucNang
                     lblTenDichVuBHYT.Text = tendv;
 
                     txtMaDV_Moi.Focus();
-                    DanhMucDichVu_Load();
+                    DanhMucDichVu_Load(current_loaidichvu, madv);
                 }
                 else
                 {
@@ -108,57 +114,54 @@ namespace MedicalLink.ChucNang
                 lblGiaVP.Text = "";
                 lblGiaYC.Text = "";
                 lblGiaNNN.Text = "";
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
             }
         }
 
-        void DanhMucDichVu_Load()
+        void DanhMucDichVu_Load(string loaidichvu, string madv)
         {
             try
             {
-                string sqldsdv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicelock=0 and isremove is null and servicepricegroupcode <> '' ORDER BY servicepricegroupcode;";
+                string sqldsdv = "";
+
+                if (loaidichvu == "") //dich vu ky thuat
+                {
+                    if (this.trangthai_kt == 0)
+                    {
+                        sqldsdv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicelock=0 and isremove is null and servicepricegroupcode <> '' and ServiceGroupType in (1,2,3,4,11) ORDER BY servicepricegroupcode;";
+                    }
+                    else
+                    {
+                        sqldsdv = "SELECT sef.servicepricecode as dv_ma, sef.servicepricenamebhyt as dv_tenbhyt, sef.servicepricenamenhandan as dv_tenvp, sef.servicepricenamenuocngoai as dv_tennnn, sef.servicepricefeebhyt as gia_bhyt, sef.servicepricefeenhandan as gia_vp, sef.servicepricefee as gia_yc, sef.servicepricefeenuocngoai as gia_nnn FROM servicepriceref sef inner join (select sefc.servicepricefee, sefc.servicepricefeebhyt, sefc.servicepricefeenhandan from servicepriceref sefc where sefc.servicepricecode='" + madv + "') serf on serf.servicepricefee=sef.servicepricefee and serf.servicepricefeebhyt=sef.servicepricefeebhyt and serf.servicepricefeenhandan=sef.servicepricefeenhandan WHERE sef.servicelock=0 and sef.isremove is null and sef.servicepricegroupcode <> '' and sef.ServiceGroupType in (1,2,3,4,11) ORDER BY sef.servicepricegroupcode; ";
+                    }
+                }
+                else //thuoc, vat tu
+                {
+                    if (this.trangthai_kt == 0)
+                    {
+                        sqldsdv = "SELECT medicinecode as dv_ma, medicinename as dv_tenbhyt, medicinename as dv_tenvp, medicinename as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM medicine_ref WHERE servicelock is null and isremove=0 ORDER BY datatype, medicinename;";
+                    }
+                    else
+                    {
+                        sqldsdv = "SELECT mef.medicinecode as dv_ma, mef.medicinename as dv_tenbhyt, mef.medicinename as dv_tenvp, mef.medicinename as dv_tennnn, mef.servicepricefeebhyt as gia_bhyt, mef.servicepricefeenhandan as gia_vp, mef.servicepricefee as gia_yc, mef.servicepricefeenuocngoai as gia_nnn FROM medicine_ref mef inner join (select mefc.servicepricefee, mefc.servicepricefeebhyt, mefc.servicepricefeenhandan from medicine_ref mefc where mefc.medicinecode='" + madv + "') serf on serf.servicepricefee=mef.servicepricefee and serf.servicepricefeebhyt=mef.servicepricefeebhyt and serf.servicepricefeenhandan=mef.servicepricefeenhandan WHERE mef.servicelock is null and mef.isremove=0 ORDER BY mef.datatype, mef.medicinename;     ";
+                    }
+                }
                 dv_dmdv = new DataView(condb.getDataTable(sqldsdv));
 
                 cbbTenDV_Moi.Properties.DataSource = dv_dmdv;
                 cbbTenDV_Moi.Properties.DisplayMember = "dv_tenbhyt";
                 cbbTenDV_Moi.Properties.ValueMember = "dv_ma";
             }
-            catch (Exception)
-            {
-            }
-
-        }
-
-
-
-        private void tbnSuaGiaMoi_Click(object sender, EventArgs e)
-        {  // Lấy thời gian
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            try
-            {
-                // Querry thực hiện
-                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa dịch vụ mã: [" + lblMaDichVu.Text + "] thành mã: [" + txtMaDV_Moi.Text + "] ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    string sqlupdate_ten = "UPDATE serviceprice SET servicepricecode='" + txtMaDV_Moi.Text + "', servicepricename='" + lblTenVP_Moi.Text + "', servicepricename_bhyt='" + cbbTenDV_Moi.Text + "', servicepricename_nhandan='" + lblTenVP_Moi.Text + "', servicepricename_nuocngoai='" + lblTenVP_Moi.Text + "' WHERE servicepriceid='" + lblServicepriceID.Text + "' ;";
-
-                    //Log
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', ' Update 1 danh mục dv servicepriceid=" + lblServicepriceID.Text + " từ mã [" + lblMaDichVu.Text + "]-[" + lblTenDichVuBHYT.Text + "] thành: [" + txtMaDV_Moi.Text + "]-[" + cbbTenDV_Moi.Text + "]' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                    condb.ExecuteNonQuery(sqlupdate_ten);
-                    condb.ExecuteNonQuery(sqlinsert_log);
-                    MessageBox.Show("Sửa mã,tên dịch vụ từ [" + lblMaDichVu.Text + "] thành mã: [" + txtMaDV_Moi.Text + "] thành công", "Thông báo !");
-                    this.Visible = false;
-
-                }
-            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Warn(ex);
             }
         }
+
+        #endregion
 
         private void btnHuyBo_Click(object sender, EventArgs e)
         {
@@ -220,8 +223,9 @@ namespace MedicalLink.ChucNang
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -249,7 +253,15 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                string sql_dv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn,servicepricename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicepricecode ='" + dv_ma_timkiem + "'";
+                string sql_dv = "";
+                if (this.current_loaidichvu == "")
+                {
+                     sql_dv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn,servicepricename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicepricecode ='" + dv_ma_timkiem + "';";
+                }
+                else
+                {
+                    sql_dv = "SELECT medicinecode as dv_ma, medicinename as dv_tenbhyt, medicinename as dv_tenvp, medicinename as dv_tennnn, medicinename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM medicine_ref WHERE medicinecode='" + dv_ma_timkiem + "';";
+                }
                 DataView data_tk = new DataView(condb.getDataTable(sql_dv));
                 if (data_tk.Count > 0)
                 {
@@ -277,8 +289,9 @@ namespace MedicalLink.ChucNang
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
             }
         }
         //hien thi noi dung lay tu searchlookedit
@@ -325,10 +338,36 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Warn(ex);
             }
         }
 
+        #region Click Sua
+        private void btnSuaTenMoi_Row_Click(object sender, EventArgs e)
+        {  // Lấy thời gian
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            try
+            {
+                // Querry thực hiện
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa dịch vụ mã: [" + lblMaDichVu.Text + "] thành mã: [" + txtMaDV_Moi.Text + "] ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string sqlupdate_ten = "UPDATE serviceprice SET servicepricecode='" + txtMaDV_Moi.Text + "', servicepricename='" + lblTenVP_Moi.Text + "', servicepricename_bhyt='" + cbbTenDV_Moi.Text + "', servicepricename_nhandan='" + lblTenVP_Moi.Text + "', servicepricename_nuocngoai='" + lblTenVP_Moi.Text + "' WHERE servicepriceid='" + lblServicepriceID.Text + "' ;";
+
+                    //Log
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', ' Update 1 danh mục dv servicepriceid=" + lblServicepriceID.Text + " từ mã [" + lblMaDichVu.Text + "]-[" + lblTenDichVuBHYT.Text + "] thành: [" + txtMaDV_Moi.Text + "]-[" + cbbTenDV_Moi.Text + "]' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    condb.ExecuteNonQuery(sqlupdate_ten);
+                    condb.ExecuteNonQuery(sqlinsert_log);
+                    MessageBox.Show("Sửa mã,tên dịch vụ từ [" + lblMaDichVu.Text + "] thành mã: [" + txtMaDV_Moi.Text + "] thành công", "Thông báo !");
+                    this.Visible = false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
         private void btnSuaTenMoi_Nhieu_Click(object sender, EventArgs e)
         {
             // Lấy thời gian
@@ -336,14 +375,11 @@ namespace MedicalLink.ChucNang
             int dem = 0;
             try
             {
-                // Querry thực hiện
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa tất cả dịch vụ mã: [" + lblMaDichVu.Text + "] thành mã: [" + txtMaDV_Moi.Text + "] ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
                     for (int i = 0; i < ucsuagiadv.gridViewDSDV.RowCount; i++)
                     {
-                        //MessageBox.Show(ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "madv").ToString());
-                        //if (ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "madv") == lblMaDichVu.Text)
                         if (ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "madv").ToString() == lblMaDichVu.Text)
                         {
                             string sqlupdate_ten = "UPDATE serviceprice SET servicepricecode='" + txtMaDV_Moi.Text + "', servicepricename='" + lblTenYC_Moi.Text + "', servicepricename_bhyt='" + cbbTenDV_Moi.Text + "', servicepricename_nhandan='" + lblTenVP_Moi.Text + "', servicepricename_nuocngoai='" + lblTenNNN_Moi.Text + "' WHERE servicepriceid='" + ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "servicepriceid").ToString() + "' ;";
@@ -352,7 +388,6 @@ namespace MedicalLink.ChucNang
                             condb.ExecuteNonQuery(sqlupdate_ten);
                             condb.ExecuteNonQuery(sqlinsert_log);
                             dem += 1;
-
                         }
                     }
 
@@ -366,11 +401,11 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
             }
         }
 
-
+        #endregion
 
     }
 }

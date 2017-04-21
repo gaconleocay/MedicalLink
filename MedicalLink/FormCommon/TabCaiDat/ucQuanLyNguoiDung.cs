@@ -24,6 +24,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
         private List<MedicalLink.ClassCommon.classUserDepartment> lstUserDepartment { get; set; }
         private List<MedicalLink.ClassCommon.classPermission> lstPerBaoCao { get; set; }
         private List<MedicalLink.ClassCommon.classUserMedicineStore> lstUserMedicineStore { get; set; }
+        private List<MedicalLink.ClassCommon.classUserMedicinePhongLuu> lstUserMedicinePhongLuu { get; set; }
+
         public ucQuanLyNguoiDung()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 LoadDanhSachKhoaPhong();
                 LoadDanhSachBaoCao();
                 LoadDanhSachKhoThuoc();
-
+                LoadDanhSachPhongLuu();
             }
             catch (Exception ex)
             {
@@ -156,7 +158,33 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void LoadDanhSachPhongLuu()
+        {
+            try
+            {
+                string sql = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, pl.medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename from medicinephongluu pl inner join medicine_store ms on pl.medicinestoreid=ms.medicinestoreid where pl.medicinephongluucode<>'' and pl.medicinephongluuname<>'' order by ms.medicinestorename, pl.medicinephongluuname; ";
+                DataView dataPhongLuu = new DataView(condb.getDataTable(sql));
+                lstUserMedicinePhongLuu = new List<ClassCommon.classUserMedicinePhongLuu>();
+                for (int i = 0; i < dataPhongLuu.Count; i++)
+                {
+                    ClassCommon.classUserMedicinePhongLuu userMedicinePhongLuu = new ClassCommon.classUserMedicinePhongLuu();
+                    userMedicinePhongLuu.MedicinePhongLuuCheck = false;
+                    userMedicinePhongLuu.MedicinePhongLuuId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongLuu[i]["medicinephongluuid"].ToString());
+                    userMedicinePhongLuu.MedicinePhongLuuCode = dataPhongLuu[i]["medicinephongluucode"].ToString();
+                    userMedicinePhongLuu.MedicinePhongLuuName = dataPhongLuu[i]["medicinephongluuname"].ToString();
+                    userMedicinePhongLuu.MedicineStoreId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongLuu[i]["medicinestoreid"].ToString());
+                    userMedicinePhongLuu.MedicineStoreCode = dataPhongLuu[i]["medicinestorecode"].ToString();
+                    userMedicinePhongLuu.MedicineStoreName = dataPhongLuu[i]["medicinestorename"].ToString();
 
+                    lstUserMedicinePhongLuu.Add(userMedicinePhongLuu);
+                }
+                gridControlPhongLuu.DataSource = lstUserMedicinePhongLuu;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         #endregion
 
         private void EnableAndDisableControl(bool value)
@@ -191,16 +219,19 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 gridControlKhoaPhong.DataSource = null;
                 gridControlBaoCao.DataSource = null;
                 gridControlKhoThuoc.DataSource = null;
+                gridControlPhongLuu.DataSource = null;
 
                 LoadDanhSachChucNang();
                 LoadDanhSachKhoaPhong();
                 LoadDanhSachBaoCao();
                 LoadDanhSachKhoThuoc();
+                LoadDanhSachPhongLuu();
 
                 LoadPhanQuyenChucNang();
                 LoadPhanQuyenKhoaPhong();
                 LoadPhanQuyenBaoCao();
                 LoadPhanQuyenKhoThuoc();
+                LoadPhanQuyenPhongLuu();
             }
             catch (Exception ex)
             {
@@ -317,6 +348,33 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void LoadPhanQuyenPhongLuu()
+        {
+            try
+            {
+                gridControlPhongLuu.DataSource = null;
+                string sqlquerry_phongluu = "SELECT userphongluutid,medicinephongluuid,medicinestoreid,usercode FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "';";
+                DataView dv_phongluu = new DataView(condb.getDataTable(sqlquerry_phongluu));
+                if (dv_phongluu != null && dv_phongluu.Count > 0)
+                {
+                    for (int i = 0; i < lstUserMedicinePhongLuu.Count; i++)
+                    {
+                        for (int j = 0; j < dv_phongluu.Count; j++)
+                        {
+                            if (lstUserMedicinePhongLuu[i].MedicinePhongLuuId.ToString() == dv_phongluu[j]["medicinephongluuid"].ToString())
+                            {
+                                lstUserMedicinePhongLuu[i].MedicinePhongLuuCheck = true;
+                            }
+                        }
+                    }
+                }
+                gridControlPhongLuu.DataSource = lstUserMedicinePhongLuu;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         private void btnUserThem_Click(object sender, EventArgs e)
         {
             currentUserCode = null;
@@ -334,11 +392,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
             gridControlKhoaPhong.DataSource = null;
             gridControlBaoCao.DataSource = null;
             gridControlKhoThuoc.DataSource = null;
+            gridControlPhongLuu.DataSource = null;
 
             LoadDanhSachChucNang();
             LoadDanhSachKhoaPhong();
             LoadDanhSachBaoCao();
             LoadDanhSachKhoThuoc();
+            LoadDanhSachPhongLuu();
         }
 
         #region Tạo sự kiện khi kích OK
@@ -357,6 +417,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     CreateNewUserDepartment(en_txtUserID);
                     CreateNewUserBaoCao(en_txtUserID);
                     CreateNewUserMedicineStore(en_txtUserID);
+                    CreateNewUserMedicinePhongLuu(en_txtUserID);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                     frmthongbao.Show();
                     LoadDanhSachNguoiDung();
@@ -368,6 +429,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     UpdateUserDepartment(en_txtUserID);
                     UpdateUserBaoCao(en_txtUserID);
                     UpdateUserMedicineStore(en_txtUserID);
+                    UpdateUserMedicinePhongLuu(en_txtUserID);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                     frmthongbao.Show();
                 }
@@ -476,6 +538,26 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     {
                         sqlinsert_usermedicinestore = "INSERT INTO tools_tbluser_medicinestore(medicinestoreid, medicinestoretype, usercode, userdepgidnote) VALUES ('" + lstUserMedicineStore[i].MedicineStoreId + "','" + lstUserMedicineStore[i].MedicineStoreType + "','" + en_txtUserID + "','');";
                         condb.ExecuteNonQuery(sqlinsert_usermedicinestore);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Error(ex);
+            }
+        }
+        private void CreateNewUserMedicinePhongLuu(string en_txtUserID)
+        {
+            try
+            {
+                string sqlinsert_usermedicinephongluu = "";
+                for (int i = 0; i < lstUserMedicinePhongLuu.Count; i++)
+                {
+                    sqlinsert_usermedicinephongluu = "";
+                    if (lstUserMedicinePhongLuu[i].MedicinePhongLuuCheck == true)
+                    {
+                        sqlinsert_usermedicinephongluu = "INSERT INTO tools_tbluser_medicinephongluu(medicinephongluuid, medicinestoreid, usercode, userdepgidnote) VALUES ('" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "','" + lstUserMedicinePhongLuu[i].MedicineStoreId + "','" + en_txtUserID + "','');";
+                        condb.ExecuteNonQuery(sqlinsert_usermedicinephongluu);
                     }
                 }
             }
@@ -641,6 +723,39 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 Logging.Error(ex);
             }
         }
+        private void UpdateUserMedicinePhongLuu(string en_txtUserID)
+        {
+            try
+            {
+                string sqlupdate_usermedicinephongluu = "";
+                for (int i = 0; i < lstUserMedicinePhongLuu.Count; i++)
+                {
+                    sqlupdate_usermedicinephongluu = "";
+                    string sqlkiemtratontai = "SELECT * FROM tools_tbluser_medicinephongluu WHERE usercode='" + en_txtUserID + "' and medicinephongluuid='" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "' ;";
+                    DataView dvkt_medi = new DataView(condb.getDataTable(sqlkiemtratontai));
+                    if (dvkt_medi.Count > 0) //Nếu có quyền đó rồi thì Update
+                    {
+                        if (lstUserMedicinePhongLuu[i].MedicinePhongLuuCheck == false) //xoa
+                        {
+                            sqlupdate_usermedicinephongluu = "DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + en_txtUserID + "' and medicinephongluuid='" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "' ;";
+                            condb.ExecuteNonQuery(sqlupdate_usermedicinephongluu);
+                        }
+                    }
+                    else //nếu không có quyền đó thì Insert
+                    {
+                        if (lstUserMedicinePhongLuu[i].MedicinePhongLuuCheck == true)
+                        {
+                            sqlupdate_usermedicinephongluu = "INSERT INTO tools_tbluser_medicinephongluu(medicinephongluuid, medicinestoreid, usercode, userdepgidnote) VALUES ('" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "','" + lstUserMedicinePhongLuu[i].MedicineStoreId + "','" + en_txtUserID + "','');";
+                            condb.ExecuteNonQuery(sqlupdate_usermedicinephongluu);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Error(ex);
+            }
+        }
 
         #endregion
 
@@ -693,12 +808,14 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     string sqlxoatk_chucnang = "DELETE FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
                     string sqlxoatk_khoaphong = "DELETE FROM tools_tbluser_departmentgroup WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
                     string sqlxoatk_khothuoc = "DELETE FROM tools_tbluser_medicinestore WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
+                    string sqlxoatk_phongluu = "DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa tài khoản: " + currentUserCode + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
 
                     condb.ExecuteNonQuery(sqlxoatk);
                     condb.ExecuteNonQuery(sqlxoatk_chucnang);
                     condb.ExecuteNonQuery(sqlxoatk_khoaphong);
                     condb.ExecuteNonQuery(sqlxoatk_khothuoc);
+                    condb.ExecuteNonQuery(sqlxoatk_phongluu);
                     condb.ExecuteNonQuery(sqlinsert_log);
 
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
@@ -770,8 +887,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
+        private void gridViewPhongLuu_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
 
         #endregion
+
+
 
 
 

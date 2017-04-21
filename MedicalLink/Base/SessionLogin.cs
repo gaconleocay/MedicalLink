@@ -33,7 +33,7 @@ namespace MedicalLink.Base
         public static List<ClassCommon.classPermission> SessionLstPhanQuyen_Dashboard { get; set; }
         public static List<ClassCommon.classPermission> SessionLstPhanQuyen_BaoCao { get; set; }
         public static List<ClassCommon.classUserMedicineStore> SessionLstPhanQuyen_KhoThuoc { get; set; }
-        public static List<ClassCommon.classUserMedicineNhomThuoc> SessionLstPhanQuyen_NhomThuoc { get; set; }
+        public static List<ClassCommon.classUserMedicinePhongLuu> SessionLstPhanQuyen_PhongLuu { get; set; }
 
     }
 

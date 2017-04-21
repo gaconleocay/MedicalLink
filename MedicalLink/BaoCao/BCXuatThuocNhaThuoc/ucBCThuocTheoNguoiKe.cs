@@ -12,6 +12,7 @@ using System.Globalization;
 using System.IO;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
+using MedicalLink.ClassCommon;
 
 namespace MedicalLink.BaoCao
 {
@@ -31,7 +32,6 @@ namespace MedicalLink.BaoCao
             dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             LoadDanhSachNhaThuoc();
-            LoadDanhSachNhomThuoc();
         }
         private void LoadDanhSachNhaThuoc()
         {
@@ -49,22 +49,6 @@ namespace MedicalLink.BaoCao
                 Base.Logging.Warn(ex);
             }
         }
-        private void LoadDanhSachNhomThuoc()
-        {
-            try
-            {
-                List<ClassCommon.classUserMedicineNhomThuoc> lstDSNhomThuoc = Base.SessionLogin.SessionLstPhanQuyen_NhomThuoc.Where(o => o.NhomThuocType == 1).ToList();
-                chkcomboListNhomThuoc.Properties.DataSource = lstDSNhomThuoc;
-                chkcomboListNhomThuoc.Properties.DisplayMember = "NhomThuocName";
-                chkcomboListNhomThuoc.Properties.ValueMember = "NhomThuocCode";
-
-                chkcomboListNhomThuoc.CheckAll();
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Warn(ex);
-            }
-        }
 
         #endregion
         private void btnSelect_Click(object sender, EventArgs e)
@@ -73,7 +57,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 string lstKhoThuocChonLayBC = "";
-                string lstNhomThuocChonLayBC = "";
+                string lstPhongLuuChonLayBC = "";
 
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -95,20 +79,21 @@ namespace MedicalLink.BaoCao
                     SplashScreenManager.CloseForm();
                     return;
                 }
-                //Nhom thuoc
-                List<Object> lstNhomCheck = chkcomboListNhomThuoc.Properties.Items.GetCheckedValues();
+                //Phong luu
+                List<Object> lstNhomCheck = chkcomboListPhongLuu.Properties.Items.GetCheckedValues();
                 if (lstNhomCheck.Count > 0)
                 {
-                    lstNhomThuocChonLayBC = " and mef.medicinegroupcode in (";
+                    lstPhongLuuChonLayBC = " where msr.medicinephongluuid in (";
                     for (int i = 0; i < lstNhomCheck.Count - 1; i++)
                     {
-                        lstNhomThuocChonLayBC += "'" + lstNhomCheck[i] + "',";
+                        lstPhongLuuChonLayBC += "'" + lstNhomCheck[i] + "',";
                     }
-                    lstNhomThuocChonLayBC += "'" + lstNhomCheck[lstNhomCheck.Count - 1] + "') ";
+                    lstPhongLuuChonLayBC += "'" + lstNhomCheck[lstNhomCheck.Count - 1] + "') ";
+                 lstPhongLuuChonLayBC=   lstPhongLuuChonLayBC.Replace("'", "");
                 }
-                if (chkNhom_TatCa.Checked == false && lstNhomThuocChonLayBC == "")
+                if (chkNhom_TatCa.Checked == false && lstPhongLuuChonLayBC == "")
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_NHOM_THUOC);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_LUU);
                     frmthongbao.Show();
                     SplashScreenManager.CloseForm();
                     return;
@@ -117,7 +102,7 @@ namespace MedicalLink.BaoCao
                 //Lay du lieu
                 this.dataBCBXuatThuoc = new DataTable();
                 gridControlTheoNguoiKe.DataSource = null;
-                string sql_timkiem = "SELECT ROW_NUMBER () OVER (ORDER BY msb.bacsi, (case when msb.departmentid=0 then mes.medicinestorename else pcd.departmentname end), mef.medicinerefid_org) as stt, mef.medicinerefid_org, (select medicinecode from medicine_ref where medicinerefid=mef.medicinerefid_org) as medicinecode, mef.medicinename, sum(me.accept_soluong) as soluong, me.accept_money as dongia, sum(me.accept_soluong * me.accept_money) as thanhtien, kcd.departmentgroupname as khoachidinh, (case when msb.departmentid=0 then mes.medicinestorename else pcd.departmentname end) as phongchidinh, msb.bacsi as nguoichidinh FROM medicine_ref mef inner join medicine me on mef.medicinerefid=me.medicinerefid inner join medicine_store_bill msb on msb.medicinestorebillid=me.medicinestorebillid left join departmentgroup kcd on kcd.departmentgroupid=msb.departmentgroupid left join department pcd on pcd.departmentid=msb.departmentid and pcd.departmenttype in (2,3,9) left join medicine_store mes on mes.medicinestoreid=msb.partnerid or mes.medicinestoreid=msb.medicinestoreid WHERE msb.medicinestorebillstatus=2 and mes.medicinestoretype=4 and msb.isremove=0 and msb.medicinestorebilltype in (204,6) and msb.medicinestorebilldate>='" + datetungay + "' and msb.medicinestorebilldate<='" + datedenngay + "' and mes.medicinestoreid in (" + lstKhoThuocChonLayBC + ") " + lstNhomThuocChonLayBC + " GROUP BY mef.medicinerefid_org, mef.medicinename, me.accept_money, kcd.departmentgroupname, msb.bacsi, (case when msb.departmentid=0 then mes.medicinestorename else pcd.departmentname end);";
+                string sql_timkiem = "SELECT ROW_NUMBER () OVER (ORDER BY msb.bacsi, (case when msb.departmentid=0 then mes.medicinestorename else pcd.departmentname end), mef.medicinerefid_org) as stt, mef.medicinerefid_org, (select medicinecode from medicine_ref where medicinerefid=mef.medicinerefid_org) as medicinecode, mef.medicinename, sum(me.accept_soluong) as soluong, me.accept_money as dongia, sum(me.accept_soluong * me.accept_money) as thanhtien, kcd.departmentgroupname as khoachidinh, (case when msb.departmentid=0 then mes.medicinestorename else pcd.departmentname end) as phongchidinh, msb.bacsi as nguoichidinh FROM medicine_ref mef inner join (select msr.medicinerefid, msr.medicinestorerefid from medicine_store_ref msr " + lstPhongLuuChonLayBC + ") msrid on msrid.medicinerefid=mef.medicinerefid inner join medicine me on me.medicinestorerefid=msrid.medicinestorerefid inner join medicine_store_bill msb on msb.medicinestorebillid=me.medicinestorebillid left join departmentgroup kcd on kcd.departmentgroupid=msb.departmentgroupid left join department pcd on pcd.departmentid=msb.departmentid and pcd.departmenttype in (2,3,9) left join medicine_store mes on mes.medicinestoreid=msb.partnerid or mes.medicinestoreid=msb.medicinestoreid WHERE msb.medicinestorebillstatus=2 and mes.medicinestoretype=4 and msb.isremove=0 and msb.medicinestorebilltype in (204,6) and msb.medicinestorebilldate>='" + datetungay + "' and msb.medicinestorebilldate<='" + datedenngay + "' and mes.medicinestoreid in (" + lstKhoThuocChonLayBC + ") GROUP BY mef.medicinerefid_org, mef.medicinename, me.accept_money, kcd.departmentgroupname, msb.bacsi, (case when msb.departmentid=0 then mes.medicinestorename else pcd.departmentname end); ";
                 this.dataBCBXuatThuoc = condb.getDataTable(sql_timkiem);
                 if (this.dataBCBXuatThuoc != null && this.dataBCBXuatThuoc.Rows.Count > 0)
                 {
@@ -189,13 +174,46 @@ namespace MedicalLink.BaoCao
             {
                 if (chkNhom_TatCa.Checked)
                 {
-                    chkcomboListNhomThuoc.ReadOnly = true;
-                    chkcomboListNhomThuoc.SetEditValue(null);
-                    chkcomboListNhomThuoc.DeselectAll();
+                    chkcomboListPhongLuu.ReadOnly = true;
+                    chkcomboListPhongLuu.SetEditValue(null);
+                    chkcomboListPhongLuu.DeselectAll();
                 }
                 else
                 {
-                    chkcomboListNhomThuoc.ReadOnly = false;
+                    chkcomboListPhongLuu.ReadOnly = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void chkcomboListDSKho_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                chkcomboListPhongLuu.Properties.Items.Clear();
+                List<Object> lstKhoaCheck = chkcomboListDSKho.Properties.Items.GetCheckedValues();
+                if (lstKhoaCheck.Count > 0)
+                {
+                    List<ClassCommon.classUserMedicinePhongLuu> lstDSPhongLuu = new List<classUserMedicinePhongLuu>();
+                    for (int i = 0; i < lstKhoaCheck.Count; i++)
+                    {
+                        List<ClassCommon.classUserMedicinePhongLuu> lstdsphongthuockhoa = Base.SessionLogin.SessionLstPhanQuyen_PhongLuu.Where(o => o.MedicineStoreId == Utilities.Util_TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
+                        lstDSPhongLuu.AddRange(lstdsphongthuockhoa);
+                    }
+                    if (lstDSPhongLuu != null && lstDSPhongLuu.Count > 0)
+                    {
+                        foreach (var item in lstDSPhongLuu)
+                        {
+                            item.MedicinePhongLuuName = item.MedicineStoreName + "-" + item.MedicinePhongLuuName;
+                        }
+                        chkcomboListPhongLuu.Properties.DataSource = lstDSPhongLuu;
+                        chkcomboListPhongLuu.Properties.DisplayMember = "MedicinePhongLuuName";
+                        chkcomboListPhongLuu.Properties.ValueMember = "MedicinePhongLuuId";
+                    }
+                    chkcomboListPhongLuu.CheckAll();
                 }
             }
             catch (Exception ex)

@@ -32,6 +32,7 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTableOption();
                 result = KetNoiSCDLProcess.CreateTableTblNhanVien();
                 result = KetNoiSCDLProcess.CreateTableUserMedicineStore();
+                result = KetNoiSCDLProcess.CreateTableUserMedicinePhongLuu();
                 result = KetNoiSCDLProcess.CreateTableToolsServicepricePttt();
 
 
@@ -362,6 +363,23 @@ namespace MedicalLink.FormCommon
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error("Lỗi CreateTableUserMedicineStore" + ex.ToString());
+            }
+            return result;
+        }
+        private static bool CreateTableUserMedicinePhongLuu()
+        {
+            bool result = false;
+            try
+            {
+                string sql_tbluser = "CREATE TABLE IF NOT EXISTS tools_tbluser_medicinephongluu( userphongluutid serial NOT NULL, medicinephongluuid integer, medicinestoreid integer, usercode text, userdepgidnote text, CONSTRAINT tools_tbluser_medicinephongluu_pkey PRIMARY KEY (userphongluutid) );";
+                if (condb.ExecuteNonQuery(sql_tbluser))
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi CreateTableUserMedicinePhongLuu" + ex.ToString());
             }
             return result;
         }

@@ -51,7 +51,6 @@ namespace MedicalLink.ChucNang
         //Sự kiện tìm kiếm
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Chức năng đang phát triển","Thông báo!");
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
@@ -125,7 +124,7 @@ namespace MedicalLink.ChucNang
                     datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                     datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
-                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepriceid) as stt, ser.servicepriceid as servicepriceid, ser.maubenhphamid as maphieu, vp.patientid as mabn,vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoachidinh, de.departmentname as tenphongchidinh, ser.servicepricecode as madv, ser.servicepricename as tendv_yc, ser.servicepricename_bhyt as tendv_bhyt, ser.servicepricename_nhandan as tendv_vp, ser.servicepricename_nuocngoai as tendv_nnn, ser.servicepricemoney as dongia, ser.servicepricemoney_nhandan as dongiavienphi, ser.servicepricemoney_bhyt as dongiabhyt, ser.servicepricemoney_nuocngoai as dongiannn, ser.servicepricedate as thoigianchidinh, ser.soluong as soluong, vp.vienphidate as thoigianvaovien, (case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai FROM serviceprice ser inner join vienphi vp on ser.vienphiid=vp.vienphiid inner join hosobenhan hsba on vp.hosobenhanid=hsba.hosobenhanid inner join departmentgroup degp on ser.departmentgroupid=degp.departmentgroupid inner join department de on ser.departmentid=de.departmentid and de.departmenttype in (0,2,3,9) WHERE ser.servicepricecode in (" + dsdv + ") and ser.servicepricedate >= '" + datetungay + "' and ser.servicepricedate <= '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ;";
+                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepriceid) as stt, ser.servicepriceid as servicepriceid, ser.maubenhphamid as maphieu, vp.patientid as mabn,vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoachidinh, de.departmentname as tenphongchidinh, ser.servicepricecode as madv, ser.servicepricename as tendv_yc, ser.servicepricename_bhyt as tendv_bhyt, ser.servicepricename_nhandan as tendv_vp, ser.servicepricename_nuocngoai as tendv_nnn, ser.servicepricemoney as dongia, ser.servicepricemoney_nhandan as dongiavienphi, ser.servicepricemoney_bhyt as dongiabhyt, ser.servicepricemoney_nuocngoai as dongiannn, ser.servicepricedate as thoigianchidinh, ser.soluong as soluong, vp.vienphidate as thoigianvaovien, (case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, ser.huongdansudung FROM serviceprice ser inner join vienphi vp on ser.vienphiid=vp.vienphiid inner join hosobenhan hsba on vp.hosobenhanid=hsba.hosobenhanid inner join departmentgroup degp on ser.departmentgroupid=degp.departmentgroupid inner join department de on ser.departmentid=de.departmentid and de.departmenttype in (0,2,3,9) WHERE ser.servicepricecode in (" + dsdv + ") and ser.servicepricedate >= '" + datetungay + "' and ser.servicepricedate <= '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ;";
 
                     // string_loctimkiem= "serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ";
 
@@ -148,8 +147,8 @@ namespace MedicalLink.ChucNang
 
         private void ucBCDSBNSDdv_Load(object sender, EventArgs e)
         {
-             dateTuNgay.Value= Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
         }
 
         //xuat ra excel
@@ -231,12 +230,12 @@ namespace MedicalLink.ChucNang
                 itemSuaGiaMotDV.Click += new EventHandler(itemSuaGiaMotDV_Click);// thêm sự kiện click
                 e.Menu.Items.Add(itemSuaGiaMotDV);
 
-                DXMenuItem itemSuaGiaNhieuDV = new DXMenuItem("Sửa giá tất cả dịch vụ có mã đang chọn");
-                itemSuaGiaNhieuDV.Image = imMenu.Images[1];
-                //itemXoaToanBA.Shortcut = Shortcut.F6;
-                itemSuaGiaNhieuDV.Click += new EventHandler(itemSuaGiaNhieuDV_Click);
-                e.Menu.Items.Add(itemSuaGiaNhieuDV);
-                //itemSuaGiaNhieuDV.BeginGroup = true;
+                //DXMenuItem itemSuaGiaNhieuDV = new DXMenuItem("Sửa giá tất cả dịch vụ có mã đang chọn");
+                //itemSuaGiaNhieuDV.Image = imMenu.Images[1];
+                ////itemXoaToanBA.Shortcut = Shortcut.F6;
+                //itemSuaGiaNhieuDV.Click += new EventHandler(itemSuaGiaNhieuDV_Click);
+                //e.Menu.Items.Add(itemSuaGiaNhieuDV);
+                ////itemSuaGiaNhieuDV.BeginGroup = true;
 
                 DXMenuItem itemSuaTenMotDV = new DXMenuItem("Sửa tên 1 row đang chọn");
                 itemSuaTenMotDV.Image = imMenu.Images[2];
@@ -319,20 +318,16 @@ namespace MedicalLink.ChucNang
                 int kieusua = 1;
                 // lấy giá trị tại dòng click chuột
                 var rowHandle = gridViewDSDV.FocusedRowHandle;
-                string trangthai_kt = Convert.ToString(gridViewDSDV.GetRowCellValue(rowHandle, "trangthai").ToString());
-                if (trangthai_kt != "Đã duyệt VP")
+                int trangthai_kt = 0;
+                if (Convert.ToString(gridViewDSDV.GetRowCellValue(rowHandle, "trangthai").ToString()) == "Đã duyệt VP")
                 {
-                    //truyền biến sang bên form thực hiện
-                    MedicalLink.ChucNang.frmSuaTenDV_TH frmsuatendv_th = new MedicalLink.ChucNang.frmSuaTenDV_TH(this, kieusua);
-                    frmsuatendv_th.ShowDialog();
-                    gridControlDSDV.DataSource = null;
-                    btnTimKiem_Click(null, null);
+                    trangthai_kt = 1;
                 }
-                else
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
-                    frmthongbao.Show();
-                }
+                //truyền biến sang bên form thực hiện
+                MedicalLink.ChucNang.frmSuaTenDV_TH frmsuatendv_th = new MedicalLink.ChucNang.frmSuaTenDV_TH(this, kieusua, trangthai_kt);
+                frmsuatendv_th.ShowDialog();
+                gridControlDSDV.DataSource = null;
+                btnTimKiem_Click(null, null);
             }
             catch (Exception ex)
             {
@@ -348,20 +343,17 @@ namespace MedicalLink.ChucNang
                 int kieusua = 2;
                 // lấy giá trị tại dòng click chuột
                 var rowHandle = gridViewDSDV.FocusedRowHandle;
-                string trangthai_kt = Convert.ToString(gridViewDSDV.GetRowCellValue(rowHandle, "trangthai").ToString());
-                if (trangthai_kt != "Đã duyệt VP")
+                int trangthai_kt = 0;
+                if (Convert.ToString(gridViewDSDV.GetRowCellValue(rowHandle, "trangthai").ToString()) == "Đã duyệt VP")
                 {
-                    //truyền biến sang bên form thực hiện
-                    MedicalLink.ChucNang.frmSuaTenDV_TH frmsuatendv_th = new MedicalLink.ChucNang.frmSuaTenDV_TH(this, kieusua);
-                    frmsuatendv_th.ShowDialog();
-                    gridControlDSDV.DataSource = null;
-                    btnTimKiem_Click(null, null);
+                    trangthai_kt = 1;
                 }
-                else
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
-                    frmthongbao.Show();
-                }
+
+                //truyền biến sang bên form thực hiện
+                MedicalLink.ChucNang.frmSuaTenDV_TH frmsuatendv_th = new MedicalLink.ChucNang.frmSuaTenDV_TH(this, kieusua, trangthai_kt);
+                frmsuatendv_th.ShowDialog();
+                gridControlDSDV.DataSource = null;
+                btnTimKiem_Click(null, null);
             }
             catch (Exception ex)
             {

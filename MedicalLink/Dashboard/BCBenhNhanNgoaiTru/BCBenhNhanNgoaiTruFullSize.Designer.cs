@@ -33,6 +33,10 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
+            this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.gridControlDataBNNT = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewDataBNNT = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.departmentgroupname = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -49,10 +53,58 @@
             this.bandedGridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBNNT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataBNNT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tbnExport);
+            this.panel1.Controls.Add(this.lblTenThongTinChiTiet);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1350, 31);
+            this.panel1.TabIndex = 0;
+            // 
+            // tbnExport
+            // 
+            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbnExport.Appearance.Options.UseFont = true;
+            this.tbnExport.Appearance.Options.UseForeColor = true;
+            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
+            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.tbnExport.Location = new System.Drawing.Point(16, 3);
+            this.tbnExport.Name = "tbnExport";
+            this.tbnExport.Size = new System.Drawing.Size(110, 25);
+            this.tbnExport.TabIndex = 33;
+            this.tbnExport.Text = "Export...";
+            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
+            // 
+            // lblTenThongTinChiTiet
+            // 
+            this.lblTenThongTinChiTiet.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTenThongTinChiTiet.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenThongTinChiTiet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(0, 0);
+            this.lblTenThongTinChiTiet.Name = "lblTenThongTinChiTiet";
+            this.lblTenThongTinChiTiet.Size = new System.Drawing.Size(1350, 31);
+            this.lblTenThongTinChiTiet.TabIndex = 11;
+            this.lblTenThongTinChiTiet.Text = "BÁO CÁO BỆNH NHÂN NGOẠI TRÚ";
+            this.lblTenThongTinChiTiet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.gridControlDataBNNT);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 31);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1350, 699);
+            this.panel2.TabIndex = 1;
             // 
             // gridControlDataBNNT
             // 
@@ -64,8 +116,8 @@
             this.gridControlDataBNNT.Name = "gridControlDataBNNT";
             this.gridControlDataBNNT.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButton_View});
-            this.gridControlDataBNNT.Size = new System.Drawing.Size(1350, 730);
-            this.gridControlDataBNNT.TabIndex = 28;
+            this.gridControlDataBNNT.Size = new System.Drawing.Size(1350, 699);
+            this.gridControlDataBNNT.TabIndex = 29;
             this.gridControlDataBNNT.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridViewDataBNNT});
             // 
@@ -355,13 +407,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 730);
-            this.Controls.Add(this.gridControlDataBNNT);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BCBenhNhanNgoaiTruFullSize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Báo cáo bệnh nhân nội trú";
+            this.Text = "Báo cáo bệnh nhân ngoại trú";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.BCBenhNhanNgoaiTruFullSize_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBNNT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataBNNT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).EndInit();
@@ -371,6 +425,8 @@
 
         #endregion
 
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraGrid.GridControl gridControlDataBNNT;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridViewDataBNNT;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand departmentgroupname;
@@ -387,6 +443,9 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn6;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn7;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn8;
+        private System.Windows.Forms.Label lblTenThongTinChiTiet;
+        private DevExpress.XtraEditors.SimpleButton tbnExport;
+
 
     }
 }

@@ -11,6 +11,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using DevExpress.Utils.Menu;
 using MedicalLink.Base;
+using DevExpress.XtraSplashScreen;
 
 namespace MedicalLink.FormCommon.TabCaiDat
 {
@@ -117,7 +118,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void gridViewDSNV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -137,6 +137,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
+                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                     MedicalLink.Base.ReadExcelFile _excel = new MedicalLink.Base.ReadExcelFile(openFileDialogSelect.FileName);
                     var data = _excel.GetDataTable("SELECT USERCODE,USERNAME,USERPASSWORD,USERSTATUS,USERGNHOM,USERNOTE,USERHISID FROM [" + worksheetName + "$]");
                     if (data != null)
@@ -189,11 +190,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         gridControlDSNV.DataSource = null;
                         ucDanhSachNhanVien_Load(null, null);
                     }
+                    SplashScreenManager.CloseForm();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                SplashScreenManager.CloseForm();
+                Base.Logging.Error(ex);
             }
         }
 

@@ -73,6 +73,7 @@
             this.thoigianravien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thoigianduyetvp = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.huongdansudung = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -217,6 +218,7 @@
             // 
             // cbbLoaiBA
             // 
+            this.cbbLoaiBA.EditValue = "Ngoại trú+Nội trú";
             this.cbbLoaiBA.Location = new System.Drawing.Point(434, 73);
             this.cbbLoaiBA.Name = "cbbLoaiBA";
             this.cbbLoaiBA.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -276,6 +278,7 @@
             // 
             // cbbTrangThaiVP
             // 
+            this.cbbTrangThaiVP.EditValue = "Đang điều trị";
             this.cbbTrangThaiVP.Location = new System.Drawing.Point(434, 26);
             this.cbbTrangThaiVP.Name = "cbbTrangThaiVP";
             this.cbbTrangThaiVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -340,7 +343,8 @@
             this.soluong,
             this.thoigianvaovien,
             this.thoigianravien,
-            this.thoigianduyetvp});
+            this.thoigianduyetvp,
+            this.huongdansudung});
             this.gridViewDSDV.GridControl = this.gridControlDSDV;
             this.gridViewDSDV.Name = "gridViewDSDV";
             this.gridViewDSDV.OptionsView.ColumnAutoWidth = false;
@@ -798,6 +802,12 @@
             this.imMenu.Images.SetKeyName(2, "partly-cloudy-day-16.png");
             this.imMenu.Images.SetKeyName(3, "sun-16.png");
             // 
+            // huongdansudung
+            // 
+            this.huongdansudung.Caption = "gridColumn5";
+            this.huongdansudung.FieldName = "huongdansudung";
+            this.huongdansudung.Name = "huongdansudung";
+            // 
             // ucSuaMaTenGiaDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -871,5 +881,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn huongdansudung;
     }
 }

@@ -124,7 +124,7 @@ namespace MedicalLink.Base
                 TOOL_08.permissioncode = "TOOL_08";
                 TOOL_08.permissionname = "Sửa mã, tên, giá dịch vụ/thuốc của BN";
                 TOOL_08.permissiontype = 2;
-                TOOL_08.permissionnote = "Sửa mã, tên, giá dịch vụ/thuốc của BN";
+                TOOL_08.permissionnote = "Sửa mã, tên, giá dịch vụ/thuốc của BN. Lấy theo thời gian chỉ định dịch vụ";
                 lstresult.Add(TOOL_08);
 
                 ClassCommon.classPermission TOOL_09 = new ClassCommon.classPermission();

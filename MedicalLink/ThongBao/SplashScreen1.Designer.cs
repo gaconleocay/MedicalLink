@@ -50,9 +50,9 @@
             this.labelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.labelControl1.Location = new System.Drawing.Point(23, 270);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(190, 13);
+            this.labelControl1.Size = new System.Drawing.Size(219, 13);
             this.labelControl1.TabIndex = 6;
-            this.labelControl1.Text = "Copyright 2016 Hong Minh Nhat Co.Ltd";
+            this.labelControl1.Text = "Copyright 2016 Medical Sulution One One Co.";
             // 
             // labelControl2
             // 

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MedicalLink")]
 [assembly: AssemblyDescription("Phần mềm hỗ trợ quản lý tổng thể bệnh viện")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HMN.Company")]
+[assembly: AssemblyCompany("Medical Sulution One One")]
 [assembly: AssemblyProduct("MedicalLink")]
-[assembly: AssemblyCopyright("Copyright © HMN.Company 2016")]
+[assembly: AssemblyCopyright("Copyright © 2016 Medical Sulution One One Co.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -33,5 +33,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.1.6.19")]
-[assembly: AssemblyFileVersion("2.1.6.19")]
+[assembly: AssemblyVersion("2.1.6.20")]
+[assembly: AssemblyFileVersion("2.1.6.20")]

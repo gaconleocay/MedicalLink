@@ -115,7 +115,7 @@
             this.btnThayDoi.Appearance.Options.UseFont = true;
             this.btnThayDoi.Appearance.Options.UseForeColor = true;
             this.btnThayDoi.Image = ((System.Drawing.Image)(resources.GetObject("btnThayDoi.Image")));
-            this.btnThayDoi.Location = new System.Drawing.Point(146, 210);
+            this.btnThayDoi.Location = new System.Drawing.Point(161, 210);
             this.btnThayDoi.Name = "btnThayDoi";
             this.btnThayDoi.Size = new System.Drawing.Size(100, 40);
             this.btnThayDoi.TabIndex = 6;

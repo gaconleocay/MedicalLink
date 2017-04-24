@@ -205,10 +205,10 @@ namespace MedicalLink.BaoCao
                     }
                     if (lstDSPhongLuu != null && lstDSPhongLuu.Count > 0)
                     {
-                        foreach (var item in lstDSPhongLuu)
-                        {
-                            item.MedicinePhongLuuName = item.MedicineStoreName + "-" + item.MedicinePhongLuuName;
-                        }
+                        //foreach (var item in lstDSPhongLuu)
+                        //{
+                        //    item.MedicinePhongLuuName = item.MedicineStoreName + "-" + item.MedicinePhongLuuName;
+                        //}
                         chkcomboListPhongLuu.Properties.DataSource = lstDSPhongLuu;
                         chkcomboListPhongLuu.Properties.DisplayMember = "MedicinePhongLuuName";
                         chkcomboListPhongLuu.Properties.ValueMember = "MedicinePhongLuuId";

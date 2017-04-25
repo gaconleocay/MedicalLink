@@ -16,7 +16,6 @@ namespace MedicalLink.ChucNang
         //Cap nhat danh muc dich vu
         private void CapNhatDanhMucDichVuProcess()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 string chonkieuimport = cbbChonKieu.Text.Trim();
@@ -25,6 +24,7 @@ namespace MedicalLink.ChucNang
                     DialogResult dialogResult = MessageBox.Show("Hãy backup dữ liệu trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                         switch (chonkieuimport)
                         {
                             case "Tên dịch vụ BHYT":
@@ -103,6 +103,7 @@ namespace MedicalLink.ChucNang
                                     break;
                                 }
                         }
+                        SplashScreenManager.CloseForm();
                     }
                 }
                 else
@@ -114,9 +115,9 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
+                SplashScreenManager.CloseForm();
                 Base.Logging.Warn(ex);
             }
-            SplashScreenManager.CloseForm();
         }
 
         #region Xu ly Cap nhat
@@ -976,6 +977,7 @@ namespace MedicalLink.ChucNang
                 DialogResult dialogResult = MessageBox.Show("Hãy backup trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                     foreach (var item_servicep in lstServicePriceRef)
                     {
                         try
@@ -991,11 +993,11 @@ namespace MedicalLink.ChucNang
                                 else if (dv_kt.Count == 0)
                                 {
                                     //TODO Them moi
-                                    //string sql_insertserviceref = "INSERT INTO ServicePriceRef ( ServicePriceRefID_Master, ServicePriceGroupCode, ServicePriceCode, ServicePriceCodeUser, ServicePriceSTTUser, ServicePriceCode_NG, BHYT_GroupCode, Report_GroupCode, CK_GroupCode, Report_TKCode, ServicePriceName, ServicePriceNameNhanDan, ServicePriceNameBHYT, ServicePriceNameNuocNgoai, ServicePriceFee, ServicePriceFeeNhanDan, ServicePriceFeeBHYT, ServicePriceFeeNuocNgoai, ListDepartmentPhongThucHien, ListDepartmentPhongThucHienKhamGoi, ServicePriceFee_OLD, ServicePriceFeeNhanDan_OLD, ServicePriceFeeBHYT_OLD, ServicePriceFeeNuocNgoai_OLD, ServicePriceFee_OLD_Type, KhongChuyenDoiTuongHaoPhi, LuonChuyenDoiTuongHaoPhi, CDHA_SoLuongThuoc, CDHA_SoLuongVatTu, PTTT_DinhMucVTTH, PTTT_DinhMucThuoc, TyLeLaiChiDinh, TyLeLaiThucHien, TinhToanLaiGiaDVKTC,  ServicePriceUnit, LayMauPhongThucHien, ServicePriceType, ServiceGroupType, ServicePricePrintOrder, ServiceLock, ServicePriceBHYTQuyDoi, ServicePriceBHYTQuyDoi_TT, ServicePriceBHYTDinhMuc, PTTT_HangID)  VALUES( '0', '" + gridViewDichVu.GetRowCellValue(i, "MA_NHOM") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_USER") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_DV_STTTHAU") + "', '', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_BHYT") + "', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_BAOCAO") + "', '', '" + gridViewDichVu.GetRowCellValue(i, "NHOM_TAIKHOAN") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_BH") + "', '" + gridViewDichVu.GetRowCellValue(i, "TEN_PTTT") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_YC") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_VP") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_BH") + "', '" + gridViewDichVu.GetRowCellValue(i, "GIA_NNN") + "', '" + listPhongThucHien + "', '', '', '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '" + gridViewDichVu.GetRowCellValue(i, "DVT") + "', '0', '" + la_nhom + "', '" + loai_dv + "', '0', '0', '', '', '', '" + loai_pttt + "')";
-                                    //condb.ExecuteNonQuery(sql_insertserviceref);
+                                    string sql_insertserviceref = "INSERT INTO ServicePriceRef ( ServicePriceRefID_Master, ServicePriceGroupCode, ServicePriceCode, ServicePriceCodeUser, ServicePriceSTTUser, ServicePriceCode_NG, BHYT_GroupCode, Report_GroupCode, CK_GroupCode, Report_TKCode, ServicePriceName, ServicePriceNameNhanDan, ServicePriceNameBHYT, ServicePriceNameNuocNgoai, ServicePriceFee, ServicePriceFeeNhanDan, ServicePriceFeeBHYT, ServicePriceFeeNuocNgoai, ListDepartmentPhongThucHien, ListDepartmentPhongThucHienKhamGoi, ServicePriceFee_OLD, ServicePriceFeeNhanDan_OLD, ServicePriceFeeBHYT_OLD, ServicePriceFeeNuocNgoai_OLD, ServicePriceFee_OLD_Type, KhongChuyenDoiTuongHaoPhi, LuonChuyenDoiTuongHaoPhi, CDHA_SoLuongThuoc, CDHA_SoLuongVatTu, PTTT_DinhMucVTTH, PTTT_DinhMucThuoc, TyLeLaiChiDinh, TyLeLaiThucHien, TinhToanLaiGiaDVKTC,  ServicePriceUnit, LayMauPhongThucHien, ServicePriceType, ServiceGroupType, ServicePricePrintOrder, ServiceLock, ServicePriceBHYTQuyDoi, ServicePriceBHYTQuyDoi_TT, ServicePriceBHYTDinhMuc, PTTT_HangID)  VALUES( '0', '" + item_servicep.servicepricegroupcode + "', '" + item_servicep.servicepricecode + "', '" + item_servicep.servicepricecodeuser + "', '" + item_servicep.servicepricesttuser + "', '', '" + item_servicep.bhyt_groupcode + "', '" + item_servicep.report_groupcode + "', '', '" + item_servicep.report_tkcode + "', '" + item_servicep.servicepricename + "', '" + item_servicep.servicepricenamebhyt + "', '" + item_servicep.servicepricenamebhyt + "', '" + item_servicep.servicepricenamebhyt + "', '" + item_servicep.servicepricefee + "', '" + item_servicep.servicepricefeenhandan + "', '" + item_servicep.servicepricefeebhyt + "', '" + item_servicep.servicepricefeenuocngoai + "', '', '', '', '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '" + item_servicep.servicepriceunit + "', '0', '" + item_servicep.servicepricetype + "', '" + item_servicep.servicegrouptype + "', '0', '0', '', '', '', '" + item_servicep.pttt_hangid + "')";
+                                    condb.ExecuteNonQuery(sql_insertserviceref);
 
-                                    //string sql_insertketqua = "INSERT INTO serviceref4price(servicepricecode, servicecode) VALUES ('" + gridViewDichVu.GetRowCellValue(i, "MA_DV") + "', '" + gridViewDichVu.GetRowCellValue(i, "MA_CLS") + "') ;";
-                                    //condb.ExecuteNonQuery(sql_insertketqua);
+                                    string sql_insertketqua = "INSERT INTO serviceref4price(servicepricecode, servicecode) VALUES ('" + item_servicep.servicepricecode + "', '" + item_servicep.servicecode + "') ;";
+                                    condb.ExecuteNonQuery(sql_insertketqua);
                                     dem_dv_themmoi += 1;
                                 }
                             }
@@ -1003,7 +1005,6 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Error(ex);
                         }
                     }
                     //lưu lại log
@@ -1012,40 +1013,18 @@ namespace MedicalLink.ChucNang
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Insert " + dem_dv_themmoi + " dịch vụ thành công. Update thành công=" + dem_dv_trungma + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlinsert_log);
                     }
+                    SplashScreenManager.CloseForm();
                     MessageBox.Show("Thêm mới thành công SL=" + dem_dv_themmoi + ".\nUpdate thành công=" + dem_dv_trungma, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
+                SplashScreenManager.CloseForm();
                 MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
                 Base.Logging.Warn(ex);
             }
         }
 
-        //Xuat danh muc tu DB ra Excel - xem lai...
-        private void XuatDanhMucTuDBSangExCelProcess()
-        {
-            try
-            {
-                //DevExpress.XtraGrid.GridControl gridControlData = new DevExpress.XtraGrid.GridControl();
-                //DevExpress.XtraGrid.Views.Grid.GridView gridViewData = new DevExpress.XtraGrid.Views.Grid.GridView();
 
-                condb.connect();
-                string export_servicepriceref = "SELECT CASE servicepriceref.servicegrouptype WHEN 1 THEN 'KHÁM BỆNH' WHEN 2 THEN 'XÉT NGHIỆM' WHEN 3 THEN 'CHẨN ĐOÁN HÌNH ẢNH' WHEN 4 THEN 'CHUYÊN KHOA'  WHEN 5 THEN 'THUỐC TRONG DANH MỤC' WHEN 6 THEN 'THUỐC NGOÀI DANH MỤC' ELSE 'KHÁC' END AS LOAI_DV, servicepriceref.servicepricecode AS MA_DV, servicepriceref.servicepricegroupcode AS MA_NHOM, servicepriceref.servicepricecodeuser AS MA_DV_USER, servicepriceref.servicepricesttuser AS MA_DV_STTTHAU, servicepriceref.servicepricenamenhandan AS TEN_VP, servicepriceref.servicepricenamebhyt AS TEN_BH,servicepriceref.servicepriceunit AS DVT, servicepriceref.servicepricefeebhyt AS GIA_BH, servicepriceref.servicepricefeenhandan AS GIA_VP, servicepriceref.servicepricefee AS GIA_YC, servicepriceref.servicepricefeenuocngoai AS GIA_NNN, servicepriceref.servicepricefee_old_date AS THOIGIAN_APDUNG, servicepriceref.servicepricefee_old_type AS THEO_NGAY_CHI_DINH, servicepriceref.pttt_hangid AS LOAI_PTTT, servicepriceref.servicelock AS KHOA, servicepriceref.bhyt_groupcode AS NHOM_BHYT, servicepriceref.ServicePriceType AS LA_NHOM FROM servicepriceref WHERE isremove is null and servicepriceref.servicepricecode <>'' and servicepriceref.servicegrouptype in (1,2,3,4) ORDER BY servicepriceref.servicegrouptype, servicepriceref.servicepricegroupcode;";
-                DataView dv_dataserviceref = new DataView(condb.getDataTable(export_servicepriceref));
-                //DataTable dv_ddd = new DataTable(condb.getDataTable(export_servicepriceref));
-                if (dv_dataserviceref != null && dv_dataserviceref.Count > 0)
-                {
-                    //gridControlDataSerRef.DataSource = dv_dataserviceref;
-                    //Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                    //export.ExportDataGridViewToFile(gridControlDataSerRef, gridViewDataSerRef);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Warn(ex);
-            }
-        }
     }
 }

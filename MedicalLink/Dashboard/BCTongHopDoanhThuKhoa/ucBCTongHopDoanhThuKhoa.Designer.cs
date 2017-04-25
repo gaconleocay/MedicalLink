@@ -1093,7 +1093,7 @@
             this.bandedGridColumn37.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn37.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn37.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn37.Caption = "Thuốc trong gói PTTT";
+            this.bandedGridColumn37.Caption = "Thuốc";
             this.bandedGridColumn37.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn37.FieldName = "gmht_money_dkpttt_thuoc";
@@ -1114,7 +1114,7 @@
             this.bandedGridColumn36.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn36.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn36.Caption = "VTYT trong gói PTTT";
+            this.bandedGridColumn36.Caption = "VTYT";
             this.bandedGridColumn36.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn36.FieldName = "gmht_money_dkpttt_vattu";

@@ -100,7 +100,7 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(1000, 115);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1060, 115);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // layoutControl1
@@ -112,7 +112,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Padding = new System.Windows.Forms.Padding(2);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(996, 111);
+            this.layoutControl1.Size = new System.Drawing.Size(1056, 111);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -125,7 +125,7 @@
             this.groupBoxFile.Margin = new System.Windows.Forms.Padding(0);
             this.groupBoxFile.Name = "groupBoxFile";
             this.groupBoxFile.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBoxFile.Size = new System.Drawing.Size(249, 107);
+            this.groupBoxFile.Size = new System.Drawing.Size(264, 107);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Import from Excel";
@@ -152,7 +152,7 @@
             this.btnSelect.Appearance.Options.UseFont = true;
             this.btnSelect.Appearance.Options.UseForeColor = true;
             this.btnSelect.Image = ((System.Drawing.Image)(resources.GetObject("btnSelect.Image")));
-            this.btnSelect.Location = new System.Drawing.Point(115, 36);
+            this.btnSelect.Location = new System.Drawing.Point(139, 36);
             this.btnSelect.MinimumSize = new System.Drawing.Size(100, 40);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(100, 40);
@@ -174,11 +174,11 @@
             this.groupBoxAction.Controls.Add(this.labelControl2);
             this.groupBoxAction.Controls.Add(this.btnUpdateDVOK);
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(255, 2);
+            this.groupBoxAction.Location = new System.Drawing.Point(270, 2);
             this.groupBoxAction.Margin = new System.Windows.Forms.Padding(0);
             this.groupBoxAction.Name = "groupBoxAction";
             this.groupBoxAction.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBoxAction.Size = new System.Drawing.Size(739, 107);
+            this.groupBoxAction.Size = new System.Drawing.Size(784, 107);
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
@@ -221,12 +221,15 @@
             // 
             // cbbChonLoai
             // 
-            this.cbbChonLoai.Location = new System.Drawing.Point(244, 56);
+            this.cbbChonLoai.Location = new System.Drawing.Point(249, 56);
             this.cbbChonLoai.Name = "cbbChonLoai";
             this.cbbChonLoai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbChonLoai.Properties.Appearance.Options.UseFont = true;
+            this.cbbChonLoai.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbChonLoai.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbChonLoai.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbbChonLoai.Properties.DropDownRows = 15;
             this.cbbChonLoai.Properties.Items.AddRange(new object[] {
             "Sửa giá",
             "Sửa giá mới"});
@@ -237,7 +240,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(166, 58);
+            this.labelControl3.Location = new System.Drawing.Point(171, 58);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(69, 16);
             this.labelControl3.TabIndex = 22;
@@ -259,7 +262,7 @@
             this.btnBackupGia.Appearance.Options.UseFont = true;
             this.btnBackupGia.Appearance.Options.UseForeColor = true;
             this.btnBackupGia.Image = ((System.Drawing.Image)(resources.GetObject("btnBackupGia.Image")));
-            this.btnBackupGia.Location = new System.Drawing.Point(604, 36);
+            this.btnBackupGia.Location = new System.Drawing.Point(647, 36);
             this.btnBackupGia.Name = "btnBackupGia";
             this.btnBackupGia.Size = new System.Drawing.Size(100, 40);
             this.btnBackupGia.TabIndex = 21;
@@ -270,12 +273,15 @@
             // 
             // cbbChonKieu
             // 
-            this.cbbChonKieu.Location = new System.Drawing.Point(244, 21);
+            this.cbbChonKieu.Location = new System.Drawing.Point(249, 21);
             this.cbbChonKieu.Name = "cbbChonKieu";
             this.cbbChonKieu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbChonKieu.Properties.Appearance.Options.UseFont = true;
+            this.cbbChonKieu.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbChonKieu.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbChonKieu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbbChonKieu.Properties.DropDownRows = 15;
             this.cbbChonKieu.Properties.Items.AddRange(new object[] {
             "Tên dịch vụ BHYT",
             "Tên dịch vụ viện phí",
@@ -299,7 +305,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(158, 24);
+            this.labelControl2.Location = new System.Drawing.Point(163, 24);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(77, 16);
             this.labelControl2.TabIndex = 8;
@@ -312,7 +318,7 @@
             this.btnUpdateDVOK.Appearance.Options.UseFont = true;
             this.btnUpdateDVOK.Appearance.Options.UseForeColor = true;
             this.btnUpdateDVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateDVOK.Image")));
-            this.btnUpdateDVOK.Location = new System.Drawing.Point(482, 36);
+            this.btnUpdateDVOK.Location = new System.Drawing.Point(507, 36);
             this.btnUpdateDVOK.Name = "btnUpdateDVOK";
             this.btnUpdateDVOK.Size = new System.Drawing.Size(100, 40);
             this.btnUpdateDVOK.TabIndex = 7;
@@ -329,15 +335,15 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(996, 111);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1056, 111);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.groupBoxAction;
-            this.layoutControlItem1.Location = new System.Drawing.Point(253, 0);
+            this.layoutControlItem1.Location = new System.Drawing.Point(268, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(743, 111);
+            this.layoutControlItem1.Size = new System.Drawing.Size(788, 111);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -346,7 +352,7 @@
             this.layoutControlItem2.Control = this.groupBoxFile;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(253, 111);
+            this.layoutControlItem2.Size = new System.Drawing.Size(268, 111);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -358,7 +364,7 @@
             this.gridControlDichVu.Location = new System.Drawing.Point(0, 115);
             this.gridControlDichVu.MainView = this.gridViewDichVu;
             this.gridControlDichVu.Name = "gridControlDichVu";
-            this.gridControlDichVu.Size = new System.Drawing.Size(1000, 479);
+            this.gridControlDichVu.Size = new System.Drawing.Size(1060, 479);
             this.gridControlDichVu.TabIndex = 4;
             this.gridControlDichVu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDichVu});
@@ -468,7 +474,7 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 120;
+            this.gridColumn3.Width = 165;
             // 
             // gridColumn4
             // 
@@ -558,7 +564,7 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 7;
-            this.gridColumn8.Width = 301;
+            this.gridColumn8.Width = 367;
             // 
             // gridColumn9
             // 
@@ -576,7 +582,7 @@
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 8;
-            this.gridColumn9.Width = 245;
+            this.gridColumn9.Width = 319;
             // 
             // gridColumn10
             // 
@@ -934,7 +940,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ucImportDMDichVu";
-            this.Size = new System.Drawing.Size(1000, 594);
+            this.Size = new System.Drawing.Size(1060, 594);
             this.Load += new System.EventHandler(this.ucImportDMDichVu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);

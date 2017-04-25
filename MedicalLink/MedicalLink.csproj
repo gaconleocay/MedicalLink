@@ -304,6 +304,12 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.Designer.cs">
+      <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\classUserMedicineNhomThuoc.cs" />
     <Compile Include="ClassCommon\classUserMedicinePhongLuu.cs" />
@@ -868,6 +874,9 @@
     <EmbeddedResource Include="BaoCao\BCXuatThuocNhaThuoc\ucBCXuatThuocNhaThuoc.resx">
       <DependentUpon>ucBCXuatThuocNhaThuoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.resx">
+      <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ImportDMDichVu\ucImportDMDichVu.resx">
       <DependentUpon>ucImportDMDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1183,6 +1192,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\So_CDHA_XQuangCTMRI.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\0_ToolsDMDV__Exportv2.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

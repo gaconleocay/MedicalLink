@@ -52,7 +52,7 @@ namespace MedicalLink.ChucNang
                     lstServicePriceRef = new List<classServicePriceRef>();
                     Workbook workbook = new Workbook(openFileDialogSelect.FileName);
                     Worksheet worksheet = workbook.Worksheets[worksheetName];
-                    DataTable data_Excel = worksheet.Cells.ExportDataTable(6, 0, worksheet.Cells.MaxDataRow - 6, worksheet.Cells.MaxDataColumn + 1, true);
+                    DataTable data_Excel = worksheet.Cells.ExportDataTable(6, 0, worksheet.Cells.MaxDataRow - 5, worksheet.Cells.MaxDataColumn + 1, true);
                     data_Excel.TableName = "DATA";
                     if (data_Excel != null && data_Excel.Rows.Count > 0)
                     {
@@ -175,11 +175,12 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                XuatDanhMucTuDBSangExCelProcess();
+                frmChonNhomDichVu frmchon = new frmChonNhomDichVu();
+                frmchon.ShowDialog();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi xảy ra" + ex, "Thông báo");
+                Base.Logging.Warn(ex);
             }
         }
 

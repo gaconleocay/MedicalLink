@@ -101,7 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo_VT_1.ico" />
-    <Content Include="Martin-Berube-Flat-Animal-Crab.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

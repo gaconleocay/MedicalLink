@@ -246,6 +246,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.Designer.cs">
+      <DependentUpon>ucBCBNSDDVKetHop.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -835,6 +841,7 @@
     <Compile Include="Utilities\PrintPreview\PrintPreviewDev.Designer.cs">
       <DependentUpon>PrintPreviewDev.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Util_DataTable.cs" />
     <Compile Include="Utilities\Util_DateTime.cs" />
     <Compile Include="Utilities\Util_NumberConvert.cs" />
     <Compile Include="Utilities\Util_TypeConvertParse.cs" />
@@ -843,6 +850,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenh.resx">
       <DependentUpon>ucBaoCaoBHYT21_NewChenh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.resx">
+      <DependentUpon>ucBCBNSDDVKetHop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
@@ -1195,6 +1205,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\0_ToolsDMDV__Exportv2.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BenhNhanSuDungKetHopDichVu.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

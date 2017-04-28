@@ -322,7 +322,13 @@ namespace MedicalLink.Base
                 REPORT_13.permissionnote = "Sổ chẩn đoán hình ảnh";
                 lstresult.Add(REPORT_13);
 
-
+                ClassCommon.classPermission REPORT_14 = new ClassCommon.classPermission();
+                REPORT_14.permissioncheck = false;
+                REPORT_14.permissioncode = "REPORT_14";
+                REPORT_14.permissionname = "Báo cáo bệnh nhân sử dụng kết hợp dịch vụ";
+                REPORT_14.permissiontype = 3;
+                REPORT_14.permissionnote = "Báo cáo bệnh nhân sử dụng kết hợp dịch vụ";
+                lstresult.Add(REPORT_14);
 
 
 

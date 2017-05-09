@@ -55,7 +55,7 @@ namespace MedicalLink.Dashboard
                 radioNam.Checked = false;
                 cboChonNhanh.Enabled = false;
                 cboChonNhanh.Properties.Items.Clear();
-               // spinThoiGianCapNhat.Value = 0;
+                // spinThoiGianCapNhat.Value = 0;
             }
             catch (Exception ex)
             {
@@ -146,31 +146,25 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (cboTieuChi.Text == "Theo khoa ra viện" && cboKieuXem.Text == "Xem tổng hợp")
+                //Tieu chi =0: theo khoa ra vien; =1: theo khoa chi dinh
+                //Kieu xem =0: xem tong hop; =1: xem chi tiet theo khoa; = 2 xem chi tiet theo benh nhan
+                int tieuchi = 0;
+                int kieuxem = 0;
+                if (cboTieuChi.Text == "Theo khoa chỉ định")
                 {
-                    gridControlDataBNNT.DataSource = null;
-                    LayDuLieuBaoCao_ChayMoi(0,0);
+                    tieuchi = 1;
                 }
-                else if (cboTieuChi.Text == "Theo khoa ra viện" && cboKieuXem.Text == "Xem chi tiết theo khoa")
+                if (cboKieuXem.Text == "Xem chi tiết theo khoa")
                 {
-                    gridControlDataBNNT.DataSource = null;
-                    LayDuLieuBaoCao_ChayMoi(0, 1);
+                    kieuxem = 1;
                 }
-                else if (cboTieuChi.Text == "Theo khoa chỉ định" && cboKieuXem.Text == "Xem tổng hợp")
+                else if (cboKieuXem.Text == "Xem chi tiết bệnh nhân")
                 {
-                    gridControlDataBNNT.DataSource = null;
-                    LayDuLieuBaoCao_ChayMoi(1, 0);
+                    kieuxem = 2;
                 }
-                else if (cboTieuChi.Text == "Theo khoa chỉ định" && cboKieuXem.Text == "Xem chi tiết theo khoa")
-                {
-                    gridControlDataBNNT.DataSource = null;
-                    LayDuLieuBaoCao_ChayMoi(1, 1);
-                }
-                else
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Vui lòng chọn tiêu chí và kiểu xem.");
-                    frmthongbao.Show();
-                }
+
+                gridControlDataBNNT.DataSource = null;
+                LayDuLieuBaoCao_ChayMoi(tieuchi, kieuxem);
             }
             catch (Exception ex)
             {
@@ -324,9 +318,13 @@ namespace MedicalLink.Dashboard
                 {
                     string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                     string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-
+                    int kieuxem = 0;
+                    if (cboKieuXem.Text == "Xem chi tiết bệnh nhân")
+                    {
+                        kieuxem = 2;
+                    }
                     string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
-                    BCTongHopToanVien.BaoCaoTongHopToanVienFullSize fullSize = new BCTongHopToanVien.BaoCaoTongHopToanVienFullSize(dataBCBTongHopToanVien, tungaydenngay);
+                    BCTongHopToanVien.BaoCaoTongHopToanVienFullSize fullSize = new BCTongHopToanVien.BaoCaoTongHopToanVienFullSize(dataBCBTongHopToanVien, tungaydenngay, kieuxem);
                     fullSize.ShowDialog();
                 }
             }

@@ -149,13 +149,13 @@ namespace MedicalLink.BaoCao
                             }
                         }
                         dsdv_like = dsdv_like.Remove(dsdv_like.Length - 1);
-                        innerjoin_serf += " INNER JOIN (select se.vienphiid from serviceprice se where se.servicepricecode in (" + dsdv_like + ")) ser_" + medicinerefid_orgcode + " ON ser_" + medicinerefid_orgcode + ".vienphiid=vp.vienphiid ";
+                        innerjoin_serf += " INNER JOIN (select se.vienphiid from serviceprice se where se.servicepricecode in (" + dsdv_like + ")) ser_" + i + " ON ser_" + i + ".vienphiid=vp.vienphiid ";
                     }
                     else
                     {
                         string dsdv_servicepricecode = dsdv_temp[i].ToString().Trim();
                         //dsdv_servicepricecode += "ser.servicepricecode='" + dsdv_temp[i].ToString().Trim() + "' and ";
-                        innerjoin_serf += " INNER JOIN (select se.vienphiid from serviceprice se where se.servicepricecode='" + dsdv_servicepricecode + "') ser_" + dsdv_servicepricecode.Replace(".", "_") + " ON ser_" + dsdv_servicepricecode.Replace(".", "_") + ".vienphiid=vp.vienphiid ";
+                        innerjoin_serf += " INNER JOIN (select se.vienphiid from serviceprice se where se.servicepricecode='" + dsdv_servicepricecode + "') ser_" + i + " ON ser_" + i + ".vienphiid=vp.vienphiid ";
                     }
                 }
                 // Lấy Tiêu chí thời gian: tieuchi

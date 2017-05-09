@@ -1,36 +1,27 @@
-﻿--Ver 1.2 ngay 7/5/2017
-CREATE OR REPLACE FUNCTION serviceprice_pttt_tinh()
-  RETURNS trigger AS
-$BODY$
-BEGIN
- IF TG_OP = 'DELETE' THEN
-  DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
-   RETURN OLD;
- END IF;
- IF NEW.vienphidate_ravien<>'0001-01-01 00:00:00' THEN
-	DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
-	INSERT INTO tools_serviceprice_pttt
+﻿---update du lieu vao bang tools_serviceprice_pttt ngay  v 1.15 ngay 8/5
+
+INSERT INTO tools_serviceprice_pttt
 	SELECT nextval('tools_serviceprice_pttt_servicepriceptttid_seq'),
-			vp.vienphiid, 
-			vp.patientid, 
-			vp.bhytid, 
-			vp.hosobenhanid, 
-			vp.loaivienphiid, 
-			vp.vienphistatus, 
-			vp.departmentgroupid as khoaravien, 
-			vp.departmentid as phongravien, 
-			vp.doituongbenhnhanid, 
-			vp.vienphidate, 
-			vp.vienphidate_ravien, 
-			vp.duyet_ngayduyet, 
-			vp.vienphistatus_vp, 
-			vp.duyet_ngayduyet_vp, 
-			vp.vienphistatus_bh,
-			vp.duyet_ngayduyet_bh,
-			vp.bhyt_tuyenbenhvien,
-			ser.departmentid,
-			ser.departmentgroupid,
-			(case when ser.departmentid in (34,335,269,285) 
+	vp.vienphiid, 
+	vp.patientid, 
+	vp.bhytid, 
+	vp.hosobenhanid, 
+	vp.loaivienphiid, 
+	vp.vienphistatus, 
+	vp.departmentgroupid as khoaravien, 
+	vp.departmentid as phongravien, 
+	vp.doituongbenhnhanid, 
+	vp.vienphidate, 
+	vp.vienphidate_ravien, 
+	vp.duyet_ngayduyet, 
+	vp.vienphistatus_vp, 
+	vp.duyet_ngayduyet_vp, 
+	vp.vienphistatus_bh,
+	vp.duyet_ngayduyet_bh,
+	vp.bhyt_tuyenbenhvien,
+	ser.departmentid,
+	ser.departmentgroupid,
+	(case when ser.departmentid in (34,335,269,285) 
 				then (select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid)
 		  else ser.departmentgroupid end) as departmentgroup_huong,		  
 sum(case when ser.bhyt_groupcode='01KB' and ser.loaidoituong in (0,4,6) 
@@ -120,6 +111,7 @@ sum(case when ser.bhyt_groupcode='12NG' and ser.loaidoituong in (1,8) and ((sele
 		when ser.bhyt_groupcode='12NG' and ser.loaidoituong=3 and ((select serf.servicepricegroupcode from servicepriceref serf where serf.servicepricecode=ser.servicepricecode and serf.bhyt_groupcode='12NG')='G303YC') 
 			then (case when ser.doituongbenhnhanid=4 then ser.servicepricemoney_nuocngoai*ser.soluong else ser.servicepricemoney*ser.soluong end)
 		else 0 end) as money_giuongyeucau_vp,
+--------nuoc soi, xuat an, dien nuoc
 sum(case when ser.bhyt_groupcode='12NG' and ser.loaidoituong in (0,4,6) and ((select serf.report_groupcode from servicepriceref serf where serf.servicepricecode=ser.servicepricecode and serf.bhyt_groupcode='12NG')='NS') 
 			then ser.servicepricemoney_bhyt*ser.soluong 
 		else 0 end) as money_nuocsoi_bh,	
@@ -149,7 +141,8 @@ sum(case when ser.bhyt_groupcode='12NG' and ser.loaidoituong in (1,8) and ((sele
 			then (case when ser.doituongbenhnhanid=4 then (ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then ser.servicepricemoney-servicepricemoney_bhyt else 0 end)*ser.soluong end)
 		when ser.bhyt_groupcode='12NG' and ser.loaidoituong=3 and ((select serf.report_groupcode from servicepriceref serf where serf.servicepricecode=ser.servicepricecode and serf.bhyt_groupcode='12NG')='VSDN') 
 			then (case when ser.doituongbenhnhanid=4 then ser.servicepricemoney_nuocngoai*ser.soluong else ser.servicepricemoney*ser.soluong end)
-		else 0 end) as money_diennuoc_vp,	
+		else 0 end) as money_diennuoc_vp,
+----		
 sum(case when ser.bhyt_groupcode='11VC' and ser.loaidoituong in (0,4,6) 
 			then ser.servicepricemoney_bhyt*ser.soluong 
 		else 0 end) as money_vanchuyen_bh,
@@ -205,7 +198,8 @@ sum(case when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103
 								else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) end) end)		
 	 when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle') and ser.loaidoituong=3 then 
 		(case when ser.doituongbenhnhanid=4 then (case when ser.maubenhphamphieutype=0 then servicepricemoney_nuocngoai*ser.soluong else 0-(servicepricemoney_nuocngoai*ser.soluong) end) else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney*ser.soluong else 0-(ser.servicepricemoney*ser.soluong) end) end)
-	 else 0 end) as money_vattu_vp, 
+	 else 0 end) as money_vattu_vp,
+-------================= 
 (sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT') and ser.loaidoituong in (0,4,6) 
 			then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) 
 		 else 0 end) 
@@ -271,6 +265,7 @@ sum(case when ser.departmentid in (34,335,269,285)
 									then ser.servicepricemoney * ser.soluong else 0 end)			
 					else 0 end)
 	  else 0 end) as money_hpdkpttt_gm_vattu,
+-----chi phí trong gói có tính tiền
 sum(case when ser.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and ser.loaidoituong=2
 and ser.servicepriceid_master in (select ser_ktc.servicepriceid from serviceprice ser_ktc where ser_ktc.vienphiid=vp.vienphiid and ser_ktc.loaidoituong in (0,4,6)) and ((select seref.tinhtoanlaigiadvktc from servicepriceref seref where seref.servicepricecode=(select ser_ktc.servicepricecode from serviceprice ser_ktc where ser_ktc.servicepriceid=ser.servicepriceid_master))=1)
 			then (case when ser.maubenhphamphieutype=0 
@@ -308,31 +303,17 @@ and ser.servicepriceid_master in (select ser_ktc.servicepriceid from servicepric
 			then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
-			else 0 end) ) as money_dkpttt_vattu_vp		
-							
+			else 0 end) ) as money_dkpttt_vattu_vp				
 FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid
-WHERE vp.vienphiid=OLD.vienphiid
-	and ser.thuockhobanle=0 
+WHERE vp.duyet_ngayduyet_vp >='2017-01-01 00:00:00'
+		and vp.duyet_ngayduyet_vp <='2017-05-07 23:59:59'
+		and ser.thuockhobanle=0 
+		and COALESCE(vp.vienphistatus_vp,0)=1
 GROUP BY vp.vienphiid,vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, 
 vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, 
 vp.vienphistatus_bh, vp.duyet_ngayduyet_bh, vp.bhyt_tuyenbenhvien, ser.departmentid, ser.departmentgroupid,
 (case when ser.departmentid in (34,335,269,285) then (select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid)
-		  else ser.departmentgroupid end);	
- RETURN NEW;
- ELSIF NEW.vienphidate_ravien='0001-01-01 00:00:00' THEN
- DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
-  RETURN NEW;
- END IF;
- 
- 
-END;
-$BODY$
+		  else ser.departmentgroupid end);
+--ORDER BY vp.vienphiid DESC;
 
-LANGUAGE plpgsql;
-
--- DROP TRIGGER vienphidate_ravien_change ON vienphi;
-CREATE TRIGGER vienphidate_ravien_change
-  AFTER UPDATE OF vienphidate_ravien OR DELETE
-  ON vienphi
-  FOR EACH ROW
-  EXECUTE PROCEDURE serviceprice_pttt_tinh();
+--select count(*) from tools_serviceprice_pttt

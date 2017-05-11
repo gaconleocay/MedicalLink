@@ -18,10 +18,9 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                string lstdepartmentid = " and vpm.departmentid in (" + this.lstPhongChonLayBC + ")";
                 thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                SQLLayDuLieuBaoCao(lstdepartmentid);
+                SQLLayDuLieuBaoCao();
             }
             catch (Exception ex)
             {
@@ -30,21 +29,26 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.CloseForm();
         }
 
-        private void SQLLayDuLieuBaoCao(string lstdepartmentid)
+        private void SQLLayDuLieuBaoCao()
         {
             try
             {
+                string lstdepartmentid = " and vpm.departmentid in (" + this.lstPhongChonLayBC + ")";
+                string lstdepartmentid_tt = " and spt.departmentid in (" + this.lstPhongChonLayBC + ")";
+                string lstdepartmentid_bill = " and b.departmentid in (" + this.lstPhongChonLayBC + ")";
+                string lstphongravien = " and spt.phongravien in (" + this.lstPhongChonLayBC + ")";
+
                 lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
 
                 string sqlBaoCao_DangDT = "SELECT count(vpm.*) as dangdt_slbn, COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as numeric),0),0) as dangdt_tienkb, COALESCE(round(cast(sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as numeric),0),0) as dangdt_tienxn, COALESCE(round(cast(sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as numeric),0),0) as dangdt_tiencdhatdcn, COALESCE(round(cast(sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as numeric),0),0) as dangdt_tienpttt, COALESCE(round(cast(sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as numeric),0),0) as dangdt_tiendvktc, COALESCE(round(cast(sum(vpm.money_giuongthuong_bh + vpm.money_giuongthuong_vp) as numeric),0),0) as dangdt_tiengiuongthuong, COALESCE(round(cast(sum(vpm.money_giuongyeucau_bh + vpm.money_giuongyeucau_vp) as numeric),0),0) as dangdt_tiengiuongyeucau, COALESCE(round(cast(sum(vpm.money_khac_bh + vpm.money_khac_vp + vpm.money_phuthu_bh + vpm.money_phuthu_vp + vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as numeric),0),0) as dangdt_tienkhac, COALESCE(round(cast(sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as numeric),0),0) as dangdt_tienvattu, COALESCE(round(cast(sum(vpm.money_mau_bh + vpm.money_mau_vp) as numeric),0),0) as dangdt_tienmau, COALESCE(round(cast(sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric),0),0) as dangdt_tienthuoc, COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_xetnghiem_bh + vpm.money_cdha_bh + vpm.money_tdcn_bh + vpm.money_pttt_bh + vpm.money_dvktc_bh + vpm.money_giuongthuong_bh + vpm.money_giuongyeucau_bh + vpm.money_khac_bh + vpm.money_phuthu_bh + vpm.money_vanchuyen_bh + vpm.money_thuoc_bh + vpm.money_mau_bh + vpm.money_vattu_bh + vpm.money_khambenh_vp + vpm.money_xetnghiem_vp + vpm.money_cdha_vp + vpm.money_tdcn_vp + vpm.money_pttt_vp + vpm.money_dvktc_vp + vpm.money_giuongthuong_vp + vpm.money_giuongyeucau_vp + vpm.money_khac_vp + vpm.money_phuthu_vp + vpm.money_vanchuyen_vp + vpm.money_thuoc_vp + vpm.money_mau_vp + vpm.money_vattu_vp) as numeric),0),0) as dangdt_tongtien, COALESCE(round(cast(sum(vpm.tam_ung) as numeric),0),0) as dangdt_tamung FROM vienphi_money vpm WHERE vpm.vienphistatus=0 " + lstdepartmentid + " and vpm.vienphidate>='" + this.KhoangThoiGianLayDuLieu + "';";
 
                 string sqlBaoCao_RaVienChuaTT = "SELECT count(vpm.*) as ravienchuatt_slbn, COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as numeric),0),0) as ravienchuatt_tienkb,  COALESCE(round(cast(sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as numeric),0),0) as ravienchuatt_tienxn,  COALESCE(round(cast(sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as numeric),0),0) as ravienchuatt_tiencdhatdcn,  COALESCE(round(cast(sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as numeric),0),0) as ravienchuatt_tienpttt,  COALESCE(round(cast(sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as numeric),0),0) as ravienchuatt_tiendvktc,  COALESCE(round(cast(sum(vpm.money_giuongthuong_bh + vpm.money_giuongthuong_vp) as numeric),0),0) as ravienchuatt_tiengiuongthuong,  COALESCE(round(cast(sum(vpm.money_giuongyeucau_bh + vpm.money_giuongyeucau_vp) as numeric),0),0) as ravienchuatt_tiengiuongyeucau,  COALESCE(round(cast(sum(vpm.money_khac_bh + vpm.money_khac_vp + vpm.money_phuthu_bh + vpm.money_phuthu_vp + vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as numeric),0),0) as ravienchuatt_tienkhac,  COALESCE(round(cast(sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as numeric),0),0) as ravienchuatt_tienvattu,  COALESCE(round(cast(sum(vpm.money_mau_bh + vpm.money_mau_vp) as numeric),0),0) as ravienchuatt_tienmau,  COALESCE(round(cast(sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric),0),0) as ravienchuatt_tienthuoc,  COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_xetnghiem_bh + vpm.money_cdha_bh + vpm.money_tdcn_bh + vpm.money_pttt_bh + vpm.money_dvktc_bh + vpm.money_giuongthuong_bh + vpm.money_giuongyeucau_bh + vpm.money_khac_bh + vpm.money_phuthu_bh + vpm.money_vanchuyen_bh + vpm.money_thuoc_bh + vpm.money_mau_bh + vpm.money_vattu_bh + vpm.money_khambenh_vp + vpm.money_xetnghiem_vp + vpm.money_cdha_vp + vpm.money_tdcn_vp + vpm.money_pttt_vp + vpm.money_dvktc_vp + vpm.money_giuongthuong_vp + vpm.money_giuongyeucau_vp + vpm.money_khac_vp + vpm.money_phuthu_vp + vpm.money_vanchuyen_vp + vpm.money_thuoc_vp + vpm.money_mau_vp + vpm.money_vattu_vp) as numeric),0),0) as ravienchuatt_tongtien,  COALESCE(round(cast(sum(vpm.tam_ung) as numeric),0),0) as ravienchuatt_tamung FROM vienphi_money vpm WHERE COALESCE(vpm.vienphistatus_vp,0)=0 " + lstdepartmentid + " and vpm.vienphistatus<>0 and vpm.vienphidate>='" + this.KhoangThoiGianLayDuLieu + "'; ";
 
-                string sqlBaoCao_RaVienDaTT = "SELECT count(vpm.*) as raviendatt_slbn, COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as numeric),0),0) as raviendatt_tienkb, COALESCE(round(cast(sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as numeric),0),0) as raviendatt_tienxn, COALESCE(round(cast(sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as numeric),0),0) as raviendatt_tiencdhatdcn, COALESCE(round(cast(sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as numeric),0),0) as raviendatt_tienpttt, COALESCE(round(cast(sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as numeric),0),0) as raviendatt_tiendvktc, COALESCE(round(cast(sum(vpm.money_giuongthuong_bh + vpm.money_giuongthuong_vp) as numeric),0),0) as raviendatt_tiengiuongthuong, COALESCE(round(cast(sum(vpm.money_giuongyeucau_bh + vpm.money_giuongyeucau_vp) as numeric),0),0) as raviendatt_tiengiuongyeucau, COALESCE(round(cast(sum(vpm.money_khac_bh + vpm.money_khac_vp + vpm.money_phuthu_bh + vpm.money_phuthu_vp + vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as numeric),0),0) as raviendatt_tienkhac, COALESCE(round(cast(sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as numeric),0),0) as raviendatt_tienvattu, COALESCE(round(cast(sum(vpm.money_mau_bh + vpm.money_mau_vp) as numeric),0),0) as raviendatt_tienmau, COALESCE(round(cast(sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric),0),0) as raviendatt_tienthuoc, COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_xetnghiem_bh + vpm.money_cdha_bh + vpm.money_tdcn_bh + vpm.money_pttt_bh + vpm.money_dvktc_bh + vpm.money_giuongthuong_bh + vpm.money_giuongyeucau_bh + vpm.money_khac_bh + vpm.money_phuthu_bh + vpm.money_vanchuyen_bh + vpm.money_thuoc_bh + vpm.money_mau_bh + vpm.money_vattu_bh + vpm.money_khambenh_vp + vpm.money_xetnghiem_vp + vpm.money_cdha_vp + vpm.money_tdcn_vp + vpm.money_pttt_vp + vpm.money_dvktc_vp + vpm.money_giuongthuong_vp + vpm.money_giuongyeucau_vp + vpm.money_khac_vp + vpm.money_phuthu_vp + vpm.money_vanchuyen_vp + vpm.money_thuoc_vp + vpm.money_mau_vp + vpm.money_vattu_vp) as numeric),0),0) as raviendatt_tongtien, COALESCE(round(cast(sum(vpm.tam_ung) as numeric),0),0) as raviendatt_tamung FROM vienphi_money vpm WHERE vpm.vienphistatus_vp=1 " + lstdepartmentid + " and vpm.duyet_ngayduyet_vp >= '" + this.thoiGianTu + "' and vpm.duyet_ngayduyet_vp <= '" + this.thoiGianDen + "';";
+                string sqlBaoCao_RaVienDaTT = "SELECT count(A.*) as raviendatt_slbn, round(cast(sum(COALESCE(A.raviendatt_tienkb,0)) as numeric),0) as raviendatt_tienkb, round(cast(sum(COALESCE(A.raviendatt_tienxn,0)) as numeric),0) as raviendatt_tienxn, round(cast(sum(COALESCE(A.raviendatt_tiencdhatdcn,0)) as numeric),0) as raviendatt_tiencdhatdcn, round(cast(sum(COALESCE(A.raviendatt_tienpttt,0)) as numeric),0) as raviendatt_tienpttt, round(cast(sum(COALESCE(A.raviendatt_tiendvktc,0)) as numeric),0) as raviendatt_tiendvktc, round(cast(sum(COALESCE(A.raviendatt_tiengiuongthuong,0)) as numeric),0) as raviendatt_tiengiuongthuong, round(cast(sum(COALESCE(A.raviendatt_tiengiuongyeucau,0)) as numeric),0) as raviendatt_tiengiuongyeucau, round(cast(sum(COALESCE(A.raviendatt_tienkhac,0)) as numeric),0) as raviendatt_tienkhac, round(cast(sum(COALESCE(A.raviendatt_tienvattu,0)) as numeric),0) as raviendatt_tienvattu, round(cast(sum(COALESCE(A.raviendatt_tienmau,0)) as numeric),0) as raviendatt_tienmau, round(cast(sum(COALESCE(A.raviendatt_tienthuoc,0)) as numeric),0) as raviendatt_tienthuoc, round(cast(sum(COALESCE(A.raviendatt_tienkb,0) + COALESCE(A.raviendatt_tienxn,0) + COALESCE(A.raviendatt_tiencdhatdcn,0) + COALESCE(A.raviendatt_tienpttt,0) + COALESCE(A.raviendatt_tiendvktc,0) + COALESCE(A.raviendatt_tiengiuongthuong,0) + COALESCE(A.raviendatt_tiengiuongyeucau,0) + COALESCE(A.raviendatt_tienkhac,0) + COALESCE(A.raviendatt_tienvattu,0) + COALESCE(A.raviendatt_tienmau,0) + COALESCE(A.raviendatt_tienthuoc,0)) as numeric),0) as raviendatt_tongtien FROM (select spt.vienphiid, sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as raviendatt_tienkb, sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as raviendatt_tienxn, sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as raviendatt_tiencdhatdcn, sum(spt.money_pttt_bh + spt.money_pttt_vp) as raviendatt_tienpttt, sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as raviendatt_tiendvktc, sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as raviendatt_tiengiuongthuong, sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as raviendatt_tiengiuongyeucau, sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as raviendatt_tienkhac, sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as raviendatt_tienvattu, sum(spt.money_mau_bh + spt.money_mau_vp) as raviendatt_tienmau, sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as raviendatt_tienthuoc from tools_serviceprice_pttt spt where spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstphongravien + " group by spt.vienphiid) A; ";
 
                 string sqlBNRaVienChuyenDiChuyenDen = "SELECT * FROM ((SELECT '3-BN ra vien' as name, count(vp.vienphiid) as ravien_slbn FROM vienphi vp WHERE vp.vienphistatus>0 and vp.vienphidate_ravien>='" + this.thoiGianTu + "' and vp.vienphidate_ravien<='" + this.thoiGianDen + "' and vp.departmentid in (" + this.lstPhongChonLayBC + ")) Union (SELECT '1-BN chuyen di' as name, count(A1.vienphiid) as bn_chuyendi FROM( SELECT DISTINCT (mrd.vienphiid) FROM medicalrecord mrd WHERE mrd.departmentid in (" + this.lstPhongChonLayBC + ") and mrd.hinhthucravienid=8 and mrd.thoigianravien>='" + this.thoiGianTu + "' and mrd.thoigianravien<='" + this.thoiGianDen + "') A1) Union (SELECT '2-BN chuyen den' as name, count(A2.vienphiid) as bn_chuyenden FROM( SELECT DISTINCT (mrd.vienphiid) FROM medicalrecord mrd WHERE mrd.departmentid in (" + this.lstPhongChonLayBC + ") and mrd.hinhthucvaovienid=3 and mrd.thoigianravien>='" + this.thoiGianTu + "' and mrd.thoigianravien<='" + this.thoiGianDen + "') A2)) O ORDER BY O.name;";
 
-                string sqlDoanhThu = "SELECT 0 as departmentgroupid,0 as vienphiid, 0 as doanhthu_slbn_bh, 0 as doanhthu_slbn_vp, 0 as doanhthu_slbn, 0 as doanhthu_tienkb, 0 as doanhthu_tienxn, 0 as doanhthu_tiencdhatdcn, 0 as doanhthu_tienpttt, 0 as doanhthu_tiendvktc, 0 as doanhthu_tiengiuongthuong,0 as doanhthu_tiengiuongyeucau, 0 as doanhthu_tienkhac, 0 as doanhthu_tienvattu, 0 as doanhthu_tienmau, 0 as doanhthu_tienthuoc_bhyt,0 as doanhthu_tienthuoc_vp,0 as doanhthu_tienthuoc,0 as doanhthu_tongtien_bhyt,0 as doanhthu_tongtien_vp, 0 as doanhthu_tongtien from hospital limit 1;";
+                string sqlDoanhThu = "SELECT sum(A.doanhthu_slbn) as doanhthu_slbn, round(cast(sum(COALESCE(A.doanhthu_tienkb,0)) as numeric),0) as doanhthu_tienkb, round(cast(sum(COALESCE(A.doanhthu_tienxn,0)) as numeric),0) as doanhthu_tienxn, round(cast(sum(COALESCE(A.doanhthu_tiencdhatdcn,0)) as numeric),0) as doanhthu_tiencdhatdcn, round(cast(sum(COALESCE(A.doanhthu_tienpttt,0)) as numeric),0) as doanhthu_tienpttt, round(cast(sum(COALESCE(A.doanhthu_tiendvktc,0)) as numeric),0) as doanhthu_tiendvktc, round(cast(sum(COALESCE(A.doanhthu_tiengiuongthuong,0)) as numeric),0) as doanhthu_tiengiuongthuong, round(cast(sum(COALESCE(A.doanhthu_tiengiuongyeucau,0)) as numeric),0) as doanhthu_tiengiuongyeucau, round(cast(sum(COALESCE(A.doanhthu_tienkhac,0)) as numeric),0) as doanhthu_tienkhac, round(cast(sum(COALESCE(A.doanhthu_tienvattu,0)) as numeric),0) as doanhthu_tienvattu, round(cast(sum(COALESCE(A.doanhthu_tienmau,0)) as numeric),0) as doanhthu_tienmau, round(cast(sum(COALESCE(A.doanhthu_tienthuoc,0)) as numeric),0) as doanhthu_tienthuoc, round(cast(sum(COALESCE(A.doanhthu_tienkb,0) + COALESCE(A.doanhthu_tienxn,0) + COALESCE(A.doanhthu_tiencdhatdcn,0) + COALESCE(A.doanhthu_tienpttt,0) + COALESCE(A.doanhthu_tiendvktc,0) + COALESCE(A.doanhthu_tiengiuongthuong,0) + COALESCE(A.doanhthu_tiengiuongyeucau,0) + COALESCE(A.doanhthu_tienkhac,0) + COALESCE(A.doanhthu_tienvattu,0) + COALESCE(A.doanhthu_tienmau,0) + COALESCE(A.doanhthu_tienthuoc,0)) as numeric),0) as doanhthu_tongtien, sum(B.doanhthuGM_slbn) as doanhthuGM_slbn, round(cast(sum(COALESCE(B.doanhthu_tienkb,0)) as numeric),0) as doanhthuGM_tienkb, round(cast(sum(COALESCE(B.doanhthu_tienxn,0)) as numeric),0) as doanhthuGM_tienxn, round(cast(sum(COALESCE(B.doanhthu_tiencdhatdcn,0)) as numeric),0) as doanhthuGM_tiencdhatdcn, round(cast(sum(COALESCE(B.doanhthu_tienpttt,0)) as numeric),0) as doanhthuGM_tienpttt, round(cast(sum(COALESCE(B.doanhthu_tiendvktc,0)) as numeric),0) as doanhthuGM_tiendvktc, round(cast(sum(COALESCE(B.doanhthu_tiengiuongthuong,0)) as numeric),0) as doanhthuGM_tiengiuongthuong, round(cast(sum(COALESCE(B.doanhthu_tiengiuongyeucau,0)) as numeric),0) as doanhthuGM_tiengiuongyeucau, round(cast(sum(COALESCE(B.doanhthu_tienkhac,0)) as numeric),0) as doanhthuGM_tienkhac, round(cast(sum(COALESCE(B.doanhthu_tienvattu,0)) as numeric),0) as doanhthuGM_tienvattu, round(cast(sum(COALESCE(B.doanhthu_tienmau,0)) as numeric),0) as doanhthuGM_tienmau, round(cast(sum(COALESCE(B.doanhthu_tienthuoc,0)) as numeric),0) as doanhthuGM_tienthuoc, round(cast(sum(COALESCE(B.doanhthu_tienkb,0) + COALESCE(B.doanhthu_tienxn,0) + COALESCE(B.doanhthu_tiencdhatdcn,0) + COALESCE(B.doanhthu_tienpttt,0) + COALESCE(B.doanhthu_tiendvktc,0) + COALESCE(B.doanhthu_tiengiuongthuong,0) + COALESCE(B.doanhthu_tiengiuongyeucau,0) + COALESCE(B.doanhthu_tienkhac,0) + COALESCE(B.doanhthu_tienvattu,0) + COALESCE(B.doanhthu_tienmau,0) + COALESCE(B.doanhthu_tienthuoc ,0)) as numeric),0) as doanhthuGM_tongtien, sum(A.doanhthu_slbn + B.doanhthuGM_slbn) as doanhthuTongGM_slbn, round(cast(sum(COALESCE(A.doanhthu_tienkb,0) + COALESCE(B.doanhthu_tienkb,0)) as numeric),0) as doanhthuTongGM_tienkb, round(cast(sum(COALESCE(A.doanhthu_tienxn,0) + COALESCE(B.doanhthu_tienxn,0)) as numeric),0) as doanhthuTongGM_tienxn, round(cast(sum(COALESCE(A.doanhthu_tiencdhatdcn,0) + COALESCE(B.doanhthu_tiencdhatdcn,0)) as numeric),0) as doanhthuTongGM_tiencdhatdcn, round(cast(sum(COALESCE(A.doanhthu_tienpttt,0) + COALESCE(B.doanhthu_tienpttt,0)) as numeric),0) as doanhthuTongGM_tienpttt, round(cast(sum(COALESCE(A.doanhthu_tiendvktc,0) + COALESCE(B.doanhthu_tiendvktc,0)) as numeric),0) as doanhthuTongGM_tiendvktc, round(cast(sum(COALESCE(A.doanhthu_tiengiuongthuong,0) + COALESCE(B.doanhthu_tiengiuongthuong,0)) as numeric),0) as doanhthuTongGM_tiengiuongthuong, round(cast(sum(COALESCE(A.doanhthu_tiengiuongyeucau,0) + COALESCE(B.doanhthu_tiengiuongyeucau,0)) as numeric),0) as doanhthuTongGM_tiengiuongyeucau, round(cast(sum(COALESCE(A.doanhthu_tienkhac,0) + COALESCE(B.doanhthu_tienkhac,0)) as numeric),0) as doanhthuTongGM_tienkhac, round(cast(sum(COALESCE(A.doanhthu_tienvattu,0) + COALESCE(B.doanhthu_tienvattu,0)) as numeric),0) as doanhthuTongGM_tienvattu, round(cast(sum(COALESCE(A.doanhthu_tienmau,0) + COALESCE(B.doanhthu_tienmau,0)) as numeric),0) as doanhthuTongGM_tienmau, round(cast(sum(COALESCE(A.doanhthu_tienthuoc,0) + COALESCE(B.doanhthu_tienthuoc,0)) as numeric),0) as doanhthuTongGM_tienthuoc, round(cast(sum(COALESCE(A.doanhthu_tienkb,0) + COALESCE(A.doanhthu_tienxn,0) + COALESCE(A.doanhthu_tiencdhatdcn,0) + COALESCE(A.doanhthu_tienpttt,0) + COALESCE(A.doanhthu_tiendvktc,0) + COALESCE(A.doanhthu_tiengiuongthuong,0) + COALESCE(A.doanhthu_tiengiuongyeucau,0) + COALESCE(A.doanhthu_tienkhac,0) + COALESCE(A.doanhthu_tienvattu,0) + COALESCE(A.doanhthu_tienmau,0) + COALESCE(A.doanhthu_tienthuoc,0) + COALESCE(B.doanhthu_tienkb,0) + COALESCE(B.doanhthu_tienxn,0) + COALESCE(B.doanhthu_tiencdhatdcn,0) + COALESCE(B.doanhthu_tienpttt,0) + COALESCE(B.doanhthu_tiendvktc,0) + COALESCE(B.doanhthu_tiengiuongthuong,0) + COALESCE(B.doanhthu_tiengiuongyeucau,0) + COALESCE(B.doanhthu_tienkhac,0) + COALESCE(B.doanhthu_tienvattu,0) + COALESCE(B.doanhthu_tienmau,0) + COALESCE(B.doanhthu_tienthuoc,0)) as numeric),0) as doanhthuTongGM_tongtien FROM (select spt.departmentgroupid, count(spt.*) as doanhthu_slbn, sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as doanhthu_tienkb, sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as doanhthu_tienxn, sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as doanhthu_tiencdhatdcn, sum(spt.money_pttt_bh + spt.money_pttt_vp) as doanhthu_tienpttt, sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as doanhthu_tiendvktc, sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as doanhthu_tiengiuongthuong, sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as doanhthu_tiengiuongyeucau, sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as doanhthu_tienkhac, sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as doanhthu_tienvattu, sum(spt.money_mau_bh + spt.money_mau_vp) as doanhthu_tienmau, sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc from tools_serviceprice_pttt spt where spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstdepartmentid_tt + " group by spt.departmentgroupid) A LEFT JOIN (select spt.departmentgroup_huong, count(spt.*) as doanhthuGM_slbn, sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as doanhthu_tienkb, sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as doanhthu_tienxn, sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as doanhthu_tiencdhatdcn, sum(spt.money_pttt_bh + spt.money_pttt_vp) as doanhthu_tienpttt, sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as doanhthu_tiendvktc, sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as doanhthu_tiengiuongthuong, sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as doanhthu_tiengiuongyeucau, sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as doanhthu_tienkhac, sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as doanhthu_tienvattu, sum(spt.money_mau_bh + spt.money_mau_vp) as doanhthu_tienmau, sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc from tools_serviceprice_pttt spt where spt.vienphistatus_vp=1 and spt.departmentid in (34,335,269,285) and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' group by spt.departmentgroup_huong) B ON A.departmentgroupid=B.departmentgroup_huong ;    ";
 
                 DataView dataBCTongTheKhoa_DangDT = new DataView(condb.getDataTable(sqlBaoCao_DangDT));
                 DataView dataBCTongTheKhoa_RaVienChuaTT = new DataView(condb.getDataTable(sqlBaoCao_RaVienChuaTT));
@@ -83,7 +87,12 @@ namespace MedicalLink.Dashboard
                 dataRow_1.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_slbn"]), 0);
                 dataRow_1.RaVienChuaTT_unit = "";
                 dataRow_1.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_slbn"]), 0);
+                dataRow_1.DoanhThu_name = "Số lượt";
                 dataRow_1.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_slbn"]), 0);
+                dataRow_1.DoanhThuGM_name = "Số lượt";
+                dataRow_1.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_slbn"]), 0);
+                dataRow_1.DoanhThuTongGM_name = "Số lượt";
+                dataRow_1.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_slbn"]), 0);
 
                 BCDashboardQLTongTheKhoa dataRow_2 = new BCDashboardQLTongTheKhoa();
                 dataRow_2.BNDangDT_stt = 2;
@@ -95,7 +104,12 @@ namespace MedicalLink.Dashboard
                 dataRow_2.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tongtien"]), 0) + " đ";
                 dataRow_2.RaVienChuaTT_unit = "";
                 dataRow_2.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tongtien"]), 0) + " đ";
+                dataRow_2.DoanhThu_name = "Tổng doanh thu";
                 dataRow_2.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"].ToString()), 0) + " đ";
+                dataRow_2.DoanhThuGM_name = "Tổng doanh thu";
+                dataRow_2.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tongtien"].ToString()), 0) + " đ";
+                dataRow_2.DoanhThuTongGM_name = "Tổng doanh thu";
+                dataRow_2.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tongtien"].ToString()), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_3 = new BCDashboardQLTongTheKhoa();
                 dataRow_3.BNDangDT_stt = 3;
@@ -107,7 +121,12 @@ namespace MedicalLink.Dashboard
                 dataRow_3.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienkb"]), 0) + " đ";
                 dataRow_3.RaVienChuaTT_unit = "";
                 dataRow_3.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienkb"]), 0) + " đ";
+                dataRow_3.DoanhThu_name = "Khám bệnh";
                 dataRow_3.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienkb"]), 0) + " đ";
+                dataRow_3.DoanhThuGM_name = "Khám bệnh";
+                dataRow_3.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienkb"]), 0) + " đ";
+                dataRow_3.DoanhThuTongGM_name = "Khám bệnh";
+                dataRow_3.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienkb"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_4 = new BCDashboardQLTongTheKhoa();
                 dataRow_4.BNDangDT_stt = 4;
@@ -119,7 +138,12 @@ namespace MedicalLink.Dashboard
                 dataRow_4.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienxn"]), 0) + " đ";
                 dataRow_4.RaVienChuaTT_unit = "";
                 dataRow_4.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienxn"]), 0) + " đ";
+                dataRow_4.DoanhThu_name = "Xét nghiệm";
                 dataRow_4.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienxn"]), 0) + " đ";
+                dataRow_4.DoanhThuGM_name = "Xét nghiệm";
+                dataRow_4.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienxn"]), 0) + " đ";
+                dataRow_4.DoanhThuTongGM_name = "Xét nghiệm";
+                dataRow_4.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienxn"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_5 = new BCDashboardQLTongTheKhoa();
                 dataRow_5.BNDangDT_stt = 5;
@@ -131,7 +155,12 @@ namespace MedicalLink.Dashboard
                 dataRow_5.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tiencdhatdcn"]), 0) + " đ";
                 dataRow_5.RaVienChuaTT_unit = "";
                 dataRow_5.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tiencdhatdcn"]), 0) + " đ";
-                dataRow_5.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_slbn"]), 0) + " đ";
+                dataRow_5.DoanhThu_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tiencdhatdcn"]), 0) + " đ";
+                dataRow_5.DoanhThuGM_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tiencdhatdcn"]), 0) + " đ";
+                dataRow_5.DoanhThuTongGM_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tiencdhatdcn"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_6 = new BCDashboardQLTongTheKhoa();
                 dataRow_6.BNDangDT_stt = 6;
@@ -143,7 +172,12 @@ namespace MedicalLink.Dashboard
                 dataRow_6.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienpttt"]), 0) + " đ";
                 dataRow_6.RaVienChuaTT_unit = "";
                 dataRow_6.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienpttt"]), 0) + " đ";
+                dataRow_6.DoanhThu_name = "PTTT";
                 dataRow_6.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienpttt"]), 0) + " đ";
+                dataRow_6.DoanhThuGM_name = "PTTT";
+                dataRow_6.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienpttt"]), 0) + " đ";
+                dataRow_6.DoanhThuTongGM_name = "PTTT";
+                dataRow_6.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienpttt"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_7 = new BCDashboardQLTongTheKhoa();
                 dataRow_7.BNDangDT_stt = 7;
@@ -155,7 +189,12 @@ namespace MedicalLink.Dashboard
                 dataRow_7.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tiendvktc"]), 0) + " đ";
                 dataRow_7.RaVienChuaTT_unit = "";
                 dataRow_7.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tiendvktc"]), 0) + " đ";
+                dataRow_7.DoanhThu_name = "DV KTC";
                 dataRow_7.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tiendvktc"]), 0) + " đ";
+                dataRow_7.DoanhThuGM_name = "DV KTC";
+                dataRow_7.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tiendvktc"]), 0) + " đ";
+                dataRow_7.DoanhThuTongGM_name = "DV KTC";
+                dataRow_7.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tiendvktc"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_8 = new BCDashboardQLTongTheKhoa();
                 dataRow_8.BNDangDT_stt = 8;
@@ -167,7 +206,12 @@ namespace MedicalLink.Dashboard
                 dataRow_8.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tiengiuongthuong"]), 0) + " đ";
                 dataRow_8.RaVienChuaTT_unit = "";
                 dataRow_8.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tiengiuongthuong"]), 0) + " đ";
+                dataRow_8.DoanhThu_name = "Giường thường";
                 dataRow_8.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tiengiuongthuong"]), 0) + " đ";
+                dataRow_8.DoanhThuGM_name = "Giường thường";
+                dataRow_8.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tiengiuongthuong"]), 0) + " đ";
+                dataRow_8.DoanhThuTongGM_name = "Giường thường";
+                dataRow_8.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tiengiuongthuong"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_9 = new BCDashboardQLTongTheKhoa();
                 dataRow_9.BNDangDT_stt = 9;
@@ -179,7 +223,12 @@ namespace MedicalLink.Dashboard
                 dataRow_9.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tiengiuongyeucau"]), 0) + " đ";
                 dataRow_9.RaVienChuaTT_unit = "";
                 dataRow_9.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tiengiuongyeucau"]), 0) + " đ";
+                dataRow_9.DoanhThu_name = "Giường yêu cầu";
                 dataRow_9.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tiengiuongyeucau"]), 0) + " đ";
+                dataRow_9.DoanhThuGM_name = "Giường yêu cầu";
+                dataRow_9.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tiengiuongyeucau"]), 0) + " đ";
+                dataRow_9.DoanhThuTongGM_name = "Giường yêu cầu";
+                dataRow_9.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tiengiuongyeucau"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_10 = new BCDashboardQLTongTheKhoa();
                 dataRow_10.BNDangDT_stt = 10;
@@ -191,7 +240,12 @@ namespace MedicalLink.Dashboard
                 dataRow_10.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienkhac"]), 0) + " đ";
                 dataRow_10.RaVienChuaTT_unit = "";
                 dataRow_10.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienkhac"]), 0) + " đ";
+                dataRow_10.DoanhThu_name = "DV khác";
                 dataRow_10.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienkhac"]), 0) + " đ";
+                dataRow_10.DoanhThuGM_name = "DV khác";
+                dataRow_10.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienkhac"]), 0) + " đ";
+                dataRow_10.DoanhThuTongGM_name = "DV khác";
+                dataRow_10.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienkhac"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_11 = new BCDashboardQLTongTheKhoa();
                 dataRow_11.BNDangDT_stt = 11;
@@ -203,7 +257,12 @@ namespace MedicalLink.Dashboard
                 dataRow_11.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienmau"]), 0) + " đ";
                 dataRow_11.RaVienChuaTT_unit = "";
                 dataRow_11.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienmau"]), 0) + " đ";
+                dataRow_11.DoanhThu_name = "Máu, chế phẩm";
                 dataRow_11.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienmau"]), 0) + " đ";
+                dataRow_11.DoanhThuGM_name = "Máu, chế phẩm";
+                dataRow_11.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienmau"]), 0) + " đ";
+                dataRow_11.DoanhThuTongGM_name = "Máu, chế phẩm";
+                dataRow_11.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienmau"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_12 = new BCDashboardQLTongTheKhoa();
                 dataRow_12.BNDangDT_stt = 12;
@@ -215,7 +274,12 @@ namespace MedicalLink.Dashboard
                 dataRow_12.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienvattu"]), 0) + " đ";
                 dataRow_12.RaVienChuaTT_unit = "";
                 dataRow_12.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienvattu"]), 0) + " đ";
+                dataRow_12.DoanhThu_name = "Vật tư";
                 dataRow_12.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienvattu"]), 0) + " đ";
+                dataRow_12.DoanhThuGM_name = "Vật tư";
+                dataRow_12.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienvattu"]), 0) + " đ";
+                dataRow_12.DoanhThuTongGM_name = "Vật tư";
+                dataRow_12.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienvattu"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_13 = new BCDashboardQLTongTheKhoa();
                 dataRow_13.BNDangDT_stt = 13;
@@ -227,7 +291,12 @@ namespace MedicalLink.Dashboard
                 dataRow_13.RaVienChuaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[2][0]["ravienchuatt_tienthuoc"]), 0) + " đ";
                 dataRow_13.RaVienChuaTT_unit = "";
                 dataRow_13.DaTT_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[3][0]["raviendatt_tienthuoc"]), 0) + " đ";
+                dataRow_13.DoanhThu_name = "Thuốc";
                 dataRow_13.DoanhThu_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthu_tienthuoc"]), 0) + " đ";
+                dataRow_13.DoanhThuGM_name = "Thuốc";
+                dataRow_13.DoanhThuGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienthuoc"]), 0) + " đ";
+                dataRow_13.DoanhThuTongGM_name = "Thuốc";
+                dataRow_13.DoanhThuTongGM_value = Util_NumberConvert.NumberToString(Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienthuoc"]), 0) + " đ";
 
                 BCDashboardQLTongTheKhoa dataRow_14 = new BCDashboardQLTongTheKhoa();
                 dataRow_14.BNDangDT_stt = 14;
@@ -253,6 +322,7 @@ namespace MedicalLink.Dashboard
                 {
                     dataRow_14.DaTT_value = "0 %";
                 }
+                dataRow_14.DoanhThu_name = "Tỷ lệ thuốc";
                 if (Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"]) != 0)
                 {
                     dataRow_14.DoanhThu_value = Math.Round(((Convert.ToDecimal(dataBC[4][0]["doanhthu_tienthuoc"]) / Convert.ToDecimal(dataBC[4][0]["doanhthu_tongtien"])) * 100), 1).ToString() + " %";
@@ -261,7 +331,24 @@ namespace MedicalLink.Dashboard
                 {
                     dataRow_14.DoanhThu_value = "0 %";
                 }
-
+                dataRow_14.DoanhThuGM_name = "Tỷ lệ thuốc";
+                if (Convert.ToDecimal(dataBC[4][0]["doanhthugm_tongtien"]) != 0)
+                {
+                    dataRow_14.DoanhThuGM_value = Math.Round(((Convert.ToDecimal(dataBC[4][0]["doanhthugm_tienthuoc"]) / Convert.ToDecimal(dataBC[4][0]["doanhthugm_tongtien"])) * 100), 1).ToString() + " %";
+                }
+                else
+                {
+                    dataRow_14.DoanhThuGM_value = "0 %";
+                }
+                dataRow_14.DoanhThuTongGM_name = "Tỷ lệ thuốc";
+                if (Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tongtien"]) != 0)
+                {
+                    dataRow_14.DoanhThuTongGM_value = Math.Round(((Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tienthuoc"]) / Convert.ToDecimal(dataBC[4][0]["doanhthutonggm_tongtien"])) * 100), 1).ToString() + " %";
+                }
+                else
+                {
+                    dataRow_14.DoanhThuTongGM_value = "0 %";
+                }
                 BCDashboardQLTongTheKhoa dataRow_15 = new BCDashboardQLTongTheKhoa();
                 dataRow_15.BNDangDT_stt = 15;
                 dataRow_15.BNDangDT_name = "Vật tư";

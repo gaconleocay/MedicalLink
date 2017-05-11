@@ -27,6 +27,7 @@ namespace MedicalLink.Dashboard
         internal string KhoangThoiGianLayDuLieu { get; set; }
         private List<BCDashboardQLTongTheKhoa> dataBCQLTongTheKhoaSDO { get; set; }
         string lstPhongChonLayBC { get; set; }
+        string lstKhoaChonLayBC { get; set; }
 
         #endregion
 
@@ -105,7 +106,12 @@ namespace MedicalLink.Dashboard
                 dataRow_1.RaVienChuaTT_value = "0";
                 dataRow_1.RaVienChuaTT_unit = "";
                 dataRow_1.DaTT_value = "0";
+                dataRow_1.DoanhThu_name = "Số lượt";
                 dataRow_1.DoanhThu_value = "0";
+                dataRow_1.DoanhThuGM_name = "Số lượt";
+                dataRow_1.DoanhThuGM_value = "0";
+                dataRow_1.DoanhThuTongGM_name = "Số lượt";
+                dataRow_1.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_2 = new BCDashboardQLTongTheKhoa();
                 dataRow_2.BNDangDT_stt = 2;
@@ -117,7 +123,12 @@ namespace MedicalLink.Dashboard
                 dataRow_2.RaVienChuaTT_value = "0";
                 dataRow_2.RaVienChuaTT_unit = "";
                 dataRow_2.DaTT_value = "0";
+                dataRow_2.DoanhThu_name = "Tổng doanh thu";
                 dataRow_2.DoanhThu_value = "0";
+                dataRow_2.DoanhThuGM_name = "Tổng doanh thu";
+                dataRow_2.DoanhThuGM_value = "0";
+                dataRow_2.DoanhThuTongGM_name = "Tổng doanh thu";
+                dataRow_2.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_3 = new BCDashboardQLTongTheKhoa();
                 dataRow_3.BNDangDT_stt = 3;
@@ -129,7 +140,12 @@ namespace MedicalLink.Dashboard
                 dataRow_3.RaVienChuaTT_value = "0";
                 dataRow_3.RaVienChuaTT_unit = "";
                 dataRow_3.DaTT_value = "0";
+                dataRow_3.DoanhThu_name = "Khám bệnh";
                 dataRow_3.DoanhThu_value = "0";
+                dataRow_3.DoanhThuGM_name = "Khám bệnh";
+                dataRow_3.DoanhThuGM_value = "0";
+                dataRow_3.DoanhThuTongGM_name = "Khám bệnh";
+                dataRow_3.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_4 = new BCDashboardQLTongTheKhoa();
                 dataRow_4.BNDangDT_stt = 4;
@@ -141,7 +157,12 @@ namespace MedicalLink.Dashboard
                 dataRow_4.RaVienChuaTT_value = "0";
                 dataRow_4.RaVienChuaTT_unit = "";
                 dataRow_4.DaTT_value = "0";
+                dataRow_4.DoanhThu_name = "Xét nghiệm";
                 dataRow_4.DoanhThu_value = "0";
+                dataRow_4.DoanhThuGM_name = "Xét nghiệm";
+                dataRow_4.DoanhThuGM_value = "0";
+                dataRow_4.DoanhThuTongGM_name = "Xét nghiệm";
+                dataRow_4.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_5 = new BCDashboardQLTongTheKhoa();
                 dataRow_5.BNDangDT_stt = 5;
@@ -153,7 +174,12 @@ namespace MedicalLink.Dashboard
                 dataRow_5.RaVienChuaTT_value = "0";
                 dataRow_5.RaVienChuaTT_unit = "";
                 dataRow_5.DaTT_value = "0";
+                dataRow_5.DoanhThu_name = "CĐHA-TDCN";
                 dataRow_5.DoanhThu_value = "0";
+                dataRow_5.DoanhThuGM_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThuGM_value = "0";
+                dataRow_5.DoanhThuTongGM_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_6 = new BCDashboardQLTongTheKhoa();
                 dataRow_6.BNDangDT_stt = 6;
@@ -165,7 +191,12 @@ namespace MedicalLink.Dashboard
                 dataRow_6.RaVienChuaTT_value = "0";
                 dataRow_6.RaVienChuaTT_unit = "";
                 dataRow_6.DaTT_value = "0";
+                dataRow_6.DoanhThu_name = "PTTT";
                 dataRow_6.DoanhThu_value = "0";
+                dataRow_6.DoanhThuGM_name = "PTTT";
+                dataRow_6.DoanhThuGM_value = "0";
+                dataRow_6.DoanhThuTongGM_name = "PTTT";
+                dataRow_6.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_7 = new BCDashboardQLTongTheKhoa();
                 dataRow_7.BNDangDT_stt = 7;
@@ -177,7 +208,12 @@ namespace MedicalLink.Dashboard
                 dataRow_7.RaVienChuaTT_value = "0";
                 dataRow_7.RaVienChuaTT_unit = "";
                 dataRow_7.DaTT_value = "0";
+                dataRow_7.DoanhThu_name = "DV KTC";
                 dataRow_7.DoanhThu_value = "0";
+                dataRow_7.DoanhThuGM_name = "DV KTC";
+                dataRow_7.DoanhThuGM_value = "0";
+                dataRow_7.DoanhThuTongGM_name = "DV KTC";
+                dataRow_7.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_8 = new BCDashboardQLTongTheKhoa();
                 dataRow_8.BNDangDT_stt = 8;
@@ -189,7 +225,12 @@ namespace MedicalLink.Dashboard
                 dataRow_8.RaVienChuaTT_value = "0";
                 dataRow_8.RaVienChuaTT_unit = "";
                 dataRow_8.DaTT_value = "0";
+                dataRow_8.DoanhThu_name = "Giường thường";
                 dataRow_8.DoanhThu_value = "0";
+                dataRow_8.DoanhThuGM_name = "Giường thường";
+                dataRow_8.DoanhThuGM_value = "0";
+                dataRow_8.DoanhThuTongGM_name = "Giường thường";
+                dataRow_8.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_9 = new BCDashboardQLTongTheKhoa();
                 dataRow_9.BNDangDT_stt = 9;
@@ -201,7 +242,12 @@ namespace MedicalLink.Dashboard
                 dataRow_9.RaVienChuaTT_value = "0";
                 dataRow_9.RaVienChuaTT_unit = "";
                 dataRow_9.DaTT_value = "0";
+                dataRow_9.DoanhThu_name = "Giường yêu cầu";
                 dataRow_9.DoanhThu_value = "0";
+                dataRow_9.DoanhThuGM_name = "Giường yêu cầu";
+                dataRow_9.DoanhThuGM_value = "0";
+                dataRow_9.DoanhThuTongGM_name = "Giường yêu cầu";
+                dataRow_9.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_10 = new BCDashboardQLTongTheKhoa();
                 dataRow_10.BNDangDT_stt = 10;
@@ -213,7 +259,12 @@ namespace MedicalLink.Dashboard
                 dataRow_10.RaVienChuaTT_value = "0";
                 dataRow_10.RaVienChuaTT_unit = "";
                 dataRow_10.DaTT_value = "0";
+                dataRow_10.DoanhThu_name = "DV khác";
                 dataRow_10.DoanhThu_value = "0";
+                dataRow_10.DoanhThuGM_name = "DV khác";
+                dataRow_10.DoanhThuGM_value = "0";
+                dataRow_10.DoanhThuTongGM_name = "DV khác";
+                dataRow_10.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_11 = new BCDashboardQLTongTheKhoa();
                 dataRow_11.BNDangDT_stt = 11;
@@ -225,7 +276,12 @@ namespace MedicalLink.Dashboard
                 dataRow_11.RaVienChuaTT_value = "0";
                 dataRow_11.RaVienChuaTT_unit = "";
                 dataRow_11.DaTT_value = "0";
+                dataRow_11.DoanhThu_name = "Máu, chế phẩm";
                 dataRow_11.DoanhThu_value = "0";
+                dataRow_11.DoanhThuGM_name = "Máu, chế phẩm";
+                dataRow_11.DoanhThuGM_value = "0";
+                dataRow_11.DoanhThuTongGM_name = "Máu, chế phẩm";
+                dataRow_11.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_12 = new BCDashboardQLTongTheKhoa();
                 dataRow_12.BNDangDT_stt = 12;
@@ -237,7 +293,12 @@ namespace MedicalLink.Dashboard
                 dataRow_12.RaVienChuaTT_value = "0";
                 dataRow_12.RaVienChuaTT_unit = "";
                 dataRow_12.DaTT_value = "0";
+                dataRow_12.DoanhThu_name = "Vật tư";
                 dataRow_12.DoanhThu_value = "0";
+                dataRow_12.DoanhThuGM_name = "Vật tư";
+                dataRow_12.DoanhThuGM_value = "0";
+                dataRow_12.DoanhThuTongGM_name = "Vật tư";
+                dataRow_12.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_13 = new BCDashboardQLTongTheKhoa();
                 dataRow_13.BNDangDT_stt = 13;
@@ -249,7 +310,12 @@ namespace MedicalLink.Dashboard
                 dataRow_13.RaVienChuaTT_value = "0";
                 dataRow_13.RaVienChuaTT_unit = "";
                 dataRow_13.DaTT_value = "0";
+                dataRow_13.DoanhThu_name = "Thuốc";
                 dataRow_13.DoanhThu_value = "0";
+                dataRow_13.DoanhThuGM_name = "Thuốc";
+                dataRow_13.DoanhThuGM_value = "0";
+                dataRow_13.DoanhThuTongGM_name = "Thuốc";
+                dataRow_13.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_14 = new BCDashboardQLTongTheKhoa();
                 dataRow_14.BNDangDT_stt = 14;
@@ -261,7 +327,12 @@ namespace MedicalLink.Dashboard
                 dataRow_14.RaVienChuaTT_value = "0";
                 dataRow_14.RaVienChuaTT_unit = "";
                 dataRow_14.DaTT_value = "0";
+                dataRow_14.DoanhThu_name = "Tỷ lệ thuốc";
                 dataRow_14.DoanhThu_value = "0";
+                dataRow_14.DoanhThuGM_name = "Tỷ lệ thuốc";
+                dataRow_14.DoanhThuGM_value = "0";
+                dataRow_14.DoanhThuTongGM_name = "Tỷ lệ thuốc";
+                dataRow_14.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_15 = new BCDashboardQLTongTheKhoa();
                 dataRow_15.BNDangDT_stt = 15;
@@ -397,6 +468,18 @@ namespace MedicalLink.Dashboard
             try
             {
                 lstPhongChonLayBC = "";
+                lstKhoaChonLayBC = "";
+
+                List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
+                if (lstKhoaCheck.Count > 0)
+                {
+                    for (int i = 0; i < lstKhoaCheck.Count - 1; i++)
+                    {
+                        lstKhoaChonLayBC += lstKhoaCheck[i] + ",";
+                    }
+                    lstKhoaChonLayBC += lstKhoaCheck[lstKhoaCheck.Count - 1];
+                }
+
                 List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
                 if (lstPhongCheck.Count > 0)
                 {
@@ -686,11 +769,21 @@ namespace MedicalLink.Dashboard
                 else if (rowHandle == 0 && columeFieldName == "DoanhThu_value")
                 {
                     typeID = 7;
+                } 
+                    //Daonh thu GMHT
+                else if (rowHandle == 0 && columeFieldName == "DoanhThuGM_value")
+                {
+                    typeID = 8;
+                }
+                    //Doanh thu tong 
+                else if (rowHandle == 0 && columeFieldName == "DoanhThuTongGM_value")
+                {
+                    typeID = 9;
                 }
 
                 if (typeID != 0 && thoiGianTu != "" && thoiGianDen != "")
                 {
-                    Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail frmDetail = new Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, this.lstPhongChonLayBC, KhoangThoiGianLayDuLieu);
+                    Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail frmDetail = new Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, this.lstPhongChonLayBC,this.lstKhoaChonLayBC,  KhoangThoiGianLayDuLieu);
                     frmDetail.ShowDialog();
                 }
 

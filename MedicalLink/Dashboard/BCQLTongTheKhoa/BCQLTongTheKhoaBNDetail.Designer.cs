@@ -75,7 +75,7 @@
             this.gridControlBNDetail.Location = new System.Drawing.Point(2, 2);
             this.gridControlBNDetail.MainView = this.gridViewBNDetail;
             this.gridControlBNDetail.Name = "gridControlBNDetail";
-            this.gridControlBNDetail.Size = new System.Drawing.Size(1180, 505);
+            this.gridControlBNDetail.Size = new System.Drawing.Size(1230, 605);
             this.gridControlBNDetail.TabIndex = 0;
             this.gridControlBNDetail.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewBNDetail});
@@ -597,7 +597,7 @@
             this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn10.Caption = "Thời gian vào viện";
-            this.gridColumn10.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.gridColumn10.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.gridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn10.FieldName = "vienphidate";
             this.gridColumn10.Name = "gridColumn10";
@@ -619,7 +619,7 @@
             this.gridColumn11.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn11.Caption = "Thời gian ra viện";
-            this.gridColumn11.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.gridColumn11.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.gridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn11.FieldName = "vienphidate_ravien";
             this.gridColumn11.Name = "gridColumn11";
@@ -641,7 +641,7 @@
             this.gridColumn21.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn21.Caption = "Thời gian duyệt VP";
-            this.gridColumn21.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm:ss";
+            this.gridColumn21.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.gridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn21.FieldName = "duyet_ngayduyet_vp";
             this.gridColumn21.Name = "gridColumn21";
@@ -656,7 +656,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1184, 53);
+            this.panelControl1.Size = new System.Drawing.Size(1234, 53);
             this.panelControl1.TabIndex = 1;
             // 
             // groupBoxAction
@@ -667,7 +667,7 @@
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxAction.Location = new System.Drawing.Point(2, 2);
             this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(1180, 49);
+            this.groupBoxAction.Size = new System.Drawing.Size(1230, 49);
             this.groupBoxAction.TabIndex = 10;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
@@ -702,14 +702,14 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 53);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1184, 509);
+            this.panelControl2.Size = new System.Drawing.Size(1234, 609);
             this.panelControl2.TabIndex = 2;
             // 
             // BCQLTongTheKhoaBNDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 562);
+            this.ClientSize = new System.Drawing.Size(1234, 662);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

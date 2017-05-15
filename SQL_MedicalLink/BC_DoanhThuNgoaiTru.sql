@@ -68,6 +68,7 @@ SELECT ROW_NUMBER () OVER (ORDER BY O.departmentgroupid, O.departmentname) as st
 	O.money_pttt,
 	O.money_dvktc,
 	O.money_mau,
+	O.money_thuoc,
 	O.money_vattu,
 	O.money_khac,
 	O.tien_bh,
@@ -132,8 +133,7 @@ FROM
 
 
 
-Thời gian vào viện
-Thời gian thanh toán
+
 		 
 		 
 		 

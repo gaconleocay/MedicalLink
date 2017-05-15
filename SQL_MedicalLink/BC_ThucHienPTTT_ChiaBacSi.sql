@@ -1,4 +1,5 @@
----Báo cáo Thực hiện PTTT Chuyên khoa_ngày 26/4/2017: 
+---Báo cáo Thực hiện PTTT Chuyên khoa_ngày 15/5/2017: 
+--thêm địa chỉ
 
 SELECT row_number () over (order by A.ngay_thuchien desc) as stt, 
 A.patientid, 
@@ -6,7 +7,13 @@ A.vienphiid,
 hsbA.patientname, 
 (case when hsbA.gioitinhcode='01' then to_char(hsbA.birthday, 'yyyy') else '' end) as year_nam, 
 (case hsbA.gioitinhcode when '02' then to_char(hsbA.birthday, 'yyyy') else '' end) as year_nu, 
-bh.bhytcode, 
+bh.bhytcode,
+((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) ||
+		(case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) ||
+		(case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) ||
+		(case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) ||
+		(case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) ||
+		hc_quocgianame) as diachi, 
 kchd.departmentgroupname as khoachidinh, 
 pcd.departmentname as phongchidinh, 
 A.ngay_chidinh, 

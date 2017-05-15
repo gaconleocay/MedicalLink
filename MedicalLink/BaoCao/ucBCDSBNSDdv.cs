@@ -52,91 +52,90 @@ namespace MedicalLink.ChucNang
         //Sự kiện tìm kiếm
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            gridControlDSDV.DataSource = null;
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-            string[] dsdv_temp;
-            string dsdv = "";
-            string tieuchi, loaivienphiid, doituongbenhnhanid;
-            string datetungay = "";
-            string datedenngay = "";
-
-            if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,)") || (cbbTieuChi.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
+            try
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
-                frmthongbao.Show();
-            }
-            else
-            {
-                // Lấy dữ liệu danh sách dịch vụ nhập vào
-                dsdv_temp = mmeMaDV.Text.Split(',');
-                for (int i = 0; i < dsdv_temp.Length - 1; i++)
-                {
-                    dsdv += "'" + dsdv_temp[i].ToString().Trim() + "',";
-                }
-                dsdv += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString().Trim() + "'";
+                string[] dsdv_temp;
+                string dsdv = "";
+                string tieuchi="";
+                string loaivienphiid = "";
+                string doituongbenhnhanid="";
+                string datetungay = "";
+                string datedenngay = "";
 
-                // Lấy Tiêu chí thời gian: tieuchi
-                if (cbbTieuChi.Text == "Theo ngày chỉ định")
+                if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,)") || (cbbTieuChi.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
                 {
-                    tieuchi = "and ser.servicepricedate";
-                }
-                else if (cbbTieuChi.Text == "Theo ngày vào viện")
-                {
-                    tieuchi = "and vp.vienphidate";
-                }
-                else if (cbbTieuChi.Text == "Theo ngày ra viện")
-                {
-                    tieuchi = "and vp.vienphidate_ravien";
-                }
-                else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
-                {
-                    tieuchi = "and vp.duyet_ngayduyet_vp ";
-                }
-                else //theo ngay duyet BHYT
-                {
-                    tieuchi = "and vp.duyet_ngayduyet ";
-                }
-
-                // Lấy loaivienphiid
-                if (cbbLoaiBA.Text == "Ngoại trú")
-                {
-                    loaivienphiid = "and vp.loaivienphiid=1 ";
-                }
-                else if (cbbLoaiBA.Text == "Nội trú")
-                {
-                    loaivienphiid = "and vp.loaivienphiid=0 ";
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
                 }
                 else
                 {
-                    loaivienphiid = " ";
-                }
+                    gridControlDSDV.DataSource = null;
+                    // Lấy dữ liệu danh sách dịch vụ nhập vào
+                    dsdv_temp = mmeMaDV.Text.Split(',');
+                    for (int i = 0; i < dsdv_temp.Length - 1; i++)
+                    {
+                        dsdv += "'" + dsdv_temp[i].ToString().Trim() + "',";
+                    }
+                    dsdv += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString().Trim() + "'";
 
-                // Lấy trường đối tượng BN loaidoituong
-                if (chkBHYT.Checked == true && chkVP.Checked == false)
-                {
-                    doituongbenhnhanid = "and vp.doituongbenhnhanid=1 ";
-                }
-                else if (chkBHYT.Checked == false && chkVP.Checked == true)
-                {
-                    doituongbenhnhanid = "and vp.doituongbenhnhanid<>1 ";
-                }
-                else if (chkBHYT.Checked == true && chkVP.Checked == true)
-                {
-                    doituongbenhnhanid = " ";
-                }
-                else
-                    doituongbenhnhanid = " ";
+                    // Lấy Tiêu chí thời gian: tieuchi
+                    if (cbbTieuChi.Text == "Theo ngày chỉ định")
+                    {
+                        tieuchi = "and ser.servicepricedate";
+                    }
+                    else if (cbbTieuChi.Text == "Theo ngày vào viện")
+                    {
+                        tieuchi = "and vp.vienphidate";
+                    }
+                    else if (cbbTieuChi.Text == "Theo ngày ra viện")
+                    {
+                        tieuchi = "and vp.vienphidate_ravien";
+                    }
+                    else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
+                    {
+                        tieuchi = "and vp.duyet_ngayduyet_vp ";
+                    }
+                    else if (cbbTieuChi.Text == "Theo ngày duyệt BHYT")//theo ngay duyet BHYT
+                    {
+                        tieuchi = "and vp.duyet_ngayduyet ";
+                    }
 
-                // Lấy từ ngày, đến ngày
-                datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    // Lấy loaivienphiid
+                    if (cbbLoaiBA.Text == "Ngoại trú")
+                    {
+                        loaivienphiid = "and vp.loaivienphiid=1 ";
+                    }
+                    else if (cbbLoaiBA.Text == "Nội trú")
+                    {
+                        loaivienphiid = "and vp.loaivienphiid=0 ";
+                    }
+                    else
+                    {
+                        loaivienphiid = " ";
+                    }
 
-                //  Lấy xong dữ liệu các trường chọn
+                    // Lấy trường đối tượng BN loaidoituong
+                    if (chkBHYT.Checked == true && chkVP.Checked == false)
+                    {
+                        doituongbenhnhanid = "and vp.doituongbenhnhanid=1 ";
+                    }
+                    else if (chkBHYT.Checked == false && chkVP.Checked == true)
+                    {
+                        doituongbenhnhanid = "and vp.doituongbenhnhanid<>1 ";
+                    }
+                    else if (chkBHYT.Checked == true && chkVP.Checked == true)
+                    {
+                        doituongbenhnhanid = " ";
+                    }
+                    else
+                        doituongbenhnhanid = " ";
 
-                // Thực thi câu lệnh SQL
-                try
-                {
-                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode, vp.duyet_ngayduyet_vp) as stt, vp.patientid as mabn,vp.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as tenkhoa, department.departmentname as tenphong, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricedate as thoigianchidinh, ser.soluong as soluong, de.departmentgroupname as khoachidinh, de.departmentname as phongchidinh, case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end as loaiphieu, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, vp.chandoanravien_code as benhchinh_code, vp.chandoanravien as benhchinh_name, vp.chandoanravien_kemtheo_code as benhkemtheo_code, vp.chandoanravien_kemtheo as benhkemtheo_name, bhyt.bhytcode as bhytcode, case ser.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end as bhyt_groupcode FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN hosobenhan ON vp.hosobenhanid=hosobenhan.hosobenhanid INNER JOIN departmentgroup ON vp.departmentgroupid=departmentgroup.departmentgroupid INNER JOIN department ON vp.departmentid=department.departmentid INNER JOIN tools_depatment de ON ser.departmentid=de.departmentid INNER JOIN bhyt ON bhyt.bhytid=vp.bhytid WHERE ser.servicepricecode in (" + dsdv + ") " + tieuchi + " >= '" + datetungay + "' " + tieuchi + " <= '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + " ;";
+                    // Lấy từ ngày, đến ngày
+                    datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    // Thực thi câu lệnh SQL
+                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode, vp.duyet_ngayduyet_vp) as stt, vp.patientid as mabn,vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoa, de.departmentname as tenphong, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricedate as thoigianchidinh, ser.soluong as soluong, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end as loaiphieu, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, vp.chandoanravien_code as benhchinh_code, vp.chandoanravien as benhchinh_name, vp.chandoanravien_kemtheo_code as benhkemtheo_code, vp.chandoanravien_kemtheo as benhkemtheo_name, bhyt.bhytcode as bhytcode, case ser.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end as bhyt_groupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, (case ser.thuockhobanle when 0 then '' else 'Đơn nhà thuốc' end) as thuockhobanle FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN (select hs.hosobenhanid, hs.patientname from hosobenhan hs) hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN departmentgroup degp ON vp.departmentgroupid=degp.departmentgroupid INNER JOIN department de ON vp.departmentid=de.departmentid INNER JOIN departmentgroup kcd ON kcd.departmentgroupid=ser.departmentgroupid INNER JOIN department pcd ON pcd.departmentid=ser.departmentid INNER JOIN bhyt ON bhyt.bhytid=vp.bhytid WHERE ser.servicepricecode in (" + dsdv + ") " + tieuchi + " between '" + datetungay + "' and '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + " ;   ";
 
                     dataBCBXuatThuoc = condb.getDataTable(sqlquerry);
                     gridControlDSDV.DataSource = dataBCBXuatThuoc;
@@ -147,10 +146,10 @@ namespace MedicalLink.ChucNang
                         frmthongbao.Show();
                     }
                 }
-                catch (Exception ex)
-                {
-                    Base.Logging.Error(ex);
-                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }

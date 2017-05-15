@@ -27,7 +27,7 @@ namespace MedicalLink.Dashboard
         string thoiGianDen = "";
         private long tickCurrentVal = 0;
         private long thoiGianCapNhat = 0;
-        private List<BCDashboardBenhNhanNgoaiTru> lstDataBCBNNgoaiTru { get; set; }
+        private DataTable lstDataBCBNNgoaiTru { get; set; }
         private List<BCDashboardBenhNhanNgoaiTru> dataDSPhongKham { get; set; }
         // internal string KhoangThoiGianLayDuLieu { get; set; }
 
@@ -325,8 +325,7 @@ namespace MedicalLink.Dashboard
 
         private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+
         }
 
         private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -374,9 +373,19 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (lstDataBCBNNgoaiTru != null && lstDataBCBNNgoaiTru.Count > 0)
+                if (lstDataBCBNNgoaiTru != null && lstDataBCBNNgoaiTru.Rows.Count > 0)
                 {
-                    MedicalLink.Dashboard.BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize fullSize = new BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize(lstDataBCBNNgoaiTru);
+                    int colum_Nhapvien = 0;
+                    if (cboTieuChi.Text == "Thời gian vào viện")
+                    {
+                        colum_Nhapvien = 1;
+                    }
+                    else if (cboTieuChi.Text == "Thời gian thanh toán")
+                    {
+                        colum_Nhapvien = 0;
+                    }
+
+                    MedicalLink.Dashboard.BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize fullSize = new BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize(lstDataBCBNNgoaiTru, colum_Nhapvien);
                     fullSize.ShowDialog();
                 }
             }

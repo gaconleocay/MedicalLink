@@ -99,6 +99,7 @@
             this.bandedGridColumn32 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.bandedGridColumn43 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand_MoiMoChinh = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -435,6 +436,7 @@
             this.bandedGridColumn3,
             this.bandedGridColumn4,
             this.bandedGridColumn5,
+            this.bandedGridColumn43,
             this.bandedGridColumn6,
             this.bandedGridColumn35,
             this.bandedGridColumn7,
@@ -1334,6 +1336,23 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
             // 
+            // bandedGridColumn43
+            // 
+            this.bandedGridColumn43.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn43.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn43.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn43.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn43.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn43.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn43.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn43.Caption = "Địa chỉ";
+            this.bandedGridColumn43.FieldName = "diachi";
+            this.bandedGridColumn43.Name = "bandedGridColumn43";
+            this.bandedGridColumn43.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn43.Visible = true;
+            this.bandedGridColumn43.Width = 305;
+            // 
             // gridBand1
             // 
             this.gridBand1.Caption = "Chung";
@@ -1342,6 +1361,7 @@
             this.gridBand1.Columns.Add(this.bandedGridColumn3);
             this.gridBand1.Columns.Add(this.bandedGridColumn4);
             this.gridBand1.Columns.Add(this.bandedGridColumn5);
+            this.gridBand1.Columns.Add(this.bandedGridColumn43);
             this.gridBand1.Columns.Add(this.bandedGridColumn6);
             this.gridBand1.Columns.Add(this.bandedGridColumn35);
             this.gridBand1.Columns.Add(this.bandedGridColumn7);
@@ -1362,7 +1382,7 @@
             this.gridBand1.Name = "gridBand1";
             this.gridBand1.OptionsBand.ShowCaption = false;
             this.gridBand1.VisibleIndex = 0;
-            this.gridBand1.Width = 2530;
+            this.gridBand1.Width = 2835;
             // 
             // gridBand2
             // 
@@ -1591,6 +1611,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn42;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn41;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn43;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand_MoiMoChinh;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand_gayme;

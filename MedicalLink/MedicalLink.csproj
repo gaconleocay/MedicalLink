@@ -279,6 +279,12 @@
     <Compile Include="BaoCao\BCSoCDHA\ucBCSoCDHA.Designer.cs">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.Designer.cs">
+      <DependentUpon>ucBCSoXetNghiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCThucHienCLS\ucBCThucHienCLS.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -609,8 +615,6 @@
     <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DatabaseProcess\BCTongHopToanVien_Process.cs" />
-    <Compile Include="DatabaseProcess\BCBenhNhanNgoaiTru_Process.cs" />
     <Compile Include="DatabaseProcess\DangDTRaVienChuaDaTT_Tmp_Process.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
@@ -871,6 +875,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCSoCDHA\ucBCSoCDHA.resx">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.resx">
+      <DependentUpon>ucBCSoXetNghiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCThucHienCLS\ucBCThucHienCLS.resx">
       <DependentUpon>ucBCThucHienCLS.cs</DependentUpon>
@@ -1211,6 +1218,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_TongHopToanVien_02.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\So_XetNghiem_ViSinh.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

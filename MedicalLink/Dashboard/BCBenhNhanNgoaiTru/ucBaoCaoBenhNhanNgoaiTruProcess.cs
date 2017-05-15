@@ -21,104 +21,30 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                BCDashboardBenhNhanNgoaiTruFilter filter = new BCDashboardBenhNhanNgoaiTruFilter();
+                string sqldata = "";
                 thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                filter.loaiBaoCao = "REPORT_10";
-                filter.dateTu = this.thoiGianTu;
-                filter.dateDen = this.thoiGianDen;
-                filter.departmentgroupid = 0;
-                filter.chayTuDong = 0;
-                List<BCDashboardBenhNhanNgoaiTru> lstBCBNNgoaiTru = BCBenhNhanNgoaiTru_Process.BCBenhNhanNgoaiTru_ChayMoi(filter);
-                HienThiDuLieuBaoCao(lstBCBNNgoaiTru);
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-            SplashScreenManager.CloseForm();
-        }
-        private void LayDuLieuBaoCao_DaChayDuLieu()
-        {
-            try
-            {
-                //BCDashboardBenhNhanNgoaiTruFilter filter = new BCDashboardBenhNhanNgoaiTruFilter();
-                //thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                //thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                //filter.loaiBaoCao = "REPORT_09";
-                //filter.dateTu = this.thoiGianTu;
-                //filter.dateDen = this.thoiGianDen;
-                //filter.dateKhoangDLTu = this.KhoangThoiGianLayDuLieu;
-                //filter.departmentgroupid = 0;
-                //filter.loaivienphiid = 0;
-                //filter.chayTuDong = 0;
-                //DatabaseProcess.DangDTRaVienChuaDaTT_Tmp_Process.SQLChay_RaVienDaTT_Tmp(filter);
-                //SQLLayDuLieuBaoCao_DaChayDuLieu();
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
-        //private void SQLLayDuLieuBaoCao_DaChayDuLieu()
-        //{
-        //    try
-        //    {
-        //        lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
-
-        //        string sqlBaoCao = "SELECT A.departmentgroupid, A.departmentgroupcode, A.departmentgroupname, A.dangdt_slbn_bhyt, A.dangdt_slbn_nhandan, dangdt_slbn_tong, A.dangdt_tamung, A.ravienchuatt_slbn, A.ravienchuatt_tongtien, A.ravienchuatt_tamung, A.dathanhtoan_sotien_bhyt, A.dathanhtoan_sotien_nhandan, A.dathanhtoan_sotien_tong, A.dathanhtoan_thuoc_bhyt, A.dathanhtoan_thuoc_nhandan, A.dathanhtoan_thuoc_tong, case when A.dathanhtoan_sotien_bhyt<>0 then round(cast((A.dathanhtoan_thuoc_bhyt/dathanhtoan_sotien_bhyt) * 100 as numeric) ,2) else 0 end as dathanhtoan_tyle_thuoc_bhyt, case when A.dathanhtoan_sotien_nhandan<>0 then round(cast((A.dathanhtoan_thuoc_nhandan/dathanhtoan_sotien_nhandan) * 100 as numeric),2) else 0 end as dathanhtoan_tyle_thuoc_nhandan, case when A.dathanhtoan_sotien_tong<>0 then round(cast((A.dathanhtoan_thuoc_tong/dathanhtoan_sotien_tong) * 100 as numeric),2) else 0 end as dathanhtoan_tyle_thuoc_tong FROM ( SELECT depg.departmentgroupid, depg.departmentgroupcode, depg.departmentgroupname, (select dangdt.dangdt_slbn_bh from tools_dangdt_tmp dangdt where dangdt.departmentgroupid=depg.departmentgroupid and dangdt.loaibaocao='REPORT_09' and chaytudong=1) as dangdt_slbn_bhyt, (select dangdt.dangdt_slbn_vp from tools_dangdt_tmp dangdt where dangdt.departmentgroupid=depg.departmentgroupid and dangdt.loaibaocao='REPORT_09' and chaytudong=1) as dangdt_slbn_nhandan, (select dangdt.dangdt_slbn from tools_dangdt_tmp dangdt where dangdt.departmentgroupid=depg.departmentgroupid and dangdt.loaibaocao='REPORT_09' and chaytudong=1) as dangdt_slbn_tong, (select dangdt.dangdt_tamung from tools_dangdt_tmp dangdt where dangdt.departmentgroupid=depg.departmentgroupid and dangdt.loaibaocao='REPORT_09' and chaytudong=1) as dangdt_tamung, (select chuatt.ravienchuatt_slbn from tools_ravienchuatt_tmp chuatt where chuatt.departmentgroupid=depg.departmentgroupid and chuatt.loaibaocao='REPORT_09' and chaytudong=1) as ravienchuatt_slbn, (select chuatt.ravienchuatt_tongtien from tools_ravienchuatt_tmp chuatt where chuatt.departmentgroupid=depg.departmentgroupid and chuatt.loaibaocao='REPORT_09' and chaytudong=1) as ravienchuatt_tongtien, (select chuatt.ravienchuatt_tamung from tools_ravienchuatt_tmp chuatt where chuatt.departmentgroupid=depg.departmentgroupid and chuatt.loaibaocao='REPORT_09' and chaytudong=1) as ravienchuatt_tamung, (select datt.raviendatt_tongtien_bhyt from tools_raviendatt_tmp datt where datt.departmentgroupid=depg.departmentgroupid and datt.loaibaocao='REPORT_09' and datt.chaytudong=1) as dathanhtoan_sotien_bhyt, (select datt.raviendatt_tongtien_vp from tools_raviendatt_tmp datt where datt.departmentgroupid=depg.departmentgroupid and datt.loaibaocao='REPORT_09' and datt.chaytudong=1) as dathanhtoan_sotien_nhandan, (select datt.raviendatt_tongtien from tools_raviendatt_tmp datt where datt.departmentgroupid=depg.departmentgroupid and datt.loaibaocao='REPORT_09' and datt.chaytudong=1) as dathanhtoan_sotien_tong, (select datt.raviendatt_tienthuoc_bhyt from tools_raviendatt_tmp datt where datt.departmentgroupid=depg.departmentgroupid and datt.loaibaocao='REPORT_09' and datt.chaytudong=1) as dathanhtoan_thuoc_bhyt, (select datt.raviendatt_tienthuoc_vp from tools_raviendatt_tmp datt where datt.departmentgroupid=depg.departmentgroupid and datt.loaibaocao='REPORT_09' and datt.chaytudong=1) as dathanhtoan_thuoc_nhandan, (select datt.raviendatt_tienthuoc from tools_raviendatt_tmp datt where datt.departmentgroupid=depg.departmentgroupid and datt.loaibaocao='REPORT_09' and datt.chaytudong=1) as dathanhtoan_thuoc_tong FROM departmentgroup depg WHERE depg.departmentgrouptype in (4) GROUP BY depg.departmentgroupid ) A ORDER BY A.departmentgroupname ;";
-        //        DataView dataBCTongTheKhoa = new DataView(condb.getDataTable(sqlBaoCao));
-        //        // HienThiDuLieuBaoCao(dataBCTongTheKhoa);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MedicalLink.Base.Logging.Error(ex);
-        //    }
-        //}
-        private void HienThiDuLieuBaoCao(List<BCDashboardBenhNhanNgoaiTru> dataBC)
-        {
-            try
-            {
-                if (dataBC != null && dataBC.Count > 0)
+                if (cboTieuChi.Text == "Thời gian vào viện")
                 {
-                    lstDataBCBNNgoaiTru = new List<BCDashboardBenhNhanNgoaiTru>();
-                    foreach (var item in dataDSPhongKham)
-                    {
-                        BCDashboardBenhNhanNgoaiTru dataBCNgT = new BCDashboardBenhNhanNgoaiTru();
-                        dataBCNgT.departmentid = item.departmentid;
-                        dataBCNgT.departmentcode = item.departmentcode;
-                        dataBCNgT.departmentname = item.departmentname;
-
-                        var result = dataBC.Where(o=>o.departmentid==item.departmentid).SingleOrDefault();
-                        if (result != null)
-                        {
-                            dataBCNgT.slbn_bh = result.slbn_bh;
-                            dataBCNgT.slbn_vp = result.slbn_vp;
-                            dataBCNgT.slbn = result.slbn;
-                            dataBCNgT.slbn_nhapvien = result.slbn_nhapvien;
-                            dataBCNgT.tien_bh = result.tien_bh;
-                            dataBCNgT.tien_vp = result.tien_vp;
-                            dataBCNgT.tien_tong = result.tien_tong;
-                        }
-                        else
-                        {
-                            dataBCNgT.slbn_bh = 0;
-                            dataBCNgT.slbn_vp = 0;
-                            dataBCNgT.slbn = 0;
-                            dataBCNgT.slbn_nhapvien = 0;
-                            dataBCNgT.tien_bh = 0;
-                            dataBCNgT.tien_vp = 0;
-                            dataBCNgT.tien_tong = 0;
-                        }
-                        lstDataBCBNNgoaiTru.Add(dataBCNgT);
-                    }
-
-                    gridControlDataBNNgT.DataSource = lstDataBCBNNgoaiTru;
+                    bandedGridColumn_Nhapvien.Visible = true;
+                    sqldata = "SELECT ROW_NUMBER () OVER (ORDER BY O.departmentgroupid, O.departmentname) as stt, O.departmentid, O.departmentcode, (degp.departmentgroupcode || '.' || O.departmentname) as departmentname, O.slbn_bh, O.slbn_vp, (COALESCE(O.slbn_bh,0) + COALESCE(O.slbn_vp,0)) AS slbn, O.slbn_nhapvien, O.money_khambenh, O.money_xetnghiem, O.money_cdhatdcn, O.money_pttt, O.money_dvktc, O.money_mau, O.money_thuoc, O.money_vattu, O.money_khac, O.tien_bh, O.tien_vp, (COALESCE(O.tien_bh,0) + COALESCE(O.tien_vp,0)) as tien_tong FROM (SELECT de.departmentgroupid, de.departmentid, de.departmentcode, de.departmentname, sum(case when serdep.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, sum(case when serdep.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp, sum(case when serdep.xutrikhambenhid=4 then 1 else 0 end) as slbn_nhapvien, sum(serdep.money_khambenh_bh+serdep.money_khambenh_vp) as money_khambenh, sum(serdep.money_xetnghiem_bh+serdep.money_xetnghiem_vp) as money_xetnghiem, sum(serdep.money_cdha_bh+serdep.money_tdcn_bh + serdep.money_cdha_vp+serdep.money_tdcn_vp) as money_cdhatdcn, sum(serdep.money_pttt_bh+serdep.money_pttt_vp) as money_pttt, sum(serdep.money_dvktc_bh+serdep.money_dvktc_vp) as money_dvktc, sum(serdep.money_mau_bh+serdep.money_mau_vp) as money_mau, sum(serdep.money_thuoc_bh+serdep.money_thuoc_vp) as money_thuoc, sum(serdep.money_vattu_bh+serdep.money_vattu_vp) as money_vattu, sum(serdep.money_giuong_bh + serdep.money_giuong_vp + serdep.money_phuthu_bh + serdep.money_phuthu_vp + serdep.money_vanchuyen_bh + serdep.money_vanchuyen_vp + serdep.money_khac_bh + serdep.money_khac_vp ) as money_khac, sum(serdep.money_khambenh_bh + serdep.money_xetnghiem_bh + serdep.money_cdha_bh + serdep.money_tdcn_bh + serdep.money_pttt_bh + serdep.money_dvktc_bh + serdep.money_mau_bh + serdep.money_thuoc_bh + serdep.money_vattu_bh + serdep.money_giuong_bh + serdep.money_phuthu_bh + serdep.money_vanchuyen_bh + serdep.money_khac_bh) as tien_bh, sum(serdep.money_khambenh_vp + serdep.money_xetnghiem_vp + serdep.money_cdha_vp + serdep.money_tdcn_vp + serdep.money_pttt_vp + serdep.money_dvktc_vp + serdep.money_mau_vp + serdep.money_thuoc_vp + serdep.money_vattu_vp + serdep.money_giuong_vp + serdep.money_phuthu_vp + serdep.money_vanchuyen_vp + serdep.money_khac_vp) as tien_vp FROM department de LEFT JOIN serviceprice_department serdep ON serdep.departmentid=de.departmentid WHERE de.departmenttype in (2,24) and serdep.loaibenhanid in (24,20) and serdep.medicalrecordstatus<>0 and serdep.thoigianvaovien between '" + thoiGianTu + "' and '" + thoiGianDen + "' GROUP BY de.departmentid, de.departmentcode, de.departmentname) O LEFT JOIN departmentgroup degp ON degp.departmentgroupid=O.departmentgroupid;";
+                }
+                else if (cboTieuChi.Text == "Thời gian thanh toán")
+                {
+                    bandedGridColumn_Nhapvien.Visible = false;
+                    sqldata = "SELECT ROW_NUMBER () OVER (ORDER BY O.departmentgroupid, O.departmentname) as stt, O.* FROM (SELECT de.departmentgroupid, de.departmentid, de.departmentcode, (degp.departmentgroupcode || '.' || de.departmentname) as departmentname, (B.slbn_bh) as slbn_bh, (B.slbn_vp) as slbn_vp, (COALESCE(B.slbn_bh,0) + COALESCE(B.slbn_vp,0)) as slbn, 0 as slbn_nhapvien, (B.money_khambenh) as money_khambenh, (B.money_xetnghiem) as money_xetnghiem, (B.money_cdhatdcn) as money_cdhatdcn, (B.money_pttt) as money_pttt, (B.money_dvktc) as money_dvktc, (B.money_mau) as money_mau, (B.money_thuoc) as money_thuoc, (COALESCE(B.money_vattu,0) + COALESCE(B.money_vtthaythe,0)) as money_vattu, (COALESCE(B.money_khac,0) + COALESCE(B.money_giuongthuong,0) + COALESCE(B.money_giuongyeucau,0) + COALESCE(B.money_nuocsoi,0) + COALESCE(B.money_xuatan,0) + COALESCE(B.money_diennuoc,0) + COALESCE(B.money_phuthu,0) + COALESCE(B.money_vanchuyen,0)) as money_khac, B.tien_bh as tien_bh, B.tien_vp as tien_vp, (COALESCE(B.tien_bh,0) + COALESCE(B.tien_vp,0)) as tien_tong FROM department de LEFT JOIN (SELECT spt.departmentid, sum(case when spt.doituongbenhnhanid=1 then 1 else 0 end) as slbn_bh, sum(case when spt.doituongbenhnhanid<>1 then 1 else 0 end) as slbn_vp, sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as money_khambenh, sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as money_xetnghiem, sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as money_cdhatdcn, sum(spt.money_pttt_bh + spt.money_pttt_vp) as money_pttt, sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as money_dvktc, sum(spt.money_mau_bh + spt.money_mau_vp) as money_mau, sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as money_giuongthuong, sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as money_giuongyeucau, sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp) as money_nuocsoi, sum(spt.money_xuatan_bh + spt.money_xuatan_vp) as money_xuatan, sum(spt.money_diennuoc_bh + spt.money_diennuoc_vp) as money_diennuoc, sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp) as money_thuoc, sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as money_vattu, sum(spt.money_phuthu_bh + spt.money_phuthu_vp) as money_phuthu, sum(spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as money_vtthaythe, sum(spt.money_vanchuyen_bh + spt.money_vanchuyen_vp) as money_vanchuyen, sum(spt.money_khac_bh + spt.money_khac_vp) as money_khac, sum(spt.money_pttt_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh) as tien_bh, sum(spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as tien_vp FROM tools_serviceprice_pttt spt WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "' and spt.departmentid in (select d.departmentid from department d where d.departmenttype=2) GROUP BY spt.departmentid) B ON B.departmentid=de.departmentid LEFT JOIN departmentgroup degp ON degp.departmentgroupid=de.departmentgroupid WHERE de.departmenttype=2) O;";
+                }
+                 
+                DataTable datangoaitru = condb.getDataTable(sqldata);
+                if (datangoaitru != null && datangoaitru.Rows.Count > 0)
+                {
+                    gridControlDataBNNgT.DataSource = datangoaitru;
+                    this.lstDataBCBNNgoaiTru = datangoaitru;
                 }
                 else
                 {
-                    lstDataBCBNNgoaiTru = null;
                     gridControlDataBNNgT.DataSource = null;
+                    this.lstDataBCBNNgoaiTru=null;
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
@@ -127,6 +53,7 @@ namespace MedicalLink.Dashboard
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
+            SplashScreenManager.CloseForm();
         }
 
     }

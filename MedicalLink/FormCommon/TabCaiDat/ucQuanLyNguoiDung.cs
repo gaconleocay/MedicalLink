@@ -96,7 +96,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                string sql = "SELECT degp.departmentgroupid, degp.departmentgroupname, de.departmentid, de.departmentcode, de.departmentname, de.departmenttype, (case de.departmenttype when 2 then 'Phòng khám' when 3 then 'Buồng điều trị' when 6 then 'Phòng xét nghiệm' when 7 then 'Phòng CĐHA' when 9 then 'BĐT ngoại trú' else '' end) as departmenttypename FROM department de inner join departmentgroup degp on de.departmentgroupid=degp.departmentgroupid WHERE degp.departmentgrouptype in (1,4,10,11) and de.departmenttype in (2,3,7,9) ORDER BY degp.departmentgroupid,de.departmenttype, de.departmentname; ";
+                string sql = "SELECT degp.departmentgroupid, degp.departmentgroupname, de.departmentid, de.departmentcode, de.departmentname, de.departmenttype, (case de.departmenttype when 2 then 'Phòng khám' when 3 then 'Buồng điều trị' when 6 then 'Phòng xét nghiệm' when 7 then 'Phòng CĐHA' when 9 then 'BĐT ngoại trú' else '' end) as departmenttypename FROM department de inner join departmentgroup degp on de.departmentgroupid=degp.departmentgroupid WHERE degp.departmentgrouptype in (1,4,9,10,11) and de.departmenttype in (2,3,6,7,9) ORDER BY degp.departmentgroupid,de.departmenttype, de.departmentname; ";
                 DataView dataPhong = new DataView(condb.getDataTable(sql));
                 lstUserDepartment = new List<ClassCommon.classUserDepartment>();
                 for (int i = 0; i < dataPhong.Count; i++)

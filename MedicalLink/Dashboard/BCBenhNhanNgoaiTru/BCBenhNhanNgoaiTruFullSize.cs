@@ -19,19 +19,27 @@ namespace MedicalLink.Dashboard.BCBenhNhanNgoaiTru
         {
             InitializeComponent();
         }
-        public BCBenhNhanNgoaiTruFullSize(List<BCDashboardBenhNhanNgoaiTru> lstBCBNNgoaiTru)
+        public BCBenhNhanNgoaiTruFullSize(DataTable lstBCBNNgoaiTru, int colum_Nhapvien)
         {
             InitializeComponent();
-            gridControlDataBNNT.DataSource = lstBCBNNgoaiTru;
+            gridControlDataBNNgT.DataSource = lstBCBNNgoaiTru;
+            if (colum_Nhapvien == 1)
+            {
+                bandedGridColumn_Nhapvien.Visible = true;
+            }
+            else
+            {
+                bandedGridColumn_Nhapvien.Visible = false;
+            }
         }
 
-        private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void bandedGridViewDataBNNgT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
 
-        private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        private void bandedGridViewDataBNNgT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
             {
@@ -52,7 +60,7 @@ namespace MedicalLink.Dashboard.BCBenhNhanNgoaiTru
         {
             try
             {
-                if (bandedGridViewDataBNNT.RowCount > 0)
+                if (bandedGridViewDataBNNgT.RowCount > 0)
                 {
                     try
                     {
@@ -67,22 +75,22 @@ namespace MedicalLink.Dashboard.BCBenhNhanNgoaiTru
                                 switch (fileExtenstion)
                                 {
                                     case ".xls":
-                                        bandedGridViewDataBNNT.ExportToXls(exportFilePath);
+                                        bandedGridViewDataBNNgT.ExportToXls(exportFilePath);
                                         break;
                                     case ".xlsx":
-                                        bandedGridViewDataBNNT.ExportToXlsx(exportFilePath);
+                                        bandedGridViewDataBNNgT.ExportToXlsx(exportFilePath);
                                         break;
                                     case ".rtf":
-                                        bandedGridViewDataBNNT.ExportToRtf(exportFilePath);
+                                        bandedGridViewDataBNNgT.ExportToRtf(exportFilePath);
                                         break;
                                     case ".pdf":
-                                        bandedGridViewDataBNNT.ExportToPdf(exportFilePath);
+                                        bandedGridViewDataBNNgT.ExportToPdf(exportFilePath);
                                         break;
                                     case ".html":
-                                        bandedGridViewDataBNNT.ExportToHtml(exportFilePath);
+                                        bandedGridViewDataBNNgT.ExportToHtml(exportFilePath);
                                         break;
                                     case ".mht":
-                                        bandedGridViewDataBNNT.ExportToMht(exportFilePath);
+                                        bandedGridViewDataBNNgT.ExportToMht(exportFilePath);
                                         break;
                                     default:
                                         break;

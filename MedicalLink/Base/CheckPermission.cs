@@ -97,7 +97,7 @@ namespace MedicalLink.Base
                 string sqlper = "";
                 if (SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
                 {
-                    sqlper = "SELECT de.departmentgroupid,de.departmentgroupcode, de.departmentgroupname,de.departmentgrouptype, de.departmentid,de.departmentcode,de.departmentname,de.departmenttype FROM  tools_depatment de WHERE de.departmentgrouptype in (1,4,10,11) and de.departmenttype in (2,3,7,9) ORDER BY de.departmentgroupname,de.departmentname,de.departmenttype;";
+                    sqlper = "SELECT de.departmentgroupid,de.departmentgroupcode, de.departmentgroupname,de.departmentgrouptype, de.departmentid,de.departmentcode,de.departmentname,de.departmenttype FROM  tools_depatment de WHERE de.departmentgrouptype in (1,4,9,10,11) and de.departmenttype in (2,3,6,7,9) ORDER BY de.departmentgroupname,de.departmentname,de.departmenttype;";
                 }
                 else
                 {

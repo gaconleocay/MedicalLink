@@ -1,7 +1,8 @@
 ﻿---update du lieu vao bang tools_serviceprice_pttt ngay  v 1.15 ngay 8/5
 
-INSERT INTO tools_serviceprice_pttt
-	SELECT nextval('tools_serviceprice_pttt_servicepriceptttid_seq'),
+--INSERT INTO tools_serviceprice_pttt
+--	SELECT nextval('tools_serviceprice_pttt_servicepriceptttid_seq'),
+select
 	vp.vienphiid, 
 	vp.patientid, 
 	vp.bhytid, 

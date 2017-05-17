@@ -1,4 +1,5 @@
 --tools_serviceprice_pttt
+-- DROP TABLE tools_serviceprice_pttt;
 
 CREATE TABLE IF NOT EXISTS tools_serviceprice_pttt ( 
 servicepriceptttid serial NOT NULL,
@@ -67,19 +68,24 @@ money_dkpttt_thuoc_bh double precision,
 money_dkpttt_thuoc_vp double precision,
 money_dkpttt_vattu_bh double precision,
 money_dkpttt_vattu_vp double precision,
-CONSTRAINT tools_serviceprice_pttt_pkey PRIMARY KEY (servicepriceptttid) )
+money_hppttt_goi_thuoc double precision,
+money_hppttt_goi_vattu double precision,
+CONSTRAINT tools_serviceprice_pttt_pkey PRIMARY KEY (servicepriceptttid) );
 
-CREATE INDEX t_serviceprice_pttt_vienphiid_idx ON tools_serviceprice_pttt USING btree (vienphiid)
-CREATE INDEX t_serviceprice_pttt_patientid_idx ON tools_serviceprice_pttt USING btree (patientid)
-CREATE INDEX t_serviceprice_pttt_bhytid_idx ON tools_serviceprice_pttt USING btree (bhytid)
-CREATE INDEX t_serviceprice_pttt_hosobenhanid_idx ON tools_serviceprice_pttt USING btree (hosobenhanid)
-CREATE INDEX t_serviceprice_pttt_loaivienphiid_idx ON tools_serviceprice_pttt USING btree (loaivienphiid)
-CREATE INDEX t_serviceprice_pttt_khoaravien_idx ON tools_serviceprice_pttt USING btree (khoaravien)
-CREATE INDEX t_serviceprice_pttt_phongravien_idx ON tools_serviceprice_pttt USING btree (phongravien)
-CREATE INDEX t_serviceprice_pttt_doituongbenhnhanid_idx ON tools_serviceprice_pttt USING btree (doituongbenhnhanid)
-CREATE INDEX t_serviceprice_pttt_vienphidate_idx ON tools_serviceprice_pttt USING btree (vienphidate)
-CREATE INDEX t_serviceprice_pttt_vienphidate_ravien_idx ON tools_serviceprice_pttt USING btree (vienphidate_ravien)
-CREATE INDEX t_serviceprice_pttt_duyet_ngayduyet_vp_idx ON tools_serviceprice_pttt USING btree (duyet_ngayduyet_vp)
-CREATE INDEX t_serviceprice_pttt_departmentid_idx ON tools_serviceprice_pttt USING btree (departmentid)
-CREATE INDEX t_serviceprice_pttt_departmentgroupid_idx ON tools_serviceprice_pttt USING btree (departmentgroupid)
-CREATE INDEX t_serviceprice_pttt_departmentgroup_huong_idx ON tools_serviceprice_pttt USING btree (departmentgroup_huong)
+CREATE INDEX t_serviceprice_pttt_vienphiid_idx ON tools_serviceprice_pttt USING btree (vienphiid);
+CREATE INDEX t_serviceprice_pttt_patientid_idx ON tools_serviceprice_pttt USING btree (patientid);
+CREATE INDEX t_serviceprice_pttt_bhytid_idx ON tools_serviceprice_pttt USING btree (bhytid);
+CREATE INDEX t_serviceprice_pttt_hosobenhanid_idx ON tools_serviceprice_pttt USING btree (hosobenhanid);
+CREATE INDEX t_serviceprice_pttt_loaivienphiid_idx ON tools_serviceprice_pttt USING btree (loaivienphiid);
+CREATE INDEX t_serviceprice_pttt_khoaravien_idx ON tools_serviceprice_pttt USING btree (khoaravien);
+CREATE INDEX t_serviceprice_pttt_phongravien_idx ON tools_serviceprice_pttt USING btree (phongravien);
+CREATE INDEX t_serviceprice_pttt_doituongbenhnhanid_idx ON tools_serviceprice_pttt USING btree (doituongbenhnhanid);
+CREATE INDEX t_serviceprice_pttt_vienphidate_idx ON tools_serviceprice_pttt USING btree (vienphidate);
+CREATE INDEX t_serviceprice_pttt_vienphidate_ravien_idx ON tools_serviceprice_pttt USING btree (vienphidate_ravien);
+CREATE INDEX t_serviceprice_pttt_duyet_ngayduyet_vp_idx ON tools_serviceprice_pttt USING btree (duyet_ngayduyet_vp);
+CREATE INDEX t_serviceprice_pttt_departmentid_idx ON tools_serviceprice_pttt USING btree (departmentid);
+CREATE INDEX t_serviceprice_pttt_departmentgroupid_idx ON tools_serviceprice_pttt USING btree (departmentgroupid);
+CREATE INDEX t_serviceprice_pttt_departmentgroup_huong_idx ON tools_serviceprice_pttt USING btree (departmentgroup_huong);
+
+
+

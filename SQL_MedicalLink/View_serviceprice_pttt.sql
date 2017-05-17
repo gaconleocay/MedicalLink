@@ -1,8 +1,10 @@
----------------View Serviceprice_pttt v 1.15 ngay 08/05/2017
+---------------View tools_serviceprice_pttt v 1.15 ngay 08/05/2017
 ----su dung rieng cho bv VietTiep chia khoa GMHT
 --1.10:Fix bug doi tuong VP co tien BHYT
 --1.11:tách thuốc,vật tư tính tiền trong gói từ nhóm pttt.
 --1.14: tách ngay giường thường thành điện nước, xuất ăn, nước sôi
+
+--<KHONG SU DUNG VIEW NAY NUA>
 CREATE OR REPLACE VIEW serviceprice_pttt AS 
 SELECT 
 	vp.vienphiid, 

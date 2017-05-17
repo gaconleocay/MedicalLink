@@ -1,16 +1,8 @@
-﻿--Ver 1.3 ngay 17/5/2017
---sua lai hao phi PTTT: bổ sung hao phí trong gói không tính tiền
-CREATE OR REPLACE FUNCTION serviceprice_pttt_tinh()
-  RETURNS trigger AS
-$BODY$
-BEGIN
- IF TG_OP = 'DELETE' THEN
-  DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
-   RETURN OLD;
- END IF;
- IF NEW.vienphidate_ravien<>'0001-01-01 00:00:00' THEN
-	DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
-	INSERT INTO tools_serviceprice_pttt
+﻿---update du lieu vao bang tools_serviceprice_pttt ngay  v 1.15 ngay 17/5
+--bo sung them cot Thuoc/vat tu trong goi khong tinh tien 
+
+
+INSERT INTO tools_serviceprice_pttt
 	SELECT nextval('tools_serviceprice_pttt_servicepriceptttid_seq'),
 	vp.vienphiid, 
 	vp.patientid, 
@@ -333,31 +325,34 @@ sum(case when ser.servicepriceid_master<>0 and ser.loaidoituong=2 and ser.bhyt_g
 		then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_nhandan*ser.soluong
 					    else 0-(servicepricemoney_nhandan*ser.soluong) end)
-		else 0 end)) as money_hppttt_goi_vattu	
-							
+		else 0 end)) as money_hppttt_goi_vattu
 FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid
-WHERE vp.vienphiid=OLD.vienphiid
-	and ser.thuockhobanle=0 
+WHERE vp.duyet_ngayduyet_vp between '2017-01-04 00:00:00' and '2017-01-04 23:59:59'
+		and ser.thuockhobanle=0 
+		and COALESCE(vp.vienphistatus_vp,0)=1
 GROUP BY vp.vienphiid,vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, 
 vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, 
 vp.vienphistatus_bh, vp.duyet_ngayduyet_bh, vp.bhyt_tuyenbenhvien, ser.departmentid, ser.departmentgroupid,
 (case when ser.departmentid in (34,335,269,285) then (select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid)
-		  else ser.departmentgroupid end);	
- RETURN NEW;
- ELSIF NEW.vienphidate_ravien='0001-01-01 00:00:00' THEN
- DELETE FROM tools_serviceprice_pttt tvp WHERE tvp.vienphiid=OLD.vienphiid;
-  RETURN NEW;
- END IF;
- 
- 
-END;
-$BODY$
+		  else ser.departmentgroupid end);
+--ORDER BY vp.vienphiid DESC;
 
-LANGUAGE plpgsql;
+--select count(*) from tools_serviceprice_pttt
 
--- DROP TRIGGER vienphidate_ravien_change ON vienphi;
-CREATE TRIGGER vienphidate_ravien_change
-  AFTER UPDATE OF vienphidate_ravien OR DELETE
-  ON vienphi
-  FOR EACH ROW
-  EXECUTE PROCEDURE serviceprice_pttt_tinh();
+/*
+-- da ra vien nhung chua thanh toan
+select vienphiid
+from vienphi vp 
+where vp.COALESCE(vp.vienphistatus_vp,0)=0
+	and vp.vienphidate_ravien>='2016-11-01 00:00:00'
+	and vp.vienphiid not in (select vienphiid from tools_serviceprice_pttt )
+
+*/
+
+
+
+
+
+
+
+

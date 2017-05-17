@@ -33,16 +33,16 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTableTblNhanVien();
                 result = KetNoiSCDLProcess.CreateTableUserMedicineStore();
                 result = KetNoiSCDLProcess.CreateTableUserMedicinePhongLuu();
-                result = KetNoiSCDLProcess.CreateTableToolsServicepricePttt();
+                //result = KetNoiSCDLProcess.CreateTableToolsServicepricePttt();
 
 
                 result = KetNoiSCDLProcess.CreateView_VienphiMoney();
                 result = KetNoiSCDLProcess.CreateView_ServicepriceDepartment();
-                result = KetNoiSCDLProcess.CreateView_Serviceprice_Pttt();
+                //result = KetNoiSCDLProcess.CreateView_Serviceprice_Pttt();
                 //result= KetNoiSCDLProcess.UpdateTableUser();
                 result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
                 result = KetNoiSCDLProcess.CreateTableVersion();
-                result = KetNoiSCDLProcess.CreateFunctionByteaImport();
+                //result = KetNoiSCDLProcess.CreateFunctionByteaImport();
             }
             catch (Exception ex)
             {

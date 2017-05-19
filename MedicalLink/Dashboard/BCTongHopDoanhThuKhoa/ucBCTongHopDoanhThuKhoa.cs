@@ -270,5 +270,30 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        private void cboTieuChi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cboTieuChi.Text == "Đã thanh toán")
+                {
+                    dateTuNgay.Enabled = true;
+                    dateDenNgay.Enabled = true;
+                    dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                    dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                }
+                else
+                {
+                    dateTuNgay.Enabled = false;
+                    dateDenNgay.Enabled = false;
+                    dateTuNgay.Value = Convert.ToDateTime(GlobalStore.KhoangThoiGianLayDuLieu);
+                    dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
     }
 }

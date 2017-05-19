@@ -19,8 +19,6 @@ namespace MedicalLink.FormCommon
     public partial class frmLogin : Form
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-      //  string adminuser = MedicalLink.Base.KeyTrongPhanMem.AdminUser_key;
-      //  string adminpass = MedicalLink.Base.KeyTrongPhanMem.AdminPass_key;
         NpgsqlConnection conn;
         public frmLogin()
         {

@@ -98,6 +98,22 @@ namespace MedicalLink.Dashboard
         }
 
         #endregion
+
+
+
+
+        private void LayDuLieuBaoCao()
+        {
+            try
+            {
+                LayDuLieuBaoCao_ChayMoi(); //todo
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
         private void HienThiDuLieuBaoCao(DataView dataBC)
         {
             try

@@ -150,7 +150,7 @@ namespace MedicalLink.Dashboard
             try
             {
                 gridControlDataBNNT.DataSource = null;
-                LayDuLieuBaoCao_ChayMoi();
+                LayDuLieuBaoCao();
             }
             catch (Exception ex)
             {
@@ -282,11 +282,11 @@ namespace MedicalLink.Dashboard
                 {
                     if (GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
                     {
-                        LayDuLieuBaoCao_ChayMoi();
+                        LayDuLieuBaoCao();
                     }
                     else
                     {
-                        LayDuLieuBaoCao_ChayMoi();
+                        LayDuLieuBaoCao();
                     }
                     tickCurrentVal = thoiGianCapNhat;
                 }
@@ -321,18 +321,6 @@ namespace MedicalLink.Dashboard
         }
 
         private void repositoryItemButton_View_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //TODO
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-        private void bandedGridViewDataBNNT_DoubleClick(object sender, EventArgs e)
         {
             try
             {

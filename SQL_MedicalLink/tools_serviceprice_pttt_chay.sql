@@ -303,7 +303,7 @@ and ser.servicepriceid_master in (select ser_ktc.servicepriceid from servicepric
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
 			else 0 end) ) as money_dkpttt_vattu_vp,
-			-----
+-----hao phi trong goi khong tinh tien
 (sum(case when ser.servicepriceid_master<>0 and ser.loaidoituong in (5,7,9) and ser.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') 
 		then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_nhandan*ser.soluong

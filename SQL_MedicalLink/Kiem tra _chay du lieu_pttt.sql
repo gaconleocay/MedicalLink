@@ -34,11 +34,22 @@ where
 select --vienphiid
 	count(*)
 from vienphi vp 
-where vp.COALESCE(vp.vienphistatus_vp,0)=0
-	and vp.vienphidate_ravien>='2016-11-01 00:00:00'
+where COALESCE(vp.vienphistatus_vp,0)=0
+	and vp.vienphistatus<>0
+	and vp.vienphidate_ravien>='2016-01-01 00:00:00'
 	and vp.vienphiid not in (select vienphiid from tools_serviceprice_pttt )
 
-
+-----------
+select spt.vienphiid
+from vienphi spt 
+where 
+	spt.vienphidate_ravien>='2016-01-01 00:00:00' 
+	and spt.vienphistatus<>0 and COALESCE(spt.vienphistatus_vp,0)=0
+	and spt.vienphiid not in (select vp.vienphiid 
+							from tools_serviceprice_pttt vp 
+							where vp.vienphidate_ravien>='2016-01-01 00:00:00' 
+									and vp.vienphistatus<>0 
+									and COALESCE(vp.vienphistatus_vp,0)=0)
 
 
 	

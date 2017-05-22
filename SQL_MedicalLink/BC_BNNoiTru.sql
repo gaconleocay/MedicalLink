@@ -1,35 +1,427 @@
---BC BN Noi tru
+------============
+--BC BN Noi tru ngay 23/5/2017
 
-SELECT
-FROM tools_serviceprice_pttt spt
-WHERE spt
-
-
-SELECT
-FROM 	
-	(select 
-			spt.departmentgroupid,
-			count(spt.*) as doanhthu_slbn,
-			sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as doanhthu_tienkb, 
-			sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as doanhthu_tienxn, 
-			sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as doanhthu_tiencdhatdcn, 
-			sum(spt.money_pttt_bh + spt.money_pttt_vp) as doanhthu_tienpttt, 
-			sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as doanhthu_tiendvktc, 
-			sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as doanhthu_tiengiuongthuong, 
-			sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as doanhthu_tiengiuongyeucau, 
-			sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as doanhthu_tienkhac, 
-			sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as doanhthu_tienvattu, 
-			sum(spt.money_mau_bh + spt.money_mau_vp) as doanhthu_tienmau, 
-			sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc,
-			sum(b.datra) as tam_ung
-	from tools_serviceprice_pttt spt 
-		left join (select b.vienphiid, b.departmentid, b.departmentgroupid, b.datra
-				   from bill b where b.loaiphieuthuid=2 and b.dahuyphieu=0) BILL on BILL.vienphiid=spt.vienphiid and BILL.departmentid=spt.departmentid
-	where spt.vienphistatus_vp=1 
-		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstdepartmentid_tt + " 
-	group by spt.departmentgroupid) TT
-	
+--Dang dieu tri
+SELECT 
+	ROW_NUMBER () OVER (ORDER BY degp.departmentgroupname) as stt,
+	degp.departmentgroupname,
+	DDT.dangdt_slbn_bh,
+	DDT.dangdt_slbn_vp,
+	DDT.dangdt_slbn,
+	DDT.dangdt_tienthuoc,
+	DDT.dangdt_tienvattu,
+	(coalesce(DDT.dangdt_tienkb,0) + coalesce(DDT.dangdt_tienxn,0) + coalesce(DDT.dangdt_tiencdhatdcn,0) + coalesce(DDT.dangdt_tienpttt,0) + coalesce(DDT.dangdt_tiendvktc,0) + coalesce(DDT.dangdt_tiengiuongthuong,0) + coalesce(DDT.dangdt_tiengiuongyeucau,0) + coalesce(DDT.dangdt_tienkhac,0) + coalesce(DDT.dangdt_tienvattu,0) + coalesce(DDT.dangdt_tienmau,0) + coalesce(DDT.dangdt_tienthuoc,0)) as dangdt_tongtien,
+	DDT.tam_ung as dangdt_tamung,
+	RV.chuatt_slbn_bh,
+	RV.chuatt_slbn_vp,
+	RV.chuatt_slbn,
+	RV.chuatt_tienthuoc,
+	RV.chuatt_tienvattu,
+	(coalesce(RV.chuatt_tienkb,0) + coalesce(RV.chuatt_tienxn,0) + coalesce(RV.chuatt_tiencdhatdcn,0) + coalesce(RV.chuatt_tienpttt,0) + coalesce(RV.chuatt_tiendvktc,0) + coalesce(RV.chuatt_tiengiuongthuong,0) + coalesce(RV.chuatt_tiengiuongyeucau,0) + coalesce(RV.chuatt_tienkhac,0) + coalesce(RV.chuatt_tienvattu,0) + coalesce(RV.chuatt_tienmau,0) + coalesce(RV.chuatt_tienthuoc,0)) as chuatt_tongtien,
+	RV.tam_ung as chuatt_tamung,	
+	TT.datt_slbn_bh,
+	TT.datt_slbn_vp,
+	TT.datt_slbn,
+	TT.datt_tienthuoc_bh,
+	TT.datt_tienthuoc_vp,
+	(coalesce(TT.datt_tienthuoc_bh,0) + coalesce(TT.datt_tienthuoc_vp,0)) as datt_tienthuoc,
+	TT.datt_tienvattu,
+	TT.datt_tongtien_bh,
+	TT.datt_tongtien_vp,
+	(coalesce(TT.datt_tongtien_bh,0) + coalesce(TT.datt_tongtien_vp,0)) as datt_tongtien,
+	TT.tam_ung as datt_tamung,	
+	case when TT.datt_tongtien_bh<>0 then round(cast((TT.datt_tienthuoc_bh/TT.datt_tongtien_bh) * 100 as numeric) ,2) else 0 end as datt_tyle_thuoc_bh,
+	case when TT.datt_tongtien_vp<>0 then round(cast((TT.datt_tienthuoc_vp/TT.datt_tongtien_vp) * 100 as numeric) ,2) else 0 end as datt_tyle_thuoc_vp,
+	case when (coalesce(TT.datt_tongtien_bh,0) + coalesce(TT.datt_tongtien_vp,0))<>0 then round(cast(((coalesce(TT.datt_tienthuoc_bh,0) + coalesce(TT.datt_tienthuoc_vp,0))/(coalesce(TT.datt_tongtien_bh,0) + coalesce(TT.datt_tongtien_vp,0))) * 100 as numeric) ,2) else 0 end as datt_tyle_thuoc
+FROM 
+	departmentgroup degp  
 left join 
+	(SELECT 
+		vi.departmentgroupid,
+		vi.dangdt_slbn_bh as dangdt_slbn_bh,
+		vi.dangdt_slbn_vp as dangdt_slbn_vp,
+		vi.dangdt_slbn as dangdt_slbn,
+		VP.dangdt_tienkb as dangdt_tienkb,
+		vp.dangdt_tienxn as dangdt_tienxn,
+		vp.dangdt_tiencdhatdcn as dangdt_tiencdhatdcn,
+		vp.dangdt_tienpttt as dangdt_tienpttt,
+		vp.dangdt_tiendvktc as dangdt_tiendvktc,
+		vp.dangdt_tiengiuongthuong as dangdt_tiengiuongthuong,
+		vp.dangdt_tiengiuongyeucau as dangdt_tiengiuongyeucau,
+		vp.dangdt_tienkhac as dangdt_tienkhac,
+		vp.dangdt_tienvattu as dangdt_tienvattu,
+		vp.dangdt_tienmau as dangdt_tienmau,
+		vp.dangdt_tienthuoc as dangdt_tienthuoc,
+		vi.tam_ung as tam_ung	
+	FROM
+		(SELECT V.departmentgroupid,
+			sum(case when V.doituongbenhnhanid=1 then 1 else 0 end) as dangdt_slbn_bh, 
+			sum(case when V.doituongbenhnhanid<>1 then 1 else 0 end) as dangdt_slbn_vp,
+			count(V.*) as dangdt_slbn,
+			SUM(V.tam_ung) as tam_ung
+		FROM
+		(SELECT sum(b.datra) as tam_ung,
+					vp.departmentgroupid,
+					vp.vienphiid,
+					vp.doituongbenhnhanid
+				FROM vienphi vp LEFT JOIN bill b on vp.vienphiid=b.vienphiid and b.loaiphieuthuid=2 and b.dahuyphieu=0
+				WHERE vp.vienphistatus=0 and vp.vienphidate>='2016-01-01 00:00:00'
+				GROUP BY vp.vienphiid, vp.departmentgroupid) V		
+		GROUP BY V.departmentgroupid) VI
+	  left join
+		(select 
+				spt.khoaravien,
+				sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as dangdt_tienkb, 
+				sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as dangdt_tienxn, 
+				sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as dangdt_tiencdhatdcn, 
+				sum(spt.money_pttt_bh + spt.money_pttt_vp) as dangdt_tienpttt, 
+				sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as dangdt_tiendvktc, 
+				sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as dangdt_tiengiuongthuong, 
+				sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as dangdt_tiengiuongyeucau, 
+				sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as dangdt_tienkhac, 
+				sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as dangdt_tienvattu, 
+				sum(spt.money_mau_bh + spt.money_mau_vp) as dangdt_tienmau, 
+				sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp) as dangdt_tienthuoc
+		from View_tools_serviceprice_pttt spt
+		where spt.vienphistatus=0
+			and spt.vienphidate>='2016-01-01 00:00:00'
+		group by spt.khoaravien) VP on vp.khoaravien=vi.departmentgroupid
+	) DDT on DDT.departmentgroupid=degp.departmentgroupid
+left join
+--ra vien chua thanh toan
+	(SELECT 
+		vi.departmentgroupid,
+		vi.chuatt_slbn_bh as chuatt_slbn_bh,
+		vi.chuatt_slbn_vp as chuatt_slbn_vp,
+		vi.chuatt_slbn as chuatt_slbn,
+		VP.chuatt_tienkb as chuatt_tienkb,
+		vp.chuatt_tienxn as chuatt_tienxn,
+		vp.chuatt_tiencdhatdcn as chuatt_tiencdhatdcn,
+		vp.chuatt_tienpttt as chuatt_tienpttt,
+		vp.chuatt_tiendvktc as chuatt_tiendvktc,
+		vp.chuatt_tiengiuongthuong as chuatt_tiengiuongthuong,
+		vp.chuatt_tiengiuongyeucau as chuatt_tiengiuongyeucau,
+		vp.chuatt_tienkhac as chuatt_tienkhac,
+		vp.chuatt_tienvattu as chuatt_tienvattu,
+		vp.chuatt_tienmau as chuatt_tienmau,
+		vp.chuatt_tienthuoc as chuatt_tienthuoc,
+		vi.tam_ung as tam_ung	
+	FROM
+		(SELECT V.departmentgroupid,
+			sum(case when V.doituongbenhnhanid=1 then 1 else 0 end) as chuatt_slbn_bh, 
+			sum(case when V.doituongbenhnhanid<>1 then 1 else 0 end) as chuatt_slbn_vp,
+			count(V.*) as chuatt_slbn,
+			SUM(V.tam_ung) as tam_ung
+		FROM
+			(SELECT sum(b.datra) as tam_ung,
+						vp.departmentgroupid,
+						vp.vienphiid,
+						vp.doituongbenhnhanid
+			FROM vienphi vp 
+				LEFT JOIN bill b on vp.vienphiid=b.vienphiid and b.loaiphieuthuid=2 and b.dahuyphieu=0
+			WHERE coalesce(vp.vienphistatus_vp,0)=0
+						and vp.vienphistatus=1
+						and vp.vienphidate_ravien>='2016-01-01 00:00:00'
+			GROUP BY vp.vienphiid, vp.departmentgroupid) V		
+		GROUP BY V.departmentgroupid) VI
+	  left join
+		(select 
+				spt.khoaravien,
+				sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as chuatt_tienkb, 
+				sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as chuatt_tienxn, 
+				sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as chuatt_tiencdhatdcn, 
+				sum(spt.money_pttt_bh + spt.money_pttt_vp) as chuatt_tienpttt, 
+				sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as chuatt_tiendvktc, 
+				sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as chuatt_tiengiuongthuong, 
+				sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as chuatt_tiengiuongyeucau, 
+				sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as chuatt_tienkhac, 
+				sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as chuatt_tienvattu, 
+				sum(spt.money_mau_bh + spt.money_mau_vp) as chuatt_tienmau, 
+				sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp) as chuatt_tienthuoc
+		from tools_serviceprice_pttt spt
+		where coalesce(spt.vienphistatus_vp,0)=0
+			and spt.vienphistatus=1
+			and spt.vienphidate_ravien>='2016-01-01 00:00:00'
+		group by spt.khoaravien) VP on vp.khoaravien=vi.departmentgroupid
+	) RV on RV.departmentgroupid=degp.departmentgroupid
+left join
+	--Ra vien da thanh toan
+	(SELECT 
+		VI.departmentgroupid,
+		VI.datt_slbn_bh as datt_slbn_bh,
+		VI.datt_slbn_vp as datt_slbn_vp,
+		VI.datt_slbn as datt_slbn,
+		vp.datt_tienkb as datt_tienkb,
+		vp.datt_tienxn as datt_tienxn,
+		vp.datt_tiencdhatdcn as datt_tiencdhatdcn,
+		vp.datt_tienpttt as datt_tienpttt,
+		vp.datt_tiendvktc as datt_tiendvktc,
+		vp.datt_tiengiuongthuong as datt_tiengiuongthuong,
+		vp.datt_tiengiuongyeucau as datt_tiengiuongyeucau,
+		vp.datt_tienkhac as datt_tienkhac,
+		vp.datt_tienvattu as datt_tienvattu,
+		vp.datt_tienmau as datt_tienmau,
+		vp.datt_tienthuoc_bh as datt_tienthuoc_bh,
+		vp.datt_tienthuoc_vp as datt_tienthuoc_vp,
+		vp.datt_tongtien_bh as datt_tongtien_bh,
+		vp.datt_tongtien_vp as datt_tongtien_vp,
+		bill.tam_ung as tam_ung	
+	FROM
+		(select v.departmentgroupid,
+			sum(case when v.doituongbenhnhanid=1 then 1 else 0 end) as datt_slbn_bh,
+			sum(case when v.doituongbenhnhanid<>1 then 1 else 0 end) as datt_slbn_vp,
+			count(v.*) as datt_slbn
+		from vienphi v 
+		where v.vienphistatus_vp=1 and v.duyet_ngayduyet_vp between '2017-05-19 00:00:00' and '2017-05-19 23:59:59'
+		group by v.departmentgroupid) VI
+		left join
+		(select 
+				spt.khoaravien,
+				sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as datt_tienkb, 
+				sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as datt_tienxn, 
+				sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as datt_tiencdhatdcn, 
+				sum(spt.money_pttt_bh + spt.money_pttt_vp) as datt_tienpttt, 
+				sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as datt_tiendvktc, 
+				sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as datt_tiengiuongthuong, 
+				sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as datt_tiengiuongyeucau, 
+				sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as datt_tienkhac, 
+				sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as datt_tienvattu, 
+				sum(spt.money_mau_bh + spt.money_mau_vp) as datt_tienmau, 
+				sum(spt.money_thuoc_bh + spt.money_dkpttt_thuoc_bh) as datt_tienthuoc_bh,
+				sum(spt.money_thuoc_vp + spt.money_dkpttt_thuoc_vp) as datt_tienthuoc_vp,
+				sum(spt.money_khambenh_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_pttt_bh + spt.money_dvktc_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_phuthu_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_dkpttt_vattu_bh + spt.money_mau_bh + spt.money_thuoc_bh + spt.money_dkpttt_thuoc_bh) as datt_tongtien_bh,
+				sum(spt.money_khambenh_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_phuthu_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_vp + spt.money_mau_vp + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_vp) as datt_tongtien_vp			
+		from tools_serviceprice_pttt spt
+		where spt.vienphistatus_vp=1
+			and spt.duyet_ngayduyet_vp between '2017-05-19 00:00:00' and '2017-05-19 23:59:59'
+		group by spt.khoaravien) VP on vp.khoaravien=vi.departmentgroupid
+	    left join 
+		(select vp.departmentgroupid, 
+				sum(b.datra) as tam_ung
+		from bill b
+			 inner join (select vienphiid, departmentgroupid from vienphi where vienphistatus_vp=1 and duyet_ngayduyet_vp between '2017-05-19 00:00:00' and '2017-05-19 23:59:59') vp on vp.vienphiid=b.vienphiid
+			 where b.loaiphieuthuid=2 and b.dahuyphieu=0	
+		group by vp.departmentgroupid
+		) BILL on BILL.departmentgroupid=vi.departmentgroupid
+	) TT on TT.departmentgroupid=degp.departmentgroupid
+WHERE degp.departmentgrouptype in (1,4,11,10,100);
+
+
+
+
+
+-----========
+
+
+--BC BN Noi tru ngay 22/5/2017
+
+SELECT  
+ ROW_NUMBER () OVER (ORDER BY degp.departmentgroupname) as stt, 
+ degp.departmentgroupname, 
+ DDT.dangdt_slbn_bh, 
+ DDT.dangdt_slbn_vp, 
+ DDT.dangdt_slbn, 
+ DDT.dangdt_tienthuoc, 
+ DDT.dangdt_tienvattu, 
+ (coalesce(DDT.dangdt_tienkb,0) + coalesce(DDT.dangdt_tienxn,0) + coalesce(DDT.dangdt_tiencdhatdcn,0) + coalesce(DDT.dangdt_tienpttt,0) + coalesce(DDT.dangdt_tiendvktc,0) + coalesce(DDT.dangdt_tiengiuongthuong,0) + coalesce(DDT.dangdt_tiengiuongyeucau,0) + coalesce(DDT.dangdt_tienkhac,0) + coalesce(DDT.dangdt_tienvattu,0) + coalesce(DDT.dangdt_tienmau,0) + coalesce(DDT.dangdt_tienthuoc,0)) as dangdt_tongtien, 
+ DDT.tam_ung as dangdt_tamung, 
+ RV.chuatt_slbn_bh, 
+ RV.chuatt_slbn_vp, 
+ RV.chuatt_slbn, 
+ RV.chuatt_tienthuoc, 
+ RV.chuatt_tienvattu, 
+ (coalesce(RV.chuatt_tienkb,0) + coalesce(RV.chuatt_tienxn,0) + coalesce(RV.chuatt_tiencdhatdcn,0) + coalesce(RV.chuatt_tienpttt,0) + coalesce(RV.chuatt_tiendvktc,0) + coalesce(RV.chuatt_tiengiuongthuong,0) + coalesce(RV.chuatt_tiengiuongyeucau,0) + coalesce(RV.chuatt_tienkhac,0) + coalesce(RV.chuatt_tienvattu,0) + coalesce(RV.chuatt_tienmau,0) + coalesce(RV.chuatt_tienthuoc,0)) as chuatt_tongtien, 
+ RV.tam_ung as chuatt_tamung,  
+ TT.datt_slbn_bh, 
+ TT.datt_slbn_vp, 
+ TT.datt_slbn, 
+ TT.datt_tienthuoc_bh, 
+ TT.datt_tienthuoc_vp, 
+ (coalesce(TT.datt_tienthuoc_bh,0) + coalesce(TT.datt_tienthuoc_vp,0)) as datt_tienthuoc, 
+ TT.datt_tienvattu, 
+ TT.datt_tongtien_bh, 
+ TT.datt_tongtien_vp, 
+ (coalesce(TT.datt_tongtien_bh,0) + coalesce(TT.datt_tongtien_vp,0)) as datt_tongtien, 
+ TT.tam_ung as datt_tamung,  
+ case when TT.datt_tongtien_bh<>0 then round(cast((TT.datt_tienthuoc_bh/TT.datt_tongtien_bh) * 100 as numeric) ,2) else 0 end as datt_tyle_thuoc_bh, 
+ case when TT.datt_tongtien_vp<>0 then round(cast((TT.datt_tienthuoc_vp/TT.datt_tongtien_vp) * 100 as numeric) ,2) else 0 end as datt_tyle_thuoc_vp, 
+ case when (coalesce(TT.datt_tongtien_bh,0) + coalesce(TT.datt_tongtien_vp,0))<>0 then round(cast(((coalesce(TT.datt_tienthuoc_bh,0) + coalesce(TT.datt_tienthuoc_vp,0))/(coalesce(TT.datt_tongtien_bh,0) + coalesce(TT.datt_tongtien_vp,0))) * 100 as numeric) ,2) else 0 end as datt_tyle_thuoc 
+FROM  
+ departmentgroup degp   
+left join  
+ (SELECT  
+  VP.departmentgroupid, 
+  sum(case when VP.doituongbenhnhanid=1 then 1 else 0 end) as dangdt_slbn_bh, 
+  sum(case when VP.doituongbenhnhanid<>1 then 1 else 0 end) as dangdt_slbn_vp, 
+  count(VP.*) as dangdt_slbn, 
+  sum(VP.dangdt_tienkb) as dangdt_tienkb, 
+  sum(vp.dangdt_tienxn) as dangdt_tienxn, 
+  sum(vp.dangdt_tiencdhatdcn) as dangdt_tiencdhatdcn, 
+  sum(vp.dangdt_tienpttt) as dangdt_tienpttt, 
+  sum(vp.dangdt_tiendvktc) as dangdt_tiendvktc, 
+  sum(vp.dangdt_tiengiuongthuong) as dangdt_tiengiuongthuong, 
+  sum(vp.dangdt_tiengiuongyeucau) as dangdt_tiengiuongyeucau, 
+  sum(vp.dangdt_tienkhac) as dangdt_tienkhac, 
+  sum(vp.dangdt_tienvattu) as dangdt_tienvattu, 
+  sum(vp.dangdt_tienmau) as dangdt_tienmau, 
+  sum(vp.dangdt_tienthuoc) as dangdt_tienthuoc, 
+  sum(bill.tam_ung) as tam_ung  
+ FROM 
+  (select  
+    spt.departmentgroupid, 
+    spt.doituongbenhnhanid, 
+    spt.vienphiid, 
+    sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as dangdt_tienkb,  
+    sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as dangdt_tienxn,  
+    sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as dangdt_tiencdhatdcn,  
+    sum(spt.money_pttt_bh + spt.money_pttt_vp) as dangdt_tienpttt,  
+    sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as dangdt_tiendvktc,  
+    sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as dangdt_tiengiuongthuong,  
+    sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as dangdt_tiengiuongyeucau,  
+    sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as dangdt_tienkhac,  
+    sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as dangdt_tienvattu,  
+    sum(spt.money_mau_bh + spt.money_mau_vp) as dangdt_tienmau,  
+    sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp) as dangdt_tienthuoc 
+  from View_tools_serviceprice_pttt spt 
+  where spt.vienphistatus=0 
+   and spt.vienphidate>='" + GlobalStore.KhoangThoiGianLayDuLieu + "' 
+  group by spt.departmentgroupid, spt.doituongbenhnhanid, spt.vienphiid) VP 
+ left join  
+  (select b.vienphiid,  
+    b.departmentgroupid,  
+    sum(b.datra) as tam_ung 
+  from bill b  
+  where b.loaiphieuthuid=2 and b.dahuyphieu=0 
+     and b.billdate>='" + GlobalStore.KhoangThoiGianLayDuLieu + "' 
+  group by b.vienphiid, b.departmentgroupid    
+  ) BILL on BILL.vienphiid=vp.vienphiid 
+ GROUP BY vp.departmentgroupid  
+ ) DDT on DDT.departmentgroupid=degp.departmentgroupid 
+left join 
+ (SELECT  
+  vp.departmentgroupid, 
+  sum(case when vp.doituongbenhnhanid=1 then 1 else 0 end) as chuatt_slbn_bh, 
+  sum(case when vp.doituongbenhnhanid<>1 then 1 else 0 end) as chuatt_slbn_vp, 
+  count(vp.*) as chuatt_slbn, 
+  sum(vp.chuatt_tienkb) as chuatt_tienkb, 
+  sum(vp.chuatt_tienxn) as chuatt_tienxn, 
+  sum(vp.chuatt_tiencdhatdcn) as chuatt_tiencdhatdcn, 
+  sum(vp.chuatt_tienpttt) as chuatt_tienpttt, 
+  sum(vp.chuatt_tiendvktc) as chuatt_tiendvktc, 
+  sum(vp.chuatt_tiengiuongthuong) as chuatt_tiengiuongthuong, 
+  sum(vp.chuatt_tiengiuongyeucau) as chuatt_tiengiuongyeucau, 
+  sum(vp.chuatt_tienkhac) as chuatt_tienkhac, 
+  sum(vp.chuatt_tienvattu) as chuatt_tienvattu, 
+  sum(vp.chuatt_tienmau) as chuatt_tienmau, 
+  sum(vp.chuatt_tienthuoc) as chuatt_tienthuoc, 
+  sum(bill.tam_ung) as tam_ung  
+ FROM 
+  (select  
+    spt.departmentgroupid, 
+    spt.doituongbenhnhanid, 
+    spt.vienphiid, 
+    sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as chuatt_tienkb,  
+    sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as chuatt_tienxn,  
+    sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as chuatt_tiencdhatdcn,  
+    sum(spt.money_pttt_bh + spt.money_pttt_vp) as chuatt_tienpttt,  
+    sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as chuatt_tiendvktc,  
+    sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as chuatt_tiengiuongthuong,  
+    sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as chuatt_tiengiuongyeucau,  
+    sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as chuatt_tienkhac,  
+    sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as chuatt_tienvattu,  
+    sum(spt.money_mau_bh + spt.money_mau_vp) as chuatt_tienmau,  
+    sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp) as chuatt_tienthuoc 
+  from tools_serviceprice_pttt spt 
+  where coalesce(spt.vienphistatus_vp,0)=0 
+   and spt.vienphistatus=1 
+   and spt.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "' 
+  group by spt.departmentgroupid, spt.doituongbenhnhanid, spt.vienphiid) VP 
+ left join  
+  (select b.vienphiid,  
+    b.departmentgroupid,  
+    sum(b.datra) as tam_ung 
+  from bill b 
+  where b.loaiphieuthuid=2 and b.dahuyphieu=0  
+  group by b.vienphiid, b.departmentgroupid 
+  ) BILL on BILL.vienphiid=vp.vienphiid 
+ GROUP BY vp.departmentgroupid  
+ ) RV on RV.departmentgroupid=degp.departmentgroupid 
+left join 
+ (SELECT  
+  vp.departmentgroupid, 
+  sum(case when vp.doituongbenhnhanid=1 then 1 else 0 end) as datt_slbn_bh, 
+  sum(case when vp.doituongbenhnhanid<>1 then 1 else 0 end) as datt_slbn_vp, 
+  count(vp.*) as datt_slbn, 
+  sum(vp.datt_tienkb) as datt_tienkb, 
+  sum(vp.datt_tienxn) as datt_tienxn, 
+  sum(vp.datt_tiencdhatdcn) as datt_tiencdhatdcn, 
+  sum(vp.datt_tienpttt) as datt_tienpttt, 
+  sum(vp.datt_tiendvktc) as datt_tiendvktc, 
+  sum(vp.datt_tiengiuongthuong) as datt_tiengiuongthuong, 
+  sum(vp.datt_tiengiuongyeucau) as datt_tiengiuongyeucau, 
+  sum(vp.datt_tienkhac) as datt_tienkhac, 
+  sum(vp.datt_tienvattu) as datt_tienvattu, 
+  sum(vp.datt_tienmau) as datt_tienmau, 
+  sum(vp.datt_tienthuoc_bh) as datt_tienthuoc_bh, 
+  sum(vp.datt_tienthuoc_vp) as datt_tienthuoc_vp, 
+  sum(vp.datt_tongtien_bh) as datt_tongtien_bh, 
+  sum(vp.datt_tongtien_vp) as datt_tongtien_vp, 
+  sum(bill.tam_ung) as tam_ung  
+ FROM 
+  (select  
+    spt.departmentgroupid, 
+    spt.doituongbenhnhanid, 
+    spt.vienphiid, 
+    sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as datt_tienkb,  
+    sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as datt_tienxn,  
+    sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as datt_tiencdhatdcn,  
+    sum(spt.money_pttt_bh + spt.money_pttt_vp) as datt_tienpttt,  
+    sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as datt_tiendvktc,  
+    sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as datt_tiengiuongthuong,  
+    sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as datt_tiengiuongyeucau,  
+    sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as datt_tienkhac,  
+    sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as datt_tienvattu,  
+    sum(spt.money_mau_bh + spt.money_mau_vp) as datt_tienmau,  
+    sum(spt.money_thuoc_bh + spt.money_dkpttt_thuoc_bh) as datt_tienthuoc_bh, 
+    sum(spt.money_thuoc_vp + spt.money_dkpttt_thuoc_vp) as datt_tienthuoc_vp, 
+    sum(spt.money_khambenh_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_pttt_bh + spt.money_dvktc_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_phuthu_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_dkpttt_vattu_bh + spt.money_mau_bh + spt.money_thuoc_bh + spt.money_dkpttt_thuoc_bh) as datt_tongtien_bh, 
+    sum(spt.money_khambenh_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_phuthu_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_dkpttt_vattu_vp + spt.money_mau_vp + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_vp) as datt_tongtien_vp    
+  from tools_serviceprice_pttt spt 
+  where coalesce(spt.vienphistatus_vp,0)=1 
+   and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' 
+  group by spt.departmentgroupid, spt.doituongbenhnhanid, spt.vienphiid) VP 
+ left join  
+  (select b.vienphiid,  
+    b.departmentgroupid,  
+    sum(b.datra) as tam_ung 
+  from bill b 
+    inner join (select vienphiid from vienphi where coalesce(vienphistatus_vp,0)=1 and duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "') vp on vp.vienphiid=b.vienphiid 
+  where b.loaiphieuthuid=2 and b.dahuyphieu=0  
+  group by b.vienphiid, b.departmentgroupid 
+  ) BILL on BILL.vienphiid=vp.vienphiid 
+ GROUP BY vp.departmentgroupid  
+ ) TT on TT.departmentgroupid=degp.departmentgroupid
+WHERE degp.departmentgrouptype in (1,4,11,10,100) 
+ ; 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+-----========	
+
+
+
+
+
+
+			
+							
 
 
 
@@ -37,6 +429,18 @@ left join
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+--=============
 
 
 

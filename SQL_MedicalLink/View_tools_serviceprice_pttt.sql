@@ -1,4 +1,4 @@
----------------View View_tools_serviceprice_pttt v 1.1 ngay 19/05/2017
+---------------View View_tools_serviceprice_pttt v 1.1 ngay 22/05/2017
 --sử dụng code sql tools_serviceprice_pttt ngay  v 1.15 ngay 17/5
 --dùng để lấy báo cáo doanh thu chia GMHT BN đang điều trị
 
@@ -328,8 +328,8 @@ sum(case when ser.servicepriceid_master<>0 and ser.loaidoituong=2 and ser.bhyt_g
 FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid
 WHERE vp.vienphidate>='2016-01-01 00:00:00'
 		and ser.thuockhobanle=0 
-		and vp.vienphistatus<>0 
-		and COALESCE(vp.vienphistatus_vp,0)=0	
+		and vp.vienphistatus=0 
+		--and COALESCE(vp.vienphistatus_vp,0)=0	
 GROUP BY vp.vienphiid,vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, 
 vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, 
 vp.vienphistatus_bh, vp.duyet_ngayduyet_bh, vp.bhyt_tuyenbenhvien, ser.departmentid, ser.departmentgroupid,

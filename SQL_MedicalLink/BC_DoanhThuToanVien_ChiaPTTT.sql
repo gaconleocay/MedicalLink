@@ -219,8 +219,9 @@ FROM departmentgroup dep
 		sum(spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong_vp 
 	FROM tools_serviceprice_pttt spt 
 	WHERE spt.departmentid not in (34,335,269,285) " + doituongbenhnhanid_spt + " 
-		and spt.vienphistatus<>0 and COALESCE(spt.vienphistatus_vp,0)=0
-		and spt.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "' 
+		and spt.vienphistatus=1 and COALESCE(spt.vienphistatus_vp,0)=0
+		--and spt.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "' 
+		and spt.vienphidate_ravien between '" + thoiGianTu + "' and '" + thoiGianDen + "'
 	GROUP BY spt.departmentgroupid) A ON dep.departmentgroupid=A.departmentgroupid 
 
 	LEFT JOIN 
@@ -251,8 +252,9 @@ FROM departmentgroup dep
 		sum(spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong_vp 
 	FROM tools_serviceprice_pttt spt 
 	WHERE spt.departmentid in (34,335,269,285) " + doituongbenhnhanid_spt + "
-		and spt.vienphistatus<>0 and COALESCE(spt.vienphistatus_vp,0)=0
-		and spt.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "' 
+		and spt.vienphistatus=1 and COALESCE(spt.vienphistatus_vp,0)=0
+		--and spt.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "'
+		and spt.vienphidate_ravien between '" + thoiGianTu + "' and '" + thoiGianDen + "'		
 	GROUP BY spt.departmentgroup_huong) B ON dep.departmentgroupid=B.departmentgroup_huong
 	LEFT JOIN 
 	(SELECT count(*) as count, 
@@ -260,9 +262,10 @@ FROM departmentgroup dep
 		sum(case when doituongbenhnhanid<>1 then 1 else 0 end) as count_vp, 
 		vp.departmentgroupid 
 	FROM vienphi vp 
-	WHERE vp.vienphistatus<>0 and COALESCE(vp.vienphistatus_vp,0)=0
-		and vp.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "'
+	WHERE vp.vienphistatus=1 and COALESCE(vp.vienphistatus_vp,0)=0
+		--and vp.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "'
 		" + doituongbenhnhanid_vp + "
+		and vp.vienphidate_ravien between '" + thoiGianTu + "' and '" + thoiGianDen + "'
 	GROUP BY vp.departmentgroupid) C ON C.departmentgroupid=dep.departmentgroupid 
 WHERE dep.departmentgroupid<>21 and departmentgrouptype in (1,4,11,10,100) 
 GROUP BY dep.departmentgroupid, dep.departmentgroupname) O 
@@ -272,8 +275,9 @@ LEFT JOIN
 	from vienphi vp 
 		inner join bill b on vp.vienphiid=b.vienphiid 
 	where 
-		vp.vienphistatus<>0 and COALESCE(vp.vienphistatus_vp,0)=0
-		and vp.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "' 
+		vp.vienphistatus=1 and COALESCE(vp.vienphistatus_vp,0)=0
+		--and vp.vienphidate_ravien>='" + GlobalStore.KhoangThoiGianLayDuLieu + "'
+		and vp.vienphidate_ravien between '" + thoiGianTu + "' and '" + thoiGianDen + "'
 		and b.loaiphieuthuid=2 and b.dahuyphieu=0 " + doituongbenhnhanid_vp + " 
 	group by b.departmentgroupid) BILL ON BILL.departmentgroupid=O.departmentgroupid; 
 	
@@ -364,7 +368,10 @@ FROM departmentgroup dep
 		sum(spt.money_pttt_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh) as money_tong_bh, 
 		sum(spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong_vp 
 	FROM View_tools_serviceprice_pttt spt 
-	WHERE spt.departmentid not in (34,335,269,285) and spt.vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"' " + doituongbenhnhanid_spt + "
+	WHERE spt.departmentid not in (34,335,269,285) and spt.vienphistatus=0
+		--and spt.vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"'
+		and spt.vienphidate between '" + thoiGianTu + "' and '" + thoiGianDen + "'	
+		" + doituongbenhnhanid_spt + "
 	GROUP BY spt.departmentgroupid) A ON dep.departmentgroupid=A.departmentgroupid 
 
 	LEFT JOIN 
@@ -394,7 +401,10 @@ FROM departmentgroup dep
 		sum(spt.money_pttt_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh) as money_tong_bh, 
 		sum(spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong_vp 
 	FROM View_tools_serviceprice_pttt spt 
-	WHERE spt.departmentid in (34,335,269,285) and spt.vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"' " + doituongbenhnhanid_spt + "
+	WHERE spt.departmentid in (34,335,269,285) and spt.vienphistatus=0
+		--and spt.vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"'
+		and spt.vienphidate between '" + thoiGianTu + "' and '" + thoiGianDen + "'
+		" + doituongbenhnhanid_spt + "
 	GROUP BY spt.departmentgroup_huong) B ON dep.departmentgroupid=B.departmentgroup_huong
 	LEFT JOIN 
 	(SELECT count(*) as count, 
@@ -402,7 +412,9 @@ FROM departmentgroup dep
 		sum(case when doituongbenhnhanid<>1 then 1 else 0 end) as count_vp, 
 		vp.departmentgroupid 
 	FROM vienphi vp 
-	WHERE vp.vienphistatus<>0 and COALESCE(vp.vienphistatus_vp,0)=0 " + doituongbenhnhanid_vp + " and vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"' 
+	WHERE vp.vienphistatus=0 " + doituongbenhnhanid_vp + " 
+	--and vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"'
+	and vp.vienphidate between '" + thoiGianTu + "' and '" + thoiGianDen + "'	
 	GROUP BY vp.departmentgroupid) C ON C.departmentgroupid=dep.departmentgroupid 
 WHERE dep.departmentgroupid<>21 and departmentgrouptype in (1,4,11,10,100) 
 GROUP BY dep.departmentgroupid, dep.departmentgroupname) O 
@@ -411,7 +423,10 @@ LEFT JOIN
 		b.departmentgroupid 
 	from vienphi vp 
 		inner join bill b on vp.vienphiid=b.vienphiid 
-	where vp.vienphistatus<>0 and COALESCE(vp.vienphistatus_vp,0)=0 and b.loaiphieuthuid=2 and b.dahuyphieu=0 and vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"' " + doituongbenhnhanid_vp + " 
+	where vp.vienphistatus=0 and b.loaiphieuthuid=2 and b.dahuyphieu=0 
+	--and vienphidate>='"+MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu+"'
+	and vp.vienphidate between '" + thoiGianTu + "' and '" + thoiGianDen + "'
+	" + doituongbenhnhanid_vp + " 
 	group by b.departmentgroupid) BILL ON BILL.departmentgroupid=O.departmentgroupid; 
 
 

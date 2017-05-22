@@ -134,16 +134,8 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (chkBHYT.Checked == false && chkVP.Checked == false)
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_DOI_TUONG_BENH_NHAN);
-                    frmthongbao.Show();
-                }
-                else
-                {
-                    gridControlTTDTKhoa.DataSource = null;
-                    LayDuLieuBaoCao_ChayMoi();
-                }
+                gridControlTTDTKhoa.DataSource = null;
+                LayDuLieuBaoCao_ChayMoi();
             }
             catch (Exception ex)
             {
@@ -276,15 +268,15 @@ namespace MedicalLink.Dashboard
             {
                 if (cboTieuChi.Text == "Đã thanh toán")
                 {
-                    dateTuNgay.Enabled = true;
-                    dateDenNgay.Enabled = true;
+                    //dateTuNgay.Enabled = true;
+                    //dateDenNgay.Enabled = true;
                     dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                     dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 }
                 else
                 {
-                    dateTuNgay.Enabled = false;
-                    dateDenNgay.Enabled = false;
+                    //dateTuNgay.Enabled = false;
+                    //dateDenNgay.Enabled = false;
                     dateTuNgay.Value = Convert.ToDateTime(GlobalStore.KhoangThoiGianLayDuLieu);
                     dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 }
@@ -294,6 +286,7 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
 
     }
 }

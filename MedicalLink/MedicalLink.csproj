@@ -1107,7 +1107,9 @@
     <EmbeddedResource Include="Utilities\PrintPreview\PrintPreviewDev.resx">
       <DependentUpon>PrintPreviewDev.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Documents\Huongdansudung.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

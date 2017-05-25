@@ -42,12 +42,7 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboXa = new System.Windows.Forms.ComboBox();
-            this.cboHuyen = new System.Windows.Forms.ComboBox();
-            this.cboTinh = new System.Windows.Forms.ComboBox();
             this.txtGioiTinh = new DevExpress.XtraEditors.TextEdit();
-            this.txtTinh = new DevExpress.XtraEditors.TextEdit();
-            this.txtHuyen = new DevExpress.XtraEditors.TextEdit();
             this.lblTrangThai = new DevExpress.XtraEditors.LabelControl();
             this.lblVienphiId = new DevExpress.XtraEditors.LabelControl();
             this.lblPatientId = new DevExpress.XtraEditors.LabelControl();
@@ -56,7 +51,6 @@
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtNoiLamViec = new DevExpress.XtraEditors.TextEdit();
             this.txtThonPho = new DevExpress.XtraEditors.TextEdit();
-            this.txtXa = new DevExpress.XtraEditors.TextEdit();
             this.cbbGioiTinh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.dtNgaySinh = new DevExpress.XtraEditors.DateEdit();
             this.txtSoNha = new DevExpress.XtraEditors.TextEdit();
@@ -76,6 +70,9 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.cboTinh = new DevExpress.XtraEditors.LookUpEdit();
+            this.cboHuyen = new DevExpress.XtraEditors.LookUpEdit();
+            this.cboXa = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -89,11 +86,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioiTinh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTinh.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHuyen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoiLamViec.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtThonPho.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtXa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbGioiTinh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties)).BeginInit();
@@ -104,6 +98,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTinh.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboHuyen.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboXa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -274,8 +271,6 @@
             this.groupBox1.Controls.Add(this.cboHuyen);
             this.groupBox1.Controls.Add(this.cboTinh);
             this.groupBox1.Controls.Add(this.txtGioiTinh);
-            this.groupBox1.Controls.Add(this.txtTinh);
-            this.groupBox1.Controls.Add(this.txtHuyen);
             this.groupBox1.Controls.Add(this.lblTrangThai);
             this.groupBox1.Controls.Add(this.lblVienphiId);
             this.groupBox1.Controls.Add(this.lblPatientId);
@@ -284,7 +279,6 @@
             this.groupBox1.Controls.Add(this.labelControl11);
             this.groupBox1.Controls.Add(this.txtNoiLamViec);
             this.groupBox1.Controls.Add(this.txtThonPho);
-            this.groupBox1.Controls.Add(this.txtXa);
             this.groupBox1.Controls.Add(this.cbbGioiTinh);
             this.groupBox1.Controls.Add(this.dtNgaySinh);
             this.groupBox1.Controls.Add(this.txtSoNha);
@@ -306,74 +300,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin về bệnh nhân";
             // 
-            // cboXa
-            // 
-            this.cboXa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboXa.FormattingEnabled = true;
-            this.cboXa.Location = new System.Drawing.Point(753, 115);
-            this.cboXa.Name = "cboXa";
-            this.cboXa.Size = new System.Drawing.Size(157, 24);
-            this.cboXa.TabIndex = 6;
-            this.cboXa.SelectedIndexChanged += new System.EventHandler(this.cboXa_SelectedIndexChanged);
-            this.cboXa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboXa_KeyDown);
-            // 
-            // cboHuyen
-            // 
-            this.cboHuyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboHuyen.FormattingEnabled = true;
-            this.cboHuyen.Location = new System.Drawing.Point(434, 115);
-            this.cboHuyen.Name = "cboHuyen";
-            this.cboHuyen.Size = new System.Drawing.Size(157, 24);
-            this.cboHuyen.TabIndex = 5;
-            this.cboHuyen.SelectedIndexChanged += new System.EventHandler(this.cboHuyen_SelectedIndexChanged);
-            this.cboHuyen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboHuyen_KeyDown);
-            // 
-            // cboTinh
-            // 
-            this.cboTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTinh.FormattingEnabled = true;
-            this.cboTinh.Location = new System.Drawing.Point(145, 113);
-            this.cboTinh.Name = "cboTinh";
-            this.cboTinh.Size = new System.Drawing.Size(157, 24);
-            this.cboTinh.TabIndex = 4;
-            this.cboTinh.SelectedIndexChanged += new System.EventHandler(this.cboTinh_SelectedIndexChanged);
-            this.cboTinh.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboTinh_KeyDown);
-            // 
             // txtGioiTinh
             // 
             this.txtGioiTinh.Location = new System.Drawing.Point(698, 78);
             this.txtGioiTinh.Name = "txtGioiTinh";
-            this.txtGioiTinh.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGioiTinh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGioiTinh.Properties.Appearance.Options.UseFont = true;
             this.txtGioiTinh.Properties.MaxLength = 2;
             this.txtGioiTinh.Properties.ReadOnly = true;
             this.txtGioiTinh.Size = new System.Drawing.Size(55, 22);
             this.txtGioiTinh.TabIndex = 37;
             this.txtGioiTinh.TabStop = false;
-            // 
-            // txtTinh
-            // 
-            this.txtTinh.Location = new System.Drawing.Point(90, 113);
-            this.txtTinh.Name = "txtTinh";
-            this.txtTinh.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTinh.Properties.Appearance.Options.UseFont = true;
-            this.txtTinh.Properties.ReadOnly = true;
-            this.txtTinh.Size = new System.Drawing.Size(55, 22);
-            this.txtTinh.TabIndex = 35;
-            this.txtTinh.TabStop = false;
-            this.txtTinh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTinh_KeyPress);
-            // 
-            // txtHuyen
-            // 
-            this.txtHuyen.Location = new System.Drawing.Point(379, 115);
-            this.txtHuyen.Name = "txtHuyen";
-            this.txtHuyen.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHuyen.Properties.Appearance.Options.UseFont = true;
-            this.txtHuyen.Properties.ReadOnly = true;
-            this.txtHuyen.Size = new System.Drawing.Size(55, 22);
-            this.txtHuyen.TabIndex = 33;
-            this.txtHuyen.TabStop = false;
-            this.txtHuyen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHuyen_KeyPress);
             // 
             // lblTrangThai
             // 
@@ -439,7 +376,7 @@
             // 
             this.txtNoiLamViec.Location = new System.Drawing.Point(698, 154);
             this.txtNoiLamViec.Name = "txtNoiLamViec";
-            this.txtNoiLamViec.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoiLamViec.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNoiLamViec.Properties.Appearance.Options.UseFont = true;
             this.txtNoiLamViec.Size = new System.Drawing.Size(212, 22);
             this.txtNoiLamViec.TabIndex = 9;
@@ -450,30 +387,18 @@
             // 
             this.txtThonPho.Location = new System.Drawing.Point(379, 154);
             this.txtThonPho.Name = "txtThonPho";
-            this.txtThonPho.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtThonPho.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtThonPho.Properties.Appearance.Options.UseFont = true;
             this.txtThonPho.Size = new System.Drawing.Size(212, 22);
             this.txtThonPho.TabIndex = 8;
             this.txtThonPho.EditValueChanged += new System.EventHandler(this.txtThonPho_EditValueChanged);
             this.txtThonPho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtThonPho_KeyDown);
             // 
-            // txtXa
-            // 
-            this.txtXa.Location = new System.Drawing.Point(698, 115);
-            this.txtXa.Name = "txtXa";
-            this.txtXa.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtXa.Properties.Appearance.Options.UseFont = true;
-            this.txtXa.Properties.ReadOnly = true;
-            this.txtXa.Size = new System.Drawing.Size(55, 22);
-            this.txtXa.TabIndex = 22;
-            this.txtXa.TabStop = false;
-            this.txtXa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtXa_KeyPress);
-            // 
             // cbbGioiTinh
             // 
             this.cbbGioiTinh.Location = new System.Drawing.Point(753, 78);
             this.cbbGioiTinh.Name = "cbbGioiTinh";
-            this.cbbGioiTinh.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbGioiTinh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbGioiTinh.Properties.Appearance.Options.UseFont = true;
             this.cbbGioiTinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -491,7 +416,7 @@
             this.dtNgaySinh.EditValue = null;
             this.dtNgaySinh.Location = new System.Drawing.Point(379, 78);
             this.dtNgaySinh.Name = "dtNgaySinh";
-            this.dtNgaySinh.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtNgaySinh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtNgaySinh.Properties.Appearance.Options.UseFont = true;
             this.dtNgaySinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -511,7 +436,7 @@
             // 
             this.txtSoNha.Location = new System.Drawing.Point(90, 154);
             this.txtSoNha.Name = "txtSoNha";
-            this.txtSoNha.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSoNha.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSoNha.Properties.Appearance.Options.UseFont = true;
             this.txtSoNha.Size = new System.Drawing.Size(212, 22);
             this.txtSoNha.TabIndex = 7;
@@ -522,7 +447,7 @@
             // 
             this.txtPatientName.Location = new System.Drawing.Point(90, 76);
             this.txtPatientName.Name = "txtPatientName";
-            this.txtPatientName.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPatientName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPatientName.Properties.Appearance.Options.UseFont = true;
             this.txtPatientName.Size = new System.Drawing.Size(212, 22);
             this.txtPatientName.TabIndex = 1;
@@ -686,6 +611,87 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
+            // cboTinh
+            // 
+            this.cboTinh.Location = new System.Drawing.Point(91, 116);
+            this.cboTinh.Name = "cboTinh";
+            this.cboTinh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTinh.Properties.Appearance.Options.UseFont = true;
+            this.cboTinh.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboTinh.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cboTinh.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboTinh.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboTinh.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboTinh.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.cboTinh.Properties.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboTinh.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cboTinh.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboTinh.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.cboTinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboTinh.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("hc_tinhcode", 30, "Mã"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("hc_tinhname", 80, "Tên")});
+            this.cboTinh.Properties.DropDownRows = 15;
+            this.cboTinh.Properties.NullText = "";
+            this.cboTinh.Size = new System.Drawing.Size(211, 22);
+            this.cboTinh.TabIndex = 38;
+            this.cboTinh.EditValueChanged += new System.EventHandler(this.cboTinh_EditValueChanged);
+            // 
+            // cboHuyen
+            // 
+            this.cboHuyen.Location = new System.Drawing.Point(379, 116);
+            this.cboHuyen.Name = "cboHuyen";
+            this.cboHuyen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboHuyen.Properties.Appearance.Options.UseFont = true;
+            this.cboHuyen.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboHuyen.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cboHuyen.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboHuyen.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboHuyen.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboHuyen.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.cboHuyen.Properties.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboHuyen.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cboHuyen.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboHuyen.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.cboHuyen.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboHuyen.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("hc_huyencode", 40, "Mã"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("hc_huyenname", 80, "Tên")});
+            this.cboHuyen.Properties.DropDownRows = 15;
+            this.cboHuyen.Properties.NullText = "";
+            this.cboHuyen.Size = new System.Drawing.Size(211, 22);
+            this.cboHuyen.TabIndex = 39;
+            this.cboHuyen.EditValueChanged += new System.EventHandler(this.cboHuyen_EditValueChanged);
+            // 
+            // cboXa
+            // 
+            this.cboXa.Location = new System.Drawing.Point(698, 116);
+            this.cboXa.Name = "cboXa";
+            this.cboXa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboXa.Properties.Appearance.Options.UseFont = true;
+            this.cboXa.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboXa.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cboXa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboXa.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboXa.Properties.AppearanceDropDownHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboXa.Properties.AppearanceDropDownHeader.Options.UseFont = true;
+            this.cboXa.Properties.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboXa.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cboXa.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboXa.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.cboXa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboXa.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("hc_xacode", 40, "Mã"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("hc_xaname", 80, "Tên")});
+            this.cboXa.Properties.DropDownRows = 15;
+            this.cboXa.Properties.NullText = "";
+            this.cboXa.Size = new System.Drawing.Size(211, 22);
+            this.cboXa.TabIndex = 40;
+            this.cboXa.EditValueChanged += new System.EventHandler(this.cboXa_EditValueChanged);
+            // 
             // SuaThongTin_ThucHien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -712,11 +718,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGioiTinh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTinh.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHuyen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNoiLamViec.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtThonPho.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtXa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbGioiTinh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtNgaySinh.Properties)).EndInit();
@@ -727,6 +730,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTinh.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboHuyen.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboXa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -763,7 +769,6 @@
         private DevExpress.XtraEditors.TextEdit txtSoTheBHYT;
         private DevExpress.XtraEditors.TextEdit txtNoiLamViec;
         private DevExpress.XtraEditors.TextEdit txtThonPho;
-        private DevExpress.XtraEditors.TextEdit txtXa;
         private DevExpress.XtraEditors.ComboBoxEdit cbbGioiTinh;
         private DevExpress.XtraEditors.DateEdit dtNgaySinh;
         private DevExpress.XtraEditors.TextEdit txtSoNha;
@@ -774,11 +779,9 @@
         private DevExpress.XtraEditors.LabelControl lblTrangThai;
         private DevExpress.XtraEditors.LabelControl lblVienphiId;
         private DevExpress.XtraEditors.LabelControl lblPatientId;
-        private DevExpress.XtraEditors.TextEdit txtTinh;
-        private DevExpress.XtraEditors.TextEdit txtHuyen;
         private DevExpress.XtraEditors.TextEdit txtGioiTinh;
-        private System.Windows.Forms.ComboBox cboXa;
-        private System.Windows.Forms.ComboBox cboHuyen;
-        private System.Windows.Forms.ComboBox cboTinh;
+        private DevExpress.XtraEditors.LookUpEdit cboTinh;
+        private DevExpress.XtraEditors.LookUpEdit cboXa;
+        private DevExpress.XtraEditors.LookUpEdit cboHuyen;
     }
 }

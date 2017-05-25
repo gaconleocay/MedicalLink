@@ -15,15 +15,18 @@ namespace MedicalLink.ChucNang
 {
     public partial class SuaThongTin_ThucHien : Form
     {
+        #region Khai bao
         ucSuaThongTinBenhAn SuaThongTinBenhAn;
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         //DataView dv_tinhhuyenxa;
-        DataView dv_tinh, dv_huyen, dv_xa;
+        // DataView dv_tinh, dv_huyen, dv_xa;
 
         long vienphiid, patientid, bhytid, hosobenhanid;
         string PatientName, NgaySinh, GioiTinh_Code, GioiTinh, SoNha, ThonPho, NoiLamViec, TrangThai;
         string SoTheBHYT, HanTheTu, HanTheDen, NoiDKKCBBD;
-        string xa_code, xa_name, huyen_code, huyen_name, tinh_code, tinh_name;
+        string xa_code, huyen_code, tinh_code, xa_name, huyen_name, tinh_name;
+        #endregion
+
         public SuaThongTin_ThucHien()
         {
             InitializeComponent();
@@ -37,7 +40,6 @@ namespace MedicalLink.ChucNang
                 {
                     SuaThongTinBenhAn = control;
                 }
-
             }
             catch (Exception)
             {
@@ -85,13 +87,13 @@ namespace MedicalLink.ChucNang
                     LoadThongTinVeTheBHYT();
                     btnSuaThongTinBN.Enabled = false;
                     btnSuaThongTinBHYT.Enabled = false;
-                    if (txtTinh.Text.Trim() != "")
+                    if (cboTinh.EditValue != null)
                     {
-                        LoadDataHuyen_VeMay(txtTinh.Text.Trim());
+                        LoadDataHuyen_VeMay(cboTinh.EditValue.ToString());
                     }
-                    if (txtTinh.Text.Trim() != "" && txtHuyen.Text.Trim() != "")
+                    if (cboTinh.EditValue != null && cboHuyen.EditValue != null)
                     {
-                        LoadDataXa_VeMay(txtTinh.Text.Trim(), txtHuyen.Text.Trim());
+                        LoadDataXa_VeMay(cboTinh.EditValue.ToString(), cboHuyen.EditValue.ToString());
                     }
                     LoadXaHuyenTinh();
 
@@ -128,13 +130,10 @@ namespace MedicalLink.ChucNang
         private void LoadXaHuyenTinh()
         {
             try
-            {                       
-                txtTinh.Text = tinh_code;
-                cboTinh.Text = tinh_name;
-                txtHuyen.Text = huyen_code;
-                cboHuyen.Text = huyen_name;
-                txtXa.Text = xa_code;
-                cboXa.Text = xa_name;
+            {
+                cboTinh.EditValue = tinh_code;
+                cboHuyen.EditValue = huyen_code;
+                cboXa.EditValue = xa_code;
             }
             catch (Exception)
             {
@@ -164,39 +163,13 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                //string sql_loadtinh = "SELECT DISTINCT hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname FROM hosobenhan;";
-                //dv_tinhhuyenxa = new DataView(condb.getDataTable(sql_loadtinh));
-
-                string sql_loadtinh = "SELECT DISTINCT hc_tinhcode, hc_tinhname FROM hosobenhan WHERE hc_tinhcode <> '' and hc_tinhname <>''  ORDER BY hc_tinhname;";
-                dv_tinh = new DataView(condb.getDataTable(sql_loadtinh));
-                cboTinh.DataSource = dv_tinh;
-                cboTinh.DisplayMember = "hc_tinhname";
-                cboTinh.ValueMember = "hc_tinhcode";
-
-                //if (txtTinh.Text.Trim() != "")
-                //{
-                //    string sql_loadhuyen = "SELECT DISTINCT hc_huyencode, hc_huyenname FROM hosobenhan WHERE hc_huyencode <> '' and hc_huyenname <>'' and hc_tinhcode='" + txtTinh.Text.Trim() + "' ;";
-                //    DataView dv_huyen = new DataView(condb.getDataTable(sql_loadhuyen));
-                //    cboHuyen.DataSource = dv_huyen;
-                //    cboHuyen.DisplayMember = "hc_huyenname";
-                //    cboHuyen.ValueMember = "hc_huyencode";
-                //}
-
-                //if (txtHuyen.Text.Trim() != "")
-                //{
-                //    string sql_loadxa = "SELECT DISTINCT hc_xacode, hc_xaname FROM hosobenhan WHERE hc_xacode <> '' and hc_xaname <>'' and hc_tinhcode='" + txtHuyen.Text.Trim() + "' ;";
-                //    DataView dv_xa = new DataView(condb.getDataTable(sql_loadxa));
-
-                //    cboXa.DataSource = dv_xa;
-                //    cboXa.DisplayMember = "hc_xaname";
-                //    cboXa.ValueMember = "hc_xacode";
-                //}
-
+                cboTinh.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.GroupBy(o => o.hc_tinhcode).Select(n => n.First()).ToList();
+                cboTinh.Properties.DisplayMember = "hc_tinhname";
+                cboTinh.Properties.ValueMember = "hc_tinhcode";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -211,14 +184,15 @@ namespace MedicalLink.ChucNang
                 try
                 {
                     string datengaysinh = DateTime.ParseExact(dtNgaySinh.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00";
-                    string datenamsinh = datengaysinh.Substring(0,4);
+                    // string datenamsinh = datengaysinh.Substring(0,4);
+                    string datenamsinh = "0";
                     // Querry thực hiện
                     DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa thông tin về BN:\n " + PatientName + " - " + patientid + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        string sqlupdate_ttbn = "UPDATE hosobenhan SET patientname = '" + txtPatientName.Text.Trim() + "', birthday='" + datengaysinh + "', birthday_year='" + datenamsinh + "', gioitinhcode = '" + txtGioiTinh.Text.Trim() + "', gioitinhname='" + cbbGioiTinh.Text.Trim() + "', hc_tinhcode = '" + txtTinh.Text.Trim() + "', hc_tinhname='" + cboTinh.Text.Trim() + "', hc_huyencode='" + txtHuyen.Text.Trim() + "', hc_huyenname='" + cboHuyen.Text.Trim() + "', hc_xacode='" + txtXa.Text.Trim() + "', hc_xaname='" + cboXa.Text.Trim() + "', hc_sonha='" + txtSoNha.Text.Trim() + "', hc_thon='" + txtThonPho.Text.Trim() + "', noilamviec='" + txtNoiLamViec.Text.Trim() + "' WHERE hosobenhanid = '" + hosobenhanid + "';";
+                        string sqlupdate_ttbn = "UPDATE hosobenhan SET patientname = '" + txtPatientName.Text.Trim() + "', birthday='" + datengaysinh + "', birthday_year='" + datenamsinh + "', gioitinhcode = '" + txtGioiTinh.Text.Trim() + "', gioitinhname='" + cbbGioiTinh.Text.Trim() + "', hc_tinhcode = '" + cboTinh.EditValue.ToString() + "', hc_tinhname='" + cboTinh.Text.Trim() + "', hc_huyencode='" + cboHuyen.EditValue.ToString() + "', hc_huyenname='" + cboHuyen.Text.Trim() + "', hc_xacode='" + cboXa.EditValue.ToString() + "', hc_xaname='" + cboXa.Text.Trim() + "', hc_sonha='" + txtSoNha.Text.Trim() + "', hc_thon='" + txtThonPho.Text.Trim() + "', noilamviec='" + txtNoiLamViec.Text.Trim() + "' WHERE hosobenhanid = '" + hosobenhanid + "';";
                         //Log
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin về BN từ: " + PatientName + "; " + NgaySinh + "; " + GioiTinh + "; " + tinh_code + "; " + tinh_name + "; " + huyen_code + "; " + huyen_name + "; " + xa_code + "; " + xa_name + "; " + SoNha + "; " + ThonPho + "; " + NoiLamViec + " thành: " + txtPatientName.Text + "; " + datengaysinh + "; " + cbbGioiTinh.Text + "; " + txtTinh.Text + "; " + cboTinh.Text + "; " + txtHuyen.Text + "; " + cboHuyen.Text + "; " + txtXa.Text + "; " + cboXa.Text + "; " + txtSoNha.Text + "; " + txtThonPho.Text + "; " + txtNoiLamViec.Text + "  ' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin về BN từ: " + PatientName + "; " + NgaySinh + "; " + GioiTinh + "; " + tinh_code + "; " + tinh_name + "; " + huyen_code + "; " + huyen_name + "; " + xa_code + "; " + xa_name + "; " + SoNha + "; " + ThonPho + "; " + NoiLamViec + " thành: " + txtPatientName.Text + "; " + datengaysinh + "; " + cbbGioiTinh.Text + "; " + cboTinh.EditValue.ToString() + "; " + cboTinh.Text + "; " + cboTinh.EditValue.ToString() + "; " + cboHuyen.Text + "; " + cboXa.EditValue.ToString() + "; " + cboXa.Text + "; " + txtSoNha.Text + "; " + txtThonPho.Text + "; " + txtNoiLamViec.Text + "  ' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlupdate_ttbn);
                         condb.ExecuteNonQuery(sqlinsert_log);
                         MessageBox.Show("Sửa thông tin về bệnh nhân thành công!", "Thông báo !");
@@ -358,83 +332,6 @@ namespace MedicalLink.ChucNang
             SuKienThayDoiTrangThai_BenhNhan();
         }
 
-        private void cboTinh_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (cboTinh.Text != tinh_name)
-                //{
-                SuKienThayDoiTrangThai_BenhNhan();
-                for (int i = 0; i < dv_tinh.Count; i++)
-                {
-                    if (dv_tinh[i]["hc_tinhname"] == cboTinh.Text)
-                    {
-                        txtTinh.Text = dv_tinh[i]["hc_tinhcode"].ToString();
-                    }
-                }
-                if (txtTinh.Text.Trim() != "")
-                {
-                    LoadDataHuyen_VeMay(txtTinh.Text.Trim());
-                }
-                //}         
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        private void cboHuyen_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (cboHuyen.Text != huyen_name)
-                //{
-                    SuKienThayDoiTrangThai_BenhNhan();
-                    for (int i = 0; i < dv_huyen.Count; i++)
-                    {
-                        if (dv_huyen[i]["hc_huyenname"] == cboHuyen.Text)
-                        {
-                            txtHuyen.Text = dv_huyen[i]["hc_huyencode"].ToString();
-                        }
-                    }
-                    if (txtTinh.Text.Trim() != "" && txtHuyen.Text.Trim() != "")
-                    {
-                        LoadDataXa_VeMay(txtTinh.Text.Trim(), txtHuyen.Text.Trim());
-                    }
-                //}
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
-        private void cboXa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (cboXa.Text != xa_name)
-                //{
-                    SuKienThayDoiTrangThai_BenhNhan();
-                    for (int i = 0; i < dv_xa.Count; i++)
-                    {
-                        if (dv_xa[i]["hc_xaname"] == cboXa.Text)
-                        {
-                            txtXa.Text = dv_xa[i]["hc_xacode"].ToString();
-                        }
-                    }
-                //}
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         private void cbbGioiTinh_TextChanged(object sender, EventArgs e)
         {
             try
@@ -465,81 +362,15 @@ namespace MedicalLink.ChucNang
                 e.Handled = true;
             }
         }
-
-        private void txtTinh_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtHuyen_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtXa_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
         #endregion
-
-        //private void cboTinh_TextChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        LoadDataHuyen_VeMay();
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-        //private void cboHuyen_TextChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        LoadDataXa_VeMay();
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-        //private void cboXa_TextChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        txtXa.Text = cboXa.ValueMember;
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
 
         private void LoadDataHuyen_VeMay(string tinh_code_tk)
         {
             try
             {
-                if (txtTinh.Text.Trim() != "")
-                {
-                    string sql_loadhuyen = "SELECT DISTINCT hc_huyencode, hc_huyenname FROM hosobenhan WHERE hc_huyencode <> '' and hc_huyenname <>'' and hc_tinhcode='" + tinh_code_tk + "'  ORDER BY hc_huyenname;";
-                    dv_huyen = new DataView(condb.getDataTable(sql_loadhuyen));
-                    cboHuyen.DataSource = dv_huyen;
-                    cboHuyen.DisplayMember = "hc_huyenname";
-                    cboHuyen.ValueMember = "hc_huyencode";
-                }
+                cboHuyen.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.Where(s => s.hc_tinhcode == tinh_code_tk).GroupBy(o => o.hc_huyencode).Select(n => n.First()).ToList();
+                cboHuyen.Properties.DisplayMember = "hc_huyenname";
+                cboHuyen.Properties.ValueMember = "hc_huyencode";
             }
             catch (Exception)
             {
@@ -552,15 +383,9 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                if (txtHuyen.Text.Trim() != "")
-                {
-                    string sql_loadxa = "SELECT DISTINCT hc_xacode, hc_xaname FROM hosobenhan WHERE hc_xacode <> '' and hc_xaname <>'' and hc_tinhcode='" + tinh_code_tk + "' and hc_huyencode='" + huyen_code_tk + "' ORDER BY hc_xaname ;";
-                    dv_xa = new DataView(condb.getDataTable(sql_loadxa));
-
-                    cboXa.DataSource = dv_xa;
-                    cboXa.DisplayMember = "hc_xaname";
-                    cboXa.ValueMember = "hc_xacode";
-                }
+                cboXa.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.Where(s => s.hc_tinhcode == tinh_code_tk && s.hc_huyencode == huyen_code_tk).GroupBy(o => o.hc_xacode).Select(n => n.First()).ToList();
+                cboXa.Properties.DisplayMember = "hc_xaname";
+                cboXa.Properties.ValueMember = "hc_xacode";
             }
             catch (Exception)
             {
@@ -604,48 +429,6 @@ namespace MedicalLink.ChucNang
                 if (e.KeyCode == Keys.Enter)
                 {
                     cboTinh.Focus();
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void cboTinh_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cboHuyen.Focus();
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void cboHuyen_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    cboXa.Focus();
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void cboXa_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    txtSoNha.Focus();
                 }
             }
             catch (Exception)
@@ -750,7 +533,46 @@ namespace MedicalLink.ChucNang
             {
             }
         }
-#endregion
+        #endregion
+
+        private void cboTinh_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadDataHuyen_VeMay(cboTinh.EditValue.ToString());
+                SuKienThayDoiTrangThai_BenhNhan();
+                cboXa.EditValue = null;
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        private void cboHuyen_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadDataXa_VeMay(cboTinh.EditValue.ToString(), cboHuyen.EditValue.ToString());
+                SuKienThayDoiTrangThai_BenhNhan();
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        private void cboXa_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SuKienThayDoiTrangThai_BenhNhan();
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
 
 
 

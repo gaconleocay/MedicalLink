@@ -323,6 +323,7 @@
       <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
     <Compile Include="ClassCommon\classUserMedicineNhomThuoc.cs" />
     <Compile Include="ClassCommon\classUserMedicinePhongLuu.cs" />
     <Compile Include="ClassCommon\classUserMedicineStore.cs" />

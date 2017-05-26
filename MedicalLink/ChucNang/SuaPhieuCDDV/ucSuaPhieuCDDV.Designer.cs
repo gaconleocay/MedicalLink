@@ -38,6 +38,8 @@
             this.groupBoxXuatBC = new System.Windows.Forms.GroupBox();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxBNBK_TK = new System.Windows.Forms.GroupBox();
+            this.chkPhieuThuocVT = new DevExpress.XtraEditors.CheckEdit();
+            this.chkPhieuDichVu = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaVP = new DevExpress.XtraEditors.TextEdit();
@@ -92,12 +94,12 @@
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
-            this.chkPhieuDichVu = new DevExpress.XtraEditors.CheckEdit();
-            this.chkPhieuThuocVT = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
             this.groupBoxBNBK_TK.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuThuocVT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuDichVu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaVP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaBN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mmeMaPhieuYC.Properties)).BeginInit();
@@ -115,8 +117,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuDichVu.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuThuocVT.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlTKDV_TK
@@ -175,6 +175,26 @@
             this.groupBoxBNBK_TK.TabIndex = 5;
             this.groupBoxBNBK_TK.TabStop = false;
             this.groupBoxBNBK_TK.Text = "Tìm kiếm phiếu dịch vụ/thuốc";
+            // 
+            // chkPhieuThuocVT
+            // 
+            this.chkPhieuThuocVT.Location = new System.Drawing.Point(598, 68);
+            this.chkPhieuThuocVT.Name = "chkPhieuThuocVT";
+            this.chkPhieuThuocVT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPhieuThuocVT.Properties.Appearance.Options.UseFont = true;
+            this.chkPhieuThuocVT.Properties.Caption = "Phiếu thuốc/vật tư";
+            this.chkPhieuThuocVT.Size = new System.Drawing.Size(133, 20);
+            this.chkPhieuThuocVT.TabIndex = 14;
+            // 
+            // chkPhieuDichVu
+            // 
+            this.chkPhieuDichVu.Location = new System.Drawing.Point(598, 24);
+            this.chkPhieuDichVu.Name = "chkPhieuDichVu";
+            this.chkPhieuDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPhieuDichVu.Properties.Appearance.Options.UseFont = true;
+            this.chkPhieuDichVu.Properties.Caption = "Phiếu dịch vụ";
+            this.chkPhieuDichVu.Size = new System.Drawing.Size(121, 20);
+            this.chkPhieuDichVu.TabIndex = 13;
             // 
             // labelControl3
             // 
@@ -584,6 +604,9 @@
             this.gridViewDS_PhieuDichVu.GridControl = this.gridControlDS_PhieuDichVu;
             this.gridViewDS_PhieuDichVu.IndicatorWidth = 10;
             this.gridViewDS_PhieuDichVu.Name = "gridViewDS_PhieuDichVu";
+            this.gridViewDS_PhieuDichVu.OptionsFind.AlwaysVisible = true;
+            this.gridViewDS_PhieuDichVu.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
+            this.gridViewDS_PhieuDichVu.OptionsFind.ShowClearButton = false;
             this.gridViewDS_PhieuDichVu.OptionsView.ColumnAutoWidth = false;
             this.gridViewDS_PhieuDichVu.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDS_PhieuDichVu.OptionsView.ShowGroupPanel = false;
@@ -1084,26 +1107,6 @@
             this.imMenu.Images.SetKeyName(9, "rotate-16.png");
             this.imMenu.Images.SetKeyName(10, "partly-cloudy-day-16.png");
             // 
-            // chkPhieuDichVu
-            // 
-            this.chkPhieuDichVu.Location = new System.Drawing.Point(598, 24);
-            this.chkPhieuDichVu.Name = "chkPhieuDichVu";
-            this.chkPhieuDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPhieuDichVu.Properties.Appearance.Options.UseFont = true;
-            this.chkPhieuDichVu.Properties.Caption = "Phiếu dịch vụ";
-            this.chkPhieuDichVu.Size = new System.Drawing.Size(121, 20);
-            this.chkPhieuDichVu.TabIndex = 13;
-            // 
-            // chkPhieuThuocVT
-            // 
-            this.chkPhieuThuocVT.Location = new System.Drawing.Point(598, 68);
-            this.chkPhieuThuocVT.Name = "chkPhieuThuocVT";
-            this.chkPhieuThuocVT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPhieuThuocVT.Properties.Appearance.Options.UseFont = true;
-            this.chkPhieuThuocVT.Properties.Caption = "Phiếu thuốc/vật tư";
-            this.chkPhieuThuocVT.Size = new System.Drawing.Size(133, 20);
-            this.chkPhieuThuocVT.TabIndex = 14;
-            // 
             // ucSuaPhieuCDDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1117,6 +1120,8 @@
             this.groupBoxXuatBC.ResumeLayout(false);
             this.groupBoxBNBK_TK.ResumeLayout(false);
             this.groupBoxBNBK_TK.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuThuocVT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuDichVu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaVP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaBN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mmeMaPhieuYC.Properties)).EndInit();
@@ -1134,8 +1139,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuDichVu.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPhieuThuocVT.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -168,5 +168,36 @@ namespace MedicalLinkUpdate
                 throw;
             }
         }
+
+        private void txtKeyDangNhap_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin_Click(null, null);
+            }
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtKeyDangNhap.Text.Trim() == KeyTrongPhanMem.AdminPass_key)
+                {
+                    btnUpdateLink.Enabled = true;
+                    btnUpdateMedicalLink.Enabled = true;
+                    btnUpdateLauncher.Enabled = true;
+                }
+                else
+                {
+                    btnUpdateLink.Enabled = false;
+                    btnUpdateMedicalLink.Enabled = false;
+                    btnUpdateLauncher.Enabled = false;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace MedicalLink.ChucNang
                 if (dateTuNgay.Text != "" && dateDenNgay.Text != "")
                 {
                     string sql_timkiem = "SELECT row_number() over() as stt, serv.servicepriceid, serv.medicalrecordid, vp.patientid, serv.vienphiid, serv.hosobenhanid, serv.maubenhphamid, de.departmentgroupname, de.departmentname, serv.servicepricecode, serv.servicepricename, serv.servicepricename_bhyt, serv.servicepricemoney, serv.servicepricemoney_nhandan, serv.servicepricemoney_bhyt, serv.servicepricemoney_nuocngoai, serv.soluong,serv.servicepricedate FROM (SELECT ser.servicepriceid, ser.medicalrecordid, ser.vienphiid, ser.hosobenhanid, ser.maubenhphamid, ser.departmentid, ser.servicepricecode, ser.servicepricename, ser.servicepricename_bhyt, ser.servicepricemoney, ser.servicepricemoney_nhandan, ser.servicepricemoney_bhyt, ser.servicepricemoney_nuocngoai, ser.soluong, ser.servicepricedate FROM serviceprice ser WHERE ser.servicepricedate >= '" + datetungay + "' and ser.servicepricedate <= '" + datedenngay + "' and ser.servicepricecode not in (SELECT serf.service_code FROM tools_servicefull serf)) serv inner join vienphi vp on vp.vienphiid=serv.vienphiid inner join tools_depatment de on de.departmentid=serv.departmentid and de.departmenttype in (2,3,9);  ";
-                    DataView dv = new DataView(condb.getDataTable(sql_timkiem));
+                    DataView dv = new DataView(condb.GetDataTable(sql_timkiem));
                     if (dv != null && dv.Count > 0)
                     {
                         gridControlDichVu.DataSource = dv;

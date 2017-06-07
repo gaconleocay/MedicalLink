@@ -72,7 +72,7 @@ namespace MedicalLink.ChucNang
                             try
                             {
                                 string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice,medicine_ref, vienphi WHERE medicine_ref.medicinecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and " + tieuchi + " >= '" + datetungay + "' and " + tieuchi + " <= '" + datedenngay + "' and serviceprice.bhyt_groupcode is null " + trangthaiVP + " ORDER BY servicepriceid ;";
-                                DataView dv_bhytgroup = new DataView(condb.getDataTable(sqlquerythuoc));
+                                DataView dv_bhytgroup = new DataView(condb.GetDataTable(sqlquerythuoc));
 
                                 // Hiển thị
                                 if (dv_bhytgroup.Count > 0)
@@ -97,7 +97,7 @@ namespace MedicalLink.ChucNang
                             try
                             {
                                 string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice, servicepriceref, vienphi WHERE servicepriceref.servicepricecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and " + tieuchi + " >= '" + datetungay + "' and " + tieuchi + " <= '" + datedenngay + "' and serviceprice.bhyt_groupcode is null " + trangthaiVP + " ORDER BY servicepriceid ;";
-                                DataView dv_bhytgroup = new DataView(condb.getDataTable(sqlquerythuoc));
+                                DataView dv_bhytgroup = new DataView(condb.GetDataTable(sqlquerythuoc));
 
                                 // Hiển thị
                                 if (dv_bhytgroup.Count > 0)
@@ -156,7 +156,7 @@ namespace MedicalLink.ChucNang
                                 {
                                     //Tìm mã bhytgroupcode từ medicine_ref
                                     string sqlget_bhytgroupcode = "SELECT medicine_ref.bhyt_groupcode as bhyt_groupcode FROM serviceprice, medicine_ref WHERE medicine_ref.medicinecode=serviceprice.servicepricecode and serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "'";
-                                    DataView dv_bhytgroupcode = new DataView(condb.getDataTable(sqlget_bhytgroupcode));
+                                    DataView dv_bhytgroupcode = new DataView(condb.GetDataTable(sqlget_bhytgroupcode));
                                     if (dv_bhytgroupcode.Count > 0)
                                     {
                                         try
@@ -196,7 +196,7 @@ namespace MedicalLink.ChucNang
                                 {
                                     //Tìm mã bhytgroupcode từ medicine_ref
                                     string sqlget_bhytgroupcode = "SELECT servicepriceref.bhyt_groupcode as bhyt_groupcode FROM serviceprice, servicepriceref WHERE servicepriceref.servicepricecode=serviceprice.servicepricecode and serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "'";
-                                    DataView dv_bhytgroupcode = new DataView(condb.getDataTable(sqlget_bhytgroupcode));
+                                    DataView dv_bhytgroupcode = new DataView(condb.GetDataTable(sqlget_bhytgroupcode));
                                     if (dv_bhytgroupcode.Count > 0)
                                     {
                                         try
@@ -243,7 +243,7 @@ namespace MedicalLink.ChucNang
                 arrayserID += gridViewDichVu.GetRowCellValue(gridViewDichVu.RowCount - 1, "servicepriceid").ToString();
 
                 string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice WHERE serviceprice.servicepriceid in (" + arrayserID + ")  ORDER BY servicepriceid;";
-                DataView dv_bhytgroup = new DataView(condb.getDataTable(sqlquerythuoc));
+                DataView dv_bhytgroup = new DataView(condb.GetDataTable(sqlquerythuoc));
                 gridControlDichVu.DataSource = dv_bhytgroup;
                 // Luu lai log
                 if (dem_sl > 0)

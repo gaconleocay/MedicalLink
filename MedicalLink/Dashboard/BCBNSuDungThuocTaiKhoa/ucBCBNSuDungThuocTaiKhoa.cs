@@ -84,7 +84,7 @@ namespace MedicalLink.Dashboard
             try
             {
                 string sql_getmeref = "SELECT mef.medicinerefid, mef.medicinerefid_org, mef.medicinecode, mef.medicinename, mef.giaban FROM medicine_ref mef WHERE mef.isremove=0;";
-                DataView dataStore = new DataView(condb.getDataTable(sql_getmeref));
+                DataView dataStore = new DataView(condb.GetDataTable(sql_getmeref));
                 lstMedicineStore = new List<ClassCommon.classMedicineRef>();
 
                 if (dataStore != null && dataStore.Count > 0)

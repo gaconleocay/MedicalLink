@@ -134,7 +134,7 @@ namespace MedicalLink.ChucNang
                     sqlquerry = "SELECT DISTINCT vienphi.vienphiid as mavienphi, vienphi.patientid as mabenhnhan,hosobenhan.patientname as tenbenhnhan, vienphi.vienphidate as ngayvaovien, vienphi.vienphidate_ravien as ngayravien, case vienphi.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, departmentgroup.departmentgroupname as khoa, CASE vienphi.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where vienphi.departmentid=department.departmentid) END as phong,bhyt.bhytcode FROM vienphi,hosobenhan,departmentgroup,department,bhyt WHERE vienphi.hosobenhanid=hosobenhan.hosobenhanid and vienphi.bhytid=bhyt.bhytid and vienphi.departmentgroupid=departmentgroup.departmentgroupid and bhyt.bhytcode='" + txtSoTheBHYT.Text.Trim().ToUpper() + "' order by mavienphi desc";
                 }
 
-                DataView dv = new DataView(condb.getDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
                 gridControlMoBenhAn.DataSource = dv;
 
                 if (gridViewMoBenhAn.RowCount == 0)
@@ -201,7 +201,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sqlquerry = "select distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.medicalrecordid_next as madieutrisau, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then 'Kết thúc' else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, CASE medicalrecord.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where medicalrecord.departmentid=department.departmentid) END as tenphong, medicalrecord.departmentgroupid as idkhoa, medicalrecord.departmentid as idphong, case medicalrecord.nextdepartmentid when 0 then 'Khoa cuối' else 'None' end as lakhoacuoi, medicalrecord.hosobenhanid as mahosobenhan, medicalrecord.loaibenhanid as loaibenhanid FROM medicalrecord, hosobenhan,departmentgroup,department WHERE medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.hosobenhanid=hosobenhan.hosobenhanid and vienphiid=" + lblmavienphi_frm1.Text + " order by madieutri;";
-                DataView dv_madieutri = new DataView(condb.getDataTable(sqlquerry));
+                DataView dv_madieutri = new DataView(condb.GetDataTable(sqlquerry));
                 gridControlMBA_TH.DataSource = dv_madieutri;
             }
             catch (Exception ex)

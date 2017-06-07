@@ -105,7 +105,7 @@ namespace MedicalLink.FormCommon
                 string license_trang = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
 
                 string kiemtra_client = "SELECT * FROM tools_license WHERE datakey='" + SessionLogin.MaDatabase + "' ;";
-                DataView dv = new DataView(condb.getDataTable(kiemtra_client));
+                DataView dv = new DataView(condb.GetDataTable(kiemtra_client));
                 if (dv != null && dv.Count > 0)
                 {
                     //Kiem tra license
@@ -132,7 +132,7 @@ namespace MedicalLink.FormCommon
 
                 //Load thong tin Luu vao GlobalStore
                 string sqlDSOption = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote FROM tools_option WHERE toolsoptionlook<>'1' ;";
-                DataView dataOption = new DataView(condb.getDataTable(sqlDSOption));
+                DataView dataOption = new DataView(condb.GetDataTable(sqlDSOption));
                 if (dataOption != null && dataOption.Count > 0)
                 {
                     for (int i = 0; i < dataOption.Count; i++)
@@ -160,7 +160,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 string versionDatabase = "";
-                DataView dataVer = new DataView(condb.getDataTable("SELECT appversion from tools_version where app_type=1 LIMIT 1;"));
+                DataView dataVer = new DataView(condb.GetDataTable("SELECT appversion from tools_version where app_type=1 LIMIT 1;"));
                 if (dataVer != null && dataVer.Count > 0)
                 {
                     versionDatabase = dataVer[0]["appversion"].ToString();
@@ -170,7 +170,7 @@ namespace MedicalLink.FormCommon
                 FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(Environment.CurrentDirectory + "\\MedicalLinkLauncher.exe");
                 if (myFileVersionInfo.FileVersion.ToString() != versionDatabase)
                 {
-                    DataView dataurlfile = new DataView(condb.getDataTable("select app_link from tools_version where app_type=1 limit 1;"));
+                    DataView dataurlfile = new DataView(condb.GetDataTable("select app_link from tools_version where app_type=1 limit 1;"));
                     if (dataurlfile != null && dataurlfile.Count > 0)
                     {
                         string tempDirectory = dataurlfile[0]["app_link"].ToString();
@@ -255,7 +255,7 @@ namespace MedicalLink.FormCommon
                     try
                     {
                         string command = "SELECT usercode, username, userpassword FROM tools_tbluser WHERE usercode='" + en_txtUsername + "' and userpassword='" + en_txtPassword + "';";
-                        DataView dv = new DataView(condb.getDataTable(command));
+                        DataView dv = new DataView(condb.GetDataTable(command));
                         if (dv != null && dv.Count > 0)
                         {
                             MedicalLink.FormCommon.DangKyBanQuyen.KiemTraLicense.KiemTraLicenseHopLe();

@@ -131,7 +131,7 @@ namespace MedicalLink.ChucNang
                     sqlquerry = "select distinct bill.billid as maphieuthu, bill.patientid as mabenhnhan, bill.vienphiid as mavienphi, bill.patientname as tenbenhnhan, 'Tạm ứng' as loaiphieu, bill.datra as sotien, bill.billdate as ngaythu, case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else '' end as trangthai from bill, vienphi,bhyt where bill.loaiphieuthuid=2 and vienphi.vienphiid=bill.vienphiid and bhyt.bhytid=vienphi.bhytid and bhyt.bhytcode='" + txtSoTheBHYT.Text.Trim().ToUpper() + "' order by maphieuthu;";
                 }
 
-                DataView dv = new DataView(condb.getDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
                 gridControlChuyenTien.DataSource = dv;
 
                 if (gridViewChuyenTien.RowCount == 0)

@@ -167,7 +167,7 @@ namespace MedicalLink.Dashboard.BCXNTTuTruc
                 string thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string sqlgetdata = "SELECT me.medicinerefid, me.medicinedate, me.medicinestorebillid, me.medicinestorebillcode, (case me.medicinestorebilltype when 204 then 'Xuất đơn' when 217 then 'Nhập trả (BS)' when 2 then 'Nhập (kho)' else '' end) as medicinestorebilltype, me.medicinestorebillstatus, me.medicinestorebillremark, me.medicinestoreid, me.accept_soluong, me.accept_money + ((me.accept_money*me.accept_vat)/100) as accept_money, me.solo, me.sodangky, me.medicinekiemkeid FROM medicine me WHERE me.isremove=0 and me.medicinestoreid='" + this.medicinestoreid + "' and me.medicinerefid in (" + this.lstmedicineref_string + ") and me.medicinestorebilltype in (2,204,217) and me.medicinedate>='" + thoiGianTu + "' and me.medicinedate<='" + thoiGianDen + "' ORDER BY me.medicinedate DESC;";
-                DataView dataResults = new DataView(condb.getDataTable(sqlgetdata));
+                DataView dataResults = new DataView(condb.GetDataTable(sqlgetdata));
                 List<ClassCommon.classLichSuNhapXuatThuoc> lstMedicinestore = new List<ClassCommon.classLichSuNhapXuatThuoc>();
                 if (dataResults != null && dataResults.Count > 0)
                 {

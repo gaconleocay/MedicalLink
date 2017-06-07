@@ -133,7 +133,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceNameBHYT = '" + item_servicep.servicepricenamebhyt + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -173,7 +173,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricenamenhandan = '" + item_servicep.servicepricenamenhandan + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -213,7 +213,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricenamenuocngoai = '" + item_servicep.servicepricenamenuocngoai + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -256,7 +256,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricecodeuser = '" + item_servicep.servicepricecodeuser + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -298,7 +298,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricesttuser = '" + item_servicep.servicepricesttuser + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -342,7 +342,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepriceunit = '" + item_servicep.servicepriceunit + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -386,7 +386,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET pttt_hangid = '" + item_servicep.pttt_hangid + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -430,7 +430,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET pttt_loaiid = '" + item_servicep.pttt_loaiid + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -474,7 +474,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                        DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                        DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                         if (dv_kt.Count > 0)
                         {
                             string sqlupdatetendv = "UPDATE ServicePriceRef SET servicelock = '" + item_servicep.servicelock + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -520,7 +520,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 string sqlupdatetendv = "UPDATE ServicePriceRef SET servicepricefeenhandan = '" + item_servicep.servicepricefeenhandan + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -558,7 +558,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 // Thực hiện việc chuyển từ cột giá sang cột giá cũ
@@ -612,7 +612,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceFeeBHYT = '" + item_servicep.servicepricefeebhyt + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -652,7 +652,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 // Thực hiện việc chuyển từ cột giá sang cột giá cũ
@@ -706,7 +706,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceFee = '" + item_servicep.servicepricefee + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -744,7 +744,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 // Thực hiện việc chuyển từ cột giá sang cột giá cũ
@@ -798,7 +798,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 string sqlupdatetendv = "UPDATE ServicePriceRef SET ServicePriceFeeNuocNgoai = '" + item_servicep.servicepricefeenuocngoai + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -836,7 +836,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 // Thực hiện việc chuyển từ cột giá sang cột giá cũ
@@ -888,7 +888,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 string sqlupdategiaNNN = "UPDATE ServicePriceRef SET ServicePriceFeeNhanDan = '" + item_servicep.servicepricefeenhandan + "', ServicePriceFeeBHYT = '" + item_servicep.servicepricefeebhyt + "', ServicePriceFee = '" + item_servicep.servicepricefee + "', ServicePriceFeeNuocNgoai = '" + item_servicep.servicepricefeenuocngoai + "' WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
@@ -926,7 +926,7 @@ namespace MedicalLink.ChucNang
                         try
                         {
                             string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                            DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                            DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                             if (dv_kt.Count > 0)
                             {
                                 // Thực hiện việc chuyển từ cột giá sang cột giá cũ
@@ -985,7 +985,7 @@ namespace MedicalLink.ChucNang
                             if (item_servicep.servicepricecode != "" && item_servicep.servicegrouptype != 0)
                             {
                                 string sql_kt = "SELECT ServicePriceRefID, ServicePriceCode FROM ServicePriceRef WHERE ServicePriceCode= '" + item_servicep.servicepricecode + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     //Update

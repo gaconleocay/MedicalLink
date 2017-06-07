@@ -70,9 +70,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT MedicineRefID, MedicineCode FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -112,9 +112,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -153,9 +153,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -194,9 +194,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -235,9 +235,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -276,9 +276,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -317,9 +317,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -358,9 +358,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
@@ -399,9 +399,9 @@ namespace MedicalLink.ChucNang
                         {
                             for (int i = 0; i < gridViewThuoc.RowCount; i++)
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try

@@ -81,7 +81,7 @@ namespace MedicalLink.ChucNang
                 {
                     sqltimkiem = "SELECT DISTINCT vienphi.vienphiid AS mavienphi, vienphi.patientid AS mabenhnhan, hosobenhan.patientname AS tenbenhnhan, vienphi.vienphidate AS thoigianvaovien, vienphi.vienphidate_ravien AS thoigianravien, CASE vienphi.vienphistatus_vp WHEN 1 THEN 'Đã duyệt VP' ELSE 'Chưa duyệt VP' END AS trangthai, vienphi.duyet_ngayduyet_vp AS thoigiANDuyetkt, departmentgroup.departmentgroupname AS tenkhoa, department.departmentname AS tenphong FROM vienphi,hosobenhan,departmentgroup,department WHERE vienphi.hosobenhanid = hosobenhan.hosobenhanid AND vienphi.departmentgroupid=departmentgroup.departmentgroupid AND vienphi.departmentid=department.departmentid AND vienphi.vienphiid=" + txtMaVienPhi.Text + " ORDER BY mavienphi;";
                 }
-                DataView dv = new DataView(condb.getDataTable(sqltimkiem));
+                DataView dv = new DataView(condb.GetDataTable(sqltimkiem));
                 gridControlSuaTGDuyetVP.DataSource = dv;
                 dateThoiGianSua.Enabled = false;
                 btnSuaTGDuyetOK.Enabled = false;

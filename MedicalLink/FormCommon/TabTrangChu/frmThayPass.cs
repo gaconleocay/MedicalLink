@@ -42,7 +42,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
                     string en_txtUserPasswordNew = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtPasswordNew1.Text.Trim(), true);
 
                     string sqlquerry = "select * from tools_tbluser where usercode='" + en_txtUserID + "' and userpassword='" + en_txtUserPasswordOld + "'";
-                    DataView dataBC = new DataView(condb.getDataTable(sqlquerry));
+                    DataView dataBC = new DataView(condb.GetDataTable(sqlquerry));
 
                     if (dataBC.Count > 0 && txtPasswordNew1.Text == txtPasswordNew2.Text)
                     {

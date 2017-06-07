@@ -208,7 +208,7 @@ namespace MedicalLink.ChucNang
                         sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY sef.servicepricegroupcode,ser.servicepricecode) as stt, ser.servicepriceid as servicepriceid, vp.patientid as mabn, vp.vienphiid as mavp, mbp.maubenhphamid as maubenhphamid, hsba.patientname as tenbn, prv.departmentgroupname as tenkhoaravien, prv.departmentname as tenphongravien, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricemoney_bhyt as dongiabhyt, ser.soluong as soluong, ser.soluong * ser.servicepricemoney as thanhtien, ser.soluong * ser.servicepricemoney_bhyt as thanhtienbhyt, ser.servicepricedate as thoigianchidinh, pcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, mbp.userid as iduserchidinh, ncd.usercode as mauserchidinh, ncd.username as tenuserchidinh, sef.servicepricegroupcode as manhomdichvu, (case when ser.billid_thutien>0 or ser.billid_clbh_thutien>0 then 'Đã thu tiền' else '' end) as trangthaithutien, hsba.bhytcode as sothebhyt, case sef.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end as bhyt_groupcode, sef.servicegrouptype as servicegrouptype, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle','093TDTUngthu') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as thuocdikem, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '102VTngoaiDM','103VTtyle') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as vattudikem, ser.chiphidauvao as chiphidauvao, ser.chiphimaymoc as chiphimaymoc, ser.chiphipttt as chiphipttt, mayyte.mayytename as mayytename, mayyte.chiphiliendoanh as chiphiliendoanh FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN hosobenhan hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN tools_depatment prv ON vp.departmentid=prv.departmentid and prv.departmenttype in (2,3,9) INNER JOIN tools_depatment pcd ON ser.departmentid=pcd.departmentid and pcd.departmenttype in (2,3,9) INNER JOIN maubenhpham mbp ON mbp.maubenhphamid=ser.maubenhphamid INNER JOIN servicepriceref sef ON ser.servicepricecode=sef.servicepricecode LEFT JOIN mayyte ON ser.mayytedbid=mayyte.mayytedbid LEFT JOIN tools_tblnhanvien ncd on ncd.userhisid=mbp.userid WHERE sef.servicepricegroupcode in (" + dsnhomdv + ") " + tieuchi + " >= '" + datetungay + "' " + tieuchi + " <= '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + danhSachIdKhoa + " ;";
                     }
 
-                    data_BCChiDinhPTTT = condb.getDataTable(sqlquerry);
+                    data_BCChiDinhPTTT = condb.GetDataTable(sqlquerry);
                     if (data_BCChiDinhPTTT.Rows.Count > 0 && data_BCChiDinhPTTT != null)
                     {
                         gridControlDSDV.DataSource = data_BCChiDinhPTTT;
@@ -250,7 +250,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_lstKhoa = "SELECT departmentgroupid,departmentgroupcode,departmentgroupname,departmentgrouptype FROM departmentgroup WHERE departmentgrouptype in(4,11,1) ORDER BY departmentgroupname;";
-                DataView lstDSKhoa = new DataView(condb.getDataTable(sql_lstKhoa));
+                DataView lstDSKhoa = new DataView(condb.GetDataTable(sql_lstKhoa));
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
                     chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
@@ -272,7 +272,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_lstPhong = "SELECT departmentid,departmentcode,departmentname,departmenttype FROM department WHERE departmenttype=2 AND iskhonghoatdong=0 ORDER BY departmentname;";
-                DataView lstDSPhong = new DataView(condb.getDataTable(sql_lstPhong));
+                DataView lstDSPhong = new DataView(condb.GetDataTable(sql_lstPhong));
                 if (lstDSPhong != null && lstDSPhong.Count > 0)
                 {
                     chkcomboListDSKhoa.Properties.DataSource = lstDSPhong;
@@ -309,7 +309,7 @@ namespace MedicalLink.ChucNang
             {
                 lstUser = new List<ClassCommon.classBCChiDinhPTTT_User>();
                 string sql_laynguoidung = "SELECT DISTINCT userhisid, usercode, username FROM tools_tblnhanvien;";
-                DataView data_dsnguoidung = new DataView(condb.getDataTable(sql_laynguoidung));
+                DataView data_dsnguoidung = new DataView(condb.GetDataTable(sql_laynguoidung));
                 if (data_dsnguoidung != null && data_dsnguoidung.Count > 0)
                 {
                     for (int i = 0; i < data_dsnguoidung.Count; i++)

@@ -50,7 +50,7 @@ namespace MedicalLink.ChucNang
             {
                 lstDanhMucTinhHuyenXa = new List<classDanhMuc_TinhHuyenXa>();
                 string sql_loadxa = "SELECT DISTINCT hc_tinhcode, hc_tinhname, hc_huyencode, hc_huyenname, hc_xacode, hc_xaname  FROM hosobenhan WHERE hc_tinhcode <> '' and hc_tinhname <>'' and hc_xacode <> '' and hc_huyencode <> '' and hc_huyenname <>'' and hc_xaname <>'' ;";
-                DataView dataView_DanhMucTinhHuyenXa = new DataView(condb.getDataTable(sql_loadxa));
+                DataView dataView_DanhMucTinhHuyenXa = new DataView(condb.GetDataTable(sql_loadxa));
                 if (dataView_DanhMucTinhHuyenXa != null && dataView_DanhMucTinhHuyenXa.Count > 0)
                 {
                     for (int i = 0; i < dataView_DanhMucTinhHuyenXa.Count; i++)
@@ -196,7 +196,7 @@ namespace MedicalLink.ChucNang
                     sqlquerry = "SELECT vienphi.vienphiid as vienphiid, hosobenhan.patientid as patientid, bhyt.bhytid as bhytid, hosobenhan.hosobenhanid as hosobenhanid, hosobenhan.patientname as patientname, case vienphi.vienphistatus when 2 then 'Đã duyệt BHYT' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, hosobenhan.gioitinhcode as gioitinhcode, hosobenhan.gioitinhname as gioitinh, vienphi.vienphidate as thoigianvaovien, vienphi.vienphidate_ravien as thoigianravien, vienphi.duyet_ngayduyet_bh as thoigianduyetbhyt, tools_depatment.departmentgroupname as khoaravien, tools_depatment.departmentname as phongravien, bhyt.bhytcode as sothebhyt, bhyt.macskcbbd as noidkkcbbd, bhyt.bhytfromdate as hanthetu, bhyt.bhytutildate as hantheden, hosobenhan.noilamviec as noilamviec, hosobenhan.birthday as ngaysinh, hosobenhan.hc_xacode as hc_xacode, hosobenhan.hc_huyencode as hc_huyencode, hosobenhan.hc_tinhcode as hc_tinhcode, hosobenhan.hc_xaname as hc_xaname, hosobenhan.hc_huyenname as hc_huyenname, hosobenhan.hc_tinhname as hc_tinhname, hosobenhan.hc_sonha as hc_sonha, hc_thon as hc_thon FROM vienphi, hosobenhan, tools_depatment, bhyt WHERE vienphi.hosobenhanid= hosobenhan.hosobenhanid and vienphi.bhytid = bhyt.bhytid and vienphi.departmentgroupid = tools_depatment.departmentgroupid and vienphi.departmentid = tools_depatment.departmentid and vienphi.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ORDER BY vienphiid;";
                 }
 
-                DataView dv = new DataView(condb.getDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
                 gridControlSuaPhoiThanhToan.DataSource = dv;
 
                 if (gridViewSuaPhoiThanhToan.RowCount == 0)

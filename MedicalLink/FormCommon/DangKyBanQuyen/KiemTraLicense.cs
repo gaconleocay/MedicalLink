@@ -22,7 +22,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                 string license_keydb = "";
                 //Load License tu DB ra
                 string kiemtra_licensetag = "SELECT datakey,licensekey FROM tools_license WHERE datakey='" + SessionLogin.MaDatabase + "' ;";
-                DataView dataLicense = new DataView(condb.getDataTable(kiemtra_licensetag));
+                DataView dataLicense = new DataView(condb.GetDataTable(kiemtra_licensetag));
                 if (dataLicense != null && dataLicense.Count > 0)
                 {
                     license_keydb = dataLicense[0]["licensekey"].ToString();
@@ -40,7 +40,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                     try
                     {
                         string sql_dateDB = "SELECT TO_CHAR(NOW(), 'yyyyMMdd') as sysdatedb;";
-                        DataView dtdatetime = new DataView(condb.getDataTable(sql_dateDB));
+                        DataView dtdatetime = new DataView(condb.GetDataTable(sql_dateDB));
                         if (dtdatetime != null && dtdatetime.Count > 0)
                         {
                             datetimenow = Utilities.Util_TypeConvertParse.ToInt64(dtdatetime[0]["sysdatedb"].ToString());
@@ -90,7 +90,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
             try
             {
                 string sqlLayMaDatabase = "SELECT datid, datname FROM pg_stat_activity where pid=(select pg_backend_pid());";
-                DataView dataMaDB = new DataView(condb.getDataTable(sqlLayMaDatabase));
+                DataView dataMaDB = new DataView(condb.GetDataTable(sqlLayMaDatabase));
                 if (dataMaDB != null && dataMaDB.Count > 0)
                 {
                     MaDatabase = dataMaDB[0]["datid"].ToString() + dataMaDB[0]["datname"].ToString();

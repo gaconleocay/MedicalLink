@@ -307,7 +307,7 @@ namespace MedicalLink.ChucNang
                     {
                         //Chay lenh SQL update"
                         string sqlkiemtra = "select medicinestorerefid, soluongtonkho, soluongkhadung from medicine_store_ref where soluongkhadung>soluongtonkho;";
-                        DataView dv_kiemtra = new DataView(condb.getDataTable(sqlkiemtra));
+                        DataView dv_kiemtra = new DataView(condb.GetDataTable(sqlkiemtra));
                         //gridControlSuaThoiGianRaVien.DataSource = dv;
                         if (dv_kiemtra.Count > 0)
                         {
@@ -347,7 +347,7 @@ namespace MedicalLink.ChucNang
                 datedenngay = DateTime.ParseExact(dtDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 string sqltimkiem = "SELECT *,slkhadung - sltonkho as slcapnhat_display FROM tools_tbllog_updatekhadung WHERE tgcapnhat > '" + datetungay + "' and tgcapnhat <'" + datedenngay + "';";
-                DataView dv_timkiem = new DataView(condb.getDataTable(sqltimkiem));
+                DataView dv_timkiem = new DataView(condb.GetDataTable(sqltimkiem));
                 gridControlLogUpdateKDTK.DataSource = dv_timkiem;
             }
             catch (Exception ex)

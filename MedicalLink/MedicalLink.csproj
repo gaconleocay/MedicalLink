@@ -312,6 +312,12 @@
     <Compile Include="BaoCao\BCXuatThuocNhaThuoc\ucBCXuatThuocNhaThuoc.Designer.cs">
       <DependentUpon>ucBCXuatThuocNhaThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\ucBCDoanhThuTheoMayXN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\ucBCDoanhThuTheoMayXN.Designer.cs">
+      <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\bienTrongBaoCao.cs" />
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
@@ -621,6 +627,12 @@
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
     <Compile Include="DatabaseProcess\TinhMuaHuongBHYT.cs" />
+    <Compile Include="FormCommon\TabCaiDat\ucDanhMucDungChung.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucDanhMucDungChung.Designer.cs">
+      <DependentUpon>ucDanhMucDungChung.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\TabCaiDat\ucMaHoaVaGiaiMa.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -892,6 +904,9 @@
     <EmbeddedResource Include="BaoCao\BCXuatThuocNhaThuoc\ucBCXuatThuocNhaThuoc.resx">
       <DependentUpon>ucBCXuatThuocNhaThuoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\ucBCDoanhThuTheoMayXN.resx">
+      <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.resx">
       <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -999,6 +1014,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.resx">
       <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhMucDungChung.resx">
+      <DependentUpon>ucDanhMucDungChung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabCaiDat\ucMaHoaVaGiaiMa.resx">
       <DependentUpon>ucMaHoaVaGiaiMa.cs</DependentUpon>
@@ -1224,6 +1242,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\So_XetNghiem_ViSinh.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_DoanhThuTheoMayXetNghiem.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -49,7 +49,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqldsnv = "SELECT nhanvienid as stt, usercode as manv, username as tennv, userhisid FROM tools_tblnhanvien ORDER BY manv";
-                DataView dv = new DataView(condb.getDataTable(sqldsnv));
+                DataView dv = new DataView(condb.GetDataTable(sqldsnv));
                 if (dv.Count > 0)
                 {
                     gridControlDSNV.DataSource = dv;
@@ -155,9 +155,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
                             if (dmUser_Import[i]["USERCODE"].ToString() != "")
                             {
-                                condb.connect();
+                                condb.Connect();
                                 string sql_kt = "SELECT usercode FROM tools_tblnhanvien WHERE usercode='" + en_txtNVCode + "';";
-                                DataView dv_kt = new DataView(condb.getDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
                                 if (dv_kt.Count > 0) //update
                                 {
                                     string sql_updateUser = "UPDATE tools_tblnhanvien SET username='" + en_txtNVName + "', userhisid='" + dmUser_Import[i]["USERHISID"] + "' WHERE usercode='" + en_txtNVCode + "';";

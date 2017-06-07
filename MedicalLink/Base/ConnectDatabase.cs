@@ -20,7 +20,7 @@ namespace MedicalLink.Base
         private bool kiemtraketnoi = false;
 
         // Mở kết nối
-        public void connect()
+        public void Connect()
         {
             try
             {
@@ -39,7 +39,7 @@ namespace MedicalLink.Base
         }
 
         // Đóng kết nối
-        public void disconnect()
+        public void Disconnect()
         {
             try
             {
@@ -57,9 +57,9 @@ namespace MedicalLink.Base
         }
 
         // trả về một DataTable
-        public DataTable getDataTable(string sql)
+        public DataTable GetDataTable(string sql)
         {
-            connect();
+            Connect();
             NpgsqlDataAdapter da = new NpgsqlDataAdapter(sql, conn);
             DataTable dt = new DataTable();
             try
@@ -67,7 +67,7 @@ namespace MedicalLink.Base
                 if (kiemtraketnoi == true)
                 {
                     da.Fill(dt);
-                    disconnect();
+                    Disconnect();
                 }
             }
             catch (Exception ex)
@@ -84,12 +84,12 @@ namespace MedicalLink.Base
             bool result = false;
             try
             {
-                connect();
+                Connect();
                 if (kiemtraketnoi == true)
                 {
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                     cmd.ExecuteNonQuery();
-                    disconnect();
+                    Disconnect();
                     result = true;
                 }
             }
@@ -106,12 +106,12 @@ namespace MedicalLink.Base
             bool result = false;
             try
             {
-                connect();
+                Connect();
                 if (kiemtraketnoi == true)
                 {
                     NpgsqlCommand cmd = new NpgsqlCommand(sql, conn);
                     cmd.ExecuteNonQuery();
-                    disconnect();
+                    Disconnect();
                     result = true;
                 }
             }
@@ -125,15 +125,15 @@ namespace MedicalLink.Base
 
 
         // trả về DataReader
-        public NpgsqlDataReader getDataReader(string sql)
+        public NpgsqlDataReader GetDataReader(string sql)
         {
             try
             {
-                connect();
+                Connect();
                 NpgsqlCommand com = new NpgsqlCommand(sql, conn);
                 NpgsqlDataReader dr = com.ExecuteReader();
                 //dr.Read();
-                disconnect();
+                Disconnect();
                 return dr;
             }
             catch (Exception ex)

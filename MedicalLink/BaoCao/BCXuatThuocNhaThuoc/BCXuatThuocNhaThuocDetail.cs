@@ -60,7 +60,7 @@ namespace MedicalLink.BaoCao.BCXuatThuocNhaThuoc
             try
             {
                 string sqlGetData = "SELECT ROW_NUMBER () OVER (ORDER BY mef.medicinename) as stt, me.medicinestorebillcode, me.medicinestorebillid, mef.medicinecode, mef.medicinename, mef.solo, mef.sodangky, me.accept_money, me.approve_soluong as soluong_chidinh, me.accept_soluong as soluong_xuat, me.accept_soluong * me.accept_money as thanhtien FROM medicine me INNER JOIN medicine_ref mef on me.medicinerefid=mef.medicinerefid WHERE me.medicinestorebillid=" + this.medicinestorebillid_cd + ";";
-                DataTable dataExport = condb.getDataTable(sqlGetData);
+                DataTable dataExport = condb.GetDataTable(sqlGetData);
                 gridControlPhieuThuocDetail.DataSource = dataExport;
             }
             catch (Exception ex)

@@ -43,7 +43,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 txtMaMay.ReadOnly = true;
                 //Load License tu DB ra
                 string kiemtra_licensetag = "SELECT datakey, licensekey FROM tools_license WHERE datakey='" + MaDatabase + "' limit 1;";
-                DataView dv = new DataView(condb.getDataTable(kiemtra_licensetag));
+                DataView dv = new DataView(condb.GetDataTable(kiemtra_licensetag));
                 if (dv != null && dv.Count > 0)
                 {
                     txtKeyKichHoat.Text = dv[0]["licensekey"].ToString();

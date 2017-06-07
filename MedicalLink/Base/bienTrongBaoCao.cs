@@ -16,7 +16,7 @@ namespace MedicalLink.Base
       public static string LST_MECICINESTORENAME = "LST_MECICINESTORENAME";
       public static string TENBAOCAO = "TENBAOCAO";
       public static string LST_DICHVU = "LST_DICHVU";
-
+      public static string TIEUCHI = "TIEUCHI";
 
 
     }

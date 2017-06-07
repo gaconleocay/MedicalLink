@@ -96,6 +96,7 @@ namespace MedicalLink.FormCommon
                             navBarItemListNguoiDung.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
                             navBarItemListNhanVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
                             navBarItemListOption.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
+                            navBarItemDMDungChung.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_06"); ;
 
                         }
                         else
@@ -110,6 +111,7 @@ namespace MedicalLink.FormCommon
                         navBarItemListNguoiDung.Visible = false;
                         navBarItemListNhanVien.Visible = false;
                         navBarItemListOption.Visible = false;
+                        navBarItemDMDungChung.Visible = false;
                     }
                     navBarItemMaHoaGiaiMa.Visible = false;//luon luon false
                     navBarItemNhatKySuKien.Visible = false;
@@ -166,7 +168,7 @@ namespace MedicalLink.FormCommon
                 string MaDatabase = MedicalLink.FormCommon.DangKyBanQuyen.KiemTraLicense.LayThongTinMaDatabase();
                 //Load License tu DB ra
                 string kiemtra_licensetag = "SELECT datakey, licensekey FROM tools_license WHERE datakey='" + MaDatabase + "' limit 1;";
-                DataView dataLicense = new DataView(condb.getDataTable(kiemtra_licensetag));
+                DataView dataLicense = new DataView(condb.GetDataTable(kiemtra_licensetag));
                 if (dataLicense != null && dataLicense.Count > 0)
                 {
                     linkLabelThoiHan.Text = FormCommon.DangKyBanQuyen.KiemTraLicense.KiemTraThoiHanLicense(dataLicense[0]["licensekey"].ToString());
@@ -197,7 +199,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 string thongtinbv = "SELECT hospitalcode,hospitalname,hospitaladdress,giamdocname FROM hospital limit 1;";
-                DataView dtthongtindv = new DataView(condb.getDataTable(thongtinbv));
+                DataView dtthongtindv = new DataView(condb.GetDataTable(thongtinbv));
                 if (dtthongtindv != null && dtthongtindv.Count > 0)
                 {
                     lblTenCSYT.Text = dtthongtindv[0]["hospitalname"].ToString();
@@ -308,6 +310,8 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+
 
 
 

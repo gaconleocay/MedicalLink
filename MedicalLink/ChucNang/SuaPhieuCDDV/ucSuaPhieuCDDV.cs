@@ -158,7 +158,7 @@ namespace MedicalLink.ChucNang
 
             try
             {
-                DataView dv = new DataView(condb.getDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
                 gridControlDS_PhieuDichVu.DataSource = dv;
 
                 if (gridViewDS_PhieuDichVu.RowCount == 0)
@@ -373,7 +373,7 @@ namespace MedicalLink.ChucNang
                 var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
                 string maubenhphamid = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString();
                 string sql_serviceprice = "SELECT servicepriceid, maubenhphamid, servicepricecode, servicepricename, soluongbacsi, soluong, servicepricemoney, servicepricemoney_bhyt, servicepricemoney_nhandan, servicepricemoney_nuocngoai FROM serviceprice WHERE maubenhphamid ='" + maubenhphamid + "'; ";
-                DataView dv_ct = new DataView(condb.getDataTable(sql_serviceprice));
+                DataView dv_ct = new DataView(condb.GetDataTable(sql_serviceprice));
                 gridControlChiTiet.DataSource = dv_ct;
             }
             catch (Exception)
@@ -483,7 +483,7 @@ namespace MedicalLink.ChucNang
                                 {
                                     //Lay so luong thuoc da xuat
                                     string laysoluongthuoc = "SELECT me.medicinestorerefid, me.medicinestorebillid, me.medicinestorebillcode, me.accept_soluong FROM medicine me WHERE me.medicinestorebillid=" + medicinestorebillid_ex + "; ";
-                                    DataView listsoluongthuoc = new DataView(condb.getDataTable(laysoluongthuoc));
+                                    DataView listsoluongthuoc = new DataView(condb.GetDataTable(laysoluongthuoc));
                                     if (listsoluongthuoc != null && listsoluongthuoc.Count > 0)
                                     {
                                         for (int i = 0; i < listsoluongthuoc.Count; i++)
@@ -497,7 +497,7 @@ namespace MedicalLink.ChucNang
                                 {
                                     //Lay so luong thuoc da xuat
                                     string laysoluongthuoc = "SELECT me.medicinestorerefid, me.medicinestorebillid, me.medicinestorebillcode, me.accept_soluong FROM medicine me WHERE me.medicinestorebillid=" + medicinestorebillid_ex + "; ";
-                                    DataView listsoluongthuoc = new DataView(condb.getDataTable(laysoluongthuoc));
+                                    DataView listsoluongthuoc = new DataView(condb.GetDataTable(laysoluongthuoc));
                                     if (listsoluongthuoc != null && listsoluongthuoc.Count > 0)
                                     {
                                         for (int i = 0; i < listsoluongthuoc.Count; i++)

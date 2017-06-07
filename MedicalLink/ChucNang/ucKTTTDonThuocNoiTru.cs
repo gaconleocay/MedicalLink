@@ -41,7 +41,7 @@ namespace MedicalLink.ChucNang
 
                     string sql_timkiem = "SELECT maubenhpham.maubenhphamid as maubenhphamid, maubenhpham.sophieu as sophieu, vienphi.vienphiid as vienphiid, vienphi.patientid as patientid, hosobenhan.hosobenhanid as hosobenhanid, hosobenhan.patientname as patientname, bhyt.bhytcode as bhytcode, tools_depatment.departmentgroupname as departmentgroupname, tools_depatment.departmentname as departmentname, maubenhpham.maubenhphamdate as maubenhphamdate, vienphi.duyet_ngayduyet_vp as vienphidate, case maubenhpham.maubenhphamgrouptype when 5 then 'Thuốc' else 'Vật tư' end as maubenhphamgrouptype, case maubenhpham.maubenhphamstatus when 1 then 'Đang yêu cầu' else 'Đã tổng hợp y lệnh' end as maubenhphamstatus FROM vienphi INNER JOIN maubenhpham ON vienphi.vienphiid=maubenhpham.vienphiid INNER JOIN tools_depatment ON maubenhpham.departmentid=tools_depatment.departmentid INNER JOIN hosobenhan ON hosobenhan.hosobenhanid=vienphi.hosobenhanid INNER JOIN bhyt ON bhyt.bhytid=vienphi.bhytid INNER JOIN medicine_store ON medicine_store.medicinestoreid=maubenhpham.medicinestoreid WHERE maubenhpham.isloaidonthuoc='0' and maubenhpham.maubenhphamstatus in (1,4) and maubenhpham.maubenhphamgrouptype in (5,6) and medicine_store.medicinestoretype<>4 and vienphi.duyet_ngayduyet_vp > '" + datetungay + "' and vienphi.duyet_ngayduyet_vp < '" + datedenngay + "' ORDER BY vienphi.duyet_ngayduyet_vp;";
 
-                    DataView dv = new DataView(condb.getDataTable(sql_timkiem));
+                    DataView dv = new DataView(condb.GetDataTable(sql_timkiem));
                     if (dv != null && dv.Count > 0)
                     {
                         gridControlHSBA.DataSource = dv;

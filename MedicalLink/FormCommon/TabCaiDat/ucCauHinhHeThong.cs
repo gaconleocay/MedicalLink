@@ -59,7 +59,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqldsnv = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook FROM tools_option ORDER BY toolsoptionid;";
-                DataView dataOption = new DataView(condb.getDataTable(sqldsnv));
+                DataView dataOption = new DataView(condb.GetDataTable(sqldsnv));
                 if (dataOption != null && dataOption.Count > 0)
                 {
                     gridControlDSOption.DataSource = dataOption;

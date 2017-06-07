@@ -149,7 +149,7 @@ namespace MedicalLink.ChucNang
                         sqldsdv = "SELECT mef.medicinecode as dv_ma, mef.medicinename as dv_tenbhyt, mef.medicinename as dv_tenvp, mef.medicinename as dv_tennnn, mef.servicepricefeebhyt as gia_bhyt, mef.servicepricefeenhandan as gia_vp, mef.servicepricefee as gia_yc, mef.servicepricefeenuocngoai as gia_nnn FROM medicine_ref mef inner join (select mefc.servicepricefee, mefc.servicepricefeebhyt, mefc.servicepricefeenhandan from medicine_ref mefc where mefc.medicinecode='" + madv + "') serf on serf.servicepricefee=mef.servicepricefee and serf.servicepricefeebhyt=mef.servicepricefeebhyt and serf.servicepricefeenhandan=mef.servicepricefeenhandan WHERE mef.servicelock is null and mef.isremove=0 ORDER BY mef.datatype, mef.medicinename;     ";
                     }
                 }
-                dv_dmdv = new DataView(condb.getDataTable(sqldsdv));
+                dv_dmdv = new DataView(condb.GetDataTable(sqldsdv));
 
                 cbbTenDV_Moi.Properties.DataSource = dv_dmdv;
                 cbbTenDV_Moi.Properties.DisplayMember = "dv_tenbhyt";
@@ -262,7 +262,7 @@ namespace MedicalLink.ChucNang
                 {
                     sql_dv = "SELECT medicinecode as dv_ma, medicinename as dv_tenbhyt, medicinename as dv_tenvp, medicinename as dv_tennnn, medicinename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM medicine_ref WHERE medicinecode='" + dv_ma_timkiem + "';";
                 }
-                DataView data_tk = new DataView(condb.getDataTable(sql_dv));
+                DataView data_tk = new DataView(condb.GetDataTable(sql_dv));
                 if (data_tk.Count > 0)
                 {
                     cbbTenDV_Moi.EditValue = data_tk[0]["dv_ma"].ToString();

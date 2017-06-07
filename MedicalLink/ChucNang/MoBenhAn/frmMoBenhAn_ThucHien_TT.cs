@@ -196,7 +196,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             try
             {
                 string sqldsnv = "SELECT usercode as manv, username as tennv FROM tools_tblnhanvien ORDER BY usercode";
-                DataTable da_dt = condb.getDataTable(sqldsnv);
+                DataTable da_dt = condb.GetDataTable(sqldsnv);
                 //for (int i = 0; i < da_dt.Rows.Count; i++)
                 //{
                 //    string manv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(da_dt.Rows[i]["manv"].ToString(), true);
@@ -241,7 +241,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             try
             {
                 string sql_kttontai = "SELECT usercode as manv, username as tennv FROM tools_tblnhanvien WHERE usercode='" + txtNVID.Text.Trim() + "' ORDER BY manv";
-                DataView dv_dsnv = new DataView(condb.getDataTable(sql_kttontai));
+                DataView dv_dsnv = new DataView(condb.GetDataTable(sql_kttontai));
                 if (dv_dsnv != null && dv_dsnv.Count > 0)
                 {
                     //su dung form thong bao nay thi khong hien thi duoc

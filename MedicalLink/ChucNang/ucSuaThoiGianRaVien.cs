@@ -118,7 +118,7 @@ namespace MedicalLink.ChucNang
                 {
                     sqlquerry = "select distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, department.departmentname as tenphong, case medicalrecord.nextdepartmentid when 0 then '1' else '0' end as lakhoacuoi FROM medicalrecord, hosobenhan,departmentgroup,department,vienphi where medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.departmentid=department.departmentid and medicalrecord.patientid=hosobenhan.patientid and vienphi.vienphiid=medicalrecord.vienphiid and medicalrecord.vienphiid=" + txtMaVienPhi.Text + " order by madieutri";
                 }
-                DataView dv = new DataView(condb.getDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
                 gridControlSuaThoiGianRaVien.DataSource = dv;
                 dateThoiGianSua.Enabled = false;
                 btnSuaThoiGianOK.Enabled = false;

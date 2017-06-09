@@ -17,8 +17,8 @@ namespace MedicalLink.ClassCommon
         public long departmentgroupid { get; set; }
         public string departmentname { get; set; }
         public DateTime vienphidate { get; set; }
-        public DateTime vienphidate_ravien { get; set; }
-        public DateTime duyet_ngayduyet_vp { get; set; }
+        public string vienphidate_ravien { get; set; }
+        public string duyet_ngayduyet_vp { get; set; }
         public decimal money_khambenh { get; set; }
         public decimal money_xetnghiem { get; set; }
         public decimal money_cdhatdcn { get; set; }

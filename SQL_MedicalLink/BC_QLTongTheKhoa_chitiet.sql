@@ -1,3 +1,34 @@
+--Chi tiet bn dang dieu tri - ngay 7/6/2017
+--QL Tong the khoa Chi tiet - BN dang dieu tri
+SELECT ROW_NUMBER() OVER (ORDER BY A.duyet_ngayduyet_vp) as stt, A.*, case when A.money_tong<>0 then round(cast((A.money_thuoc/A.money_tong) * 100 as numeric) ,2) else 0 end as ty_le_thuoc FROM (SELECT vpm.vienphiid, vpm.patientid, hsbn.patientname, bhyt.bhytcode, bhyt.bhyt_loaiid, vpm.loaivienphiid, bhyt.du5nam6thangluongcoban, vpm.bhyt_tuyenbenhvien, vpm.departmentgroupid, prv.departmentname, vpm.vienphidate,  
+(case when vpm.vienphidate_ravien<>'0001-01-01 00:00:00' then vpm.vienphidate_ravien end) as vienphidate_ravien, 
+(case when vpm.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vpm.duyet_ngayduyet_vp end) as duyet_ngayduyet_vp,  
+round(cast((vpm.money_khambenh_bh + vpm.money_khambenh_vp) as numeric),0) as money_khambenh, round(cast((vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as numeric),0) as money_xetnghiem, round(cast((vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as numeric),0) as money_cdhatdcn, round(cast((vpm.money_pttt_bh + vpm.money_pttt_vp) as numeric),0) as money_pttt, round(cast((vpm.money_dvktc_bh + vpm.money_dvktc_vp) as numeric),0) as money_dvktc, round(cast((vpm.money_giuongthuong_bh + vpm.money_giuongthuong_vp) as numeric),0) as money_giuongthuong, round(cast((vpm.money_giuongyeucau_bh + vpm.money_giuongyeucau_vp) as numeric),0) as money_giuongyeucau, round(cast((vpm.money_khac_bh + vpm.money_khac_vp + vpm.money_phuthu_bh + vpm.money_phuthu_vp + vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as numeric),0) as money_khac, round(cast((vpm.money_vattu_bh + vpm.money_vattu_vp) as numeric),0) as money_vattu, round(cast((vpm.money_mau_bh + vpm.money_mau_vp) as numeric),0) as money_mau, round(cast((vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric),0) as money_thuoc, round(cast((vpm.money_khambenh_bh + vpm.money_xetnghiem_bh + vpm.money_cdha_bh + vpm.money_tdcn_bh + vpm.money_pttt_bh + vpm.money_dvktc_bh + vpm.money_giuongthuong_bh + vpm.money_giuongyeucau_bh + vpm.money_khac_bh + vpm.money_phuthu_bh + vpm.money_vanchuyen_bh + vpm.money_thuoc_bh + vpm.money_mau_bh + vpm.money_vattu_bh + vpm.money_khambenh_vp + vpm.money_xetnghiem_vp + vpm.money_cdha_vp + vpm.money_tdcn_vp + vpm.money_pttt_vp + vpm.money_dvktc_vp + vpm.money_giuongthuong_vp + vpm.money_giuongyeucau_vp + vpm.money_khac_vp + vpm.money_phuthu_vp + vpm.money_vanchuyen_vp + vpm.money_thuoc_vp + vpm.money_mau_vp + vpm.money_vattu_vp) as numeric),0) as money_tong, round(cast((vpm.tam_ung) as numeric),0) as tam_ung  
+FROM  
+ (select hosobenhanid, departmentid from medicalrecord where medicalrecordstatus in (0,2)  
+  and thoigianvaovien>='" + dateKhoangDLTu + "' and departmentid in (" + this.lstPhongChonLayBC + ") group by hosobenhanid, departmentid) med 
+ left join (select hosobenhanid, patientname from hosobenhan) hsbn on med.hosobenhanid=hsbn.hosobenhanid  
+ left join vienphi_money vpm on vpm.hosobenhanid=med.hosobenhanid 
+ left join (select bhytid, bhytcode, bhyt_loaiid, du5nam6thangluongcoban from bhyt) bhyt on bhyt.bhytid=vpm.bhytid  
+ left join (select departmentid, departmentname from department where departmenttype in (2,3,9)) prv ON med.departmentid=prv.departmentid 
+WHERE vpm.vienphistatus=0 and vpm.vienphidate>='" + dateKhoangDLTu + "' 
+) A ORDER BY A.vienphiid;  
+
+
+
+TO_CHAR(spt.vienphidate_ravien, 'yyyy-MM-dd HH:mm:ss')
+(case when spt.vienphidate_ravien<>'0001-01-01 00:00:00' then spt.vienphidate_ravien end)
+
+TO_CHAR(spt.duyet_ngayduyet_vp, 'yyyy-MM-dd HH:mm:ss')
+(case when spt.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then spt.duyet_ngayduyet_vp end)
+
+
+
+
+
+
+
+
 --Chi tiet khoa 
 SELECT ROW_NUMBER() OVER (ORDER BY A.duyet_ngayduyet_vp) as stt, 
 A.*, 

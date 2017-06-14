@@ -1,7 +1,7 @@
----------------View View_tools_serviceprice_pttt v 1.1 ngay 22/05/2017
+---------------View View_tools_serviceprice_pttt v 1.2 ngay 9/06/2017
 --sử dụng code sql tools_serviceprice_pttt ngay  v 1.15 ngay 17/5
 --dùng để lấy báo cáo doanh thu chia GMHT BN đang điều trị
-
+-- bo sung them phong BN dang dieu tri
 
 CREATE OR REPLACE VIEW View_tools_serviceprice_pttt AS 
 SELECT 
@@ -324,7 +324,14 @@ sum(case when ser.servicepriceid_master<>0 and ser.loaidoituong=2 and ser.bhyt_g
 		then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_nhandan*ser.soluong
 					    else 0-(servicepricemoney_nhandan*ser.soluong) end)
-		else 0 end)) as money_hppttt_goi_vattu
+		else 0 end)) as money_hppttt_goi_vattu /*,
+-----		
+COALESCE((select departmentid
+				from medicalrecord 
+				where medicalrecordstatus=2
+						and vienphiid=vp.vienphiid
+				order by medicalrecordid desc limit 1),0) as phongdieutri	*/	
+
 FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid
 WHERE vp.vienphidate>='2016-01-01 00:00:00'
 		and ser.thuockhobanle=0 

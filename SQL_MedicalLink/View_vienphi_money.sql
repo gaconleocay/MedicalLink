@@ -107,9 +107,15 @@ sum(case when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '
 	 when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '102VTngoaiDM','103VTtyle') and ser.loaidoituong=3 then 
 		(case when ser.doituongbenhnhanid=4 then (case when ser.maubenhphamphieutype=0 then servicepricemoney_nuocngoai*ser.soluong else 0-(servicepricemoney_nuocngoai*ser.soluong) end) else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney*ser.soluong else 0-(ser.servicepricemoney*ser.soluong) end) end)
 	 else 0 end) as money_vattu_vp,
-(select sum(bill.datra) from bill where bill.vienphiid=vp.vienphiid and bill.loaiphieuthuid=2 and bill.dahuyphieu=0) as tam_ung					
+(select sum(bill.datra) from bill where bill.vienphiid=vp.vienphiid and bill.loaiphieuthuid=2 and bill.dahuyphieu=0) as tam_ung /*,
+--------
+COALESCE((select departmentid
+				from medicalrecord 
+				where medicalrecordstatus=2
+						and vienphiid=vp.vienphiid
+				order by medicalrecordid desc limit 1),0) as phongdieutri		*/			
 FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid and ser.thuockhobanle=0 
-WHERE vp.vienphidate >'2014-01-01 00:00:00' 
+WHERE vp.vienphidate >'2016-01-01 00:00:00' 
 --and (ser.lankhambenh = 0 or ser.lankhambenh is null)
 GROUP BY vp.vienphiid, vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp
 ORDER BY vp.vienphiid DESC;

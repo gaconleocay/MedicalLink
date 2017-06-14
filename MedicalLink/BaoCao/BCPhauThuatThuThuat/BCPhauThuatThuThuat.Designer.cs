@@ -35,7 +35,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
+            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.chkChuaPhanLoaiPTTT = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -138,7 +138,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tbnExport);
+            this.groupBox1.Controls.Add(this.dropDownExport);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBox1.Location = new System.Drawing.Point(979, 2);
@@ -148,20 +148,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Export";
             // 
-            // tbnExport
+            // dropDownExport
             // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(13, 44);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 40);
-            this.tbnExport.TabIndex = 8;
-            this.tbnExport.Text = "Export...";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
+            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownExport.Appearance.Options.UseFont = true;
+            this.dropDownExport.Appearance.Options.UseForeColor = true;
+            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_24;
+            this.dropDownExport.Location = new System.Drawing.Point(9, 42);
+            this.dropDownExport.Name = "dropDownExport";
+            this.dropDownExport.Size = new System.Drawing.Size(100, 40);
+            this.dropDownExport.TabIndex = 0;
+            this.dropDownExport.Text = "Export...";
             // 
             // groupBoxFile
             // 
@@ -1595,7 +1594,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn33;
         private DevExpress.XtraEditors.LookUpEdit cboLoaiBaoCao;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.SimpleButton tbnExport;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn34;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn13;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSPhong;
@@ -1622,5 +1620,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand_giupviec1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand_giupviec2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
+        private DevExpress.XtraEditors.DropDownButton dropDownExport;
     }
 }

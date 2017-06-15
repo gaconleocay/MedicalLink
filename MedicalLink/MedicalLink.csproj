@@ -1147,6 +1147,9 @@
     <Content Include="Documents\Tools_tblNhanVien.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Documents\ToolsDMDV_v2_chuan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Library\Aspose.Cells.lic" />
     <None Include="Library\Aspose.Words.lic" />
     <None Include="packages.config" />

@@ -146,14 +146,15 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                //Tieu chi =0: theo khoa ra vien; =1: theo khoa chi dinh
+                //laytheo =0: theo khoa ra vien; =1: theo khoa chi dinh
                 //Kieu xem =0: xem tong hop; =1: xem chi tiet theo khoa; = 2 xem chi tiet theo benh nhan
-                int tieuchi = 0;
+                int laytheo = 0;
                 int kieuxem = 0;
-                if (cboTieuChi.Text == "Theo khoa chỉ định")
+                if (cboLayTheo.Text == "Theo khoa chỉ định")
                 {
-                    tieuchi = 1;
+                    laytheo = 1;
                 }
+
                 if (cboKieuXem.Text == "Xem chi tiết theo khoa")
                 {
                     kieuxem = 1;
@@ -164,7 +165,7 @@ namespace MedicalLink.Dashboard
                 }
 
                 gridControlDataBNNT.DataSource = null;
-                LayDuLieuBaoCao_ChayMoi(tieuchi, kieuxem);
+                LayDuLieuBaoCao_ChayMoi(laytheo, kieuxem);
             }
             catch (Exception ex)
             {
@@ -331,6 +332,33 @@ namespace MedicalLink.Dashboard
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void cboLayTheo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cboLayTheo.Text == "Theo khoa chỉ định")
+                {
+                    cboKieuXem.Properties.Items.Clear();
+                    cboKieuXem.Properties.Items.Add("Xem tổng hợp");
+                    cboKieuXem.Properties.Items.Add("Xem chi tiết theo khoa");
+                    cboKieuXem.Text = "Xem chi tiết theo khoa";
+                }
+                else
+                {
+                    cboKieuXem.Properties.Items.Clear();
+                    cboKieuXem.Properties.Items.Add("Xem tổng hợp");
+                    cboKieuXem.Properties.Items.Add("Xem chi tiết theo khoa");
+                    cboKieuXem.Properties.Items.Add("Xem chi tiết bệnh nhân");
+                    cboKieuXem.Text = "Xem tổng hợp";
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 

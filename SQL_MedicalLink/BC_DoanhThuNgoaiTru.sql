@@ -1,4 +1,6 @@
 ----------------BC doanh thu phong kham version 2.0
+
+---Theo thoi gian thanh toan
 SELECT ROW_NUMBER () OVER (ORDER BY O.departmentgroupid, O.departmentname) as stt,
 		O.*
 FROM		
@@ -51,10 +53,10 @@ FROM department de
 	FROM tools_serviceprice_pttt spt 
 	WHERE spt.vienphistatus_vp=1 
 		and spt.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "'
-		and spt.departmentid in (select d.departmentid from department d where d.departmenttype=2)
+		and spt.departmentid in (select d.departmentid from department d where d.departmenttype in (2,9))
 	GROUP BY spt.departmentid) B ON B.departmentid=de.departmentid 
 	LEFT JOIN departmentgroup degp ON degp.departmentgroupid=de.departmentgroupid
-WHERE de.departmenttype=2) O;
+WHERE de.departmenttype in (2,9)) O;
 		
 		
 		
@@ -111,11 +113,11 @@ LEFT JOIN
 	sum(spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as tien_vp 
 	FROM tools_serviceprice_pttt spt 
 	WHERE spt.vienphidate between '" + thoiGianTu + "' and '" + thoiGianDen + "' 
-		and spt.departmentid in (select d.departmentid from department d where d.departmenttype=2) 
+		and spt.departmentid in (select d.departmentid from department d where d.departmenttype in (2,9)) 
 	GROUP BY spt.departmentid) B ON B.departmentid=de.departmentid 
 LEFT JOIN departmentgroup degp ON degp.departmentgroupid=de.departmentgroupid
 LEFT JOIN 
-WHERE de.departmenttype=2) O;
+WHERE de.departmenttype in (2,9)) O;
 
 		
 		

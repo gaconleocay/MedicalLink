@@ -37,6 +37,7 @@ namespace MedicalLink.ChucNang
             this.txtSoTheBHYT.Enter += new System.EventHandler(this.textBoxBHYT_Enter);
         }
 
+        #region Load
         // Hiển thị Text Hint
         private void textBox1_Leave(object sender, EventArgs e)
         {
@@ -73,6 +74,9 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        #endregion
+
+        #region Custom
         private void txtMBAMaBenhNhan_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -118,6 +122,8 @@ namespace MedicalLink.ChucNang
                 throw;
             }
         }
+
+        #endregion
         private void btnMBATimKiem_Click(object sender, EventArgs e)
         {
             try

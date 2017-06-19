@@ -213,7 +213,7 @@ namespace MedicalLink.FormCommon
             {
                 UserControl ucControlActive = new UserControl();
                 ucControlActive = TabControlProcess.SelectUCControlActive("DASHBOARD_08");
-                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "DASHBOARD_08", "Biểu đồ doanh thu khoa", "Biểu đồ doanh thu khoa", ucControlActive);
+                MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "DASHBOARD_08", "Biểu đồ doanh thu khoa", "Biểu đồ doanh thu khoa. Lấy theo tiêu chí khoa chỉ định dịch vụ", ucControlActive);
                 ucControlActive.Show();
             }
             catch (Exception ex)

@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel3 = new DevExpress.XtraCharts.PieSeriesLabel();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView3 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel4 = new DevExpress.XtraCharts.PieSeriesLabel();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView4 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.ChartTitle chartTitle2 = new DevExpress.XtraCharts.ChartTitle();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel1 = new DevExpress.XtraCharts.PieSeriesLabel();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel2 = new DevExpress.XtraCharts.PieSeriesLabel();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView2 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkcomboListDSPhong = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.lblTenKhoaLayBaoCao = new System.Windows.Forms.Label();
+            this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.bbbb = new DevExpress.XtraEditors.LabelControl();
             this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
             this.radioNam = new System.Windows.Forms.RadioButton();
@@ -49,24 +53,20 @@
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.chartControlDTKhoa = new DevExpress.XtraCharts.ChartControl();
-            this.label2 = new System.Windows.Forms.Label();
-            this.chkcomboListDSPhong = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.lblTenKhoaLayBaoCao = new System.Windows.Forms.Label();
-            this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -103,6 +103,59 @@
             this.groupBoxFile.TabIndex = 11;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(200, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 14);
+            this.label2.TabIndex = 87;
+            this.label2.Text = "Phòng/BĐT";
+            // 
+            // chkcomboListDSPhong
+            // 
+            this.chkcomboListDSPhong.EditValue = "";
+            this.chkcomboListDSPhong.Location = new System.Drawing.Point(277, 98);
+            this.chkcomboListDSPhong.Name = "chkcomboListDSPhong";
+            this.chkcomboListDSPhong.Properties.AllowMultiSelect = true;
+            this.chkcomboListDSPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSPhong.Properties.Appearance.Options.UseFont = true;
+            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.chkcomboListDSPhong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.chkcomboListDSPhong.Properties.DropDownRows = 15;
+            this.chkcomboListDSPhong.Size = new System.Drawing.Size(323, 22);
+            this.chkcomboListDSPhong.TabIndex = 86;
+            // 
+            // lblTenKhoaLayBaoCao
+            // 
+            this.lblTenKhoaLayBaoCao.AutoSize = true;
+            this.lblTenKhoaLayBaoCao.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenKhoaLayBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(236, 70);
+            this.lblTenKhoaLayBaoCao.Name = "lblTenKhoaLayBaoCao";
+            this.lblTenKhoaLayBaoCao.Size = new System.Drawing.Size(34, 14);
+            this.lblTenKhoaLayBaoCao.TabIndex = 85;
+            this.lblTenKhoaLayBaoCao.Text = "Khoa";
+            // 
+            // chkcomboListDSKhoa
+            // 
+            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(277, 62);
+            this.chkcomboListDSKhoa.Name = "chkcomboListDSKhoa";
+            this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSKhoa.Properties.Appearance.Options.UseFont = true;
+            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
+            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(323, 22);
+            this.chkcomboListDSKhoa.TabIndex = 84;
+            this.chkcomboListDSKhoa.EditValueChanged += new System.EventHandler(this.chkcomboListDSKhoa_EditValueChanged);
             // 
             // bbbb
             // 
@@ -255,77 +308,24 @@
             this.chartControlDTKhoa.Location = new System.Drawing.Point(2, 2);
             this.chartControlDTKhoa.Name = "chartControlDTKhoa";
             this.chartControlDTKhoa.PaletteName = "Metro";
-            series2.CheckableInLegend = false;
-            pieSeriesLabel3.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
-            series2.Label = pieSeriesLabel3;
-            series2.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            series2.Name = "Khoa";
-            series2.ToolTipPointPattern = "{A}: {V:#,##0}";
-            series2.View = pieSeriesView3;
+            series1.CheckableInLegend = false;
+            pieSeriesLabel1.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
+            series1.Label = pieSeriesLabel1;
+            series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            series1.Name = "Khoa";
+            series1.ToolTipPointPattern = "{A}: {V:#,##0}";
+            series1.View = pieSeriesView1;
             this.chartControlDTKhoa.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series2};
-            pieSeriesLabel4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chartControlDTKhoa.SeriesTemplate.Label = pieSeriesLabel4;
-            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView4;
+        series1};
+            pieSeriesLabel2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartControlDTKhoa.SeriesTemplate.Label = pieSeriesLabel2;
+            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView2;
             this.chartControlDTKhoa.Size = new System.Drawing.Size(996, 464);
             this.chartControlDTKhoa.TabIndex = 0;
-            chartTitle2.Text = "Doanh thu khoa BN đã thanh toán";
+            chartTitle1.Text = "Doanh thu khoa BN đã thanh toán";
             this.chartControlDTKhoa.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
-            chartTitle2});
+            chartTitle1});
             this.chartControlDTKhoa.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.True;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(200, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 14);
-            this.label2.TabIndex = 87;
-            this.label2.Text = "Phòng/BĐT";
-            // 
-            // chkcomboListDSPhong
-            // 
-            this.chkcomboListDSPhong.EditValue = "";
-            this.chkcomboListDSPhong.Location = new System.Drawing.Point(277, 98);
-            this.chkcomboListDSPhong.Name = "chkcomboListDSPhong";
-            this.chkcomboListDSPhong.Properties.AllowMultiSelect = true;
-            this.chkcomboListDSPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSPhong.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.chkcomboListDSPhong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.chkcomboListDSPhong.Properties.DropDownRows = 15;
-            this.chkcomboListDSPhong.Size = new System.Drawing.Size(323, 22);
-            this.chkcomboListDSPhong.TabIndex = 86;
-            // 
-            // lblTenKhoaLayBaoCao
-            // 
-            this.lblTenKhoaLayBaoCao.AutoSize = true;
-            this.lblTenKhoaLayBaoCao.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenKhoaLayBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(236, 70);
-            this.lblTenKhoaLayBaoCao.Name = "lblTenKhoaLayBaoCao";
-            this.lblTenKhoaLayBaoCao.Size = new System.Drawing.Size(34, 14);
-            this.lblTenKhoaLayBaoCao.TabIndex = 85;
-            this.lblTenKhoaLayBaoCao.Text = "Khoa";
-            // 
-            // chkcomboListDSKhoa
-            // 
-            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(277, 62);
-            this.chkcomboListDSKhoa.Name = "chkcomboListDSKhoa";
-            this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSKhoa.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.chkcomboListDSKhoa.Properties.DropDownRows = 10;
-            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(323, 22);
-            this.chkcomboListDSKhoa.TabIndex = 84;
-            this.chkcomboListDSKhoa.EditValueChanged += new System.EventHandler(this.chkcomboListDSKhoa_EditValueChanged);
             // 
             // ucDashboardDoanhThuTungKhoa
             // 
@@ -340,17 +340,17 @@
             this.panelControl1.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

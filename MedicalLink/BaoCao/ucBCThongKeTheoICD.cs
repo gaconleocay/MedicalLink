@@ -40,6 +40,8 @@ namespace MedicalLink.ChucNang
             string[] dsIcd_temp;
             string dsIcd = "";
             string tktheomaIdc = "";
+            string tktheomaIdc_Phu = "";
+            string sql_timtheomaIcd = "";
 
             if ((cbbTrangThaiVP.Text == "") || (cbbLoaiBA.Text == ""))
             {
@@ -51,26 +53,26 @@ namespace MedicalLink.ChucNang
                 // Lấy Tiêu chí trạng thai vien phi: vienphistatus
                 if (cbbTrangThaiVP.Text.Trim() == "Đóng BA nhưng chưa duyệt VP")
                 {
-                    trangthaiVP = " and vienphi.vienphidate_ravien != '0001-01-01 00:00:00' and (vienphi.vienphistatus_vp IS NULL or vienphi.vienphistatus_vp=0) and vienphi.vienphistatus<>2 ";
+                    trangthaiVP = " and vp.vienphistatus<>0 and COALESCE(vp.vienphistatus_vp)=0 ";                                 
+                    //and vp.vienphidate_ravien != '0001-01-01 00:00:00' and (vp.vienphistatus_vp IS NULL or vp.vienphistatus_vp=0) and vp.vienphistatus<>2 ";
                 }
                 else if (cbbTrangThaiVP.Text.Trim() == "Đã duyệt viện phí")
                 {
-                    trangthaiVP = " and vienphi.vienphistatus_vp=1 ";
+                    trangthaiVP = " and vp.vienphistatus_vp=1 ";
                 }
                 else if (cbbTrangThaiVP.Text.Trim() == "Đã đóng BA")
                 {
-                    trangthaiVP = " and vienphi.vienphistatus<>0 ";
+                    trangthaiVP = " and vp.vienphistatus<>0 ";
                 }
-
 
                 // Lấy loaivienphiid
                 if (cbbLoaiBA.Text == "Ngoại trú")
                 {
-                    loaivienphiid = "and vienphi.loaivienphiid=1 ";
+                    loaivienphiid = "and vp.loaivienphiid=1 ";
                 }
                 else if (cbbLoaiBA.Text == "Nội trú")
                 {
-                    loaivienphiid = "and vienphi.loaivienphiid=0 ";
+                    loaivienphiid = "and vp.loaivienphiid=0 ";
                 }
                 else
                 {
@@ -80,11 +82,11 @@ namespace MedicalLink.ChucNang
                 // Lấy trường đối tượng BN: loaidoituong
                 if (cbbDoiTuong.Text == "BHYT")
                 {
-                    doituongbenhnhanid = "and vienphi.doituongbenhnhanid=1 ";
+                    doituongbenhnhanid = "and vp.doituongbenhnhanid=1 ";
                 }
                 else if (cbbDoiTuong.Text == "Viện phí")
                 {
-                    doituongbenhnhanid = "and vienphi.doituongbenhnhanid<>1 ";
+                    doituongbenhnhanid = "and vp.doituongbenhnhanid<>1 ";
                 }
                 else if (cbbDoiTuong.Text == "Tất cả")
                 {
@@ -102,12 +104,12 @@ namespace MedicalLink.ChucNang
                     }
                     dsIcd += "'" + dsIcd_temp[dsIcd_temp.Length - 1].ToString() + "'";
 
-                    tktheomaIdc = "and vienphi.chandoanravien_code in (" + dsIcd + ")";
+                    tktheomaIdc = " vp.chandoanravien_code in (" + dsIcd + ")";
+                    tktheomaIdc_Phu = "or vp.chandoanravien_kemtheo_code in (" + dsIcd + ")";
                 }
-
-                else
+                if (tktheomaIdc != "" || tktheomaIdc_Phu !="")
                 {
-                    tktheomaIdc = "";
+                    sql_timtheomaIcd = " and (" + tktheomaIdc + tktheomaIdc_Phu+")";
                 }
 
                 // Lấy từ ngày, đến ngày
@@ -123,7 +125,7 @@ namespace MedicalLink.ChucNang
                     if (kieuXem == 0)
                     {
                         gridControlDSDV_TH.DataSource = null;
-                        string sqlquerry_ct = "SELECT DISTINCT ROW_NUMBER() OVER (ORDER BY vienphi.chandoanravien_code) as stt, vienphi.chandoanravien_code as benhchinh_ma, vienphi.chandoanravien as benhchinh_ten, vienphi.chandoanravien_kemtheo_code as benhkemtheo_ma, vienphi.chandoanravien_kemtheo as benhkemtheo_ten, vienphi.patientid as mabn, vienphi.vienphiid as mavp,hosobenhan.patientname as tenbn, tools_depatment.departmentgroupname as khoarv,tools_depatment.departmentname as phongrv, vienphi.vienphidate as tgvaovien, vienphi.vienphidate_ravien as tgravien FROM vienphi, hosobenhan, tools_depatment WHERE vienphi.hosobenhanid=hosobenhan.hosobenhanid and vienphi.departmentid=tools_depatment.departmentid and vienphi.vienphidate_ravien > '" + datetungay + "' and vienphi.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + tktheomaIdc + " ;";
+                        string sqlquerry_ct = "SELECT DISTINCT ROW_NUMBER() OVER (ORDER BY vp.chandoanravien_code) as stt, vp.chandoanravien_code as benhchinh_ma, vp.chandoanravien as benhchinh_ten, vp.chandoanravien_kemtheo_code as benhkemtheo_ma, vp.chandoanravien_kemtheo as benhkemtheo_ten, vp.patientid as mabn, vp.vienphiid as mavp,hsba.patientname as tenbn, degp.departmentgroupname as khoarv, de.departmentname as phongrv, vp.vienphidate as tgvaovien, vp.vienphidate_ravien as tgravien FROM vienphi vp inner join (select hosobenhanid, patientname from hosobenhan) hsba on hsba.hosobenhanid=vp.hosobenhanid inner join department de on de.departmentid=vp.departmentid inner join departmentgroup degp on degp.departmentgroupid=vp.departmentgroupid WHERE vp.vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + sql_timtheomaIcd + ";";
 
                         DataView dv = new DataView(condb.GetDataTable(sqlquerry_ct));
                         gridControlDSDV.DataSource = dv;
@@ -137,13 +139,13 @@ namespace MedicalLink.ChucNang
                     else // xem tổng hợp
                     {
                         gridControlDSDV.DataSource = null;
-                        string sqlquerry_th = "SELECT ROW_NUMBER() OVER (ORDER BY vienphi.chandoanravien_code) as stt, vienphi.vienphiid as mavp, vienphi.chandoanravien_code as benhchinh_ma, vienphi.chandoanravien as benhchinh_ten, vienphi.chandoanravien_kemtheo_code as benhkemtheo_ma, vienphi.chandoanravien_kemtheo as benhkemtheo_ten FROM vienphi WHERE vienphi.vienphidate_ravien > '" + datetungay + "' and vienphi.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ;";
+                        string sqlquerry_th = "SELECT ROW_NUMBER() OVER (ORDER BY vp.chandoanravien_code) as stt, vp.vienphiid as mavp, vp.chandoanravien_code as benhchinh_ma, vp.chandoanravien as benhchinh_ten, vp.chandoanravien_kemtheo_code as benhkemtheo_ma, vp.chandoanravien_kemtheo as benhkemtheo_ten FROM vienphi vp WHERE vp.vienphidate_ravien > '" + datetungay + "' and vp.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ;";
                         DataView dv_chitiet = new DataView(condb.GetDataTable(sqlquerry_th));
 
-                        string sqlquerry_mabenh_1 = "SELECT DISTINCT '' as stt, vienphi.chandoanravien_code as benhchinh_ma, icd10.icd10name as benhchinh_ten, '' as soluong_chinh, '' as soluong_kt, '' as soluong_tong, '' as soluong_kkb, '' as soluong_nt FROM vienphi, icd10 WHERE icd10.icd10code = vienphi.chandoanravien_code and vienphi.vienphidate_ravien > '" + datetungay + "' and vienphi.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ORDER BY benhchinh_ma ;";
+                        string sqlquerry_mabenh_1 = "SELECT DISTINCT '' as stt, vp.chandoanravien_code as benhchinh_ma, icd10.icd10name as benhchinh_ten, '' as soluong_chinh, '' as soluong_kt, '' as soluong_tong, '' as soluong_kkb, '' as soluong_nt FROM vienphi vp, icd10 WHERE icd10.icd10code = vp.chandoanravien_code and vp.vienphidate_ravien > '" + datetungay + "' and vp.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ORDER BY benhchinh_ma ;";
                         DataView dv_mabenh_1 = new DataView(condb.GetDataTable(sqlquerry_mabenh_1));
 
-                        string sqlquerry_mabenh_2 = "SELECT DISTINCT '' as stt, vienphi.chandoanravien_kemtheo_code as benhkemtheo_ma, icd10.icd10name as benhchinh_ten, '' as soluong_chinh, '' as soluong_kt, '' as soluong_tong, '' as soluong_kkb, '' as soluong_nt FROM vienphi,icd10 WHERE icd10.icd10code = vienphi.chandoanravien_kemtheo_code and chandoanravien_kemtheo_code <>'' and vienphi.vienphidate_ravien > '" + datetungay + "' and vienphi.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ORDER BY benhkemtheo_ma;";
+                        string sqlquerry_mabenh_2 = "SELECT DISTINCT '' as stt, vp.chandoanravien_kemtheo_code as benhkemtheo_ma, icd10.icd10name as benhchinh_ten, '' as soluong_chinh, '' as soluong_kt, '' as soluong_tong, '' as soluong_kkb, '' as soluong_nt FROM vienphi vp, icd10 WHERE icd10.icd10code = vp.chandoanravien_kemtheo_code and chandoanravien_kemtheo_code <>'' and vp.vienphidate_ravien > '" + datetungay + "' and vp.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ORDER BY benhkemtheo_ma;";
                         DataView dv_mabenh_2 = new DataView(condb.GetDataTable(sqlquerry_mabenh_2));
 
                         // SUM tong cua benh chinh

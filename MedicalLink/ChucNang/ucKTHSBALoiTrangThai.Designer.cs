@@ -257,7 +257,6 @@
             this.gridViewHSBA.Name = "gridViewHSBA";
             this.gridViewHSBA.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridViewHSBA.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewHSBA.OptionsBehavior.Editable = false;
             this.gridViewHSBA.OptionsView.ColumnAutoWidth = false;
             this.gridViewHSBA.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewHSBA.OptionsView.ShowGroupPanel = false;
@@ -320,7 +319,6 @@
             this.gridColumn16.Caption = "Mã BN";
             this.gridColumn16.FieldName = "patientid";
             this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
             this.gridColumn16.VisibleIndex = 2;
             this.gridColumn16.Width = 83;
@@ -340,7 +338,6 @@
             this.gridColumn3.Caption = "Mã VP";
             this.gridColumn3.FieldName = "vienphiid";
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 3;
             this.gridColumn3.Width = 69;

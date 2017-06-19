@@ -108,7 +108,7 @@
             this.panelControlTKDV_TK.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlTKDV_TK.Location = new System.Drawing.Point(0, 0);
             this.panelControlTKDV_TK.Name = "panelControlTKDV_TK";
-            this.panelControlTKDV_TK.Size = new System.Drawing.Size(1000, 117);
+            this.panelControlTKDV_TK.Size = new System.Drawing.Size(1200, 117);
             this.panelControlTKDV_TK.TabIndex = 3;
             // 
             // groupBoxXuatBC
@@ -116,7 +116,7 @@
             this.groupBoxXuatBC.Controls.Add(this.tbnExport);
             this.groupBoxXuatBC.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxXuatBC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxXuatBC.Location = new System.Drawing.Point(868, 2);
+            this.groupBoxXuatBC.Location = new System.Drawing.Point(1068, 2);
             this.groupBoxXuatBC.Name = "groupBoxXuatBC";
             this.groupBoxXuatBC.Size = new System.Drawing.Size(130, 113);
             this.groupBoxXuatBC.TabIndex = 14;
@@ -158,7 +158,7 @@
             this.groupBoxBNBK_TK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxBNBK_TK.Location = new System.Drawing.Point(2, 2);
             this.groupBoxBNBK_TK.Name = "groupBoxBNBK_TK";
-            this.groupBoxBNBK_TK.Size = new System.Drawing.Size(996, 113);
+            this.groupBoxBNBK_TK.Size = new System.Drawing.Size(1196, 113);
             this.groupBoxBNBK_TK.TabIndex = 5;
             this.groupBoxBNBK_TK.TabStop = false;
             this.groupBoxBNBK_TK.Text = "Tìm kiếm";
@@ -183,7 +183,7 @@
             this.txtMaICD.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
             this.txtMaICD.Properties.Appearance.Options.UseFont = true;
             this.txtMaICD.Properties.Appearance.Options.UseForeColor = true;
-            this.txtMaICD.Size = new System.Drawing.Size(166, 22);
+            this.txtMaICD.Size = new System.Drawing.Size(253, 22);
             this.txtMaICD.TabIndex = 21;
             this.txtMaICD.ToolTip = "Nhập mã ICD10 cách nhau bởi dấu phẩy (,)";
             // 
@@ -209,12 +209,12 @@
             "BHYT",
             "Viện phí",
             "Tất cả"});
-            this.cbbDoiTuong.Size = new System.Drawing.Size(166, 22);
+            this.cbbDoiTuong.Size = new System.Drawing.Size(253, 22);
             this.cbbDoiTuong.TabIndex = 19;
             // 
             // radioKieuXem
             // 
-            this.radioKieuXem.Location = new System.Drawing.Point(589, 25);
+            this.radioKieuXem.Location = new System.Drawing.Point(679, 25);
             this.radioKieuXem.Margin = new System.Windows.Forms.Padding(0);
             this.radioKieuXem.Name = "radioKieuXem";
             this.radioKieuXem.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -306,7 +306,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(752, 40);
+            this.btnTimKiem.Location = new System.Drawing.Point(842, 40);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 2;
@@ -346,7 +346,7 @@
             this.panelControlDV_DT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlDV_DT.Location = new System.Drawing.Point(0, 117);
             this.panelControlDV_DT.Name = "panelControlDV_DT";
-            this.panelControlDV_DT.Size = new System.Drawing.Size(1000, 477);
+            this.panelControlDV_DT.Size = new System.Drawing.Size(1200, 477);
             this.panelControlDV_DT.TabIndex = 4;
             // 
             // layoutControl1
@@ -357,7 +357,7 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1000, 477);
+            this.layoutControl1.Size = new System.Drawing.Size(1200, 477);
             this.layoutControl1.TabIndex = 20;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -367,7 +367,7 @@
             this.gridControlDSDV_TH.Location = new System.Drawing.Point(2, 210);
             this.gridControlDSDV_TH.MainView = this.gridViewDSDV_TH;
             this.gridControlDSDV_TH.Name = "gridControlDSDV_TH";
-            this.gridControlDSDV_TH.Size = new System.Drawing.Size(996, 265);
+            this.gridControlDSDV_TH.Size = new System.Drawing.Size(1196, 265);
             this.gridControlDSDV_TH.TabIndex = 4;
             this.gridControlDSDV_TH.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDSDV_TH});
@@ -559,7 +559,7 @@
             this.gridControlDSDV.Location = new System.Drawing.Point(2, 2);
             this.gridControlDSDV.MainView = this.gridViewDSDV;
             this.gridControlDSDV.Name = "gridControlDSDV";
-            this.gridControlDSDV.Size = new System.Drawing.Size(996, 204);
+            this.gridControlDSDV.Size = new System.Drawing.Size(1196, 204);
             this.gridControlDSDV.TabIndex = 0;
             this.gridControlDSDV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDSDV});
@@ -828,7 +828,7 @@
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1000, 477);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1200, 477);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlChiTiet
@@ -836,7 +836,7 @@
             this.layoutControlChiTiet.Control = this.gridControlDSDV;
             this.layoutControlChiTiet.Location = new System.Drawing.Point(0, 0);
             this.layoutControlChiTiet.Name = "layoutControlChiTiet";
-            this.layoutControlChiTiet.Size = new System.Drawing.Size(1000, 208);
+            this.layoutControlChiTiet.Size = new System.Drawing.Size(1200, 208);
             this.layoutControlChiTiet.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlChiTiet.TextVisible = false;
             // 
@@ -845,7 +845,7 @@
             this.layoutControlTongHop.Control = this.gridControlDSDV_TH;
             this.layoutControlTongHop.Location = new System.Drawing.Point(0, 208);
             this.layoutControlTongHop.Name = "layoutControlTongHop";
-            this.layoutControlTongHop.Size = new System.Drawing.Size(1000, 269);
+            this.layoutControlTongHop.Size = new System.Drawing.Size(1200, 269);
             this.layoutControlTongHop.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlTongHop.TextVisible = false;
             // 
@@ -862,7 +862,7 @@
             this.Controls.Add(this.panelControlDV_DT);
             this.Controls.Add(this.panelControlTKDV_TK);
             this.Name = "ucBCThongKeTheoICD10";
-            this.Size = new System.Drawing.Size(1000, 594);
+            this.Size = new System.Drawing.Size(1200, 594);
             this.Load += new System.EventHandler(this.ucBCDSBNSDdv_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).EndInit();
             this.panelControlTKDV_TK.ResumeLayout(false);

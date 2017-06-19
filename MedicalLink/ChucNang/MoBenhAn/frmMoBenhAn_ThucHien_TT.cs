@@ -197,22 +197,17 @@ namespace MedicalLink.ChucNang.MoBenhAn
             {
                 string sqldsnv = "SELECT usercode as manv, username as tennv FROM tools_tblnhanvien ORDER BY usercode";
                 DataTable da_dt = condb.GetDataTable(sqldsnv);
-                //for (int i = 0; i < da_dt.Rows.Count; i++)
-                //{
-                //    string manv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(da_dt.Rows[i]["manv"].ToString(), true);
-                //    string tennv_de = MedicalLink.Base.EncryptAndDecrypt.Decrypt(da_dt.Rows[i]["tennv"].ToString(), true);
-                //    da_dt.Rows[i]["manv"] = manv_de;
-                //    da_dt.Rows[i]["tennv"] = tennv_de;
-                //}
 
-                //searchLookUpEditDSNV.Properties.DataSource = dv;
-                //searchLookUpEditDSNV.Properties.DisplayMember = "tennv";
-                //searchLookUpEditDSNV.Properties.ValueMember = "manv";
                 //comboBoxNYC.ValueMember = "InvtID"; 
-                DataView v = new DataView(MedicalLink.Base.UtilsTable.getTableDisplayWrapper(da_dt, " | ", "InvtDisplay", "manv", "tennv"));
-                comboBoxNYC.DataSource = v;
-                comboBoxNYC.DisplayMember = "InvtDisplay";
-                comboBoxNYC.ValueMember = "manv";
+                DataView da_dt_gop = new DataView(MedicalLink.Base.UtilsTable.getTableDisplayWrapper(da_dt, " | ", "maten_nv", "manv", "tennv"));
+                //comboBoxNYC.DataSource = da_dt_gop;
+                //comboBoxNYC.DisplayMember = "maten_nv";
+                //comboBoxNYC.ValueMember = "manv";
+
+                comboBoxNYC.Properties.DataSource = da_dt_gop;
+                comboBoxNYC.Properties.DisplayMember = "maten_nv";
+                comboBoxNYC.Properties.ValueMember = "manv";
+
             }
             catch (Exception ex)
             {

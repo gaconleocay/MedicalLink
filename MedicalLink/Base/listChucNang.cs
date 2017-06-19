@@ -419,7 +419,7 @@ namespace MedicalLink.Base
                 DASHBOARD_08.permissioncode = "DASHBOARD_08";
                 DASHBOARD_08.permissionname = "Biểu đồ doanh thu khoa";
                 DASHBOARD_08.permissiontype = 5;
-                DASHBOARD_08.permissionnote = "Biểu đồ doanh thu khoa";
+                DASHBOARD_08.permissionnote = "Biểu đồ doanh thu khoa. Lấy theo tiêu chí khoa chỉ định dịch vụ";
                 lstresult.Add(DASHBOARD_08);
 
                 ClassCommon.classPermission DASHBOARD_09 = new ClassCommon.classPermission();

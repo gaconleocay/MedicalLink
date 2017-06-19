@@ -1,5 +1,7 @@
 
----------------View v4.8 ngay 15/3/2017 tach giuong Yeu cau-bv VietTiep
+---------------View v4.9 ngay 19/6/2017 tach giuong Yeu cau-bv VietTiep
+--sua chi lay BN dang dieu tri
+
 CREATE OR REPLACE VIEW vienphi_money AS 
 SELECT vp.vienphiid, vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, vp.vienphistatus_bh,vp.duyet_ngayduyet_bh,vp.bhyt_tuyenbenhvien,
 sum(case when ser.bhyt_groupcode='01KB' and ser.loaidoituong in (0,4,6) 
@@ -115,7 +117,7 @@ COALESCE((select departmentid
 						and vienphiid=vp.vienphiid
 				order by medicalrecordid desc limit 1),0) as phongdieutri		*/			
 FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid and ser.thuockhobanle=0 
-WHERE vp.vienphidate >'2016-01-01 00:00:00' 
+WHERE vp.vienphidate >'2016-01-01 00:00:00' and vp.vienphistatus = 0
 --and (ser.lankhambenh = 0 or ser.lankhambenh is null)
 GROUP BY vp.vienphiid, vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp
 ORDER BY vp.vienphiid DESC;

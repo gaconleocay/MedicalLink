@@ -211,8 +211,8 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 }
                 else
                 {
-                    dtTaoLicenseKeyTuNgay.Enabled = false;
-                    dtTaoLicenseKeyDenNgay.Enabled = false;
+                    dtTaoLicenseKeyTuNgay.Enabled = true;
+                    dtTaoLicenseKeyDenNgay.Enabled = true;
                 }
             }
             catch (Exception ex)

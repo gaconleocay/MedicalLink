@@ -160,7 +160,7 @@ namespace MedicalLink.FormCommon
                 //Them table: khoa/phong va cp nhat lai danh muc khoa phong
                 string sql_toolsdepatment = "CREATE TABLE IF NOT EXISTS tools_depatment (tools_depatmentid serial NOT NULL, departmentgroupid integer, departmentgroupcode text, departmentgroupname text, departmentid integer, departmentcode text, departmentname text, CONSTRAINT tools_depatment_pkey PRIMARY KEY (tools_depatmentid));";
                 string sql_deletepatient = "DELETE FROM tools_depatment;";
-                string sql_insert = "INSERT INTO tools_depatment(departmentgroupid, departmentgroupcode, departmentgroupname, departmentid, departmentcode, departmentname) SELECT departmentgroup.departmentgroupid as departmentgroupid, departmentgroup.departmentgroupcode as departmentgroupcode, departmentgroup.departmentgroupname as departmentgroupname, department.departmentid as departmentid, department.departmentcode as departmentcode, department.departmentname as departmentname FROM departmentgroup,department WHERE department.departmentgroupid = departmentgroup.departmentgroupid ;";
+                string sql_insert = "INSERT INTO tools_depatment(departmentgroupid, departmentgroupcode, departmentgroupname, departmentgrouptype, departmentid, departmentcode, departmentname, departmenttype) SELECT degp.departmentgroupid, degp.departmentgroupcode, degp.departmentgroupname, degp.departmentgrouptype, de.departmentid, de.departmentcode, de.departmentname, de.departmenttype FROM department de left join departmentgroup degp on degp.departmentgroupid=de.departmentgroupid ORDER BY degp.departmentgroupid, de.departmentid;";
 
                 condb.ExecuteNonQuery(sql_toolsdepatment);
                 condb.ExecuteNonQuery(sql_deletepatient);

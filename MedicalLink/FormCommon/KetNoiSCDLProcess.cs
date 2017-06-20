@@ -39,7 +39,7 @@ namespace MedicalLink.FormCommon
 
 
                 //result= KetNoiSCDLProcess.UpdateTableUser();
-               // result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
+                result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
                 result = KetNoiSCDLProcess.CreateTableVersion();
                 //result = KetNoiSCDLProcess.CreateFunctionByteaImport();
                // result = KetNoiSCDLProcess.CreateView_Tools_Serviceprice_Pttt();

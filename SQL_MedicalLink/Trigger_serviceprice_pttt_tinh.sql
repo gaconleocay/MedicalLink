@@ -335,9 +335,8 @@ sum(case when ser.servicepriceid_master<>0 and ser.loaidoituong=2 and ser.bhyt_g
 					    else 0-(servicepricemoney_nhandan*ser.soluong) end)
 		else 0 end)) as money_hppttt_goi_vattu	
 							
-FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid
-WHERE vp.vienphiid=OLD.vienphiid
-	and ser.thuockhobanle=0 
+FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid and ser.thuockhobanle=0
+WHERE vp.vienphiid=OLD.vienphiid 
 GROUP BY vp.vienphiid,vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, 
 vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, 
 vp.vienphistatus_bh, vp.duyet_ngayduyet_bh, vp.bhyt_tuyenbenhvien, ser.departmentid, ser.departmentgroupid,

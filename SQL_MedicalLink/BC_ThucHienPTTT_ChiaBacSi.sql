@@ -102,7 +102,248 @@ LEFT JOIN tools_tblnhanvien gv2 ON gv2.userhisid=A.giupviec2_tenbs;
 
 
 
+-------Tung loai
+-----===========Phau thuat khoa Gay me
+pttt.phauthuatvien as mochinh_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 280000 
+			when 2 then 125000 
+			when 3 then 65000 
+			when 4 then 50000 
+			else 0 end) * ser.soluong) as mochinh_tien, 
+	(case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, 
+	(case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid 
+												when 1 then 280000 
+												when 2 then 125000 
+												when 3 then 65000 
+												else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 
+	pttt.bacsigayme as gayme_tenbs, 
+	((case serf.pttt_loaiid 
+					when 1 then 280000 
+					when 2 then 125000 
+					when 3 then 65000 
+					when 4 then 50000 
+					else 0 end) * ser.soluong) as gayme_tien, 
+	pttt.phume2 as moigayme_tenbs, 
+	(case when pttt.phume2>0 then ((case serf.pttt_loaiid 
+										when 1 then 280000 
+										when 2 then 125000 
+										when 3 then 65000 
+										else 0 end) * ser.soluong) else 0 end) as moigayme_tien, 
+	pttt.phumo1 as phu1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 200000 
+			when 2 then 90000 
+			when 3 then 50000 
+			when 4 then 30000 
+			else 0 end) * ser.soluong) as phu1_tien, 
+	pttt.phumo2 as phu2_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 200000 
+			when 2 then 90000 
+			else 0 end) * ser.soluong) as phu2_tien, 
+	pttt.phumo3 as giupviec1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 120000 
+			when 2 then 70000 
+			when 3 then 30000 
+			when 4 then 15000 
+			else 0 end) * ser.soluong) as giupviec1_tien, 
+	pttt.phumo4 as giupviec2_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 120000 
+			when 2 then 70000 
+			when 3 then 30000 
+			else 0 end) * ser.soluong) as giupviec2_tien, 
+			 
+-----PHau thuat khoa Tai Mui Hong 
+pttt.phauthuatvien as mochinh_tenbs, 
+	((case serf.pttt_loaiid 
+			when 2 then 125000 
+			when 3 then 65000 
+			when 4 then 50000 
+			else 0 end) * ser.soluong) as mochinh_tien, 
+	(case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, 
+	(case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid 
+												when 1 then 280000 
+												when 2 then 125000 
+												when 3 then 65000 
+												else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 
+	0 as gayme_tenbs, 
+	0 as gayme_tien, 
+	0 as moigayme_tenbs, 
+	0 as moigayme_tien, 
+	pttt.phumo1 as phu1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 2 then 90000 
+			when 3 then 50000 
+			when 4 then 30000 
+			else 0 end) * ser.soluong) as phu1_tien, 
+	pttt.phumo2 as phu2_tenbs, 
+	((case serf.pttt_loaiid 
+			when 2 then 90000 
+			else 0 end) * ser.soluong) as phu2_tien, 
+	pttt.phumo3 as giupviec1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 2 then 70000 
+			when 3 then 30000 
+			when 4 then 15000 
+			else 0 end) * ser.soluong) as giupviec1_tien, 
+	pttt.phumo4 as giupviec2_tenbs, 
+	((case serf.pttt_loaiid 
+			when 2 then 70000 
+			when 3 then 30000 
+			else 0 end) * ser.soluong) as giupviec2_tien, 
+	 
+-----PHau thuat khoa Rang Ham Mat
+pttt.phauthuatvien as mochinh_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 280000 
+			when 2 then 125000 
+			when 3 then 65000 
+			when 4 then 50000 
+			else 0 end) * ser.soluong) as mochinh_tien, 
+	(case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, 
+	(case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid 
+												when 1 then 280000 
+												when 2 then 125000 
+												when 3 then 65000 
+												else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 
+	0 as gayme_tenbs, 
+	0 as gayme_tien, 
+	0 as moigayme_tenbs, 
+	0 as moigayme_tien, 
+	pttt.phumo1 as phu1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 200000 
+			when 2 then 90000 
+			when 3 then 50000 
+			when 4 then 30000 
+			else 0 end) * ser.soluong) as phu1_tien, 
+	0 as phu2_tenbs, 
+	0 as phu2_tien, 
+	pttt.phumo3 as giupviec1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 120000 
+			when 2 then 70000 
+			when 3 then 30000 
+			when 4 then 15000 
+			else 0 end) * ser.soluong) as giupviec1_tien, 
+	0 as giupviec2_tenbs, 
+	0 as giupviec2_tien, 
+		
+ 
+-----===========Phau thuat khoa Mat
+pttt.phauthuatvien as mochinh_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 280000 
+			when 2 then 125000 
+			when 3 then 65000 
+			when 4 then 50000 
+			else 0 end) * ser.soluong) as mochinh_tien, 
+	(case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, 
+	(case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid 
+												when 1 then 280000 
+												when 2 then 125000 
+												when 3 then 65000 
+												else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 
+	pttt.bacsigayme as gayme_tenbs, 
+	((case serf.pttt_loaiid 
+					when 1 then 200000 
+					when 2 then 90000 
+					when 3 then 50000 
+					when 4 then 30000 
+					else 0 end) * ser.soluong) as gayme_tien, 
+	pttt.phume2 as moigayme_tenbs, 
+	(case when pttt.phume2>0 then ((case serf.pttt_loaiid 
+										when 1 then 200000 
+										when 2 then 90000 
+										when 3 then 50000 
+										else 0 end) * ser.soluong) else 0 end) as moigayme_tien, 
+	pttt.phumo1 as phu1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 200000 
+			when 2 then 90000 
+			when 3 then 50000 
+			when 4 then 30000 
+			else 0 end) * ser.soluong) as phu1_tien, 
+	0 as phu2_tenbs, 
+	0 as phu2_tien, 
+	pttt.phumo3 as giupviec1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 1 then 120000 
+			when 2 then 70000 
+			when 3 then 30000 
+			when 4 then 15000 
+			else 0 end) * ser.soluong) as giupviec1_tien, 
+	0 as giupviec2_tenbs, 
+	0 as giupviec2_tien, 
+ 
+ 
+ 
+--------------================================Thu thuat Khoa mat
 
+	pttt.phauthuatvien as mochinh_tenbs, 
+	((case serf.pttt_loaiid 
+			when 5 then 84000 
+			when 6 then 37500 
+			when 7 then 19500 
+			when 8 then 15000 
+			else 0 end) * ser.soluong) as mochinh_tien, 
+	0 as moimochinh_tenbs, 
+	0 as moimochinh_tien, 
+	0 as gayme_tenbs, 
+	0 as gayme_tien, 
+	0 as moigayme_tenbs, 
+	0 as moigayme_tien, 
+	0 as phu1_tenbs, 
+	0 as phu1_tien, 
+	0 as phu2_tenbs, 
+	0 as phu2_tien, 
+	pttt.phumo3 as giupviec1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 5 then 36000 
+			when 6 then 21000 
+			when 7 then 9000 
+			when 8 then 4500 
+			else 0 end) * ser.soluong) as giupviec1_tien, 
+	0 as giupviec2_tenbs, 
+	0 as giupviec2_tien, 
+ 
+ --------------================================Thu thuat cac khoa khac
+ 
+ 	pttt.phauthuatvien as mochinh_tenbs, 
+	((case serf.pttt_loaiid 
+			when 5 then 84000 
+			when 6 then 37500 
+			when 7 then 19500 
+			when 8 then 15000 
+			else 0 end) * ser.soluong) as mochinh_tien, 
+	0 as moimochinh_tenbs, 
+	0 as moimochinh_tien, 
+	0 as gayme_tenbs, 
+	0 as gayme_tien, 
+	0 as moigayme_tenbs, 
+	0 as moigayme_tien, 
+	pttt.phumo1 as phu1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 5 then 60000 
+			when 6 then 27000 
+			else 0 end) * ser.soluong) as phu1_tien, 
+	0 as phu2_tenbs, 
+	0 as phu2_tien, 
+	pttt.phumo3 as giupviec1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 5 then 36000 
+			when 7 then 9000 
+			when 8 then 4500 
+			else 0 end) * ser.soluong) as giupviec1_tien, 
+	0 as giupviec2_tenbs, 
+	0 as giupviec2_tien, 
+	
+	
+	
+	
 
 
 

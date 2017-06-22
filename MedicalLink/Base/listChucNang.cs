@@ -354,6 +354,15 @@ namespace MedicalLink.Base
                 REPORT_16.permissionnote = "Báo cáo doanh thu theo máy xét nghiệm";
                 lstresult.Add(REPORT_16);
 
+                ClassCommon.classPermission REPORT_17 = new ClassCommon.classPermission();
+                REPORT_17.permissioncheck = false;
+                REPORT_17.permissioncode = "REPORT_17";
+                REPORT_17.permissionname = "Báo cáo phẫu thuật thủ thuật yêu cầu (doanh thu chia bác sĩ)";
+                REPORT_17.permissiontype = 3;
+                REPORT_17.permissionnote = "Báo cáo phẫu thuật thủ thuật yêu cầu (doanh thu chia bác sĩ)";
+                lstresult.Add(REPORT_17);
+
+
 
 
                 //Dashboard

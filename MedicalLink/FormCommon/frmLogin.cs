@@ -180,6 +180,12 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
+                DataView dataurlfile = new DataView(condb.GetDataTable("select app_link from tools_version where app_type=1 limit 1;"));
+                if (dataurlfile != null && dataurlfile.Count > 0)
+                {
+                    string tempDirectory = dataurlfile[0]["app_link"].ToString();
+                    CopyFolder(tempDirectory, Environment.CurrentDirectory);
+                }
                 Base.Logging.Error(ex);
             }
         }

@@ -37,6 +37,7 @@ namespace MedicalLink.Base
         internal static string CHUA_CHON_PHONG_LUU = "Chưa chọn phòng lưu!";
         internal static string CHUA_CHON_DOI_TUONG_BENH_NHAN = "Chưa chọn đối tượng bệnh nhân!";
         internal static string KHONG_THE_SU_DUNG_MA_NAY = "Không thể sử dụng mã này!";
+        internal static string CHUA_CHON_DICH_VU = "Chưa chọn dịch vụ!";
 
         internal static void HienThiThongBao(System.Windows.Forms.Timer timerThongBao, DevExpress.XtraEditors.LabelControl lblThongBao, string tenThongBao)
         {

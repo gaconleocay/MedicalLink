@@ -258,6 +258,12 @@
     <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.Designer.cs">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.Designer.cs">
+      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -873,6 +879,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.resx">
+      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.resx">
       <DependentUpon>BCPhauThuatThuThuat.cs</DependentUpon>

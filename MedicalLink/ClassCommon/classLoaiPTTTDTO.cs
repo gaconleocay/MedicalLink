@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.ClassCommon
 {
-   public class serviceDTO
+   public class classLoaiPTTTDTO
     {
-        public string servicepricecode { get; set; }
-        public string servicepricename { get; set; }
+        public long loaiptttid { get; set; }
+        public string loaiptttten { get; set; }
     }
 }

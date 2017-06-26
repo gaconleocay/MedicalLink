@@ -1,0 +1,215 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.XtraGrid.Views.Grid;
+using MedicalLink.ClassCommon;
+using MedicalLink.Base;
+
+namespace MedicalLink.FormCommon.TabCaiDat
+{
+    public partial class ucDanhSachBenhVien : UserControl
+    {
+        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        string toolsoptionid = "";
+        #region Load
+        public ucDanhSachBenhVien()
+        {
+            InitializeComponent();
+        }
+
+        private void ucDanhSachBenhVien_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                EnableAndDisableControl(false);
+                LoadDanhSachOption();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void EnableAndDisableControl(bool result)
+        {
+            try
+            {
+                btnOptionOK.Enabled = result;
+
+                txtbenhvienkcbbd.ReadOnly = true;
+                txtbenhvienname.Enabled = result;
+                txtbenhviencode.Enabled = result;
+                txtbenhvienaddress.Enabled = result;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void LoadDanhSachOption()
+        {
+            try
+            {
+                string sqldsnv = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook FROM tools_option ORDER BY toolsoptionid;";
+                DataView dataOption = new DataView(condb.GetDataTable(sqldsnv));
+                if (dataOption != null && dataOption.Count > 0)
+                {
+                    gridControlDSBenhVien.DataSource = dataOption;
+                }
+                else
+                {
+                    gridControlDSBenhVien.DataSource = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
+
+        private void gridViewDSOption_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+
+        private void gridViewDSOption_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            try
+            {
+                if (e.Column == stt)
+                {
+                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void HienThiThongBao(string tenThongBao)
+        {
+            try
+            {
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(tenThongBao);
+                frmthongbao.Show();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void gridViewDSOption_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EnableAndDisableControl(true);
+                var rowHandle = gridViewDSBenhVien.FocusedRowHandle;
+                toolsoptionid = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionid").ToString();
+                txtbenhvienkcbbd.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptioncode").ToString();
+                txtbenhvienname.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionname").ToString();
+                txtbenhviencode.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionvalue").ToString();
+                txtbenhvienaddress.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionnote").ToString();
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnOptionOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string toolsoptionlook = "0";
+                if (toolsoptionid != "")
+                {
+                    string sqlupdate = "UPDATE tools_option SET toolsoptionname='" + txtbenhvienname.Text.Trim() + "', toolsoptionvalue='" + txtbenhviencode.Text.Trim() + "', toolsoptionnote='" + txtbenhvienaddress.Text.Trim() + "', toolsoptionlook='" + toolsoptionlook + "', toolsoptiondate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', toolsoptioncreateuser='" + SessionLogin.SessionUsername + "' WHERE toolsoptionid='" + toolsoptionid + "'; ";
+                    if (condb.ExecuteNonQuery(sqlupdate))
+                    {
+                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
+                    }
+                }
+                else
+                {
+                    string sqlupdate = "INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('" + txtbenhvienkcbbd.Text.Trim() + "', '" + txtbenhvienname.Text.Trim() + "', '" + txtbenhviencode.Text.Trim() + "', '" + txtbenhvienaddress.Text.Trim() + "', '" + toolsoptionlook + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + SessionLogin.SessionUsername + "');";
+                    if (condb.ExecuteNonQuery(sqlupdate))
+                    {
+                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                    }
+                }
+
+                gridControlDSBenhVien.DataSource = null;
+                ucDanhSachBenhVien_Load(null, null);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+        private void btnOptionAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EnableAndDisableControl(true);
+                txtbenhvienkcbbd.ReadOnly = false;
+
+                toolsoptionid = "";
+                txtbenhvienkcbbd.Text = "";
+                txtbenhvienname.Text = "";
+                txtbenhviencode.Text = "";
+                txtbenhvienaddress.Text = "";
+                txtbenhvienkcbbd.Focus();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnOptionDefault_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult hoi = MessageBox.Show("Bạn có chắc chắn muốn xóa tất cả option hiện tại và trở về mặc định?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (hoi == DialogResult.Yes)
+                {
+                    string sql_delete_option = "delete from tools_option;";
+                    string sql_default_option = "INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('ThoiGianCapNhatTbl_tools_bndangdt_tmp', 'Thời gian tự động cập nhật dữ liệu bảng tools_bndangdt_tmp', '0', 'Bảng tools_bndangdt_tmp phục vụ báo cáo Dashboard: BC QL tổng thể khoa; BC BN nội trú. Thời gian tính bằng phút - số', '0', now(), 'Administrator'); INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('KhoangThoiGianLayDuLieu', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard', '2016-01-01 00:00:00', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard từ -> hiện tại. Định dạng: yyyy-MM-dd HH:mm:ss. VD:  2016-01-01 00:00:00. Phục vụ cho báo cáo: REPORT_08; REPORT_09', '0', now(), 'Administrator');";
+                    if (condb.ExecuteNonQuery(sql_delete_option) && condb.ExecuteNonQuery(sql_default_option))
+                    {
+                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.THAO_TAC_THANH_CONG);
+                        ucDanhSachBenhVien_Load(null,null);
+                    }
+                    else
+                    {
+                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+
+    }
+}

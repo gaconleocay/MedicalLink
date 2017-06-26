@@ -21,6 +21,7 @@ namespace MedicalLink.ChucNang
         //public DataView dataView_DanhMucTinh { get; set; }
         //public List<classDanhMuc_Huyen> dataView_DanhMucHuyen { get; set; }
         public List<classDanhMuc_TinhHuyenXa> lstDanhMucTinhHuyenXa { get; set; }
+        public List<classBenhVienDTO> lstDanhMucSoSoYTe { get; set; }
 
         public ucSuaThongTinBenhAn()
         {
@@ -41,6 +42,7 @@ namespace MedicalLink.ChucNang
         private void ucXuLyBNBoKhoa_Load(object sender, EventArgs e)
         {
             LoadDanhMuc_TinhHuyenXa();
+            LoadDanhMuc_CoSoYTe();
             txtBNBKMaBN.Focus();
         }
         private void LoadDanhMuc_TinhHuyenXa()
@@ -73,6 +75,32 @@ namespace MedicalLink.ChucNang
             SplashScreenManager.CloseForm();
         }
 
+        private void LoadDanhMuc_CoSoYTe()
+        {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            try
+            {
+                lstDanhMucSoSoYTe = new List<classBenhVienDTO>();
+                string sql_loadxa = "select benhvienkcbbd, benhviencode, benhvienname from tools_benhvien;";
+                DataView dataView_DanhMucBenhvien = new DataView(condb.GetDataTable(sql_loadxa));
+                if (dataView_DanhMucBenhvien != null && dataView_DanhMucBenhvien.Count > 0)
+                {
+                    for (int i = 0; i < dataView_DanhMucBenhvien.Count; i++)
+                    {
+                        classBenhVienDTO benhvien = new classBenhVienDTO();
+                        benhvien.benhvienkcbbd = dataView_DanhMucBenhvien[i]["benhvienkcbbd"].ToString();
+                        benhvien.benhviencode = dataView_DanhMucBenhvien[i]["benhviencode"].ToString();
+                        benhvien.benhvienname = dataView_DanhMucBenhvien[i]["benhvienname"].ToString();
+                        lstDanhMucSoSoYTe.Add(benhvien);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            SplashScreenManager.CloseForm();
+        }
         #endregion
 
         #region Custom

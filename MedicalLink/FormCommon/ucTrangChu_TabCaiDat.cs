@@ -143,7 +143,20 @@ namespace MedicalLink.FormCommon
             }
         }
 
-
+        private void navBarItemDMBenhVien_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                //panelCaiDatChiTiet.Controls.Clear();
+                //ucDanhMucDungChung frmResult = new ucDanhMucDungChung();
+                //frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                //panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
     }
 }

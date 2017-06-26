@@ -21,9 +21,9 @@ namespace MedicalLink.ChucNang
         //DataView dv_tinhhuyenxa;
         // DataView dv_tinh, dv_huyen, dv_xa;
 
-        long vienphiid, patientid, bhytid, hosobenhanid;
+        long vienphiid, patientid, bhytid, hosobenhanid, medicalrecordid;
         string PatientName, NgaySinh, GioiTinh_Code, GioiTinh, SoNha, ThonPho, NoiLamViec, TrangThai;
-        string SoTheBHYT, HanTheTu, HanTheDen, NoiDKKCBBD;
+        string SoTheBHYT, HanTheTu, HanTheDen, NoiDKKCBBD, NoiChuyenDen;
         string xa_code, huyen_code, tinh_code, xa_name, huyen_name, tinh_name;
         #endregion
 
@@ -120,11 +120,21 @@ namespace MedicalLink.ChucNang
                 txtSoNha.Text = SoNha;
                 txtThonPho.Text = ThonPho;
                 txtNoiLamViec.Text = NoiLamViec;
-            }
-            catch (Exception)
-            {
 
-                throw;
+                //Load noi chuyen den
+                string sqlnoichuyenden = "select medicalrecordid, noigioithieucode from medicalrecord where loaibenhanid=24 and hosobenhanid=" + this.hosobenhanid + " order by medicalrecordid limit 1;";
+                DataTable dataNCD = condb.GetDataTable(sqlnoichuyenden);
+                if (dataNCD != null && dataNCD.Rows.Count > 0)
+                {
+                    this.NoiChuyenDen = dataNCD.Rows[0]["noigioithieucode"].ToString();
+                    txtNoiChuyenDen.Text = this.NoiChuyenDen;
+                    cboNoiChuyenDen.EditValue = this.NoiChuyenDen;
+                    this.medicalrecordid = Utilities.Util_TypeConvertParse.ToInt64(dataNCD.Rows[0]["medicalrecordid"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
             }
         }
         private void LoadXaHuyenTinh()
@@ -166,6 +176,11 @@ namespace MedicalLink.ChucNang
                 cboTinh.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.GroupBy(o => o.hc_tinhcode).Select(n => n.First()).ToList();
                 cboTinh.Properties.DisplayMember = "hc_tinhname";
                 cboTinh.Properties.ValueMember = "hc_tinhcode";
+
+
+                cboNoiChuyenDen.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucSoSoYTe;
+                cboNoiChuyenDen.Properties.DisplayMember = "benhvienname";
+                cboNoiChuyenDen.Properties.ValueMember = "benhvienkcbbd";
             }
             catch (Exception ex)
             {
@@ -191,10 +206,16 @@ namespace MedicalLink.ChucNang
                     if (dialogResult == DialogResult.Yes)
                     {
                         string sqlupdate_ttbn = "UPDATE hosobenhan SET patientname = '" + txtPatientName.Text.Trim() + "', birthday='" + datengaysinh + "', birthday_year='" + datenamsinh + "', gioitinhcode = '" + txtGioiTinh.Text.Trim() + "', gioitinhname='" + cbbGioiTinh.Text.Trim() + "', hc_tinhcode = '" + cboTinh.EditValue.ToString() + "', hc_tinhname='" + cboTinh.Text.Trim() + "', hc_huyencode='" + cboHuyen.EditValue.ToString() + "', hc_huyenname='" + cboHuyen.Text.Trim() + "', hc_xacode='" + cboXa.EditValue.ToString() + "', hc_xaname='" + cboXa.Text.Trim() + "', hc_sonha='" + txtSoNha.Text.Trim() + "', hc_thon='" + txtThonPho.Text.Trim() + "', noilamviec='" + txtNoiLamViec.Text.Trim() + "' WHERE hosobenhanid = '" + hosobenhanid + "';";
+
+                        //Cap nhat noi chuyen den
+                        string update_noichuyenden = "UPDATE medicalrecord SET noigioithieucode=" + cboNoiChuyenDen.EditValue.ToString() + " WHERE medicalrecordid=" + this.medicalrecordid + "; ";
                         //Log
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin về BN từ: " + PatientName + "; " + NgaySinh + "; " + GioiTinh + "; " + tinh_code + "; " + tinh_name + "; " + huyen_code + "; " + huyen_name + "; " + xa_code + "; " + xa_name + "; " + SoNha + "; " + ThonPho + "; " + NoiLamViec + " thành: " + txtPatientName.Text + "; " + datengaysinh + "; " + cbbGioiTinh.Text + "; " + cboTinh.EditValue.ToString() + "; " + cboTinh.Text + "; " + cboTinh.EditValue.ToString() + "; " + cboHuyen.Text + "; " + cboXa.EditValue.ToString() + "; " + cboXa.Text + "; " + txtSoNha.Text + "; " + txtThonPho.Text + "; " + txtNoiLamViec.Text + "  ' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log2 = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin Nơi chuyển đến từ: " + this.NoiChuyenDen + " thành: " + cboNoiChuyenDen.EditValue.ToString() + " ' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery(sqlupdate_ttbn);
+                        condb.ExecuteNonQuery(update_noichuyenden);
                         condb.ExecuteNonQuery(sqlinsert_log);
+                        condb.ExecuteNonQuery(sqlinsert_log2);
                         MessageBox.Show("Sửa thông tin về bệnh nhân thành công!", "Thông báo !");
                         //this.Visible = false;
                     }
@@ -327,9 +348,24 @@ namespace MedicalLink.ChucNang
             SuKienThayDoiTrangThai_BenhNhan();
         }
 
+
+
         private void txtNoiLamViec_EditValueChanged(object sender, EventArgs e)
         {
             SuKienThayDoiTrangThai_BenhNhan();
+        }
+
+        private void cboNoiChuyenDen_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SuKienThayDoiTrangThai_BenhNhan();
+                txtNoiChuyenDen.Text = cboNoiChuyenDen.EditValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
         }
 
         private void cbbGioiTinh_TextChanged(object sender, EventArgs e)
@@ -403,8 +439,9 @@ namespace MedicalLink.ChucNang
                     dtNgaySinh.Focus();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -529,8 +566,25 @@ namespace MedicalLink.ChucNang
                     btnSuaThongTinBHYT.Focus();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        private void txtNoiChuyenDen_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    SuKienThayDoiTrangThai_BenhNhan();
+                    cboNoiChuyenDen.EditValue = txtNoiChuyenDen.Text.Trim();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
             }
         }
         #endregion

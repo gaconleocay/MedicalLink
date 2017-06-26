@@ -117,38 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="recurring-appointment-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\recurring-appointment-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnOptionAdd.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAABWSURBVDhPY2DAAhoY/psB8Xc0bIZNLVYxoEYLIP6Phi2GqwHQAAP5GRknYQmDFDQ1IPVmDNCQ
+        Rg8wYvnfh4kBoFSHHoigAEMPB+yBiCMpj6iUSGl2BgAX0GLCjL/VNwAAAABJRU5ErkJggg==
+</value>
   </data>
-  <data name="arrow-32-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\arrow-32-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnOptionOK.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAIlSURBVEhLnVY9S8RAFAwiYiFWYnEch4hY+Av8AVaHiJWFWIpYWIiFWJ6llYWIWFhZiIhYWFj4
+        A8RCxMJCRETkEBEROSxEfHFms9l8bjbxYC6bbHbe7uy8t/E8y6/lidfy/GFgCTgFHoFP4F23z3BdBkYB
+        G032OV8G6sCuJvNxLQKD7uvJuAPhxSngGSuIkcbbtmDyinGzhatB5yKIvwPykLRKW34wbi0TRMsyiSvI
+        C+VwycV+BPHnEkFwUwOekrJYpdBBClcGuWTEbAjIt6vJEpLLL8YeA3fReBP4QK0Cfw3g7Z/SnGBcLzCA
+        ABcpDrprDAFkPp/c5iKz+ZxUnTLg2gOe64jHjF1l51HQUcktNMOMJu9Cez0rkeI7Z4Db6vIIE6tbBxhH
+        u2PhaDNAu5pEym01Td6HsZeRAqHzjEQdBkDW5kr0gucTAJOP3qY96ZpmaD8833DIqwJYJJIV9LGfQBD/
+        C9jjfUwaV2IqiQ5zdp8bdIPnoUvotmncD2ryfrSv7PXKSKQ2GTY1iZPKUhWkES+RwYpks6TrlE1diWZW
+        EsxeuC+Uy1GXJEg0veStrBMSBEyiIQDSyL1F0nR5D0qFDoBiJ7Fil5t0H3gHli5Vxnk2JIodpWoCLleU
+        Ldf5Bw9mt+AOUlijmC/ZAyfpEsHB45Qrp3b5PAOKj0ztkvDQ38Fs+AXhcgv3pvyhH5UB5Xc6h6UCdV9w
+        qPggU58uDwA+ZcT52fIH41hsfH7tSncAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="edit-2-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\edit-2-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="excel-3-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="excel-3-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\ok-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\save-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="excel-3-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="recurring-appointment-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\recurring-appointment-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Logo_VT_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Logo_VT_1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add-list-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\add-list-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="openFileDialogSelect.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>49</value>
+  </metadata>
 </root>

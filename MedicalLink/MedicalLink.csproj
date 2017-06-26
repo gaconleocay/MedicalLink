@@ -334,8 +334,22 @@
     <Compile Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.Designer.cs">
       <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\ThongTinThucHienCLS\frmNhapThongTinPTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucNang\ThongTinThucHienCLS\frmNhapThongTinPTTT.Designer.cs">
+      <DependentUpon>frmNhapThongTinPTTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\ThongTinThucHienCLS\ucThongTinThucHienCanLamSang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\ThongTinThucHienCLS\ucThongTinThucHienCanLamSang.Designer.cs">
+      <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
+    <Compile Include="ClassCommon\classLoaiPTTTDTO.cs" />
+    <Compile Include="ClassCommon\classNhapThongTinPTTT.cs" />
     <Compile Include="ClassCommon\classUserMedicineNhomThuoc.cs" />
     <Compile Include="ClassCommon\classUserMedicinePhongLuu.cs" />
     <Compile Include="ClassCommon\classUserMedicineStore.cs" />
@@ -475,6 +489,7 @@
     <Compile Include="ClassCommon\classMedicineStore.cs" />
     <Compile Include="ClassCommon\classUserDepartment.cs" />
     <Compile Include="ClassCommon\reportExcelDTO.cs" />
+    <Compile Include="ClassCommon\classBenhVienDTO.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -633,6 +648,12 @@
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
     <Compile Include="DatabaseProcess\TinhMuaHuongBHYT.cs" />
+    <Compile Include="FormCommon\TabCaiDat\ucDanhSachBenhVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucDanhSachBenhVien.Designer.cs">
+      <DependentUpon>ucDanhSachBenhVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\TabCaiDat\ucDanhMucDungChung.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -858,6 +879,7 @@
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Common.Excel\ExcelExport.cs" />
+    <Compile Include="Utilities\GUIGridView\Util_GUIGridView.cs" />
     <Compile Include="Utilities\PrintPreview\PrintPreviewDev.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -949,6 +971,12 @@
     <EmbeddedResource Include="ChucNang\SuaThongTinBenhAn\ucSuaThongTinBenhAn.resx">
       <DependentUpon>ucSuaThongTinBenhAn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\ThongTinThucHienCLS\frmNhapThongTinPTTT.resx">
+      <DependentUpon>frmNhapThongTinPTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\ThongTinThucHienCLS\ucThongTinThucHienCanLamSang.resx">
+      <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucCapNhatKhaDungTonKho.resx">
       <DependentUpon>ucCapNhatKhaDungTonKho.cs</DependentUpon>
     </EmbeddedResource>
@@ -1023,6 +1051,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.resx">
       <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhSachBenhVien.resx">
+      <DependentUpon>ucDanhSachBenhVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhMucDungChung.resx">
       <DependentUpon>ucDanhMucDungChung.cs</DependentUpon>
@@ -1174,6 +1205,7 @@
     <None Include="Images\excel-3-16.png" />
     <None Include="Images\excel-3-24.png" />
     <None Include="Images\excel-3-32.png" />
+    <None Include="Images\add-list-16.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />

@@ -207,6 +207,20 @@ namespace MedicalLink.Base
                 TOOL_17.permissionnote = "Chuyển đổi nhóm dịch vụ";
                 lstresult.Add(TOOL_17);
 
+                ClassCommon.classPermission TOOL_18 = new ClassCommon.classPermission();
+                TOOL_18.permissioncheck = false;
+                TOOL_18.permissioncode = "TOOL_18";
+                TOOL_18.permissionname = "Nhập thông tin thực hiện Cận lâm sàng";
+                TOOL_18.permissiontype = 2;
+                TOOL_18.permissionnote = "Nhập thông tin thực hiện Cận lâm sàng";
+                lstresult.Add(TOOL_18);
+
+
+
+
+
+
+
                 // Phan quyen thao tac
                 ClassCommon.classPermission THAOTAC_01 = new ClassCommon.classPermission();
                 THAOTAC_01.permissioncheck = false;

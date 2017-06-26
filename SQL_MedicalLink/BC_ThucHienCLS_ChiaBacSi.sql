@@ -1,5 +1,5 @@
---Bao cao Thuc hien Cận Lâm sàng ngay 20/6/2017
-SELECT ROW_NUMBER () OVER (ORDER BY A.NGAY_THUCHIEN desc) as stt, 
+--Bao cao Thuc hien Cận Lâm sàng ngay 26/6/2017
+SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate desc) as stt, 
 	A.patientid, 
 	A.vienphiid, 
 	hsba.patientname, 
@@ -11,7 +11,7 @@ SELECT ROW_NUMBER () OVER (ORDER BY A.NGAY_THUCHIEN desc) as stt,
 	KCHD.departmentgroupname AS khoachidinh, 
 	pcd.departmentname as phongchidinh, 
 	A.NGAY_CHIDINH, 
-	A.NGAY_THUCHIEN, 
+	mbp.maubenhphamfinishdate as NGAY_THUCHIEN, 
 	KCD.departmentgroupname AS khoachuyenden, 
 	KRV.departmentgroupname AS khoaravien, 
 	A.servicepricecode, 
@@ -51,7 +51,6 @@ FROM (SELECT vp.patientid,
 			ser.departmentgroupid as khoachidinh, 
 			ser.departmentid as phongchidinh, 
 			ser.servicepricedate as NGAY_CHIDINH, 
-			cls.thuchienclsdate as NGAY_THUCHIEN, 
 			ser.maubenhphamid, 
 			(select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid) as khoachuyenden, 
 			(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
@@ -91,9 +90,9 @@ FROM (SELECT vp.patientid,
 			inner join servicepriceref serf on serf.servicepricecode=ser.servicepricecode 
 			inner join vienphi vp on vp.vienphiid=ser.vienphiid 
 		WHERE serf.servicegrouptype in (2,3) 
-			and serf.bhyt_groupcode in ('04CDHA','05TDCN','03XN') 
-			and ser.bhyt_groupcode in ('04CDHA','05TDCN','03XN') " + serf_pttt_loaiid + tieuchi_date + " ) A 
-INNER JOIN (select maubenhphamid, departmentid_des from maubenhpham where maubenhphamgrouptype in (0,1)) mbp on mbp.maubenhphamid=A.maubenhphamid " + mbp_departmentid + " 
+			and serf.bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC') 
+			and ser.bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC') " + serf_pttt_loaiid + tieuchi_date + " ) A 
+INNER JOIN (select maubenhphamid, departmentid_des, maubenhphamfinishdate from maubenhpham where maubenhphamgrouptype in (0,1)) mbp on mbp.maubenhphamid=A.maubenhphamid " + mbp_departmentid + " 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday from hosobenhan) hsba on hsba.hosobenhanid=A.hosobenhanid 
 INNER JOIN bhyt bh on bh.bhytid=A.bhytid 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCHD ON KCHD.departmentgroupid=A.khoachidinh 
@@ -108,8 +107,8 @@ LEFT JOIN tools_tblnhanvien gv1 ON gv1.userhisid=A.GIUPVIEC1_TENBS
 LEFT JOIN tools_tblnhanvien gv2 ON gv2.userhisid=A.GIUPVIEC2_TENBS; 
 
 
-
-
+thuchienclsdate
+maubenhphamfinishdate
 
 
 

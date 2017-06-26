@@ -1,5 +1,6 @@
----Bao cao PTTT chia tien theo bac si ngay 14/6
+---Bao cao PTTT chia tien theo bac si ngay 23/6
 --Chia ra tung loai bao cao rieng biet (dung bien)
+--them chan doan ra vien
 
 SELECT row_number () over (order by A.ngay_thuchien desc) as stt, 
 A.patientid, 
@@ -14,6 +15,7 @@ A.ngay_chidinh,
 A.ngay_thuchien, 
 kcd.departmentgroupname as khoachuyenden, 
 krv.departmentgroupname as khoaravien, 
+A.cd_ravien,
 A.servicepricecode, 
 A.servicepricename, 
 A.loaipttt_db, 
@@ -84,7 +86,16 @@ FROM
 			" + baocaotungloai + "
 	vp.vienphidate as ngay_vaovien, 
 	(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
-	(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan FROM serviceprice ser left join phauthuatthuthuat pttt on pttt.servicepriceid=ser.servicepriceid inner join vienphi vp on vp.vienphiid=ser.vienphiid inner join servicepriceref serf on serf.servicepricecode=ser.servicepricecode WHERE serf.servicegrouptype=4 and serf.bhyt_groupcode in ('06PTTT','07KTC') and ser.bhyt_groupcode in ('06PTTT','07KTC') and " + serf_pttt_loaiid + " and " + ser_departmentid + " and " + tieuchi_date + ") A 
+	(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
+	vp.chandoanravien as cd_ravien
+	FROM serviceprice ser 
+	left join phauthuatthuthuat pttt on pttt.servicepriceid=ser.servicepriceid 
+	inner join vienphi vp on vp.vienphiid=ser.vienphiid 
+	inner join servicepriceref serf on serf.servicepricecode=ser.servicepricecode 
+	WHERE serf.servicegrouptype=4 
+		and serf.bhyt_groupcode in ('06PTTT','07KTC') 
+		and ser.bhyt_groupcode in ('06PTTT','07KTC') 
+		and " + serf_pttt_loaiid + " and " + ser_departmentid + " and " + tieuchi_date + ") A 
 INNER JOIN hosobenhan hsba on hsbA.hosobenhanid=A.hosobenhanid 
 INNER JOIN bhyt bh on bh.bhytid=A.bhytid 
 LEFT JOIN departmentgroup KCHD ON KCHD.departmentgroupid=A.khoachidinh 

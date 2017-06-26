@@ -648,12 +648,37 @@ chuyen vien :BN000582679
 -------=--------------
 Khoa danh mục thuốc/vật tư không sử dụng
 
+-----=========
+
+CREATE TABLE tools_benhvien
+(
+  benhvienid serial NOT NULL,
+  benhvienkcbbd text,
+  benhviencode text,
+  benhvienname text,
+  benhvienaddress text,
+  benhvienhang text,
+  benhvienloai text,
+  benhvientuyen text,
+  ghichu text,
+  matinh text,
+  mahuyen text,
+  maxa text,
+  version timestamp without time zone,
+  sync_flag integer,
+  update_flag integer,
+  CONSTRAINT tools_benhvien_pkey PRIMARY KEY (benhvienid)
+)
+
+CREATE INDEX tools_benhvien_benhviencode_idx
+  ON tools_benhvien
+  USING btree
+  (benhviencode);
 
 
+select benhvienid, benhvienkcbbd, benhviencode, benhvienname from tools_benhvien;
 
-
-
-
+654398718
 
 
 

@@ -1,5 +1,5 @@
 --Bao cao Phau thuat yeu cau chia tien cho bac si -
---ngay 22/6/2017
+--ngay 27/6/2017
 
 
 U11970-3701	Phẫu thuật theo yêu cầu (sử dụng kính hiển vi)
@@ -57,6 +57,8 @@ dddc.username as dddungcu_tenbs,
 (A.dddungcu_tien * (A.tyle/100)) as dddungcu_tien, 
 ddht.username as ddhoitinh_tenbs, 
 (A.ddhoitinh_tien * (A.tyle/100)) as ddhoitinh_tien, 
+ktvht.username as ktvhoitinh_tenbs, 
+(A.ktvhoitinh_tien * (A.tyle/100)) as ktvhoitinh_tien,
 ddhc.username as ddhanhchinh_tenbs, 
 (A.ddhanhchinh_tien * (A.tyle/100)) as ddhanhchinh_tien, 
 hl.username as holy_tenbs, 
@@ -152,7 +154,15 @@ FROM
 				when 'U11621-4524' then 24000 
 				when 'U11622-4536' then 21000 
 				when 'U11623-4610' then 19500
-				else 0 end) * ser.soluong) as ddhoitinh_tien,		
+				else 0 end) * ser.soluong) as ddhoitinh_tien,
+		pttt.phume3 as ktvhoitinh_tenbs, 
+		((case serf.servicepricecode 
+				when 'U11970-3701' then 0 
+				when 'U11620-4506' then 30000 
+				when 'U11621-4524' then 24000 
+				when 'U11622-4536' then 21000 
+				when 'U11623-4610' then 19500
+				else 0 end) * ser.soluong) as ktvhoitinh_tien,				
 		pttt.dieuduong as ddhanhchinh_tenbs, 
 		((case serf.servicepricecode 
 				when 'U11970-3701' then 0 
@@ -187,11 +197,11 @@ FROM
 		vp.vienphidate as ngay_vaovien, 
 		(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
 		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan 
-	FROM (select servicepricecode, vienphiid, departmentgroupid, departmentid, servicepricedate, medicalrecordid, servicepricename, servicepricemoney_bhyt, servicepricemoney, loaipttt, servicepriceid, soluong, chiphidauvao, chiphimaymoc, chiphipttt, mayytedbid, loaidoituong, servicepricemoney_nhandan from serviceprice where servicepricecode in ('U11970-3701', 'U11620-4506', 'U11621-4524', 'U11622-4536', 'U11623-4610')) ser 
-		left join (select servicepriceid, phauthuatthuthuatdate, phauthuatvien, bacsigayme, phumo1, phumo2, phume, dungcuvien, phume2, dieuduong, phumo4 from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
+	FROM (select servicepricecode, vienphiid, departmentgroupid, departmentid, servicepricedate, medicalrecordid, servicepricename, servicepricemoney_bhyt, servicepricemoney, loaipttt, servicepriceid, soluong, chiphidauvao, chiphimaymoc, chiphipttt, mayytedbid, loaidoituong, servicepricemoney_nhandan from serviceprice where servicepricecode in (" + lstPhongCheck + ")) ser 
+		left join (select servicepriceid, phauthuatthuthuatdate, phauthuatvien, bacsigayme, phumo1, phumo2, phume, dungcuvien, phume2, phume3, dieuduong, phumo4 from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
 		inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphistatus_vp, vienphidate_ravien, duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 
-		inner join (select tinhtoanlaigiadvktc, pttt_loaiid, servicepricecode  from servicepriceref where servicepricecode in ('U11970-3701', 'U11620-4506', 'U11621-4524', 'U11622-4536', 'U11623-4610')) serf on serf.servicepricecode=ser.servicepricecode
-	WHERE servicepricedate  between '2017-01-01 00:00:00' and '2017-01-10 00:00:00') A 
+		inner join (select tinhtoanlaigiadvktc, pttt_loaiid, servicepricecode  from servicepriceref where servicepricecode in (" + lstPhongCheck + ")) serf on serf.servicepricecode=ser.servicepricecode
+	WHERE " + tieuchi_date + ") A 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame, bhytcode from hosobenhan) hsba on hsbA.hosobenhanid=A.hosobenhanid 
 LEFT JOIN departmentgroup KCHD ON KCHD.departmentgroupid=A.khoachidinh 
 LEFT JOIN department pcd ON pcd.departmentid=A.phongchidinh 
@@ -203,10 +213,11 @@ LEFT JOIN tools_tblnhanvien p1 ON p1.userhisid=A.phu1_tenbs
 LEFT JOIN tools_tblnhanvien p2 ON p2.userhisid=A.phu2_tenbs 
 LEFT JOIN tools_tblnhanvien ktvpm ON ktvpm.userhisid=A.ktvphume_tenbs 
 LEFT JOIN tools_tblnhanvien dddc ON dddc.userhisid=A.dddungcu_tenbs
-LEFT JOIN tools_tblnhanvien ddht ON ddht.userhisid=A.ddhoitinh_tenbs 
+LEFT JOIN tools_tblnhanvien ddht ON ddht.userhisid=A.ddhoitinh_tenbs
+LEFT JOIN tools_tblnhanvien ktvht ON ktvht.userhisid=A.ktvhoitinh_tenbs 
 LEFT JOIN tools_tblnhanvien ddhc ON ddhc.userhisid=A.ddhanhchinh_tenbs 
 LEFT JOIN tools_tblnhanvien hl ON hl.userhisid=A.holy_tenbs 
-LEFT JOIN departmentgroup kcv ON kcv.departmentgroupid=A.khoachuyenve 
+LEFT JOIN departmentgroup kcv ON kcv.departmentgroupid=A.khoachuyenve; 
 
 
-loaidoituong
+

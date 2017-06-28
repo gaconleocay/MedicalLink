@@ -260,7 +260,6 @@ datatype=0: thuốc; =1:vật tư
 ================================================================ 
 ----=============== 
 Đóng gói phần mềm - Đặt tất cả thư viện liên kết động (DLL) vào 1 thư mục 
- 
 Sau đây mình sẽ hướng dẫn bạn làm việc đó chỉ trong 1 dòng Code. Tại phương thức Main trong file Program.cs bạn thêm dòng code sau :  
 AppDomain.CurrentDomain.AppendPrivatePath(AppDomain.CurrentDomain.BaseDirectory + @"\Library"); 
 (select date '2001-09-28 00:00:00' - time '00:00:01') 
@@ -284,75 +283,13 @@ string fileTemplatePath = "BC_PhauThuatThuThuat_01.xlsx";
 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport(); 
 export.ExportExcelTemplate("", fileTemplatePath,thongTinThem, dataExport); 
  
- 
 ======================== 
 --Hầu hết các hệ quản trị CSDL đều cho phép chúng ta nối các xâu lại với nhau bằng cách này hay cách khác. 
 Ví dụ: để nối 2 xâu lại với nhau 
 · MS SQL Server sử dụng toán tử + 
 · Oracle sử dụng toán tử || hoặc hàm concat 
-· MySQL sử dụng hàm concat 
- 
- 
-================= 
--- Fuction trong Postgres 
-CREATE FUNCTION sum(int[]) RETURNS int8 AS $$ 
-DECLARE 
-  s int8 := 0; 
-  x int; 
-BEGIN 
-  FOREACH x IN ARRAY $1 
-  LOOP 
-    s := s + x; 
-  END LOOP; 
-  RETURN s; 
-END; 
-$$ LANGUAGE plpgsql; 
--- thực thi 
-select sum(tongchiphi) from tb_servicedata where patientrecordid=4  
-========================== 
-//How to export data from database tables to an XML file using SSIS 
-http://www.codeproject.com/Articles/635956/How-to-export-data-from-database-tables-to-an-XML 
-SELECT ( 
-  SELECT TOP 1 NULL as N, 
-    (SELECT Employee.EmployeeId as Id, Employee.FirstName as Name, 
-      (SELECT TOP 1 NULL as N, 
-        (SELECT Customer.CustomerID as Id, CustomerName as Name 
-         FROM EmployeesCustomers INNER JOIN Customers Customer 
-         ON EmployeesCustomers.CustomerID = Customer.CustomerID 
-         WHERE EmployeesCustomers.EmployeeId = Employee.EmployeeId 
-         ORDER BY Customer.CustomerID 
-         FOR XML AUTO, TYPE) 
-       FROM Customers 
-       FOR XML AUTO, TYPE) 
-     FROM EmployeesCustomers INNER JOIN Employees Employee 
-     ON EmployeesCustomers.EmployeeID = Employee.EmployeeID 
-     GROUP BY Employee.EmployeeId, Employee.FirstName 
-     ORDER BY Employee.EmployeeId 
-     FOR XML AUTO, TYPE) 
-  FROM Employees 
-  FOR XML AUTO, ROOT('Company') 
-) AS COL_XML 
- 
-================== 
-CREATE PROCEDURE prc_readxmldata 
-( 
-@XMLdata XML 
-) 
-AS 
-BEGIN 
-SELECT 
-t.value('(FirstName/text())[1]','nvarchar(120)')AS FirstName , 
-t.value('(LastName/text())[1]','nvarchar(120)')AS LastName, 
-t.value('(UserName/text())[1]','nvarchar(120)')AS UserName, 
-t.value('(Job/text())[1]','nvarchar(120)')AS Job 
-FROM 
-@XMLdata.nodes('/users/user')AS TempTable(t) 
-END 
-============================ 
-UPDATE ServicePriceRef   SET sync_flag = '0',update_flag = '0',        ServicePriceRefID_Master = '0',       ServicePriceGroupCode = 'XNHH',       ServicePriceCode = 'XNHH003',       ServicePriceCodeUser = '2259.1.354',       ServicePriceSTTUser = 'STT tháº§u',       ServicePriceCode_NG = '',       BHYT_GroupCode = '03XN',       Report_GroupCode = 'CT32',       CK_GroupCode = '',       Report_TKCode = 'VATTU',       ServicePriceName = 'Cáº·n Addis-ten dv',       ServicePriceNameNhanDan = 'Cáº·n Addis-ten dv',       ServicePriceNameBHYT = 'Cáº·n Addis-ten bhyt',       ServicePriceNameNuocNgoai = 'Cáº·n Addis-ten pttt',       ServicePriceFee = '300000',       ServicePriceFeeNhanDan = '300000',       ServicePriceFeeBHYT = '300000',       ServicePriceFeeNuocNgoai = '1000000',       ListDepartmentPhongThucHien = '254',       ListDepartmentPhongThucHienKhamGoi = '',       ServicePriceFee_OLD_DATE = '0001-01-01 00:00:00',       ServicePriceFee_OLD = '',       ServicePriceFeeNhanDan_OLD = '',       ServicePriceFeeBHYT_OLD = '',       ServicePriceFeeNuocNgoai_OLD = '',       ServicePriceFee_OLD_Type = '0',       KhongChuyenDoiTuongHaoPhi = '0',       LuonChuyenDoiTuongHaoPhi = '0',       CDHA_SoLuongThuoc = '0',       CDHA_SoLuongVatTu = '0',       PTTT_DinhMucVTTH = '0',       PTTT_DinhMucThuoc = '0',       TyLeLaiChiDinh = '0',       TyLeLaiThucHien = '0',       TinhToanLaiGiaDVKTC = '0',       LastUserUpdated = '1246',       LastTimeUpdated = '2016-07-03 12:24:15',       ServicePriceUnit = 'dvt',       ServicePriceType = '0',       LayMauPhongThucHien = '0',       ServiceGroupType = '2',       ServicePricePrintOrder = '6',       ServiceLock = '0',       ServicePriceBHYTQuyDoi = '',       ServicePriceBHYTQuyDoi_TT = '',       ServicePriceBHYTDinhMuc = '',       PTTT_HangID = '0'   WHERE ServicePriceRefID = 235 
- UPDATE ServicePriceRef   SET sync_flag = '0',update_flag = '0',        LastUserUpdated = '1246',       LastTimeUpdated = '2016-07-03 12:31:01',       ListDepartmentPhongThucHien = '255;248'   WHERE ServicePriceRefID = 235 
-========================= 
- 
+· MySQL sử dụng hàm concat  
+==========================  
 "C:\Program Files\PostgreSQL\9.3\bin\pg_ctl.exe" runservice -N "postgresql-x64-9.3" -D "E:/Program Files/PostgreSQL/9.3/data" -w 
 "C:\Program Files\PostgreSQL\9.3\bin\pg_ctl.exe" runservice -N "postgresql-x64-9.3" -D "\\Mac\AllFiles\Volumes\My Passport\Program Files\PostgreSQL\9.3\data" -w 
  
@@ -367,7 +304,6 @@ DataID; dataname; pid
 135173122;"test_viettiep";3872 
 --- 
 SELECT * FROM pg_stat_activity where pid=(select pg_backend_pid()); 
- 
 135173122 
 ----------- 
  INSERT INTO table (image) VALUES (pg_escape_bytea(image.jpg)) 
@@ -375,7 +311,6 @@ SELECT * FROM pg_stat_activity where pid=(select pg_backend_pid());
 Use pg_read_file('location_of file')::bytea. 
  
 For example, 
- 
 create table test(id int, image bytea); 
 insert into test values (1, pg_read_file('/home/xyz')::bytea); 
  
@@ -413,59 +348,16 @@ yyyy-MM-dd HH:mm:ss
 {0:#,##0} 
 yyyy-MM-dd HH:mm:ss 
  
-SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH:mm:ss') from vienphi vp where vp.vienphiid=800543 
- 
- 
-permissioncode in ('KkZTgDoK3hgIm+81AVXkyA==','KkZTgDoK3hhrZwf8J63W4Q==') 
- 
- 
+SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH:mm:ss') from vienphi vp where vp.vienphiid=800543  
 row_number() over() as stt, 
 ROW_NUMBER () OVER (ORDER BY A.NGAY_THUCHIEN desc) as stt 
- 
-        private void gridViewDichVu_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e) 
-        { 
-            try 
-            { 
-                GridView view = sender as GridView; 
-                if (e.RowHandle == view.FocusedRowHandle) 
-                { 
-                    e.Appearance.BackColor = Color.LightGreen; 
-                    e.Appearance.ForeColor = Color.Black; 
-                } 
-            } 
-            catch (Exception ex) 
-            { 
-                MedicalLink.Base.Logging.Warn(ex); 
-            } 
-        } 
------------- 
-10.211.55.5 
-10.211.55.6 
------------------ 
-POSTGRE SQL 
- 
-WITH regional_sales AS ( 
-SELECT region, SUM(amount) AS total_sales FROM orders 
-GROUP BY region 
-), top_regions AS ( 
-SELECT region 
-FROM regional_sales 
-WHERE total_sales > (SELECT SUM(total_sales)/10 FROM regional_sales) 
-) 
-SELECT region, 
-product, 
-SUM(quantity) AS product_units, SUM(amount) AS product_sales 
-FROM orders 
-WHERE region IN (SELECT region FROM top_regions) GROUP BY region, product; 
 --------- 
 9.16.3. NULLIF 
 NULLIF(value1, value2) 
 Hàm NULLIF trả về một giá trị null nếu value1 bằng value2; nếu không thì nó trả về value1. Điều này 
 có thể được sử dụng để thực hiện hành động ngược lại của ví dụ COALESCE được đưa ra ở trên: SELECT NULLIF(value, ’(none)’) ... 
 Trong ví dụ này, nếu giá trị value là (none), thì null sẽ được trả về, nếu không thì giá trị của value sẽ được trả về. 
- 
-vp.duyet_ngayduyet_vp >='2017-01-01 00:00:00' and vp.duyet_ngayduyet_vp <='2017-01-05 23:59:59'  
--------- 
+ -------- 
 (case when hsba.gioitinhcode='01' then to_char(hsba.birthday, 'yyyy') else '' end) as year_nam 
 -------------- 
 SELECT pl.medicinephongluuname,  

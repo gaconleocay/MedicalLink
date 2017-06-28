@@ -188,7 +188,7 @@ LEFT JOIN
 ORDER BY A.duyet_ngayduyet_vp ;
 
 
------------Benh nhan da thanh toan - daonh thu tinh theo khoa ra vienphi
+-----------Benh nhan da thanh toan - daonh thu tinh theo khoa ra vien
 SELECT ROW_NUMBER() OVER (ORDER BY A.duyet_ngayduyet_vp) as stt, 
 A.*, 
 BILL.tam_ung, 

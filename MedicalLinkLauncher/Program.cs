@@ -36,20 +36,20 @@ namespace MedicalLinkLauncher
                     if (dialogResult == DialogResult.Yes)
                     {
                         //đường dẫn tới thư mục tạm trên máy Local
-                        string localPath = Environment.CurrentDirectory + "\\" + TEMP_DIR + "\\" + UPDATE_FILE_NAME;
+                        //string localPath = Environment.CurrentDirectory + "\\" + TEMP_DIR + "\\" + UPDATE_FILE_NAME;
                         //tạo thư mục tạm nếu chưa có (để tránh bị lỗi khi download)
-                        CreateTempDirectory();
+                        // CreateTempDirectory();
 
-                        PhanQuyenFolder(Environment.CurrentDirectory + "\\" + TEMP_DIR);
+                        //PhanQuyenFolder(Environment.CurrentDirectory + "\\" + TEMP_DIR);
                         //tải tệp tin MedicalLinkUpdate.zip từ Database về thư mục tạm
-                        try
-                        {
-                            DownloadFile(localPath);
-                            GiaiNenVaCopyFile();
-                        }
-                        catch (Exception)
-                        {
-                        }
+                        //try
+                        //{
+                        //    DownloadFile(localPath);
+                        //    GiaiNenVaCopyFile();
+                        //}
+                        //catch (Exception)
+                        //{
+                        //}
                         try
                         {
                             CopyFiles();
@@ -76,7 +76,7 @@ namespace MedicalLinkLauncher
             try
             {
                 // string sqlgetVersion = "SELECT appversion from tools_version LIMIT 1;";
-                DataView dataVer = new DataView(condb.getDataTable("SELECT appversion from tools_version where app_type=0 LIMIT 1;"));
+                DataView dataVer = new DataView(condb.GetDataTable_MeL("SELECT appversion from tools_version where app_type=0 LIMIT 1;"));
                 if (dataVer != null && dataVer.Count > 0)
                 {
                     versionDatabase = dataVer[0]["appversion"].ToString();
@@ -96,40 +96,40 @@ namespace MedicalLinkLauncher
             return result;
         }
 
-        private static void GiaiNenVaCopyFile()
-        {
-            try
-            {
-                //xác định thư mục hiện thời, nơi chương trình đang chạy
-                string currentDirectory = Environment.CurrentDirectory;
-                //xác định thư mục tạm, nơi Program1.exe đã tải các file cần cập nhật về
-                string tempDirectory = Environment.CurrentDirectory + "\\" + TEMP_DIR;
-                //lấy danh sách tất cả các file trong thư mục tạm
-                string[] fileList = Directory.GetFiles(tempDirectory);
-                //duyệt từng file và copy đè lên file cũ trong thư mục đang chạy chương trình
-                foreach (string sourceFile in fileList)
-                {
-                    //var zipFileName = @"C:\Users\Mac\Desktop\GiaiNen\gianhandan.zip";
-                    //var targetDir = @"C:\Users\Mac\Desktop\GiaiNen";
-                    FastZip fastZip = new FastZip();
-                    string fileFilter = null;
+        //private static void GiaiNenVaCopyFile()
+        //{
+        //    try
+        //    {
+        //        //xác định thư mục hiện thời, nơi chương trình đang chạy
+        //        string currentDirectory = Environment.CurrentDirectory;
+        //        //xác định thư mục tạm, nơi Program1.exe đã tải các file cần cập nhật về
+        //        string tempDirectory = Environment.CurrentDirectory + "\\" + TEMP_DIR;
+        //        //lấy danh sách tất cả các file trong thư mục tạm
+        //        string[] fileList = Directory.GetFiles(tempDirectory);
+        //        //duyệt từng file và copy đè lên file cũ trong thư mục đang chạy chương trình
+        //        foreach (string sourceFile in fileList)
+        //        {
+        //            //var zipFileName = @"C:\Users\Mac\Desktop\GiaiNen\gianhandan.zip";
+        //            //var targetDir = @"C:\Users\Mac\Desktop\GiaiNen";
+        //            FastZip fastZip = new FastZip();
+        //            string fileFilter = null;
 
-                    // Will always overwrite if target filenames already exist
-                    fastZip.ExtractZip(sourceFile, currentDirectory, fileFilter);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //            // Will always overwrite if target filenames already exist
+        //            fastZip.ExtractZip(sourceFile, currentDirectory, fileFilter);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
 
         private static void CopyFiles()
         {
             try
             {
                 // Lay duong dan cau hinh luu luu file Share
-                DataView dataurlfile = new DataView(condb.getDataTable("select app_link from tools_version where app_type=0 limit 1; "));
+                DataView dataurlfile = new DataView(condb.GetDataTable_MeL("select app_link from tools_version where app_type=0 limit 1; "));
                 if (dataurlfile != null && dataurlfile.Count > 0)
                 {
                     string tempDirectory = dataurlfile[0]["app_link"].ToString();
@@ -177,43 +177,43 @@ namespace MedicalLinkLauncher
         }
 
 
-        private static void CreateTempDirectory()
-        {
-            try
-            {
-                //kiểm tra đường dấn tới thư mục tạm, nếu chưa có thì tạo thư mục; nếu có thì xóa đi và tạo lại
-                string tempPath = Environment.CurrentDirectory + "\\" + TEMP_DIR;
-                if (!System.IO.Directory.Exists(tempPath))
-                {
-                    System.IO.Directory.CreateDirectory(tempPath);
-                }
-                else
-                {
-                    System.IO.Directory.Delete(tempPath, true);
-                    System.IO.Directory.CreateDirectory(tempPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-        private static void DownloadFile(string localPath)
-        {
-            try
-            {
-                string sqlgetfile = "COPY (SELECT updateapp FROM tools_version WHERE appversion='" + versionDatabase + "') TO '" + localPath + "' (FORMAT binary) ;";
-                condb.ExecuteNonQuery(sqlgetfile);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
+        //private static void CreateTempDirectory()
+        //{
+        //    try
+        //    {
+        //        //kiểm tra đường dấn tới thư mục tạm, nếu chưa có thì tạo thư mục; nếu có thì xóa đi và tạo lại
+        //        string tempPath = Environment.CurrentDirectory + "\\" + TEMP_DIR;
+        //        if (!System.IO.Directory.Exists(tempPath))
+        //        {
+        //            System.IO.Directory.CreateDirectory(tempPath);
+        //        }
+        //        else
+        //        {
+        //            System.IO.Directory.Delete(tempPath, true);
+        //            System.IO.Directory.CreateDirectory(tempPath);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+        //private static void DownloadFile(string localPath)
+        //{
+        //    try
+        //    {
+        //        string sqlgetfile = "COPY (SELECT updateapp FROM tools_version WHERE appversion='" + versionDatabase + "') TO '" + localPath + "' (FORMAT binary) ;";
+        //        condb.ExecuteNonQuery(sqlgetfile);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
 
 
         #region Util
-
+        /*
         private static void PhanQuyenFolder(string DirectoryName)
         {
             try
@@ -257,24 +257,7 @@ namespace MedicalLinkLauncher
             dInfo.SetAccessControl(dSecurity);
 
         }
-
-        // Removes an ACL entry on the specified directory for the specified account.
-        public static void RemoveDirectorySecurity(string FileName, string Account, FileSystemRights Rights, AccessControlType ControlType)
-        {
-            // Create a new DirectoryInfo object.
-            DirectoryInfo dInfo = new DirectoryInfo(FileName);
-
-            // Get a DirectorySecurity object that represents the 
-            // current security settings.
-            DirectorySecurity dSecurity = dInfo.GetAccessControl();
-
-            // Add the FileSystemAccessRule to the security settings. 
-            dSecurity.RemoveAccessRule(new FileSystemAccessRule(Account, Rights, ControlType));
-
-            // Set the new access settings.
-            dInfo.SetAccessControl(dSecurity);
-
-        }
+        */
         #endregion
 
 

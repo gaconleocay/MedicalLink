@@ -1,3 +1,6 @@
+-- theo khoa ra vien
+
+
 ---Theo Tong hop ngay 8/5
 SELECT ROW_NUMBER () OVER (ORDER BY O.loaivienphi) as stt,
 		O.*

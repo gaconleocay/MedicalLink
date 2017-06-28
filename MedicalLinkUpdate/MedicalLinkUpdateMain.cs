@@ -42,17 +42,17 @@ namespace MedicalLinkUpdate
             {
                 string kiemtraApp = "SELECT * FROM tools_version WHERE app_type=0;";
                 string kiemtraLauncher = "SELECT * FROM tools_version WHERE app_type=1;";
-                DataTable dataApp = condb.getDataTable(kiemtraApp);
-                DataTable dataLauncher = condb.getDataTable(kiemtraLauncher);
+                DataTable dataApp = condb.GetDataTable_MeL(kiemtraApp);
+                DataTable dataLauncher = condb.GetDataTable_MeL(kiemtraLauncher);
                 if (dataApp == null || dataApp.Rows.Count != 1)
                 {
                     string insertApp = "INSERT INTO tools_version(app_type) values('0') ;";
-                    condb.ExecuteNonQuery(insertApp);
+                    condb.ExecuteNonQuery_MeL(insertApp);
                 }
                 if (dataLauncher == null || dataLauncher.Rows.Count != 1)
                 {
                     string insertApp = "INSERT INTO tools_version(app_type) values('1') ;";
-                    condb.ExecuteNonQuery(insertApp);
+                    condb.ExecuteNonQuery_MeL(insertApp);
                 }
             }
             catch (Exception)
@@ -67,8 +67,8 @@ namespace MedicalLinkUpdate
             {
                 string kiemtraApp = "SELECT * FROM tools_version WHERE app_type=0;";
                 string kiemtraLauncher = "SELECT * FROM tools_version WHERE app_type=1;";
-                DataTable dataApp = condb.getDataTable(kiemtraApp);
-                DataTable dataLauncher = condb.getDataTable(kiemtraLauncher);
+                DataTable dataApp = condb.GetDataTable_MeL(kiemtraApp);
+                DataTable dataLauncher = condb.GetDataTable_MeL(kiemtraLauncher);
                 if (dataApp != null || dataApp.Rows.Count >0)
                 {
                     txtUpdateLink.Text = dataApp.Rows[0]["app_link"].ToString();
@@ -113,8 +113,8 @@ namespace MedicalLinkUpdate
                 string sqlcommit = "insert into tools_version(appversion, updateapp)  values ('" + txtVersionMecicalLink.Text.Trim() + "', (SELECT bytea_import('" + txtFilePath.Text.Trim() + "')));";
                 string deleteversionold = "delete from tools_version where appversion <>'" + txtVersionMecicalLink.Text.Trim() + "';";
 
-                condb.ExecuteNonQuery(sqlcommit);
-                condb.ExecuteNonQuery(deleteversionold);
+                condb.ExecuteNonQuery_MeL(sqlcommit);
+                condb.ExecuteNonQuery_MeL(deleteversionold);
                 MessageBox.Show("Commit thành công.", "Thông báo");
             }
             catch (Exception)
@@ -129,7 +129,7 @@ namespace MedicalLinkUpdate
             try
             {
                 string sqlcommit = "update tools_version set app_link= '" + txtUpdateLink.Text.Trim() + "';";
-                condb.ExecuteNonQuery(sqlcommit);
+                condb.ExecuteNonQuery_MeL(sqlcommit);
                 MessageBox.Show("Update Link thành công.", "Thông báo");
             }
             catch (Exception)
@@ -144,7 +144,7 @@ namespace MedicalLinkUpdate
             try
             {
                 string sqlcommit = "update tools_version set appversion='" + txtVersionMecicalLink.Text.Trim() + "' where app_type=0;";
-                condb.ExecuteNonQuery(sqlcommit);
+                condb.ExecuteNonQuery_MeL(sqlcommit);
                 MessageBox.Show("Update Version MedicalLink thành công.", "Thông báo");
             }
             catch (Exception)
@@ -159,7 +159,7 @@ namespace MedicalLinkUpdate
             try
             {
                 string sqlcommit = "update tools_version set appversion='" + txtVersionLauncher.Text.Trim() + "' where app_type=1;";
-                condb.ExecuteNonQuery(sqlcommit);
+                condb.ExecuteNonQuery_MeL(sqlcommit);
                 MessageBox.Show("Update Version Launcher thành công.", "Thông báo");
             }
             catch (Exception)

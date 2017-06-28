@@ -131,7 +131,7 @@ namespace MedicalLink.ChucNang
                     sqlquerry = "select distinct bill.billid as maphieuthu, bill.patientid as mabenhnhan, bill.vienphiid as mavienphi, bill.patientname as tenbenhnhan, 'Tạm ứng' as loaiphieu, bill.datra as sotien, bill.billdate as ngaythu, case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else '' end as trangthai from bill, vienphi,bhyt where bill.loaiphieuthuid=2 and vienphi.vienphiid=bill.vienphiid and bhyt.bhytid=vienphi.bhytid and bhyt.bhytcode='" + txtSoTheBHYT.Text.Trim().ToUpper() + "' order by maphieuthu;";
                 }
 
-                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
                 gridControlChuyenTien.DataSource = dv;
 
                 if (gridViewChuyenTien.RowCount == 0)
@@ -207,8 +207,8 @@ namespace MedicalLink.ChucNang
                         // thực thi câu lệnh update và lưu log
                         string sqlxecute = "update bill set vienphiid=" + txtChuyenTienVP2.Text + ", patientid=(select patientid from vienphi where vienphiid=" + txtChuyenTienVP2.Text + "), patientname=(select patientname from hosobenhan where hosobenhanid=(select hosobenhanid from vienphi where vienphiid=" + txtChuyenTienVP2.Text + ")), billremark='Tạm ứng cho viện phí VP' || right(('00000000' || '" + txtChuyenTienVP2.Text + "'),9), lydohuyphieu='Chuyển từ mã VP: ' || " + mavienphi + " where billid=" + maphieuth;
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển TƯ " + sotientu + " từ mã VP: " + mavienphi + " sang mã VP: " + txtChuyenTienVP2.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                        condb.ExecuteNonQuery(sqlxecute);
-                        condb.ExecuteNonQuery(sqlinsert_log);
+                        condb.ExecuteNonQuery_HIS(sqlxecute);
+                        condb.ExecuteNonQuery_MeL(sqlinsert_log);
                         MessageBox.Show("Đã chuyển " + sotientu.ToString() + " từ BN VP " + mavienphi + " sang BN VP " + txtChuyenTienVP2.Text, "Thông báo");
                         // load lại dữ liệu của form
                         gridControlChuyenTien.DataSource = null;

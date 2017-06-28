@@ -54,7 +54,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sql = "select usercode, username, userpassword, case usergnhom when '0' then 'Admin' when '1' then 'Quản trị hệ thống' when 2 then 'Nhân viên' end as usergnhom from tools_tbluser where usergnhom in (1,2) order by usercode";
-                DataView dv = new DataView(condb.GetDataTable(sql));
+                DataView dv = new DataView(condb.GetDataTable_MeL(sql));
 
                 if (dv.Count > 0)
                 {
@@ -97,7 +97,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sql = "SELECT degp.departmentgroupid, degp.departmentgroupname, de.departmentid, de.departmentcode, de.departmentname, de.departmenttype, (case de.departmenttype when 2 then 'Phòng khám' when 3 then 'Buồng điều trị' when 6 then 'Phòng xét nghiệm' when 7 then 'Phòng CĐHA' when 9 then 'BĐT ngoại trú' else '' end) as departmenttypename FROM department de inner join departmentgroup degp on de.departmentgroupid=degp.departmentgroupid WHERE degp.departmentgrouptype in (1,4,9,10,11) and de.departmenttype in (2,3,6,7,9) ORDER BY degp.departmentgroupid,de.departmenttype, de.departmentname; ";
-                DataView dataPhong = new DataView(condb.GetDataTable(sql));
+                DataView dataPhong = new DataView(condb.GetDataTable_HIS(sql));
                 lstUserDepartment = new List<ClassCommon.classUserDepartment>();
                 for (int i = 0; i < dataPhong.Count; i++)
                 {
@@ -137,7 +137,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sql = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM medicine_store ms WHERE ms.medicinestoretype in (1,2,3,4,7) ORDER BY ms.medicinestoretype,ms.medicinestorename; ";
-                DataView dataKhoThuoc = new DataView(condb.GetDataTable(sql));
+                DataView dataKhoThuoc = new DataView(condb.GetDataTable_HIS(sql));
                 lstUserMedicineStore = new List<ClassCommon.classUserMedicineStore>();
                 for (int i = 0; i < dataKhoThuoc.Count; i++)
                 {
@@ -163,7 +163,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sql = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, pl.medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename from medicinephongluu pl inner join medicine_store ms on pl.medicinestoreid=ms.medicinestoreid where pl.medicinephongluucode<>'' and pl.medicinephongluuname<>'' order by ms.medicinestorename, pl.medicinephongluuname; ";
-                DataView dataPhongLuu = new DataView(condb.GetDataTable(sql));
+                DataView dataPhongLuu = new DataView(condb.GetDataTable_HIS(sql));
                 lstUserMedicinePhongLuu = new List<ClassCommon.classUserMedicinePhongLuu>();
                 for (int i = 0; i < dataPhongLuu.Count; i++)
                 {
@@ -244,7 +244,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 gridControlChucNang.DataSource = null;
                 string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "';";
-                DataView dv = new DataView(condb.GetDataTable(sqlquerry_per));
+                DataView dv = new DataView(condb.GetDataTable_MeL(sqlquerry_per));
                 //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
                 if (dv != null && dv.Count > 0)
                 {
@@ -272,7 +272,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 gridControlKhoaPhong.DataSource = null;
                 string sqlquerry_khoaphong = "SELECT userdepgid,departmentgroupid,departmentid,departmenttype,usercode FROM tools_tbluser_departmentgroup WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "';";
-                DataView dv_khoaphong = new DataView(condb.GetDataTable(sqlquerry_khoaphong));
+                DataView dv_khoaphong = new DataView(condb.GetDataTable_MeL(sqlquerry_khoaphong));
                 if (dv_khoaphong != null && dv_khoaphong.Count > 0)
                 {
                     for (int i = 0; i < lstUserDepartment.Count; i++)
@@ -299,7 +299,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 gridControlBaoCao.DataSource = null;
                 string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "' and userpermissionnote='BAOCAO';";
-                DataView dv = new DataView(condb.GetDataTable(sqlquerry_per));
+                DataView dv = new DataView(condb.GetDataTable_MeL(sqlquerry_per));
                 //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
                 if (dv != null && dv.Count > 0)
                 {
@@ -327,7 +327,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 gridControlKhoThuoc.DataSource = null;
                 string sqlquerry_khoaphong = "SELECT usermestid,medicinestoreid,medicinestoretype,usercode FROM tools_tbluser_medicinestore WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "';";
-                DataView dv_khothuoc = new DataView(condb.GetDataTable(sqlquerry_khoaphong));
+                DataView dv_khothuoc = new DataView(condb.GetDataTable_MeL(sqlquerry_khoaphong));
                 if (dv_khothuoc != null && dv_khothuoc.Count > 0)
                 {
                     for (int i = 0; i < lstUserMedicineStore.Count; i++)
@@ -354,7 +354,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 gridControlPhongLuu.DataSource = null;
                 string sqlquerry_phongluu = "SELECT userphongluutid,medicinephongluuid,medicinestoreid,usercode FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "';";
-                DataView dv_phongluu = new DataView(condb.GetDataTable(sqlquerry_phongluu));
+                DataView dv_phongluu = new DataView(condb.GetDataTable_MeL(sqlquerry_phongluu));
                 if (dv_phongluu != null && dv_phongluu.Count > 0)
                 {
                     for (int i = 0; i < lstUserMedicinePhongLuu.Count; i++)
@@ -455,7 +455,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','2','Nhân viên');";
                 }
-                condb.ExecuteNonQuery(sqlinsert_user);
+                condb.ExecuteNonQuery_MeL(sqlinsert_user);
             }
             catch (Exception ex)
             {
@@ -475,7 +475,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     if (lstPer[i].permissioncheck == true)
                     {
                         sqlinsert_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', '');";
-                        condb.ExecuteNonQuery(sqlinsert_per);
+                        condb.ExecuteNonQuery_MeL(sqlinsert_per);
                     }
                 }
             }
@@ -495,7 +495,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     if (lstUserDepartment[i].departmentcheck == true)
                     {
                         sqlinsert_userdepartment = "INSERT INTO tools_tbluser_departmentgroup(departmentgroupid, departmentid, departmenttype, usercode, userdepgidnote) VALUES ('" + lstUserDepartment[i].departmentgroupid + "','" + lstUserDepartment[i].departmentid + "','" + lstUserDepartment[i].departmenttype + "','" + en_txtUserID + "','');";
-                        condb.ExecuteNonQuery(sqlinsert_userdepartment);
+                        condb.ExecuteNonQuery_MeL(sqlinsert_userdepartment);
                     }
                 }
             }
@@ -517,7 +517,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     if (lstPerBaoCao[i].permissioncheck == true)
                     {
                         sqlinsert_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', 'BAOCAO');";
-                        condb.ExecuteNonQuery(sqlinsert_per);
+                        condb.ExecuteNonQuery_MeL(sqlinsert_per);
                     }
                 }
             }
@@ -537,7 +537,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     if (lstUserMedicineStore[i].MedicineStoreCheck == true)
                     {
                         sqlinsert_usermedicinestore = "INSERT INTO tools_tbluser_medicinestore(medicinestoreid, medicinestoretype, usercode, userdepgidnote) VALUES ('" + lstUserMedicineStore[i].MedicineStoreId + "','" + lstUserMedicineStore[i].MedicineStoreType + "','" + en_txtUserID + "','');";
-                        condb.ExecuteNonQuery(sqlinsert_usermedicinestore);
+                        condb.ExecuteNonQuery_MeL(sqlinsert_usermedicinestore);
                     }
                 }
             }
@@ -557,7 +557,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     if (lstUserMedicinePhongLuu[i].MedicinePhongLuuCheck == true)
                     {
                         sqlinsert_usermedicinephongluu = "INSERT INTO tools_tbluser_medicinephongluu(medicinephongluuid, medicinestoreid, usercode, userdepgidnote) VALUES ('" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "','" + lstUserMedicinePhongLuu[i].MedicineStoreId + "','" + en_txtUserID + "','');";
-                        condb.ExecuteNonQuery(sqlinsert_usermedicinephongluu);
+                        condb.ExecuteNonQuery_MeL(sqlinsert_usermedicinephongluu);
                     }
                 }
             }
@@ -580,7 +580,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     sqlupdate_user = "UPDATE tools_tbluser SET usercode='" + en_txtUserID + "', username='" + en_txtUsername + "', userpassword='" + en_txtUserPassword + "', userstatus='0', usergnhom='2', usernote='Nhân viên' WHERE usercode='" + en_txtUserID + "';";
                 }
-                condb.ExecuteNonQuery(sqlupdate_user);
+                condb.ExecuteNonQuery_MeL(sqlupdate_user);
             }
             catch (Exception ex)
             {
@@ -597,13 +597,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     sqlupdate_per = "";
                     string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPer[i].permissioncode, true);
                     string sqlkiemtratontai = "SELECT * FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
-                    DataView dvkt = new DataView(condb.GetDataTable(sqlkiemtratontai));
+                    DataView dvkt = new DataView(condb.GetDataTable_MeL(sqlkiemtratontai));
                     if (dvkt.Count > 0) //Nếu có quyền đó rồi thì Update
                     {
                         if (lstPer[i].permissioncheck == false)
                         {
                             sqlupdate_per = "DELETE FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
-                            condb.ExecuteNonQuery(sqlupdate_per);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_per);
                         }
                     }
                     else //nếu không có quyền đó thì Insert
@@ -612,7 +612,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         {
                             string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPer[i].permissionname.ToString(), true);
                             sqlupdate_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', '');";
-                            condb.ExecuteNonQuery(sqlupdate_per);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_per);
                         }
                     }
                 }
@@ -631,13 +631,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     sqlupdate_userdepartment = "";
                     string sqlkiemtratontai = "SELECT * FROM tools_tbluser_departmentgroup WHERE usercode='" + en_txtUserID + "' and departmentid='" + lstUserDepartment[i].departmentid + "' ;";
-                    DataView dvkt = new DataView(condb.GetDataTable(sqlkiemtratontai));
+                    DataView dvkt = new DataView(condb.GetDataTable_MeL(sqlkiemtratontai));
                     if (dvkt.Count > 0) //Nếu có quyền đó rồi thì Update
                     {
                         if (lstUserDepartment[i].departmentcheck == false) //xoa
                         {
                             sqlupdate_userdepartment = "DELETE FROM tools_tbluser_departmentgroup WHERE usercode='" + en_txtUserID + "' and departmentid='" + lstUserDepartment[i].departmentid + "' ;";
-                            condb.ExecuteNonQuery(sqlupdate_userdepartment);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_userdepartment);
                         }
                     }
                     else //nếu không có quyền đó thì Insert
@@ -645,7 +645,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         if (lstUserDepartment[i].departmentcheck == true)
                         {
                             sqlupdate_userdepartment = "INSERT INTO tools_tbluser_departmentgroup(departmentgroupid, departmentid, departmenttype, usercode, userdepgidnote) VALUES ('" + lstUserDepartment[i].departmentgroupid + "','" + lstUserDepartment[i].departmentid + "','" + lstUserDepartment[i].departmenttype + "','" + en_txtUserID + "','');";
-                            condb.ExecuteNonQuery(sqlupdate_userdepartment);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_userdepartment);
                         }
                     }
                 }
@@ -665,13 +665,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     sqlupdate_per = "";
                     string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissioncode, true);
                     string sqlkiemtratontai = "SELECT * FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
-                    DataView dvkt = new DataView(condb.GetDataTable(sqlkiemtratontai));
+                    DataView dvkt = new DataView(condb.GetDataTable_MeL(sqlkiemtratontai));
                     if (dvkt.Count > 0) //Nếu có quyền đó rồi thì Update
                     {
                         if (lstPerBaoCao[i].permissioncheck == false)
                         {
                             sqlupdate_per = "DELETE FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
-                            condb.ExecuteNonQuery(sqlupdate_per);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_per);
                         }
                     }
                     else //nếu không có quyền đó thì Insert
@@ -680,7 +680,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         {
                             string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissionname.ToString(), true);
                             sqlupdate_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', 'BAOCAO');";
-                            condb.ExecuteNonQuery(sqlupdate_per);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_per);
                         }
                     }
                 }
@@ -699,13 +699,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     sqlupdate_usermedicinestore = "";
                     string sqlkiemtratontai = "SELECT * FROM tools_tbluser_medicinestore WHERE usercode='" + en_txtUserID + "' and medicinestoreid='" + lstUserMedicineStore[i].MedicineStoreId + "' ;";
-                    DataView dvkt_medi = new DataView(condb.GetDataTable(sqlkiemtratontai));
+                    DataView dvkt_medi = new DataView(condb.GetDataTable_MeL(sqlkiemtratontai));
                     if (dvkt_medi.Count > 0) //Nếu có quyền đó rồi thì Update
                     {
                         if (lstUserMedicineStore[i].MedicineStoreCheck == false) //xoa
                         {
                             sqlupdate_usermedicinestore = "DELETE FROM tools_tbluser_medicinestore WHERE usercode='" + en_txtUserID + "' and medicinestoreid='" + lstUserMedicineStore[i].MedicineStoreId + "' ;";
-                            condb.ExecuteNonQuery(sqlupdate_usermedicinestore);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_usermedicinestore);
                         }
                     }
                     else //nếu không có quyền đó thì Insert
@@ -713,7 +713,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         if (lstUserMedicineStore[i].MedicineStoreCheck == true)
                         {
                             sqlupdate_usermedicinestore = "INSERT INTO tools_tbluser_medicinestore(medicinestoreid, medicinestoretype, usercode, userdepgidnote) VALUES ('" + lstUserMedicineStore[i].MedicineStoreId + "','" + lstUserMedicineStore[i].MedicineStoreType + "','" + en_txtUserID + "','');";
-                            condb.ExecuteNonQuery(sqlupdate_usermedicinestore);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_usermedicinestore);
                         }
                     }
                 }
@@ -732,13 +732,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     sqlupdate_usermedicinephongluu = "";
                     string sqlkiemtratontai = "SELECT * FROM tools_tbluser_medicinephongluu WHERE usercode='" + en_txtUserID + "' and medicinephongluuid='" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "' ;";
-                    DataView dvkt_medi = new DataView(condb.GetDataTable(sqlkiemtratontai));
+                    DataView dvkt_medi = new DataView(condb.GetDataTable_MeL(sqlkiemtratontai));
                     if (dvkt_medi.Count > 0) //Nếu có quyền đó rồi thì Update
                     {
                         if (lstUserMedicinePhongLuu[i].MedicinePhongLuuCheck == false) //xoa
                         {
                             sqlupdate_usermedicinephongluu = "DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + en_txtUserID + "' and medicinephongluuid='" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "' ;";
-                            condb.ExecuteNonQuery(sqlupdate_usermedicinephongluu);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_usermedicinephongluu);
                         }
                     }
                     else //nếu không có quyền đó thì Insert
@@ -746,7 +746,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         if (lstUserMedicinePhongLuu[i].MedicinePhongLuuCheck == true)
                         {
                             sqlupdate_usermedicinephongluu = "INSERT INTO tools_tbluser_medicinephongluu(medicinephongluuid, medicinestoreid, usercode, userdepgidnote) VALUES ('" + lstUserMedicinePhongLuu[i].MedicinePhongLuuId + "','" + lstUserMedicinePhongLuu[i].MedicineStoreId + "','" + en_txtUserID + "','');";
-                            condb.ExecuteNonQuery(sqlupdate_usermedicinephongluu);
+                            condb.ExecuteNonQuery_MeL(sqlupdate_usermedicinephongluu);
                         }
                     }
                 }
@@ -811,12 +811,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     string sqlxoatk_phongluu = "DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa tài khoản: " + currentUserCode + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
 
-                    condb.ExecuteNonQuery(sqlxoatk);
-                    condb.ExecuteNonQuery(sqlxoatk_chucnang);
-                    condb.ExecuteNonQuery(sqlxoatk_khoaphong);
-                    condb.ExecuteNonQuery(sqlxoatk_khothuoc);
-                    condb.ExecuteNonQuery(sqlxoatk_phongluu);
-                    condb.ExecuteNonQuery(sqlinsert_log);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_chucnang);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_khoaphong);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_khothuoc);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_phongluu);
+                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
                     frmthongbao.Show();

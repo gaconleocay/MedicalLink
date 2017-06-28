@@ -10,13 +10,15 @@ using System.Windows.Forms;
 using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using MedicalLink.Base;
+using DevExpress.XtraSplashScreen;
 
 namespace MedicalLink.FormCommon.TabCaiDat
 {
     public partial class ucDanhSachBenhVien : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        string toolsoptionid = "";
+       private string benhvienid = "";
+        private string worksheetName = "tools_csyt";
         #region Load
         public ucDanhSachBenhVien()
         {
@@ -28,7 +30,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 EnableAndDisableControl(false);
-                LoadDanhSachOption();
+                LoadDanhSachBenhVien();
             }
             catch (Exception ex)
             {
@@ -53,12 +55,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
-        private void LoadDanhSachOption()
+        private void LoadDanhSachBenhVien()
         {
             try
             {
-                string sqldsnv = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook FROM tools_option ORDER BY toolsoptionid;";
-                DataView dataOption = new DataView(condb.GetDataTable(sqldsnv));
+                string sqldsbv = "select row_number () over (order by benhvienname) as stt, benhvienid, benhvienkcbbd, benhviencode, benhvienname, benhvienaddress from tools_benhvien;";
+                DataView dataOption = new DataView(condb.GetDataTable_MeL(sqldsbv));
                 if (dataOption != null && dataOption.Count > 0)
                 {
                     gridControlDSBenhVien.DataSource = dataOption;
@@ -86,21 +88,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
-        private void gridViewDSOption_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            try
-            {
-                if (e.Column == stt)
-                {
-                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         private void HienThiThongBao(string tenThongBao)
         {
             try
@@ -120,11 +107,11 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 EnableAndDisableControl(true);
                 var rowHandle = gridViewDSBenhVien.FocusedRowHandle;
-                toolsoptionid = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionid").ToString();
-                txtbenhvienkcbbd.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptioncode").ToString();
-                txtbenhvienname.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionname").ToString();
-                txtbenhviencode.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionvalue").ToString();
-                txtbenhvienaddress.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "toolsoptionnote").ToString();
+                benhvienid = gridViewDSBenhVien.GetRowCellValue(rowHandle, "benhvienid").ToString();
+                txtbenhvienkcbbd.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "benhvienkcbbd").ToString();
+                txtbenhvienname.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "benhvienname").ToString();
+                txtbenhviencode.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "benhviencode").ToString();
+                txtbenhvienaddress.Text = gridViewDSBenhVien.GetRowCellValue(rowHandle, "benhvienaddress").ToString();
 
             }
             catch (Exception ex)
@@ -137,19 +124,18 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                string toolsoptionlook = "0";
-                if (toolsoptionid != "")
+                if (benhvienid != "")
                 {
-                    string sqlupdate = "UPDATE tools_option SET toolsoptionname='" + txtbenhvienname.Text.Trim() + "', toolsoptionvalue='" + txtbenhviencode.Text.Trim() + "', toolsoptionnote='" + txtbenhvienaddress.Text.Trim() + "', toolsoptionlook='" + toolsoptionlook + "', toolsoptiondate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', toolsoptioncreateuser='" + SessionLogin.SessionUsername + "' WHERE toolsoptionid='" + toolsoptionid + "'; ";
-                    if (condb.ExecuteNonQuery(sqlupdate))
+                    string sqlupdate = "UPDATE tools_benhvien SET benhvienname='" + txtbenhvienname.Text.Trim() + "', benhviencode='" + txtbenhviencode.Text.Trim() + "', benhvienaddress='" + txtbenhvienaddress.Text.Trim() + "' WHERE benhvienid='" + benhvienid + "'; ";
+                    if (condb.ExecuteNonQuery_MeL(sqlupdate))
                     {
                         HienThiThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
                     }
                 }
                 else
                 {
-                    string sqlupdate = "INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('" + txtbenhvienkcbbd.Text.Trim() + "', '" + txtbenhvienname.Text.Trim() + "', '" + txtbenhviencode.Text.Trim() + "', '" + txtbenhvienaddress.Text.Trim() + "', '" + toolsoptionlook + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + SessionLogin.SessionUsername + "');";
-                    if (condb.ExecuteNonQuery(sqlupdate))
+                    string sqlupdate = "INSERT INTO tools_benhvien(benhvienkcbbd, benhviencode, benhvienname, benhvienaddress) VALUES ('" + txtbenhvienkcbbd.Text.Trim() + "', '" + txtbenhviencode.Text.Trim() + "', '" + txtbenhvienname.Text.Trim() + "', '" + txtbenhvienaddress.Text.Trim() + "');";
+                    if (condb.ExecuteNonQuery_MeL(sqlupdate))
                     {
                         HienThiThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                     }
@@ -171,7 +157,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 EnableAndDisableControl(true);
                 txtbenhvienkcbbd.ReadOnly = false;
 
-                toolsoptionid = "";
+                benhvienid = "";
                 txtbenhvienkcbbd.Text = "";
                 txtbenhvienname.Text = "";
                 txtbenhviencode.Text = "";
@@ -184,24 +170,62 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
-        private void btnOptionDefault_Click(object sender, EventArgs e)
+        private void btnImportExcel_Click(object sender, EventArgs e)
         {
             try
             {
-                DialogResult hoi = MessageBox.Show("Bạn có chắc chắn muốn xóa tất cả option hiện tại và trở về mặc định?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                if (hoi == DialogResult.Yes)
+                if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
-                    string sql_delete_option = "delete from tools_option;";
-                    string sql_default_option = "INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('ThoiGianCapNhatTbl_tools_bndangdt_tmp', 'Thời gian tự động cập nhật dữ liệu bảng tools_bndangdt_tmp', '0', 'Bảng tools_bndangdt_tmp phục vụ báo cáo Dashboard: BC QL tổng thể khoa; BC BN nội trú. Thời gian tính bằng phút - số', '0', now(), 'Administrator'); INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('KhoangThoiGianLayDuLieu', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard', '2016-01-01 00:00:00', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard từ -> hiện tại. Định dạng: yyyy-MM-dd HH:mm:ss. VD:  2016-01-01 00:00:00. Phục vụ cho báo cáo: REPORT_08; REPORT_09', '0', now(), 'Administrator');";
-                    if (condb.ExecuteNonQuery(sql_delete_option) && condb.ExecuteNonQuery(sql_default_option))
+                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    MedicalLink.Base.ReadExcelFile _excel = new MedicalLink.Base.ReadExcelFile(openFileDialogSelect.FileName);
+                    var data = _excel.GetDataTable("SELECT BENHVIENKCBBD, BENHVIENCODE, BENHVIENNAME, BENHVIENADDRESS FROM [" + worksheetName + "$]");
+                    if (data != null)
                     {
-                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.THAO_TAC_THANH_CONG);
-                        ucDanhSachBenhVien_Load(null,null);
+                        int dem_update = 0;
+                        int dem_insert = 0;
+                        //gridViewDichVu_Import.DataSource = data;
+                        DataView dmCSYT_Import = new DataView(data);
+
+                        for (int i = 0; i < dmCSYT_Import.Count; i++)
+                        {
+                            if (dmCSYT_Import[i]["BENHVIENKCBBD"].ToString() != "")
+                            {
+                                condb.Connect();
+                                string sql_kt = "SELECT benhvienkcbbd FROM tools_benhvien WHERE benhvienkcbbd='" + dmCSYT_Import[i]["BENHVIENKCBBD"].ToString() + "';";
+                                DataView dv_kt = new DataView(condb.GetDataTable_MeL(sql_kt));
+                                if (dv_kt.Count > 0) //update
+                                {
+                                    string sql_updateUser = "UPDATE tools_benhvien SET benhviencode='" + dmCSYT_Import[i]["BENHVIENCODE"].ToString() + "', benhvienname='" + dmCSYT_Import[i]["BENHVIENNAME"].ToString() + "', benhvienaddress='" + dmCSYT_Import[i]["BENHVIENADDRESS"] + "' WHERE benhvienkcbbd='" + dmCSYT_Import[i]["BENHVIENKCBBD"].ToString() + "';";
+                                    try
+                                    {
+                                        condb.ExecuteNonQuery_MeL(sql_updateUser);
+                                        dem_update += 1;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        continue;
+                                    }
+                                }
+                                else
+                                {
+                                    string sql_insertDVKT = "INSERT INTO tools_benhvien(benhvienkcbbd, benhviencode, benhvienname, benhvienaddress) VALUES ('" + dmCSYT_Import[i]["BENHVIENKCBBD"].ToString() + "', '" + dmCSYT_Import[i]["BENHVIENCODE"].ToString() + "', '" + dmCSYT_Import[i]["BENHVIENNAME"].ToString().Replace("'","''") + "', '" + dmCSYT_Import[i]["BENHVIENADDRESS"].ToString().Replace("'", "''") + "');";
+                                    try
+                                    {
+                                        condb.ExecuteNonQuery_MeL(sql_insertDVKT);
+                                        dem_insert += 1;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        continue;
+                                    }
+                                }
+                            }
+                        }
+                        MessageBox.Show("Thêm mới [ " + dem_insert + " ] & cập nhật [ " + dem_update + " ] Cơ sở y tế thành công.");
+                        gridControlDSBenhVien.DataSource = null;
+                        ucDanhSachBenhVien_Load(null, null);
                     }
-                    else
-                    {
-                        HienThiThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
-                    }
+                    SplashScreenManager.CloseForm();
                 }
             }
             catch (Exception ex)
@@ -209,7 +233,5 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
-
     }
 }

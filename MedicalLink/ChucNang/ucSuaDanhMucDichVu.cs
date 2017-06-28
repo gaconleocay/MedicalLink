@@ -135,7 +135,7 @@ namespace MedicalLink.ChucNang
                 }
 
                 string sqlLayDanhMuc = "SELECT serf.servicepricerefid, serf.servicepricegroupcode, serf.servicepricetype, serf.servicegrouptype, serf.servicepricecode, serf.bhyt_groupcode, serf.report_groupcode, serf.report_tkcode, serf.servicepricenamenhandan,  serf.servicepricenamebhyt, serf.servicepriceunit, serf.servicepricefee, serf.servicepricefeenhandan, serf.servicepricefeebhyt,  serf.servicepricefeenuocngoai, serf.listdepartmentphongthuchien, serf.servicepricefee_old_date, serf.servicepricefee_old, serf.servicepricefeenhandan_old, serf.servicepricefeebhyt_old, serf.servicepricefeenuocngoai_old, serf.pttt_hangid,  serf.khongchuyendoituonghaophi, serf.cdha_soluongthuoc, serf.cdha_soluongvattu, serf.tylelaichidinh, serf.tylelaithuchien, serf.luonchuyendoituonghaophi,  serf.tinhtoanlaigiadvktc, serf.servicepricecodeuser,  serf.servicepricebhytdinhmuc, serf.listdepartmentphongthuchienkhamgoi,  serf.ck_groupcode, serf.servicepricecode_ng, serf.pttt_dinhmucvtth, serf.pttt_dinhmucthuoc, serf.servicepricefee_old_type, serf.servicepricesttuser, serf.pttt_loaiid FROM servicepriceref serf WHERE serf.servicegrouptype = " + servicegrouptype + " and (serf.isremove is null or serf.isremove=0) and serf.servicelock=0 ORDER BY serf.servicepricegroupcode, serf.servicepricename;";
-                DataView dv_DanhMucDichVu = new DataView(condb.GetDataTable(sqlLayDanhMuc));
+                DataView dv_DanhMucDichVu = new DataView(condb.GetDataTable_HIS(sqlLayDanhMuc));
                 if (dv_DanhMucDichVu.Count > 0)
                 {
                     lstDanhMucDichVu = new List<ClassCommon.classDanhMucDichVu>();
@@ -343,7 +343,7 @@ namespace MedicalLink.ChucNang
                 }
 
                 string sqlLayDanhMuc = "SELECT serf.servicepricecode FROM servicepriceref serf WHERE serf.servicepricetype = 1 and serf.servicegrouptype=" + servicegrouptype + "; ";
-                DataView dv_DanhMucNhom = new DataView(condb.GetDataTable(sqlLayDanhMuc));
+                DataView dv_DanhMucNhom = new DataView(condb.GetDataTable_HIS(sqlLayDanhMuc));
                 if (dv_DanhMucNhom.Count > 0)
                 {
                     for (int i = 0; i < dv_DanhMucNhom.Count; i++)
@@ -571,7 +571,7 @@ namespace MedicalLink.ChucNang
                     //Update servicepriceref
                     string updateservicepriceref = "UPDATE servicepriceref SET servicegrouptype=" + servicegrouptype + ", bhyt_groupcode='" + bhyt_groupcode + "',servicepricegroupcode='" + cbbservicepricegroupcode.SelectedItem.ToString() + "' WHERE servicepricerefid=" + servicepricerefidCurrent + ";";
                     string updateservice_ref = "UPDATE service_ref SET servicegrouptype=" + servicegrouptype + ", servicegroupcode='" + servicepricegroupcode + "' WHERE servicecode in (select servicecode from serviceref4price where servicepricecode='" + txtservicepricecode.Text.Trim() + "')";
-                    if (condb.ExecuteNonQuery(updateservicepriceref) && condb.ExecuteNonQuery(updateservice_ref))
+                    if (condb.ExecuteNonQuery_HIS(updateservicepriceref) && condb.ExecuteNonQuery_HIS(updateservice_ref))
                     {
                         MessageBox.Show("Cập nhật thành công dịch vụ mã [" + txtservicepricecode.Text.Trim() + "] !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         btnSua.Enabled = true;

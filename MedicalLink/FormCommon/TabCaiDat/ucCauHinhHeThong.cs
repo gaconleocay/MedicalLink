@@ -59,7 +59,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqldsnv = "SELECT toolsoptionid, toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook FROM tools_option ORDER BY toolsoptionid;";
-                DataView dataOption = new DataView(condb.GetDataTable(sqldsnv));
+                DataView dataOption = new DataView(condb.GetDataTable_MeL(sqldsnv));
                 if (dataOption != null && dataOption.Count > 0)
                 {
                     gridControlDSOption.DataSource = dataOption;
@@ -154,7 +154,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 if (toolsoptionid != "")
                 {
                     string sqlupdate = "UPDATE tools_option SET toolsoptionname='" + txtOptionName.Text.Trim() + "', toolsoptionvalue='" + txtOptionValue.Text.Trim() + "', toolsoptionnote='" + txtOptionNote.Text.Trim() + "', toolsoptionlook='" + toolsoptionlook + "', toolsoptiondate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', toolsoptioncreateuser='" + SessionLogin.SessionUsername + "' WHERE toolsoptionid='" + toolsoptionid + "'; ";
-                    if (condb.ExecuteNonQuery(sqlupdate))
+                    if (condb.ExecuteNonQuery_MeL(sqlupdate))
                     {
                         HienThiThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
                     }
@@ -162,7 +162,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 else
                 {
                     string sqlupdate = "INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('" + txtOptionCode.Text.Trim() + "', '" + txtOptionName.Text.Trim() + "', '" + txtOptionValue.Text.Trim() + "', '" + txtOptionNote.Text.Trim() + "', '" + toolsoptionlook + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + SessionLogin.SessionUsername + "');";
-                    if (condb.ExecuteNonQuery(sqlupdate))
+                    if (condb.ExecuteNonQuery_MeL(sqlupdate))
                     {
                         HienThiThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                     }
@@ -206,7 +206,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     string sql_delete_option = "delete from tools_option;";
                     string sql_default_option = "INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('ThoiGianCapNhatTbl_tools_bndangdt_tmp', 'Thời gian tự động cập nhật dữ liệu bảng tools_bndangdt_tmp', '0', 'Bảng tools_bndangdt_tmp phục vụ báo cáo Dashboard: BC QL tổng thể khoa; BC BN nội trú. Thời gian tính bằng phút - số', '0', now(), 'Administrator'); INSERT INTO tools_option(toolsoptioncode, toolsoptionname, toolsoptionvalue, toolsoptionnote, toolsoptionlook, toolsoptiondate, toolsoptioncreateuser) VALUES ('KhoangThoiGianLayDuLieu', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard', '2016-01-01 00:00:00', 'Khoảng thời gian lấy dữ liệu báo cáo Dashboard từ -> hiện tại. Định dạng: yyyy-MM-dd HH:mm:ss. VD:  2016-01-01 00:00:00. Phục vụ cho báo cáo: REPORT_08; REPORT_09', '0', now(), 'Administrator');";
-                    if (condb.ExecuteNonQuery(sql_delete_option) && condb.ExecuteNonQuery(sql_default_option))
+                    if (condb.ExecuteNonQuery_MeL(sql_delete_option) && condb.ExecuteNonQuery_MeL(sql_default_option))
                     {
                         HienThiThongBao(MedicalLink.Base.ThongBaoLable.THAO_TAC_THANH_CONG);
                         ucCauHinhHeThong_Load(null,null);

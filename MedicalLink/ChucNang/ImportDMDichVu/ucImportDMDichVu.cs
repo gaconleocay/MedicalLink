@@ -162,7 +162,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_bak_gia = "UPDATE ServicePriceRef SET Tools_TGApDung_bak_1 = ServicePriceFee_OLD_DATE, Tools_gia_bak_1 = ServicePriceFee_OLD, Tools_giaBHYT_bak_1 = ServicePriceFeeBHYT_OLD, Tools_giaNhanDan_bak_1 = ServicePriceFeeNhanDan_OLD, Tools_giaNuocNgoai_bak_1 = ServicePriceFeeNuocNgoai_OLD, Tools_KieuApDung_bak_1 = ServicePriceFee_OLD_Type;";
-                condb.ExecuteNonQuery(sql_bak_gia);
+                condb.ExecuteNonQuery_HIS(sql_bak_gia);
                 MessageBox.Show("Backup thành công giá cũ sang cột dự phòng", "Thông báo");
             }
             catch (Exception ex)

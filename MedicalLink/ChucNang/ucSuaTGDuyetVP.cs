@@ -81,7 +81,7 @@ namespace MedicalLink.ChucNang
                 {
                     sqltimkiem = "SELECT DISTINCT vienphi.vienphiid AS mavienphi, vienphi.patientid AS mabenhnhan, hosobenhan.patientname AS tenbenhnhan, vienphi.vienphidate AS thoigianvaovien, vienphi.vienphidate_ravien AS thoigianravien, CASE vienphi.vienphistatus_vp WHEN 1 THEN 'Đã duyệt VP' ELSE 'Chưa duyệt VP' END AS trangthai, vienphi.duyet_ngayduyet_vp AS thoigiANDuyetkt, departmentgroup.departmentgroupname AS tenkhoa, department.departmentname AS tenphong FROM vienphi,hosobenhan,departmentgroup,department WHERE vienphi.hosobenhanid = hosobenhan.hosobenhanid AND vienphi.departmentgroupid=departmentgroup.departmentgroupid AND vienphi.departmentid=department.departmentid AND vienphi.vienphiid=" + txtMaVienPhi.Text + " ORDER BY mavienphi;";
                 }
-                DataView dv = new DataView(condb.GetDataTable(sqltimkiem));
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqltimkiem));
                 gridControlSuaTGDuyetVP.DataSource = dv;
                 dateThoiGianSua.Enabled = false;
                 btnSuaTGDuyetOK.Enabled = false;
@@ -187,11 +187,11 @@ namespace MedicalLink.ChucNang
                 try
                 {
                     string sqlupdate_stt0 = "UPDATE vienphi SET vienphistatus_vp=0 WHERE vienphiid='" + mavp + "';";
-                    condb.ExecuteNonQuery(sqlupdate_stt0); //mục đích để Trigger hoạt động
+                    condb.ExecuteNonQuery_HIS(sqlupdate_stt0); //mục đích để Trigger hoạt động
                     string sqlupdate = "UPDATE vienphi SET vienphistatus_vp=1, duyet_ngayduyet_bh='" + dateThoiGianSua.Text + "',  duyet_ngayduyet_vp='" + dateThoiGianSua.Text + "' WHERE vienphiid='" + mavp + "';";
-                    condb.ExecuteNonQuery(sqlupdate);
+                    condb.ExecuteNonQuery_HIS(sqlupdate);
                     string sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG duyệt VP BN: " + txtMaBenhNhan.Text + " mã VP: " + mavp + " từ TG: " + dateThoiGianHienTai.Text + " thành TG: " + dateThoiGianSua.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                    condb.ExecuteNonQuery(sqlluulog);
+                    condb.ExecuteNonQuery_MeL(sqlluulog);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
                     frmthongbao.Show();
                     gridControlSuaTGDuyetVP.DataSource = null;

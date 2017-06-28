@@ -58,8 +58,8 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
 
                 //Log
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', ' Sửa thời gian chỉ định từ: " + this.thoigianchidinh.ToString("yyyy-MM-dd HH:mm:ss") + "=> " + tg_chidinh + " ; thời gian sử dụng từ: " + this.thoigiansudung.ToString("yyyy-MM-dd HH:mm:ss") + " => " + tg_sudung + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlupdate_TG);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlupdate_TG);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 MessageBox.Show("Sửa thời gian chỉ định/sử dụng phiếu DV: [" + this.maubenhphamid + "] thành công", "Thông báo !");
                 this.Visible = false;
                 this.Close();

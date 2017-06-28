@@ -38,7 +38,6 @@ namespace MedicalLink.Dashboard
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             EnableControl();
         }
-
         private void EnableControl()
         {
             try
@@ -48,7 +47,6 @@ namespace MedicalLink.Dashboard
                 radioNam.Checked = false;
                 cboChonNhanh.Enabled = false;
                 cboChonNhanh.Properties.Items.Clear();
-                spinThoiGianCapNhat.Value = 0;
             }
             catch (Exception ex)
             {
@@ -236,58 +234,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        private void spinThoiGianCapNhat_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (spinThoiGianCapNhat.Value != 0)
-                {
-                    thoiGianCapNhat = Convert.ToInt64(spinThoiGianCapNhat.Value.ToString()) * 60;
-                    tickCurrentVal = thoiGianCapNhat;
-                    timerTuDongCapNhat.Start();
-                    //Lay thoi gian tu dong cap nhat = thoi gian trong 1 ngay
-                    dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-                    dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-                }
-                else
-                {
-                    lblThoiGianConLai.Text = "Không tự động cập nhật";
-                    timerTuDongCapNhat.Stop();
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-        private void timerTuDongCapNhat_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                lblThoiGianConLai.Text = "Tự động cập nhật sau " + tickCurrentVal + " giây";
-                tickCurrentVal--;
-                if (tickCurrentVal == 0)
-                {
-                    if (GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
-                    {
-                        //LayDuLieuBaoCao_DaChayDuLieu();
-                        LayDuLieuBaoCao_ChayMoi();
-                    }
-                    else
-                    {
-                        LayDuLieuBaoCao_ChayMoi();
-                    }
-                    tickCurrentVal = thoiGianCapNhat;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
@@ -310,23 +256,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        private void btnFullSize_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    if (lstDataBCBNNgoaiTru != null && lstDataBCBNNgoaiTru.Count > 0)
-            //    {
-            //        MedicalLink.Dashboard.BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize fullSize = new BCBenhNhanNgoaiTru.BCBenhNhanNgoaiTruFullSize(lstDataBCBNNgoaiTru);
-            //        fullSize.ShowDialog();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MedicalLink.Base.Logging.Warn(ex);
-            //}
-        }
-
 
     }
 }

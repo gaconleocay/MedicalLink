@@ -643,7 +643,6 @@
     <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DatabaseProcess\DangDTRaVienChuaDaTT_Tmp_Process.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
@@ -879,6 +878,7 @@
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Common.Excel\ExcelExport.cs" />
+    <Compile Include="Utilities\GridControl\Util_GridcontrolConvert.cs" />
     <Compile Include="Utilities\GUIGridView\Util_GUIGridView.cs" />
     <Compile Include="Utilities\PrintPreview\PrintPreviewDev.cs">
       <SubType>Form</SubType>
@@ -1206,6 +1206,7 @@
     <None Include="Images\excel-3-24.png" />
     <None Include="Images\excel-3-32.png" />
     <None Include="Images\add-list-16.png" />
+    <None Include="Images\question-mark-16.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />

@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCTongHopDoanhThuKhoa));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cboDoiTuong = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bbbb = new DevExpress.XtraEditors.LabelControl();
@@ -107,6 +106,8 @@
             this.bandedGridColumn27 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn28 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -118,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlTTDTKhoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewTTDTKhoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -131,9 +133,9 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.groupBox1);
             this.groupBoxFile.Controls.Add(this.labelControl2);
             this.groupBoxFile.Controls.Add(this.cboDoiTuong);
-            this.groupBoxFile.Controls.Add(this.btnFullScreen);
             this.groupBoxFile.Controls.Add(this.labelControl4);
             this.groupBoxFile.Controls.Add(this.cboTieuChi);
             this.groupBoxFile.Controls.Add(this.bbbb);
@@ -184,20 +186,6 @@
             this.cboDoiTuong.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboDoiTuong.Size = new System.Drawing.Size(180, 22);
             this.cboDoiTuong.TabIndex = 80;
-            // 
-            // btnFullScreen
-            // 
-            this.btnFullScreen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullScreen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnFullScreen.Appearance.Options.UseFont = true;
-            this.btnFullScreen.Appearance.Options.UseForeColor = true;
-            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(853, 41);
-            this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(100, 40);
-            this.btnFullScreen.TabIndex = 27;
-            this.btnFullScreen.Text = "Full screen";
-            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
             // labelControl4
             // 
@@ -1603,8 +1591,34 @@
             // 
             this.repositoryItemButton_View.AutoHeight = false;
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Xem", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnFullScreen);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox1.Location = new System.Drawing.Point(867, 17);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(126, 96);
+            this.groupBox1.TabIndex = 82;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Thêm";
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullScreen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnFullScreen.Appearance.Options.UseFont = true;
+            this.btnFullScreen.Appearance.Options.UseForeColor = true;
+            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
+            this.btnFullScreen.Location = new System.Drawing.Point(13, 24);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(100, 40);
+            this.btnFullScreen.TabIndex = 27;
+            this.btnFullScreen.Text = "Full screen";
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
             // ucBCTongHopDoanhThuKhoa
             // 
@@ -1629,6 +1643,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlTTDTKhoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewTTDTKhoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1646,7 +1661,6 @@
         private System.Windows.Forms.RadioButton radioNam;
         private System.Windows.Forms.RadioButton radioQuy;
         private System.Windows.Forms.RadioButton radioThang;
-        private DevExpress.XtraEditors.SimpleButton btnFullScreen;
         private DevExpress.XtraEditors.PanelControl panelControlData;
         private DevExpress.XtraGrid.GridControl gridControlTTDTKhoa;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridViewTTDTKhoa;
@@ -1709,5 +1723,7 @@
         private DevExpress.XtraEditors.ComboBoxEdit cboDoiTuong;
         private DevExpress.XtraEditors.LabelControl bbbb;
         private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private DevExpress.XtraEditors.SimpleButton btnFullScreen;
     }
 }

@@ -41,7 +41,7 @@ namespace MedicalLink.ChucNang
 
                     string sql_timkiem = "SELECT maubenhpham.maubenhphamid as maubenhphamid, maubenhpham.sophieu as sophieu, vienphi.vienphiid as vienphiid, vienphi.patientid as patientid, hosobenhan.hosobenhanid as hosobenhanid, hosobenhan.patientname as patientname, bhyt.bhytcode as bhytcode, tools_depatment.departmentgroupname as departmentgroupname, tools_depatment.departmentname as departmentname, maubenhpham.maubenhphamdate as maubenhphamdate, vienphi.duyet_ngayduyet_vp as vienphidate, case maubenhpham.maubenhphamgrouptype when 5 then 'Thuốc' else 'Vật tư' end as maubenhphamgrouptype, case maubenhpham.maubenhphamstatus when 1 then 'Đang yêu cầu' else 'Đã tổng hợp y lệnh' end as maubenhphamstatus FROM vienphi INNER JOIN maubenhpham ON vienphi.vienphiid=maubenhpham.vienphiid INNER JOIN tools_depatment ON maubenhpham.departmentid=tools_depatment.departmentid INNER JOIN hosobenhan ON hosobenhan.hosobenhanid=vienphi.hosobenhanid INNER JOIN bhyt ON bhyt.bhytid=vienphi.bhytid INNER JOIN medicine_store ON medicine_store.medicinestoreid=maubenhpham.medicinestoreid WHERE maubenhpham.isloaidonthuoc='0' and maubenhpham.maubenhphamstatus in (1,4) and maubenhpham.maubenhphamgrouptype in (5,6) and medicine_store.medicinestoretype<>4 and vienphi.duyet_ngayduyet_vp > '" + datetungay + "' and vienphi.duyet_ngayduyet_vp < '" + datedenngay + "' ORDER BY vienphi.duyet_ngayduyet_vp;";
 
-                    DataView dv = new DataView(condb.GetDataTable(sql_timkiem));
+                    DataView dv = new DataView(condb.GetDataTable_HIS(sql_timkiem));
                     if (dv != null && dv.Count > 0)
                     {
                         gridControlHSBA.DataSource = dv;
@@ -168,7 +168,7 @@ namespace MedicalLink.ChucNang
                 if (dateTuNgay.Text != "" && dateDenNgay.Text != "")
                 {
                     string sqlupdate = "UPDATE medicalrecord SET medicalrecordstatus ='99' WHERE medicalrecordid IN (SELECT medicalrecord.medicalrecordid FROM vienphi INNER JOIN medicalrecord ON vienphi.medicalrecordid_end=medicalrecord.medicalrecordid  INNER JOIN tools_depatment ON medicalrecord.departmentid=tools_depatment.departmentid INNER JOIN hosobenhan ON hosobenhan.hosobenhanid=vienphi.hosobenhanid INNER JOIN bhyt ON bhyt.bhytid=vienphi.bhytid  WHERE medicalrecord.medicalrecordstatus <>'99' and vienphi.duyet_ngayduyet_vp > '" + datetungay + "' and vienphi.duyet_ngayduyet_vp < '" + datedenngay + "') ;";
-                    condb.ExecuteNonQuery(sqlupdate);
+                    condb.ExecuteNonQuery_HIS(sqlupdate);
 
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Cập nhật thành công [ " + soluonghoso.ToString() + " ] hồ sơ");
                     frmthongbao.Show();

@@ -20,6 +20,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             InitializeComponent();
         }
 
+        #region Load
         private void ucSettingDatabase_Load(object sender, EventArgs e)
         {
             try
@@ -41,6 +42,11 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 this.txtDBUser.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Username"].ToString().Trim(), true);
                 this.txtDBPass.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Password"].ToString().Trim(), true);
                 this.txtDBName.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString().Trim(), true);
+                this.txtDBHost_MeL.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost_MeL"].ToString().Trim(), true);
+                this.txtDBPort_MeL.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerPort_MeL"].ToString().Trim(), true);
+                this.txtDBUser_MeL.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Username_MeL"].ToString().Trim(), true);
+                this.txtDBPass_MeL.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Password_MeL"].ToString().Trim(), true);
+                this.txtDBName_MeL.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database_MeL"].ToString().Trim(), true);
             }
             catch (Exception ex)
             {
@@ -48,33 +54,51 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
         }
 
+        #endregion
         private void btnDBKiemTra_Click(object sender, EventArgs e)
         {
             try
             {
+                //May chu HIS
                 bool boolfound = false;
-                // PostgeSQL-style connection string
                 string connstring = String.Format("Server={0};Port={1};User Id={2};Password={3};Database={4};",
                     txtDBHost.Text, txtDBPort.Text, txtDBUser.Text, txtDBPass.Text, txtDBName.Text);
-                // Making connection with Npgsql provider
                 NpgsqlConnection conn = new NpgsqlConnection(connstring);
                 conn.Open();
-                // quite complex sql statement
                 string sql = "SELECT * FROM tbuser";
-                // Tạo cầu nối giữa dataset và datasource để thực hiện công việc như đọc hay cập nhật dữ liệu
                 NpgsqlCommand command = new NpgsqlCommand(sql, conn);
                 NpgsqlDataReader dr = command.ExecuteReader();
                 if (dr.Read())
                 {
                     boolfound = true;
-                    MessageBox.Show("Kết nối đến cơ sở dữ liệu thành công!", "Thông báo");
+                    MessageBox.Show("Kết nối đến cơ sở dữ liệu HIS thành công!", "Thông báo");
                 }
                 if (boolfound == false)
                 {
-                    MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu HIS!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 dr.Close();
                 conn.Close();
+                //May chu HSBA
+                bool boolfound_MeL = false;
+                string connstring_MeL = String.Format("Server={0};Port={1};User Id={2};Password={3};Database={4};",
+                    txtDBHost_MeL.Text, txtDBPort_MeL.Text, txtDBUser_MeL.Text, txtDBPass_MeL.Text, txtDBName_MeL.Text);
+                NpgsqlConnection conn_MeL = new NpgsqlConnection(connstring_MeL);
+                conn_MeL.Open();
+                string sql_MeL = "SELECT * FROM tools_license";
+                NpgsqlCommand command_MeL = new NpgsqlCommand(sql_MeL, conn_MeL);
+                NpgsqlDataReader dr_MeL = command_MeL.ExecuteReader();
+                if (dr_MeL.Read())
+                {
+                    boolfound_MeL = true;
+                    MessageBox.Show("Kết nối đến cơ sở dữ liệu MedicalLink thành công!", "Thông báo");
+                }
+                if (boolfound_MeL == false)
+                {
+                    MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu MedicalLink!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                dr_MeL.Close();
+                conn_MeL.Close();
             }
             catch (Exception ex)
             {
@@ -93,10 +117,14 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 _config.AppSettings.Settings["Username"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBUser.Text.Trim(), true);
                 _config.AppSettings.Settings["Password"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBPass.Text.Trim(), true);
                 _config.AppSettings.Settings["Database"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBName.Text.Trim(), true);
+                _config.AppSettings.Settings["ServerHost_MeL"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBHost_MeL.Text.Trim(), true);
+                _config.AppSettings.Settings["ServerPort_MeL"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBPort_MeL.Text.Trim(), true);
+                _config.AppSettings.Settings["Username_MeL"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBUser_MeL.Text.Trim(), true);
+                _config.AppSettings.Settings["Password_MeL"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBPass_MeL.Text.Trim(), true);
+                _config.AppSettings.Settings["Database_MeL"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBName_MeL.Text.Trim(), true);
                 _config.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("appSettings");
                 MessageBox.Show("Lưu dữ liệu thành công", "Thông báo");
-                //this.Visible = false;
             }
             catch (Exception ex)
             {

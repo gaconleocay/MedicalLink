@@ -157,7 +157,8 @@ namespace MedicalLink.Utilities.Common.Excel
                                 default:
                                     break;
                             }
-                            MessageBox.Show("Export dữ liệu thành công!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            frmthongbao.Show();
                         }
                     }
                 }
@@ -169,7 +170,8 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             else
             {
-                MessageBox.Show("Không có dữ liệu!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                frmthongbao.Show();
             }
         }
 

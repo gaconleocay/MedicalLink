@@ -101,7 +101,7 @@ namespace MedicalLink.ChucNang
                     sqlquerry = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.maubenhphamid as maubenhpham_ma, case serviceprice.maubenhphamphieutype when 0 then '' else 'Phiếu trả' end as loaiphieu,serviceprice.servicepricecode as dichvu_ma, serviceprice.servicepricename as dichvu_ten, serviceprice.soluong as soluong,serviceprice.loaidoituong as loaihinhthanhtoan,serviceprice.servicepricemoney as gia_yc, serviceprice.servicepricemoney_nhandan as gia_vp, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.servicepricedate as thoigianchidinh, vienphi.patientid as mabn,vienphi.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as khoachidinh, department.departmentname as phongchidinh,tools_depatment.departmentgroupname as khoacuoicung,tools_depatment.departmentname as phongcuoicung,vienphi.vienphidate as thoigianvaovien, vienphi.vienphidate_ravien as thoigianravien, vienphi.duyet_ngayduyet_vp as thoigianduyetvp, vienphi.duyet_ngayduyet as thoigianduyetbh, case vienphi.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai FROM serviceprice, vienphi, hosobenhan, departmentgroup, department, tools_depatment WHERE serviceprice.vienphiid=vienphi.vienphiid and vienphi.hosobenhanid=hosobenhan.hosobenhanid and serviceprice.departmentgroupid=departmentgroup.departmentgroupid and serviceprice.departmentid=department.departmentid and vienphi.departmentgroupid=tools_depatment.departmentgroupid and vienphi.departmentid=tools_depatment.departmentid and vienphi.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ORDER BY servicepriceid;";
                 }
 
-                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
                 gridControlSuaPhoiThanhToan.DataSource = dv;
 
                 if (gridViewSuaPhoiThanhToan.RowCount == 0)
@@ -211,8 +211,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='5' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 5 (Hao phí giường, công khám)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Hao phí giường, công khám thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form
@@ -240,8 +240,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='0' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 0 (BHYT)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang BHYT thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form
@@ -269,8 +269,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='4' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 4 (BHYT + Yêu cầu)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang BHYT + Yêu cầu thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form
@@ -298,8 +298,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='1' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 1 (Viện phí)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Viện phí thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form
@@ -327,8 +327,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='3' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 3 (Yêu cầu)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Yêu cầu thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form
@@ -356,8 +356,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='2' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 2 (Đi kèm PTTT)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Đi kèm PTTT thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form
@@ -385,8 +385,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='7' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 7 (Hao phí PTTT)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Hao phí PTTT thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form
@@ -414,8 +414,8 @@ namespace MedicalLink.ChucNang
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET loaidoituong='9' WHERE servicepriceid=" + servicepriceid + ";";
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển loại hình thanh toán của servicepriceid=" + servicepriceid + " từ " + loaitt_old + " sang 9 (Hao phí khác)','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                condb.ExecuteNonQuery(sqlxecute);
-                condb.ExecuteNonQuery(sqlinsert_log);
+                condb.ExecuteNonQuery_HIS(sqlxecute);
+                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển loại hình thanh toán sang Hao phí khác thành công!");
                 frmthongbao.Show();
                 // load lại dữ liệu của form

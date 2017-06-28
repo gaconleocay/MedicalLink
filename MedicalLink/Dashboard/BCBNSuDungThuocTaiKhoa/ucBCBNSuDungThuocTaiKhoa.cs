@@ -8,7 +8,7 @@ using System.Linq;
 using DevExpress.XtraGrid.Views.Grid;
 using System.Drawing;
 using DevExpress.Utils.Menu;
-
+using System.IO;
 
 namespace MedicalLink.Dashboard
 {
@@ -84,7 +84,7 @@ namespace MedicalLink.Dashboard
             try
             {
                 string sql_getmeref = "SELECT mef.medicinerefid, mef.medicinerefid_org, mef.medicinecode, mef.medicinename, mef.giaban FROM medicine_ref mef WHERE mef.isremove=0;";
-                DataView dataStore = new DataView(condb.GetDataTable(sql_getmeref));
+                DataView dataStore = new DataView(condb.GetDataTable_HIS(sql_getmeref));
                 lstMedicineStore = new List<ClassCommon.classMedicineRef>();
 
                 if (dataStore != null && dataStore.Count > 0)
@@ -389,7 +389,65 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (bandedGridViewDataQLTTKhoa.RowCount > 0)
+                {
+                    try
+                    {
+                        using (SaveFileDialog saveDialog = new SaveFileDialog())
+                        {
+                            saveDialog.Filter = "Excel 2003 (.xls)|*.xls|Excel 2010 (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                            if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                            {
+                                string exportFilePath = saveDialog.FileName;
+                                string fileExtenstion = new FileInfo(exportFilePath).Extension;
 
-
+                                switch (fileExtenstion)
+                                {
+                                    case ".xls":
+                                        bandedGridViewDataQLTTKhoa.ExportToXls(exportFilePath);
+                                        break;
+                                    case ".xlsx":
+                                        bandedGridViewDataQLTTKhoa.ExportToXlsx(exportFilePath);
+                                        break;
+                                    case ".rtf":
+                                        bandedGridViewDataQLTTKhoa.ExportToRtf(exportFilePath);
+                                        break;
+                                    case ".pdf":
+                                        bandedGridViewDataQLTTKhoa.ExportToPdf(exportFilePath);
+                                        break;
+                                    case ".html":
+                                        bandedGridViewDataQLTTKhoa.ExportToHtml(exportFilePath);
+                                        break;
+                                    case ".mht":
+                                        bandedGridViewDataQLTTKhoa.ExportToMht(exportFilePath);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Có lỗi xảy ra", "Thông báo !");
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
     }
 }

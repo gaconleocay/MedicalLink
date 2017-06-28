@@ -42,6 +42,12 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboNoiChuyenDen = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtNoiChuyenDen = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.cboXa = new DevExpress.XtraEditors.LookUpEdit();
             this.cboHuyen = new DevExpress.XtraEditors.LookUpEdit();
             this.cboTinh = new DevExpress.XtraEditors.LookUpEdit();
@@ -73,12 +79,6 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtNoiChuyenDen = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
-            this.cboNoiChuyenDen = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl2)).BeginInit();
@@ -91,6 +91,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtNoiDKKCBBD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboNoiChuyenDen.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoiChuyenDen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboXa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboHuyen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTinh.Properties)).BeginInit();
@@ -107,9 +110,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNoiChuyenDen.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboNoiChuyenDen.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -311,6 +311,88 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin về bệnh nhân";
+            // 
+            // cboNoiChuyenDen
+            // 
+            this.cboNoiChuyenDen.Location = new System.Drawing.Point(187, 215);
+            this.cboNoiChuyenDen.Name = "cboNoiChuyenDen";
+            this.cboNoiChuyenDen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboNoiChuyenDen.Properties.Appearance.Options.UseFont = true;
+            this.cboNoiChuyenDen.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            this.cboNoiChuyenDen.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboNoiChuyenDen.Properties.ImmediatePopup = true;
+            this.cboNoiChuyenDen.Properties.NullText = "";
+            this.cboNoiChuyenDen.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cboNoiChuyenDen.Properties.PopupFormMinSize = new System.Drawing.Size(700, 500);
+            this.cboNoiChuyenDen.Properties.PopupFormSize = new System.Drawing.Size(700, 500);
+            this.cboNoiChuyenDen.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboNoiChuyenDen.Properties.View = this.gridLookUpEdit1View;
+            this.cboNoiChuyenDen.Size = new System.Drawing.Size(740, 22);
+            this.cboNoiChuyenDen.TabIndex = 43;
+            this.cboNoiChuyenDen.EditValueChanged += new System.EventHandler(this.cboNoiChuyenDen_EditValueChanged);
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.gridLookUpEdit1View.OptionsView.ShowIndicator = false;
+            this.gridLookUpEdit1View.RowHeight = 25;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn1.Caption = "benhviencode";
+            this.gridColumn1.FieldName = "benhviencode";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.OptionsColumn.ShowCaption = false;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 183;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn2.Caption = "benhvienname";
+            this.gridColumn2.FieldName = "benhvienname";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.ShowCaption = false;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 969;
+            // 
+            // txtNoiChuyenDen
+            // 
+            this.txtNoiChuyenDen.Location = new System.Drawing.Point(108, 215);
+            this.txtNoiChuyenDen.Name = "txtNoiChuyenDen";
+            this.txtNoiChuyenDen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoiChuyenDen.Properties.Appearance.Options.UseFont = true;
+            this.txtNoiChuyenDen.Size = new System.Drawing.Size(78, 22);
+            this.txtNoiChuyenDen.TabIndex = 42;
+            this.txtNoiChuyenDen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoiChuyenDen_KeyDown);
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl17.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl17.Location = new System.Drawing.Point(10, 218);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(92, 16);
+            this.labelControl17.TabIndex = 41;
+            this.labelControl17.Text = "Nơi chuyển đến:";
             // 
             // cboXa
             // 
@@ -704,83 +786,6 @@
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // txtNoiChuyenDen
-            // 
-            this.txtNoiChuyenDen.Location = new System.Drawing.Point(108, 215);
-            this.txtNoiChuyenDen.Name = "txtNoiChuyenDen";
-            this.txtNoiChuyenDen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNoiChuyenDen.Properties.Appearance.Options.UseFont = true;
-            this.txtNoiChuyenDen.Size = new System.Drawing.Size(78, 22);
-            this.txtNoiChuyenDen.TabIndex = 42;
-            this.txtNoiChuyenDen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNoiChuyenDen_KeyDown);
-            // 
-            // labelControl17
-            // 
-            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl17.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl17.Location = new System.Drawing.Point(10, 218);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(92, 16);
-            this.labelControl17.TabIndex = 41;
-            this.labelControl17.Text = "Nơi chuyển đến:";
-            // 
-            // cboNoiChuyenDen
-            // 
-            this.cboNoiChuyenDen.Location = new System.Drawing.Point(187, 215);
-            this.cboNoiChuyenDen.Name = "cboNoiChuyenDen";
-            this.cboNoiChuyenDen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.cboNoiChuyenDen.Properties.Appearance.Options.UseFont = true;
-            this.cboNoiChuyenDen.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboNoiChuyenDen.Properties.ImmediatePopup = true;
-            this.cboNoiChuyenDen.Properties.NullText = "";
-            this.cboNoiChuyenDen.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.cboNoiChuyenDen.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.cboNoiChuyenDen.Properties.View = this.gridLookUpEdit1View;
-            this.cboNoiChuyenDen.Size = new System.Drawing.Size(421, 22);
-            this.cboNoiChuyenDen.TabIndex = 43;
-            this.cboNoiChuyenDen.EditValueChanged += new System.EventHandler(this.cboNoiChuyenDen_EditValueChanged);
-            // 
-            // gridLookUpEdit1View
-            // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn1.AppearanceCell.Options.UseFont = true;
-            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn1.Caption = "benhviencode";
-            this.gridColumn1.FieldName = "benhviencode";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.OptionsColumn.ShowCaption = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 183;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn2.AppearanceCell.Options.UseFont = true;
-            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn2.Caption = "benhvienname";
-            this.gridColumn2.FieldName = "benhvienname";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.OptionsColumn.ShowCaption = false;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 969;
-            // 
             // SuaThongTin_ThucHien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -806,6 +811,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboNoiChuyenDen.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNoiChuyenDen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboXa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboHuyen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTinh.Properties)).EndInit();
@@ -822,9 +830,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNoiChuyenDen.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboNoiChuyenDen.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
 
         }

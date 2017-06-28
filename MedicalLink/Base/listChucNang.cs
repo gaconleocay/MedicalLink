@@ -70,6 +70,17 @@ namespace MedicalLink.Base
                 SYS_06.permissionnote = "Danh mục dùng chung";
                 lstresult.Add(SYS_06);
 
+                ClassCommon.classPermission SYS_07 = new ClassCommon.classPermission();
+                SYS_07.permissioncheck = false;
+                SYS_07.permissioncode = "SYS_07";
+                SYS_07.permissionname = "Danh mục cơ sở khám chữa bệnh";
+                SYS_07.permissiontype = 1;
+                SYS_07.permissionnote = "Danh mục cơ sở khám chữa bệnh";
+                lstresult.Add(SYS_07);
+
+
+
+
                 //Tools
                 ClassCommon.classPermission TOOL_01 = new ClassCommon.classPermission();
                 TOOL_01.permissioncheck = false;

@@ -28,18 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBaoCaoCanLamSang));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblThoiGianConLai = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.spinThoiGianCapNhat = new DevExpress.XtraEditors.SpinEdit();
-            this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
-            this.bbbb = new DevExpress.XtraEditors.LabelControl();
-            this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
             this.radioNam = new System.Windows.Forms.RadioButton();
             this.radioQuy = new System.Windows.Forms.RadioButton();
             this.radioThang = new System.Windows.Forms.RadioButton();
@@ -57,11 +47,8 @@
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.timerTuDongCapNhat = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinThoiGianCapNhat.Properties)).BeginInit();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -72,99 +59,15 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.groupBox1);
             this.panelControl1.Controls.Add(this.groupBoxFile);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(911, 120);
+            this.panelControl1.Size = new System.Drawing.Size(911, 85);
             this.panelControl1.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblThoiGianConLai);
-            this.groupBox1.Controls.Add(this.labelControl4);
-            this.groupBox1.Controls.Add(this.labelControl2);
-            this.groupBox1.Controls.Add(this.spinThoiGianCapNhat);
-            this.groupBox1.Controls.Add(this.btnFullScreen);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(633, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 116);
-            this.groupBox1.TabIndex = 27;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thiết lập";
-            // 
-            // lblThoiGianConLai
-            // 
-            this.lblThoiGianConLai.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThoiGianConLai.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.lblThoiGianConLai.Location = new System.Drawing.Point(22, 60);
-            this.lblThoiGianConLai.Name = "lblThoiGianConLai";
-            this.lblThoiGianConLai.Size = new System.Drawing.Size(136, 14);
-            this.lblThoiGianConLai.TabIndex = 31;
-            this.lblThoiGianConLai.Text = "Không tự động cập nhật";
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(238, 28);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(26, 14);
-            this.labelControl4.TabIndex = 30;
-            this.labelControl4.Text = "phút";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(22, 28);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(122, 14);
-            this.labelControl2.TabIndex = 29;
-            this.labelControl2.Text = "Tự động cập nhật sau";
-            // 
-            // spinThoiGianCapNhat
-            // 
-            this.spinThoiGianCapNhat.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinThoiGianCapNhat.Location = new System.Drawing.Point(150, 25);
-            this.spinThoiGianCapNhat.Name = "spinThoiGianCapNhat";
-            this.spinThoiGianCapNhat.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinThoiGianCapNhat.Properties.Appearance.Options.UseFont = true;
-            this.spinThoiGianCapNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinThoiGianCapNhat.Properties.MaxValue = new decimal(new int[] {
-            -727379969,
-            232,
-            0,
-            0});
-            this.spinThoiGianCapNhat.Size = new System.Drawing.Size(83, 22);
-            this.spinThoiGianCapNhat.TabIndex = 28;
-            this.spinThoiGianCapNhat.EditValueChanged += new System.EventHandler(this.spinThoiGianCapNhat_EditValueChanged);
-            // 
-            // btnFullScreen
-            // 
-            this.btnFullScreen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullScreen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnFullScreen.Appearance.Options.UseFont = true;
-            this.btnFullScreen.Appearance.Options.UseForeColor = true;
-            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(138, 85);
-            this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(100, 25);
-            this.btnFullScreen.TabIndex = 27;
-            this.btnFullScreen.Text = "Full screen";
-            this.btnFullScreen.Visible = false;
-            this.btnFullScreen.Click += new System.EventHandler(this.btnFullSize_Click);
             // 
             // groupBoxFile
             // 
-            this.groupBoxFile.Controls.Add(this.bbbb);
-            this.groupBoxFile.Controls.Add(this.lblThoiGianLayBaoCao);
             this.groupBoxFile.Controls.Add(this.radioNam);
             this.groupBoxFile.Controls.Add(this.radioQuy);
             this.groupBoxFile.Controls.Add(this.radioThang);
@@ -178,30 +81,10 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(907, 116);
+            this.groupBoxFile.Size = new System.Drawing.Size(907, 81);
             this.groupBoxFile.TabIndex = 11;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
-            // 
-            // bbbb
-            // 
-            this.bbbb.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bbbb.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.bbbb.Location = new System.Drawing.Point(61, 86);
-            this.bbbb.Name = "bbbb";
-            this.bbbb.Size = new System.Drawing.Size(179, 16);
-            this.bbbb.TabIndex = 81;
-            this.bbbb.Text = "Thời gian lấy dữ liệu cuối cùng:";
-            // 
-            // lblThoiGianLayBaoCao
-            // 
-            this.lblThoiGianLayBaoCao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThoiGianLayBaoCao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(246, 86);
-            this.lblThoiGianLayBaoCao.Name = "lblThoiGianLayBaoCao";
-            this.lblThoiGianLayBaoCao.Size = new System.Drawing.Size(122, 16);
-            this.lblThoiGianLayBaoCao.TabIndex = 82;
-            this.lblThoiGianLayBaoCao.Text = "00:00:00 01/01/0001";
             // 
             // radioNam
             // 
@@ -308,7 +191,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnTimKiem.Location = new System.Drawing.Point(473, 34);
+            this.btnTimKiem.Location = new System.Drawing.Point(473, 27);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 72;
@@ -319,9 +202,9 @@
             // 
             this.panelControl2.Controls.Add(this.gridControlBCCLS);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 120);
+            this.panelControl2.Location = new System.Drawing.Point(0, 85);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(911, 493);
+            this.panelControl2.Size = new System.Drawing.Size(911, 528);
             this.panelControl2.TabIndex = 1;
             // 
             // gridControlBCCLS
@@ -330,7 +213,7 @@
             this.gridControlBCCLS.Location = new System.Drawing.Point(2, 2);
             this.gridControlBCCLS.MainView = this.gridViewBCCLS;
             this.gridControlBCCLS.Name = "gridControlBCCLS";
-            this.gridControlBCCLS.Size = new System.Drawing.Size(907, 489);
+            this.gridControlBCCLS.Size = new System.Drawing.Size(907, 524);
             this.gridControlBCCLS.TabIndex = 0;
             this.gridControlBCCLS.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewBCCLS});
@@ -479,11 +362,6 @@
             this.gridColumn5.VisibleIndex = 4;
             this.gridColumn5.Width = 164;
             // 
-            // timerTuDongCapNhat
-            // 
-            this.timerTuDongCapNhat.Interval = 1000;
-            this.timerTuDongCapNhat.Tick += new System.EventHandler(this.timerTuDongCapNhat_Tick);
-            // 
             // ucBaoCaoCanLamSang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,9 +373,6 @@
             this.Load += new System.EventHandler(this.ucBaoCaoCanLamSang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinThoiGianCapNhat.Properties)).EndInit();
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
@@ -514,8 +389,6 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.GroupBox groupBoxFile;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.SimpleButton btnFullScreen;
         private DevExpress.XtraGrid.GridControl gridControlBCCLS;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewBCCLS;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -523,9 +396,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private System.Windows.Forms.Timer timerTuDongCapNhat;
-        private DevExpress.XtraEditors.LabelControl bbbb;
-        private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
         private System.Windows.Forms.RadioButton radioNam;
         private System.Windows.Forms.RadioButton radioQuy;
         private System.Windows.Forms.RadioButton radioThang;
@@ -535,9 +405,5 @@
         private System.Windows.Forms.DateTimePicker dateTuNgay;
         private DevExpress.XtraEditors.ComboBoxEdit cboChonNhanh;
         private DevExpress.XtraEditors.SimpleButton btnTimKiem;
-        private DevExpress.XtraEditors.LabelControl lblThoiGianConLai;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SpinEdit spinThoiGianCapNhat;
     }
 }

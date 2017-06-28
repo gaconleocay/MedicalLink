@@ -143,6 +143,26 @@ namespace MedicalLink.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ok_161 {
+            get {
+                object obj = ResourceManager.GetObject("ok-161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap question_mark_16 {
+            get {
+                object obj = ResourceManager.GetObject("question-mark-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap recurring_appointment_16 {
             get {
                 object obj = ResourceManager.GetObject("recurring-appointment-16", resourceCulture);

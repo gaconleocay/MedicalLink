@@ -72,14 +72,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT MedicineRefID, MedicineCode FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update tên thuốc
                                         string sqlupdatetenthuoc = "UPDATE medicine_ref SET MedicineName = '" + gridViewThuoc.GetRowCellValue(i, "TENTHUOC") + "', MedicineName_BYT = '" + gridViewThuoc.GetRowCellValue(i, "TENTHUOC") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatetenthuoc);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatetenthuoc);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -91,7 +91,7 @@ namespace MedicalLink.ChucNang
 
                             //lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục tên thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã Update Tên thuốc
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Tên thuốc\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -114,14 +114,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update mã DM BYT (mã User)
                                         string sqlupdatemauser = "UPDATE medicine_ref SET MedicineCodeUser = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC_USER") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatemauser);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatemauser);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -132,7 +132,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục Mã DM BYT (mã user) thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã Update mã DM BYT (mã User)
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Mã DM BYT (mã user)\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -155,14 +155,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update mã STT Thầu BHYT
                                         string sqlupdatesttthau = "UPDATE medicine_ref SET STT_DauThau = '" + gridViewThuoc.GetRowCellValue(i, "STT_THAU") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatesttthau);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatesttthau);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -173,7 +173,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục mã STT thầu BHYT thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã Update mã STT Thầu BHYT
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Mã STT thầu BHYT\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -196,14 +196,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update Năm thầu
                                         string sqlupdatenamthau = "UPDATE medicine_ref SET NamCungUng = '" + gridViewThuoc.GetRowCellValue(i, "NAMCUNGUNG") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatenamthau);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatenamthau);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -214,7 +214,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục năm thầu thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã Update Năm thầu
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Năm thầu\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -237,14 +237,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update Đánh STT ngày SD
                                         string sqlupdatesttngaysd = "UPDATE medicine_ref SET DanhSTTDungThuoc = '" + gridViewThuoc.GetRowCellValue(i, "DANH_STT_SD") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatesttngaysd);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatesttngaysd);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -255,7 +255,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục Đánh STT ngày dùng thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã Update Đánh STT ngày SD
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Đánh STT ngày dùng\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -278,14 +278,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update mã đường dùng
                                         string sqlupdateduongdung = "UPDATE medicine_ref SET DangDung = '" + gridViewThuoc.GetRowCellValue(i, "DUONGDUNG") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdateduongdung);
+                                        condb.ExecuteNonQuery_HIS(sqlupdateduongdung);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -296,7 +296,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục đường dùng thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã đường dùng
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Đường dùng\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -319,14 +319,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update mã đóng gói
                                         string sqlupdatedonggoi = "UPDATE medicine_ref SET DongGoi = '" + gridViewThuoc.GetRowCellValue(i, "DONGGOI") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatedonggoi);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatedonggoi);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -337,7 +337,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục đóng gói thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã update đóng gói
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Đóng gói\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -360,14 +360,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update số đăng ký
                                         string sqlupdatesdk = "UPDATE medicine_ref SET SoDangKy = '" + gridViewThuoc.GetRowCellValue(i, "SODANGKY") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatesdk);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatesdk);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -378,7 +378,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục số đăng ký thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã update số đăng ký
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Số đăng ký\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -401,14 +401,14 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT * FROM medicine_ref WHERE medicinecode= '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0)
                                 {
                                     try
                                     {
                                         // Update số lô
                                         string sqlupdatesolo = "UPDATE medicine_ref SET SoLo = '" + gridViewThuoc.GetRowCellValue(i, "SOLO") + "' WHERE medicinecode = '" + gridViewThuoc.GetRowCellValue(i, "MATHUOC") + "' ;";
-                                        condb.ExecuteNonQuery(sqlupdatesolo);
+                                        condb.ExecuteNonQuery_HIS(sqlupdatesolo);
                                         count_thuoc += dv_kt.Count;
                                     }
                                     catch (Exception)
@@ -419,7 +419,7 @@ namespace MedicalLink.ChucNang
                             }
                             // Lưu lại log
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_thuoc + " danh mục số lô thuốc thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                            condb.ExecuteNonQuery(sqlinsert_log);
+                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                             // Thông báo đã update số lô
                             MessageBox.Show("Update " + count_thuoc + " danh mục \"Số lô\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

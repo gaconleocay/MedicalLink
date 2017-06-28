@@ -59,7 +59,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             try
             {
                 string laythongtin = "select hsba.patientcode, hsba.patientname, TO_CHAR(hsba.hosobenhandate, 'HH:mm yyyy-MM-dd') as hosobenhandate, to_char(hsba.birthday, 'yyyy') as namsinh, hsba.nghenghiepname, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, hsba.chandoanravien_code, hsba.chandoanravien, hsba.chandoanravien_kemtheo_code, hsba.chandoanravien_kemtheo from hosobenhan hsba where hsba.hosobenhanid=" + this.currentThongtinPTTT.hosobenhanid + ";";
-                DataTable dataThongTin = condb.GetDataTable(laythongtin);
+                DataTable dataThongTin = condb.GetDataTable_HIS(laythongtin);
                 if (dataThongTin != null && dataThongTin.Rows.Count > 0)
                 {
                     txtVaoVienLuc.Text = dataThongTin.Rows[0]["hosobenhandate"].ToString();
@@ -86,7 +86,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             try
             {
                 string getphuongphap = "select pttt_phuongphapdbid, pttt_phuongphapcode, pttt_phuongphapname from pttt_phuongphap order by pttt_phuongphapname;";
-                DataTable dataPhuongPhap = condb.GetDataTable(getphuongphap);
+                DataTable dataPhuongPhap = condb.GetDataTable_HIS(getphuongphap);
                 cboPhuongPhapPTTT.Properties.DataSource = dataPhuongPhap;
                 cboPhuongPhapPTTT.Properties.DisplayMember = "pttt_phuongphapname";
                 cboPhuongPhapPTTT.Properties.ValueMember = "pttt_phuongphapcode";
@@ -156,7 +156,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             try
             {
                 string getnguoithuchien = "select nv.userhisid, nv.usercode, nv.username, (nv.usercode || ' - ' || nv.username) as usercodename from tools_tblnhanvien nv inner join (select usercode, departmentid from tbldepartment) ude on ude.usercode=nv.usercode inner join (select departmentid from department where departmentgroupid=" + this.currentThongtinPTTT.departmentgroupid + ") de on de.departmentid=ude.departmentid group by nv.userhisid, nv.usercode, nv.username order by nv.username; ";
-                DataTable dataNguoiThucHien = condb.GetDataTable(getnguoithuchien);
+                DataTable dataNguoiThucHien = condb.GetDataTable_HIS(getnguoithuchien);
 
                 cboMoChinh.Properties.DataSource = dataNguoiThucHien;
                 cboMoChinh.Properties.DisplayMember = "usercodename";
@@ -192,7 +192,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             try
             {
                 string kiemtrathuchien = "select thuchienclsid, medicalrecordid, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, mota, pttt_hangid, phuongphappttt_code from thuchiencls where servicepriceid=" + this.currentThongtinPTTT.servicepriceid + ";";
-                DataTable dataThucHIenCLS = condb.GetDataTable(kiemtrathuchien);
+                DataTable dataThucHIenCLS = condb.GetDataTable_HIS(kiemtrathuchien);
                 if (dataThucHIenCLS != null && dataThucHIenCLS.Rows.Count > 0)
                 {
                     this.currentthuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(dataThucHIenCLS.Rows[0]["thuchienclsid"].ToString());
@@ -235,7 +235,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 {
                     luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + cboMoChinh.EditValue + "',  bacsigayme = '" + cboGayMe.EditValue + "', phumo1 = '" + cboPhu1.EditValue + "', phumo2 = '" + cboPhu2.EditValue + "', phumo3 = '" + cboGiupViec1.EditValue + "', phumo4 = '" + cboGiupViec2.EditValue + "', mota = '" + txtMoTa.Text + "', pttt_hangid = '" + cboLoaiPTTT.EditValue + "', phuongphappttt_code = '" + cboPhuongPhapPTTT.EditValue + "', phuongphappttt = '" + cboPhuongPhapPTTT.Text + "' WHERE thuchienclsid = " + this.currentthuchienclsid + "; ";
                 }
-                if (condb.ExecuteNonQuery(luulaithuchien))
+                if (condb.ExecuteNonQuery_HIS(luulaithuchien))
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THAO_TAC_THANH_CONG);
                     frmthongbao.Show();

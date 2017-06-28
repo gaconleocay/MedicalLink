@@ -33,7 +33,7 @@
             this.btnOptionAdd = new DevExpress.XtraEditors.SimpleButton();
             this.txtbenhviencode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnOptionDefault = new DevExpress.XtraEditors.SimpleButton();
+            this.btnImportExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOptionOK = new DevExpress.XtraEditors.SimpleButton();
             this.lblUsername = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -69,7 +69,7 @@
             this.panelControlThongTinNV.Controls.Add(this.btnOptionAdd);
             this.panelControlThongTinNV.Controls.Add(this.txtbenhviencode);
             this.panelControlThongTinNV.Controls.Add(this.labelControl2);
-            this.panelControlThongTinNV.Controls.Add(this.btnOptionDefault);
+            this.panelControlThongTinNV.Controls.Add(this.btnImportExcel);
             this.panelControlThongTinNV.Controls.Add(this.btnOptionOK);
             this.panelControlThongTinNV.Controls.Add(this.lblUsername);
             this.panelControlThongTinNV.Controls.Add(this.labelControl1);
@@ -116,19 +116,19 @@
             this.labelControl2.TabIndex = 11;
             this.labelControl2.Text = "Mã bệnh viện";
             // 
-            // btnOptionDefault
+            // btnImportExcel
             // 
-            this.btnOptionDefault.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionDefault.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnOptionDefault.Appearance.Options.UseFont = true;
-            this.btnOptionDefault.Appearance.Options.UseForeColor = true;
-            this.btnOptionDefault.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.btnOptionDefault.Location = new System.Drawing.Point(249, 495);
-            this.btnOptionDefault.Name = "btnOptionDefault";
-            this.btnOptionDefault.Size = new System.Drawing.Size(145, 30);
-            this.btnOptionDefault.TabIndex = 8;
-            this.btnOptionDefault.Text = "Nhập từ file Excel";
-            this.btnOptionDefault.Click += new System.EventHandler(this.btnOptionDefault_Click);
+            this.btnImportExcel.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportExcel.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnImportExcel.Appearance.Options.UseFont = true;
+            this.btnImportExcel.Appearance.Options.UseForeColor = true;
+            this.btnImportExcel.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.btnImportExcel.Location = new System.Drawing.Point(249, 495);
+            this.btnImportExcel.Name = "btnImportExcel";
+            this.btnImportExcel.Size = new System.Drawing.Size(145, 30);
+            this.btnImportExcel.TabIndex = 8;
+            this.btnImportExcel.Text = "Nhập từ file Excel";
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
             // 
             // btnOptionOK
             // 
@@ -241,7 +241,6 @@
             this.gridViewDSBenhVien.OptionsView.ShowGroupPanel = false;
             this.gridViewDSBenhVien.OptionsView.ShowIndicator = false;
             this.gridViewDSBenhVien.RowHeight = 25;
-            this.gridViewDSBenhVien.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDSOption_CustomDrawCell);
             this.gridViewDSBenhVien.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSOption_RowCellStyle);
             this.gridViewDSBenhVien.Click += new System.EventHandler(this.gridViewDSOption_Click);
             // 
@@ -413,7 +412,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn tennv;
         protected internal DevExpress.XtraGrid.Columns.GridColumn stt;
         private DevExpress.XtraEditors.SimpleButton btnOptionOK;
-        private DevExpress.XtraEditors.SimpleButton btnOptionDefault;
+        private DevExpress.XtraEditors.SimpleButton btnImportExcel;
         internal System.Windows.Forms.OpenFileDialog openFileDialogSelect;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.LabelControl labelControl1;

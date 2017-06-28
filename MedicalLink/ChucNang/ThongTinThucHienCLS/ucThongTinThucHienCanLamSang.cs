@@ -102,7 +102,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 string thoiGianDen = DateTime.ParseExact(dtThoiGianDen.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string getDSMauBenPham = "select mbp.hosobenhanid, mbp.maubenhphamid, mbp.maubenhphamstatus, mbp.sothutunumber, mbp.sophieu as maubenhphamcode, mbp.patientpid as patientcode, mbp.patientid, mbp.vienphiid, hsba.patientname, '' as khan, degp.departmentgroupname, de.departmentname, mbp.maubenhphamdate, ncd.username as bacsichidinh, mbp.chandoan, (case when mbp.maubenhphamdate_thuchien<>'0001-01-01 00:00:00' then mbp.maubenhphamdate_thuchien end) as thoigiannhanphieu, (case when mbp.maubenhphamfinishdate<>'0001-01-01 00:00:00' then mbp.maubenhphamfinishdate end) as thoigiantraphieu from maubenhpham mbp inner join (select hosobenhanid, patientname from hosobenhan) hsba on hsba.hosobenhanid=mbp.hosobenhanid left join (select departmentgroupid, departmentgroupname from departmentgroup) degp on degp.departmentgroupid=mbp.departmentgroupid left join (select departmentid, departmentname from department where departmenttype in (2,3,9,7)) de on de.departmentid=mbp.departmentid left join tools_tblnhanvien ncd on ncd.userhisid=mbp.userid where mbp.maubenhphamgrouptype=1 and " + maubenhphamstatus + " and mbp.maubenhphamdate between '" + thoiGianTu + "' and '" + thoiGianDen + "' and mbp.departmentid_des = " + cboPhongThucHien.EditValue.ToString() + " order by mbp.maubenhphamstatus, mbp.maubenhphamdate; ";
 
-                DataTable dataMauBenhPham = condb.GetDataTable(getDSMauBenPham);
+                DataTable dataMauBenhPham = condb.GetDataTable_HIS(getDSMauBenPham);
                 gridControlDS_PhieuDichVu.DataSource = dataMauBenhPham;
             }
             catch (Exception ex)
@@ -155,7 +155,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                     this.chandoancls_name= gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "chandoan").ToString();
                     this.hosobenhanid = Utilities.Util_TypeConvertParse.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "hosobenhanid").ToString());
                     string sqlGetDichVuChiTiet = "select servicepriceid, medicalrecordid, servicestatus, maubenhphamid, servicepricecode, servicename, servicevalue, serviceremark1, serviceremark2 from service se inner join (select servicecode from service_ref where servicetype=0) sef on sef.servicecode=se.servicecode where se.maubenhphamid=" + maubenhphamid + "; ";
-                    DataTable dataDVChiTiet = condb.GetDataTable(sqlGetDichVuChiTiet);
+                    DataTable dataDVChiTiet = condb.GetDataTable_HIS(sqlGetDichVuChiTiet);
                     gridControlChiTiet.DataSource = dataDVChiTiet;
                 }
             }

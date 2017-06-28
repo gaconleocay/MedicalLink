@@ -307,17 +307,17 @@ namespace MedicalLink.ChucNang
                     {
                         //Chay lenh SQL update"
                         string sqlkiemtra = "select medicinestorerefid, soluongtonkho, soluongkhadung from medicine_store_ref where soluongkhadung>soluongtonkho;";
-                        DataView dv_kiemtra = new DataView(condb.GetDataTable(sqlkiemtra));
+                        DataView dv_kiemtra = new DataView(condb.GetDataTable_HIS(sqlkiemtra));
                         //gridControlSuaThoiGianRaVien.DataSource = dv;
                         if (dv_kiemtra.Count > 0)
                         {
                             // Luu lai vao DB
                             String dthientai = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                            string sql_insertlogupdate = "INSERT INTO tools_tbllog_updatekhadung(tgcapnhat, khothuoc_id, kho_id, kho_ma, kho_ten, thuoc_id, thuoc_ma, thuoc_ten, thuoc_dvt, slkhadung, sltonkho, gianhap, giaban, loguser) SELECT '" + dthientai + "' as tgcapnhat, medicine_store_ref.medicinestorerefid as khothuoc_id, medicine_store_ref.medicinestoreid as kho_id, medicine_store.medicinestorecode as kho_ma, medicine_store.medicinestorename as kho_ten, medicine_store_ref.medicinerefid as thuoc_id, medicine_ref.medicinecode as thuoc_ma, medicine_ref.medicinename as thuoc_ten, medicine_ref.donvitinh as thuoc_dvt, medicine_store_ref.soluongkhadung as slkhadung, medicine_store_ref.soluongtonkho as sltonkho, medicine_ref.gianhap as gianhap, medicine_ref.giaban as giaban, '" + SessionLogin.SessionUsercode + "' as loguser FROM medicine_store_ref, medicine_ref, medicine_store WHERE medicine_store_ref.medicinerefid = medicine_ref.medicinerefid and medicine_store_ref.medicinestoreid = medicine_store.medicinestoreid and medicine_store_ref.soluongkhadung > medicine_store_ref.soluongtonkho;";
-                            condb.ExecuteNonQuery(sql_insertlogupdate);
+                            string sql_insertlog_update = "INSERT INTO tools_tbllog_updatekhadung(tgcapnhat, khothuoc_id, kho_id, kho_ma, kho_ten, thuoc_id, thuoc_ma, thuoc_ten, thuoc_dvt, slkhadung, sltonkho, gianhap, giaban, loguser) SELECT '" + dthientai + "' as tgcapnhat, medicine_store_ref.medicinestorerefid as khothuoc_id, medicine_store_ref.medicinestoreid as kho_id, medicine_store.medicinestorecode as kho_ma, medicine_store.medicinestorename as kho_ten, medicine_store_ref.medicinerefid as thuoc_id, medicine_ref.medicinecode as thuoc_ma, medicine_ref.medicinename as thuoc_ten, medicine_ref.donvitinh as thuoc_dvt, medicine_store_ref.soluongkhadung as slkhadung, medicine_store_ref.soluongtonkho as sltonkho, medicine_ref.gianhap as gianhap, medicine_ref.giaban as giaban, '" + SessionLogin.SessionUsercode + "' as loguser FROM medicine_store_ref, medicine_ref, medicine_store WHERE medicine_store_ref.medicinerefid = medicine_ref.medicinerefid and medicine_store_ref.medicinestoreid = medicine_store.medicinestoreid and medicine_store_ref.soluongkhadung > medicine_store_ref.soluongtonkho;";
+                            condb.ExecuteNonQuery_MeL(sql_insertlog_update);
                             // Update KD, TK
                             string sqlupdatekdtk = "UPDATE medicine_store_ref SET soluongkhadung = soluongtonkho WHERE soluongkhadung > soluongtonkho;";
-                            condb.ExecuteNonQuery(sqlupdatekdtk);
+                            condb.ExecuteNonQuery_HIS(sqlupdatekdtk);
 
                         }
                     }
@@ -347,7 +347,7 @@ namespace MedicalLink.ChucNang
                 datedenngay = DateTime.ParseExact(dtDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 string sqltimkiem = "SELECT *,slkhadung - sltonkho as slcapnhat_display FROM tools_tbllog_updatekhadung WHERE tgcapnhat > '" + datetungay + "' and tgcapnhat <'" + datedenngay + "';";
-                DataView dv_timkiem = new DataView(condb.GetDataTable(sqltimkiem));
+                DataView dv_timkiem = new DataView(condb.GetDataTable_MeL(sqltimkiem));
                 gridControlLogUpdateKDTK.DataSource = dv_timkiem;
             }
             catch (Exception ex)

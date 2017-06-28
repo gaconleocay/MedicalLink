@@ -100,7 +100,7 @@ namespace MedicalLink.ChucNang
                     sqlquerry = "SELECT distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then 'Kết thúc' else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, CASE medicalrecord.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where medicalrecord.departmentid=department.departmentid) END as tenphong, medicalrecord.loaibenhanid as loaibenhan FROM medicalrecord, hosobenhan,departmentgroup,department WHERE medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.hosobenhanid=hosobenhan.hosobenhanid and medicalrecord.vienphiid=" + txtBNBKMaVP.Text + " ORDER BY madieutri;";
                 }
 
-                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
                 gridControlBNBK.DataSource = dv;
 
                 if (gridViewBNBK.RowCount == 0)
@@ -199,8 +199,8 @@ namespace MedicalLink.ChucNang
                                         // thực thi câu lệnh update và lưu log
                                         string sqlxecute = "UPDATE medicalrecord SET medicalrecordstatus='0', departmentid='0' WHERE medicalrecordid='" + madt + "';";
                                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển BN: " + mabn + " mã VP: " + mavp + " mã điều trị: " + madt + " ra phòng hành chính','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                                        condb.ExecuteNonQuery(sqlxecute);
-                                        condb.ExecuteNonQuery(sqlinsert_log);
+                                        condb.ExecuteNonQuery_HIS(sqlxecute);
+                                        condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển mã điều trị ra phòng hành chính thành công!");
                                         frmthongbao.Show();
                                         // load lại dữ liệu của form
@@ -275,8 +275,8 @@ namespace MedicalLink.ChucNang
                                     // thực thi câu lệnh update và lưu log
                                     string sqlxecute = "DELETE FROM medicalrecord WHERE medicalrecordid='" + madt + "';";
                                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa mã điều trị: " + madt + " của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                                    condb.ExecuteNonQuery(sqlxecute);
-                                    condb.ExecuteNonQuery(sqlinsert_log);
+                                    condb.ExecuteNonQuery_HIS(sqlxecute);
+                                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị thành công!");
                                     frmthongbao.Show();
                                     // load lại dữ liệu của form
@@ -351,9 +351,9 @@ namespace MedicalLink.ChucNang
                                     string sqldelete = "DELETE FROM medicalrecord WHERE medicalrecordid='" + madt + "';";
                                     string sqlchuyenngt = "UPDATE vienphi SET loaivienphiid='1' WHERE vienphiid ='" + mavp + "';";
                                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa và chuyển thành phơi TT ngoại trú mã điều trị: " + madt + " của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                                    condb.ExecuteNonQuery(sqldelete);
-                                    condb.ExecuteNonQuery(sqlchuyenngt);
-                                    condb.ExecuteNonQuery(sqlinsert_log);
+                                    condb.ExecuteNonQuery_HIS(sqldelete);
+                                    condb.ExecuteNonQuery_HIS(sqlchuyenngt);
+                                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị và chuyển thành phơi ngoại trú thành công!");
                                     frmthongbao.Show();
                                     // load lại dữ liệu của form
@@ -421,9 +421,9 @@ namespace MedicalLink.ChucNang
                                 string sqldeletemedi = "DELETE FROM medicalrecord WHERE vienphiid='" + mavp + "';";
                                 string sqldeletevp = "DELETE FROM vienphi WHERE vienphiid='" + mavp + "';";
                                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa toàn bộ bệnh án của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                                condb.ExecuteNonQuery(sqldeletemedi);
-                                condb.ExecuteNonQuery(sqldeletevp);
-                                condb.ExecuteNonQuery(sqlinsert_log);
+                                condb.ExecuteNonQuery_HIS(sqldeletemedi);
+                                condb.ExecuteNonQuery_HIS(sqldeletevp);
+                                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa toàn bộ bệnh án thành công.\nVui lòng kiểm tra lại");
                                 frmthongbao.Show();
                             }

@@ -31,7 +31,7 @@ namespace MedicalLink.ChucNang.BCPTTT
             try
             {
                 string sql_laynhomdv = " SELECT ref.servicepricecode, ref.servicepricename FROM servicepriceref ref WHERE ref.servicepricecode in (SELECT servicepricegroupcode FROM servicepriceref WHERE servicepricegroupcode <>'' and servicepricegroupcode is NOT NULL and bhyt_groupcode in ('06PTTT','07KTC') GROUP BY servicepricegroupcode ) ORDER BY ref.bhyt_groupcode, ref.servicepricecode; ";
-                DataView data_dsnguoidung = new DataView(condb.GetDataTable(sql_laynhomdv));
+                DataView data_dsnguoidung = new DataView(condb.GetDataTable_HIS(sql_laynhomdv));
                 gridControlNhomDV.DataSource = data_dsnguoidung;
             }
             catch (Exception)

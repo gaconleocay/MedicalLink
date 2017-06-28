@@ -300,7 +300,7 @@
             this.gridColumn15.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 0;
-            this.gridColumn15.Width = 20;
+            this.gridColumn15.Width = 30;
             // 
             // repositoryItemButtonEdit_edit
             // 

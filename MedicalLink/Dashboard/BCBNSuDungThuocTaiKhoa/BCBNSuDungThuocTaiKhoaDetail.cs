@@ -126,7 +126,7 @@ namespace MedicalLink.Dashboard.BCBNSuDungThuocTaiKhoa
                         break;
                 }
                // dataBNDetail = new DataView(condb.getDataTable(sqlGetData));
-                dataExport = condb.GetDataTable(sqlGetData);
+                dataExport = condb.GetDataTable_HIS(sqlGetData);
                 gridControlBNDetail.DataSource = dataExport;
             }
             catch (Exception ex)

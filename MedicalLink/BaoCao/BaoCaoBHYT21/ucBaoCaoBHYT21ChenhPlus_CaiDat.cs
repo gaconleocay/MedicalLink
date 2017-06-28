@@ -42,13 +42,13 @@ namespace MedicalLink.ChucNang
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT MaDDVKT_CODE FROM tools_dvktbhytchenh WHERE MaDDVKT_CODE='" + dvDichVu_Import[i]["DVKT_CODE"] + "';";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_MeL(sql_kt));
                                 if (dv_kt.Count > 0) //update
                                 {
                                     string sql_updateDVKT = "UPDATE tools_dvktbhytchenh SET MaDVKT_Cu='" + dvDichVu_Import[i]["MA_DV_DCG"] + "', TenDVKT_Cu='" + dvDichVu_Import[i]["TEN_DV_DCG"] + "', MaDVKTBHYT_Cu='" + dvDichVu_Import[i]["MA_DV_BHYT_DCG"] + "', DonGia_Cu='" + (dvDichVu_Import[i]["GIA_DV_DCG"].ToString() == "" ? "0" : dvDichVu_Import[i]["GIA_DV_DCG"]) + "', MaDVKT_TuongDuong='" + dvDichVu_Import[i]["MA_DV_TUONGDUONG"] + "', MaDVKT_Moi='" + dvDichVu_Import[i]["MA_DV_MOI"] + "', TenDVKT_Moi='" + dvDichVu_Import[i]["TEN_DV_MOI"] + "', MaDVKTBHYT_Moi='" + dvDichVu_Import[i]["MA_DV_BHYT_MOI"] + "', DonGia_Moi='" + (dvDichVu_Import[i]["GIA_DV_MOI"].ToString() == "" ? "0" : dvDichVu_Import[i]["GIA_DV_MOI"]) + "' WHERE MaDDVKT_CODE='" + dvDichVu_Import[i]["DVKT_CODE"] + "';";
                                     try
                                     {
-                                        condb.ExecuteNonQuery(sql_updateDVKT);
+                                        condb.ExecuteNonQuery_MeL(sql_updateDVKT);
                                         dem_update += 1;
                                     }
                                     catch (Exception)
@@ -62,7 +62,7 @@ namespace MedicalLink.ChucNang
                                     string sql_insertDVKT = "INSERT INTO tools_dvktbhytchenh(MaDDVKT_CODE, MaDVKT_Cu, TenDVKT_Cu, MaDVKTBHYT_Cu, DonGia_Cu, MaDVKT_TuongDuong, MaDVKT_Moi, TenDVKT_Moi, MaDVKTBHYT_Moi, DonGia_Moi, is_lock) VALUES ('" + dvDichVu_Import[i]["DVKT_CODE"] + "', '" + dvDichVu_Import[i]["MA_DV_DCG"] + "','" + dvDichVu_Import[i]["TEN_DV_DCG"] + "','" + dvDichVu_Import[i]["MA_DV_BHYT_DCG"] + "','" + (dvDichVu_Import[i]["GIA_DV_DCG"].ToString() == "" ? "0" : dvDichVu_Import[i]["GIA_DV_DCG"]) + "','" + dvDichVu_Import[i]["MA_DV_TUONGDUONG"] + "','" + dvDichVu_Import[i]["MA_DV_MOI"] + "','" + dvDichVu_Import[i]["TEN_DV_MOI"] + "','" + dvDichVu_Import[i]["MA_DV_BHYT_MOI"] + "','" + (dvDichVu_Import[i]["GIA_DV_MOI"].ToString() == "" ? "0" : dvDichVu_Import[i]["GIA_DV_MOI"]) + "','0');";
                                     try
                                     {
-                                        condb.ExecuteNonQuery(sql_insertDVKT);
+                                        condb.ExecuteNonQuery_MeL(sql_insertDVKT);
                                         dem_insert += 1;
                                     }
                                     catch (Exception)
@@ -147,14 +147,14 @@ namespace MedicalLink.ChucNang
                 if (txtMaDV_Moi37.Text.Trim() != "" && txtMaDV_Cu.Text.Trim() != "")
                 {
                     string sql_dv_cu = "SELECT servicepricecode as dv_ma, ServicePriceCodeUser as dv_matuongduong, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn,servicepricename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicepricecode ='" + txtMaDV_Moi37.Text.Trim() + "'";
-                    DataView data_tk_cu = new DataView(condb.GetDataTable(sql_dv_cu));
+                    DataView data_tk_cu = new DataView(condb.GetDataTable_HIS(sql_dv_cu));
                     string sql_dv_moi = "SELECT servicepricecode as dv_ma, ServicePriceCodeUser as dv_matuongduong, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn,servicepricename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicepricecode ='" + txtMaDV_Cu.Text.Trim() + "'";
-                    DataView data_tk_moi = new DataView(condb.GetDataTable(sql_dv_moi));
+                    DataView data_tk_moi = new DataView(condb.GetDataTable_HIS(sql_dv_moi));
 
                     //Kiem tra ma dịch vụ đã tồn tại trong DB hay chưa?
                     condb.Connect();
                     string sql_kt = "SELECT MaDDVKT_CODE FROM tools_dvktbhytchenh WHERE MaDVKT_Cu='" + txtMaDV_Moi37.Text.Trim() + "';";
-                    DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                    DataView dv_kt = new DataView(condb.GetDataTable_MeL(sql_kt));
                     if (dv_kt.Count > 0) //update
                     {
                         try
@@ -162,7 +162,7 @@ namespace MedicalLink.ChucNang
                             if (data_tk_cu.Count > 0 && data_tk_moi.Count > 0)
                             {
                                 string sql_updateDVKT = "UPDATE tools_dvktbhytchenh SET TenDVKT_Cu='" + data_tk_cu[0]["dv_tenbhyt"].ToString() + "', MaDVKTBHYT_Cu='" + data_tk_cu[0]["dv_matuongduong"].ToString() + "', DonGia_Cu='" + data_tk_cu[0]["gia_bhyt"].ToString() + "', MaDVKT_TuongDuong='" + data_tk_cu[0]["dv_matuongduong"].ToString() + "', MaDVKT_Moi='" + data_tk_moi[0]["dv_ma"].ToString() + "', TenDVKT_Moi='" + data_tk_moi[0]["dv_tenbhyt"].ToString() + "', MaDVKTBHYT_Moi='" + data_tk_moi[0]["dv_matuongduong"].ToString() + "', DonGia_Moi='" + data_tk_moi[0]["gia_bhyt"].ToString() + "' WHERE MaDVKT_Cu='" + txtMaDV_Moi37.Text.Trim() + "';";
-                                condb.ExecuteNonQuery(sql_updateDVKT);
+                                condb.ExecuteNonQuery_MeL(sql_updateDVKT);
                             }
 
                             ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
@@ -183,7 +183,7 @@ namespace MedicalLink.ChucNang
                                 dv_dv_insert_code = DateTime.Now.ToString("yyyyMMddHHmmss");
 
                                 string sql_insertDVKT = "INSERT INTO tools_dvktbhytchenh(MaDDVKT_CODE, MaDVKT_Cu, TenDVKT_Cu, MaDVKTBHYT_Cu, DonGia_Cu, MaDVKT_TuongDuong, MaDVKT_Moi, TenDVKT_Moi, MaDVKTBHYT_Moi, DonGia_Moi, is_lock) VALUES ('" + dv_dv_insert_code + "', '" + data_tk_cu[0]["dv_ma"].ToString() + "','" + data_tk_cu[0]["dv_tenbhyt"].ToString() + "','" + data_tk_cu[0]["dv_matuongduong"].ToString() + "','" + data_tk_cu[0]["gia_bhyt"].ToString() + "','" + data_tk_cu[0]["dv_matuongduong"].ToString() + "','" + data_tk_moi[0]["dv_ma"].ToString() + "','" + data_tk_moi[0]["dv_tenbhyt"].ToString() + "','" + data_tk_moi[0]["dv_matuongduong"].ToString() + "','" + data_tk_moi[0]["gia_bhyt"].ToString() + "','0');";
-                                condb.ExecuteNonQuery(sql_insertDVKT);
+                                condb.ExecuteNonQuery_MeL(sql_insertDVKT);
 
                                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                                 frmthongbao.Show();
@@ -359,7 +359,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_dv = "SELECT servicepricecode as dv_ma, ServicePriceCodeUser as dv_matuongduong, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn,servicepricename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicepricecode ='" + dv_ma_timkiem + "'";
-                DataView data_tk = new DataView(condb.GetDataTable(sql_dv));
+                DataView data_tk = new DataView(condb.GetDataTable_HIS(sql_dv));
                 if (data_tk.Count > 0)
                 {
                     cbbTenDV.EditValue = data_tk[0]["dv_ma"].ToString();
@@ -381,7 +381,7 @@ namespace MedicalLink.ChucNang
             {
                 //Load danh muc dich vu TT37
                 string sqldsdv = "SELECT servicepricecode as dv_ma, ServicePriceCodeUser as dv_matuongduong, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicelock=0 and isremove is null and servicepricegroupcode <> '' ORDER BY servicepricegroupcode;";
-                DataView dv_dmdv = new DataView(condb.GetDataTable(sqldsdv));
+                DataView dv_dmdv = new DataView(condb.GetDataTable_HIS(sqldsdv));
 
                 cbbTenDV_Moi37.Properties.DataSource = dv_dmdv;
                 cbbTenDV_Moi37.Properties.DisplayMember = "dv_tenbhyt";
@@ -400,7 +400,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_laydanhsach = "SELECT maddvkt_code as maddvkt_code, madvkt_cu as madvkt_dcg, tendvkt_cu as tendvkt_dcg, madvktbhyt_cu as madvktbhyt_dcg, dongia_cu as dongia_dcg, madvkt_tuongduong as madvkt_tuongduong, madvkt_moi as madvkt_moi, tendvkt_moi as tendvkt_moi, madvktbhyt_moi as madvktbhyt_moi, dongia_moi as dongia_moi FROM tools_dvktbhytchenh;";
-                DataView dv_dmdvkt = new DataView(condb.GetDataTable(sql_laydanhsach));
+                DataView dv_dmdvkt = new DataView(condb.GetDataTable_MeL(sql_laydanhsach));
                 if (dv_dmdvkt != null && dv_dmdvkt.Count > 0)
                 {
                     for (int i = 0; i < dv_dmdvkt.Count; i++)
@@ -435,7 +435,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_lstKhoa = "SELECT departmentgroupid,departmentgroupcode,departmentgroupname,departmentgrouptype FROM departmentgroup WHERE departmentgrouptype in(4,11,1) ORDER BY departmentgroupname;";
-                DataView lstDSKhoa = new DataView(condb.GetDataTable(sql_lstKhoa));
+                DataView lstDSKhoa = new DataView(condb.GetDataTable_HIS(sql_lstKhoa));
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
                     //chkListKhoa.DataSource = lstDSKhoa;

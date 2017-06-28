@@ -43,7 +43,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 txtMaMay.ReadOnly = true;
                 //Load License tu DB ra
                 string kiemtra_licensetag = "SELECT datakey, licensekey FROM tools_license WHERE datakey='" + MaDatabase + "' limit 1;";
-                DataView dv = new DataView(condb.GetDataTable(kiemtra_licensetag));
+                DataView dv = new DataView(condb.GetDataTable_MeL(kiemtra_licensetag));
                 if (dv != null && dv.Count > 0)
                 {
                     txtKeyKichHoat.Text = dv[0]["licensekey"].ToString();
@@ -109,7 +109,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             {
                 //Luu key kich hoat vao DB
                 string update_license = "UPDATE tools_license SET licensekey='" + txtKeyKichHoat.Text.Trim() + "' WHERE datakey='" + MaDatabase + "' ;";
-                if (condb.ExecuteNonQuery(update_license))
+                if (condb.ExecuteNonQuery_MeL(update_license))
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Lưu mã kích hoạt thành công!");
                     frmthongbao.Show();

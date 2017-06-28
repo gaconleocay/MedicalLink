@@ -142,7 +142,7 @@ namespace MedicalLink.ChucNang
 
             try
             {
-                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
                 gridControlDS_THYL.DataSource = dv;
 
                 if (gridViewDS_THYL.RowCount == 0)

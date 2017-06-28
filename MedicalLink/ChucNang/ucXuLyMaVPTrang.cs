@@ -69,7 +69,7 @@ namespace MedicalLink.ChucNang
                                 try
                                 {
                                     string sqlquerythuoc = "SELECT A.* FROM (SELECT vp.vienphiid as vienphiid, vp.patientid as patientid, hs.patientname as patientname, bh.bhytcode as bhytcode, dep.departmentgroupname as departmentgroupname, dep.departmentname as departmentname, vp.vienphidate as tgvaovien, vp.vienphidate_ravien as tgravien, case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Chưa duyệt VP' end as trangthaivp, (select count(servi.*) from serviceprice servi inner join maubenhpham mbp on mbp.maubenhphamid=servi.maubenhphamid and mbp.maubenhphamstatus<>0 where servi.vienphiid=vp.vienphiid) as codichvu FROM vienphi vp inner join hosobenhan hs on vp.hosobenhanid=hs.hosobenhanid inner join bhyt bh on bh.bhytid=vp.bhytid inner join tools_depatment dep on dep.departmentid=vp.departmentid WHERE vp.vienphidate >='" + datetungay + "' and vp.vienphidate<='" + datedenngay + "'" + chonLoaiBenhAn + " GROUP BY vp.vienphiid, vp.patientid, hs.patientname, bh.bhytcode, dep.departmentgroupname, dep.departmentname ORDER BY vp.vienphiid desc) A WHERE A.codichvu=0;";
-                                    DataView dv_bhytgroup = new DataView(condb.GetDataTable(sqlquerythuoc));
+                                    DataView dv_bhytgroup = new DataView(condb.GetDataTable_HIS(sqlquerythuoc));
                                     if (dv_bhytgroup.Count > 0)
                                     {
                                         gridControlVPTrang.DataSource = dv_bhytgroup;
@@ -170,11 +170,11 @@ namespace MedicalLink.ChucNang
                         {
                             string xoaVienPhi = "DELETE FROM vienphi vp WHERE vp.vienphiid in (" + lstVienphiId + ");";
                             string xoaMauBenhPham = "DELETE FROM maubenhpham mbp WHERE mbp.vienphiid in (" + lstVienphiId + ");";
-                            if (condb.ExecuteNonQuery(xoaVienPhi) && condb.ExecuteNonQuery(xoaMauBenhPham))
+                            if (condb.ExecuteNonQuery_HIS(xoaVienPhi) && condb.ExecuteNonQuery_HIS(xoaMauBenhPham))
                             {
                                 //Log vào DB
-                                string sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa hồ sơ bệnh án: SL= " + gridViewVPTrang.RowCount + "; Chi tiết mã VP: " + lstVienphiId + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                                condb.ExecuteNonQuery(sqlluulog);
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa hồ sơ bệnh án: SL= " + gridViewVPTrang.RowCount + "; Chi tiết mã VP: " + lstVienphiId + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                 MessageBox.Show("Xóa [" + gridViewVPTrang.RowCount + "] HSSBA thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 gridControlVPTrang.DataSource = null;
                             }

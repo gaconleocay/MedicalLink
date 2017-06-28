@@ -14,6 +14,7 @@ using MedicalLink.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using DevExpress.Utils.Menu;
+using MedicalLink.Utilities.GridControl;
 
 namespace MedicalLink.BaoCao
 {
@@ -66,8 +67,10 @@ namespace MedicalLink.BaoCao
             try
             {
                 DXPopupMenu menu = new DXPopupMenu();
-                menu.Items.Add(new DXMenuItem("Xuất báo cáo Cận lâm sàng"));
-                menu.Items.Add(new DXMenuItem("Xuất báo cáo thanh toán tiền cận lâm sàng"));
+                menu.Items.Add(new DXMenuItem("Báo cáo Cận lâm sàng"));
+                menu.Items.Add(new DXMenuItem("Báo cáo thanh toán tiền cận lâm sàng"));
+                menu.Items.Add(new DXMenuItem("Báo cáo Cận lâm sàng - Theo filter trên lưới"));
+                menu.Items.Add(new DXMenuItem("Báo cáo thanh toán tiền cận lâm sàng - Theo filter trên lưới"));
                 // ... add more items
                 dropDownExport.DropDownControl = menu;
                 // subscribe item.Click event
@@ -130,7 +133,7 @@ namespace MedicalLink.BaoCao
                 long maubenhphamid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
                 long patientid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "patientid").ToString());
                 long servicepriceid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "servicepriceid").ToString());
-                string thuchienclsdate = Utilities.Util_TypeConvertParse.ToDateTime( bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "ngay_thuchien").ToString()).ToString("yyyy-MM-dd HH:mm:ss");
+                string thuchienclsdate = Utilities.Util_TypeConvertParse.ToDateTime(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "ngay_thuchien").ToString()).ToString("yyyy-MM-dd HH:mm:ss");
 
                 long mochinh_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "mochinh_idbs").ToString());
                 long gayme_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "gayme_idbs").ToString());
@@ -142,10 +145,10 @@ namespace MedicalLink.BaoCao
                 if (thuchienclsid == 0) //kiemtra xem co ban ghi nao hay ko?
                 {
                     string sqlkiemtra = "select thuchienclsid from thuchiencls where servicepriceid=" + servicepriceid + ";";
-                    DataTable dataKiemTra = condb.GetDataTable(sqlkiemtra);
+                    DataTable dataKiemTra = condb.GetDataTable_HIS(sqlkiemtra);
                     if (dataKiemTra != null && dataKiemTra.Rows.Count > 0)
                     {
-                        thuchienclsid= Utilities.Util_TypeConvertParse.ToInt64(dataKiemTra.Rows[0]["thuchienclsid"].ToString());
+                        thuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(dataKiemTra.Rows[0]["thuchienclsid"].ToString());
                     }
                 }
 
@@ -159,7 +162,7 @@ namespace MedicalLink.BaoCao
                     luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + mochinh_idbs + "',  bacsigayme = '" + gayme_idbs + "', phumo1 = '" + phu1_idbs + "', phumo2 = '" + phu2_idbs + "', phumo3 = '" + giupviec1_idbs + "', phumo4 = '" + giupviec2_idbs + "' WHERE thuchienclsid = " + thuchienclsid + "; ";
                 }
 
-                condb.ExecuteNonQuery(luulaithuchien);
+                condb.ExecuteNonQuery_HIS(luulaithuchien);
             }
             catch (Exception ex)
             {
@@ -167,18 +170,32 @@ namespace MedicalLink.BaoCao
             }
         }
 
+        #region Xuat bao cao
         void Item_Export_Click(object sender, EventArgs e)
         {
             try
             {
+                if (this.kiemtrasuadulieu)
+                {
+                    gridControlDataBCPTTT.DataSource = null;
+                    LayDuLieuBaoCao_ChayMoi();
+                }
                 string tenbaocao = ((DXMenuItem)sender).Caption;
-                if (tenbaocao == "Xuất báo cáo Cận lâm sàng")
+                if (tenbaocao == "Báo cáo Cận lâm sàng")
                 {
                     tbnExportBCCLS_Click();
                 }
-                if (tenbaocao == "Xuất báo cáo thanh toán tiền cận lâm sàng")
+                else if (tenbaocao == "Báo cáo thanh toán tiền cận lâm sàng")
                 {
                     tbnExportBCThanhToanCLS_Click();
+                }
+                else if (tenbaocao == "Báo cáo Cận lâm sàng - Theo filter trên lưới")
+                {
+                    tbnExportBCCLSTheoFilter_Click();
+                }
+                else if (tenbaocao== "Báo cáo thanh toán tiền cận lâm sàng - Theo filter trên lưới")
+                {
+                    tbnExportBCThanhToanCLSTheoFilter_Click();
                 }
             }
             catch (Exception ex)
@@ -191,11 +208,6 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (this.kiemtrasuadulieu)
-                {
-                    gridControlDataBCPTTT.DataSource = null;
-                    LayDuLieuBaoCao_ChayMoi();
-                }
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
@@ -222,11 +234,6 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (this.kiemtrasuadulieu)
-                {
-                    gridControlDataBCPTTT.DataSource = null;
-                    LayDuLieuBaoCao_ChayMoi();
-                }
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
@@ -249,6 +256,63 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void tbnExportBCCLSTheoFilter_Click()
+        {
+            try
+            {
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
+                thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
+                thongTinThem.Add(reportitem_khoa);
+
+                string fileTemplatePath = "BC_PhauThuatThuThuat_CLS.xlsx";
+
+                DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void tbnExportBCThanhToanCLSTheoFilter_Click()
+        {
+            try
+            {
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
+                thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
+                thongTinThem.Add(reportitem_khoa);
+
+                string fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanCLS.xlsx";
+
+                DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+        #endregion
     }
 }

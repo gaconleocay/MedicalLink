@@ -101,8 +101,8 @@ namespace MedicalLink.ChucNang
 
                     //Log
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', ' Update 1 danh mục dv servicepriceid=" + servicepriceid_th + " mã : " + madv_th + " giá YC: " + dongiayeucau_th + "; giá VP: " + dongiavienphi_th + "; giá BHYT: " + dongiabhyt_th + "; giá NNN: " + dongiannn_th + " thành giá VP: " + txtGiaVP.Text + "; giá YC: " + txtGiaYC.Text + "; giá BHYT: " + txtGiaBHYT.Text + "; giá NNN: " + txtGiaNNN.Text + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                    condb.ExecuteNonQuery(sqlupdate_gia);
-                    condb.ExecuteNonQuery(sqlinsert_log);
+                    condb.ExecuteNonQuery_HIS(sqlupdate_gia);
+                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     MessageBox.Show("Sửa giá dịch vụ [" + madv_th + "] thành công", "Thông báo !");
                     this.Visible = false;
 

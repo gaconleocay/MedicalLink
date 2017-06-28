@@ -30,18 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBaoCaoBenhNhanNgoaiTru));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cboLayTheo = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.bbbb = new DevExpress.XtraEditors.LabelControl();
-            this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
             this.radioNam = new System.Windows.Forms.RadioButton();
             this.radioQuy = new System.Windows.Forms.RadioButton();
             this.radioThang = new System.Windows.Forms.RadioButton();
@@ -80,12 +80,11 @@
             this.bandedGridColumn16 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn19 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn20 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.cboLayTheo = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLayTheo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).BeginInit();
@@ -93,7 +92,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBNNgT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataBNNgT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLayTheo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -103,7 +101,7 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(1100, 120);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1100, 86);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // groupBox1
@@ -113,7 +111,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBox1.Location = new System.Drawing.Point(972, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(126, 116);
+            this.groupBox1.Size = new System.Drawing.Size(126, 82);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thiết lập";
@@ -125,9 +123,9 @@
             this.btnFullScreen.Appearance.Options.UseFont = true;
             this.btnFullScreen.Appearance.Options.UseForeColor = true;
             this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(20, 78);
+            this.btnFullScreen.Location = new System.Drawing.Point(17, 25);
             this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(100, 25);
+            this.btnFullScreen.Size = new System.Drawing.Size(100, 40);
             this.btnFullScreen.TabIndex = 27;
             this.btnFullScreen.Text = "Full screen";
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullSize_Click);
@@ -138,8 +136,6 @@
             this.groupBoxFile.Controls.Add(this.cboLayTheo);
             this.groupBoxFile.Controls.Add(this.labelControl5);
             this.groupBoxFile.Controls.Add(this.cboTieuChi);
-            this.groupBoxFile.Controls.Add(this.bbbb);
-            this.groupBoxFile.Controls.Add(this.lblThoiGianLayBaoCao);
             this.groupBoxFile.Controls.Add(this.radioNam);
             this.groupBoxFile.Controls.Add(this.radioQuy);
             this.groupBoxFile.Controls.Add(this.radioThang);
@@ -153,10 +149,36 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(1096, 116);
+            this.groupBoxFile.Size = new System.Drawing.Size(1096, 82);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Location = new System.Drawing.Point(424, 25);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(48, 14);
+            this.labelControl4.TabIndex = 97;
+            this.labelControl4.Text = "Lấy theo";
+            // 
+            // cboLayTheo
+            // 
+            this.cboLayTheo.EditValue = "Theo phòng chỉ định";
+            this.cboLayTheo.Location = new System.Drawing.Point(478, 21);
+            this.cboLayTheo.Name = "cboLayTheo";
+            this.cboLayTheo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLayTheo.Properties.Appearance.Options.UseFont = true;
+            this.cboLayTheo.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLayTheo.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLayTheo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboLayTheo.Properties.Items.AddRange(new object[] {
+            "Theo phòng chỉ định"});
+            this.cboLayTheo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboLayTheo.Size = new System.Drawing.Size(155, 22);
+            this.cboLayTheo.TabIndex = 96;
             // 
             // labelControl5
             // 
@@ -184,26 +206,6 @@
             this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTieuChi.Size = new System.Drawing.Size(155, 22);
             this.cboTieuChi.TabIndex = 94;
-            // 
-            // bbbb
-            // 
-            this.bbbb.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bbbb.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.bbbb.Location = new System.Drawing.Point(66, 86);
-            this.bbbb.Name = "bbbb";
-            this.bbbb.Size = new System.Drawing.Size(179, 16);
-            this.bbbb.TabIndex = 92;
-            this.bbbb.Text = "Thời gian lấy dữ liệu cuối cùng:";
-            // 
-            // lblThoiGianLayBaoCao
-            // 
-            this.lblThoiGianLayBaoCao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThoiGianLayBaoCao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(251, 86);
-            this.lblThoiGianLayBaoCao.Name = "lblThoiGianLayBaoCao";
-            this.lblThoiGianLayBaoCao.Size = new System.Drawing.Size(122, 16);
-            this.lblThoiGianLayBaoCao.TabIndex = 93;
-            this.lblThoiGianLayBaoCao.Text = "00:00:00 01/01/0001";
             // 
             // radioNam
             // 
@@ -326,9 +328,9 @@
             // 
             this.panelControlData.Controls.Add(this.gridControlDataBNNgT);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlData.Location = new System.Drawing.Point(0, 120);
+            this.panelControlData.Location = new System.Drawing.Point(0, 86);
             this.panelControlData.Name = "panelControlData";
-            this.panelControlData.Size = new System.Drawing.Size(1100, 493);
+            this.panelControlData.Size = new System.Drawing.Size(1100, 527);
             this.panelControlData.TabIndex = 4;
             // 
             // gridControlDataBNNgT
@@ -341,7 +343,7 @@
             this.gridControlDataBNNgT.Name = "gridControlDataBNNgT";
             this.gridControlDataBNNgT.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButton_View});
-            this.gridControlDataBNNgT.Size = new System.Drawing.Size(1096, 489);
+            this.gridControlDataBNNgT.Size = new System.Drawing.Size(1096, 523);
             this.gridControlDataBNNgT.TabIndex = 27;
             this.gridControlDataBNNgT.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridViewDataBNNgT});
@@ -458,7 +460,7 @@
             // 
             this.repositoryItemButton_View.AutoHeight = false;
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Xem", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
             this.repositoryItemButton_View.Click += new System.EventHandler(this.repositoryItemButton_View_Click);
             // 
@@ -898,32 +900,6 @@
             this.bandedGridColumn20.Visible = true;
             this.bandedGridColumn20.Width = 130;
             // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(424, 25);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(48, 14);
-            this.labelControl4.TabIndex = 97;
-            this.labelControl4.Text = "Lấy theo";
-            // 
-            // cboLayTheo
-            // 
-            this.cboLayTheo.EditValue = "Theo phòng chỉ định";
-            this.cboLayTheo.Location = new System.Drawing.Point(478, 21);
-            this.cboLayTheo.Name = "cboLayTheo";
-            this.cboLayTheo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLayTheo.Properties.Appearance.Options.UseFont = true;
-            this.cboLayTheo.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLayTheo.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboLayTheo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLayTheo.Properties.Items.AddRange(new object[] {
-            "Theo phòng chỉ định"});
-            this.cboLayTheo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboLayTheo.Size = new System.Drawing.Size(155, 22);
-            this.cboLayTheo.TabIndex = 96;
-            // 
             // ucBaoCaoBenhNhanNgoaiTru
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -940,6 +916,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLayTheo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
@@ -947,7 +924,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBNNgT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewDataBNNgT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLayTheo.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -973,8 +949,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.SimpleButton btnFullScreen;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn8;
-        private DevExpress.XtraEditors.LabelControl bbbb;
-        private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
         private System.Windows.Forms.RadioButton radioNam;
         private System.Windows.Forms.RadioButton radioQuy;
         private System.Windows.Forms.RadioButton radioThang;

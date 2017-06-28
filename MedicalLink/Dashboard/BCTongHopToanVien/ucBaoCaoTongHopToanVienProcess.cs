@@ -55,7 +55,7 @@ namespace MedicalLink.Dashboard
                 }
                 VisiableColumGridControl(tieuchi, kieuxem);
 
-                DataTable DataBaoCao = condb.GetDataTable(sqlLayBaoCao);
+                DataTable DataBaoCao = condb.GetDataTable_HIS(sqlLayBaoCao);
                 HienThiDuLieuBaoCao(DataBaoCao);
             }
             catch (Exception ex)

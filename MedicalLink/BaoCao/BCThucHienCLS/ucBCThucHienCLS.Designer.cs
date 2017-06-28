@@ -441,6 +441,9 @@
             this.bandedGridViewDataBCPTTT.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.bandedGridViewDataBCPTTT.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
             this.bandedGridViewDataBCPTTT.OptionsEditForm.EditFormColumnCount = 5;
+            this.bandedGridViewDataBCPTTT.OptionsFind.AlwaysVisible = true;
+            this.bandedGridViewDataBCPTTT.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
+            this.bandedGridViewDataBCPTTT.OptionsFind.ShowClearButton = false;
             this.bandedGridViewDataBCPTTT.OptionsView.ColumnAutoWidth = false;
             this.bandedGridViewDataBCPTTT.OptionsView.EnableAppearanceEvenRow = true;
             this.bandedGridViewDataBCPTTT.OptionsView.ShowFooter = true;
@@ -689,8 +692,8 @@
             this.bandedGridColumn42.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.bandedGridColumn42.AppearanceHeader.Options.UseFont = true;
             this.bandedGridColumn42.AppearanceHeader.Options.UseForeColor = true;
-            this.bandedGridColumn42.Caption = "Chẩn đoán ra viện";
-            this.bandedGridColumn42.FieldName = "cd_ravien";
+            this.bandedGridColumn42.Caption = "Chẩn đoán chỉ định";
+            this.bandedGridColumn42.FieldName = "cd_chidinh";
             this.bandedGridColumn42.Name = "bandedGridColumn42";
             this.bandedGridColumn42.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn42.Visible = true;

@@ -56,7 +56,7 @@ namespace MedicalLink.Base
                 {
                     string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
                     string sqlper = "SELECT permissionid, permissioncode, permissionname, userid, usercode, permissioncheck FROM tools_tbluser_permission WHERE usercode = '" + en_usercode + "' and permissioncheck='1';";
-                    DataView dv = new DataView(condb.GetDataTable(sqlper));
+                    DataView dv = new DataView(condb.GetDataTable_MeL(sqlper));
                     if (dv.Count > 0)
                     {
                         for (int i = 0; i < dv.Count; i++)
@@ -94,30 +94,31 @@ namespace MedicalLink.Base
             List<ClassCommon.classUserDepartment> lstPhanQuyenKhoaPhong = new List<ClassCommon.classUserDepartment>();
             try
             {
-                string sqlper = "";
+                DataView dataDepartment = new DataView();
                 if (SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
                 {
-                    sqlper = "SELECT de.departmentgroupid,de.departmentgroupcode, de.departmentgroupname,de.departmentgrouptype, de.departmentid,de.departmentcode,de.departmentname,de.departmenttype FROM  tools_depatment de WHERE de.departmentgrouptype in (1,4,9,10,11) and de.departmenttype in (2,3,6,7,9) ORDER BY de.departmentgroupname,de.departmentname,de.departmenttype;";
+                    string sqlper_his = "SELECT degp.departmentgroupid, degp.departmentgroupcode, degp.departmentgroupname, degp.departmentgrouptype, de.departmentid, de.departmentcode, de.departmentname, de.departmenttype FROM department de inner join departmentgroup degp on degp.departmentgroupid=de.departmentgroupid and degp.departmentgrouptype in (1,4,9,10,11) WHERE de.departmenttype in (2,3,6,7,9) ORDER BY degp.departmentgroupname, de.departmentname, de.departmenttype;";
+                    dataDepartment = new DataView(condb.GetDataTable_HIS(sqlper_his));
                 }
                 else
                 {
                     string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
-                    sqlper = "SELECT ude.departmentgroupid,de.departmentgroupcode, de.departmentgroupname,de.departmentgrouptype, ude.departmentid,de.departmentcode,de.departmentname,ude.departmenttype, ude.usercode FROM tools_tbluser_departmentgroup ude inner join tools_depatment de on ude.departmentid=de.departmentid WHERE usercode = '" + en_usercode + "' ORDER BY de.departmentgroupname,de.departmentname,ude.departmenttype;";
+                    string sqlper_mel = "SELECT ude.departmentgroupid, degp.departmentgroupcode, degp.departmentgroupname, degp.departmentgrouptype, ude.departmentid, de.departmentcode, de.departmentname, ude.departmenttype, ude.usercode FROM tools_tbluser_departmentgroup ude inner join dblink('myconn','SELECT departmentid, departmentcode, departmentname, departmenttype FROM department') AS de(departmentid integer, departmentcode text, departmentname text, departmenttype integer) on de.departmentid=ude.departmentid inner join dblink('myconn','SELECT departmentgroupid, departmentgroupcode, departmentgroupname, departmentgrouptype FROM departmentgroup') AS degp(departmentgroupid integer, departmentgroupcode text, departmentgroupname text, departmentgrouptype integer) on degp.departmentgroupid=ude.departmentgroupid WHERE usercode = '" + en_usercode + "' ORDER BY degp.departmentgroupname,de.departmentname,ude.departmenttype;";
+                    dataDepartment = new DataView(condb.GetDataTable_Dblink(sqlper_mel));
                 }
-                DataView dv = new DataView(condb.GetDataTable(sqlper));
-                if (dv.Count > 0)
+                if (dataDepartment.Count > 0)
                 {
-                    for (int i = 0; i < dv.Count; i++)
+                    for (int i = 0; i < dataDepartment.Count; i++)
                     {
                         ClassCommon.classUserDepartment itemUdepart = new ClassCommon.classUserDepartment();
-                        itemUdepart.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmentgroupid"].ToString());
-                        itemUdepart.departmentgroupcode = dv[i]["departmentgroupcode"].ToString();
-                        itemUdepart.departmentgroupname = dv[i]["departmentgroupname"].ToString();
-                        itemUdepart.departmentgrouptype = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmentgrouptype"].ToString());
-                        itemUdepart.departmentid = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmentid"].ToString());
-                        itemUdepart.departmentcode = dv[i]["departmentcode"].ToString();
-                        itemUdepart.departmentname = dv[i]["departmentname"].ToString();
-                        itemUdepart.departmenttype = Utilities.Util_TypeConvertParse.ToInt32(dv[i]["departmenttype"].ToString());
+                        itemUdepart.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmentgroupid"].ToString());
+                        itemUdepart.departmentgroupcode = dataDepartment[i]["departmentgroupcode"].ToString();
+                        itemUdepart.departmentgroupname = dataDepartment[i]["departmentgroupname"].ToString();
+                        itemUdepart.departmentgrouptype = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmentgrouptype"].ToString());
+                        itemUdepart.departmentid = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmentid"].ToString());
+                        itemUdepart.departmentcode = dataDepartment[i]["departmentcode"].ToString();
+                        itemUdepart.departmentname = dataDepartment[i]["departmentname"].ToString();
+                        itemUdepart.departmenttype = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmenttype"].ToString());
                         lstPhanQuyenKhoaPhong.Add(itemUdepart);
                     }
                 }
@@ -134,18 +135,19 @@ namespace MedicalLink.Base
             List<ClassCommon.classUserMedicineStore> lstPhanQuyen_KhoThuoc = new List<ClassCommon.classUserMedicineStore>();
             try
             {
-                string sqlper = "";
+                DataView dataKhoThuoc = new DataView();
                 if (SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
                 {
-                    sqlper = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM medicine_store ms WHERE ms.medicinestoretype in (1,2,3,4,7) ORDER BY ms.medicinestoretype,ms.medicinestorename;";
+                  string  sqlper_his = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM medicine_store ms WHERE ms.medicinestoretype in (1,2,3,4,7) ORDER BY ms.medicinestoretype,ms.medicinestorename;";
+                    dataKhoThuoc = new DataView(condb.GetDataTable_HIS(sqlper_his));
                 }
                 else
                 {
                     string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
-                    sqlper = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM medicine_store ms INNER JOIN tools_tbluser_medicinestore ttm on ms.medicinestoreid=ttm.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestoretype,ms.medicinestorename;";
+                   string sqlper_mel = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM tools_tbluser_medicinestore ttm inner join dblink('myconn','SELECT medicinestoreid, medicinestorecode, medicinestorename, medicinestoretype FROM medicine_store') AS ms(medicinestoreid integer, medicinestorecode text, medicinestorename text, medicinestoretype integer) on ms.medicinestoreid=ttm.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestoretype,ms.medicinestorename;";
+                    dataKhoThuoc = new DataView(condb.GetDataTable_Dblink(sqlper_mel));
                 }
 
-                DataView dataKhoThuoc = new DataView(condb.GetDataTable(sqlper));
                 if (dataKhoThuoc.Count > 0)
                 {
                     for (int i = 0; i < dataKhoThuoc.Count; i++)
@@ -174,18 +176,19 @@ namespace MedicalLink.Base
             List<ClassCommon.classUserMedicinePhongLuu> lstPhanQuyen_PhongLuu = new List<ClassCommon.classUserMedicinePhongLuu>();
             try
             {
-                string sqlper = "";
+                DataView dataPhongluu = new DataView();
                 if (SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
                 {
-                    sqlper = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, (ms.medicinestorename || '-' ||pl.medicinephongluuname) as medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename from medicinephongluu pl inner join medicine_store ms on pl.medicinestoreid=ms.medicinestoreid where pl.medicinephongluucode<>'' and pl.medicinephongluuname<>'' order by ms.medicinestorename, pl.medicinephongluuname;";
+                    string sqlper_his = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, (ms.medicinestorename || '-' ||pl.medicinephongluuname) as medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename from medicinephongluu pl inner join medicine_store ms on pl.medicinestoreid=ms.medicinestoreid where pl.medicinephongluucode<>'' and pl.medicinephongluuname<>'' order by ms.medicinestorename, pl.medicinephongluuname;";
+                    dataPhongluu = new DataView(condb.GetDataTable_HIS(sqlper_his));
                 }
                 else
                 {
                     string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
-                    sqlper = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, (ms.medicinestorename || '-' ||pl.medicinephongluuname) as medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename FROM medicinephongluu pl INNER JOIN tools_tbluser_medicinephongluu ttm on pl.medicinephongluuid=ttm.medicinephongluuid inner join medicine_store ms on pl.medicinestoreid=ms.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestorename, pl.medicinephongluuname;";
+                    string sqlper_mel = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, (ms.medicinestorename || '-' ||pl.medicinephongluuname) as medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename FROM tools_tbluser_medicinephongluu ttm inner join dblink('myconn','SELECT medicinephongluuid, medicinephongluucode, medicinestoreid, medicinephongluuname FROM medicinephongluu') AS pl(medicinephongluuid integer, medicinephongluucode text, medicinestoreid integer, medicinephongluuname text) on pl.medicinephongluuid=ttm.medicinephongluuid inner join dblink('myconn','SELECT medicinestoreid, medicinestorecode, medicinestorename FROM medicine_store') AS ms(medicinestoreid integer, medicinestorecode text, medicinestorename text) on pl.medicinestoreid=ms.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestorename, pl.medicinephongluuname;";
+                    dataPhongluu = new DataView(condb.GetDataTable_Dblink(sqlper_mel));
                 }
 
-                DataView dataPhongluu = new DataView(condb.GetDataTable(sqlper));
                 if (dataPhongluu.Count > 0)
                 {
                     for (int i = 0; i < dataPhongluu.Count; i++)

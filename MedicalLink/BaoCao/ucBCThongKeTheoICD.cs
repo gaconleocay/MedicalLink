@@ -127,7 +127,7 @@ namespace MedicalLink.ChucNang
                         gridControlDSDV_TH.DataSource = null;
                         string sqlquerry_ct = "SELECT DISTINCT ROW_NUMBER() OVER (ORDER BY vp.chandoanravien_code) as stt, vp.chandoanravien_code as benhchinh_ma, vp.chandoanravien as benhchinh_ten, vp.chandoanravien_kemtheo_code as benhkemtheo_ma, vp.chandoanravien_kemtheo as benhkemtheo_ten, vp.patientid as mabn, vp.vienphiid as mavp,hsba.patientname as tenbn, degp.departmentgroupname as khoarv, de.departmentname as phongrv, vp.vienphidate as tgvaovien, vp.vienphidate_ravien as tgravien FROM vienphi vp inner join (select hosobenhanid, patientname from hosobenhan) hsba on hsba.hosobenhanid=vp.hosobenhanid inner join department de on de.departmentid=vp.departmentid inner join departmentgroup degp on degp.departmentgroupid=vp.departmentgroupid WHERE vp.vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + sql_timtheomaIcd + ";";
 
-                        DataView dv = new DataView(condb.GetDataTable(sqlquerry_ct));
+                        DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry_ct));
                         gridControlDSDV.DataSource = dv;
 
                         if (gridViewDSDV.RowCount == 0)
@@ -140,13 +140,13 @@ namespace MedicalLink.ChucNang
                     {
                         gridControlDSDV.DataSource = null;
                         string sqlquerry_th = "SELECT ROW_NUMBER() OVER (ORDER BY vp.chandoanravien_code) as stt, vp.vienphiid as mavp, vp.chandoanravien_code as benhchinh_ma, vp.chandoanravien as benhchinh_ten, vp.chandoanravien_kemtheo_code as benhkemtheo_ma, vp.chandoanravien_kemtheo as benhkemtheo_ten FROM vienphi vp WHERE vp.vienphidate_ravien > '" + datetungay + "' and vp.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ;";
-                        DataView dv_chitiet = new DataView(condb.GetDataTable(sqlquerry_th));
+                        DataView dv_chitiet = new DataView(condb.GetDataTable_HIS(sqlquerry_th));
 
                         string sqlquerry_mabenh_1 = "SELECT DISTINCT '' as stt, vp.chandoanravien_code as benhchinh_ma, icd10.icd10name as benhchinh_ten, '' as soluong_chinh, '' as soluong_kt, '' as soluong_tong, '' as soluong_kkb, '' as soluong_nt FROM vienphi vp, icd10 WHERE icd10.icd10code = vp.chandoanravien_code and vp.vienphidate_ravien > '" + datetungay + "' and vp.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ORDER BY benhchinh_ma ;";
-                        DataView dv_mabenh_1 = new DataView(condb.GetDataTable(sqlquerry_mabenh_1));
+                        DataView dv_mabenh_1 = new DataView(condb.GetDataTable_HIS(sqlquerry_mabenh_1));
 
                         string sqlquerry_mabenh_2 = "SELECT DISTINCT '' as stt, vp.chandoanravien_kemtheo_code as benhkemtheo_ma, icd10.icd10name as benhchinh_ten, '' as soluong_chinh, '' as soluong_kt, '' as soluong_tong, '' as soluong_kkb, '' as soluong_nt FROM vienphi vp, icd10 WHERE icd10.icd10code = vp.chandoanravien_kemtheo_code and chandoanravien_kemtheo_code <>'' and vp.vienphidate_ravien > '" + datetungay + "' and vp.vienphidate_ravien < '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + trangthaiVP + " ORDER BY benhkemtheo_ma;";
-                        DataView dv_mabenh_2 = new DataView(condb.GetDataTable(sqlquerry_mabenh_2));
+                        DataView dv_mabenh_2 = new DataView(condb.GetDataTable_HIS(sqlquerry_mabenh_2));
 
                         // SUM tong cua benh chinh
                         if (dv_mabenh_1.Count > 0)

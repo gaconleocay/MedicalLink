@@ -71,7 +71,7 @@ namespace MedicalLink.Dashboard
             {
                 dataDSPhongKham = new List<BCDashboardBenhNhanNgoaiTru>();
                 string sqlPhongKham = "SELECT dep.departmentid, dep.departmentcode, dep.departmentname FROM department dep WHERE dep.departmenttype=2 and dep.iskhonghoatdong=0 ORDER BY dep.departmentgroupid, dep.departmentname;";
-                DataView dsPhongKham = new DataView(condb.GetDataTable(sqlPhongKham));
+                DataView dsPhongKham = new DataView(condb.GetDataTable_HIS(sqlPhongKham));
                 if (dsPhongKham != null && dsPhongKham.Count > 0)
                 {
                     for (int i = 0; i < dsPhongKham.Count; i++)

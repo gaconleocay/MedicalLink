@@ -128,7 +128,7 @@ namespace MedicalLink.ChucNang
 
                     // string_loctimkiem= "serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ";
 
-                    DataView dv = new DataView(condb.GetDataTable(sqlquerry));
+                    DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
                     gridControlDSDV.DataSource = dv;
 
                     if (gridViewDSDV.RowCount == 0)

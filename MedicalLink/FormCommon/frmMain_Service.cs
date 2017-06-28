@@ -15,8 +15,6 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                //tools_dangdt_tmp
-                //tools_ravienchuatt_tmp
                 TimerUpdateData_BCNoiTru();
             }
             catch (Exception ex)

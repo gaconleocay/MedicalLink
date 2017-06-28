@@ -147,10 +147,10 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                //panelCaiDatChiTiet.Controls.Clear();
-                //ucDanhMucDungChung frmResult = new ucDanhMucDungChung();
-                //frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
-                //panelCaiDatChiTiet.Controls.Add(frmResult);
+                panelCaiDatChiTiet.Controls.Clear();
+                ucDanhSachBenhVien frmResult = new ucDanhSachBenhVien();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
             }
             catch (Exception ex)
             {

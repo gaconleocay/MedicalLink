@@ -43,7 +43,7 @@ namespace MedicalLink.Dashboard
                 List<ClassCommon.classMedicineStore> lstMedicineStoreCurrent = new List<ClassCommon.classMedicineStore>();
 
                 string sql_getmedistore = "SELECT medicinestoreid, departmentgroupid, medicinestoretype,medicinestorecode,medicinestorename FROM medicine_store WHERE  medicinestoretype in (8,9) ORDER BY departmentgroupid, medicinestoretype, medicinestorename;";
-                DataView dataStore = new DataView(condb.GetDataTable(sql_getmedistore));
+                DataView dataStore = new DataView(condb.GetDataTable_HIS(sql_getmedistore));
                 List<ClassCommon.classMedicineStore> lstMedicineStore = new List<ClassCommon.classMedicineStore>();
 
                 if (dataStore != null && dataStore.Count > 0)
@@ -102,7 +102,7 @@ namespace MedicalLink.Dashboard
             try
             {
                 string sql_getmeref = "SELECT mef.medicinerefid, mef.medicinerefid_org, mef.medicinecode, mef.medicinename FROM medicine_ref mef WHERE mef.isremove=0;";
-                DataView dataStore = new DataView(condb.GetDataTable(sql_getmeref));
+                DataView dataStore = new DataView(condb.GetDataTable_HIS(sql_getmeref));
                 lstMedicineStore = new List<ClassCommon.classMedicineRef>();
 
                 if (dataStore != null && dataStore.Count > 0)
@@ -150,7 +150,7 @@ namespace MedicalLink.Dashboard
             {
                 string medicinekiemkeid = " ";
                 string sql_getkiemke = "select COALESCE(max(medicinekiemkeid),0) as medicinekiemkeid from medicinekiemke where medicinestoreid=" + cboTuTruc.EditValue + " and medicinekiemkestatus=0;";
-                DataView dataKiemKe = new DataView(condb.GetDataTable(sql_getkiemke));
+                DataView dataKiemKe = new DataView(condb.GetDataTable_HIS(sql_getkiemke));
                 if (dataKiemKe != null && dataKiemKe.Count > 0 && Utilities.Util_TypeConvertParse.ToInt64(dataKiemKe[0]["medicinekiemkeid"].ToString()) > 0)
                 {
                     medicinekiemkeid = " and msref.medicinekiemkeid=" + dataKiemKe[0]["medicinekiemkeid"] + " ";
@@ -158,7 +158,7 @@ namespace MedicalLink.Dashboard
                 lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
 
                 string sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc FROM medicine_ref me inner join medicine_store_ref msref on me.medicinerefid=msref.medicinerefid WHERE msref.medicinestoreid=" + cboTuTruc.EditValue + " and msref.soluongtutruc>0  and msref.medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + " GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename;";
-                DataView dataDanhMucThuoc = new DataView(condb.GetDataTable(sql_getThuoc));
+                DataView dataDanhMucThuoc = new DataView(condb.GetDataTable_HIS(sql_getThuoc));
                 gridControlThuocTuTruc.DataSource = dataDanhMucThuoc;
             }
             catch (Exception ex)

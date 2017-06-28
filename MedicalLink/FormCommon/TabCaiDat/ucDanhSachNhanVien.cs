@@ -49,7 +49,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqldsnv = "SELECT nhanvienid as stt, usercode as manv, username as tennv, userhisid FROM tools_tblnhanvien ORDER BY manv";
-                DataView dv = new DataView(condb.GetDataTable(sqldsnv));
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqldsnv));
                 if (dv.Count > 0)
                 {
                     gridControlDSNV.DataSource = dv;
@@ -94,7 +94,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 if (txtNVID.Text != codeid)
                 {
                     string sql = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','Nhân viên', '" + txtIDHIS.Text.Trim() + "');";
-                    if (condb.ExecuteNonQuery(sql))
+                    if (condb.ExecuteNonQuery_HIS(sql))
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                         frmthongbao.Show();
@@ -105,7 +105,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 else
                 {
                     string sql = "UPDATE tools_tblnhanvien SET usercode='" + en_txtNVID + "', username='" + en_txtNVName + "', userpassword='" + en_pass + "', userstatus='0', usergnhom='2', usernote='' , userhisid = '" + txtIDHIS.Text.Trim() + "' WHERE usercode='" + en_txtNVID + "';";
-                    if (condb.ExecuteNonQuery(sql))
+                    if (condb.ExecuteNonQuery_HIS(sql))
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
                         frmthongbao.Show();
@@ -157,13 +157,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             {
                                 condb.Connect();
                                 string sql_kt = "SELECT usercode FROM tools_tblnhanvien WHERE usercode='" + en_txtNVCode + "';";
-                                DataView dv_kt = new DataView(condb.GetDataTable(sql_kt));
+                                DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0) //update
                                 {
                                     string sql_updateUser = "UPDATE tools_tblnhanvien SET username='" + en_txtNVName + "', userhisid='" + dmUser_Import[i]["USERHISID"] + "' WHERE usercode='" + en_txtNVCode + "';";
                                     try
                                     {
-                                        condb.ExecuteNonQuery(sql_updateUser);
+                                        condb.ExecuteNonQuery_HIS(sql_updateUser);
                                         dem_update += 1;
                                     }
                                     catch (Exception)
@@ -176,7 +176,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                                     string sql_insertDVKT = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote,userhisid) VALUES ('" + en_txtNVCode + "','" + en_txtNVName + "','" + en_pass + "','0','3','Nhân viên', '" + dmUser_Import[i]["USERHISID"] + "');";
                                     try
                                     {
-                                        condb.ExecuteNonQuery(sql_insertDVKT);
+                                        condb.ExecuteNonQuery_HIS(sql_insertDVKT);
                                         dem_insert += 1;
                                     }
                                     catch (Exception)
@@ -237,7 +237,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 try
                 {
                     string sqlxoatk = "DELETE FROM tools_tblnhanvien WHERE usercode='" + usercode + "';";
-                    condb.ExecuteNonQuery(sqlxoatk);
+                    condb.ExecuteNonQuery_HIS(sqlxoatk);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + usercode);
                     frmthongbao.Show();
                     gridControlDSNV.DataSource = null;

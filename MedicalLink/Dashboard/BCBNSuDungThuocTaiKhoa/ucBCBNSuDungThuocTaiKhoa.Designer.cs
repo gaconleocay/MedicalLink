@@ -30,18 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCBNSuDungThuocTaiKhoa));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.btnExport = new DevExpress.XtraEditors.SimpleButton();
             this.radioVatTu = new System.Windows.Forms.RadioButton();
             this.radioThuoc = new System.Windows.Forms.RadioButton();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
-            this.bbbb = new DevExpress.XtraEditors.LabelControl();
             this.lblTenKhoaLayBaoCao = new System.Windows.Forms.Label();
-            this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
             this.cboKhoa = new DevExpress.XtraEditors.LookUpEdit();
             this.radioNam = new System.Windows.Forms.RadioButton();
             this.radioQuy = new System.Windows.Forms.RadioButton();
@@ -97,17 +95,15 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(1000, 140);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1000, 120);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.btnExport);
             this.groupBoxFile.Controls.Add(this.radioVatTu);
             this.groupBoxFile.Controls.Add(this.radioThuoc);
-            this.groupBoxFile.Controls.Add(this.tbnExport);
-            this.groupBoxFile.Controls.Add(this.bbbb);
             this.groupBoxFile.Controls.Add(this.lblTenKhoaLayBaoCao);
-            this.groupBoxFile.Controls.Add(this.lblThoiGianLayBaoCao);
             this.groupBoxFile.Controls.Add(this.cboKhoa);
             this.groupBoxFile.Controls.Add(this.radioNam);
             this.groupBoxFile.Controls.Add(this.radioQuy);
@@ -122,16 +118,30 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(996, 136);
+            this.groupBoxFile.Size = new System.Drawing.Size(996, 116);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // btnExport
+            // 
+            this.btnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnExport.Appearance.Options.UseFont = true;
+            this.btnExport.Appearance.Options.UseForeColor = true;
+            this.btnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.btnExport.Location = new System.Drawing.Point(783, 39);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(100, 40);
+            this.btnExport.TabIndex = 83;
+            this.btnExport.Text = "Export...";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // radioVatTu
             // 
             this.radioVatTu.AutoSize = true;
             this.radioVatTu.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioVatTu.Location = new System.Drawing.Point(430, 57);
+            this.radioVatTu.Location = new System.Drawing.Point(510, 55);
             this.radioVatTu.Name = "radioVatTu";
             this.radioVatTu.Size = new System.Drawing.Size(61, 18);
             this.radioVatTu.TabIndex = 82;
@@ -144,7 +154,7 @@
             // 
             this.radioThuoc.AutoSize = true;
             this.radioThuoc.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioThuoc.Location = new System.Drawing.Point(430, 25);
+            this.radioThuoc.Location = new System.Drawing.Point(510, 23);
             this.radioThuoc.Name = "radioThuoc";
             this.radioThuoc.Size = new System.Drawing.Size(60, 18);
             this.radioThuoc.TabIndex = 81;
@@ -153,56 +163,22 @@
             this.radioThuoc.UseVisualStyleBackColor = true;
             this.radioThuoc.CheckedChanged += new System.EventHandler(this.radioThuoc_CheckedChanged);
             // 
-            // tbnExport
-            // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(890, 35);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 40);
-            this.tbnExport.TabIndex = 80;
-            this.tbnExport.Text = "Export...";
-            // 
-            // bbbb
-            // 
-            this.bbbb.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bbbb.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.bbbb.Location = new System.Drawing.Point(6, 89);
-            this.bbbb.Name = "bbbb";
-            this.bbbb.Size = new System.Drawing.Size(170, 14);
-            this.bbbb.TabIndex = 71;
-            this.bbbb.Text = "Thời gian lấy dữ liệu cuối cùng:";
-            // 
             // lblTenKhoaLayBaoCao
             // 
             this.lblTenKhoaLayBaoCao.AutoSize = true;
             this.lblTenKhoaLayBaoCao.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenKhoaLayBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(217, 84);
+            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(6, 88);
             this.lblTenKhoaLayBaoCao.Name = "lblTenKhoaLayBaoCao";
             this.lblTenKhoaLayBaoCao.Size = new System.Drawing.Size(34, 14);
             this.lblTenKhoaLayBaoCao.TabIndex = 72;
             this.lblTenKhoaLayBaoCao.Text = "Khoa";
             // 
-            // lblThoiGianLayBaoCao
-            // 
-            this.lblThoiGianLayBaoCao.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThoiGianLayBaoCao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(36, 110);
-            this.lblThoiGianLayBaoCao.Name = "lblThoiGianLayBaoCao";
-            this.lblThoiGianLayBaoCao.Size = new System.Drawing.Size(120, 14);
-            this.lblThoiGianLayBaoCao.TabIndex = 73;
-            this.lblThoiGianLayBaoCao.Text = "00:00:00 01/01/0001";
-            // 
             // cboKhoa
             // 
-            this.cboKhoa.Location = new System.Drawing.Point(219, 100);
+            this.cboKhoa.Location = new System.Drawing.Point(53, 83);
             this.cboKhoa.Name = "cboKhoa";
-            this.cboKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboKhoa.Properties.Appearance.Options.UseFont = true;
             this.cboKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
@@ -214,14 +190,14 @@
             this.cboKhoa.Properties.DropDownRows = 10;
             this.cboKhoa.Properties.NullText = "";
             this.cboKhoa.Properties.PopupSizeable = false;
-            this.cboKhoa.Size = new System.Drawing.Size(465, 30);
+            this.cboKhoa.Size = new System.Drawing.Size(517, 26);
             this.cboKhoa.TabIndex = 70;
             // 
             // radioNam
             // 
             this.radioNam.AutoSize = true;
             this.radioNam.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioNam.Location = new System.Drawing.Point(328, 25);
+            this.radioNam.Location = new System.Drawing.Point(357, 25);
             this.radioNam.Name = "radioNam";
             this.radioNam.Size = new System.Drawing.Size(49, 18);
             this.radioNam.TabIndex = 24;
@@ -234,7 +210,7 @@
             // 
             this.radioQuy.AutoSize = true;
             this.radioQuy.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioQuy.Location = new System.Drawing.Point(277, 25);
+            this.radioQuy.Location = new System.Drawing.Point(306, 25);
             this.radioQuy.Name = "radioQuy";
             this.radioQuy.Size = new System.Drawing.Size(47, 18);
             this.radioQuy.TabIndex = 23;
@@ -247,7 +223,7 @@
             // 
             this.radioThang.AutoSize = true;
             this.radioThang.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioThang.Location = new System.Drawing.Point(219, 25);
+            this.radioThang.Location = new System.Drawing.Point(248, 25);
             this.radioThang.Name = "radioThang";
             this.radioThang.Size = new System.Drawing.Size(60, 18);
             this.radioThang.TabIndex = 22;
@@ -259,7 +235,7 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(9, 57);
+            this.labelControl1.Location = new System.Drawing.Point(18, 57);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(22, 14);
             this.labelControl1.TabIndex = 21;
@@ -268,7 +244,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(15, 27);
+            this.labelControl3.Location = new System.Drawing.Point(24, 27);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(16, 14);
             this.labelControl3.TabIndex = 20;
@@ -280,7 +256,7 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(40, 51);
+            this.dateDenNgay.Location = new System.Drawing.Point(53, 51);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
@@ -293,7 +269,7 @@
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(40, 21);
+            this.dateTuNgay.Location = new System.Drawing.Point(53, 21);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
@@ -303,7 +279,7 @@
             // 
             // cboChonNhanh
             // 
-            this.cboChonNhanh.Location = new System.Drawing.Point(219, 53);
+            this.cboChonNhanh.Location = new System.Drawing.Point(248, 53);
             this.cboChonNhanh.Name = "cboChonNhanh";
             this.cboChonNhanh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChonNhanh.Properties.Appearance.Options.UseFont = true;
@@ -323,7 +299,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnTimKiem.Location = new System.Drawing.Point(584, 34);
+            this.btnTimKiem.Location = new System.Drawing.Point(661, 39);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -334,9 +310,9 @@
             // 
             this.panelControlData.Controls.Add(this.gridControlDataQLTTKhoa);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlData.Location = new System.Drawing.Point(0, 140);
+            this.panelControlData.Location = new System.Drawing.Point(0, 120);
             this.panelControlData.Name = "panelControlData";
-            this.panelControlData.Size = new System.Drawing.Size(1000, 473);
+            this.panelControlData.Size = new System.Drawing.Size(1000, 493);
             this.panelControlData.TabIndex = 4;
             // 
             // gridControlDataQLTTKhoa
@@ -349,7 +325,7 @@
             this.gridControlDataQLTTKhoa.Name = "gridControlDataQLTTKhoa";
             this.gridControlDataQLTTKhoa.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButton_View});
-            this.gridControlDataQLTTKhoa.Size = new System.Drawing.Size(996, 469);
+            this.gridControlDataQLTTKhoa.Size = new System.Drawing.Size(996, 489);
             this.gridControlDataQLTTKhoa.TabIndex = 28;
             this.gridControlDataQLTTKhoa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridViewDataQLTTKhoa});
@@ -808,7 +784,7 @@
             // 
             this.repositoryItemButton_View.AutoHeight = false;
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
             // 
             // imMenu
@@ -856,9 +832,7 @@
         private System.Windows.Forms.RadioButton radioNam;
         private System.Windows.Forms.RadioButton radioQuy;
         private System.Windows.Forms.RadioButton radioThang;
-        private DevExpress.XtraEditors.LabelControl bbbb;
         private System.Windows.Forms.Label lblTenKhoaLayBaoCao;
-        private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
         private DevExpress.XtraEditors.LookUpEdit cboKhoa;
         private DevExpress.XtraEditors.PanelControl panelControlData;
         private DevExpress.XtraGrid.GridControl gridControlDataQLTTKhoa;
@@ -870,7 +844,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn6;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn9;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn10;
-        private DevExpress.XtraEditors.SimpleButton tbnExport;
         private System.Windows.Forms.RadioButton radioVatTu;
         private System.Windows.Forms.RadioButton radioThuoc;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn15;
@@ -889,5 +862,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn12;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn13;
         private DevExpress.Utils.ImageCollection imMenu;
+        private DevExpress.XtraEditors.SimpleButton btnExport;
     }
 }

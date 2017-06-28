@@ -118,7 +118,7 @@ namespace MedicalLink.ChucNang
                 {
                     sqlquerry = "select distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, department.departmentname as tenphong, case medicalrecord.nextdepartmentid when 0 then '1' else '0' end as lakhoacuoi FROM medicalrecord, hosobenhan,departmentgroup,department,vienphi where medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.departmentid=department.departmentid and medicalrecord.patientid=hosobenhan.patientid and vienphi.vienphiid=medicalrecord.vienphiid and medicalrecord.vienphiid=" + txtMaVienPhi.Text + " order by madieutri";
                 }
-                DataView dv = new DataView(condb.GetDataTable(sqlquerry));
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
                 gridControlSuaThoiGianRaVien.DataSource = dv;
                 dateThoiGianSua.Enabled = false;
                 btnSuaThoiGianOK.Enabled = false;
@@ -202,8 +202,8 @@ namespace MedicalLink.ChucNang
                 {
                     string sqlxecute = "update medicalrecord set thoigianravien='" + dateThoiGianSua.Text + "', medicalrecordstatus='99' where medicalrecordid= '" + medireco + "' and thoigianravien<>'0001-01-01 00:00:00'; update vienphi set vienphidate_ravien='" + dateThoiGianSua.Text + "' where vienphiid=" + mavp + " and vienphistatus<>0";
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG ra viện BN VP: " + mavp + " mã ĐT: " + medireco + " từ TG: " + dateThoiGianHienTai.Text + " thành TG: " + dateThoiGianSua.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                    condb.ExecuteNonQuery(sqlxecute);
-                    condb.ExecuteNonQuery(sqlinsert_log);
+                    condb.ExecuteNonQuery_HIS(sqlxecute);
+                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
                     frmthongbao.Show();
                     gridControlSuaThoiGianRaVien.DataSource = null;

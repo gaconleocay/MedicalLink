@@ -107,7 +107,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_bcBHYT21 = "select servicepriceref.bhyt_groupcode as dv_nhom_ma, servicepriceref.servicepricecodeuser as dvktdmbyt_dcg, servicepriceref.servicepricesttuser as dvktstt_dcg, servicepriceref.servicepricecode as dvktma_dcg, servicepriceref.servicepricename as tendvkt_dcg, servicepriceref.servicepricefeebhyt as dongia_dcg, sum(serviceprice.soluong) as soluong_dcg from serviceprice, vienphi, servicepriceref where serviceprice.vienphiid=vienphi.vienphiid and servicepriceref.servicepricecode=serviceprice.servicepricecode and serviceprice.loaidoituong <>1 and vienphi.vienphistatus=2 " + loaiBenhAn + danhSachIdKhoa + tieuChiBaoCao + " >'" + datetungay + "' " + tieuChiBaoCao + "<'" + datedenngay + "' group by dvktma_dcg,tendvkt_dcg,dv_nhom_ma,dvktdmbyt_dcg,dvktstt_dcg,dongia_dcg order by dv_nhom_ma;";
-                DataView data_bcBHYT21 = new DataView(condb.GetDataTable(sql_bcBHYT21));
+                DataView data_bcBHYT21 = new DataView(condb.GetDataTable_HIS(sql_bcBHYT21));
 
                 if (data_bcBHYT21 != null && data_bcBHYT21.Count > 0)
                 {

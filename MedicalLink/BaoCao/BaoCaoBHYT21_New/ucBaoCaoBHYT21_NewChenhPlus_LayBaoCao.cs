@@ -116,7 +116,7 @@ namespace MedicalLink.ChucNang
             try
             {
                 string sql_madungtuyen = "SELECT mayte, listmaytetuyenduoi FROM hospital;";
-                DataView data_madungtuyen = new DataView(condb.GetDataTable(sql_madungtuyen));
+                DataView data_madungtuyen = new DataView(condb.GetDataTable_HIS(sql_madungtuyen));
                 if (data_madungtuyen != null)
                 {
                     lstmadungtuyen = new List<long>();
@@ -138,7 +138,7 @@ namespace MedicalLink.ChucNang
             {
                 gridControlBHYT21Chenh.DataSource = null;
                 string sql_getvienphi = "select vienphi.vienphiid as vienphiid, vienphi.bhytid as bhytid, bhyt.bhytcode as bhytcode, bhyt.macskcbbd as macskcbbd from vienphi,bhyt where vienphi.bhytid=bhyt.bhytid and vienphi.vienphistatus=2 " + loaiBenhAn + danhSachIdKhoa + tieuChiBaoCao + " >'" + datetungay + "' " + tieuChiBaoCao + "<'" + datedenngay + "';";
-                DataView data_vienphi = new DataView(condb.GetDataTable(sql_getvienphi));
+                DataView data_vienphi = new DataView(condb.GetDataTable_HIS(sql_getvienphi));
                 if (data_vienphi != null && data_vienphi.Count > 0)
                 {
                     //List<MedicalLink.ClassCommon.classVienPhiBHYT> lstvienphiBhyt_A = new List<ClassCommon.classVienPhiBHYT>();
@@ -185,7 +185,7 @@ namespace MedicalLink.ChucNang
                         }
                         dsVienPhiIdString += lstVienPhiId_NhomA[lstVienPhiId_NhomA.Count - 1];
                         string sql_serviceprice = "SELECT s.servicepricecode as servicecode, s.servicepricename_bhyt as dvkt_ten, s.bhyt_groupcode as bhyt_groupcode, s.servicepricemoney_bhyt as dongia_hientai, SUM(s.soluong) as soluong, rtrim(left(v.duyet_quyduyet,2), '/') as thang FROM serviceprice s join vienphi v on s.vienphiid=v.vienphiid WHERE v.vienphiid in (" + dsVienPhiIdString + ") and s.loaidoituong in (0,2,4,6) and s.bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') GROUP BY servicecode,dvkt_ten,dongia_hientai,thang,bhyt_groupcode;";
-                        DataView data_servicePrice_A = new DataView(condb.GetDataTable(sql_serviceprice));
+                        DataView data_servicePrice_A = new DataView(condb.GetDataTable_HIS(sql_serviceprice));
                         if (data_servicePrice_A != null && data_servicePrice_A.Count > 0)
                         {
                             List<ClassCommon.classBCBHYT21ChenhNew> lstData_servicePrice_A = new List<ClassCommon.classBCBHYT21ChenhNew>();
@@ -280,7 +280,7 @@ namespace MedicalLink.ChucNang
                         }
                         dsVienPhiIdString += lstVienPhiId_NhomB[lstVienPhiId_NhomB.Count - 1];
                         string sql_serviceprice = "SELECT s.servicepricecode as servicecode, s.servicepricename_bhyt as dvkt_ten, s.bhyt_groupcode as bhyt_groupcode, s.servicepricemoney_bhyt as dongia_hientai, SUM(s.soluong) as soluong, rtrim(left(v.duyet_quyduyet,2), '/') as thang FROM serviceprice s join vienphi v on s.vienphiid=v.vienphiid WHERE v.vienphiid in (" + dsVienPhiIdString + ") and s.loaidoituong in (0,2,4,6) and s.bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') GROUP BY servicecode,bhyt_groupcode,dvkt_ten,dongia_hientai,thang;";
-                        DataView data_servicePrice_B = new DataView(condb.GetDataTable(sql_serviceprice));
+                        DataView data_servicePrice_B = new DataView(condb.GetDataTable_HIS(sql_serviceprice));
                         if (data_servicePrice_B != null && data_servicePrice_B.Count > 0)
                         {
                             List<ClassCommon.classBCBHYT21ChenhNew> lstData_servicePrice_B = new List<ClassCommon.classBCBHYT21ChenhNew>();
@@ -375,7 +375,7 @@ namespace MedicalLink.ChucNang
                         }
                         dsVienPhiIdString += lstVienPhiId_NhomC[lstVienPhiId_NhomC.Count - 1];
                         string sql_serviceprice = "SELECT s.servicepricecode as servicecode, s.servicepricename_bhyt as dvkt_ten, s.bhyt_groupcode as bhyt_groupcode, s.servicepricemoney_bhyt as dongia_hientai, SUM(s.soluong) as soluong, rtrim(left(v.duyet_quyduyet,2), '/') as thang FROM serviceprice s join vienphi v on s.vienphiid=v.vienphiid WHERE v.vienphiid in (" + dsVienPhiIdString + ") and s.loaidoituong in (0,2,4,6) and s.bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') GROUP BY servicecode,bhyt_groupcode,dvkt_ten,dongia_hientai,thang;";
-                        DataView data_servicePrice_C = new DataView(condb.GetDataTable(sql_serviceprice));
+                        DataView data_servicePrice_C = new DataView(condb.GetDataTable_HIS(sql_serviceprice));
                         if (data_servicePrice_C != null && data_servicePrice_C.Count > 0)
                         {
                             List<ClassCommon.classBCBHYT21ChenhNew> lstData_servicePrice_C = new List<ClassCommon.classBCBHYT21ChenhNew>();

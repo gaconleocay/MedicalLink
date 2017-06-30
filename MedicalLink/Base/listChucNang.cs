@@ -540,7 +540,13 @@ namespace MedicalLink.Base
                 BAOCAO_008.permissionnote = "Báo cáo Thủ thuật - Chung";
                 lstresult.Add(BAOCAO_008);
 
-
+                ClassCommon.classPermission BAOCAO_009 = new ClassCommon.classPermission();
+                BAOCAO_009.permissioncheck = false;
+                BAOCAO_009.permissioncode = "BAOCAO_009";
+                BAOCAO_009.permissionname = "Báo cáo Thủ thuật Nội soi dạ dày";
+                BAOCAO_009.permissiontype = 10;
+                BAOCAO_009.permissionnote = "Báo cáo Thủ thuật Nội soi dạ dày";
+                lstresult.Add(BAOCAO_009);
 
 
             }

@@ -1307,6 +1307,12 @@
     <Content Include="Templates\BC_PhauThuat_YeuCau_ThanhToan.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_TT_NoiSoiDaDay_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

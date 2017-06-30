@@ -70,35 +70,12 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                //List<ClassCommon.classPermission> lstReportCurrent = new List<classPermission>();
-                //List<ClassCommon.classPermission> lstReport = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 10).ToList();
-                //if (Base.SessionLogin.SessionUsercode == Base.KeyTrongPhanMem.AdminUser_key)
-                //{
-                //    lstReportCurrent = lstReport;
-                //}
-                //else
-                //{
-                //    if (Base.SessionLogin.SessionLstPhanQuyenNguoiDung != null && Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Count > 0)
-                //    {
-                //        lstReportCurrent = (from lstKho in lstReport
-                //                            from lstKhoa in Base.SessionLogin.SessionLstPhanQuyenNguoiDung
-                //                            where lstKho.permissioncode == lstKhoa.permissioncode
-                //                            select new ClassCommon.classPermission
-                //                                   {
-                //                                       permissionid = lstKho.permissionid,
-                //                                       permissioncode = lstKho.permissioncode,
-                //                                       en_permissioncode = lstKho.en_permissioncode,
-                //                                       permissionname = lstKho.permissionname,
-                //                                       en_permissionname = lstKho.en_permissionname,
-                //                                       permissiontype = lstKho.permissiontype,
-                //                                       permissionnote = lstKho.permissionnote
-                //                                   }).ToList();
-                //    }
-                //}
+                List<ClassCommon.classPermission> lstBaoCaoPTTT = Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Where(o => o.permissioncode != "BAOCAO_009").ToList(); ;
 
-                cboLoaiBaoCao.Properties.DataSource = Base.SessionLogin.SessionLstPhanQuyen_BaoCao;
+                cboLoaiBaoCao.Properties.DataSource = lstBaoCaoPTTT;
                 cboLoaiBaoCao.Properties.DisplayMember = "permissionname";
                 cboLoaiBaoCao.Properties.ValueMember = "permissioncode";
+                
                 if (Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Count > 0)
                 {
                     cboLoaiBaoCao.ItemIndex = 0;
@@ -310,6 +287,20 @@ namespace MedicalLink.BaoCao
                     gridBand_MoiMoChinh.Visible = false;
                     gridBand_MoiGayMe.Visible = false;
                 }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day (mo chinh + giup viec1)
+                {
+                    cboKhoa.Enabled = false;
+                    chkcomboListDSPhong.Enabled = false;
+                    bandedGridColumn_tyle.Visible = false;
+                    gridBand_gayme.Visible = false;
+                    gridBand_phumo1.Visible = false;
+                    gridBand_phumo2.Visible = false;
+                    gridBand_giupviec1.Visible = true;
+                    gridBand_giupviec2.Visible = false;
+                    gridBand_PhuMe.Visible = false;
+                    gridBand_MoiMoChinh.Visible = false;
+                    gridBand_MoiGayMe.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -396,6 +387,10 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_PhauThuatThuThuat_TT_CHUNG.xlsx";
                 }
+                //else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                //{
+                //    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx";
+                //}
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBCPTTT);
             }
@@ -455,6 +450,10 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanThuThuat.xlsx";
                 }
+                //else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                //{
+                //    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay_ThanhToan.xlsx";
+                //}
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBCPTTT);
             }
@@ -513,7 +512,10 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_PhauThuatThuThuat_TT_CHUNG.xlsx";
                 }
-
+                //else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                //{
+                //    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx";
+                //}
                 DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);
@@ -574,7 +576,10 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanThuThuat.xlsx";
                 }
-
+                //else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                //{
+                //    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay_ThanhToan.xlsx";
+                //}
                 DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);

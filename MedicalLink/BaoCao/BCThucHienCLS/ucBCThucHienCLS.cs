@@ -27,6 +27,7 @@ namespace MedicalLink.BaoCao
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         DataTable dataBCPTTT { get; set; }
         bool kiemtrasuadulieu = false;
+        private DataTable dataNguoiThucHien { get; set; }
         #endregion
 
         #region Load
@@ -41,6 +42,7 @@ namespace MedicalLink.BaoCao
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             LoadDanhMucPhongThucHien();
             LoadDanhSachExport();
+            LoadDanhSachBaoCao();
         }
 
         private void LoadDanhMucPhongThucHien()
@@ -83,7 +85,31 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void LoadDanhSachBaoCao()
+        {
+            try
+            {
+                List<ClassCommon.classPermission> lstBaoCaoCLS = new List<classPermission>();
+                List<ClassCommon.classPermission> kiemtra = Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Where(o => o.permissioncode == "BAOCAO_009").ToList(); ;
+                if (kiemtra != null && kiemtra.Count > 0)
+                {
+                    lstBaoCaoCLS.AddRange(kiemtra);
+                }
+                ClassCommon.classPermission baocaoCLS = new classPermission();
+                baocaoCLS.permissioncode = "ALLL";
+                baocaoCLS.permissionname = "Tất cả";
+                lstBaoCaoCLS.Add(baocaoCLS);
 
+                cboLoaiBaoCao.Properties.DataSource = lstBaoCaoCLS;
+                cboLoaiBaoCao.Properties.DisplayMember = "permissionname";
+                cboLoaiBaoCao.Properties.ValueMember = "permissioncode";
+                cboLoaiBaoCao.EditValue = "ALLL";
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -155,11 +181,11 @@ namespace MedicalLink.BaoCao
                 string luulaithuchien = "";
                 if (thuchienclsid == 0) //them moi
                 {
-                    luulaithuchien = "INSERT INTO thuchiencls(medicalrecordid, medicalrecordid_gmhs, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4) VALUES ('" + medicalrecordid + "', '" + medicalrecordid + "', '" + patientid + "', '" + maubenhphamid + "', '" + servicepriceid + "', '" + thuchienclsdate + "', '" + mochinh_idbs + "', '" + gayme_idbs + "', '" + phu1_idbs + "', '" + phu2_idbs + "', '" + giupviec1_idbs + "', '" + giupviec2_idbs + "');";
+                    luulaithuchien = "INSERT INTO thuchiencls(medicalrecordid, medicalrecordid_gmhs, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, tools_userid, tools_username) VALUES ('" + medicalrecordid + "', '" + medicalrecordid + "', '" + patientid + "', '" + maubenhphamid + "', '" + servicepriceid + "', '" + thuchienclsdate + "', '" + mochinh_idbs + "', '" + gayme_idbs + "', '" + phu1_idbs + "', '" + phu2_idbs + "', '" + giupviec1_idbs + "', '" + giupviec2_idbs + "', '"+ SessionLogin.SessionUserID + "', '"+ SessionLogin.SessionUsername + "');";
                 }
                 else
                 {
-                    luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + mochinh_idbs + "',  bacsigayme = '" + gayme_idbs + "', phumo1 = '" + phu1_idbs + "', phumo2 = '" + phu2_idbs + "', phumo3 = '" + giupviec1_idbs + "', phumo4 = '" + giupviec2_idbs + "' WHERE thuchienclsid = " + thuchienclsid + "; ";
+                    luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + mochinh_idbs + "',  bacsigayme = '" + gayme_idbs + "', phumo1 = '" + phu1_idbs + "', phumo2 = '" + phu2_idbs + "', phumo3 = '" + giupviec1_idbs + "', phumo4 = '" + giupviec2_idbs + "', tools_userid='" + SessionLogin.SessionUserID + "', tools_username='" + SessionLogin.SessionUsername + "' WHERE thuchienclsid = " + thuchienclsid + "; ";
                 }
 
                 condb.ExecuteNonQuery_HIS(luulaithuchien);
@@ -193,7 +219,7 @@ namespace MedicalLink.BaoCao
                 {
                     tbnExportBCCLSTheoFilter_Click();
                 }
-                else if (tenbaocao== "Báo cáo thanh toán tiền cận lâm sàng - Theo filter trên lưới")
+                else if (tenbaocao == "Báo cáo thanh toán tiền cận lâm sàng - Theo filter trên lưới")
                 {
                     tbnExportBCThanhToanCLSTheoFilter_Click();
                 }
@@ -222,6 +248,11 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_CLS.xlsx";
+
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx";
+                }
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBCPTTT);
             }
@@ -248,6 +279,11 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanCLS.xlsx";
+
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx";
+                }
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBCPTTT);
             }
@@ -275,6 +311,10 @@ namespace MedicalLink.BaoCao
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_CLS.xlsx";
 
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx";
+                }
                 DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);
@@ -303,6 +343,10 @@ namespace MedicalLink.BaoCao
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanCLS.xlsx";
 
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx";
+                }
                 DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);
@@ -314,5 +358,34 @@ namespace MedicalLink.BaoCao
         }
 
         #endregion
+
+        private void cboLoaiBaoCao_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009") //bao cao Noi soi da day
+                {
+                    chkcomboListDSPhong.Enabled = false;
+                    gridBand_gayme.Visible = false;
+                    gridBand_phumo1.Visible = false;
+                    gridBand_phumo2.Visible = false;
+                    gridBand_giupviec1.Visible = true;
+                    gridBand_giupviec2.Visible = false;
+                }
+                else
+                {
+                    chkcomboListDSPhong.Enabled = true;
+                    gridBand_gayme.Visible = true;
+                    gridBand_phumo1.Visible = true;
+                    gridBand_phumo2.Visible = true;
+                    gridBand_giupviec1.Visible = true;
+                    gridBand_giupviec2.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
     }
 }

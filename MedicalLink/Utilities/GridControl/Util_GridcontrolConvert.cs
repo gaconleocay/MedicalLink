@@ -15,7 +15,7 @@ namespace MedicalLink.Utilities.GridControl
             DataTable result = new DataTable();
             try
             {
-                foreach (GridColumn column in gridViewData.VisibleColumns)
+                foreach (GridColumn column in gridViewData.Columns)
                 {
                     if (result.Columns.Contains(column.FieldName)==false)
                     {
@@ -25,7 +25,7 @@ namespace MedicalLink.Utilities.GridControl
                 for (int i = 0; i < gridViewData.DataRowCount; i++)
                 {
                     DataRow row = result.NewRow();
-                    foreach (GridColumn column in gridViewData.VisibleColumns)
+                    foreach (GridColumn column in gridViewData.Columns)
                     {
                         row[column.FieldName] = gridViewData.GetRowCellValue(i, column);
                     }

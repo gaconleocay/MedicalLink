@@ -1,5 +1,5 @@
 --Bao cao Phau thuat yeu cau chia tien cho bac si -
---ngay 27/6/2017
+--ngay 30/6/2017 : sua ktvhoi tinh sang truong PhuMo3
 
 
 U11970-3701	Phẫu thuật theo yêu cầu (sử dụng kính hiển vi)
@@ -155,7 +155,7 @@ FROM
 				when 'U11622-4536' then 21000 
 				when 'U11623-4610' then 19500
 				else 0 end) * ser.soluong) as ddhoitinh_tien,
-		pttt.phume3 as ktvhoitinh_tenbs, 
+		pttt.phumo3 as ktvhoitinh_tenbs, 
 		((case serf.servicepricecode 
 				when 'U11970-3701' then 0 
 				when 'U11620-4506' then 30000 
@@ -198,7 +198,7 @@ FROM
 		(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
 		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan 
 	FROM (select servicepricecode, vienphiid, departmentgroupid, departmentid, servicepricedate, medicalrecordid, servicepricename, servicepricemoney_bhyt, servicepricemoney, loaipttt, servicepriceid, soluong, chiphidauvao, chiphimaymoc, chiphipttt, mayytedbid, loaidoituong, servicepricemoney_nhandan from serviceprice where servicepricecode in (" + lstPhongCheck + ")) ser 
-		left join (select servicepriceid, phauthuatthuthuatdate, phauthuatvien, bacsigayme, phumo1, phumo2, phume, dungcuvien, phume2, phume3, dieuduong, phumo4 from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
+		left join (select servicepriceid, phauthuatthuthuatdate, phauthuatvien, bacsigayme, phumo1, phumo2, phume, dungcuvien, phume2, phumo3, dieuduong, phumo4 from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
 		inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphistatus_vp, vienphidate_ravien, duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 
 		inner join (select tinhtoanlaigiadvktc, pttt_loaiid, servicepricecode  from servicepriceref where servicepricecode in (" + lstPhongCheck + ")) serf on serf.servicepricecode=ser.servicepricecode
 	WHERE " + tieuchi_date + ") A 

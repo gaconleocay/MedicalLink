@@ -14,7 +14,7 @@ namespace MedicalLink.DatabaseProcess
         /// <returns></returns>
         internal static int TinhMucHuongTheoTheBHYT(string bhytcode, int bhyt_loaiid, int loaivienphiid, int du5nam6thangluongcoban, int bhyt_tuyenbenhvien)
         {
-            /*
+            /*bhyt_loaiid: =1 đúng tuyến; =2: đúng tuyến giới thiệu; =3 đúng tuyến cấp cứu; =4 trái tuyến
              * loaivienphiid=0 nội trú; =1 ngoại trú
              * bhyt_tuyenbenhvien=1: huyen; =2: tinh; ==3 TW
              */

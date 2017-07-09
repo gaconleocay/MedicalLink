@@ -229,8 +229,10 @@ namespace MedicalLink.FormCommon
                 if (tabPaneMenu.SelectedPage == tabMenuRestart)
                 {
                     hoi = DialogResult.Retry;
-                    Application.Restart();
+                   // Application.Restart();
                     Application.ExitThread();
+                    System.Diagnostics.Process.Start(@"MedicalLinkLauncher.exe");
+                    Application.Exit();
                 }
             }
             catch (Exception ex)

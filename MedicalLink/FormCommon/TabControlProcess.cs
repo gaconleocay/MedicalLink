@@ -220,7 +220,12 @@ namespace MedicalLink.FormCommon
                     case "TOOL_18":
                         ucResult = new ChucNang.ThongTinThucHienCLS.ucThongTinThucHienCanLamSang();
                         break;
-
+                    case "TOOL_19":
+                        ucResult = new ChucNang.DichVuThanhToanRieng.ucDichVuThanhToanRieng();
+                        break;
+                    case "TOOL_20":
+                        ucResult = new ChucNang.CapNhatThangLuongCoBan.ucCapNhatThangLuongCoBan();
+                        break;
 
                     //Bao cao
                     case "REPORT_01":
@@ -274,6 +279,12 @@ namespace MedicalLink.FormCommon
                     case "REPORT_17":
                         ucResult = new BaoCao.BCPhauThuat_YeuCau();
                         break;
+                    case "REPORT_18":
+                        ucResult = new BaoCao.ucBCSoChiTietBenhNhan();
+                        break;
+
+
+
 
                     //Dashboard
                     case "DASHBOARD_01":

@@ -192,7 +192,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 btnUserOK.Enabled = value;
-                txtUserID.Enabled = value;
+                txtUserCode.Enabled = value;
                 txtUsername.Enabled = value;
                 txtUserPassword.Enabled = value;
                 cbbUserNhom.Enabled = value;
@@ -208,9 +208,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 EnableAndDisableControl(true);
-                txtUserID.ReadOnly = true;
+                txtUserCode.ReadOnly = true;
                 currentUserCode = gridViewDSUser.GetRowCellValue(rowHandle, "usercode").ToString();
-                txtUserID.Text = currentUserCode;
+                txtUserCode.Text = currentUserCode;
                 txtUsername.Text = gridViewDSUser.GetRowCellValue(rowHandle, "username").ToString(); ;
                 txtUserPassword.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(gridViewDSUser.GetRowCellValue(rowHandle, "userpassword").ToString(), true);
                 cbbUserNhom.Text = gridViewDSUser.GetRowCellValue(rowHandle, "usergnhom").ToString();
@@ -379,13 +379,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             currentUserCode = null;
 
-            txtUserID.ResetText();
+            txtUserCode.ResetText();
             txtUsername.ResetText();
             txtUserPassword.ResetText();
             EnableAndDisableControl(true);
             cbbUserNhom.Text = "Nhân viên";
-            txtUserID.ReadOnly = false;
-            txtUserID.Focus();
+            txtUserCode.ReadOnly = false;
+            txtUserCode.Focus();
             btnUserOK.Enabled = true;
 
             gridControlChucNang.DataSource = null;
@@ -405,31 +405,34 @@ namespace MedicalLink.FormCommon.TabCaiDat
         private void btnUserOK_Click(object sender, EventArgs e)
         {
             // Mã hóa tài khoản
-            string en_txtUserID = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserID.Text.Trim().ToLower(), true);
+            string en_txtUsercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserCode.Text.Trim().ToLower(), true);
             string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
             string en_txtUserPassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserPassword.Text.Trim(), true);
             try
             {
                 if (currentUserCode == null)//them moi
                 {
-                    CreateNewUser(en_txtUserID, en_txtUsername, en_txtUserPassword);
-                    CreateNewUserPermission(en_txtUserID);
-                    CreateNewUserDepartment(en_txtUserID);
-                    CreateNewUserBaoCao(en_txtUserID);
-                    CreateNewUserMedicineStore(en_txtUserID);
-                    CreateNewUserMedicinePhongLuu(en_txtUserID);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
-                    frmthongbao.Show();
-                    LoadDanhSachNguoiDung();
+                    if (CheckAccTonTai(en_txtUsercode))
+                    {
+                        CreateNewUser(en_txtUsercode, en_txtUsername, en_txtUserPassword);
+                        CreateNewUserPermission(en_txtUsercode);
+                        CreateNewUserDepartment(en_txtUsercode);
+                        CreateNewUserBaoCao(en_txtUsercode);
+                        CreateNewUserMedicineStore(en_txtUsercode);
+                        CreateNewUserMedicinePhongLuu(en_txtUsercode);
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                        frmthongbao.Show();
+                        LoadDanhSachNguoiDung();
+                    }
                 }
                 else //Update 
                 {
-                    UpdateUser(en_txtUserID, en_txtUsername, en_txtUserPassword);
-                    UpdateUserPermission(en_txtUserID);
-                    UpdateUserDepartment(en_txtUserID);
-                    UpdateUserBaoCao(en_txtUserID);
-                    UpdateUserMedicineStore(en_txtUserID);
-                    UpdateUserMedicinePhongLuu(en_txtUserID);
+                    UpdateUser(en_txtUsercode, en_txtUsername, en_txtUserPassword);
+                    UpdateUserPermission(en_txtUsercode);
+                    UpdateUserDepartment(en_txtUsercode);
+                    UpdateUserBaoCao(en_txtUsercode);
+                    UpdateUserMedicineStore(en_txtUsercode);
+                    UpdateUserMedicinePhongLuu(en_txtUsercode);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                     frmthongbao.Show();
                 }
@@ -438,6 +441,26 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+        }
+        private bool CheckAccTonTai(string usercode)
+        {
+            bool result = true;
+            try
+            {
+                string sqlcheckUserCode = "select usercode from tools_tbluser where usercode='" + usercode + "';";
+                DataTable datacheck = condb.GetDataTable_MeL(sqlcheckUserCode);
+                if (datacheck != null && datacheck.Rows.Count > 0)
+                {
+                    result = false;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.TEN_TAI_KHOA_DA_TON_TAI);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            return result;
         }
 
         private void CreateNewUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword)

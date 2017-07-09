@@ -55,6 +55,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
             this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
@@ -111,7 +112,8 @@
             this.gridColumn6,
             this.gridColumn10,
             this.gridColumn11,
-            this.gridColumn21});
+            this.gridColumn21,
+            this.gridColumn24});
             this.gridViewBNDetail.GridControl = this.gridControlBNDetail;
             this.gridViewBNDetail.Name = "gridViewBNDetail";
             this.gridViewBNDetail.OptionsFind.AlwaysVisible = true;
@@ -124,6 +126,7 @@
             this.gridViewBNDetail.RowHeight = 25;
             this.gridViewBNDetail.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewBNDetail_CustomDrawCell);
             this.gridViewBNDetail.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewBNDetail_RowCellStyle);
+            this.gridViewBNDetail.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewBNDetail_RowStyle);
             // 
             // stt
             // 
@@ -650,6 +653,25 @@
             this.gridColumn21.VisibleIndex = 23;
             this.gridColumn21.Width = 120;
             // 
+            // gridColumn24
+            // 
+            this.gridColumn24.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn24.AppearanceCell.Options.UseFont = true;
+            this.gridColumn24.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn24.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn24.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn24.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn24.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn24.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn24.Caption = "Số ngày";
+            this.gridColumn24.FieldName = "songay";
+            this.gridColumn24.Name = "gridColumn24";
+            this.gridColumn24.OptionsColumn.AllowEdit = false;
+            this.gridColumn24.Visible = true;
+            this.gridColumn24.VisibleIndex = 24;
+            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.groupBoxAction);
@@ -762,5 +784,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
     }
 }

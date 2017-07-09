@@ -101,6 +101,7 @@
     <Reference Include="DevExpress.Sparkline.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v15.2.Core, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -142,6 +143,7 @@
     <Reference Include="DevExpress.XtraReports.v15.2.Extensions, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraRichEdit.v15.2.Extensions, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraSpreadsheet.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="log4net">
       <HintPath>Library\log4net.dll</HintPath>
@@ -285,6 +287,18 @@
     <Compile Include="BaoCao\BCSoCDHA\ucBCSoCDHA.Designer.cs">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCSoChiTietBenhNhan\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCSoChiTietBenhNhan\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.Designer.cs">
+      <DependentUpon>ucBCSoChiTietBenhNhan.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -328,6 +342,18 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.Designer.cs">
+      <DependentUpon>ucCapNhatThangLuongCoBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.Designer.cs">
+      <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,6 +372,7 @@
     <Compile Include="ChucNang\ThongTinThucHienCLS\ucThongTinThucHienCanLamSang.Designer.cs">
       <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
     <Compile Include="ClassCommon\classLoaiPTTTDTO.cs" />
@@ -920,6 +947,12 @@
     <EmbeddedResource Include="BaoCao\BCSoCDHA\ucBCSoCDHA.resx">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCSoChiTietBenhNhan\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.resx">
+      <DependentUpon>ucBCSoChiTietBenhNhan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.resx">
       <DependentUpon>ucBCSoXetNghiem.cs</DependentUpon>
     </EmbeddedResource>
@@ -937,6 +970,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\ucBCDoanhThuTheoMayXN.resx">
       <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.resx">
+      <DependentUpon>ucCapNhatThangLuongCoBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.resx">
+      <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.resx">
       <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>
@@ -1207,6 +1246,7 @@
     <None Include="Images\excel-3-32.png" />
     <None Include="Images\add-list-16.png" />
     <None Include="Images\question-mark-16.png" />
+    <None Include="Images\check-mark-24.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -1311,6 +1351,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_PhauThuatThuThuat_TT_NoiSoiDaDay_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_SoChiTietBenhNhan_01.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

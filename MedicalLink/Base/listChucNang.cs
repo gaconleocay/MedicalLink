@@ -226,8 +226,21 @@ namespace MedicalLink.Base
                 TOOL_18.permissionnote = "Nhập thông tin thực hiện Cận lâm sàng";
                 lstresult.Add(TOOL_18);
 
+                ClassCommon.classPermission TOOL_19 = new ClassCommon.classPermission();
+                TOOL_19.permissioncheck = false;
+                TOOL_19.permissioncode = "TOOL_19";
+                TOOL_19.permissionname = "Cập nhật dịch vụ (đi kèm, thanh toán riêng)";
+                TOOL_19.permissiontype = 2;
+                TOOL_19.permissionnote = "Cập nhật dịch vụ (đi kèm, thanh toán riêng)";
+                lstresult.Add(TOOL_19);
 
-
+                ClassCommon.classPermission TOOL_20 = new ClassCommon.classPermission();
+                TOOL_20.permissioncheck = false;
+                TOOL_20.permissioncode = "TOOL_20";
+                TOOL_20.permissionname = "Cập nhật tháng lương cơ bản của bệnh nhân";
+                TOOL_20.permissiontype = 2;
+                TOOL_20.permissionnote = "Cập nhật tháng lương cơ bản của bệnh nhân";
+                lstresult.Add(TOOL_20);
 
 
 
@@ -387,7 +400,13 @@ namespace MedicalLink.Base
                 REPORT_17.permissionnote = "Báo cáo phẫu thuật thủ thuật yêu cầu (doanh thu chia bác sĩ)";
                 lstresult.Add(REPORT_17);
 
-
+                ClassCommon.classPermission REPORT_18 = new ClassCommon.classPermission();
+                REPORT_18.permissioncheck = false;
+                REPORT_18.permissioncode = "REPORT_18";
+                REPORT_18.permissionname = "Báo cáo Sổ chi tiết bệnh nhân";
+                REPORT_18.permissiontype = 3;
+                REPORT_18.permissionnote = "Báo cáo Sổ chi tiết bệnh nhân";
+                lstresult.Add(REPORT_18);
 
 
                 //Dashboard

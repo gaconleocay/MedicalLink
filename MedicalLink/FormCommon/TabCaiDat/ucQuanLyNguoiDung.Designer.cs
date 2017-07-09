@@ -53,7 +53,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.btnUserOK = new DevExpress.XtraEditors.SimpleButton();
             this.txtUsername = new DevExpress.XtraEditors.TextEdit();
-            this.txtUserID = new DevExpress.XtraEditors.TextEdit();
+            this.txtUserCode = new DevExpress.XtraEditors.TextEdit();
             this.txtUserPassword = new DevExpress.XtraEditors.TextEdit();
             this.lblUserId = new DevExpress.XtraEditors.LabelControl();
             this.lblPassword = new DevExpress.XtraEditors.LabelControl();
@@ -123,7 +123,7 @@
             this.groupBoxThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbbUserNhom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlPhanQuyen)).BeginInit();
             this.panelControlPhanQuyen.SuspendLayout();
@@ -338,7 +338,7 @@
             this.groupBoxThongTin.Controls.Add(this.labelControl3);
             this.groupBoxThongTin.Controls.Add(this.btnUserOK);
             this.groupBoxThongTin.Controls.Add(this.txtUsername);
-            this.groupBoxThongTin.Controls.Add(this.txtUserID);
+            this.groupBoxThongTin.Controls.Add(this.txtUserCode);
             this.groupBoxThongTin.Controls.Add(this.txtUserPassword);
             this.groupBoxThongTin.Controls.Add(this.lblUserId);
             this.groupBoxThongTin.Controls.Add(this.lblPassword);
@@ -402,15 +402,15 @@
             this.txtUsername.TabIndex = 6;
             this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
-            // txtUserID
+            // txtUserCode
             // 
-            this.txtUserID.Location = new System.Drawing.Point(126, 20);
-            this.txtUserID.Name = "txtUserID";
-            this.txtUserID.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserID.Properties.Appearance.Options.UseFont = true;
-            this.txtUserID.Size = new System.Drawing.Size(167, 22);
-            this.txtUserID.TabIndex = 4;
-            this.txtUserID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserID_KeyDown);
+            this.txtUserCode.Location = new System.Drawing.Point(126, 20);
+            this.txtUserCode.Name = "txtUserCode";
+            this.txtUserCode.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserCode.Properties.Appearance.Options.UseFont = true;
+            this.txtUserCode.Size = new System.Drawing.Size(167, 22);
+            this.txtUserCode.TabIndex = 4;
+            this.txtUserCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserID_KeyDown);
             // 
             // txtUserPassword
             // 
@@ -1275,7 +1275,7 @@
             this.groupBoxThongTin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbbUserNhom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlPhanQuyen)).EndInit();
             this.panelControlPhanQuyen.ResumeLayout(false);
@@ -1323,7 +1323,7 @@
         private System.Windows.Forms.GroupBox groupBoxChucNang;
         private System.Windows.Forms.GroupBox groupBoxThongTin;
         private DevExpress.XtraEditors.SimpleButton btnUserThem;
-        private DevExpress.XtraEditors.TextEdit txtUserID;
+        private DevExpress.XtraEditors.TextEdit txtUserCode;
         private DevExpress.XtraEditors.ComboBoxEdit cbbUserNhom;
         private DevExpress.XtraEditors.TextEdit txtUsername;
         private DevExpress.XtraEditors.TextEdit txtUserPassword;

@@ -18,8 +18,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
     public partial class ucDanhSachNhanVien : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        string codeid;
-        string worksheetName = "tools_tblnhanvien";
+        private string curentUsercodeid;
+        private string curentUserHisId;
+        private string worksheetName = "tools_tblnhanvien";
         private DataView dmUser_Import;
 
         public ucDanhSachNhanVien()
@@ -66,12 +67,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 var rowHandle = gridViewDSNV.FocusedRowHandle;
-                codeid = gridViewDSNV.GetRowCellValue(rowHandle, "manv").ToString();
+                curentUsercodeid = gridViewDSNV.GetRowCellValue(rowHandle, "manv").ToString();
+                this.curentUserHisId = gridViewDSNV.GetRowCellValue(rowHandle, "userhisid").ToString();
                 txtNVID.Enabled = true;
                 txtNVName.Enabled = true;
                 btnNVOK.Enabled = true;
                 txtIDHIS.Enabled = true;
-                txtNVID.Text = codeid;
+                txtNVID.Text = curentUsercodeid;
                 txtNVName.Text = gridViewDSNV.GetRowCellValue(rowHandle, "tennv").ToString();
                 txtIDHIS.Text = gridViewDSNV.GetRowCellValue(rowHandle, "userhisid").ToString();
             }
@@ -91,16 +93,19 @@ namespace MedicalLink.FormCommon.TabCaiDat
 
             try
             {
-                if (txtNVID.Text != codeid)
+                if (txtNVID.Text != curentUsercodeid)
                 {
-                    string sql = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','Nhân viên', '" + txtIDHIS.Text.Trim() + "');";
-                    if (condb.ExecuteNonQuery_HIS(sql))
+                    if (CheckAccTonTai(txtNVID.Text.Trim(), txtIDHIS.Text.Trim()))
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
-                        frmthongbao.Show();
+                        string sql = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','Nhân viên', '" + txtIDHIS.Text.Trim() + "');";
+                        if (condb.ExecuteNonQuery_HIS(sql))
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                            frmthongbao.Show();
+                        }
+                        gridControlDSNV.DataSource = null;
+                        ucDanhSachNhanVien_Load(null, null);
                     }
-                    gridControlDSNV.DataSource = null;
-                    ucDanhSachNhanVien_Load(null, null);
                 }
                 else
                 {
@@ -116,10 +121,41 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
             }
         }
 
+        private bool CheckAccTonTai(string usercode, string userHisid)
+        {
+            bool result = true;
+            try
+            {
+                string sqlcheckUserCode = "select usercode,userhisid from tools_tblnhanvien where usercode='" + usercode + "';";
+                DataTable datacheck = condb.GetDataTable_HIS(sqlcheckUserCode);
+                if (datacheck != null && datacheck.Rows.Count > 0)
+                {
+                    result = false;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.TEN_TAI_KHOA_DA_TON_TAI);
+                    frmthongbao.Show();
+                    return false;
+                }
+
+                string sqlcheckUserHisId = "select usercode,userhisid from tools_tblnhanvien where userhisid='" + userHisid + "';";
+                DataTable datacheckHisId = condb.GetDataTable_HIS(sqlcheckUserHisId);
+                if (datacheckHisId != null && datacheckHisId.Rows.Count > 0)
+                {
+                    result = false;
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MA_HIS_ID_DA_TON_TAI);
+                    frmthongbao.Show();
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            return result;
+        }
         private void gridViewDSNV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
@@ -149,7 +185,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
 
                         for (int i = 0; i < dmUser_Import.Count; i++)
                         {
-                            // Mã hóa tài khoản
                             string en_txtNVCode = dmUser_Import[i]["USERCODE"].ToString().Trim();
                             string en_txtNVName = dmUser_Import[i]["USERNAME"].ToString().Trim();
                             string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);

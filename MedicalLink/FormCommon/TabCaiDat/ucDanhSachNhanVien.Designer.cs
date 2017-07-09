@@ -40,7 +40,7 @@
             this.btnNVOK = new DevExpress.XtraEditors.SimpleButton();
             this.txtNVName = new DevExpress.XtraEditors.TextEdit();
             this.txtNVID = new DevExpress.XtraEditors.TextEdit();
-            this.lblUserId = new DevExpress.XtraEditors.LabelControl();
+            this.lblUserCode = new DevExpress.XtraEditors.LabelControl();
             this.lblUsername = new DevExpress.XtraEditors.LabelControl();
             this.panelControlNV_DT = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDSNV = new DevExpress.XtraGrid.GridControl();
@@ -109,7 +109,7 @@
             this.groupBoxThongTin.Controls.Add(this.btnNVOK);
             this.groupBoxThongTin.Controls.Add(this.txtNVName);
             this.groupBoxThongTin.Controls.Add(this.txtNVID);
-            this.groupBoxThongTin.Controls.Add(this.lblUserId);
+            this.groupBoxThongTin.Controls.Add(this.lblUserCode);
             this.groupBoxThongTin.Controls.Add(this.lblUsername);
             this.groupBoxThongTin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxThongTin.Location = new System.Drawing.Point(154, 2);
@@ -121,7 +121,7 @@
             // 
             // txtIDHIS
             // 
-            this.txtIDHIS.Location = new System.Drawing.Point(285, 19);
+            this.txtIDHIS.Location = new System.Drawing.Point(315, 19);
             this.txtIDHIS.Name = "txtIDHIS";
             this.txtIDHIS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIDHIS.Properties.Appearance.Options.UseFont = true;
@@ -135,7 +135,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(242, 22);
+            this.labelControl1.Location = new System.Drawing.Point(272, 22);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(36, 16);
             this.labelControl1.TabIndex = 9;
@@ -171,7 +171,7 @@
             // 
             // txtNVName
             // 
-            this.txtNVName.Location = new System.Drawing.Point(78, 54);
+            this.txtNVName.Location = new System.Drawing.Point(108, 54);
             this.txtNVName.Name = "txtNVName";
             this.txtNVName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNVName.Properties.Appearance.Options.UseFont = true;
@@ -180,32 +180,32 @@
             // 
             // txtNVID
             // 
-            this.txtNVID.Location = new System.Drawing.Point(78, 20);
+            this.txtNVID.Location = new System.Drawing.Point(108, 20);
             this.txtNVID.Name = "txtNVID";
             this.txtNVID.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNVID.Properties.Appearance.Options.UseFont = true;
             this.txtNVID.Size = new System.Drawing.Size(145, 22);
             this.txtNVID.TabIndex = 4;
             // 
-            // lblUserId
+            // lblUserCode
             // 
-            this.lblUserId.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserId.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblUserId.Location = new System.Drawing.Point(20, 23);
-            this.lblUserId.Name = "lblUserId";
-            this.lblUserId.Size = new System.Drawing.Size(42, 16);
-            this.lblUserId.TabIndex = 1;
-            this.lblUserId.Text = "User ID";
+            this.lblUserCode.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserCode.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblUserCode.Location = new System.Drawing.Point(26, 22);
+            this.lblUserCode.Name = "lblUserCode";
+            this.lblUserCode.Size = new System.Drawing.Size(76, 16);
+            this.lblUserCode.TabIndex = 1;
+            this.lblUserCode.Text = "Mã nhân viên";
             // 
             // lblUsername
             // 
             this.lblUsername.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblUsername.Location = new System.Drawing.Point(4, 57);
+            this.lblUsername.Location = new System.Drawing.Point(21, 57);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(58, 16);
+            this.lblUsername.Size = new System.Drawing.Size(81, 16);
             this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "Username";
+            this.lblUsername.Text = "Tên nhân viên";
             // 
             // panelControlNV_DT
             // 
@@ -377,7 +377,7 @@
         private System.Windows.Forms.GroupBox groupBoxThongTin;
         private DevExpress.XtraEditors.TextEdit txtNVName;
         private DevExpress.XtraEditors.TextEdit txtNVID;
-        private DevExpress.XtraEditors.LabelControl lblUserId;
+        private DevExpress.XtraEditors.LabelControl lblUserCode;
         private DevExpress.XtraEditors.LabelControl lblUsername;
         private DevExpress.XtraEditors.PanelControl panelControlNV_DT;
         private DevExpress.XtraGrid.GridControl gridControlDSNV;

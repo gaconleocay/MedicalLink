@@ -449,6 +449,56 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        //Sua thoi gian chi dinh dich vu
+        void itemSuaThoiGian_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
+                {
+                    // lấy giá trị tại dòng click chuột
+                    var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
+                    string trangthai = Convert.ToString(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString());
+                    long maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                    DateTime thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
+                    DateTime thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
+                    if (trangthai == "Đang điều trị")
+                    {
+                        //truyền biến sang bên form thực hiện
+                        MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(maubenhphamid, thoigianchidinh, thoigiansudung);
+                        frmsuaTGCD.ShowDialog();
+                        gridControlDS_PhieuDichVu.DataSource = null;
+                        btnTimKiem_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hồ sơ bệnh án đã đóng. \nKhông cho phép sửa", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn không có quyền sử dụng chức năng này", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #region Xoa phieu CDDV
+        private void repositoryItemButtonDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                itemXoaPhieuChiDinh_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         void itemXoaPhieuChiDinh_Click(object sender, EventArgs e)
         {
             try
@@ -509,12 +559,12 @@ namespace MedicalLink.ChucNang
                                 }
                                 string delete_medicine = "DELETE FROM medicine WHERE medicinestorebillid in (select medicinestorebillid from medicine_store_bill where maubenhphamid=" + maubenhphamid + ");";
                                 //-------                    
-                                condb.ExecuteNonQuery_HIS(delete_medicine);
-                                condb.ExecuteNonQuery_HIS(delete_maubenhpham);
-                                condb.ExecuteNonQuery_HIS(delete_serviceprice);
-                                condb.ExecuteNonQuery_HIS(update_medicine_store_bill);
                                 condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                                MessageBox.Show("Xóa phiếu thuốc/vật tư mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                                if (condb.ExecuteNonQuery_HIS(delete_medicine) && condb.ExecuteNonQuery_HIS(delete_maubenhpham) && condb.ExecuteNonQuery_HIS(delete_serviceprice) && condb.ExecuteNonQuery_HIS(update_medicine_store_bill))
+                                {
+                                    MessageBox.Show("Xóa phiếu thuốc/vật tư mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                }
                                 gridControlDS_PhieuDichVu.DataSource = null;
                                 btnTimKiem_Click(null, null);
                             }
@@ -554,56 +604,7 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-        //Sua thoi gian chi dinh dich vu
-        void itemSuaThoiGian_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
-                {
-                    // lấy giá trị tại dòng click chuột
-                    var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
-                    string trangthai = Convert.ToString(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString());
-                    long maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
-                    DateTime thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
-                    DateTime thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
-                    if (trangthai == "Đang điều trị")
-                    {
-                        //truyền biến sang bên form thực hiện
-                        MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(maubenhphamid, thoigianchidinh, thoigiansudung);
-                        frmsuaTGCD.ShowDialog();
-                        gridControlDS_PhieuDichVu.DataSource = null;
-                        btnTimKiem_Click(null, null);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hồ sơ bệnh án đã đóng. \nKhông cho phép sửa", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Bạn không có quyền sử dụng chức năng này", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
 
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-        private void repositoryItemButtonDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                itemXoaPhieuChiDinh_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-
+        #endregion
     }
 }

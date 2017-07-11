@@ -287,12 +287,6 @@
     <Compile Include="BaoCao\BCSoCDHA\ucBCSoCDHA.Designer.cs">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCSoChiTietBenhNhan\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCSoChiTietBenhNhan\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -913,6 +907,7 @@
     <Compile Include="Utilities\PrintPreview\PrintPreviewDev.Designer.cs">
       <DependentUpon>PrintPreviewDev.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Util_FileCheckSum.cs" />
     <Compile Include="Utilities\Util_DataTable.cs" />
     <Compile Include="Utilities\Util_DateTime.cs" />
     <Compile Include="Utilities\Util_NumberConvert.cs" />
@@ -946,9 +941,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCSoCDHA\ucBCSoCDHA.resx">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCSoChiTietBenhNhan\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.resx">
       <DependentUpon>ucBCSoChiTietBenhNhan.cs</DependentUpon>

@@ -13,6 +13,7 @@ using System.Net;
 using System.Diagnostics;
 using MedicalLink.Base;
 using System.IO;
+using MedicalLink.Utilities;
 
 namespace MedicalLink.FormCommon
 {
@@ -155,6 +156,7 @@ namespace MedicalLink.FormCommon
             }
         }
 
+        #region kiem tra va copy ban moi
         private void KiemTraVaCopyFileLaucherNew()
         {
             try
@@ -174,7 +176,7 @@ namespace MedicalLink.FormCommon
                     if (dataurlfile != null && dataurlfile.Count > 0)
                     {
                         string tempDirectory = dataurlfile[0]["app_link"].ToString();
-                        CopyFolder(tempDirectory, Environment.CurrentDirectory);
+                        CopyFolder_CheckSum(tempDirectory, Environment.CurrentDirectory);
                     }
                 }
             }
@@ -184,46 +186,47 @@ namespace MedicalLink.FormCommon
                 if (dataurlfile != null && dataurlfile.Count > 0)
                 {
                     string tempDirectory = dataurlfile[0]["app_link"].ToString();
-                    CopyFolder(tempDirectory, Environment.CurrentDirectory);
+                    CopyFolder_CheckSum(tempDirectory, Environment.CurrentDirectory);
                 }
                 Base.Logging.Error(ex);
             }
         }
-        private static void CopyFolder(string SourceFolder, string DestFolder)
+        private static void CopyFolder_CheckSum(string SourceFolder, string DestFolder)
         {
-            try
+            Directory.CreateDirectory(DestFolder); //Tao folder moi
+            string[] files = Directory.GetFiles(SourceFolder);
+            //Neu co file thy phai copy file
+            foreach (string file in files)
             {
-                Directory.CreateDirectory(DestFolder); //Tao folder moi
-                string[] files = Directory.GetFiles(SourceFolder);
-                //Neu co file thi phai copy file
-                foreach (string file in files)
+                try
                 {
-                    try
+                    string name = Path.GetFileName(file);
+                    string dest = Path.Combine(DestFolder, name);
+                    if (name.Contains("MedicalLinkLauncher"))
                     {
-                        string name = Path.GetFileName(file);
-                        string dest = Path.Combine(DestFolder, name);
-                        File.Copy(file, dest, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        continue;
+                        //Check file
+                        if (Util_FileCheckSum.GetMD5HashFromFile(file) != Util_FileCheckSum.GetMD5HashFromFile(dest))
+                        {
+                            File.Copy(file, dest, true);
+                        }
                     }
                 }
-                //string[] folders = Directory.GetDirectories(SourceFolder);
-                //foreach (string folder in folders)
-                //{
-                //    string name = Path.GetFileName(folder);
-                //    string dest = Path.Combine(DestFolder, name);
-                //    CopyFolder(folder, dest);
-                //}
+                catch (Exception ex)
+                {
+                    continue;
+                }
             }
-            catch (Exception ex)
+
+            string[] folders = Directory.GetDirectories(SourceFolder);
+            foreach (string folder in folders)
             {
-                Base.Logging.Error(ex);
+                string name = Path.GetFileName(folder);
+                string dest = Path.Combine(DestFolder, name);
+                CopyFolder_CheckSum(folder, dest);
             }
         }
 
-
+        #endregion
 
 
         #endregion

@@ -50,6 +50,7 @@
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDataBCCTBenhNhan = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewDataBCCTBenhNhan = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn37 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn2 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -63,6 +64,7 @@
             this.bandedGridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn32 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn8 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -76,6 +78,7 @@
             this.bandedGridColumn19 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn20 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn21 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.gridBand8 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn22 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn23 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn24 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -90,9 +93,6 @@
             this.bandedGridColumn36 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
-            this.gridBand8 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -407,6 +407,27 @@
             this.bandedGridViewDataBCCTBenhNhan.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.bandedGridViewDataBNNT_CustomDrawRowIndicator);
             this.bandedGridViewDataBCCTBenhNhan.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.bandedGridViewDataBNNT_RowCellStyle);
             // 
+            // gridBand1
+            // 
+            this.gridBand1.Caption = "Chung";
+            this.gridBand1.Columns.Add(this.bandedGridColumn1);
+            this.gridBand1.Columns.Add(this.bandedGridColumn37);
+            this.gridBand1.Columns.Add(this.bandedGridColumn2);
+            this.gridBand1.Columns.Add(this.bandedGridColumn4);
+            this.gridBand1.Columns.Add(this.bandedGridColumn12);
+            this.gridBand1.Columns.Add(this.bandedGridColumn13);
+            this.gridBand1.Columns.Add(this.bandedGridColumn5);
+            this.gridBand1.Columns.Add(this.bandedGridColumn43);
+            this.gridBand1.Columns.Add(this.bandedGridColumn30);
+            this.gridBand1.Columns.Add(this.bandedGridColumn31);
+            this.gridBand1.Columns.Add(this.bandedGridColumn3);
+            this.gridBand1.Columns.Add(this.bandedGridColumn32);
+            this.gridBand1.Columns.Add(this.bandedGridColumn6);
+            this.gridBand1.Name = "gridBand1";
+            this.gridBand1.OptionsBand.ShowCaption = false;
+            this.gridBand1.VisibleIndex = 0;
+            this.gridBand1.Width = 1181;
+            // 
             // bandedGridColumn1
             // 
             this.bandedGridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -483,6 +504,8 @@
             // 
             this.bandedGridColumn12.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.bandedGridColumn12.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn12.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.bandedGridColumn12.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.bandedGridColumn12.AppearanceHeader.Options.UseFont = true;
@@ -500,6 +523,8 @@
             // 
             this.bandedGridColumn13.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.bandedGridColumn13.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn13.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn13.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.bandedGridColumn13.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.bandedGridColumn13.AppearanceHeader.Options.UseFont = true;
@@ -647,6 +672,30 @@
             this.bandedGridColumn6.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn6.Visible = true;
             this.bandedGridColumn6.Width = 100;
+            // 
+            // gridBand2
+            // 
+            this.gridBand2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridBand2.AppearanceHeader.Options.UseFont = true;
+            this.gridBand2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridBand2.Caption = "Chi phí khám chữa bệnh";
+            this.gridBand2.Columns.Add(this.bandedGridColumn7);
+            this.gridBand2.Columns.Add(this.bandedGridColumn8);
+            this.gridBand2.Columns.Add(this.bandedGridColumn9);
+            this.gridBand2.Columns.Add(this.bandedGridColumn10);
+            this.gridBand2.Columns.Add(this.bandedGridColumn11);
+            this.gridBand2.Columns.Add(this.bandedGridColumn14);
+            this.gridBand2.Columns.Add(this.bandedGridColumn15);
+            this.gridBand2.Columns.Add(this.bandedGridColumn16);
+            this.gridBand2.Columns.Add(this.bandedGridColumn17);
+            this.gridBand2.Columns.Add(this.bandedGridColumn18);
+            this.gridBand2.Columns.Add(this.bandedGridColumn19);
+            this.gridBand2.Columns.Add(this.bandedGridColumn20);
+            this.gridBand2.Columns.Add(this.bandedGridColumn21);
+            this.gridBand2.Name = "gridBand2";
+            this.gridBand2.VisibleIndex = 1;
+            this.gridBand2.Width = 1560;
             // 
             // bandedGridColumn7
             // 
@@ -946,6 +995,25 @@
             this.bandedGridColumn21.Visible = true;
             this.bandedGridColumn21.Width = 120;
             // 
+            // gridBand8
+            // 
+            this.gridBand8.Columns.Add(this.bandedGridColumn22);
+            this.gridBand8.Columns.Add(this.bandedGridColumn23);
+            this.gridBand8.Columns.Add(this.bandedGridColumn24);
+            this.gridBand8.Columns.Add(this.bandedGridColumn25);
+            this.gridBand8.Columns.Add(this.bandedGridColumn26);
+            this.gridBand8.Columns.Add(this.bandedGridColumn27);
+            this.gridBand8.Columns.Add(this.bandedGridColumn28);
+            this.gridBand8.Columns.Add(this.bandedGridColumn29);
+            this.gridBand8.Columns.Add(this.bandedGridColumn33);
+            this.gridBand8.Columns.Add(this.bandedGridColumn34);
+            this.gridBand8.Columns.Add(this.bandedGridColumn35);
+            this.gridBand8.Columns.Add(this.bandedGridColumn36);
+            this.gridBand8.Name = "gridBand8";
+            this.gridBand8.OptionsBand.ShowCaption = false;
+            this.gridBand8.VisibleIndex = 2;
+            this.gridBand8.Width = 1520;
+            // 
             // bandedGridColumn22
             // 
             this.bandedGridColumn22.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -1222,70 +1290,6 @@
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
-            // 
-            // gridBand1
-            // 
-            this.gridBand1.Caption = "Chung";
-            this.gridBand1.Columns.Add(this.bandedGridColumn1);
-            this.gridBand1.Columns.Add(this.bandedGridColumn37);
-            this.gridBand1.Columns.Add(this.bandedGridColumn2);
-            this.gridBand1.Columns.Add(this.bandedGridColumn4);
-            this.gridBand1.Columns.Add(this.bandedGridColumn12);
-            this.gridBand1.Columns.Add(this.bandedGridColumn13);
-            this.gridBand1.Columns.Add(this.bandedGridColumn5);
-            this.gridBand1.Columns.Add(this.bandedGridColumn43);
-            this.gridBand1.Columns.Add(this.bandedGridColumn30);
-            this.gridBand1.Columns.Add(this.bandedGridColumn31);
-            this.gridBand1.Columns.Add(this.bandedGridColumn3);
-            this.gridBand1.Columns.Add(this.bandedGridColumn32);
-            this.gridBand1.Columns.Add(this.bandedGridColumn6);
-            this.gridBand1.Name = "gridBand1";
-            this.gridBand1.OptionsBand.ShowCaption = false;
-            this.gridBand1.VisibleIndex = 0;
-            this.gridBand1.Width = 1181;
-            // 
-            // gridBand2
-            // 
-            this.gridBand2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridBand2.AppearanceHeader.Options.UseFont = true;
-            this.gridBand2.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridBand2.Caption = "Chi phí khám chữa bệnh";
-            this.gridBand2.Columns.Add(this.bandedGridColumn7);
-            this.gridBand2.Columns.Add(this.bandedGridColumn8);
-            this.gridBand2.Columns.Add(this.bandedGridColumn9);
-            this.gridBand2.Columns.Add(this.bandedGridColumn10);
-            this.gridBand2.Columns.Add(this.bandedGridColumn11);
-            this.gridBand2.Columns.Add(this.bandedGridColumn14);
-            this.gridBand2.Columns.Add(this.bandedGridColumn15);
-            this.gridBand2.Columns.Add(this.bandedGridColumn16);
-            this.gridBand2.Columns.Add(this.bandedGridColumn17);
-            this.gridBand2.Columns.Add(this.bandedGridColumn18);
-            this.gridBand2.Columns.Add(this.bandedGridColumn19);
-            this.gridBand2.Columns.Add(this.bandedGridColumn20);
-            this.gridBand2.Columns.Add(this.bandedGridColumn21);
-            this.gridBand2.Name = "gridBand2";
-            this.gridBand2.VisibleIndex = 1;
-            this.gridBand2.Width = 1560;
-            // 
-            // gridBand8
-            // 
-            this.gridBand8.Columns.Add(this.bandedGridColumn22);
-            this.gridBand8.Columns.Add(this.bandedGridColumn23);
-            this.gridBand8.Columns.Add(this.bandedGridColumn24);
-            this.gridBand8.Columns.Add(this.bandedGridColumn25);
-            this.gridBand8.Columns.Add(this.bandedGridColumn26);
-            this.gridBand8.Columns.Add(this.bandedGridColumn27);
-            this.gridBand8.Columns.Add(this.bandedGridColumn28);
-            this.gridBand8.Columns.Add(this.bandedGridColumn29);
-            this.gridBand8.Columns.Add(this.bandedGridColumn33);
-            this.gridBand8.Columns.Add(this.bandedGridColumn34);
-            this.gridBand8.Columns.Add(this.bandedGridColumn35);
-            this.gridBand8.Columns.Add(this.bandedGridColumn36);
-            this.gridBand8.Name = "gridBand8";
-            this.gridBand8.OptionsBand.ShowCaption = false;
-            this.gridBand8.VisibleIndex = 2;
-            this.gridBand8.Width = 1520;
             // 
             // ucBCSoChiTietBenhNhan
             // 

@@ -9,7 +9,7 @@ U11622-4536	Phẫu thuật yêu cầu chọn bác sĩ, chọn thời gian (PT lo
 U11623-4610	Phẫu thuật yêu cầu chọn bác sĩ, chọn thời gian (PT loại III)+chuyên khoa Mắt
 
  
-SELECT row_number () over (order by A.ngay_thuchien desc) as stt, 
+SELECT row_number () over (order by A.ngay_thuchien) as stt, 
 A.patientid, 
 A.vienphiid, 
 hsba.patientname, 

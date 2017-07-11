@@ -1,8 +1,8 @@
---Bao cao Thuc hien Cận Lâm sàng ngay 30/6/2017
+--Bao cao Thuc hien Cận Lâm sàng ngay 11/7/2017
 -- chinh sua: mo chinh la người trả kết quả;
 --Chẩn đoán= chẩn đoán chỉ định
 
-SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate desc) as stt, 
+SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate) as stt, 
 	A.patientid, 
 	A.vienphiid, 
 	A.medicalrecordid,
@@ -13,8 +13,10 @@ SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate desc) as stt,
 	((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, 
 	KCHD.departmentgroupname AS khoachidinh, 
 	pcd.departmentname as phongchidinh, 
+	pth.departmentname as phongthuchien, 
 	A.NGAY_CHIDINH, 
-	mbp.maubenhphamfinishdate as ngay_thuchien, 
+	(case when mbp.maubenhphamdate_thuchien<>'0001-01-01 00:00:00' then mbp.maubenhphamdate_thuchien end) as ngay_tiepnhan,
+	(case when mbp.maubenhphamfinishdate<>'0001-01-01 00:00:00' then mbp.maubenhphamfinishdate end) as ngay_thuchien, 
 	KCD.departmentgroupname AS khoachuyenden, 
 	KRV.departmentgroupname AS khoaravien,
 	mbp.chandoan as cd_chidinh,
@@ -157,14 +159,15 @@ FROM (
 		cls.tools_username as nguoinhapthuchien
 	FROM serviceprice ser 
 	left join thuchiencls cls on cls.servicepriceid=ser.servicepriceid 
-	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC') "+serf_nhomdichvu+") serf on serf.servicepricecode=ser.servicepricecode 
+	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 
-	WHERE ser.bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC') " + serf_pttt_loaiid + tieuchi_date + " ) A 
-INNER JOIN (select maubenhphamid, sophieu, departmentid_des, maubenhphamfinishdate, usertrakq, chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + ") mbp on mbp.maubenhphamid=A.maubenhphamid " + mbp_departmentid + " 
+	WHERE ser.bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') " + serf_pttt_loaiid + tieuchi_date + " ) A 
+INNER JOIN (select maubenhphamid, sophieu, departmentid_des, maubenhphamfinishdate,maubenhphamdate_thuchien, usertrakq, chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + ") mbp on mbp.maubenhphamid=A.maubenhphamid " + mbp_departmentid + " 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=A.hosobenhanid 
 INNER JOIN bhyt bh on bh.bhytid=A.bhytid 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCHD ON KCHD.departmentgroupid=A.khoachidinh 
 LEFT JOIN (select departmentid, departmentname from department where departmenttype in (2,3,9,6,7)) pcd ON pcd.departmentid=A.phongchidinh 
+LEFT JOIN (select departmentid, departmentname from department where departmenttype in (6,7)) pth ON pth.departmentid=mbp.departmentid_des 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCD ON KCD.departmentgroupid=A.khoachuyenden 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) krv ON krv.departmentgroupid=A.khoaravien 
 --LEFT JOIN tools_tblnhanvien mc ON mc.userhisid=A.mochinh_idbs 

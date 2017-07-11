@@ -165,6 +165,8 @@ departmenttype=25 tủ trực vật tư
 ===============================bill==================== 
  
 - loaiphieuthuid=2 and dahuyphieu=0 tạm ứng 
+- loaiphieuthuid=0 : thu tien
+- loaiphieuthuid=1 : hoan ung
  
 ===============================medicalrecord==================== 
  
@@ -213,7 +215,7 @@ bhyt_tuyenbenhvien:
  
 medicinestorebilltype 
 211 
-8 
+8 : don thuoc ban le tra lai
 204: xuất đơn 
 1 
 213 
@@ -359,7 +361,7 @@ có thể được sử dụng để thực hiện hành động ngược lại 
 Trong ví dụ này, nếu giá trị value là (none), thì null sẽ được trả về, nếu không thì giá trị của value sẽ được trả về. 
  -------- 
 (case when hsba.gioitinhcode='01' then to_char(hsba.birthday, 'yyyy') else '' end) as year_nam 
--------------- 
+-------------- Concat trong postgres
 SELECT pl.medicinephongluuname,  
     STRING_AGG(trim(to_char(pl.medicinephongluuid, '99')), ',' ORDER BY pl.medicinephongluuid) as lstmedicinephongluuid 
 from medicinephongluu pl 

@@ -682,6 +682,56 @@ select benhvienid, benhvienkcbbd, benhviencode, benhvienname from tools_benhvien
 
 
 
+ALTER TABLE thuchiencls ADD tools_userid integer;
+ALTER TABLE thuchiencls ADD tools_username text;
+
+-----
+CREATE TABLE tools_serviceprice_ttrieng
+(
+  serttriengpid serial NOT NULL,
+  servicepriceid integer,
+  updatetype integer, --1: update di kem - hao phi; 2: update id dv di kem,
+  dateupdate timestamp without time zone,
+  CONSTRAINT tools_serviceprice_dkhp_pkey PRIMARY KEY (serttriengpid)
+)
+CREATE INDEX serdkhp_servicepriceid_idx
+  ON tools_serviceprice_ttrieng
+  USING btree
+  (servicepriceid);
+CREATE INDEX serdkhp_updatetype_idx
+  ON tools_serviceprice_ttrieng
+  USING btree
+  (updatetype);
+
+CREATE TABLE tools_vienphi_tltt
+(
+  vienphitlttid serial NOT NULL,
+  vienphiid integer,
+  thangluong_old double precision,
+  dateupdate timestamp without time zone,
+  CONSTRAINT tools_vienphi_tltt_pkey PRIMARY KEY (vienphiid)
+)
+CREATE INDEX vienphitltt_vienphiid_idx
+  ON tools_vienphi_tltt
+  USING btree
+  (vienphiid);
+ 
+  
+  
+servicepriceid in (28252929,
+28252930,
+28252757,
+28252758
+)
+
+
+
+
+
+
+
+
+
 
 
 

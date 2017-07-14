@@ -428,11 +428,11 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003")//rang ham mat
                 {
-                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                    fileTemplatePath = "BC_PhauThuatThuThuat_RHM_ThanhToan.xlsx";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004")//mat
                 {
-                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                    fileTemplatePath = "BC_PhauThuatThuThuat_MAT_ThanhToan.xlsx";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005")//khoa khac
                 {

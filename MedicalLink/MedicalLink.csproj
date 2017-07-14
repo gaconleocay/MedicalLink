@@ -260,6 +260,12 @@
     <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.Designer.cs">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.Designer.cs">
+      <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -275,28 +281,28 @@
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuatProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCSoCDHA\SoCDHA_XQuang.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCSoCDHA\SoCDHA_XQuang.Designer.cs">
-      <DependentUpon>SoCDHA_XQuang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BCSoCDHA\ucBCSoCDHA.cs">
+    <Compile Include="BaoCao\SoCDHA\ucBCSoCDHA.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCSoCDHA\ucBCSoCDHA.Designer.cs">
+    <Compile Include="BaoCao\SoCDHA\ucBCSoCDHA.Designer.cs">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.cs">
+    <Compile Include="BaoCao\SoChiTietBenhNhan\ucBCSoChiTietBenhNhan.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.Designer.cs">
+    <Compile Include="BaoCao\SoChiTietBenhNhan\ucBCSoChiTietBenhNhan.Designer.cs">
       <DependentUpon>ucBCSoChiTietBenhNhan.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.cs">
+    <Compile Include="BaoCao\SoPhauThuatThuThuat\ucSoPhauThuatThuThuat.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.Designer.cs">
+    <Compile Include="BaoCao\SoPhauThuatThuThuat\ucSoPhauThuatThuThuat.Designer.cs">
+      <DependentUpon>ucSoPhauThuatThuThuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\SoXetNghiem\ucBCSoXetNghiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\SoXetNghiem\ucBCSoXetNghiem.Designer.cs">
       <DependentUpon>ucBCSoXetNghiem.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BCThucHienCLS\ucBCThucHienCLS.cs">
@@ -924,6 +930,9 @@
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.resx">
+      <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.resx">
       <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
     </EmbeddedResource>
@@ -936,16 +945,16 @@
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.resx">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCSoCDHA\SoCDHA_XQuang.resx">
-      <DependentUpon>SoCDHA_XQuang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCSoCDHA\ucBCSoCDHA.resx">
+    <EmbeddedResource Include="BaoCao\SoCDHA\ucBCSoCDHA.resx">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCSoChiTietBenhNhan\ucBCSoChiTietBenhNhan.resx">
+    <EmbeddedResource Include="BaoCao\SoChiTietBenhNhan\ucBCSoChiTietBenhNhan.resx">
       <DependentUpon>ucBCSoChiTietBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCSoXetNghiem\ucBCSoXetNghiem.resx">
+    <EmbeddedResource Include="BaoCao\SoPhauThuatThuThuat\ucSoPhauThuatThuThuat.resx">
+      <DependentUpon>ucSoPhauThuatThuThuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\SoXetNghiem\ucBCSoXetNghiem.resx">
       <DependentUpon>ucBCSoXetNghiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCThucHienCLS\ucBCThucHienCLS.resx">
@@ -1239,6 +1248,7 @@
     <None Include="Images\add-list-16.png" />
     <None Include="Images\question-mark-16.png" />
     <None Include="Images\check-mark-24.png" />
+    <None Include="Images\printer-24.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -1346,6 +1356,135 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_SoChiTietBenhNhan_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_MAT_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuatThuThuat_RHM_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\So_PhauThuatThuThuat_CacKhoa.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\So_PhauThuatThuThuat_ThanNhanTao.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\0_ToolsDMDV__Exportv2.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_BenhNhanNoiTru_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_BenhNhanSuDungDichVu.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_BenhNhanSuDungDichVuPTTTTheoNhom.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_BenhNhanSuDungDichVuTheoNhom_XuatAn.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_BenhNhanSuDungKetHopDichVu.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_DangKyBaoHiemYTe.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_DoanhThuTheoMayXetNghiem.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuat_YeuCau.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuat_YeuCau_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_CHUNG.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_CLS.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_GMHT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_MAT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_MAT_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_RHM.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_RHM_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_ThanhToanCLS.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_ThanhToanThuThuat.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_TMH.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_TT_CHUNG.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_TT_KHOAKHAC.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_TT_MAT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_PhauThuatThuThuat_TT_NoiSoiDaDay_ThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_SoChiTietBenhNhan_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_ThuocTheoNguoiKeNhaThuoc.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_ThuTienNhaThuocHangNgay.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_TongHopDoanhThuTheoKhoa_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_TongHopToanVien_01.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\BC_TongHopToanVien_02.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\So_CDHA_SieuAmXQuangCanThiep.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\So_CDHA_XQuangCTMRI.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\So_PhauThuatThuThuat_CacKhoa.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\So_PhauThuatThuThuat_ThanNhanTao.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates - Copy\So_XetNghiem_ViSinh.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuat_YeuCauQD1055.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_PhauThuat_YeuCauQD1055_ThanhToan.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

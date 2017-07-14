@@ -12,12 +12,19 @@ namespace MedicalLink.Utilities
     {
         public static string GetMD5HashFromFile(string fileName)
         {
-            using (var md5 = MD5.Create())
+            try
             {
-                using (var stream = File.OpenRead(fileName))
+                using (var md5 = MD5.Create())
                 {
-                    return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                    using (var stream = File.OpenRead(fileName))
+                    {
+                        return BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", string.Empty);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                return "32323";
             }
         }
 

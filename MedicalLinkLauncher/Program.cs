@@ -113,9 +113,12 @@ namespace MedicalLinkLauncher
                     {
                         File.Copy(file, dest, true);
                     }
+                    //bi bug
+                    //File.Copy(file, dest, true);
                 }
                 catch (Exception ex)
                 {
+                    //File.Copy(file, dest, true);
                     continue;
                 }
             }

@@ -1,8 +1,9 @@
----Bao cao PTTT chia tien theo bac si ngay 12/7
+---Bao cao PTTT chia tien theo bac si ngay 29/6
 --Chia ra tung loai bao cao rieng biet (dung bien)
 --them chan doan chi dinh
+--29/6: bo sung them Thu thuat Noi soi
 
-SELECT row_number () over (order by A.ngay_thuchien) as stt, 
+SELECT row_number () over (order by A.ngay_thuchien desc) as stt, 
 A.patientid, 
 A.vienphiid, 
 hsbA.patientname, 
@@ -49,8 +50,7 @@ gv2.username as giupviec2_tenbs,
 (A.giupviec2_tien * (A.tyle/100)) as giupviec2_tien, 
 A.ngay_vaovien, 
 A.ngay_ravien, 
-A.ngay_thanhtoan,
-nnth.username as nguoinhapthuchien
+A.ngay_thanhtoan 
 FROM 
 	(SELECT vp.patientid, 
 	vp.vienphiid, 
@@ -67,11 +67,8 @@ FROM
 	ser.servicepricename, 
 	(case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee, 
 	(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle, 
-	(case when serf.tinhtoanlaigiadvktc=1 then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) end) as thuoc_tronggoi, 
-	(case when serf.tinhtoanlaigiadvktc=1 
-			then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) 
-		else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) 
-	    end) as vattu_tronggoi, 
+	(case when serf.tinhtoanlaigiadvktc=1 then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) end) as thuoc_tronggoi, 
+	(case when serf.tinhtoanlaigiadvktc=1 then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) end) as vattu_tronggoi, 
 	(case serf.pttt_loaiid 
 			when 1 then 'Phẫu thuật đặc biệt' 
 			when 2 then 'Phẫu thuật loại 1' 
@@ -91,13 +88,12 @@ FROM
 			" + baocaotungloai + "
 	vp.vienphidate as ngay_vaovien, 
 	(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
-	(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
-	pttt.userid as nguoinhapthuchien
+	(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan
 	FROM serviceprice ser 
 	left join phauthuatthuthuat pttt on pttt.servicepriceid=ser.servicepriceid 
 	inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphidate_ravien, vienphistatus_vp, duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 
-	inner join (select servicepricecode, tinhtoanlaigiadvktc, pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and " + serf_pttt_loaiid + ") serf on serf.servicepricecode=ser.servicepricecode 
-	WHERE ser.bhyt_groupcode in ('06PTTT','07KTC') 
+	inner join (select servicepricecode, tinhtoanlaigiadvktc, pttt_loaiid from servicepriceref where servicegrouptype in (3,4) and "+serf_bhyt_groupcode+" and " + serf_pttt_loaiid + serf_nhomdichvu + ") serf on serf.servicepricecode=ser.servicepricecode 
+	WHERE "+ser_bhyt_groupcode+" 
 		and " + ser_departmentid + " and " + tieuchi_date + ") A 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsbA.hosobenhanid=A.hosobenhanid 
 INNER JOIN (select maubenhphamid, chandoan from maubenhpham) mbp on mbp.maubenhphamid=A.maubenhphamid 
@@ -112,8 +108,7 @@ LEFT JOIN tools_tblnhanvien mgm ON mgm.userhisid=A.moigayme_tenbs
 LEFT JOIN tools_tblnhanvien p1 ON p1.userhisid=A.phu1_tenbs 
 LEFT JOIN tools_tblnhanvien p2 ON p2.userhisid=A.PHU2_TENBS 
 LEFT JOIN tools_tblnhanvien gv1 ON gv1.userhisid=A.giupviec1_tenbs 
-LEFT JOIN tools_tblnhanvien gv2 ON gv2.userhisid=A.giupviec2_tenbs
-LEFT JOIN tools_tblnhanvien nnth ON nnth.userhisid=A.nguoinhapthuchien;
+LEFT JOIN tools_tblnhanvien gv2 ON gv2.userhisid=A.giupviec2_tenbs; 
 
 
 
@@ -359,11 +354,46 @@ pttt.phauthuatvien as mochinh_tenbs,
 	0 as giupviec2_tenbs, 
 	0 as giupviec2_tien, 
 	
-	
+--------------==========THu thuat Noi soi da day
+ 	pttt.phauthuatvien as mochinh_tenbs, 
+	((case serf.pttt_loaiid 
+			when 6 then 37500 
+			else 0 end) * ser.soluong) as mochinh_tien, 
+	0 as moimochinh_tenbs, 
+	0 as moimochinh_tien, 
+	0 as gayme_tenbs, 
+	0 as gayme_tien, 
+	0 as moigayme_tenbs, 
+	0 as moigayme_tien, 
+	0 as phu1_tenbs, 
+	0 as phu1_tien, 
+	0 as phu2_tenbs, 
+	0 as phu2_tien, 
+	pttt.phumo3 as giupviec1_tenbs, 
+	((case serf.pttt_loaiid 
+			when 6 then 21000 
+			else 0 end) * ser.soluong) as giupviec1_tien, 
+	0 as giupviec2_tenbs, 
+	0 as giupviec2_tien, 	
 	
 	
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 

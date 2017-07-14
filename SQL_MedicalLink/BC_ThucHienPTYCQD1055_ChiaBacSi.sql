@@ -1,14 +1,15 @@
---Bao cao Phau thuat yeu cau chia tien cho bac si -
---ngay 12/7/2017 : sua ktvhoi tinh sang truong PhuMo3
---12/7 chinh sua, thuoc, vat tu trong goi
+--Bao cao Phau thuat yeu cau chia tien cho bac si - QD1055
 
-U11970-3701	Phẫu thuật theo yêu cầu (sử dụng kính hiển vi)
-U11620-4506	Phẫu thuật mời bác sĩ chuyên gia tuyến trên
-U11621-4524	Phẫu thuật yêu cầu chọn bác sĩ, chọn thời gian (PT loại ĐB+loại I)
-U11622-4536	Phẫu thuật yêu cầu chọn bác sĩ, chọn thời gian (PT loại II)
-U11623-4610	Phẫu thuật yêu cầu chọn bác sĩ, chọn thời gian (PT loại III)+chuyên khoa Mắt
+U18851-4427	Phẫu thuật yêu cầu Tán sỏi ngoài cơ thể
+U19154-1951	Phẫu thuật, thủ thuật sử dụng dịch vụ chất lượng cao
+U18765-1454	Phẫu thuật yêu cầu kỹ thuật cao trong mổ tiêu hóa
+U17261-2902	Phẫu thuật yêu cầu kỹ thuật cao trong mổ cấp cứu
+U17265-3936	Phẫu thuật yêu cầu sử dụng dao siêu âm trong mổ tiêu hóa (cắt dạ dày, khối tá tụy, đại tràng, trực tràng)
+U30001-5346	Phẫu thuật yêu cầu mổ dao siêu âm (Loại 1)
+U30001-1207	Phẫu thuật yêu cầu mổ dao siêu âm (Loại 2)
+U30001-2954	Phẫu thuật yêu cầu dao siêu âm (Loại 3)
 
- 
+ -----
 SELECT row_number () over (order by A.ngay_thuchien) as stt, 
 A.patientid, 
 A.vienphiid, 
@@ -42,30 +43,15 @@ round(cast(A.thuoc_tronggoi as numeric),0) as thuoc_tronggoi,
 round(cast(A.vattu_tronggoi as numeric),0) as vattu_tronggoi, 
 round(cast(A.chiphikhac as numeric),0) AS chiphikhac, 
 (A.servicepricefee * A.soluong) as thanhtien, 
-round(cast(((A.servicepricefee * A.soluong) - coalesce(A.thuoc_tronggoi,0) - coalesce(A.vattu_tronggoi,0) - coalesce(A.chiphikhac,0) - (A.mochinh_tien * (A.tyle/100)) - (A.gayme_tien * (A.tyle/100)) - (A.phu1_tien * (A.tyle/100)) - (A.phu2_tien * (A.tyle/100)) - (A.ktvphume_tien * (A.tyle/100)) - (A.dddungcu_tien * (A.tyle/100)) - (A.ddhoitinh_tien * (A.tyle/100)) - (A.ddhanhchinh_tien * (A.tyle/100)) - (A.holy_tien * (A.tyle/100)) - (A.khoachuyenden_tien * (A.tyle/100)) - (A.khoachuyenve_tien * (A.tyle/100))) as numeric),0) as lai, 
+round(cast(((A.servicepricefee * A.soluong) - coalesce(A.thuoc_tronggoi,0) - coalesce(A.vattu_tronggoi,0) - coalesce(A.chiphikhac,0) - (A.mochinh_tien * (A.tyle/100)) - ((A.gayme_tien * (A.tyle/100))*4)) as numeric),0) as lai, 
 mc.username as mochinh_tenbs, 
 (A.mochinh_tien * (A.tyle/100)) as mochinh_tien,  
 gm.username as gayme_tenbs, 
 (A.gayme_tien * (A.tyle/100)) as gayme_tien,  
 p1.username as phu1_tenbs, 
-(A.phu1_tien * (A.tyle/100)) as phu1_tien, 
-p2.username as phu2_tenbs, 
-(A.phu2_tien * (A.tyle/100)) as phu2_tien, 
-ktvpm.username as ktvphume_tenbs, 
-(A.ktvphume_tien * (A.tyle/100)) as ktvphume_tien, 
-dddc.username as dddungcu_tenbs, 
-(A.dddungcu_tien * (A.tyle/100)) as dddungcu_tien, 
-ddht.username as ddhoitinh_tenbs, 
-(A.ddhoitinh_tien * (A.tyle/100)) as ddhoitinh_tien, 
-ktvht.username as ktvhoitinh_tenbs, 
-(A.ktvhoitinh_tien * (A.tyle/100)) as ktvhoitinh_tien,
-ddhc.username as ddhanhchinh_tenbs, 
-(A.ddhanhchinh_tien * (A.tyle/100)) as ddhanhchinh_tien, 
-hl.username as holy_tenbs, 
-(A.holy_tien * (A.tyle/100)) as holy_tien, 
-(A.khoachuyenden_tien * (A.tyle/100)) as khoachuyenden_tien,
-kcv.departmentgroupname as khoachuyenve,
-(A.khoachuyenve_tien * (A.tyle/100)) as khoachuyenve_tien,
+(A.gayme_tien * (A.tyle/100)) as phu1_tien, 
+(A.gayme_tien * (A.tyle/100)) as khoachuyenden_tien,
+(A.gayme_tien * (A.tyle/100)) as banlanhdao_tien,
 A.ngay_vaovien, 
 A.ngay_ravien, 
 A.ngay_thanhtoan,
@@ -102,99 +88,27 @@ FROM
 		((ser.chiphidauvao + ser.chiphimaymoc + ser.chiphipttt) + COALESCE((case when ser.mayytedbid<>0 then (select myt.chiphiliendoanh from mayyte myt where myt.mayytedbid=ser.mayytedbid) else 0 end),0))* ser.soluong as chiphikhac, 
 		pttt.phauthuatvien as mochinh_tenbs, 
 		((case serf.servicepricecode 
-				when 'U11970-3701' then 800000 
-				when 'U11620-4506' then 5000000 
-				when 'U11621-4524' then 1500000 
-				when 'U11622-4536' then 1300000 
-				when 'U11623-4610' then 1200000
+				when 'U18851-4427' then 500000 
+				when 'U19154-1951' then 500000 
+				when 'U18765-1454' then 500000 
+				when 'U17261-2902' then 500000 
+				when 'U17265-3936' then 1250000
+				when 'U30001-5346' then 750000
+				when 'U30001-1207' then 500000
+				when 'U30001-2954' then 500000			
 				else 0 end) * ser.soluong) as mochinh_tien,
 		pttt.bacsigayme as gayme_tenbs, 
 		((case serf.servicepricecode 
-				when 'U11970-3701' then 350000 
-				when 'U11620-4506' then 500000 
-				when 'U11621-4524' then 400000 
-				when 'U11622-4536' then 350000 
-				when 'U11623-4610' then 325000
-				else 0 end) * ser.soluong) as gayme_tien,
-		pttt.phumo1 as phu1_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 250000 
-				when 'U11620-4506' then 750000 
-				when 'U11621-4524' then 375000 
-				when 'U11622-4536' then 300000 
-				when 'U11623-4610' then 250000
-				else 0 end) * ser.soluong) as phu1_tien,
-		pttt.phumo2 as phu2_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 250000 
-				when 'U11620-4506' then 750000 
-				when 'U11621-4524' then 375000 
-				when 'U11622-4536' then 300000 
-				when 'U11623-4610' then 250000
-				else 0 end) * ser.soluong) as phu2_tien,				
-		pttt.phume as ktvphume_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 175000 
-				when 'U11620-4506' then 200000 
-				when 'U11621-4524' then 160000 
-				when 'U11622-4536' then 140000 
-				when 'U11623-4610' then 130000
-				else 0 end) * ser.soluong) as ktvphume_tien,		
-		pttt.dungcuvien as dddungcu_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 175000 
-				when 'U11620-4506' then 200000 
-				when 'U11621-4524' then 160000 
-				when 'U11622-4536' then 140000 
-				when 'U11623-4610' then 130000
-				else 0 end) * ser.soluong) as dddungcu_tien,		
-		pttt.phume2 as ddhoitinh_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 0 
-				when 'U11620-4506' then 30000 
-				when 'U11621-4524' then 24000 
-				when 'U11622-4536' then 21000 
-				when 'U11623-4610' then 19500
-				else 0 end) * ser.soluong) as ddhoitinh_tien,
-		pttt.phumo3 as ktvhoitinh_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 0 
-				when 'U11620-4506' then 30000 
-				when 'U11621-4524' then 24000 
-				when 'U11622-4536' then 21000 
-				when 'U11623-4610' then 19500
-				else 0 end) * ser.soluong) as ktvhoitinh_tien,				
-		pttt.dieuduong as ddhanhchinh_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 0 
-				when 'U11620-4506' then 30000 
-				when 'U11621-4524' then 24000 
-				when 'U11622-4536' then 21000 
-				when 'U11623-4610' then 19500
-				else 0 end) * ser.soluong) as ddhanhchinh_tien,
-		pttt.phumo4 as holy_tenbs, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 0 
-				when 'U11620-4506' then 10000 
-				when 'U11621-4524' then 8000 
-				when 'U11622-4536' then 7000 
-				when 'U11623-4610' then 6500
-				else 0 end) * ser.soluong) as holy_tien,
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 400000 
-				when 'U11620-4506' then 225000 
-				when 'U11621-4524' then 200000 
-				when 'U11622-4536' then 150000 
-				when 'U11623-4610' then 100000
-				else 0 end) * ser.soluong) as khoachuyenden_tien,
-		(select mrd.nextdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid) as khoachuyenve, 
-		((case serf.servicepricecode 
-				when 'U11970-3701' then 0 
-				when 'U11620-4506' then 225000 
-				when 'U11621-4524' then 200000 
-				when 'U11622-4536' then 150000 
-				when 'U11623-4610' then 100000
-				else 0 end) * ser.soluong) as khoachuyenve_tien,		
+				when 'U18851-4427' then 100000 
+				when 'U19154-1951' then 100000 
+				when 'U18765-1454' then 100000 
+				when 'U17261-2902' then 100000 
+				when 'U17265-3936' then 250000
+				when 'U30001-5346' then 150000
+				when 'U30001-1207' then 100000
+				when 'U30001-2954' then 100000	
+				else 0 end) * ser.soluong) as gayme_tien,			
+		pttt.phumo1 as phu1_tenbs,  		
 		vp.vienphidate as ngay_vaovien, 
 		(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
 		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
@@ -212,14 +126,6 @@ LEFT JOIN departmentgroup krv ON krv.departmentgroupid=A.khoaravien
 LEFT JOIN tools_tblnhanvien mc ON mc.userhisid=A.mochinh_tenbs 
 LEFT JOIN tools_tblnhanvien gm ON gm.userhisid=A.gayme_tenbs 
 LEFT JOIN tools_tblnhanvien p1 ON p1.userhisid=A.phu1_tenbs 
-LEFT JOIN tools_tblnhanvien p2 ON p2.userhisid=A.phu2_tenbs 
-LEFT JOIN tools_tblnhanvien ktvpm ON ktvpm.userhisid=A.ktvphume_tenbs 
-LEFT JOIN tools_tblnhanvien dddc ON dddc.userhisid=A.dddungcu_tenbs
-LEFT JOIN tools_tblnhanvien ddht ON ddht.userhisid=A.ddhoitinh_tenbs
-LEFT JOIN tools_tblnhanvien ktvht ON ktvht.userhisid=A.ktvhoitinh_tenbs 
-LEFT JOIN tools_tblnhanvien ddhc ON ddhc.userhisid=A.ddhanhchinh_tenbs 
-LEFT JOIN tools_tblnhanvien hl ON hl.userhisid=A.holy_tenbs 
-LEFT JOIN departmentgroup kcv ON kcv.departmentgroupid=A.khoachuyenve
 LEFT JOIN tools_tblnhanvien nnth ON nnth.userhisid=A.nguoinhapthuchien;
 
 

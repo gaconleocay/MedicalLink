@@ -17,6 +17,7 @@ namespace MedicalLinkUpdate
         internal static string SaltEncrypt = "yevvl";
         internal static int SoLuongTabPageChucNang = 5;
         internal static int SoLuongTabPageDashboard = 10;
+        internal static string Key_UpdatePhanMem = "123$";
 
     }
 }

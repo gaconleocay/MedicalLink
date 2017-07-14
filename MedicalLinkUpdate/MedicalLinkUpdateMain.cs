@@ -181,7 +181,7 @@ namespace MedicalLinkUpdate
         {
             try
             {
-                if (txtKeyDangNhap.Text.Trim() == KeyTrongPhanMem.AdminPass_key)
+                if (txtKeyDangNhap.Text.Trim() == KeyTrongPhanMem.Key_UpdatePhanMem)
                 {
                     btnUpdateLink.Enabled = true;
                     btnUpdateMedicalLink.Enabled = true;

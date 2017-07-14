@@ -214,6 +214,7 @@ namespace MedicalLink.FormCommon
                 catch (Exception ex)
                 {
                     continue;
+                    Base.Logging.Error("Lỗi copy file check_sum" + ex.ToString());
                 }
             }
 

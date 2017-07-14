@@ -142,7 +142,7 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(1100, 96);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1100, 94);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // groupBox1
@@ -152,7 +152,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBox1.Location = new System.Drawing.Point(979, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(119, 92);
+            this.groupBox1.Size = new System.Drawing.Size(119, 90);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Export";
@@ -186,7 +186,7 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(1096, 92);
+            this.groupBoxFile.Size = new System.Drawing.Size(1096, 90);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -308,9 +308,9 @@
             // 
             this.panelControlData.Controls.Add(this.gridControlDataBCPTTT);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlData.Location = new System.Drawing.Point(0, 96);
+            this.panelControlData.Location = new System.Drawing.Point(0, 94);
             this.panelControlData.Name = "panelControlData";
-            this.panelControlData.Size = new System.Drawing.Size(1100, 517);
+            this.panelControlData.Size = new System.Drawing.Size(1100, 519);
             this.panelControlData.TabIndex = 4;
             // 
             // gridControlDataBCPTTT
@@ -323,7 +323,7 @@
             this.gridControlDataBCPTTT.Name = "gridControlDataBCPTTT";
             this.gridControlDataBCPTTT.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButton_View});
-            this.gridControlDataBCPTTT.Size = new System.Drawing.Size(1096, 513);
+            this.gridControlDataBCPTTT.Size = new System.Drawing.Size(1096, 515);
             this.gridControlDataBCPTTT.TabIndex = 29;
             this.gridControlDataBCPTTT.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridViewDataBCPTTT});

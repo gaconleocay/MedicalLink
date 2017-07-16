@@ -18,7 +18,7 @@ namespace MedicalLink.ChucNang
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private string danhSachIdKhoa = "";
-        private List<MedicalLink.ClassCommon.classBCChiDinhPTTT_User> lstUser { get; set; }
+        //private List<MedicalLink.ClassCommon.classBCChiDinhPTTT_User> lstUser { get; set; }
         private DataTable data_BCChiDinhPTTT { get; set; }
         public ucBCChiDinhPTTT()
         {
@@ -146,7 +146,7 @@ namespace MedicalLink.ChucNang
                     }
                     dsnhomdv += "'" + dsnhomdv_temp[dsnhomdv_temp.Length - 1].ToString().Trim() + "'";
 
-                   // dsnhomdv = dsnhomdv.Replace("'',", "").Replace(",''","");
+                    // dsnhomdv = dsnhomdv.Replace("'',", "").Replace(",''","");
 
                     // Lấy Tiêu chí thời gian: tieuchi
                     if (cbbTieuChi.Text == "Theo ngày chỉ định")
@@ -201,11 +201,11 @@ namespace MedicalLink.ChucNang
 
                     if (chkPTTTAll.Checked)
                     {
-                        sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY sef.servicepricegroupcode,ser.servicepricecode) as stt, ser.servicepriceid as servicepriceid, vp.patientid as mabn, vp.vienphiid as mavp, mbp.maubenhphamid as maubenhphamid, hsba.patientname as tenbn, prv.departmentgroupname as tenkhoaravien, prv.departmentname as tenphongravien, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricemoney_bhyt as dongiabhyt, ser.soluong as soluong, ser.soluong * ser.servicepricemoney as thanhtien, ser.soluong * ser.servicepricemoney_bhyt as thanhtienbhyt, ser.servicepricedate as thoigianchidinh, pcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, mbp.userid as iduserchidinh, ncd.usercode as mauserchidinh, ncd.username as tenuserchidinh, sef.servicepricegroupcode as manhomdichvu, (case when ser.billid_thutien>0 or ser.billid_clbh_thutien>0 then 'Đã thu tiền' else '' end) as trangthaithutien, hsba.bhytcode as sothebhyt, case sef.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end as bhyt_groupcode, sef.servicegrouptype as servicegrouptype, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle','093TDTUngthu') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as thuocdikem, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '102VTngoaiDM','103VTtyle') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as vattudikem, ser.chiphidauvao as chiphidauvao, ser.chiphimaymoc as chiphimaymoc, ser.chiphipttt as chiphipttt, mayyte.mayytename as mayytename, mayyte.chiphiliendoanh as chiphiliendoanh FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN hosobenhan hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN tools_depatment prv ON vp.departmentid=prv.departmentid and prv.departmenttype in (2,3,9) INNER JOIN tools_depatment pcd ON ser.departmentid=pcd.departmentid and pcd.departmenttype in (2,3,9) INNER JOIN maubenhpham mbp ON mbp.maubenhphamid=ser.maubenhphamid INNER JOIN servicepriceref sef ON ser.servicepricecode=sef.servicepricecode LEFT JOIN mayyte ON ser.mayytedbid=mayyte.mayytedbid LEFT JOIN tools_tblnhanvien ncd on ncd.userhisid=mbp.userid WHERE sef.bhyt_groupcode in ('06PTTT','07KTC') " + tieuchi + " >= '" + datetungay + "' " + tieuchi + " <= '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + danhSachIdKhoa + " ORDER BY sef.servicepricegroupcode;";
+                        sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY sef.servicepricegroupcode,ser.servicepricecode) as stt, ser.servicepriceid as servicepriceid, vp.patientid as mabn, vp.vienphiid as mavp, mbp.maubenhphamid as maubenhphamid, hsba.patientname as tenbn, krv.departmentgroupname as tenkhoaravien, prv.departmentname as tenphongravien, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricemoney_bhyt as dongiabhyt, ser.soluong as soluong, ser.soluong * ser.servicepricemoney as thanhtien, ser.soluong * ser.servicepricemoney_bhyt as thanhtienbhyt, ser.servicepricedate as thoigianchidinh, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, mbp.userid as iduserchidinh, ncd.usercode as mauserchidinh, ncd.username as tenuserchidinh, sef.servicepricegroupcode as manhomdichvu, (case when ser.billid_thutien>0 or ser.billid_clbh_thutien>0 then 'Đã thu tiền' else '' end) as trangthaithutien, hsba.bhytcode as sothebhyt, case sef.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end as bhyt_groupcode, sef.servicegrouptype as servicegrouptype, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle','093TDTUngthu') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as thuocdikem, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '102VTngoaiDM','103VTtyle') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as vattudikem, ser.chiphidauvao as chiphidauvao, ser.chiphimaymoc as chiphimaymoc, ser.chiphipttt as chiphipttt, mayyte.mayytename as mayytename, mayyte.chiphiliendoanh as chiphiliendoanh FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN (select hosobenhanid,patientname,bhytcode from hosobenhan) hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,9)) prv ON vp.departmentid=prv.departmentid INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) krv ON vp.departmentgroupid=krv.departmentgroupid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,9)) pcd ON ser.departmentid=pcd.departmentid INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON vp.departmentgroupid=kcd.departmentgroupid INNER JOIN maubenhpham mbp ON mbp.maubenhphamid=ser.maubenhphamid INNER JOIN servicepriceref sef ON ser.servicepricecode=sef.servicepricecode LEFT JOIN mayyte ON ser.mayytedbid=mayyte.mayytedbid LEFT JOIN nhompersonnel ncd on ncd.userhisid=mbp.userid WHERE sef.bhyt_groupcode in ('06PTTT','07KTC') " + tieuchi + " >= '" + datetungay + "' " + tieuchi + " <= '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + danhSachIdKhoa + " ORDER BY sef.servicepricegroupcode;  ";
                     }
                     else
                     {
-                        sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY sef.servicepricegroupcode,ser.servicepricecode) as stt, ser.servicepriceid as servicepriceid, vp.patientid as mabn, vp.vienphiid as mavp, mbp.maubenhphamid as maubenhphamid, hsba.patientname as tenbn, prv.departmentgroupname as tenkhoaravien, prv.departmentname as tenphongravien, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricemoney_bhyt as dongiabhyt, ser.soluong as soluong, ser.soluong * ser.servicepricemoney as thanhtien, ser.soluong * ser.servicepricemoney_bhyt as thanhtienbhyt, ser.servicepricedate as thoigianchidinh, pcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, mbp.userid as iduserchidinh, ncd.usercode as mauserchidinh, ncd.username as tenuserchidinh, sef.servicepricegroupcode as manhomdichvu, (case when ser.billid_thutien>0 or ser.billid_clbh_thutien>0 then 'Đã thu tiền' else '' end) as trangthaithutien, hsba.bhytcode as sothebhyt, case sef.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end as bhyt_groupcode, sef.servicegrouptype as servicegrouptype, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle','093TDTUngthu') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as thuocdikem, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '102VTngoaiDM','103VTtyle') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as vattudikem, ser.chiphidauvao as chiphidauvao, ser.chiphimaymoc as chiphimaymoc, ser.chiphipttt as chiphipttt, mayyte.mayytename as mayytename, mayyte.chiphiliendoanh as chiphiliendoanh FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN hosobenhan hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN tools_depatment prv ON vp.departmentid=prv.departmentid and prv.departmenttype in (2,3,9) INNER JOIN tools_depatment pcd ON ser.departmentid=pcd.departmentid and pcd.departmenttype in (2,3,9) INNER JOIN maubenhpham mbp ON mbp.maubenhphamid=ser.maubenhphamid INNER JOIN servicepriceref sef ON ser.servicepricecode=sef.servicepricecode LEFT JOIN mayyte ON ser.mayytedbid=mayyte.mayytedbid LEFT JOIN tools_tblnhanvien ncd on ncd.userhisid=mbp.userid WHERE sef.servicepricegroupcode in (" + dsnhomdv + ") " + tieuchi + " >= '" + datetungay + "' " + tieuchi + " <= '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + danhSachIdKhoa + " ;";
+                        sqlquerry = "SELECT ROW_NUMBER () OVER (ORDER BY sef.servicepricegroupcode,ser.servicepricecode) as stt, ser.servicepriceid as servicepriceid, vp.patientid as mabn, vp.vienphiid as mavp, mbp.maubenhphamid as maubenhphamid, hsba.patientname as tenbn, krv.departmentgroupname as tenkhoaravien, prv.departmentname as tenphongravien, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricemoney_bhyt as dongiabhyt, ser.soluong as soluong, ser.soluong * ser.servicepricemoney as thanhtien, ser.soluong * ser.servicepricemoney_bhyt as thanhtienbhyt, ser.servicepricedate as thoigianchidinh, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, mbp.userid as iduserchidinh, ncd.usercode as mauserchidinh, ncd.username as tenuserchidinh, sef.servicepricegroupcode as manhomdichvu, (case when ser.billid_thutien>0 or ser.billid_clbh_thutien>0 then 'Đã thu tiền' else '' end) as trangthaithutien, hsba.bhytcode as sothebhyt, case sef.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end as bhyt_groupcode, sef.servicegrouptype as servicegrouptype, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle','093TDTUngthu') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as thuocdikem, (select sum(ser_dk.servicepricemoney * ser_dk.soluong) from serviceprice ser_dk where ser_dk.servicepriceid_master=ser.servicepriceid and ser_dk.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '102VTngoaiDM','103VTtyle') and ser_dk.loaidoituong=2 and ser_dk.vienphiid=ser.vienphiid) as vattudikem, ser.chiphidauvao as chiphidauvao, ser.chiphimaymoc as chiphimaymoc, ser.chiphipttt as chiphipttt, mayyte.mayytename as mayytename, mayyte.chiphiliendoanh as chiphiliendoanh FROM serviceprice ser INNER JOIN vienphi vp ON ser.vienphiid=vp.vienphiid INNER JOIN (select hosobenhanid,patientname,bhytcode from hosobenhan) hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,9)) prv ON vp.departmentid=prv.departmentid INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) krv ON vp.departmentgroupid=krv.departmentgroupid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,9)) pcd ON ser.departmentid=pcd.departmentid INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON vp.departmentgroupid=kcd.departmentgroupid INNER JOIN maubenhpham mbp ON mbp.maubenhphamid=ser.maubenhphamid INNER JOIN servicepriceref sef ON ser.servicepricecode=sef.servicepricecode LEFT JOIN mayyte ON ser.mayytedbid=mayyte.mayytedbid LEFT JOIN nhompersonnel ncd on ncd.userhisid=mbp.userid WHERE sef.servicepricegroupcode in (" + dsnhomdv + ") " + tieuchi + " >= '" + datetungay + "' " + tieuchi + " <= '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + danhSachIdKhoa + " ; ";
                     }
 
                     data_BCChiDinhPTTT = condb.GetDataTable_HIS(sqlquerry);
@@ -237,8 +237,8 @@ namespace MedicalLink.ChucNang
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 //LoadDanhSachKhoa();
                 // CheckDSKhoa();
-                LayDanhSachNguoiDung();
-
+                // LayDanhSachNguoiDung();
+                chkcomboListDSKhoa.Enabled = false;
             }
             catch (Exception)
             {
@@ -257,10 +257,7 @@ namespace MedicalLink.ChucNang
                     chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
                     chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
                 }
-                for (int i = 0; i < chkcomboListDSKhoa.Properties.Items.Count; i++)
-                {
-                    chkcomboListDSKhoa.Properties.Items[i].CheckState = CheckState.Checked;
-                }
+                chkcomboListDSKhoa.CheckAll();
             }
             catch (Exception ex)
             {
@@ -279,10 +276,7 @@ namespace MedicalLink.ChucNang
                     chkcomboListDSKhoa.Properties.DisplayMember = "departmentname";
                     chkcomboListDSKhoa.Properties.ValueMember = "departmentid";
                 }
-                for (int i = 0; i < chkcomboListDSKhoa.Properties.Items.Count; i++)
-                {
-                    chkcomboListDSKhoa.Properties.Items[i].CheckState = CheckState.Checked;
-                }
+                chkcomboListDSKhoa.CheckAll();
             }
             catch (Exception ex)
             {
@@ -303,30 +297,30 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-        private void LayDanhSachNguoiDung()
-        {
-            try
-            {
-                lstUser = new List<ClassCommon.classBCChiDinhPTTT_User>();
-                string sql_laynguoidung = "SELECT DISTINCT userhisid, usercode, username FROM tools_tblnhanvien;";
-                DataView data_dsnguoidung = new DataView(condb.GetDataTable_HIS(sql_laynguoidung));
-                if (data_dsnguoidung != null && data_dsnguoidung.Count > 0)
-                {
-                    for (int i = 0; i < data_dsnguoidung.Count; i++)
-                    {
-                        ClassCommon.classBCChiDinhPTTT_User user = new ClassCommon.classBCChiDinhPTTT_User();
-                        user.userid = Convert.ToInt64(data_dsnguoidung[i]["userhisid"].ToString());
-                        user.usercode = data_dsnguoidung[i]["usercode"].ToString();
-                        user.username = data_dsnguoidung[i]["username"].ToString();
-                        lstUser.Add(user);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
+        //private void LayDanhSachNguoiDung()
+        //{
+        //    try
+        //    {
+        //        lstUser = new List<ClassCommon.classBCChiDinhPTTT_User>();
+        //        string sql_laynguoidung = "SELECT DISTINCT userhisid, usercode, username FROM nhompersonnel;";
+        //        DataView data_dsnguoidung = new DataView(condb.GetDataTable_HIS(sql_laynguoidung));
+        //        if (data_dsnguoidung != null && data_dsnguoidung.Count > 0)
+        //        {
+        //            for (int i = 0; i < data_dsnguoidung.Count; i++)
+        //            {
+        //                ClassCommon.classBCChiDinhPTTT_User user = new ClassCommon.classBCChiDinhPTTT_User();
+        //                user.userid = Convert.ToInt64(data_dsnguoidung[i]["userhisid"].ToString());
+        //                user.usercode = data_dsnguoidung[i]["usercode"].ToString();
+        //                user.username = data_dsnguoidung[i]["username"].ToString();
+        //                lstUser.Add(user);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MedicalLink.Base.Logging.Warn(ex);
+        //    }
+        //}
         #endregion
 
         private void tbnExport_Click(object sender, EventArgs e)

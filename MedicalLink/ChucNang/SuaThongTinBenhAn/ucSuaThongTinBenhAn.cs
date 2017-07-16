@@ -212,28 +212,32 @@ namespace MedicalLink.ChucNang
         // Hiển thị danh sách mã điều trị của BN
         internal void btnBNBKTimKiem_Click(object sender, EventArgs e)
         {
-            string sqlquerry;
+            string sqlquerry = "";
+            string timkiemtheo = " ";
             try
             {
-                if (txtBNBKMaVP.Text == "Mã viện phí" && txtBNBKMaBN.Text== "Mã bệnh nhân")
+                if (txtBNBKMaVP.Text == "Mã viện phí" && txtBNBKMaBN.Text == "Mã bệnh nhân")
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
-                    return ;
+                    return;
                 }
                 if (txtBNBKMaVP.Text == "Mã viện phí") // tìm theo mã BN
                 {
-                    sqlquerry = "SELECT vienphi.vienphiid as vienphiid, hosobenhan.patientid as patientid, bhyt.bhytid as bhytid, hosobenhan.hosobenhanid as hosobenhanid, hosobenhan.patientname as patientname, case vienphi.vienphistatus when 2 then 'Đã duyệt BHYT' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, hosobenhan.gioitinhcode as gioitinhcode, hosobenhan.gioitinhname as gioitinh, vienphi.vienphidate as thoigianvaovien, vienphi.vienphidate_ravien as thoigianravien, vienphi.duyet_ngayduyet_bh as thoigianduyetbhyt, tools_depatment.departmentgroupname as khoaravien, tools_depatment.departmentname as phongravien, bhyt.bhytcode as sothebhyt, bhyt.macskcbbd as noidkkcbbd, bhyt.bhytfromdate as hanthetu, bhyt.bhytutildate as hantheden, hosobenhan.noilamviec as noilamviec, hosobenhan.birthday as ngaysinh, hosobenhan.hc_xacode as hc_xacode, hosobenhan.hc_huyencode as hc_huyencode, hosobenhan.hc_tinhcode as hc_tinhcode, hosobenhan.hc_xaname as hc_xaname, hosobenhan.hc_huyenname as hc_huyenname, hosobenhan.hc_tinhname as hc_tinhname, hosobenhan.hc_sonha as hc_sonha, hc_thon as hc_thon FROM vienphi, hosobenhan, tools_depatment, bhyt WHERE vienphi.hosobenhanid= hosobenhan.hosobenhanid and vienphi.bhytid = bhyt.bhytid and vienphi.departmentgroupid = tools_depatment.departmentgroupid and vienphi.departmentid = tools_depatment.departmentid and vienphi.patientid='" + txtBNBKMaBN.Text.Trim() + "' ORDER BY vienphiid;";
+                    timkiemtheo = " vp.patientid='" + txtBNBKMaBN.Text.Trim() + "' ";
                 }
                 else // tìm theo mã VP
                 {
-                    sqlquerry = "SELECT vienphi.vienphiid as vienphiid, hosobenhan.patientid as patientid, bhyt.bhytid as bhytid, hosobenhan.hosobenhanid as hosobenhanid, hosobenhan.patientname as patientname, case vienphi.vienphistatus when 2 then 'Đã duyệt BHYT' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, hosobenhan.gioitinhcode as gioitinhcode, hosobenhan.gioitinhname as gioitinh, vienphi.vienphidate as thoigianvaovien, vienphi.vienphidate_ravien as thoigianravien, vienphi.duyet_ngayduyet_bh as thoigianduyetbhyt, tools_depatment.departmentgroupname as khoaravien, tools_depatment.departmentname as phongravien, bhyt.bhytcode as sothebhyt, bhyt.macskcbbd as noidkkcbbd, bhyt.bhytfromdate as hanthetu, bhyt.bhytutildate as hantheden, hosobenhan.noilamviec as noilamviec, hosobenhan.birthday as ngaysinh, hosobenhan.hc_xacode as hc_xacode, hosobenhan.hc_huyencode as hc_huyencode, hosobenhan.hc_tinhcode as hc_tinhcode, hosobenhan.hc_xaname as hc_xaname, hosobenhan.hc_huyenname as hc_huyenname, hosobenhan.hc_tinhname as hc_tinhname, hosobenhan.hc_sonha as hc_sonha, hc_thon as hc_thon FROM vienphi, hosobenhan, tools_depatment, bhyt WHERE vienphi.hosobenhanid= hosobenhan.hosobenhanid and vienphi.bhytid = bhyt.bhytid and vienphi.departmentgroupid = tools_depatment.departmentgroupid and vienphi.departmentid = tools_depatment.departmentid and vienphi.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ORDER BY vienphiid;";
+                    timkiemtheo = " vp.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ";
                 }
 
+                sqlquerry = "SELECT vp.vienphiid as vienphiid, hsba.patientid as patientid, bh.bhytid as bhytid, hsba.hosobenhanid as hosobenhanid, hsba.patientname as patientname, case vp.vienphistatus when 2 then 'Đã duyệt BHYT' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, hsba.gioitinhcode as gioitinhcode, hsba.gioitinhname as gioitinh, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_bh as thoigianduyetbhyt, krv.departmentgroupname as khoaravien, prv.departmentname as phongravien, bh.bhytcode as sothebhyt, bh.macskcbbd as noidkkcbbd, bh.bhytfromdate as hanthetu, bh.bhytutildate as hantheden, hsba.noilamviec as noilamviec, hsba.birthday as ngaysinh, hsba.hc_xacode as hc_xacode, hsba.hc_huyencode as hc_huyencode, hsba.hc_tinhcode as hc_tinhcode, hsba.hc_xaname as hc_xaname, hsba.hc_huyenname as hc_huyenname, hsba.hc_tinhname as hc_tinhname, hsba.hc_sonha as hc_sonha, hc_thon as hc_thon FROM vienphi vp inner join hosobenhan hsba on vp.hosobenhanid= hsba.hosobenhanid inner join (select departmentgroupid,departmentgroupname from departmentgroup) krv on vp.departmentgroupid = krv.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (2,3,9)) prv on vp.departmentid=prv.departmentid inner join bhyt bh on vp.bhytid = bh.bhytid WHERE " + timkiemtheo + " ORDER BY vp.vienphiid; ";
                 DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
-                gridControlSuaPhoiThanhToan.DataSource = dv;
-
-                if (gridViewSuaPhoiThanhToan.RowCount == 0)
+                if (dv.Count > 0 && dv != null)
+                {
+                    gridControlSuaPhoiThanhToan.DataSource = dv;
+                }
+                else
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();

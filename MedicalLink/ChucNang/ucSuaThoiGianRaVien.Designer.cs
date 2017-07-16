@@ -330,7 +330,6 @@
             this.gridColumn2.Caption = "Mã viện phí";
             this.gridColumn2.FieldName = "mavienphi";
             this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 86;
@@ -350,7 +349,6 @@
             this.gridColumn1.Caption = "Mã bệnh nhân";
             this.gridColumn1.FieldName = "mabenhnhan";
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
             this.gridColumn1.Width = 89;

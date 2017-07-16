@@ -155,7 +155,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
         {
             try
             {
-                string getnguoithuchien = "select nv.userhisid, nv.usercode, nv.username, (nv.usercode || ' - ' || nv.username) as usercodename from tools_tblnhanvien nv inner join (select usercode, departmentid from tbldepartment) ude on ude.usercode=nv.usercode inner join (select departmentid from department where departmentgroupid=" + this.currentThongtinPTTT.departmentgroupid + ") de on de.departmentid=ude.departmentid group by nv.userhisid, nv.usercode, nv.username order by nv.username; ";
+                string getnguoithuchien = "select nv.userhisid, nv.usercode, nv.username, (nv.usercode || ' - ' || nv.username) as usercodename from nhompersonnel nv inner join (select usercode, departmentid from tbldepartment) ude on ude.usercode=nv.usercode inner join (select departmentid from department where departmentgroupid=" + this.currentThongtinPTTT.departmentgroupid + ") de on de.departmentid=ude.departmentid group by nv.userhisid, nv.usercode, nv.username order by nv.username; ";
                 DataTable dataNguoiThucHien = condb.GetDataTable_HIS(getnguoithuchien);
 
                 cboMoChinh.Properties.DataSource = dataNguoiThucHien;

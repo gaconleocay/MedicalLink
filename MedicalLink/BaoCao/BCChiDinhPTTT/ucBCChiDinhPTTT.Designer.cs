@@ -107,7 +107,7 @@
             this.panelControlTKDV_TK.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlTKDV_TK.Location = new System.Drawing.Point(0, 0);
             this.panelControlTKDV_TK.Name = "panelControlTKDV_TK";
-            this.panelControlTKDV_TK.Size = new System.Drawing.Size(1050, 118);
+            this.panelControlTKDV_TK.Size = new System.Drawing.Size(1130, 118);
             this.panelControlTKDV_TK.TabIndex = 3;
             // 
             // groupBoxBNBK_TK
@@ -133,7 +133,7 @@
             this.groupBoxBNBK_TK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxBNBK_TK.Location = new System.Drawing.Point(2, 2);
             this.groupBoxBNBK_TK.Name = "groupBoxBNBK_TK";
-            this.groupBoxBNBK_TK.Size = new System.Drawing.Size(1046, 114);
+            this.groupBoxBNBK_TK.Size = new System.Drawing.Size(1126, 114);
             this.groupBoxBNBK_TK.TabIndex = 5;
             this.groupBoxBNBK_TK.TabStop = false;
             this.groupBoxBNBK_TK.Text = "Tìm kiếm theo nhóm dịch vụ";
@@ -182,11 +182,11 @@
             this.tbnExport.Appearance.Options.UseForeColor = true;
             this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(881, 63);
+            this.tbnExport.Location = new System.Drawing.Point(1015, 38);
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(100, 40);
             this.tbnExport.TabIndex = 7;
-            this.tbnExport.Text = "Export...";
+            this.tbnExport.Text = "Export";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // btnChonNhomDV
@@ -272,6 +272,14 @@
             this.cbbLoaiBA.Name = "cbbLoaiBA";
             this.cbbLoaiBA.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiBA.Properties.Appearance.Options.UseFont = true;
+            this.cbbLoaiBA.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbLoaiBA.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cbbLoaiBA.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbLoaiBA.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cbbLoaiBA.Properties.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbLoaiBA.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cbbLoaiBA.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbLoaiBA.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.cbbLoaiBA.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbLoaiBA.Properties.Items.AddRange(new object[] {
@@ -309,7 +317,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(881, 17);
+            this.btnTimKiem.Location = new System.Drawing.Point(895, 38);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 2;
@@ -332,6 +340,14 @@
             this.cbbTieuChi.Name = "cbbTieuChi";
             this.cbbTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTieuChi.Properties.Appearance.Options.UseFont = true;
+            this.cbbTieuChi.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbTieuChi.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cbbTieuChi.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbTieuChi.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cbbTieuChi.Properties.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbTieuChi.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cbbTieuChi.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cbbTieuChi.Properties.AppearanceReadOnly.Options.UseFont = true;
             this.cbbTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbTieuChi.Properties.Items.AddRange(new object[] {
@@ -351,7 +367,7 @@
             this.panelControlDV_DT.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlDV_DT.Location = new System.Drawing.Point(0, 118);
             this.panelControlDV_DT.Name = "panelControlDV_DT";
-            this.panelControlDV_DT.Size = new System.Drawing.Size(1050, 476);
+            this.panelControlDV_DT.Size = new System.Drawing.Size(1130, 476);
             this.panelControlDV_DT.TabIndex = 4;
             // 
             // gridControlDSDV
@@ -361,7 +377,7 @@
             this.gridControlDSDV.Location = new System.Drawing.Point(0, 0);
             this.gridControlDSDV.MainView = this.gridViewDSDV;
             this.gridControlDSDV.Name = "gridControlDSDV";
-            this.gridControlDSDV.Size = new System.Drawing.Size(1050, 476);
+            this.gridControlDSDV.Size = new System.Drawing.Size(1130, 476);
             this.gridControlDSDV.TabIndex = 0;
             this.gridControlDSDV.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDSDV});
@@ -1085,7 +1101,7 @@
             this.Controls.Add(this.panelControlDV_DT);
             this.Controls.Add(this.panelControlTKDV_TK);
             this.Name = "ucBCChiDinhPTTT";
-            this.Size = new System.Drawing.Size(1050, 594);
+            this.Size = new System.Drawing.Size(1130, 594);
             this.Load += new System.EventHandler(this.ucBCChiDinhPTTT_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).EndInit();
             this.panelControlTKDV_TK.ResumeLayout(false);

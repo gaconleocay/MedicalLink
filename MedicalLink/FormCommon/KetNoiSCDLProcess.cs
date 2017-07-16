@@ -19,7 +19,6 @@ namespace MedicalLink.FormCommon
             {
                 result = KetNoiSCDLProcess.CreateTableTblUser();
                 result = KetNoiSCDLProcess.CreateTableTblPermission();
-                result = KetNoiSCDLProcess.CreateTableTblDepartment();
                 result = KetNoiSCDLProcess.CreateTableTblLog();
                 result = KetNoiSCDLProcess.CreateTableTblUpdateKhaDung();
                 result = KetNoiSCDLProcess.CreateTableLicense();
@@ -38,7 +37,7 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
                 result = KetNoiSCDLProcess.CreateTableVersion();
                 //result = KetNoiSCDLProcess.CreateFunctionByteaImport();
-                // result = KetNoiSCDLProcess.CreateView_Tools_Serviceprice_Pttt();
+                // result = KetNoiSCDLProcess.CreateView_ihs_servicespttt();
             }
             catch (Exception ex)
             {
@@ -79,26 +78,6 @@ namespace MedicalLink.FormCommon
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error("Lỗi CreateTableTblPermission" + ex.ToString());
-            }
-            return result;
-        }
-        private static bool CreateTableTblDepartment()
-        {
-            bool result = false;
-            try
-            {
-                string sql_toolsdepatment = "CREATE TABLE IF NOT EXISTS tools_depatment (tools_depatmentid serial NOT NULL, departmentgroupid integer, departmentgroupcode text, departmentgroupname text, departmentgrouptype integer, departmentid integer, departmentcode text, departmentname text, departmenttype integer, CONSTRAINT tools_depatment_pkey PRIMARY KEY (tools_depatmentid));";
-                string sql_deletepatient = "DELETE FROM tools_depatment;";
-                string sql_insert = "INSERT INTO tools_depatment(departmentgroupid, departmentgroupcode, departmentgroupname, departmentgrouptype, departmentid, departmentcode, departmentname, departmenttype) SELECT degp.departmentgroupid as departmentgroupid, degp.departmentgroupcode as departmentgroupcode, degp.departmentgroupname as departmentgroupname, degp.departmentgrouptype, de.departmentid as departmentid, de.departmentcode as departmentcode, de.departmentname as departmentname, de.departmenttype FROM departmentgroup degp,department de WHERE de.departmentgroupid = degp.departmentgroupid ORDER BY degp.departmentgroupid;";
-
-                if (condb.ExecuteNonQuery_HIS(sql_toolsdepatment) && condb.ExecuteNonQuery_HIS(sql_deletepatient) && condb.ExecuteNonQuery_HIS(sql_insert))
-                {
-                    result = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error("Lỗi CreateTableTblDepartment" + ex.ToString());
             }
             return result;
         }
@@ -262,7 +241,7 @@ namespace MedicalLink.FormCommon
             bool result = false;
             try
             {
-                string sql_tbluser = "CREATE TABLE IF NOT EXISTS tools_tblnhanvien ( nhanvienid serial NOT NULL, usercode text NOT NULL, username text, userpassword text, userstatus integer, usergnhom integer, usernote text, userhisid integer, CONSTRAINT tools_tblnhanvien_pkey PRIMARY KEY (nhanvienid));";
+                string sql_tbluser = "CREATE TABLE IF NOT EXISTS nhompersonnel ( nhanvienid serial NOT NULL, usercode text NOT NULL, username text, userpassword text, userstatus integer, usergnhom integer, usernote text, userhisid integer, CONSTRAINT nhompersonnel_pkey PRIMARY KEY (nhanvienid));";
                 if (condb.ExecuteNonQuery_HIS(sql_tbluser))
                 {
                     result = true;
@@ -313,7 +292,7 @@ namespace MedicalLink.FormCommon
             bool result = false;
             try
             {
-                string ServicePttt = "CREATE TABLE IF NOT EXISTS tools_serviceprice_pttt ( servicepriceptttid serial NOT NULL, vienphiid integer, patientid integer, bhytid integer, hosobenhanid integer, loaivienphiid integer, vienphistatus integer, khoaravien integer, phongravien integer, doituongbenhnhanid integer, vienphidate timestamp without time zone, vienphidate_ravien timestamp without time zone, duyet_ngayduyet timestamp without time zone, vienphistatus_vp integer, duyet_ngayduyet_vp timestamp without time zone, vienphistatus_bh integer, duyet_ngayduyet_bh timestamp without time zone, bhyt_tuyenbenhvien integer, departmentid integer, departmentgroupid integer, departmentgroup_huong integer, money_khambenh_bh double precision, money_khambenh_vp double precision, money_xetnghiem_bh double precision, money_xetnghiem_vp double precision, money_cdha_bh double precision, money_cdha_vp double precision, money_tdcn_bh double precision, money_tdcn_vp double precision, money_pttt_bh double precision, money_pttt_vp double precision, money_mau_bh double precision, money_mau_vp double precision, money_giuongthuong_bh double precision, money_giuongthuong_vp double precision, money_giuongyeucau_bh double precision, money_giuongyeucau_vp double precision, money_vanchuyen_bh double precision, money_vanchuyen_vp double precision, money_khac_bh double precision, money_khac_vp double precision, money_phuthu_bh double precision, money_phuthu_vp double precision, money_thuoc_bh double precision, money_thuoc_vp double precision, money_vattu_bh double precision, money_vattu_vp double precision, money_vtthaythe_bh double precision, money_vtthaythe_vp double precision, money_dvktc_bh double precision, money_dvktc_vp double precision, money_chiphikhac double precision, money_hpngaygiuong double precision, money_hppttt double precision, money_hpdkpttt_gm_thuoc double precision, money_hpdkpttt_gm_vattu double precision, money_dkpttt_thuoc_bh double precision, money_dkpttt_thuoc_vp double precision, money_dkpttt_vattu_bh double precision, money_dkpttt_vattu_vp double precision, CONSTRAINT tools_serviceprice_pttt_pkey PRIMARY KEY (servicepriceptttid) );";
+                string ServicePttt = "CREATE TABLE IF NOT EXISTS ihs_servicespttt ( servicepriceptttid serial NOT NULL, vienphiid integer, patientid integer, bhytid integer, hosobenhanid integer, loaivienphiid integer, vienphistatus integer, khoaravien integer, phongravien integer, doituongbenhnhanid integer, vienphidate timestamp without time zone, vienphidate_ravien timestamp without time zone, duyet_ngayduyet timestamp without time zone, vienphistatus_vp integer, duyet_ngayduyet_vp timestamp without time zone, vienphistatus_bh integer, duyet_ngayduyet_bh timestamp without time zone, bhyt_tuyenbenhvien integer, departmentid integer, departmentgroupid integer, departmentgroup_huong integer, money_khambenh_bh double precision, money_khambenh_vp double precision, money_xetnghiem_bh double precision, money_xetnghiem_vp double precision, money_cdha_bh double precision, money_cdha_vp double precision, money_tdcn_bh double precision, money_tdcn_vp double precision, money_pttt_bh double precision, money_pttt_vp double precision, money_mau_bh double precision, money_mau_vp double precision, money_giuongthuong_bh double precision, money_giuongthuong_vp double precision, money_giuongyeucau_bh double precision, money_giuongyeucau_vp double precision, money_vanchuyen_bh double precision, money_vanchuyen_vp double precision, money_khac_bh double precision, money_khac_vp double precision, money_phuthu_bh double precision, money_phuthu_vp double precision, money_thuoc_bh double precision, money_thuoc_vp double precision, money_vattu_bh double precision, money_vattu_vp double precision, money_vtthaythe_bh double precision, money_vtthaythe_vp double precision, money_dvktc_bh double precision, money_dvktc_vp double precision, money_chiphikhac double precision, money_hpngaygiuong double precision, money_hppttt double precision, money_hpdkpttt_gm_thuoc double precision, money_hpdkpttt_gm_vattu double precision, money_dkpttt_thuoc_bh double precision, money_dkpttt_thuoc_vp double precision, money_dkpttt_vattu_bh double precision, money_dkpttt_vattu_vp double precision, CONSTRAINT ihs_servicespttt_pkey PRIMARY KEY (servicepriceptttid) );";
                 if (condb.ExecuteNonQuery_HIS(ServicePttt))
                 {
 
@@ -367,7 +346,7 @@ namespace MedicalLink.FormCommon
 
         #region Tao View
 
-        private static bool CreateView_Tools_Serviceprice_Pttt() //ngay 19/5 sử dụng tools_serviceprice_pttt ngay  v 1.15 ngay 22/5
+        private static bool CreateView_ihs_servicespttt() //ngay 19/5 sử dụng ihs_servicespttt ngay  v 1.15 ngay 22/5
         {
             bool result = false;
             try
@@ -380,7 +359,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error("Lỗi tao VIEW CreateView_Tools_Serviceprice_Pttt" + ex.ToString());
+                MedicalLink.Base.Logging.Error("Lỗi tao VIEW CreateView_ihs_servicespttt" + ex.ToString());
             }
             return result;
         }

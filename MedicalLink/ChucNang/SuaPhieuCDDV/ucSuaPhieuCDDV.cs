@@ -98,72 +98,79 @@ namespace MedicalLink.ChucNang
         //Sự kiện tìm kiếm
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            gridControlDS_PhieuDichVu.DataSource = null;
-            gridControlChiTiet.DataSource = null;
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-            string[] dsdv_temp;
-            string dsphieu = "";
-            string sqlquerry = "";
-
-            string maubenhphamgrouptype = "";
-            if (chkPhieuDichVu.Checked && chkPhieuThuocVT.Checked == false)
-            {
-                maubenhphamgrouptype = " and maubenhphamgrouptype in (0,1,2,4) ";
-            }
-            else if (chkPhieuDichVu.Checked == false && chkPhieuThuocVT.Checked)
-            {
-                maubenhphamgrouptype = " and maubenhphamgrouptype in (5,6) ";
-            }
-            else
-            {
-                maubenhphamgrouptype = " and maubenhphamgrouptype<>3 ";
-            }
-
-            if ((mmeMaPhieuYC.Text == "Nhập mã phiếu dịch vụ/thuốc/VT cách nhau bởi dấu phẩy (,)") && (txtMaBN.Text == "Mã bệnh nhân") && (txtMaVP.Text == "Mã viện phí"))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo!");
-            }
-            // Tìm kiếm theo mã phiếu thuốc/vt
-            else if (mmeMaPhieuYC.Text != "Nhập mã phiếu dịch vụ/thuốc/VT cách nhau bởi dấu phẩy (,)")
-            {
-                try
-                {
-                    // Lấy dữ liệu danh sách dịch vụ nhập vào
-                    dsdv_temp = mmeMaPhieuYC.Text.Split(',');
-                    for (int i = 0; i < dsdv_temp.Length - 1; i++)
-                    {
-                        dsphieu += "'" + dsdv_temp[i].ToString() + "',";
-                    }
-                    dsphieu += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString() + "'";
-
-                    sqlquerry = "SELECT mbp.maubenhphamid, mbp.medicalrecordid, hsba.patientid, vp.vienphiid, hsba.patientname, mbp.maubenhphamtype, (case mbp.maubenhphamgrouptype when 0 then 'Xét nghiệm' when 1 then 'CĐHA' when 2 then 'Khám bệnh' when 4 then 'Chuyên khoa' when 5 then 'Thuốc' when 6 then 'Vật tư' else '' end) as maubenhphamgrouptype, (case mbp.maubenhphamstatus when 0 then 'Chưa gửi YC' when 1 then 'Đã gửi YC' when 2 then 'Đã trả kết quả' when 4 then 'Tổng hợp y lệnh' when 5 then 'Đã xuất thuốc/VT' when 7 then 'Đã trả thuốc' when 8 then 'Chưa duyệt thuốc' when 9 then 'Đã xuất tủ trực' when 16 then 'Đã tiếp nhận bệnh phẩm' else '' end) as maubenhphamstatus, mbp.maubenhphamdate, mbp.maubenhphamdate_sudung,(case mbp.dathutien when 1 then 'Đã thu tiền' else '' end) as dathutien, mbp.dathutien as dathutienid, de.departmentgroupname, de.departmentname, mbp.isdeleted, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai,(case when maubenhphamgrouptype in (5,6) then (select msto.medicinestorename from medicine_store msto where mbp.medicinestoreid=msto.medicinestoreid) when maubenhphamgrouptype in (0,1,2) then (select dep.departmentname from department dep where mbp.departmentid_des=dep.departmentid) else '' end) as phongthuchien, COALESCE(vp.vienphistatus_vp,0) as vienphistatus_vp,medicinestorebillid,(case mbp.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as maubenhphamphieutype, mbp.maubenhphamphieutype as maubenhphamphieutypeid FROM maubenhpham mbp inner join hosobenhan hsba on mbp.hosobenhanid=hsba.hosobenhanid inner join vienphi vp on vp.hosobenhanid=hsba.hosobenhanid inner join tools_depatment de on de.departmentid=mbp.departmentid WHERE mbp.maubenhphamid in(" + dsphieu + ") ORDER BY mbp.maubenhphamgrouptype, mbp.maubenhphamid;";
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Có lỗi xảy ra" + ex.ToString(), "Thông báo !");
-                }
-
-            }
-            // Tìm kiếm theo mã viện phí
-            else if (txtMaVP.Text != "Mã viện phí")
-            {
-                sqlquerry = "SELECT mbp.maubenhphamid, mbp.medicalrecordid, hsba.patientid, vp.vienphiid, hsba.patientname, mbp.maubenhphamtype, (case mbp.maubenhphamgrouptype when 0 then 'Xét nghiệm' when 1 then 'CĐHA' when 2 then 'Khám bệnh' when 4 then 'Chuyên khoa' when 5 then 'Thuốc' when 6 then 'Vật tư' else '' end) as maubenhphamgrouptype, (case mbp.maubenhphamstatus when 0 then 'Chưa gửi YC' when 1 then 'Đã gửi YC' when 2 then 'Đã trả kết quả' when 4 then 'Tổng hợp y lệnh' when 5 then 'Đã xuất thuốc/VT' when 7 then 'Đã trả thuốc' when 8 then 'Chưa duyệt thuốc' when 9 then 'Đã xuất tủ trực' when 16 then 'Đã tiếp nhận bệnh phẩm' else '' end) as maubenhphamstatus, mbp.maubenhphamdate, mbp.maubenhphamdate_sudung, (case mbp.dathutien when 1 then 'Đã thu tiền' else '' end) as dathutien, mbp.dathutien as dathutienid, de.departmentgroupname, de.departmentname, mbp.isdeleted, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai,(case when maubenhphamgrouptype in (5,6) then (select msto.medicinestorename from medicine_store msto where mbp.medicinestoreid=msto.medicinestoreid) when maubenhphamgrouptype in (0,1,2) then (select dep.departmentname from department dep where mbp.departmentid_des=dep.departmentid) else '' end) as phongthuchien, COALESCE(vp.vienphistatus_vp,0) as vienphistatus_vp,medicinestorebillid,(case mbp.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as maubenhphamphieutype, mbp.maubenhphamphieutype as maubenhphamphieutypeid FROM maubenhpham mbp inner join hosobenhan hsba on mbp.hosobenhanid=hsba.hosobenhanid inner join vienphi vp on vp.hosobenhanid=hsba.hosobenhanid inner join tools_depatment de on de.departmentid=mbp.departmentid WHERE vp.vienphiid = " + txtMaVP.Text.Trim() + " and mbp.maubenhphamgrouptype <>3 " + maubenhphamgrouptype + " ORDER BY mbp.maubenhphamgrouptype, mbp.maubenhphamid;";
-
-            }
-            // Tìm kiếm theo mã bệnh nhân
-            else if (txtMaBN.Text != "Mã bệnh nhân")
-            {
-                sqlquerry = "SELECT mbp.maubenhphamid, mbp.medicalrecordid, hsba.patientid, vp.vienphiid, hsba.patientname, mbp.maubenhphamtype, (case mbp.maubenhphamgrouptype when 0 then 'Xét nghiệm' when 1 then 'CĐHA' when 2 then 'Khám bệnh' when 4 then 'Chuyên khoa' when 5 then 'Thuốc' when 6 then 'Vật tư' else '' end) as maubenhphamgrouptype, (case mbp.maubenhphamstatus when 0 then 'Chưa gửi YC' when 1 then 'Đã gửi YC' when 2 then 'Đã trả kết quả' when 4 then 'Tổng hợp y lệnh' when 5 then 'Đã xuất thuốc/VT' when 7 then 'Đã trả thuốc' when 8 then 'Chưa duyệt thuốc' when 9 then 'Đã xuất tủ trực' when 16 then 'Đã tiếp nhận bệnh phẩm' else '' end) as maubenhphamstatus, mbp.maubenhphamdate, mbp.maubenhphamdate_sudung, (case mbp.dathutien when 1 then 'Đã thu tiền' else '' end) as dathutien, mbp.dathutien as dathutienid, de.departmentgroupname, de.departmentname, mbp.isdeleted, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai,(case when maubenhphamgrouptype in (5,6) then (select msto.medicinestorename from medicine_store msto where mbp.medicinestoreid=msto.medicinestoreid) when maubenhphamgrouptype in (0,1,2) then (select dep.departmentname from department dep where mbp.departmentid_des=dep.departmentid) else '' end) as phongthuchien,COALESCE(vp.vienphistatus_vp,0) as vienphistatus_vp,medicinestorebillid,(case mbp.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as maubenhphamphieutype, mbp.maubenhphamphieutype as maubenhphamphieutypeid FROM maubenhpham mbp inner join hosobenhan hsba on mbp.hosobenhanid=hsba.hosobenhanid inner join vienphi vp on vp.hosobenhanid=hsba.hosobenhanid inner join tools_depatment de on de.departmentid=mbp.departmentid WHERE vp.patientid = " + txtMaBN.Text.Trim() + " and mbp.maubenhphamgrouptype <>3 " + maubenhphamgrouptype + " ORDER BY mbp.maubenhphamgrouptype, mbp.maubenhphamid;";
-            }
-
             try
             {
-                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
-                gridControlDS_PhieuDichVu.DataSource = dv;
-
-                if (gridViewDS_PhieuDichVu.RowCount == 0)
+                gridControlDS_PhieuDichVu.DataSource = null;
+                gridControlChiTiet.DataSource = null;
+                string[] dsdv_temp;
+                string dsphieu = "";
+                string sqlquerry = "";
+                string timkiemtheo = "";
+                string maubenhphamgrouptype = "";
+                if (chkPhieuDichVu.Checked && chkPhieuThuocVT.Checked == false)
                 {
-                    MessageBox.Show("Không tìm thấy hồ sơ nào như yêu cầu \n             Vui lòng kiểm tra lại.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    maubenhphamgrouptype = " and maubenhphamgrouptype in (0,1,2,4) ";
+                }
+                else if (chkPhieuDichVu.Checked == false && chkPhieuThuocVT.Checked)
+                {
+                    maubenhphamgrouptype = " and maubenhphamgrouptype in (5,6) ";
+                }
+                else
+                {
+                    maubenhphamgrouptype = " and maubenhphamgrouptype<>3 ";
+                }
+
+                if ((mmeMaPhieuYC.Text == "Nhập mã phiếu dịch vụ/thuốc/VT cách nhau bởi dấu phẩy (,)") && (txtMaBN.Text == "Mã bệnh nhân") && (txtMaVP.Text == "Mã viện phí"))
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
+                    SplashScreenManager.CloseForm();
+                    return;
+                }
+                // Tìm kiếm theo mã phiếu thuốc/vt
+                else if (mmeMaPhieuYC.Text != "Nhập mã phiếu dịch vụ/thuốc/VT cách nhau bởi dấu phẩy (,)")
+                {
+                    try
+                    {
+                        // Lấy dữ liệu danh sách dịch vụ nhập vào
+                        dsdv_temp = mmeMaPhieuYC.Text.Split(',');
+                        for (int i = 0; i < dsdv_temp.Length - 1; i++)
+                        {
+                            dsphieu += "'" + dsdv_temp[i].ToString() + "',";
+                        }
+                        dsphieu += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString() + "'";
+
+                        timkiemtheo = " mbp.maubenhphamid in(" + dsphieu + ") ";
+                    }
+                    catch (Exception ex)
+                    {
+                        Base.Logging.Warn(ex);
+                    }
+                }
+                // Tìm kiếm theo mã viện phí
+                else if (txtMaVP.Text != "Mã viện phí")
+                {
+                    timkiemtheo = " vp.vienphiid = " + txtMaVP.Text.Trim() + " and mbp.maubenhphamgrouptype <>3 " + maubenhphamgrouptype + " ";
+                }
+                // Tìm kiếm theo mã bệnh nhân
+                else if (txtMaBN.Text != "Mã bệnh nhân")
+                {
+                    timkiemtheo = " vp.patientid = " + txtMaBN.Text.Trim() + " and mbp.maubenhphamgrouptype <>3 " + maubenhphamgrouptype + " ";
+                }
+
+                sqlquerry = "SELECT mbp.maubenhphamid, mbp.medicalrecordid, hsba.patientid, vp.vienphiid, hsba.patientname, mbp.maubenhphamtype, (case mbp.maubenhphamgrouptype when 0 then 'Xét nghiệm' when 1 then 'CĐHA' when 2 then 'Khám bệnh' when 4 then 'Chuyên khoa' when 5 then 'Thuốc' when 6 then 'Vật tư' else '' end) as maubenhphamgrouptype, (case mbp.maubenhphamstatus when 0 then 'Chưa gửi YC' when 1 then 'Đã gửi YC' when 2 then 'Đã trả kết quả' when 4 then 'Tổng hợp y lệnh' when 5 then 'Đã xuất thuốc/VT' when 7 then 'Đã trả thuốc' when 8 then 'Chưa duyệt thuốc' when 9 then 'Đã xuất tủ trực' when 16 then 'Đã tiếp nhận bệnh phẩm' else '' end) as maubenhphamstatus, mbp.maubenhphamdate, mbp.maubenhphamdate_sudung,(case mbp.dathutien when 1 then 'Đã thu tiền' else '' end) as dathutien, mbp.dathutien as dathutienid, kcd.departmentgroupname, pcd.departmentname, mbp.isdeleted, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai,(case when maubenhphamgrouptype in (5,6) then (select msto.medicinestorename from medicine_store msto where mbp.medicinestoreid=msto.medicinestoreid) when maubenhphamgrouptype in (0,1,2) then (select dep.departmentname from department dep where mbp.departmentid_des=dep.departmentid) else '' end) as phongthuchien, COALESCE(vp.vienphistatus_vp,0) as vienphistatus_vp,medicinestorebillid,(case mbp.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as maubenhphamphieutype, mbp.maubenhphamphieutype as maubenhphamphieutypeid FROM maubenhpham mbp inner join hosobenhan hsba on mbp.hosobenhanid=hsba.hosobenhanid inner join vienphi vp on vp.hosobenhanid=hsba.hosobenhanid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,9)) pcd ON pcd.departmentid=mbp.departmentid INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=mbp.departmentgroupid WHERE " + timkiemtheo + " ORDER BY mbp.maubenhphamgrouptype, mbp.maubenhphamid; ";
+
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
+
+                if (dv.Count > 0 && dv!= null)
+                {
+                    gridControlDS_PhieuDichVu.DataSource = dv;              
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    frmthongbao.Show();
                 }
             }
             catch (Exception ex)

@@ -610,6 +610,7 @@
             this.gridViewDS_PhieuDichVu.OptionsView.ColumnAutoWidth = false;
             this.gridViewDS_PhieuDichVu.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDS_PhieuDichVu.OptionsView.ShowGroupPanel = false;
+            this.gridViewDS_PhieuDichVu.OptionsView.ShowIndicator = false;
             this.gridViewDS_PhieuDichVu.RowHeight = 25;
             this.gridViewDS_PhieuDichVu.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDS_PhieuDichVu_CustomDrawCell);
             this.gridViewDS_PhieuDichVu.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDS_PhieuDichVu_RowCellStyle);
@@ -716,7 +717,6 @@
             this.mabn.Caption = "Mã BN";
             this.mabn.FieldName = "patientid";
             this.mabn.Name = "mabn";
-            this.mabn.OptionsColumn.AllowEdit = false;
             this.mabn.Visible = true;
             this.mabn.VisibleIndex = 13;
             this.mabn.Width = 74;

@@ -17,7 +17,7 @@ namespace MedicalLink.Base
       public static string TENBAOCAO = "TENBAOCAO";
       public static string LST_DICHVU = "LST_DICHVU";
       public static string TIEUCHI = "TIEUCHI";
-
-
+        public static string MEDICINENAME = "MEDICINENAME";
+        public static string MEDICINECODE = "MEDICINECODE";
     }
 }

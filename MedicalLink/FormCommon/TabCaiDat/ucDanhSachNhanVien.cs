@@ -20,7 +20,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private string curentUsercodeid;
         private string curentUserHisId;
-        private string worksheetName = "tools_tblnhanvien";
+        private string worksheetName = "nhompersonnel";
         private DataView dmUser_Import;
 
         public ucDanhSachNhanVien()
@@ -49,7 +49,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                string sqldsnv = "SELECT nhanvienid as stt, usercode as manv, username as tennv, userhisid FROM tools_tblnhanvien ORDER BY manv";
+                string sqldsnv = "SELECT nhanvienid as stt, usercode as manv, username as tennv, userhisid FROM nhompersonnel ORDER BY manv";
                 DataView dv = new DataView(condb.GetDataTable_HIS(sqldsnv));
                 if (dv.Count > 0)
                 {
@@ -97,7 +97,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     if (CheckAccTonTai(txtNVID.Text.Trim(), txtIDHIS.Text.Trim()))
                     {
-                        string sql = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','Nhân viên', '" + txtIDHIS.Text.Trim() + "');";
+                        string sql = "INSERT INTO nhompersonnel(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','2','', '" + txtIDHIS.Text.Trim() + "');";
                         if (condb.ExecuteNonQuery_HIS(sql))
                         {
                             ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
@@ -109,7 +109,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else
                 {
-                    string sql = "UPDATE tools_tblnhanvien SET usercode='" + en_txtNVID + "', username='" + en_txtNVName + "', userpassword='" + en_pass + "', userstatus='0', usergnhom='2', usernote='' , userhisid = '" + txtIDHIS.Text.Trim() + "' WHERE usercode='" + en_txtNVID + "';";
+                    string sql = "UPDATE nhompersonnel SET usercode='" + en_txtNVID + "', username='" + en_txtNVName + "', userpassword='" + en_pass + "', userstatus='0', usergnhom='2', usernote='' , userhisid = '" + txtIDHIS.Text.Trim() + "' WHERE usercode='" + en_txtNVID + "';";
                     if (condb.ExecuteNonQuery_HIS(sql))
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
@@ -130,7 +130,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             bool result = true;
             try
             {
-                string sqlcheckUserCode = "select usercode,userhisid from tools_tblnhanvien where usercode='" + usercode + "';";
+                string sqlcheckUserCode = "select usercode,userhisid from nhompersonnel where usercode='" + usercode + "';";
                 DataTable datacheck = condb.GetDataTable_HIS(sqlcheckUserCode);
                 if (datacheck != null && datacheck.Rows.Count > 0)
                 {
@@ -140,7 +140,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     return false;
                 }
 
-                string sqlcheckUserHisId = "select usercode,userhisid from tools_tblnhanvien where userhisid='" + userHisid + "';";
+                string sqlcheckUserHisId = "select usercode,userhisid from nhompersonnel where userhisid='" + userHisid + "';";
                 DataTable datacheckHisId = condb.GetDataTable_HIS(sqlcheckUserHisId);
                 if (datacheckHisId != null && datacheckHisId.Rows.Count > 0)
                 {
@@ -191,11 +191,11 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             if (dmUser_Import[i]["USERCODE"].ToString() != "")
                             {
                                 condb.Connect();
-                                string sql_kt = "SELECT usercode FROM tools_tblnhanvien WHERE usercode='" + en_txtNVCode + "';";
+                                string sql_kt = "SELECT usercode FROM nhompersonnel WHERE usercode='" + en_txtNVCode + "';";
                                 DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
                                 if (dv_kt.Count > 0) //update
                                 {
-                                    string sql_updateUser = "UPDATE tools_tblnhanvien SET username='" + en_txtNVName + "', userhisid='" + dmUser_Import[i]["USERHISID"] + "' WHERE usercode='" + en_txtNVCode + "';";
+                                    string sql_updateUser = "UPDATE nhompersonnel SET username='" + en_txtNVName + "', userhisid='" + dmUser_Import[i]["USERHISID"] + "' WHERE usercode='" + en_txtNVCode + "';";
                                     try
                                     {
                                         condb.ExecuteNonQuery_HIS(sql_updateUser);
@@ -208,7 +208,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                                 }
                                 else
                                 {
-                                    string sql_insertDVKT = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote,userhisid) VALUES ('" + en_txtNVCode + "','" + en_txtNVName + "','" + en_pass + "','0','3','Nhân viên', '" + dmUser_Import[i]["USERHISID"] + "');";
+                                    string sql_insertDVKT = "INSERT INTO nhompersonnel(usercode, username, userpassword, userstatus, usergnhom, usernote,userhisid) VALUES ('" + en_txtNVCode + "','" + en_txtNVName + "','" + en_pass + "','0','3','Nhân viên', '" + dmUser_Import[i]["USERHISID"] + "');";
                                     try
                                     {
                                         condb.ExecuteNonQuery_HIS(sql_insertDVKT);
@@ -271,7 +271,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 try
                 {
-                    string sqlxoatk = "DELETE FROM tools_tblnhanvien WHERE usercode='" + usercode + "';";
+                    string sqlxoatk = "DELETE FROM nhompersonnel WHERE usercode='" + usercode + "';";
                     condb.ExecuteNonQuery_HIS(sqlxoatk);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + usercode);
                     frmthongbao.Show();

@@ -349,7 +349,6 @@
             this.mavienphi.Caption = "Mã viện phí";
             this.mavienphi.FieldName = "vienphiid";
             this.mavienphi.Name = "mavienphi";
-            this.mavienphi.OptionsColumn.AllowEdit = false;
             this.mavienphi.Visible = true;
             this.mavienphi.VisibleIndex = 2;
             this.mavienphi.Width = 68;
@@ -369,7 +368,6 @@
             this.mabenhnhan.Caption = "Mã bệnh nhân";
             this.mabenhnhan.FieldName = "patientid";
             this.mabenhnhan.Name = "mabenhnhan";
-            this.mabenhnhan.OptionsColumn.AllowEdit = false;
             this.mabenhnhan.Visible = true;
             this.mabenhnhan.VisibleIndex = 3;
             this.mabenhnhan.Width = 78;

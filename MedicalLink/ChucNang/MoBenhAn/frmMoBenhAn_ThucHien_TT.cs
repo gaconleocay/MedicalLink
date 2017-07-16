@@ -195,7 +195,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
         {
             try
             {
-                string sqldsnv = "SELECT usercode as manv, username as tennv FROM tools_tblnhanvien ORDER BY usercode";
+                string sqldsnv = "SELECT usercode as manv, username as tennv FROM nhompersonnel ORDER BY usercode";
                 DataTable da_dt = condb.GetDataTable_HIS(sqldsnv);
 
                 //comboBoxNYC.ValueMember = "InvtID"; 
@@ -235,7 +235,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
             try
             {
-                string sql_kttontai = "SELECT usercode as manv, username as tennv FROM tools_tblnhanvien WHERE usercode='" + txtNVID.Text.Trim() + "' ORDER BY manv";
+                string sql_kttontai = "SELECT usercode as manv, username as tennv FROM nhompersonnel WHERE usercode='" + txtNVID.Text.Trim() + "' ORDER BY manv";
                 DataView dv_dsnv = new DataView(condb.GetDataTable_HIS(sql_kttontai));
                 if (dv_dsnv != null && dv_dsnv.Count > 0)
                 {
@@ -246,7 +246,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 }
                 else
                 {
-                    string sql = "INSERT INTO tools_tblnhanvien(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + txtNVID.Text.Trim() + "','" + txtNVName.Text.Trim() + "','" + en_pass + "','0','3','Nhân viên');";
+                    string sql = "INSERT INTO nhompersonnel(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + txtNVID.Text.Trim() + "','" + txtNVName.Text.Trim() + "','" + en_pass + "','0','3','Nhân viên');";
                     condb.ExecuteNonQuery_HIS(sql);
                     MessageBox.Show("Thêm nhân viên mới thành công!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frmMoBenhAn_ThucHien_TT_Load(null, null);

@@ -89,22 +89,28 @@ namespace MedicalLink.ChucNang
         // Hiển thị danh sách mã điều trị của BN
         internal void btnBNBKTimKiem_Click(object sender, EventArgs e)
         {
-            string sqlquerry;
+            string sqlquerry = "";
+            string timkiemtheo = "";
             try
             {
                 if (txtBNBKMaVP.Text == "Mã viện phí") // tìm theo mã BN
                 {
-                    sqlquerry = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.maubenhphamid as maubenhpham_ma, case serviceprice.maubenhphamphieutype when 0 then '' else 'Phiếu trả' end as loaiphieu,serviceprice.servicepricecode as dichvu_ma, serviceprice.servicepricename as dichvu_ten, serviceprice.soluong as soluong,serviceprice.loaidoituong as loaihinhthanhtoan,serviceprice.servicepricemoney as gia_yc, serviceprice.servicepricemoney_nhandan as gia_vp, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.servicepricedate as thoigianchidinh, vienphi.patientid as mabn,vienphi.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as khoachidinh, department.departmentname as phongchidinh,tools_depatment.departmentgroupname as khoacuoicung,tools_depatment.departmentname as phongcuoicung,vienphi.vienphidate as thoigianvaovien, vienphi.vienphidate_ravien as thoigianravien, vienphi.duyet_ngayduyet_vp as thoigianduyetvp, vienphi.duyet_ngayduyet as thoigianduyetbh, case vienphi.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai FROM serviceprice, vienphi, hosobenhan, departmentgroup, department, tools_depatment WHERE serviceprice.vienphiid=vienphi.vienphiid and vienphi.hosobenhanid=hosobenhan.hosobenhanid and serviceprice.departmentgroupid=departmentgroup.departmentgroupid and serviceprice.departmentid=department.departmentid and vienphi.departmentgroupid=tools_depatment.departmentgroupid and vienphi.departmentid=tools_depatment.departmentid and vienphi.patientid='" + txtBNBKMaBN.Text.Trim() + "' ORDER BY servicepriceid;";
+                    timkiemtheo = " vp.patientid='" + txtBNBKMaBN.Text.Trim() + "' ";
                 }
                 else // tìm theo mã VP
                 {
-                    sqlquerry = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.maubenhphamid as maubenhpham_ma, case serviceprice.maubenhphamphieutype when 0 then '' else 'Phiếu trả' end as loaiphieu,serviceprice.servicepricecode as dichvu_ma, serviceprice.servicepricename as dichvu_ten, serviceprice.soluong as soluong,serviceprice.loaidoituong as loaihinhthanhtoan,serviceprice.servicepricemoney as gia_yc, serviceprice.servicepricemoney_nhandan as gia_vp, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.servicepricedate as thoigianchidinh, vienphi.patientid as mabn,vienphi.vienphiid as mavp, hosobenhan.patientname as tenbn, departmentgroup.departmentgroupname as khoachidinh, department.departmentname as phongchidinh,tools_depatment.departmentgroupname as khoacuoicung,tools_depatment.departmentname as phongcuoicung,vienphi.vienphidate as thoigianvaovien, vienphi.vienphidate_ravien as thoigianravien, vienphi.duyet_ngayduyet_vp as thoigianduyetvp, vienphi.duyet_ngayduyet as thoigianduyetbh, case vienphi.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai FROM serviceprice, vienphi, hosobenhan, departmentgroup, department, tools_depatment WHERE serviceprice.vienphiid=vienphi.vienphiid and vienphi.hosobenhanid=hosobenhan.hosobenhanid and serviceprice.departmentgroupid=departmentgroup.departmentgroupid and serviceprice.departmentid=department.departmentid and vienphi.departmentgroupid=tools_depatment.departmentgroupid and vienphi.departmentid=tools_depatment.departmentid and vienphi.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ORDER BY servicepriceid;";
+                    timkiemtheo = " vp.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ";
                 }
 
-                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
-                gridControlSuaPhoiThanhToan.DataSource = dv;
+                sqlquerry = "SELECT ser.servicepriceid as servicepriceid, ser.maubenhphamid as maubenhpham_ma, case ser.maubenhphamphieutype when 0 then '' else 'Phiếu trả' end as loaiphieu,ser.servicepricecode as dichvu_ma, ser.servicepricename as dichvu_ten, ser.soluong as soluong,ser.loaidoituong as loaihinhthanhtoan,ser.servicepricemoney as gia_yc, ser.servicepricemoney_nhandan as gia_vp, ser.servicepricemoney_bhyt as gia_bhyt, ser.servicepricemoney_nuocngoai as gia_nnn, ser.servicepricedate as thoigianchidinh, vp.patientid as mabn,vp.vienphiid as mavp, hsba.patientname as tenbn, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh,kcc.departmentgroupname as khoacuoicung,pcc.departmentname as phongcuoicung,vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai FROM serviceprice ser inner join vienphi vp on ser.vienphiid=vp.vienphiid inner join hosobenhan hsba on vp.hosobenhanid=hsba.hosobenhanid inner join (select departmentgroupid,departmentgroupname from departmentgroup) kcd on ser.departmentgroupid=kcd.departmentgroupid inner join (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd on ser.departmentid=pcd.departmentid inner join (select departmentgroupid,departmentgroupname from departmentgroup) kcc on vp.departmentgroupid=kcc.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcc on vp.departmentid=pcc.departmentid WHERE " + timkiemtheo + " ORDER BY ser.servicepriceid;";
 
-                if (gridViewSuaPhoiThanhToan.RowCount == 0)
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
+
+                if (dv.Count > 0 && dv != null)
+                {
+                    gridControlSuaPhoiThanhToan.DataSource = dv;
+                }
+                else
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();

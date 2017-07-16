@@ -72,8 +72,8 @@
             this.thoigianvaovien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thoigianravien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.thoigianduyetvp = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             this.huongdansudung = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -430,7 +430,6 @@
             this.mabn.Caption = "Mã BN";
             this.mabn.FieldName = "mabn";
             this.mabn.Name = "mabn";
-            this.mabn.OptionsColumn.AllowEdit = false;
             this.mabn.Visible = true;
             this.mabn.VisibleIndex = 3;
             this.mabn.Width = 70;
@@ -450,7 +449,6 @@
             this.mavp.Caption = "Mã VP";
             this.mavp.FieldName = "mavp";
             this.mavp.Name = "mavp";
-            this.mavp.OptionsColumn.AllowEdit = false;
             this.mavp.Visible = true;
             this.mavp.VisibleIndex = 4;
             this.mavp.Width = 70;
@@ -794,6 +792,12 @@
             this.thoigianduyetvp.VisibleIndex = 22;
             this.thoigianduyetvp.Width = 120;
             // 
+            // huongdansudung
+            // 
+            this.huongdansudung.Caption = "gridColumn5";
+            this.huongdansudung.FieldName = "huongdansudung";
+            this.huongdansudung.Name = "huongdansudung";
+            // 
             // imMenu
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
@@ -801,12 +805,6 @@
             this.imMenu.Images.SetKeyName(1, "minus-5-24.png");
             this.imMenu.Images.SetKeyName(2, "partly-cloudy-day-16.png");
             this.imMenu.Images.SetKeyName(3, "sun-16.png");
-            // 
-            // huongdansudung
-            // 
-            this.huongdansudung.Caption = "gridColumn5";
-            this.huongdansudung.FieldName = "huongdansudung";
-            this.huongdansudung.Name = "huongdansudung";
             // 
             // ucSuaMaTenGiaDV
             // 

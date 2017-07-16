@@ -416,7 +416,6 @@ namespace MedicalLink.Base
                 REPORT_19.permissionnote = "Sổ thủ thuật";
                 lstresult.Add(REPORT_19);
 
-
                 ClassCommon.classPermission REPORT_20 = new ClassCommon.classPermission();
                 REPORT_20.permissioncheck = false;
                 REPORT_20.permissioncode = "REPORT_20";
@@ -424,6 +423,17 @@ namespace MedicalLink.Base
                 REPORT_20.permissiontype = 3;
                 REPORT_20.permissionnote = "Báo cáo phẫu thuật thủ thuật yêu cầu QĐ 1055 (doanh thu chia bác sĩ)";
                 lstresult.Add(REPORT_20);
+
+
+                ClassCommon.classPermission REPORT_21 = new ClassCommon.classPermission();
+                REPORT_21.permissioncheck = false;
+                REPORT_21.permissioncode = "REPORT_21";
+                REPORT_21.permissionname = "Báo cáo sử dụng thuốc";
+                REPORT_21.permissiontype = 3;
+                REPORT_21.permissionnote = "Báo cáo sử dụng thuốc";
+                lstresult.Add(REPORT_21);
+
+
 
 
 

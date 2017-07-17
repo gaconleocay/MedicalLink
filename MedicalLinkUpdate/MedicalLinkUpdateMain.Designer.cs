@@ -68,6 +68,7 @@
             this.label2.Size = new System.Drawing.Size(120, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Version MedicalLink";
+            this.label2.Visible = false;
             // 
             // txtFilePath
             // 
@@ -84,6 +85,7 @@
             this.txtVersionMecicalLink.Name = "txtVersionMecicalLink";
             this.txtVersionMecicalLink.Size = new System.Drawing.Size(243, 26);
             this.txtVersionMecicalLink.TabIndex = 3;
+            this.txtVersionMecicalLink.Visible = false;
             // 
             // btnBrowse
             // 
@@ -140,6 +142,7 @@
             this.btnUpdateMedicalLink.TabIndex = 9;
             this.btnUpdateMedicalLink.Text = "Update";
             this.btnUpdateMedicalLink.UseVisualStyleBackColor = true;
+            this.btnUpdateMedicalLink.Visible = false;
             this.btnUpdateMedicalLink.Click += new System.EventHandler(this.btnUpdateMedicalLink_Click);
             // 
             // btnUpdateLauncher
@@ -153,6 +156,7 @@
             this.btnUpdateLauncher.TabIndex = 12;
             this.btnUpdateLauncher.Text = "Update";
             this.btnUpdateLauncher.UseVisualStyleBackColor = true;
+            this.btnUpdateLauncher.Visible = false;
             this.btnUpdateLauncher.Click += new System.EventHandler(this.btnUpdateLauncher_Click);
             // 
             // txtVersionLauncher
@@ -162,6 +166,7 @@
             this.txtVersionLauncher.Name = "txtVersionLauncher";
             this.txtVersionLauncher.Size = new System.Drawing.Size(243, 26);
             this.txtVersionLauncher.TabIndex = 11;
+            this.txtVersionLauncher.Visible = false;
             // 
             // label4
             // 
@@ -173,6 +178,7 @@
             this.label4.Size = new System.Drawing.Size(107, 16);
             this.label4.TabIndex = 10;
             this.label4.Text = "Version Launcher";
+            this.label4.Visible = false;
             // 
             // btnLogin
             // 

@@ -709,7 +709,7 @@ CREATE TABLE tools_vienphi_tltt
   vienphiid integer,
   thangluong_old double precision,
   dateupdate timestamp without time zone,
-  CONSTRAINT tools_vienphi_tltt_pkey PRIMARY KEY (vienphiid)
+  CONSTRAINT tools_vienphi_tltt_pkey PRIMARY KEY (vienphitlttid)
 )
 CREATE INDEX vienphitltt_vienphiid_idx
   ON tools_vienphi_tltt

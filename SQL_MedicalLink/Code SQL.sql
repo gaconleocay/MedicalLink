@@ -167,6 +167,10 @@ departmenttype=25 tủ trực vật tư
 - loaiphieuthuid=2 and dahuyphieu=0 tạm ứng 
 - loaiphieuthuid=0 : thu tien
 - loaiphieuthuid=1 : hoan ung
+
+=====================billgroup==========================
+- billgrouptype = 2:thu tien; 0:tong hop ; 1:tam ung
+- bullgroupmode = 0:tong hop; 
  
 ===============================medicalrecord==================== 
  
@@ -362,11 +366,7 @@ Trong ví dụ này, nếu giá trị value là (none), thì null sẽ được 
  -------- 
 (case when hsba.gioitinhcode='01' then to_char(hsba.birthday, 'yyyy') else '' end) as year_nam 
 -------------- Concat trong postgres
-SELECT pl.medicinephongluuname,  
-    STRING_AGG(trim(to_char(pl.medicinephongluuid, '99')), ',' ORDER BY pl.medicinephongluuid) as lstmedicinephongluuid 
-from medicinephongluu pl 
-where pl.medicinephongluuname <>'' 
-group by pl.medicinephongluuname 
+string_agg(case when b.dahuyphieu=1 then b.billcode end, '; ') as billcode_huy,
  
  kho tbyt tổng.
 ---------------Chay update may xet nghiem

@@ -18,7 +18,7 @@ namespace MedicalLinkLauncher
         private const string TEMP_DIR = "MedicalLinkUpdate_Temp";
         private const string UPDATE_FILE_NAME = "MedicalLinkUpdate.zip";
         private static ConnectDatabase condb = new ConnectDatabase();
-        private static string versionDatabase = "";
+        //private static string versionDatabase = "";
         private static string tempDirectory = "";
 
         /// <summary>
@@ -60,17 +60,20 @@ namespace MedicalLinkLauncher
             bool result = false;
             try
             {
-                // string sqlgetVersion = "SELECT appversion from tools_version LIMIT 1;";
                 DataView dataVer = new DataView(condb.GetDataTable_MeL("SELECT appversion,app_link from tools_version where app_type=0 LIMIT 1;"));
                 if (dataVer != null && dataVer.Count > 0)
                 {
-                    versionDatabase = dataVer[0]["appversion"].ToString();
+                    //versionDatabase = dataVer[0]["appversion"].ToString();
                     tempDirectory = dataVer[0]["app_link"].ToString();
                 }
-                //lấy thông tin version của phần mềm MedicalLink.exe
+                //lấy thông tin version của phần mềm MedicalLink.exe hien tai
                 FileVersionInfo.GetVersionInfo(Path.Combine(Environment.CurrentDirectory, "MedicalLink.exe"));
                 FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(Environment.CurrentDirectory + "\\MedicalLink.exe");
-                if (myFileVersionInfo.FileVersion.ToString() != versionDatabase)
+                //thong tin version tren server
+                FileVersionInfo.GetVersionInfo(Path.Combine(tempDirectory, "MedicalLink.exe"));
+                FileVersionInfo myFileVersionInfo_Server = FileVersionInfo.GetVersionInfo(tempDirectory + "\\MedicalLink.exe");
+
+                if (myFileVersionInfo.FileVersion.ToString() != myFileVersionInfo_Server.FileVersion.ToString())
                 {
                     result = true;
                 }
@@ -113,8 +116,6 @@ namespace MedicalLinkLauncher
                     {
                         File.Copy(file, dest, true);
                     }
-                    //bi bug
-                    //File.Copy(file, dest, true);
                 }
                 catch (Exception ex)
                 {

@@ -332,9 +332,8 @@ COALESCE((select departmentid
 						and vienphiid=vp.vienphiid
 				order by medicalrecordid desc limit 1),0) as phongdieutri	*/	
 
-FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid
-WHERE vp.vienphidate>='2016-01-01 00:00:00'
-		and ser.thuockhobanle=0 
+FROM vienphi vp left join serviceprice ser on vp.vienphiid=ser.vienphiid and ser.thuockhobanle=0
+WHERE vp.vienphidate>='2016-01-01 00:00:00' 
 		and vp.vienphistatus=0 
 		--and COALESCE(vp.vienphistatus_vp,0)=0	
 GROUP BY vp.vienphiid,vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, 

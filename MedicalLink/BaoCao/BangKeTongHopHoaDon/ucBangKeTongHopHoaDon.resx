@@ -117,50 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="excel-3-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnPrint.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAJBSURBVEhLpZYxS1xBFIUfSwgWIhb5CRYWKUMQCxEJKUTEyjo/wB9hilQWQSSEEEIqKwkiYmWV
+        IqQMEkRCSBFCsBSRYCHO5Duzd9b73r4ddl3heO/M3Dln5r6ZO1tVjb/NKj7erMIR+IP/Fwtk47lD7pNV
+        3G9wCGabfLU2AdPgFNwasSYDiXn4vuRLiDnxG/7UQBECFo38ADsFJpjwEOuQ20FjQDFxEhyDGzBXElgm
+        IDJxp7jVlkHmfejOjYslgRUL2r6HwHubu1QQCKsW9HoMgWelHayNIfCO1Cq9dQEIO2CegZfYfRM4of0W
+        H8h6P/fJ1nydPn2DPeOCM3Yq/q2DfzaoAINWM5YvznUEgimn7Tnykp9ja1aX7QUcr4DukfjOtIOL/tXn
+        lY9kIY5asFL+yzgvJXDVLjBqiuJneB6Bp4hcG+eVBC67jVFSNDA+pyZ/Py/g0xEQDcopkB3Kb8tESpH7
+        Br20bNP/AGIg6331qR4l6/yYb7I7LNEL+BTFdJMhmAXPEQCy2Ve7h1SiaZtAjedCA1yq5mkJWWBniBP2
+        xhbjdtDj+65VqsDZRbtLka2K0hG2uogtNvWt9QskHjjDaqpLNGbABh27tuJUTfElrvPdxEbLS5hT9LHL
+        FWf6ip4UTSC9B7QHpCic9AsEew8axc4H2oq1vSzA+6xdpDQa5IeFwQKx9B7EJYj0tn4CnWHfBCsP+qGg
+        J3O+9B7oqquOKPAn+DEkFKtbfIadLi6MoDmCvgLdzBYE11fzvxD/pEn+Hza3pxxYs1RmAAAAAElFTkSu
+        QmCC
+</value>
   </data>
-  <data name="ok-161" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\ok-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tbnExport.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAqJJREFUSEuN
+        lU+IjlEUxr8kC0mTZClNkmQxCwtJlpokC1lZWlhYWUmyGFlIkpU0C0kWkiRpspCFhWQxaVYWmiRJspgm
+        SZJz/Z5zz33duV++9/3q+c65/86555znnnc06vnNjdL6uZFNIw+Dc+CB0HdubJ1D68DmMHYUeYnxE/Ae
+        rDL+g0wZtjjYAQeOgyvgGQeXkb/CSBhzg5XuTt6CjWA3a0Cywy50YSeYGvG38s9gMSQ5UZeDQz17ZGNZ
+        Dgi/hD5YLmUHvftXKgf1rScd9H04MNJg84HXSKGMkV631f846E3RUl1kDJ0VylwmjH1Afq9TJJacB2dY
+        vF+FT75lIF3UgZhXiqCuXc1ILzJ8fA39eqTeHZRDYsdloLltbPyBhFE2q5tl511kSlFV5JZpHevkwMKB
+        T6rge8PgDfSFHG7ak9lWO0hbmJsN3Mv578bM25eSojoCOXkEeL0yavvDweMqZdqjFMnxpoAiV3rLWLKr
+        QetAD+1IpEqp0W3qV1wc7GPtHWvCN/SvWdecQ3bqGpTw7TcLJ9Y66FpEeYCKgOjsMxIozab0Sg8k7NhY
+        kXW7h5Ei3VDPXalQT6pbh4qsNG5FCrQag2XSNef42ETgTCDMNB1FVi3mQ48iF7booXm+dQnhFhApylhS
+        0Y2l6HQYPBCMUX1m8pxdaFg0pBetSZFodQyowC+rlDzFMO07nQQqZrQK75i3A4vIN+y7A+4CaOvvq63B
+        WFtu23QU2ZpWoVfetgqnqfei6qENbtcq8g4A/x1EbM+zrm7gc/oM1A56W2/DouHtunpow1PE7Qb0Ivuk
+        FNE9E8VRkboi9n3RRFN9vw8igWSrG0xM272FowgbgLqoOHwK3ASvgNj1s2KVs2jwR3/SxnA8hZzBqGiq
+        Xu+9f6iDv20xYs3fLHwoAAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="printer-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="recurring-appointment-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\recurring-appointment-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\save-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit-2-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\edit-2-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="arrow-32-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\arrow-32-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="excel-3-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\ok-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="excel-3-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="question-mark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\question-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="recurring-appointment-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\recurring-appointment-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add-list-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\add-list-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="check-mark-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\check-mark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search-3-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\search-3-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>33</value>
+  </metadata>
 </root>

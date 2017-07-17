@@ -31,9 +31,9 @@
             this.marqueeProgressBarControl1 = new DevExpress.XtraEditors.MarqueeProgressBarControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.pictureEdit2 = new DevExpress.XtraEditors.PictureEdit();
+            this.picture_Logobenhvien = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_Logobenhvien.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // marqueeProgressBarControl1
@@ -62,33 +62,32 @@
             this.labelControl2.TabIndex = 7;
             this.labelControl2.Text = "Starting...";
             // 
-            // pictureEdit2
+            // picture_Logobenhvien
             // 
-            this.pictureEdit2.EditValue = global::MedicalLink.Properties.Resources.Logo_VT_1;
-            this.pictureEdit2.Location = new System.Drawing.Point(12, 12);
-            this.pictureEdit2.Name = "pictureEdit2";
-            this.pictureEdit2.Properties.AllowFocused = false;
-            this.pictureEdit2.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pictureEdit2.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEdit2.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit2.Properties.ShowMenu = false;
-            this.pictureEdit2.Properties.ZoomPercent = 17D;
-            this.pictureEdit2.Size = new System.Drawing.Size(426, 178);
-            this.pictureEdit2.TabIndex = 9;
+            this.picture_Logobenhvien.Location = new System.Drawing.Point(12, 12);
+            this.picture_Logobenhvien.Name = "picture_Logobenhvien";
+            this.picture_Logobenhvien.Properties.AllowFocused = false;
+            this.picture_Logobenhvien.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.picture_Logobenhvien.Properties.Appearance.Options.UseBackColor = true;
+            this.picture_Logobenhvien.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.picture_Logobenhvien.Properties.ShowMenu = false;
+            this.picture_Logobenhvien.Properties.ZoomPercent = 17D;
+            this.picture_Logobenhvien.Size = new System.Drawing.Size(426, 178);
+            this.picture_Logobenhvien.TabIndex = 9;
             // 
             // SplashScreen1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 301);
-            this.Controls.Add(this.pictureEdit2);
+            this.Controls.Add(this.picture_Logobenhvien);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.marqueeProgressBarControl1);
             this.Name = "SplashScreen1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.marqueeProgressBarControl1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_Logobenhvien.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,6 +98,6 @@
         private DevExpress.XtraEditors.MarqueeProgressBarControl marqueeProgressBarControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit2;
+        private DevExpress.XtraEditors.PictureEdit picture_Logobenhvien;
     }
 }

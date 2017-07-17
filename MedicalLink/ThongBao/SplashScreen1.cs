@@ -14,6 +14,7 @@ namespace MedicalLink.ThongBao
         public SplashScreen1()
         {
             InitializeComponent();
+            picture_Logobenhvien.Image = Image.FromFile(@"Picture\Logo_benhvien.jpg");
         }
 
         #region Overrides

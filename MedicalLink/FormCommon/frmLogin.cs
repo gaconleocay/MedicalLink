@@ -31,6 +31,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+                LoadLogoBenhVien();
                 if (KiemTraKetNoiDenCoSoDuLieu() == false)
                 {
                     MessageBox.Show("Không thể kết nối đến cơ sở dữ liệu.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,6 +75,17 @@ namespace MedicalLink.FormCommon
             }
         }
 
+        private void LoadLogoBenhVien()
+        {
+            try
+            {
+                picture_Logobenhvien.Image = Image.FromFile(@"Picture\Logo_benhvien.jpg");
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         private bool KiemTraKetNoiDenCoSoDuLieu()
         {
             bool result = false;
@@ -161,33 +173,15 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                string versionDatabase = "";
-                DataView dataVer = new DataView(condb.GetDataTable_MeL("SELECT appversion from tools_version where app_type=1 LIMIT 1;"));
-                if (dataVer != null && dataVer.Count > 0)
-                {
-                    versionDatabase = dataVer[0]["appversion"].ToString();
-                }
-                //lấy thông tin version của phần mềm MedicalLinkLauncher.exe
-                FileVersionInfo.GetVersionInfo(Path.Combine(Environment.CurrentDirectory, "MedicalLinkLauncher.exe"));
-                FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(Environment.CurrentDirectory + "\\MedicalLinkLauncher.exe");
-                if (myFileVersionInfo.FileVersion.ToString() != versionDatabase)
-                {
-                    DataView dataurlfile = new DataView(condb.GetDataTable_MeL("select app_link from tools_version where app_type=1 limit 1;"));
-                    if (dataurlfile != null && dataurlfile.Count > 0)
-                    {
-                        string tempDirectory = dataurlfile[0]["app_link"].ToString();
-                        CopyFolder_CheckSum(tempDirectory, Environment.CurrentDirectory);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
                 DataView dataurlfile = new DataView(condb.GetDataTable_MeL("select app_link from tools_version where app_type=1 limit 1;"));
                 if (dataurlfile != null && dataurlfile.Count > 0)
                 {
                     string tempDirectory = dataurlfile[0]["app_link"].ToString();
                     CopyFolder_CheckSum(tempDirectory, Environment.CurrentDirectory);
                 }
+            }
+            catch (Exception ex)
+            {
                 Base.Logging.Error(ex);
             }
         }
@@ -368,7 +362,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                MessageBox.Show("Liên hệ với tác giả để được trợ giúp! \nAuthor: Hồng Minh Nhất \nE-mail: hongminhnhat15@gmail.com \nPhone: 0868-915-456", "Thông tin về tác giả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Liên hệ với quản trị để được trợ giúp!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {

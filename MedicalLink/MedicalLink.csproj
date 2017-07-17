@@ -248,6 +248,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.Designer.cs">
+      <DependentUpon>ucBangKeTongHopHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -924,6 +930,9 @@
     <Compile Include="Utilities\Util_DateTime.cs" />
     <Compile Include="Utilities\Util_NumberConvert.cs" />
     <Compile Include="Utilities\Util_TypeConvertParse.cs" />
+    <EmbeddedResource Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.resx">
+      <DependentUpon>ucBangKeTongHopHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21\ucBBHYT21Chenh.resx">
       <DependentUpon>ucBBHYT21Chenh.cs</DependentUpon>
     </EmbeddedResource>
@@ -1258,6 +1267,7 @@
     <None Include="Images\question-mark-16.png" />
     <None Include="Images\check-mark-24.png" />
     <None Include="Images\printer-24.png" />
+    <None Include="Images\search-3-24.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -1267,6 +1277,9 @@
     <Content Include="Library\Microsoft.Office.Interop.Word.dll" />
     <Content Include="Library\Mono.Security.dll" />
     <Content Include="Library\Npgsql.dll" />
+    <Content Include="Picture\Logo_benhvien.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Picture\logo_user.jpg" />
     <Content Include="Templates\BC_PhauThuatThuThuat_GMHT.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -1386,6 +1399,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_SuDungThuoc.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BangKeTongHopHoaDon.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

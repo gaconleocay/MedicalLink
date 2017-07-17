@@ -35,12 +35,12 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.checkEditNhoPass = new DevExpress.XtraEditors.CheckEdit();
             this.linkTroGiup = new System.Windows.Forms.LinkLabel();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.picture_Logobenhvien = new DevExpress.XtraEditors.PictureEdit();
             this.btnLogin = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditNhoPass.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_Logobenhvien.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -111,22 +111,22 @@
             this.linkTroGiup.Text = "Trợ giúp";
             this.linkTroGiup.Click += new System.EventHandler(this.linkTroGiup_Click);
             // 
-            // pictureEdit1
+            // picture_Logobenhvien
             // 
-            this.pictureEdit1.CausesValidation = false;
-            this.pictureEdit1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pictureEdit1.EditValue = global::MedicalLink.Properties.Resources.Logo_VT_1;
-            this.pictureEdit1.Location = new System.Drawing.Point(2, 9);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.AllowFocused = false;
-            this.pictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.pictureEdit1.Properties.Appearance.Options.UseBackColor = true;
-            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.ShowMenu = false;
-            this.pictureEdit1.Properties.ZoomPercent = 12D;
-            this.pictureEdit1.Size = new System.Drawing.Size(146, 125);
-            this.pictureEdit1.TabIndex = 9;
+            this.picture_Logobenhvien.CausesValidation = false;
+            this.picture_Logobenhvien.Cursor = System.Windows.Forms.Cursors.Default;
+            this.picture_Logobenhvien.Location = new System.Drawing.Point(2, 9);
+            this.picture_Logobenhvien.Name = "picture_Logobenhvien";
+            this.picture_Logobenhvien.Properties.AllowFocused = false;
+            this.picture_Logobenhvien.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.picture_Logobenhvien.Properties.Appearance.Options.UseBackColor = true;
+            this.picture_Logobenhvien.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.picture_Logobenhvien.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.picture_Logobenhvien.Properties.ShowMenu = false;
+            this.picture_Logobenhvien.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
+            this.picture_Logobenhvien.Properties.ZoomPercent = 12D;
+            this.picture_Logobenhvien.Size = new System.Drawing.Size(146, 125);
+            this.picture_Logobenhvien.TabIndex = 9;
             // 
             // btnLogin
             // 
@@ -148,7 +148,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(449, 182);
             this.Controls.Add(this.linkTroGiup);
-            this.Controls.Add(this.pictureEdit1);
+            this.Controls.Add(this.picture_Logobenhvien);
             this.Controls.Add(this.checkEditNhoPass);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.labelControl2);
@@ -167,7 +167,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditNhoPass.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_Logobenhvien.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,7 +181,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.SimpleButton btnLogin;
         private DevExpress.XtraEditors.CheckEdit checkEditNhoPass;
-        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.PictureEdit picture_Logobenhvien;
         private System.Windows.Forms.LinkLabel linkTroGiup;
     }
 }

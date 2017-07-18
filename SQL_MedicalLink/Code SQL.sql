@@ -101,7 +101,7 @@ Ngày giường: 12NG
 DV khác: 999DVKHAC 
 Phụ thu: 1000PhuThu 
  
- 
+ '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG'
 --pttt_loaiid 
 Phẫu thuật đặc biệt: 1 
 Phẫu thuật loại 1: 2 

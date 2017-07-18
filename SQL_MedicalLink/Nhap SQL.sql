@@ -242,6 +242,7 @@ CREATE TABLE vienphi
   CONSTRAINT vienphi_pkey PRIMARY KEY (vienphiid)
 )
 bhyt_tuyenbenhvien
+
 CREATE TABLE serviceprice
 (
   servicepriceid serial NOT NULL,
@@ -727,10 +728,30 @@ servicepriceid in (28252929,
 
 
 
+XUAT_AN
+NUOC_SOI
+
+G303TH
+G303YC
+G350
 
 
-
-
+vp.vienphiid,
+vp.patientid
+hsba.patientname
+namsinh
+gioitinh
+bhytcode
+departmentgroupname
+departmentname
+servicepricedate
+servicepricecode
+servicepricename
+servicepricegroupcode
+loaidoituong
+soluong
+servicepricemoney
+thanhtien
 
 
 

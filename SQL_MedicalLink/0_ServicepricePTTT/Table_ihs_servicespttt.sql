@@ -80,6 +80,11 @@ WITH (
 ALTER TABLE ihs_servicespttt
   OWNER TO postgres;
 
+ CREATE INDEX ihs_servicespttt_servicepriceptttid_idx
+  ON ihs_servicespttt
+  USING btree
+  (servicepriceptttid); 
+  
 -- Index: ihs_servicespttt_bhytid_idx
 
 -- DROP INDEX ihs_servicespttt_bhytid_idx;

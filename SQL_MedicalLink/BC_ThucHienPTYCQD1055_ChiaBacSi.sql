@@ -67,8 +67,8 @@ FROM
 		pttt.phauthuatthuthuatdate as ngay_thuchien, 
 		(select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid) as khoachuyenden, 
 		(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
-		ser.servicepricecode, 
-		ser.servicepricename, 
+		ser.servicepricecode,
+		(case ser.loaidoituong when 0 then ser.servicepricename_bhyt when 1 then ser.servicepricename_nhandan else ser.servicepricename end) as servicepricename,		
 		(case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee, 
 		(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle, 
 		(case when serf.tinhtoanlaigiadvktc=1 then 

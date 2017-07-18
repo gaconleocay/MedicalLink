@@ -266,6 +266,12 @@
     <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.Designer.cs">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCDoanhThuTheoNhomDV\ucDoanhThuTheoNhomDichVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCDoanhThuTheoNhomDV\ucDoanhThuTheoNhomDichVu.Designer.cs">
+      <DependentUpon>ucDoanhThuTheoNhomDichVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -925,6 +931,7 @@
     <Compile Include="Utilities\PrintPreview\PrintPreviewDev.Designer.cs">
       <DependentUpon>PrintPreviewDev.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\PrintPreview\PrintPreview_ExcelFileTemplate.cs" />
     <Compile Include="Utilities\Util_FileCheckSum.cs" />
     <Compile Include="Utilities\Util_DataTable.cs" />
     <Compile Include="Utilities\Util_DateTime.cs" />
@@ -944,6 +951,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCDoanhThuTheoNhomDV\ucDoanhThuTheoNhomDichVu.resx">
+      <DependentUpon>ucDoanhThuTheoNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.resx">
       <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
@@ -1268,6 +1278,7 @@
     <None Include="Images\check-mark-24.png" />
     <None Include="Images\printer-24.png" />
     <None Include="Images\search-3-24.png" />
+    <None Include="Images\printer-16.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -1402,6 +1413,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_BangKeTongHopHoaDon.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_DoanhThuTheoNhomDichVu_ChiTiet.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_DoanhThuTheoNhomDichVu_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\So_XetNghiem_KhiMau.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\So_XetNghiem_MienDich.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\So_XetNghiem_NuocTieuVaDichKhac.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\So_XetNghiem_SinhHoaThuongQuy.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

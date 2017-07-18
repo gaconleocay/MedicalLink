@@ -262,7 +262,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         }
                         else //them moi
                         {
-                            string insert = "INSERT INTO tools_otherlist(tools_otherlistcode, tools_otherlistname, tools_othertypelistid, tools_otherlistvalue) VALUES ('" + txtDM_Ma.Text.Trim().ToUpper() + "', '" + txtDM_Ten.Text.Trim() + "','" + cboDM_LoaiDMTen.EditValue.ToString() + "', '" + txtDM_GiaTri.Text.Trim().ToUpper() + "'); ";
+                            string insert = "INSERT INTO tools_otherlist(tools_otherlistcode, tools_otherlistname, tools_othertypelistid, tools_otherlistvalue) VALUES ('" + txtDM_Ma.Text.Trim().ToUpper() + "', '" + txtDM_Ten.Text.Trim() + "','" + cboDM_LoaiDMTen.EditValue.ToString() + "', '" + txtDM_GiaTri.Text.Trim().Replace("'","''") + "'); ";
                             if (condb.ExecuteNonQuery_MeL(insert))
                             {
                                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
@@ -272,7 +272,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else//cap nhat
                     {
-                        string insert = "UPDATE tools_otherlist SET tools_otherlistname='" + txtDM_Ten.Text.Trim() + "', tools_otherlistvalue='" + txtDM_GiaTri.Text.Trim() + "' WHERE tools_otherlistid=" + this.selecttools_otherlistid + "; ";
+                        string insert = "UPDATE tools_otherlist SET tools_otherlistname='" + txtDM_Ten.Text.Trim() + "', tools_otherlistvalue='" + txtDM_GiaTri.Text.Trim().Replace("'", "''") + "' WHERE tools_otherlistid=" + this.selecttools_otherlistid + "; ";
                         if (condb.ExecuteNonQuery_MeL(insert))
                         {
                             ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);

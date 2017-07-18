@@ -130,15 +130,7 @@ namespace MedicalLink.BaoCao
 
                 thongTinThem.Add(reportitem);
                 string fileTemplatePath = "BC_BangKeTongHopHoaDon.xlsx";
-                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate_ReportTemps("", fileTemplatePath, thongTinThem, this.dataDanhSachSo);
-
-                DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControl = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
-                spreadsheetControl.AllowDrop = false;
-                string fullPath = Environment.CurrentDirectory + "\\ReportTemps\\" + fileTemplatePath;
-                spreadsheetControl.LoadDocument(fullPath, DevExpress.Spreadsheet.DocumentFormat.OpenXml);
-                DevExpress.Spreadsheet.IWorkbook workbook = spreadsheetControl.Document;
-                spreadsheetControl.ShowRibbonPrintPreview();
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataDanhSachSo);
             }
             catch (Exception ex)
             {

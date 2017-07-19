@@ -14,6 +14,7 @@ using System.Diagnostics;
 using MedicalLink.Base;
 using System.IO;
 using MedicalLink.Utilities;
+using MedicalLink.ClassCommon;
 
 namespace MedicalLink.FormCommon
 {
@@ -139,6 +140,18 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+                LoadDanhSachCauHinhDungChung();
+                LoadCauHinhThoiGianLayDuLieu();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void LoadCauHinhThoiGianLayDuLieu()
+        {
+            try
+            {
                 //Set default
                 MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = 0;
                 MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = DateTime.Now.Year - 1 + "-01-01 00:00:00";
@@ -165,6 +178,38 @@ namespace MedicalLink.FormCommon
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void LoadDanhSachCauHinhDungChung()
+        {
+            try
+            {
+                string sqlNhomDV = "select ot.tools_othertypelistid, ot.tools_othertypelistcode, ot.tools_othertypelistname, ot.tools_othertypeliststatus, ot.tools_othertypelistnote, o.tools_otherlistid, o.tools_otherlistcode, o.tools_otherlistname, o.tools_otherlistvalue, o.tools_otherliststatus from tools_othertypelist ot inner join tools_otherlist o on o.tools_othertypelistid=ot.tools_othertypelistid;";
+                DataTable dataLoaiBaoCao = condb.GetDataTable_MeL(sqlNhomDV);
+                if (dataLoaiBaoCao != null && dataLoaiBaoCao.Rows.Count > 0)
+                {
+                    GlobalStore.lstOtherList_Global = new List<ToolsOtherListDTO>();
+                    for (int i = 0; i < dataLoaiBaoCao.Rows.Count; i++)
+                    {
+                        ClassCommon.ToolsOtherListDTO otherList = new ToolsOtherListDTO();
+                        otherList.tools_othertypelistid = Utilities.Util_TypeConvertParse.ToInt64(dataLoaiBaoCao.Rows[i]["tools_othertypelistid"].ToString());
+                        otherList.tools_othertypelistcode = dataLoaiBaoCao.Rows[i]["tools_othertypelistcode"].ToString();
+                        otherList.tools_othertypelistcode = dataLoaiBaoCao.Rows[i]["tools_othertypelistcode"].ToString();
+                        //otherList.tools_othertypeliststatus = dataLoaiBaoCao.Rows[i]["tools_othertypeliststatus"].ToString();
+                        otherList.tools_othertypelistnote = dataLoaiBaoCao.Rows[i]["tools_othertypelistnote"].ToString();
+                        otherList.tools_otherlistid = Utilities.Util_TypeConvertParse.ToInt64(dataLoaiBaoCao.Rows[i]["tools_otherlistid"].ToString());
+                        otherList.tools_otherlistcode = dataLoaiBaoCao.Rows[i]["tools_otherlistcode"].ToString();
+                        otherList.tools_otherlistname = dataLoaiBaoCao.Rows[i]["tools_otherlistname"].ToString();
+                        otherList.tools_otherlistvalue = dataLoaiBaoCao.Rows[i]["tools_otherlistvalue"].ToString();
+                        //otherList.tools_otherliststatus = dataLoaiBaoCao.Rows[i]["tools_otherliststatus"].ToString();
+                        GlobalStore.lstOtherList_Global.Add(otherList);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
             }
         }
 

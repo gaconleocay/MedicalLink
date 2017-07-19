@@ -124,14 +124,14 @@
   <data name="ok-161" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\ok-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="printer-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="recurring-appointment-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\recurring-appointment-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\save-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printer-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\printer-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="edit-2-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\edit-2-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,13 +157,16 @@
   <data name="question-mark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\question-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add-list-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\add-list-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="recurring-appointment-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\recurring-appointment-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="printer-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\printer-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add-list-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\add-list-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="printer-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check-mark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\check-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

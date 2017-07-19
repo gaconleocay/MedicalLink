@@ -165,7 +165,7 @@
             this.btnNVOK.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnNVOK.Appearance.Options.UseFont = true;
             this.btnNVOK.Appearance.Options.UseForeColor = true;
-            this.btnNVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnNVOK.Image")));
+            this.btnNVOK.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnNVOK.Location = new System.Drawing.Point(282, 24);
             this.btnNVOK.Name = "btnNVOK";
             this.btnNVOK.Size = new System.Drawing.Size(100, 40);

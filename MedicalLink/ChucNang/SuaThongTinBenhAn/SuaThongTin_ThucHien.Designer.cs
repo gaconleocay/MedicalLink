@@ -225,7 +225,7 @@
             this.btnSuaThongTinBHYT.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnSuaThongTinBHYT.Appearance.Options.UseFont = true;
             this.btnSuaThongTinBHYT.Appearance.Options.UseForeColor = true;
-            this.btnSuaThongTinBHYT.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaThongTinBHYT.Image")));
+            this.btnSuaThongTinBHYT.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnSuaThongTinBHYT.Location = new System.Drawing.Point(403, 68);
             this.btnSuaThongTinBHYT.Name = "btnSuaThongTinBHYT";
             this.btnSuaThongTinBHYT.Size = new System.Drawing.Size(100, 40);
@@ -635,7 +635,7 @@
             this.btnSuaThongTinBN.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnSuaThongTinBN.Appearance.Options.UseFont = true;
             this.btnSuaThongTinBN.Appearance.Options.UseForeColor = true;
-            this.btnSuaThongTinBN.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaThongTinBN.Image")));
+            this.btnSuaThongTinBN.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnSuaThongTinBN.Location = new System.Drawing.Point(403, 293);
             this.btnSuaThongTinBN.Name = "btnSuaThongTinBN";
             this.btnSuaThongTinBN.Size = new System.Drawing.Size(100, 40);

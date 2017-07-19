@@ -100,7 +100,7 @@
             this.btnSuaTGDuyetOK.Appearance.Options.UseFont = true;
             this.btnSuaTGDuyetOK.Appearance.Options.UseForeColor = true;
             this.btnSuaTGDuyetOK.Enabled = false;
-            this.btnSuaTGDuyetOK.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaTGDuyetOK.Image")));
+            this.btnSuaTGDuyetOK.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnSuaTGDuyetOK.Location = new System.Drawing.Point(351, 23);
             this.btnSuaTGDuyetOK.Name = "btnSuaTGDuyetOK";
             this.btnSuaTGDuyetOK.Size = new System.Drawing.Size(100, 40);

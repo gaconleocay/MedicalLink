@@ -198,7 +198,7 @@
             this.btnSuaGiaMoi.Appearance.Options.UseFont = true;
             this.btnSuaGiaMoi.Appearance.Options.UseForeColor = true;
             this.btnSuaGiaMoi.Enabled = false;
-            this.btnSuaGiaMoi.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaGiaMoi.Image")));
+            this.btnSuaGiaMoi.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnSuaGiaMoi.Location = new System.Drawing.Point(88, 312);
             this.btnSuaGiaMoi.Name = "btnSuaGiaMoi";
             this.btnSuaGiaMoi.Size = new System.Drawing.Size(112, 40);

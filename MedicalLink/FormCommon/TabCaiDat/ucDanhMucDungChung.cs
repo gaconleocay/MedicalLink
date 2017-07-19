@@ -48,6 +48,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 btnLoaiDM_Luu.Enabled = false;
                 txtLoaiDM_Ma.ReadOnly = true;
                 txtLoaiDM_Ten.ReadOnly = true;
+                txtLoaiDM_GhiChu.ReadOnly = true;
 
                 btnDM_Them.Enabled = false;
                 btnDM_Luu.Enabled = false;
@@ -67,7 +68,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 loaiDanhMuc = new DataView();
-                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY tools_othertypelistname) as stt, tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus from tools_othertypelist; ";
+                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY tools_othertypelistname) as stt, tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote from tools_othertypelist; ";
                 DataView dataDanhSach = new DataView(condb.GetDataTable_MeL(sqlgetdanhsach));
                 gridControlLoaiDM.DataSource = dataDanhSach;
                 cboDM_LoaiDMTen.Properties.DataSource = dataDanhSach;
@@ -89,7 +90,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     tools_othertypelistid = " where oty.tools_othertypelistid=" + othertypelistid;
                 }
-                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY oty.tools_othertypelistname, o.tools_otherlistname) as stt, oty.tools_othertypelistid, oty.tools_othertypelistcode, oty.tools_othertypelistname, o.tools_otherlistid, o.tools_otherlistcode, o.tools_otherlistname, o.tools_otherliststatus, o.tools_otherlistvalue from tools_othertypelist oty inner join tools_otherlist o on o.tools_othertypelistid=oty.tools_othertypelistid " + tools_othertypelistid + "; ";
+                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY oty.tools_othertypelistname, o.tools_otherlistname) as stt, oty.tools_othertypelistid, oty.tools_othertypelistcode, oty.tools_othertypelistname, oty.tools_othertypelistnote, o.tools_otherlistid, o.tools_otherlistcode, o.tools_otherlistname, o.tools_otherliststatus, o.tools_otherlistvalue from tools_othertypelist oty inner join tools_otherlist o on o.tools_othertypelistid=oty.tools_othertypelistid " + tools_othertypelistid + "; ";
                 DataView dataDanhSach = new DataView(condb.GetDataTable_MeL(sqlgetdanhsach));
                 gridControlDM.DataSource = dataDanhSach;
                 cboDM_LoaiDMTen.Properties.DataSource = this.loaiDanhMuc;
@@ -113,8 +114,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 btnLoaiDM_Luu.Enabled = true;
                 txtLoaiDM_Ma.ReadOnly = false;
                 txtLoaiDM_Ten.ReadOnly = false;
+                txtLoaiDM_Ten.ReadOnly = false;
                 txtLoaiDM_Ma.Text = "";
                 txtLoaiDM_Ten.Text = "";
+                txtLoaiDM_GhiChu.Text = "";
 
                 btnDM_Them.Enabled = false;
                 btnDM_Luu.Enabled = false;
@@ -149,7 +152,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         }
                         else //them moi
                         {
-                            string insert = "INSERT INTO tools_othertypelist(tools_othertypelistcode, tools_othertypelistname) VALUES ('" + txtLoaiDM_Ma.Text.Trim().ToUpper() + "', '" + txtLoaiDM_Ten.Text.Trim() + "'); ";
+                            string insert = "INSERT INTO tools_othertypelist(tools_othertypelistcode, tools_othertypelistname,tools_othertypelistnote) VALUES ('" + txtLoaiDM_Ma.Text.Trim().ToUpper() + "', '" + txtLoaiDM_Ten.Text.Trim() + "', '" + txtLoaiDM_GhiChu.Text.Trim() + "'); ";
                             if (condb.ExecuteNonQuery_MeL(insert))
                             {
                                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
@@ -159,7 +162,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else//cap nhat
                     {
-                        string insert = "UPDATE tools_othertypelist SET tools_othertypelistname='" + txtLoaiDM_Ten.Text.Trim() + "' WHERE tools_othertypelistid=" + this.selecttools_othertypelistid + "; ";
+                        string insert = "UPDATE tools_othertypelist SET tools_othertypelistname='" + txtLoaiDM_Ten.Text.Trim() + "', tools_othertypelistnote='" + txtLoaiDM_GhiChu.Text.Trim() + "' WHERE tools_othertypelistid=" + this.selecttools_othertypelistid + "; ";
                         if (condb.ExecuteNonQuery_MeL(insert))
                         {
                             ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
@@ -190,10 +193,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     this.selecttools_othertypelistid = Utilities.Util_TypeConvertParse.ToInt64(gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistid").ToString());
                     txtLoaiDM_Ma.Text = gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistcode").ToString();
                     txtLoaiDM_Ten.Text = gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistname").ToString();
+                    txtLoaiDM_GhiChu.Text = gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistnote").ToString();
                     btnLoaiDM_Them.Enabled = true;
                     btnLoaiDM_Luu.Enabled = true;
                     txtLoaiDM_Ma.ReadOnly = true;
                     txtLoaiDM_Ten.ReadOnly = false;
+                    txtLoaiDM_GhiChu.ReadOnly = false;
                     LoadDS_DanhMuc(this.selecttools_othertypelistid);
 
                     btnDM_Them.Enabled = true;
@@ -226,8 +231,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 btnLoaiDM_Luu.Enabled = false;
                 txtLoaiDM_Ma.ReadOnly = true;
                 txtLoaiDM_Ten.ReadOnly = true;
+                txtLoaiDM_GhiChu.ReadOnly = true;
                 txtLoaiDM_Ma.Text = "";
                 txtLoaiDM_Ten.Text = "";
+                txtLoaiDM_GhiChu.Text = "";
 
                 btnDM_Them.Enabled = true;
                 btnDM_Luu.Enabled = true;
@@ -262,7 +269,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         }
                         else //them moi
                         {
-                            string insert = "INSERT INTO tools_otherlist(tools_otherlistcode, tools_otherlistname, tools_othertypelistid, tools_otherlistvalue) VALUES ('" + txtDM_Ma.Text.Trim().ToUpper() + "', '" + txtDM_Ten.Text.Trim() + "','" + cboDM_LoaiDMTen.EditValue.ToString() + "', '" + txtDM_GiaTri.Text.Trim().Replace("'","''") + "'); ";
+                            string insert = "INSERT INTO tools_otherlist(tools_otherlistcode, tools_otherlistname, tools_othertypelistid, tools_otherlistvalue) VALUES ('" + txtDM_Ma.Text.Trim().ToUpper() + "', '" + txtDM_Ten.Text.Trim().Replace("'", "''") + "','" + cboDM_LoaiDMTen.EditValue.ToString() + "', '" + txtDM_GiaTri.Text.Trim().Replace("'","''") + "'); ";
                             if (condb.ExecuteNonQuery_MeL(insert))
                             {
                                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
@@ -272,7 +279,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else//cap nhat
                     {
-                        string insert = "UPDATE tools_otherlist SET tools_otherlistname='" + txtDM_Ten.Text.Trim() + "', tools_otherlistvalue='" + txtDM_GiaTri.Text.Trim().Replace("'", "''") + "' WHERE tools_otherlistid=" + this.selecttools_otherlistid + "; ";
+                        string insert = "UPDATE tools_otherlist SET tools_otherlistname='" + txtDM_Ten.Text.Trim().Replace("'","''") + "', tools_otherlistvalue='" + txtDM_GiaTri.Text.Trim().Replace("'", "''") + "' WHERE tools_otherlistid=" + this.selecttools_otherlistid + "; ";
                         if (condb.ExecuteNonQuery_MeL(insert))
                         {
                             ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);

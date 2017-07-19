@@ -535,6 +535,7 @@
     <Compile Include="ClassCommon\classUserDepartment.cs" />
     <Compile Include="ClassCommon\reportExcelDTO.cs" />
     <Compile Include="ClassCommon\classBenhVienDTO.cs" />
+    <Compile Include="ClassCommon\ToolsOtherListDTO.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1279,6 +1280,7 @@
     <None Include="Images\printer-24.png" />
     <None Include="Images\search-3-24.png" />
     <None Include="Images\printer-16.png" />
+    <None Include="Images\check-mark-16.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />

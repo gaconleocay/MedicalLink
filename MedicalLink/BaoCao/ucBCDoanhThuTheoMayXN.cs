@@ -118,12 +118,23 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                //if (GlobalStore.lstOtherList_Global != null && GlobalStore.lstOtherList_Global.Count > 0)
+                //{
+                //    List<ClassCommon.ToolsOtherListDTO> lstDanhSachXN = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_08_LOAIBC").ToList();
+                //    chkcomboListMayXN.Properties.DataSource = lstDanhSachXN;
+                //    chkcomboListMayXN.Properties.DisplayMember = "tenmayxn";
+                //    chkcomboListMayXN.Properties.ValueMember = "idmayxn";
+                //    chkcomboListMayXN.CheckAll();
+                //}
+                //else
+                //{
                 string sql_dsmayxn = "select '-1' as idmayxn, 'Tất cả' as tenmayxn union all (select idmayxn, tenmayxn from (select o.tools_otherlistcode as idmayxn, o.tools_otherlistname as tenmayxn from tools_otherlist o inner join tools_othertypelist ot on ot.tools_othertypelistid=o.tools_othertypelistid where ot.tools_othertypelistcode='DSMAYXN' order by o.tools_otherlistname) O);  ";
                 DataTable lstDanhSachXN = condb.GetDataTable_MeL(sql_dsmayxn);
                 chkcomboListMayXN.Properties.DataSource = lstDanhSachXN;
                 chkcomboListMayXN.Properties.DisplayMember = "tenmayxn";
                 chkcomboListMayXN.Properties.ValueMember = "idmayxn";
                 chkcomboListMayXN.CheckAll();
+                //}
             }
             catch (Exception ex)
             {

@@ -32,8 +32,17 @@ namespace MedicalLink.BaoCao
             {
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-                mmeMaDV.Text = "G304";
                 chkcomboListDSKhoa.Enabled = false;
+
+                if (GlobalStore.lstOtherList_Global != null && GlobalStore.lstOtherList_Global.Count > 0)
+                {
+                    List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_09_NHOMDV").ToList();
+                    if (lstOtherList != null && lstOtherList.Count > 0)
+                    {
+                        mmeMaDV.Text = lstOtherList[0].tools_otherlistvalue;
+                    }
+                }
+
             }
             catch (Exception ex)
             {

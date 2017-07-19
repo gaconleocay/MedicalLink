@@ -47,28 +47,60 @@ namespace MedicalLink.BaoCao
 
                 if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_001")//phau thuat - lay phong mo phien va phong mo cap cuu: ser.departmentid in (285,34)
                 {
-                    ser_departmentid = " ser.departmentid in (285,34) ";
+                    List<ToolsOtherListDTO> lst_BC_001 = this.lstOtherList.Where(o => o.tools_otherlistcode == "BAOCAO_001").ToList();
+                    if (lst_BC_001 != null && lst_BC_001.Count > 0)
+                    {
+                        ser_departmentid = " ser.departmentid in (" + lst_BC_001[0].tools_otherlistvalue + ") ";
+                    }
+                    else
+                    {
+                        ser_departmentid = " ser.departmentid in (285,34) ";
+                    }
                     serf_pttt_loaiid = " pttt_loaiid in (1,2,3,4) ";
                     chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100)) - (A.GAYME_TIEN * (A.TYLE/100)) - (A.PHU1_TIEN * (A.TYLE/100)) - (A.PHU2_TIEN * (A.TYLE/100)) - (A.GIUPVIEC1_TIEN * (A.TYLE/100)) - (A.GIUPVIEC2_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
                     baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, pttt.bacsigayme as gayme_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as gayme_tien, pttt.phume2 as moigayme_tenbs, (case when pttt.phume2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, pttt.phumo2 as phu2_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 else 0 end) * ser.soluong) as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, pttt.phumo4 as giupviec2_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 else 0 end) * ser.soluong) as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002")//phau thuat - lay khoa tai mui hong: ser.departmentid in (122); ser.departmengrouptid in (10)
                 {
-                    ser_departmentid = " ser.departmentid=122 ";
+                    List<ToolsOtherListDTO> lst_BC_002 = this.lstOtherList.Where(o => o.tools_otherlistcode == "BAOCAO_002").ToList();
+                    if (lst_BC_002 != null && lst_BC_002.Count > 0)
+                    {
+                        ser_departmentid = " ser.departmentid in (" + lst_BC_002[0].tools_otherlistvalue + ") ";
+                    }
+                    else
+                    {
+                        ser_departmentid = " ser.departmentid=122 ";
+                    }
                     serf_pttt_loaiid = " pttt_loaiid in (1,2,3,4) ";
                     chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.PHU2_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100))-(A.GIUPVIEC2_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
                     baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, pttt.phumo2 as phu2_tenbs, ((case serf.pttt_loaiid when 2 then 90000 else 0 end) * ser.soluong) as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, pttt.phumo4 as giupviec2_tenbs, ((case serf.pttt_loaiid when 2 then 70000 when 3 then 30000 else 0 end) * ser.soluong) as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003") //phau thuat - lay khoa rang ham mat: ser.departmentid in (116); ser.departmengrouptid in (9)
                 {
-                    ser_departmentid = " ser.departmentid=116 ";
+                    List<ToolsOtherListDTO> lst_BC_003 = this.lstOtherList.Where(o => o.tools_otherlistcode == "BAOCAO_003").ToList();
+                    if (lst_BC_003 != null && lst_BC_003.Count > 0)
+                    {
+                        ser_departmentid = " ser.departmentid in (" + lst_BC_003[0].tools_otherlistvalue + ") ";
+                    }
+                    else
+                    {
+                        ser_departmentid = " ser.departmentid=116 ";
+                    }
                     serf_pttt_loaiid = " pttt_loaiid in (1,2,3,4) ";
                     chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
                     baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004") //phau thuat -Mổ Mắt_B_Điều Trị + phòng khám Mổ mắt+ BDT khoa mắt kkb-khám mắt
                 {
-                    ser_departmentid = " ser.departmentid in (269,335,80,212) ";
+                    List<ToolsOtherListDTO> lst_BC_004 = this.lstOtherList.Where(o => o.tools_otherlistcode == "BAOCAO_004").ToList();
+                    if (lst_BC_004 != null && lst_BC_004.Count > 0)
+                    {
+                        ser_departmentid = " ser.departmentid in (" + lst_BC_004[0].tools_otherlistvalue + ") ";
+                    }
+                    else
+                    {
+                        ser_departmentid = " ser.departmentid in (269,335,80,212) ";
+                    }
                     serf_pttt_loaiid = " pttt_loaiid in (1,2,3,4) ";
                     chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.GAYME_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
                     baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, pttt.bacsigayme as gayme_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as gayme_tien, pttt.phume2 as moigayme_tenbs, (case when pttt.phume2>0 then ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 else 0 end) * ser.soluong) else 0 end) as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
@@ -89,14 +121,30 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")// thu thuat - khoa mat + phong kham mat ser.departmentid in (80,212)
                 {
-                    ser_departmentid = " ser.departmentid in (80,212) ";
+                    List<ToolsOtherListDTO> lst_BC_006 = this.lstOtherList.Where(o => o.tools_otherlistcode == "BAOCAO_006").ToList();
+                    if (lst_BC_006 != null && lst_BC_006.Count > 0)
+                    {
+                        ser_departmentid = " ser.departmentid in (" + lst_BC_006[0].tools_otherlistvalue + ") ";
+                    }
+                    else
+                    {
+                        ser_departmentid = " ser.departmentid in (80,212) ";
+                    }
                     serf_pttt_loaiid = " pttt_loaiid in (5,6,7,8) ";
                     chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) ";
                     baocaotungloai = "  pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 5 then 84000 when 6 then 37500 when 7 then 19500 when 8 then 15000 else 0 end) * ser.soluong) as mochinh_tien, 0 as moimochinh_tenbs, 0 as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, 0 as phu1_tenbs, 0 as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 5 then 36000 when 6 then 21000 when 7 then 9000 when 8 then 4500 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//Báo cáo Thủ thuật - Các khoa khác (trừ khoa mắt & PK mắt): ser.departmentid not in (80,212)
                 {
-                    ser_departmentid = " ser.departmentid not in (80,212) ";
+                    List<ToolsOtherListDTO> lst_BC_006 = this.lstOtherList.Where(o => o.tools_otherlistcode == "BAOCAO_006").ToList();
+                    if (lst_BC_006 != null && lst_BC_006.Count > 0)
+                    {
+                        ser_departmentid = " ser.departmentid not in (" + lst_BC_006[0].tools_otherlistvalue + ") ";
+                    }
+                    else
+                    {
+                        ser_departmentid = " ser.departmentid not in (80,212) ";
+                    }
                     serf_pttt_loaiid = " pttt_loaiid in (5,6,7,8) ";
                     chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) ";
                     baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 5 then 84000 when 6 then 37500 when 7 then 19500 when 8 then 15000 else 0 end) * ser.soluong) as mochinh_tien, 0 as moimochinh_tenbs, 0 as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 5 then 60000 when 6 then 27000 else 0 end) * ser.soluong) as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 5 then 36000 when 7 then 9000 when 8 then 4500 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";

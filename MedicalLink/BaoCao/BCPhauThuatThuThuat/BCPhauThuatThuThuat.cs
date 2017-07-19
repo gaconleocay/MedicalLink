@@ -26,6 +26,7 @@ namespace MedicalLink.BaoCao
         #region Declaration
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         DataTable dataBCPTTT { get; set; }
+        private List<ClassCommon.ToolsOtherListDTO> lstOtherList { get; set; }
 
         #endregion
 
@@ -42,6 +43,7 @@ namespace MedicalLink.BaoCao
             LoadDanhMucKhoa();
             LoadDanhSachBaoCao();
             LoadDanhSachExport();
+            LoadDanhSachCauHinhBaoCao();
         }
 
         private void LoadDanhMucKhoa()
@@ -75,7 +77,7 @@ namespace MedicalLink.BaoCao
                 cboLoaiBaoCao.Properties.DataSource = lstBaoCaoPTTT;
                 cboLoaiBaoCao.Properties.DisplayMember = "permissionname";
                 cboLoaiBaoCao.Properties.ValueMember = "permissioncode";
-                
+
                 if (Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Count > 0)
                 {
                     cboLoaiBaoCao.ItemIndex = 0;
@@ -108,7 +110,37 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
+        private void LoadDanhSachCauHinhBaoCao()
+        {
+            try
+            {
+                if (GlobalStore.lstOtherList_Global != null && GlobalStore.lstOtherList_Global.Count > 0)
+                {
+                    this.lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_08_LOAIBC").ToList();
+                }
+                else
+                {
+                    string sqlNhomDV = "select o.tools_otherlistcode, o.tools_otherlistname,o.tools_otherlistvalue from tools_othertypelist ot inner join tools_otherlist o on o.tools_othertypelistid=ot.tools_othertypelistid where ot.tools_othertypelistcode='REPORT_08_LOAIBC'; ";
+                    DataTable dataLoaiBaoCao = condb.GetDataTable_MeL(sqlNhomDV);
+                    if (dataLoaiBaoCao != null && dataLoaiBaoCao.Rows.Count > 0)
+                    {
+                        this.lstOtherList = new List<ToolsOtherListDTO>();
+                        for (int i = 0; i < dataLoaiBaoCao.Rows.Count; i++)
+                        {
+                            ClassCommon.ToolsOtherListDTO otherList = new ToolsOtherListDTO();
+                            otherList.tools_otherlistcode = dataLoaiBaoCao.Rows[i]["tools_otherlistcode"].ToString();
+                            otherList.tools_otherlistname = dataLoaiBaoCao.Rows[i]["tools_otherlistname"].ToString();
+                            otherList.tools_otherlistvalue = dataLoaiBaoCao.Rows[i]["tools_otherlistvalue"].ToString();
+                            this.lstOtherList.Add(otherList);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
 
         #endregion
 

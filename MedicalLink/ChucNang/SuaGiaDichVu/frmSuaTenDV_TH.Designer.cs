@@ -821,7 +821,7 @@
             this.btnSuaTenMoi_Nhieu.Appearance.Options.UseFont = true;
             this.btnSuaTenMoi_Nhieu.Appearance.Options.UseForeColor = true;
             this.btnSuaTenMoi_Nhieu.Enabled = false;
-            this.btnSuaTenMoi_Nhieu.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaTenMoi_Nhieu.Image")));
+            this.btnSuaTenMoi_Nhieu.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnSuaTenMoi_Nhieu.Location = new System.Drawing.Point(242, 436);
             this.btnSuaTenMoi_Nhieu.Name = "btnSuaTenMoi_Nhieu";
             this.btnSuaTenMoi_Nhieu.Size = new System.Drawing.Size(200, 40);

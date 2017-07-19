@@ -101,7 +101,7 @@
             this.btnSuaThoiGianOK.Appearance.Options.UseFont = true;
             this.btnSuaThoiGianOK.Appearance.Options.UseForeColor = true;
             this.btnSuaThoiGianOK.Enabled = false;
-            this.btnSuaThoiGianOK.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaThoiGianOK.Image")));
+            this.btnSuaThoiGianOK.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnSuaThoiGianOK.Location = new System.Drawing.Point(324, 26);
             this.btnSuaThoiGianOK.Name = "btnSuaThoiGianOK";
             this.btnSuaThoiGianOK.Size = new System.Drawing.Size(100, 40);

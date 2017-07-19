@@ -141,7 +141,7 @@
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(100, 40);
             this.btnExport.TabIndex = 24;
-            this.btnExport.Text = "Export...";
+            this.btnExport.Text = "Xuất file";
             this.btnExport.ToolTip = "Xuất danh mục dịch vụ từ DB ra excel";
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -317,7 +317,7 @@
             this.btnUpdateDVOK.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnUpdateDVOK.Appearance.Options.UseFont = true;
             this.btnUpdateDVOK.Appearance.Options.UseForeColor = true;
-            this.btnUpdateDVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateDVOK.Image")));
+            this.btnUpdateDVOK.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnUpdateDVOK.Location = new System.Drawing.Point(507, 36);
             this.btnUpdateDVOK.Name = "btnUpdateDVOK";
             this.btnUpdateDVOK.Size = new System.Drawing.Size(100, 40);

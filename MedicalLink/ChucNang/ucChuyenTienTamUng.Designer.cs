@@ -307,7 +307,7 @@
             this.btnChuyenTienOK.Appearance.Options.UseFont = true;
             this.btnChuyenTienOK.Appearance.Options.UseForeColor = true;
             this.btnChuyenTienOK.Enabled = false;
-            this.btnChuyenTienOK.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyenTienOK.Image")));
+            this.btnChuyenTienOK.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnChuyenTienOK.Location = new System.Drawing.Point(239, 27);
             this.btnChuyenTienOK.Name = "btnChuyenTienOK";
             this.btnChuyenTienOK.Size = new System.Drawing.Size(100, 40);

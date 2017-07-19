@@ -40,7 +40,7 @@
             this.btnSL_OK.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnSL_OK.Appearance.Options.UseFont = true;
             this.btnSL_OK.Appearance.Options.UseForeColor = true;
-            this.btnSL_OK.Image = ((System.Drawing.Image)(resources.GetObject("btnSL_OK.Image")));
+            this.btnSL_OK.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnSL_OK.Location = new System.Drawing.Point(79, 70);
             this.btnSL_OK.Name = "btnSL_OK";
             this.btnSL_OK.Size = new System.Drawing.Size(100, 40);

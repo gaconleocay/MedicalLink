@@ -284,7 +284,7 @@
             this.btnMBAOK.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnMBAOK.Appearance.Options.UseFont = true;
             this.btnMBAOK.Appearance.Options.UseForeColor = true;
-            this.btnMBAOK.Image = ((System.Drawing.Image)(resources.GetObject("btnMBAOK.Image")));
+            this.btnMBAOK.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnMBAOK.Location = new System.Drawing.Point(201, 318);
             this.btnMBAOK.Name = "btnMBAOK";
             this.btnMBAOK.Size = new System.Drawing.Size(100, 40);

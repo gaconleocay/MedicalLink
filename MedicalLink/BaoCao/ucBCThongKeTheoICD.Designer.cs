@@ -135,7 +135,7 @@
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(100, 40);
             this.tbnExport.TabIndex = 7;
-            this.tbnExport.Text = "Export...";
+            this.tbnExport.Text = "Xuất file";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // groupBoxBNBK_TK
@@ -203,12 +203,15 @@
             this.cbbDoiTuong.Name = "cbbDoiTuong";
             this.cbbDoiTuong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbDoiTuong.Properties.Appearance.Options.UseFont = true;
+            this.cbbDoiTuong.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbDoiTuong.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbDoiTuong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbDoiTuong.Properties.Items.AddRange(new object[] {
             "BHYT",
             "Viện phí",
             "Tất cả"});
+            this.cbbDoiTuong.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbbDoiTuong.Size = new System.Drawing.Size(253, 22);
             this.cbbDoiTuong.TabIndex = 19;
             // 
@@ -280,6 +283,8 @@
             this.cbbLoaiBA.Name = "cbbLoaiBA";
             this.cbbLoaiBA.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiBA.Properties.Appearance.Options.UseFont = true;
+            this.cbbLoaiBA.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbLoaiBA.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbLoaiBA.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbLoaiBA.Properties.Items.AddRange(new object[] {
@@ -329,6 +334,8 @@
             this.cbbTrangThaiVP.Name = "cbbTrangThaiVP";
             this.cbbTrangThaiVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTrangThaiVP.Properties.Appearance.Options.UseFont = true;
+            this.cbbTrangThaiVP.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbTrangThaiVP.Properties.AppearanceDropDown.Options.UseFont = true;
             this.cbbTrangThaiVP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbTrangThaiVP.Properties.Items.AddRange(new object[] {

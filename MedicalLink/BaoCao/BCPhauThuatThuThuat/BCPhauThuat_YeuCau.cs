@@ -68,7 +68,16 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                string sqlservice = "select servicepricecode, servicepricename from servicepriceref where servicepricecode in ('U11970-3701', 'U11620-4506', 'U11621-4524', 'U11622-4536', 'U11623-4610') order by servicepricename;";
+                string servicepricecode = "'U11970-3701', 'U11620-4506', 'U11621-4524', 'U11622-4536', 'U11623-4610'";
+                if (GlobalStore.lstOtherList_Global != null && GlobalStore.lstOtherList_Global.Count > 0)
+                {
+                    List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_17_DV").ToList();
+                    if (lstOtherList != null && lstOtherList.Count > 0)
+                    {
+                        servicepricecode = lstOtherList[0].tools_otherlistvalue;
+                    }
+                }
+                string sqlservice = "select servicepricecode, servicepricename from servicepriceref where servicepricecode in (" + servicepricecode + ") order by servicepricename;";
                 DataTable dataService = condb.GetDataTable_HIS(sqlservice);
                 chkcomboListDichVu.Properties.DataSource = dataService;
                 chkcomboListDichVu.Properties.DisplayMember = "servicepricename";

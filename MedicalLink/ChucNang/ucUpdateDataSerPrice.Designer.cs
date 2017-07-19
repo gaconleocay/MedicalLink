@@ -272,7 +272,7 @@
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(100, 40);
             this.tbnExport.TabIndex = 8;
-            this.tbnExport.Text = "Export...";
+            this.tbnExport.Text = "Xuất file";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // btnUpdateSerPrice
@@ -281,7 +281,7 @@
             this.btnUpdateSerPrice.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnUpdateSerPrice.Appearance.Options.UseFont = true;
             this.btnUpdateSerPrice.Appearance.Options.UseForeColor = true;
-            this.btnUpdateSerPrice.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateSerPrice.Image")));
+            this.btnUpdateSerPrice.Image = global::MedicalLink.Properties.Resources.check_mark_24;
             this.btnUpdateSerPrice.Location = new System.Drawing.Point(10, 34);
             this.btnUpdateSerPrice.Name = "btnUpdateSerPrice";
             this.btnUpdateSerPrice.Size = new System.Drawing.Size(100, 40);

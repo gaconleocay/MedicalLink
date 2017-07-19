@@ -85,7 +85,7 @@
             this.btnSettingAdvand.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnSettingAdvand.Appearance.Options.UseFont = true;
             this.btnSettingAdvand.Appearance.Options.UseForeColor = true;
-            this.btnSettingAdvand.Image = global::MedicalLink.Properties.Resources.ok_16;
+            this.btnSettingAdvand.Image = global::MedicalLink.Properties.Resources.check_mark_16;
             this.btnSettingAdvand.Location = new System.Drawing.Point(236, 216);
             this.btnSettingAdvand.Name = "btnSettingAdvand";
             this.btnSettingAdvand.Size = new System.Drawing.Size(117, 27);
@@ -93,7 +93,7 @@
             this.btnSettingAdvand.Text = "OK";
             this.btnSettingAdvand.Click += new System.EventHandler(this.btnSettingAdvand_Click);
             // 
-            // BCTongTheKhoaTuyChonNangCao
+            // BCQLTongTheKhoaTuyChonNangCao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,7 +105,7 @@
             this.Controls.Add(this.dtTGLayDLTu);
             this.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "BCTongTheKhoaTuyChonNangCao";
+            this.Name = "BCQLTongTheKhoaTuyChonNangCao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cấu hình nâng cao";
             this.Load += new System.EventHandler(this.BCTongTheKhoaTuyChonNangCao_Load);

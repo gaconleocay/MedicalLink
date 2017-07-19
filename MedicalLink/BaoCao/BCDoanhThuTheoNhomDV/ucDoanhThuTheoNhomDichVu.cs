@@ -11,6 +11,7 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using System.IO;
 using DevExpress.XtraGrid.Views.Grid;
+using MedicalLink.Utilities.GridControl;
 
 namespace MedicalLink.BaoCao
 {
@@ -37,11 +38,21 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                string sqlNhomDV = "select o.tools_otherlistcode, o.tools_otherlistname,o.tools_otherlistvalue from tools_othertypelist ot inner join tools_otherlist o on o.tools_othertypelistid=ot.tools_othertypelistid where ot.tools_othertypelistcode='REPORT_23_NHOM_DV'; ";
-                DataTable dataNhomDichVu = condb.GetDataTable_MeL(sqlNhomDV);
-                cboNhomDichVu.Properties.DataSource = dataNhomDichVu;
-                cboNhomDichVu.Properties.DisplayMember = "tools_otherlistname";
-                cboNhomDichVu.Properties.ValueMember = "tools_otherlistvalue";
+                if (GlobalStore.lstOtherList_Global != null && GlobalStore.lstOtherList_Global.Count > 0)
+                {
+                    List<ClassCommon.ToolsOtherListDTO> dataNhomDichVu = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_23_NHOM_DV").ToList();
+                    cboNhomDichVu.Properties.DataSource = dataNhomDichVu;
+                    cboNhomDichVu.Properties.DisplayMember = "tools_otherlistname";
+                    cboNhomDichVu.Properties.ValueMember = "tools_otherlistvalue";
+                }
+                else
+                {
+                    string sqlNhomDV = "select o.tools_otherlistcode, o.tools_otherlistname,o.tools_otherlistvalue from tools_othertypelist ot inner join tools_otherlist o on o.tools_othertypelistid=ot.tools_othertypelistid where ot.tools_othertypelistcode='REPORT_23_NHOM_DV'; ";
+                    DataTable dataNhomDichVu = condb.GetDataTable_MeL(sqlNhomDV);
+                    cboNhomDichVu.Properties.DataSource = dataNhomDichVu;
+                    cboNhomDichVu.Properties.DisplayMember = "tools_otherlistname";
+                    cboNhomDichVu.Properties.ValueMember = "tools_otherlistvalue";
+                }
             }
             catch (Exception ex)
             {
@@ -180,9 +191,9 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
                 }
-
+                DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBaoCao);
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);
             }
             catch (Exception ex)
             {
@@ -249,7 +260,7 @@ namespace MedicalLink.BaoCao
                 if (radioXemTongHop.Checked)
                 {
                     //gridControlDataBaoCao = new DevExpress.XtraGrid.GridControl();
-                  //  gridViewDataBaoCao = new GridView();
+                    //  gridViewDataBaoCao = new GridView();
                     radioXemChiTiet.Checked = false;
 
                     gridColumn_PhongChiDinh.Visible = false;
@@ -276,7 +287,7 @@ namespace MedicalLink.BaoCao
                 if (radioXemChiTiet.Checked)
                 {
                     //gridControlDataBaoCao = new DevExpress.XtraGrid.GridControl();
-                   // gridViewDataBaoCao = new GridView();
+                    // gridViewDataBaoCao = new GridView();
                     radioXemTongHop.Checked = false;
 
                     gridColumn_PhongChiDinh.Visible = true;

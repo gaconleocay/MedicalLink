@@ -35,6 +35,23 @@
             this.imageCollectionIcon = new DevExpress.Utils.ImageCollection(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.spinEditKhoang4 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditKhoang3 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditKhoang2 = new DevExpress.XtraEditors.SpinEdit();
+            this.spinEditKhoang1 = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.radioCheDoThongMinh = new System.Windows.Forms.RadioButton();
+            this.spinEditCheDoThuong = new DevExpress.XtraEditors.SpinEdit();
+            this.radioCheDoThongThuong = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkChayDung = new DevExpress.XtraEditors.CheckButton();
             this.lblCheDoChay = new DevExpress.XtraEditors.LabelControl();
@@ -60,37 +77,20 @@
             this.dtDenNgay = new System.Windows.Forms.DateTimePicker();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
-            this.radioCheDoThongThuong = new System.Windows.Forms.RadioButton();
-            this.spinEditCheDoThuong = new DevExpress.XtraEditors.SpinEdit();
-            this.radioCheDoThongMinh = new System.Windows.Forms.RadioButton();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.spinEditKhoang1 = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditKhoang2 = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditKhoang4 = new DevExpress.XtraEditors.SpinEdit();
-            this.spinEditKhoang3 = new DevExpress.XtraEditors.SpinEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionIcon)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditCheDoThuong.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLogUpdateKDTK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLogUpdateKDTK)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditCheDoThuong.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang3.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // timerClock
@@ -146,6 +146,201 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cài đặt";
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl13.Location = new System.Drawing.Point(42, 81);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(113, 16);
+            this.labelControl13.TabIndex = 31;
+            this.labelControl13.Text = "Từ 07h:01 - 12h:00";
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl12.Location = new System.Drawing.Point(42, 103);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(113, 16);
+            this.labelControl12.TabIndex = 30;
+            this.labelControl12.Text = "Từ 12h:01 - 13h:30";
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl11.Location = new System.Drawing.Point(393, 100);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(113, 16);
+            this.labelControl11.TabIndex = 29;
+            this.labelControl11.Text = "Từ 17h:31 - 07h:00";
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl10.Location = new System.Drawing.Point(393, 78);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(113, 16);
+            this.labelControl10.TabIndex = 28;
+            this.labelControl10.Text = "Từ 13h:31 - 17h:30";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl9.Location = new System.Drawing.Point(678, 78);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(25, 16);
+            this.labelControl9.TabIndex = 27;
+            this.labelControl9.Text = "phút";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Location = new System.Drawing.Point(678, 102);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(25, 16);
+            this.labelControl4.TabIndex = 26;
+            this.labelControl4.Text = "phút";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Location = new System.Drawing.Point(325, 100);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(25, 16);
+            this.labelControl3.TabIndex = 25;
+            this.labelControl3.Text = "phút";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Location = new System.Drawing.Point(325, 78);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(25, 16);
+            this.labelControl2.TabIndex = 24;
+            this.labelControl2.Text = "phút";
+            // 
+            // spinEditKhoang4
+            // 
+            this.spinEditKhoang4.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditKhoang4.Location = new System.Drawing.Point(517, 99);
+            this.spinEditKhoang4.Name = "spinEditKhoang4";
+            this.spinEditKhoang4.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spinEditKhoang4.Properties.Appearance.Options.UseFont = true;
+            this.spinEditKhoang4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditKhoang4.Size = new System.Drawing.Size(155, 22);
+            this.spinEditKhoang4.TabIndex = 23;
+            // 
+            // spinEditKhoang3
+            // 
+            this.spinEditKhoang3.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditKhoang3.Location = new System.Drawing.Point(517, 75);
+            this.spinEditKhoang3.Name = "spinEditKhoang3";
+            this.spinEditKhoang3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spinEditKhoang3.Properties.Appearance.Options.UseFont = true;
+            this.spinEditKhoang3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditKhoang3.Size = new System.Drawing.Size(155, 22);
+            this.spinEditKhoang3.TabIndex = 22;
+            // 
+            // spinEditKhoang2
+            // 
+            this.spinEditKhoang2.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditKhoang2.Location = new System.Drawing.Point(164, 99);
+            this.spinEditKhoang2.Name = "spinEditKhoang2";
+            this.spinEditKhoang2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spinEditKhoang2.Properties.Appearance.Options.UseFont = true;
+            this.spinEditKhoang2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditKhoang2.Size = new System.Drawing.Size(155, 22);
+            this.spinEditKhoang2.TabIndex = 21;
+            // 
+            // spinEditKhoang1
+            // 
+            this.spinEditKhoang1.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditKhoang1.Location = new System.Drawing.Point(164, 75);
+            this.spinEditKhoang1.Name = "spinEditKhoang1";
+            this.spinEditKhoang1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spinEditKhoang1.Properties.Appearance.Options.UseFont = true;
+            this.spinEditKhoang1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditKhoang1.Size = new System.Drawing.Size(155, 22);
+            this.spinEditKhoang1.TabIndex = 20;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(381, 21);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(125, 16);
+            this.labelControl1.TabIndex = 19;
+            this.labelControl1.Text = "Tự động cập nhật sau";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Location = new System.Drawing.Point(678, 19);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(25, 16);
+            this.labelControl5.TabIndex = 18;
+            this.labelControl5.Text = "phút";
+            // 
+            // radioCheDoThongMinh
+            // 
+            this.radioCheDoThongMinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioCheDoThongMinh.Location = new System.Drawing.Point(19, 47);
+            this.radioCheDoThongMinh.Name = "radioCheDoThongMinh";
+            this.radioCheDoThongMinh.Size = new System.Drawing.Size(180, 25);
+            this.radioCheDoThongMinh.TabIndex = 7;
+            this.radioCheDoThongMinh.TabStop = true;
+            this.radioCheDoThongMinh.Text = "Chế độ nâng cao";
+            this.radioCheDoThongMinh.UseVisualStyleBackColor = true;
+            this.radioCheDoThongMinh.CheckedChanged += new System.EventHandler(this.radioCheDoThongMinh_CheckedChanged);
+            // 
+            // spinEditCheDoThuong
+            // 
+            this.spinEditCheDoThuong.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.spinEditCheDoThuong.Location = new System.Drawing.Point(517, 18);
+            this.spinEditCheDoThuong.Name = "spinEditCheDoThuong";
+            this.spinEditCheDoThuong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spinEditCheDoThuong.Properties.Appearance.Options.UseFont = true;
+            this.spinEditCheDoThuong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.spinEditCheDoThuong.Size = new System.Drawing.Size(155, 22);
+            this.spinEditCheDoThuong.TabIndex = 17;
+            this.spinEditCheDoThuong.EditValueChanged += new System.EventHandler(this.spinEditCheDoThuong_EditValueChanged);
+            // 
+            // radioCheDoThongThuong
+            // 
+            this.radioCheDoThongThuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioCheDoThongThuong.Location = new System.Drawing.Point(19, 17);
+            this.radioCheDoThongThuong.Name = "radioCheDoThongThuong";
+            this.radioCheDoThongThuong.Size = new System.Drawing.Size(180, 25);
+            this.radioCheDoThongThuong.TabIndex = 5;
+            this.radioCheDoThongThuong.TabStop = true;
+            this.radioCheDoThongThuong.Text = "Chế độ đơn giản";
+            this.radioCheDoThongThuong.UseVisualStyleBackColor = true;
+            this.radioCheDoThongThuong.CheckedChanged += new System.EventHandler(this.radioCheDoThongThuong_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -503,7 +698,7 @@
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(100, 40);
             this.simpleButton1.TabIndex = 25;
-            this.simpleButton1.Text = "Export...";
+            this.simpleButton1.Text = "Xuất file";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // btnTimKiem
@@ -520,201 +715,6 @@
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
-            // radioCheDoThongThuong
-            // 
-            this.radioCheDoThongThuong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioCheDoThongThuong.Location = new System.Drawing.Point(19, 17);
-            this.radioCheDoThongThuong.Name = "radioCheDoThongThuong";
-            this.radioCheDoThongThuong.Size = new System.Drawing.Size(180, 25);
-            this.radioCheDoThongThuong.TabIndex = 5;
-            this.radioCheDoThongThuong.TabStop = true;
-            this.radioCheDoThongThuong.Text = "Chế độ đơn giản";
-            this.radioCheDoThongThuong.UseVisualStyleBackColor = true;
-            this.radioCheDoThongThuong.CheckedChanged += new System.EventHandler(this.radioCheDoThongThuong_CheckedChanged);
-            // 
-            // spinEditCheDoThuong
-            // 
-            this.spinEditCheDoThuong.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditCheDoThuong.Location = new System.Drawing.Point(517, 18);
-            this.spinEditCheDoThuong.Name = "spinEditCheDoThuong";
-            this.spinEditCheDoThuong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinEditCheDoThuong.Properties.Appearance.Options.UseFont = true;
-            this.spinEditCheDoThuong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditCheDoThuong.Size = new System.Drawing.Size(155, 22);
-            this.spinEditCheDoThuong.TabIndex = 17;
-            this.spinEditCheDoThuong.EditValueChanged += new System.EventHandler(this.spinEditCheDoThuong_EditValueChanged);
-            // 
-            // radioCheDoThongMinh
-            // 
-            this.radioCheDoThongMinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioCheDoThongMinh.Location = new System.Drawing.Point(19, 47);
-            this.radioCheDoThongMinh.Name = "radioCheDoThongMinh";
-            this.radioCheDoThongMinh.Size = new System.Drawing.Size(180, 25);
-            this.radioCheDoThongMinh.TabIndex = 7;
-            this.radioCheDoThongMinh.TabStop = true;
-            this.radioCheDoThongMinh.Text = "Chế độ nâng cao";
-            this.radioCheDoThongMinh.UseVisualStyleBackColor = true;
-            this.radioCheDoThongMinh.CheckedChanged += new System.EventHandler(this.radioCheDoThongMinh_CheckedChanged);
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Location = new System.Drawing.Point(678, 19);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(25, 16);
-            this.labelControl5.TabIndex = 18;
-            this.labelControl5.Text = "phút";
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(381, 21);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(125, 16);
-            this.labelControl1.TabIndex = 19;
-            this.labelControl1.Text = "Tự động cập nhật sau";
-            // 
-            // spinEditKhoang1
-            // 
-            this.spinEditKhoang1.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditKhoang1.Location = new System.Drawing.Point(164, 75);
-            this.spinEditKhoang1.Name = "spinEditKhoang1";
-            this.spinEditKhoang1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinEditKhoang1.Properties.Appearance.Options.UseFont = true;
-            this.spinEditKhoang1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditKhoang1.Size = new System.Drawing.Size(155, 22);
-            this.spinEditKhoang1.TabIndex = 20;
-            // 
-            // spinEditKhoang2
-            // 
-            this.spinEditKhoang2.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditKhoang2.Location = new System.Drawing.Point(164, 99);
-            this.spinEditKhoang2.Name = "spinEditKhoang2";
-            this.spinEditKhoang2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinEditKhoang2.Properties.Appearance.Options.UseFont = true;
-            this.spinEditKhoang2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditKhoang2.Size = new System.Drawing.Size(155, 22);
-            this.spinEditKhoang2.TabIndex = 21;
-            // 
-            // spinEditKhoang4
-            // 
-            this.spinEditKhoang4.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditKhoang4.Location = new System.Drawing.Point(517, 99);
-            this.spinEditKhoang4.Name = "spinEditKhoang4";
-            this.spinEditKhoang4.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinEditKhoang4.Properties.Appearance.Options.UseFont = true;
-            this.spinEditKhoang4.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditKhoang4.Size = new System.Drawing.Size(155, 22);
-            this.spinEditKhoang4.TabIndex = 23;
-            // 
-            // spinEditKhoang3
-            // 
-            this.spinEditKhoang3.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinEditKhoang3.Location = new System.Drawing.Point(517, 75);
-            this.spinEditKhoang3.Name = "spinEditKhoang3";
-            this.spinEditKhoang3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinEditKhoang3.Properties.Appearance.Options.UseFont = true;
-            this.spinEditKhoang3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinEditKhoang3.Size = new System.Drawing.Size(155, 22);
-            this.spinEditKhoang3.TabIndex = 22;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(325, 78);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(25, 16);
-            this.labelControl2.TabIndex = 24;
-            this.labelControl2.Text = "phút";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(325, 100);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(25, 16);
-            this.labelControl3.TabIndex = 25;
-            this.labelControl3.Text = "phút";
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(678, 102);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(25, 16);
-            this.labelControl4.TabIndex = 26;
-            this.labelControl4.Text = "phút";
-            // 
-            // labelControl9
-            // 
-            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl9.Location = new System.Drawing.Point(678, 78);
-            this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(25, 16);
-            this.labelControl9.TabIndex = 27;
-            this.labelControl9.Text = "phút";
-            // 
-            // labelControl10
-            // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl10.Location = new System.Drawing.Point(393, 78);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(113, 16);
-            this.labelControl10.TabIndex = 28;
-            this.labelControl10.Text = "Từ 13h:31 - 17h:30";
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl11.Location = new System.Drawing.Point(393, 100);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(113, 16);
-            this.labelControl11.TabIndex = 29;
-            this.labelControl11.Text = "Từ 17h:31 - 07h:00";
-            // 
-            // labelControl12
-            // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl12.Location = new System.Drawing.Point(42, 103);
-            this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(113, 16);
-            this.labelControl12.TabIndex = 30;
-            this.labelControl12.Text = "Từ 12h:01 - 13h:30";
-            // 
-            // labelControl13
-            // 
-            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl13.Location = new System.Drawing.Point(42, 81);
-            this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(113, 16);
-            this.labelControl13.TabIndex = 31;
-            this.labelControl13.Text = "Từ 07h:01 - 12h:00";
-            // 
             // ucCapNhatKhaDungTonKho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -728,6 +728,11 @@
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinEditCheDoThuong.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -736,11 +741,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLogUpdateKDTK)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditCheDoThuong.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinEditKhoang3.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

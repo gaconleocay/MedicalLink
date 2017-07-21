@@ -12,6 +12,7 @@ using System.Globalization;
 using System.IO;
 using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.Utilities.GridControl;
+using MedicalLink.Utilities;
 
 namespace MedicalLink.BaoCao
 {
@@ -143,7 +144,7 @@ namespace MedicalLink.BaoCao
 
                 if (radioXemTongHop.Checked) //xem tong hop
                 {
-                    sql_timkiem = " SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname order by dv.servicepricegroupcode,dv.servicepricename)) as stt, degp.departmentgroupname, dv.servicepricecode, dv.servicepricename, dv.servicepricegroupcode, dv.loaidoituong, sum(dv.soluong) as soluong, dv.servicepricemoney, sum(dv.soluong * dv.servicepricemoney) as thanhtien FROM (select departmentgroupid,departmentgroupname from departmentgroup) degp inner JOIN (select ser.departmentgroupid, ser.servicepricecode, ser.servicepricename, serf.servicepricegroupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, sum(ser.soluong) as soluong, (case when vp.doituongbenhnhanid=4 then ser.servicepricemoney_nuocngoai else (case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan when 2 then ser.servicepricemoney_bhyt when 3 then ser.servicepricemoney when 4 then ser.servicepricemoney when 5 then ser.servicepricemoney when 6 then ser.servicepricemoney when 7 then ser.servicepricemoney_nhandan when 8 then ser.servicepricemoney_nhandan when 9 then ser.servicepricemoney_nhandan end) end) as servicepricemoney from (select servicepricecode,servicepricegroupcode from servicepriceref where " + lstservicegroupcode + ") serf inner join (select vienphiid,servicepricecode,servicepricename,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where bhyt_groupcode in ('06PTTT','07KTC','12NG') " + khoachidinh + ") ser on ser.servicepricecode=serf.servicepricecode inner join (select vienphiid,doituongbenhnhanid from vienphi where " + trangthaibenhan + " ) vp on vp.vienphiid=ser.vienphiid group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,serf.servicepricegroupcode,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid) dv on dv.departmentgroupid=degp.departmentgroupid GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.servicepricegroupcode,dv.loaidoituong,dv.servicepricemoney; ";
+                    sql_timkiem = " SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname order by dv.servicepricegroupcode,dv.servicepricename)) as stt, degp.departmentgroupid, degp.departmentgroupname, dv.servicepricecode, dv.servicepricename, dv.servicepricegroupcode, dv.loaidoituong, sum(dv.soluong) as soluong, dv.servicepricemoney, sum(dv.soluong * dv.servicepricemoney) as thanhtien FROM (select departmentgroupid,departmentgroupname from departmentgroup) degp inner JOIN (select ser.departmentgroupid, ser.servicepricecode, ser.servicepricename, serf.servicepricegroupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, sum(ser.soluong) as soluong, (case when vp.doituongbenhnhanid=4 then ser.servicepricemoney_nuocngoai else (case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan when 2 then ser.servicepricemoney_bhyt when 3 then ser.servicepricemoney when 4 then ser.servicepricemoney when 5 then ser.servicepricemoney when 6 then ser.servicepricemoney when 7 then ser.servicepricemoney_nhandan when 8 then ser.servicepricemoney_nhandan when 9 then ser.servicepricemoney_nhandan end) end) as servicepricemoney from (select servicepricecode,servicepricegroupcode from servicepriceref where " + lstservicegroupcode + ") serf inner join (select vienphiid,servicepricecode,servicepricename,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where bhyt_groupcode in ('06PTTT','07KTC','12NG') " + khoachidinh + ") ser on ser.servicepricecode=serf.servicepricecode inner join (select vienphiid,doituongbenhnhanid from vienphi where " + trangthaibenhan + " ) vp on vp.vienphiid=ser.vienphiid group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,serf.servicepricegroupcode,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid) dv on dv.departmentgroupid=degp.departmentgroupid GROUP BY degp.departmentgroupid,degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.servicepricegroupcode,dv.loaidoituong,dv.servicepricemoney; ";
                 }
                 else
                 {
@@ -168,6 +169,7 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
+        #region Export
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -191,9 +193,9 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
                 }
-                DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao);
+                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataExportFilter);
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
             {
@@ -201,6 +203,48 @@ namespace MedicalLink.BaoCao
             }
         }
 
+        //Xuat excel co group nhom
+        private DataTable ExportExcel_GroupColume()
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                List<ClassCommon.DoanhThuTheoNhomDichVuDTO> lstData_XuatBaoCao = new List<ClassCommon.DoanhThuTheoNhomDichVuDTO>();
+                List<ClassCommon.DoanhThuTheoNhomDichVuDTO> lstDataDoanhThu = new List<ClassCommon.DoanhThuTheoNhomDichVuDTO>();
+                lstDataDoanhThu = Util_DataTable.DataTableToList<ClassCommon.DoanhThuTheoNhomDichVuDTO>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao));
+
+                List<ClassCommon.DoanhThuTheoNhomDichVuDTO> lstData_Group = lstDataDoanhThu.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                foreach (var item_group in lstData_Group)
+                {
+                    ClassCommon.DoanhThuTheoNhomDichVuDTO data_groupname = new ClassCommon.DoanhThuTheoNhomDichVuDTO();
+                    List<ClassCommon.DoanhThuTheoNhomDichVuDTO> lstData_doanhthu = lstDataDoanhThu.Where(o => o.departmentgroupid == item_group.departmentgroupid).ToList();
+                    decimal sum_soluong = 0;
+                    decimal sum_thanhtien = 0;
+                    foreach (var item_tinhsum in lstData_doanhthu)
+                    {
+                        sum_soluong += item_tinhsum.soluong;
+                        sum_thanhtien += item_tinhsum.thanhtien;
+                    }
+
+                    data_groupname.departmentgroupid = item_group.departmentgroupid;
+                    data_groupname.stt = item_group.departmentgroupname;
+                    data_groupname.soluong = sum_soluong;
+                    data_groupname.thanhtien = sum_thanhtien;
+                    data_groupname.isgroup = 1;
+
+                    lstData_XuatBaoCao.Add(data_groupname);
+                    lstData_XuatBaoCao.AddRange(lstData_doanhthu);
+                }
+                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
+
+        #endregion
         private void bandedGridViewSoCDHA_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
@@ -243,7 +287,8 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
                 }
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
             {

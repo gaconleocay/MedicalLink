@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCSoXetNghiem));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
-            this.cboPhongThucHien = new DevExpress.XtraEditors.LookUpEdit();
+            this.cboLoaiSoXN = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -42,8 +42,8 @@
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
-            this.gridControlSoCDHA = new DevExpress.XtraGrid.GridControl();
-            this.bandedGridViewSoCDHA = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
+            this.gridControlSoXetNghiem = new DevExpress.XtraGrid.GridControl();
+            this.bandedGridViewSoXetNghiem = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.stt = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -68,11 +68,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboPhongThucHien.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiSoXN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlSoCDHA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewSoCDHA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlSoXetNghiem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewSoXetNghiem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
             this.SuspendLayout();
@@ -89,7 +89,7 @@
             // 
             // groupBoxFile
             // 
-            this.groupBoxFile.Controls.Add(this.cboPhongThucHien);
+            this.groupBoxFile.Controls.Add(this.cboLoaiSoXN);
             this.groupBoxFile.Controls.Add(this.labelControl4);
             this.groupBoxFile.Controls.Add(this.labelControl2);
             this.groupBoxFile.Controls.Add(this.cboTieuChi);
@@ -107,34 +107,35 @@
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
             // 
-            // cboPhongThucHien
+            // cboLoaiSoXN
             // 
-            this.cboPhongThucHien.Location = new System.Drawing.Point(347, 56);
-            this.cboPhongThucHien.Name = "cboPhongThucHien";
-            this.cboPhongThucHien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboPhongThucHien.Properties.Appearance.Options.UseFont = true;
-            this.cboPhongThucHien.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboPhongThucHien.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboPhongThucHien.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cboLoaiSoXN.Location = new System.Drawing.Point(347, 56);
+            this.cboLoaiSoXN.Name = "cboLoaiSoXN";
+            this.cboLoaiSoXN.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiSoXN.Properties.Appearance.Options.UseFont = true;
+            this.cboLoaiSoXN.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiSoXN.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLoaiSoXN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboPhongThucHien.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("departmentid", 10, "ID"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("departmentname", 50, "Tên phòng")});
-            this.cboPhongThucHien.Properties.DropDownRows = 10;
-            this.cboPhongThucHien.Properties.NullText = "";
-            this.cboPhongThucHien.Properties.PopupSizeable = false;
-            this.cboPhongThucHien.Size = new System.Drawing.Size(372, 22);
-            this.cboPhongThucHien.TabIndex = 75;
-            this.cboPhongThucHien.EditValueChanged += new System.EventHandler(this.cboPhongThucHien_EditValueChanged);
+            this.cboLoaiSoXN.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tools_otherlistvalue", "tools_otherlistvalue", 10, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("tools_otherlistname", 50, "Tên phòng")});
+            this.cboLoaiSoXN.Properties.DropDownRows = 10;
+            this.cboLoaiSoXN.Properties.NullText = "";
+            this.cboLoaiSoXN.Properties.PopupSizeable = false;
+            this.cboLoaiSoXN.Properties.ShowHeader = false;
+            this.cboLoaiSoXN.Size = new System.Drawing.Size(372, 22);
+            this.cboLoaiSoXN.TabIndex = 75;
+            this.cboLoaiSoXN.EditValueChanged += new System.EventHandler(this.cboPhongThucHien_EditValueChanged);
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(238, 62);
+            this.labelControl4.Location = new System.Drawing.Point(270, 62);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(92, 16);
+            this.labelControl4.Size = new System.Drawing.Size(60, 16);
             this.labelControl4.TabIndex = 24;
-            this.labelControl4.Text = "Phòng thực hiện";
+            this.labelControl4.Text = "Loại sổ XN";
             // 
             // labelControl2
             // 
@@ -248,36 +249,36 @@
             this.tbnExport.Text = "Xuất file";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
-            // gridControlSoCDHA
+            // gridControlSoXetNghiem
             // 
-            this.gridControlSoCDHA.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
-            this.gridControlSoCDHA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlSoCDHA.EmbeddedNavigator.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
-            this.gridControlSoCDHA.Location = new System.Drawing.Point(0, 102);
-            this.gridControlSoCDHA.MainView = this.bandedGridViewSoCDHA;
-            this.gridControlSoCDHA.Name = "gridControlSoCDHA";
-            this.gridControlSoCDHA.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gridControlSoXetNghiem.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.gridControlSoXetNghiem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlSoXetNghiem.EmbeddedNavigator.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.gridControlSoXetNghiem.Location = new System.Drawing.Point(0, 102);
+            this.gridControlSoXetNghiem.MainView = this.bandedGridViewSoXetNghiem;
+            this.gridControlSoXetNghiem.Name = "gridControlSoXetNghiem";
+            this.gridControlSoXetNghiem.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1,
             this.repositoryItemMemoEdit2});
-            this.gridControlSoCDHA.Size = new System.Drawing.Size(1060, 492);
-            this.gridControlSoCDHA.TabIndex = 4;
-            this.gridControlSoCDHA.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.bandedGridViewSoCDHA});
+            this.gridControlSoXetNghiem.Size = new System.Drawing.Size(1060, 492);
+            this.gridControlSoXetNghiem.TabIndex = 4;
+            this.gridControlSoXetNghiem.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.bandedGridViewSoXetNghiem});
             // 
-            // bandedGridViewSoCDHA
+            // bandedGridViewSoXetNghiem
             // 
-            this.bandedGridViewSoCDHA.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.bandedGridViewSoCDHA.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.bandedGridViewSoCDHA.Appearance.HeaderPanel.Options.UseFont = true;
-            this.bandedGridViewSoCDHA.Appearance.HeaderPanel.Options.UseForeColor = true;
-            this.bandedGridViewSoCDHA.Appearance.HeaderPanel.Options.UseTextOptions = true;
-            this.bandedGridViewSoCDHA.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridViewSoCDHA.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
+            this.bandedGridViewSoXetNghiem.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.bandedGridViewSoXetNghiem.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridViewSoXetNghiem.Appearance.HeaderPanel.Options.UseFont = true;
+            this.bandedGridViewSoXetNghiem.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.bandedGridViewSoXetNghiem.Appearance.HeaderPanel.Options.UseTextOptions = true;
+            this.bandedGridViewSoXetNghiem.Appearance.HeaderPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridViewSoXetNghiem.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] {
             this.gridBand1,
             this.bandTuoi,
             this.gridBand3});
-            this.bandedGridViewSoCDHA.ColumnPanelRowHeight = 25;
-            this.bandedGridViewSoCDHA.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            this.bandedGridViewSoXetNghiem.ColumnPanelRowHeight = 25;
+            this.bandedGridViewSoXetNghiem.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
             this.stt,
             this.gridColumn1,
             this.gridColumn2,
@@ -294,17 +295,17 @@
             this.bandedGridColumn1,
             this.gridColumn9,
             this.gridColumn10});
-            this.bandedGridViewSoCDHA.GridControl = this.gridControlSoCDHA;
-            this.bandedGridViewSoCDHA.IndicatorWidth = 50;
-            this.bandedGridViewSoCDHA.Name = "bandedGridViewSoCDHA";
-            this.bandedGridViewSoCDHA.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridViewSoCDHA.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.bandedGridViewSoCDHA.OptionsView.ColumnAutoWidth = false;
-            this.bandedGridViewSoCDHA.OptionsView.EnableAppearanceEvenRow = true;
-            this.bandedGridViewSoCDHA.OptionsView.ShowGroupPanel = false;
-            this.bandedGridViewSoCDHA.OptionsView.ShowIndicator = false;
-            this.bandedGridViewSoCDHA.RowHeight = 25;
-            this.bandedGridViewSoCDHA.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.bandedGridViewSoCDHA_RowCellStyle);
+            this.bandedGridViewSoXetNghiem.GridControl = this.gridControlSoXetNghiem;
+            this.bandedGridViewSoXetNghiem.IndicatorWidth = 50;
+            this.bandedGridViewSoXetNghiem.Name = "bandedGridViewSoXetNghiem";
+            this.bandedGridViewSoXetNghiem.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridViewSoXetNghiem.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridViewSoXetNghiem.OptionsView.ColumnAutoWidth = false;
+            this.bandedGridViewSoXetNghiem.OptionsView.EnableAppearanceEvenRow = true;
+            this.bandedGridViewSoXetNghiem.OptionsView.ShowGroupPanel = false;
+            this.bandedGridViewSoXetNghiem.OptionsView.ShowIndicator = false;
+            this.bandedGridViewSoXetNghiem.RowHeight = 25;
+            this.bandedGridViewSoXetNghiem.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.bandedGridViewSoCDHA_RowCellStyle);
             // 
             // gridBand1
             // 
@@ -673,7 +674,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gridControlSoCDHA);
+            this.Controls.Add(this.gridControlSoXetNghiem);
             this.Controls.Add(this.panelControlThongTinDV);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(0);
@@ -684,11 +685,11 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboPhongThucHien.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiSoXN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlSoCDHA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewSoCDHA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlSoXetNghiem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewSoXetNghiem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).EndInit();
             this.ResumeLayout(false);
@@ -709,9 +710,9 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
-        private DevExpress.XtraEditors.LookUpEdit cboPhongThucHien;
-        private DevExpress.XtraGrid.GridControl gridControlSoCDHA;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridViewSoCDHA;
+        private DevExpress.XtraEditors.LookUpEdit cboLoaiSoXN;
+        private DevExpress.XtraGrid.GridControl gridControlSoXetNghiem;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridViewSoXetNghiem;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn stt;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn gridColumn2;

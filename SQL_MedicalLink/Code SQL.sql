@@ -376,8 +376,8 @@ SELECT 1 as tools_othertypelistid, idmayxn as tools_otherlistcode, tenmayxn as t
 
 
 
-
-
-
+partition
+alter table tools_otherlist add tools_otherlistnote text;
+alter table tools_othertypelist add tools_othertypelistnote text;
 
  

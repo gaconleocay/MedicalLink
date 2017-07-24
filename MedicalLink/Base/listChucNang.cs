@@ -448,6 +448,15 @@ namespace MedicalLink.Base
                 REPORT_23.permissionnote = "Báo cáo doanh thu theo nhóm dịch vụ";
                 lstresult.Add(REPORT_23);
 
+                ClassCommon.classPermission REPORT_24 = new ClassCommon.classPermission();
+                REPORT_24.permissioncheck = false;
+                REPORT_24.permissioncode = "REPORT_24";
+                REPORT_24.permissionname = "Báo cáo bệnh nhân thiếu tiền tạm ứng";
+                REPORT_24.permissiontype = 3;
+                REPORT_24.permissionnote = "Báo cáo bệnh nhân thiếu tiền tạm ứng";
+                lstresult.Add(REPORT_24);
+
+
 
 
                 //Dashboard

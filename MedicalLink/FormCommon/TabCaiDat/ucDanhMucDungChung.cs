@@ -68,7 +68,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 loaiDanhMuc = new DataView();
-                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY tools_othertypelistname) as stt, tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote from tools_othertypelist; ";
+                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY tools_othertypelistid) as stt, tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote from tools_othertypelist; ";
                 DataView dataDanhSach = new DataView(condb.GetDataTable_MeL(sqlgetdanhsach));
                 gridControlLoaiDM.DataSource = dataDanhSach;
                 cboDM_LoaiDMTen.Properties.DataSource = dataDanhSach;
@@ -90,7 +90,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     tools_othertypelistid = " where oty.tools_othertypelistid=" + othertypelistid;
                 }
-                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY oty.tools_othertypelistname, o.tools_otherlistname) as stt, oty.tools_othertypelistid, oty.tools_othertypelistcode, oty.tools_othertypelistname, oty.tools_othertypelistnote, o.tools_otherlistid, o.tools_otherlistcode, o.tools_otherlistname, o.tools_otherliststatus, o.tools_otherlistvalue from tools_othertypelist oty inner join tools_otherlist o on o.tools_othertypelistid=oty.tools_othertypelistid " + tools_othertypelistid + "; ";
+                string sqlgetdanhsach = "select ROW_NUMBER() OVER (ORDER BY oty.tools_othertypelistid, o.tools_otherlistname) as stt, oty.tools_othertypelistid, oty.tools_othertypelistcode, oty.tools_othertypelistname, oty.tools_othertypelistnote, o.tools_otherlistid, o.tools_otherlistcode, o.tools_otherlistname, o.tools_otherliststatus, o.tools_otherlistvalue from tools_othertypelist oty inner join tools_otherlist o on o.tools_othertypelistid=oty.tools_othertypelistid " + tools_othertypelistid + "; ";
                 DataView dataDanhSach = new DataView(condb.GetDataTable_MeL(sqlgetdanhsach));
                 gridControlDM.DataSource = dataDanhSach;
                 cboDM_LoaiDMTen.Properties.DataSource = this.loaiDanhMuc;

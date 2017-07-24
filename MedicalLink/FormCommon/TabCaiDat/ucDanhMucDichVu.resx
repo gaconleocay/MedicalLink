@@ -117,65 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="x-mark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\x-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="openFileDialogSelect.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>16, 15</value>
+  </metadata>
+  <metadata name="openFileDialogImport.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>156, 15</value>
+  </metadata>
+  <metadata name="imageCollectionMBA.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>320, 12</value>
+  </metadata>
+  <assembly alias="DevExpress.Utils.v15.2" name="DevExpress.Utils.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="imageCollectionMBA.ImageStream" type="DevExpress.Utils.ImageCollectionStreamer, DevExpress.Utils.v15.2" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLlV0aWxzLnYxNS4yLCBWZXJzaW9uPTE1LjIu
+        OS4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEMAwAAAFFT
+        eXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRv
+        a2VuPWIwM2Y1ZjdmMTFkNTBhM2EFAQAAAChEZXZFeHByZXNzLlV0aWxzLkltYWdlQ29sbGVjdGlvblN0
+        cmVhbWVyAgAAAAlJbWFnZVNpemUERGF0YQQHE1N5c3RlbS5EcmF3aW5nLlNpemUDAAAAAgIAAAAF/P//
+        /xNTeXN0ZW0uRHJhd2luZy5TaXplAgAAAAV3aWR0aAZoZWlnaHQAAAgIAwAAABAAAAAQAAAACQUAAAAP
+        BQAAAHIDAAACVwEAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAAFzUkdCAK7OHOkA
+        AAAEZ0FNQQAAsY8L/GEFAAABAUlEQVQ4T2NgAIIGhv9pQPwRiL8i4e9ANgwji4PYn4E4D6QXDICcnUA8
+        H4htiMTTgeoOIxuwFyhQBxcgwACqLQPioxgGAAX1gPgxED/HgR8CxY2gBhzHZoABUPIlEL/FgUFyZtgM
+        2E+GF1BcADYAiAWA2AQL1oMGNsj5IDWgMMBqgAdQ4i8WfBNqwGugXBA+A0BRyoQNQw0AyYHU4HSBBchp
+        SNgPOUaB4luB2AGfAUpQSZANIAz2O1KCywGKqeGLRjGgZAAaNkIyABRGUvgMADkPFNfIeCqSAdeBciBD
+        MMKA4qQMykxzgdiKSDwVqA4lM2UABUDZFDkL42OD1BaAvAYAr/B1AgpF/msAAAAASUVORK5CYIICAQAA
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAACsSURBVDhPY2AYcNDA8D8GiOuQsALIUUC+App4DFbHAhUpAfFDIP4PxfdBmqGGtCKJg+Sr8Bny
+        GN0QIB/kkk5iDVEBKsRlSC8lhshBXUKSIU+RbLwLZBNvCFQxcqCCDAN5DxQe6IHaihKoUM0gG2ExAtKs
+        Bo2RZrRwABmG0E9AcyMlmkGJDOYiEI1hswxQEJeza/BqhvotCaioHQnD/AxKysjiaSh+HvBMCHMAAOsL
+        Kduu1V+vAAAAAElFTkSuQmCCDQEAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAAFz
+        UkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAAt0lEQVQ4T4VTQQqDQAzcg88TKaUP8idFevCNpQed0aQu
+        aScJDKJmZpPMpjXE3LYBeAJ3vmeBnAewkHPkGXnFcwM+TFACRmYOc8kZKMCT+cHxVySQPXehwAi8MxFB
+        Jmf0NqRISfZ+k0q8Zy/7OjkOS4j089HkohKK1GSzlT7HskuLfZiKnFqckVlJrOb3niRW3fCP0PckIU/d
+        YCcpYotRWiUsfsVlSq0KIucydRvJFT3vdhIm8l3nHb8yhHwrBQngAAAAAElFTkSuQmCCCw==
+</value>
   </data>
-  <data name="excel-3-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok-161" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\ok-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="check-mark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\check-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="recurring-appointment-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\recurring-appointment-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\save-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printer-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\printer-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit-2-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\edit-2-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="arrow-32-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\arrow-32-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="excel-3-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search-3-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\search-3-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\ok-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="printer-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\printer-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="excel-3-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\excel-3-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="check-mark-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\check-mark-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="question-mark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\question-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="recurring-appointment-32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\recurring-appointment-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add-list-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\add-list-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="undo-2-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\undo-2-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit-5-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\edit-5-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>47</value>
+  </metadata>
 </root>

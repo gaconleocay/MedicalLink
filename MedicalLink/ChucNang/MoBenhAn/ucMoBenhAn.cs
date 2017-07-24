@@ -104,8 +104,9 @@ namespace MedicalLink.ChucNang
                     txtSoTheBHYT.Text = sotheBHYT;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
         private void txtSoTheBHYT_KeyDown(object sender, KeyEventArgs e)
@@ -117,9 +118,9 @@ namespace MedicalLink.ChucNang
                     btnMBATimKiem.PerformClick();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -246,10 +247,9 @@ namespace MedicalLink.ChucNang
                 if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                     e.Info.DisplayText = (e.RowHandle + 1).ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -264,9 +264,9 @@ namespace MedicalLink.ChucNang
                     e.Appearance.ForeColor = Color.Black;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -286,95 +286,102 @@ namespace MedicalLink.ChucNang
                     e.Menu.Items.Add(itemMoBenhAn);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
         internal void moBenhAnItem_Click(object sender, EventArgs e)
         {
-            int dem = 0;
-            int ktbdt_khoasau = 0;
-            int kt_khoacuoi = 0;
-            var rowHandle = gridViewMBA_TH.FocusedRowHandle;
-            string mabn = gridViewMBA_TH.GetRowCellValue(rowHandle, "mabenhnhan").ToString();
-            string madt = gridViewMBA_TH.GetRowCellValue(rowHandle, "madieutri").ToString();
-            string trangth = gridViewMBA_TH.GetRowCellValue(rowHandle, "trangthai").ToString();
-            string lakhoacuoi = gridViewMBA_TH.GetRowCellValue(rowHandle, "lakhoacuoi").ToString();
-            string mavp = gridViewMBA_TH.GetRowCellValue(rowHandle, "mavienphi").ToString();
-            string hosobn = gridViewMBA_TH.GetRowCellValue(rowHandle, "mahosobenhan").ToString();
-            string idkhoa = gridViewMBA_TH.GetRowCellValue(rowHandle, "idkhoa").ToString();
-            string idphong = gridViewMBA_TH.GetRowCellValue(rowHandle, "idphong").ToString();
-            string tenbn = gridViewMBA_TH.GetRowCellValue(rowHandle, "tenbenhnhan").ToString();
-            string khoa = gridViewMBA_TH.GetRowCellValue(rowHandle, "tenkhoa").ToString();
-            string phong = gridViewMBA_TH.GetRowCellValue(rowHandle, "tenphong").ToString();
-            string madtsau = gridViewMBA_TH.GetRowCellValue(rowHandle, "madieutrisau").ToString();
-            string loaibenhan = gridViewMBA_TH.GetRowCellValue(rowHandle, "loaibenhanid").ToString();
-            // Kiểm tra mã ĐT sau tiếp nhận vào BĐT hay chưa
+            try
+            {
+                int dem = 0;
+                int ktbdt_khoasau = 0;
+                int kt_khoacuoi = 0;
+                var rowHandle = gridViewMBA_TH.FocusedRowHandle;
+                string mabn = gridViewMBA_TH.GetRowCellValue(rowHandle, "mabenhnhan").ToString();
+                string madt = gridViewMBA_TH.GetRowCellValue(rowHandle, "madieutri").ToString();
+                string trangth = gridViewMBA_TH.GetRowCellValue(rowHandle, "trangthai").ToString();
+                string lakhoacuoi = gridViewMBA_TH.GetRowCellValue(rowHandle, "lakhoacuoi").ToString();
+                string mavp = gridViewMBA_TH.GetRowCellValue(rowHandle, "mavienphi").ToString();
+                string hosobn = gridViewMBA_TH.GetRowCellValue(rowHandle, "mahosobenhan").ToString();
+                string idkhoa = gridViewMBA_TH.GetRowCellValue(rowHandle, "idkhoa").ToString();
+                string idphong = gridViewMBA_TH.GetRowCellValue(rowHandle, "idphong").ToString();
+                string tenbn = gridViewMBA_TH.GetRowCellValue(rowHandle, "tenbenhnhan").ToString();
+                string khoa = gridViewMBA_TH.GetRowCellValue(rowHandle, "tenkhoa").ToString();
+                string phong = gridViewMBA_TH.GetRowCellValue(rowHandle, "tenphong").ToString();
+                string madtsau = gridViewMBA_TH.GetRowCellValue(rowHandle, "madieutrisau").ToString();
+                string loaibenhan = gridViewMBA_TH.GetRowCellValue(rowHandle, "loaibenhanid").ToString();
+                // Kiểm tra mã ĐT sau tiếp nhận vào BĐT hay chưa
 
-            // Kiểm tra là khoa cuối
-            if (lakhoacuoi == "Khoa cuối")
-            {
-                if (trangth == "Kết thúc")
+                // Kiểm tra là khoa cuối
+                if (lakhoacuoi == "Khoa cuối")
                 {
-                    kt_khoacuoi += 1;
-                    // Truyền biến sang form frmMoBenhAn_ThucHien_TT
-                    frmMoBenhAn_ThucHien_TT frmMBA_hoi = new frmMoBenhAn_ThucHien_TT(mabn, madt, mavp, hosobn, kt_khoacuoi, idkhoa, idphong, tenbn, khoa, phong, ktbdt_khoasau, madtsau, loaibenhan);
-                    frmMBA_hoi.ShowDialog();
-                    gridControlMBA_TH.DataSource = null;
-                    gridControlMBA_TH_Load();
-                }
-                else // trangth="Đang điều trị"
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_AN_DANG_MO);
-                    frmthongbao.Show();
-                }
-            }
-            else // Không phải là khoa cuối cùng. Thì sẽ duyệt tất cả các mã điều trị để kiểm tra xem mã điều trị cuối cùng đóng hay mở
-            {
-                if (trangth == "Kết thúc")
-                {
-                    // Duyệt tất cả các row trong table để kiểm tra xem khoa cuối bệnh án là kết thúc hay ko?
-                    for (int i = 0; i < gridViewMBA_TH.RowCount; i++)
+                    if (trangth == "Kết thúc")
                     {
-                        if (gridViewMBA_TH.GetRowCellValue(i, "trangthai").ToString() == "Kết thúc" && gridViewMBA_TH.GetRowCellValue(i, "lakhoacuoi").ToString() == "Khoa cuối")
-                        {
-                            dem += 1;
-                        }
-                    }
-                    if (dem == 1)
-                    {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Khoa cuối cùng đang đóng. Yêu cầu mở ở khoa cuối cùng trước!");
-                        frmthongbao.Show();
-                    }
-                    else // else = khoa cuối cùng đang mở thì thực hiện mở bệnh án.
-                    {
-                        // Phát sinh 2 trường hợp mở BA: nếu khoa sau đó chưa tiếp nhận vào BĐT thì xóa BA ở buồng ĐT.
-                        for (int i = 0; i < gridViewMBA_TH.RowCount; i++)
-                        {
-                            if (gridViewMBA_TH.GetRowCellValue(i, "idphong").ToString() == "0" && gridViewMBA_TH.GetRowCellValue(i, "madieutri").ToString() == madtsau)
-                            {
-                                ktbdt_khoasau += 1; //Khoa sau chưa tiếp nhận vào BĐT
-                            }
-                            else
-                            {
-                                ktbdt_khoasau += 0; // Khoa sau đã tiếp nhận vào BĐT
-                            }
-                        }
-                        kt_khoacuoi += 0;
+                        kt_khoacuoi += 1;
                         // Truyền biến sang form frmMoBenhAn_ThucHien_TT
                         frmMoBenhAn_ThucHien_TT frmMBA_hoi = new frmMoBenhAn_ThucHien_TT(mabn, madt, mavp, hosobn, kt_khoacuoi, idkhoa, idphong, tenbn, khoa, phong, ktbdt_khoasau, madtsau, loaibenhan);
                         frmMBA_hoi.ShowDialog();
                         gridControlMBA_TH.DataSource = null;
                         gridControlMBA_TH_Load();
                     }
+                    else // trangth="Đang điều trị"
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_AN_DANG_MO);
+                        frmthongbao.Show();
+                    }
                 }
-                else
+                else // Không phải là khoa cuối cùng. Thì sẽ duyệt tất cả các mã điều trị để kiểm tra xem mã điều trị cuối cùng đóng hay mở
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_AN_DANG_MO);
-                    frmthongbao.Show();
+                    if (trangth == "Kết thúc")
+                    {
+                        // Duyệt tất cả các row trong table để kiểm tra xem khoa cuối bệnh án là kết thúc hay ko?
+                        for (int i = 0; i < gridViewMBA_TH.RowCount; i++)
+                        {
+                            if (gridViewMBA_TH.GetRowCellValue(i, "trangthai").ToString() == "Kết thúc" && gridViewMBA_TH.GetRowCellValue(i, "lakhoacuoi").ToString() == "Khoa cuối")
+                            {
+                                dem += 1;
+                            }
+                        }
+                        if (dem == 1)
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Khoa cuối cùng đang đóng. Yêu cầu mở ở khoa cuối cùng trước!");
+                            frmthongbao.Show();
+                        }
+                        else // else = khoa cuối cùng đang mở thì thực hiện mở bệnh án.
+                        {
+                            // Phát sinh 2 trường hợp mở BA: nếu khoa sau đó chưa tiếp nhận vào BĐT thì xóa BA ở buồng ĐT.
+                            for (int i = 0; i < gridViewMBA_TH.RowCount; i++)
+                            {
+                                if (gridViewMBA_TH.GetRowCellValue(i, "idphong").ToString() == "0" && gridViewMBA_TH.GetRowCellValue(i, "madieutri").ToString() == madtsau)
+                                {
+                                    ktbdt_khoasau += 1; //Khoa sau chưa tiếp nhận vào BĐT
+                                }
+                                else
+                                {
+                                    ktbdt_khoasau += 0; // Khoa sau đã tiếp nhận vào BĐT
+                                }
+                            }
+                            kt_khoacuoi += 0;
+                            // Truyền biến sang form frmMoBenhAn_ThucHien_TT
+                            frmMoBenhAn_ThucHien_TT frmMBA_hoi = new frmMoBenhAn_ThucHien_TT(mabn, madt, mavp, hosobn, kt_khoacuoi, idkhoa, idphong, tenbn, khoa, phong, ktbdt_khoasau, madtsau, loaibenhan);
+                            frmMBA_hoi.ShowDialog();
+                            gridControlMBA_TH.DataSource = null;
+                            gridControlMBA_TH_Load();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_AN_DANG_MO);
+                        frmthongbao.Show();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -384,10 +391,9 @@ namespace MedicalLink.ChucNang
             {
                 moBenhAnItem_Click(null, null);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 
@@ -400,10 +406,9 @@ namespace MedicalLink.ChucNang
                     moBenhAnItem_Click(null, null);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
 

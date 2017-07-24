@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBangKeTongHopHoaDon));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -69,7 +68,7 @@
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(1100, 96);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1100, 94);
             this.panelControlThongTinDV.TabIndex = 3;
             // 
             // groupBoxFile
@@ -85,7 +84,7 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(850, 92);
+            this.groupBoxFile.Size = new System.Drawing.Size(971, 90);
             this.groupBoxFile.TabIndex = 27;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -182,12 +181,11 @@
             this.groupBox1.Controls.Add(this.tbnExport);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(852, 2);
+            this.groupBox1.Location = new System.Drawing.Point(973, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 92);
+            this.groupBox1.Size = new System.Drawing.Size(125, 90);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Export";
             // 
             // btnPrint
             // 
@@ -195,12 +193,12 @@
             this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnPrint.Appearance.Options.UseFont = true;
             this.btnPrint.Appearance.Options.UseForeColor = true;
-            this.btnPrint.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.Image")));
+            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
             this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(15, 34);
+            this.btnPrint.Location = new System.Drawing.Point(12, 15);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 40);
-            this.btnPrint.TabIndex = 9;
+            this.btnPrint.Size = new System.Drawing.Size(100, 30);
+            this.btnPrint.TabIndex = 11;
             this.btnPrint.Text = "In ấn...";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -210,12 +208,12 @@
             this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.tbnExport.Appearance.Options.UseFont = true;
             this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(134, 34);
+            this.tbnExport.Location = new System.Drawing.Point(12, 53);
             this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 40);
-            this.tbnExport.TabIndex = 8;
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
+            this.tbnExport.TabIndex = 10;
             this.tbnExport.Text = "Xuất file";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
@@ -223,9 +221,9 @@
             // 
             this.panelControlData.Controls.Add(this.gridControlDSHoaDon);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlData.Location = new System.Drawing.Point(0, 96);
+            this.panelControlData.Location = new System.Drawing.Point(0, 94);
             this.panelControlData.Name = "panelControlData";
-            this.panelControlData.Size = new System.Drawing.Size(1100, 517);
+            this.panelControlData.Size = new System.Drawing.Size(1100, 519);
             this.panelControlData.TabIndex = 4;
             // 
             // gridControlDSHoaDon
@@ -234,7 +232,7 @@
             this.gridControlDSHoaDon.Location = new System.Drawing.Point(2, 2);
             this.gridControlDSHoaDon.MainView = this.gridViewDSHoaDon;
             this.gridControlDSHoaDon.Name = "gridControlDSHoaDon";
-            this.gridControlDSHoaDon.Size = new System.Drawing.Size(1096, 513);
+            this.gridControlDSHoaDon.Size = new System.Drawing.Size(1096, 515);
             this.gridControlDSHoaDon.TabIndex = 0;
             this.gridControlDSHoaDon.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDSHoaDon});
@@ -441,8 +439,6 @@
 
         private DevExpress.XtraEditors.PanelControl panelControlThongTinDV;
         private DevExpress.XtraEditors.PanelControl panelControlData;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.SimpleButton tbnExport;
         private System.Windows.Forms.GroupBox groupBoxFile;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ComboBoxEdit cboLoaiSo;
@@ -451,7 +447,6 @@
         private System.Windows.Forms.DateTimePicker dateDenNgay;
         private System.Windows.Forms.DateTimePicker dateTuNgay;
         private DevExpress.XtraEditors.SimpleButton btnTimKiem;
-        private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraGrid.GridControl gridControlDSHoaDon;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewDSHoaDon;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -461,5 +456,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraEditors.SimpleButton tbnExport;
     }
 }

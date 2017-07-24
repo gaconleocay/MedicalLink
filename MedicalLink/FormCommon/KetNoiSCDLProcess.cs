@@ -40,6 +40,8 @@ namespace MedicalLink.FormCommon
                 // result = KetNoiSCDLProcess.CreateView_ihs_servicespttt();
                 result = KetNoiSCDLProcess.CreateTableNhomPersonnel();
                 result = KetNoiSCDLProcess.CreateTableIhsServicespttt();
+
+                //result = KetNoiSCDLProcess.CapNhat_OtherList();
             }
             catch (Exception ex)
             {
@@ -421,6 +423,44 @@ namespace MedicalLink.FormCommon
             }
             return result;
         }
+        #endregion
+
+        #region CapNhatDuLieu
+        private static bool CapNhat_OtherList()
+        {
+            bool result = false;
+            try
+            {
+                string sql_insertOtherTypeList = "";
+                string sql_insertOtherList = "";
+
+                string sqlAddColume = "Alter table tools_othertypelist add tools_othertypelistnote text; Alter table tools_otherlist add tools_otherlistnote text;";
+                try
+                {
+                    condb.ExecuteNonQuery_MeL(sqlAddColume);
+                }
+                catch (Exception)
+                {
+                    //continue;
+                }
+                string sql_dataOtherTypeList = "select * from tools_othertypelist;";
+                string sql_dataOtherList = "select * from tools_otherlist;";
+                DataTable dataOtherTypeList = condb.GetDataTable_MeL(sql_dataOtherTypeList);
+                DataTable dataOtherList = condb.GetDataTable_MeL(sql_dataOtherList);
+
+                List<ClassCommon.ToolsOtherListDTO> lstOtherTypeList = Utilities.Util_DataTable.DataTableToList<ClassCommon.ToolsOtherListDTO>(dataOtherTypeList);
+                List<ClassCommon.ToolsOtherListDTO> lstOtherList = Utilities.Util_DataTable.DataTableToList<ClassCommon.ToolsOtherListDTO>(dataOtherList);
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi CapNhat_OtherList" + ex.ToString());
+            }
+            return result;
+        }
+
         #endregion
     }
 }

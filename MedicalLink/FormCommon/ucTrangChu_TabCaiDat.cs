@@ -157,6 +157,20 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void navBarItemDMDichVu_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucDanhMucDichVu frmResult = new ucDanhMucDichVu();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
     }
 }

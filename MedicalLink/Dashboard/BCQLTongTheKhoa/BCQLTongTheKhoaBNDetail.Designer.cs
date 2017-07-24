@@ -57,17 +57,22 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
             this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            this.groupBoxAction.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            this.groupBoxAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControlBNDetail
@@ -675,11 +680,71 @@
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.groupBoxAction);
+            this.panelControl1.Controls.Add(this.groupBox1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1234, 53);
             this.panelControl1.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox1.Location = new System.Drawing.Point(778, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(454, 49);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Chú thích";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Red;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(321, 21);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 16);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "BN ra viện >10 ngày";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Salmon;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(163, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 16);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "BN ra viện từ 6-10 ngày";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.PeachPuff;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(12, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 16);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "BN ra viện từ 1-5 ngày";
+            // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.gridControlBNDetail);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 53);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(1234, 609);
+            this.panelControl2.TabIndex = 2;
             // 
             // groupBoxAction
             // 
@@ -689,16 +754,15 @@
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxAction.Location = new System.Drawing.Point(2, 2);
             this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(1230, 49);
-            this.groupBoxAction.TabIndex = 10;
+            this.groupBoxAction.Size = new System.Drawing.Size(776, 49);
+            this.groupBoxAction.TabIndex = 12;
             this.groupBoxAction.TabStop = false;
-            this.groupBoxAction.Text = "Action";
             // 
             // lblTenThongTinChiTiet
             // 
             this.lblTenThongTinChiTiet.AutoSize = true;
             this.lblTenThongTinChiTiet.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(236, 18);
+            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(160, 19);
             this.lblTenThongTinChiTiet.Name = "lblTenThongTinChiTiet";
             this.lblTenThongTinChiTiet.Size = new System.Drawing.Size(0, 18);
             this.lblTenThongTinChiTiet.TabIndex = 9;
@@ -711,21 +775,11 @@
             this.tbnExport.Appearance.Options.UseForeColor = true;
             this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(65, 16);
+            this.tbnExport.Location = new System.Drawing.Point(14, 15);
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(110, 25);
             this.tbnExport.TabIndex = 8;
             this.tbnExport.Text = "Xuất file";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.gridControlBNDetail);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 53);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1234, 609);
-            this.panelControl2.TabIndex = 2;
             // 
             // BCQLTongTheKhoaBNDetail
             // 
@@ -743,10 +797,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            this.groupBoxAction.ResumeLayout(false);
-            this.groupBoxAction.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
+            this.groupBoxAction.ResumeLayout(false);
+            this.groupBoxAction.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -778,12 +834,16 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl2;
-        private System.Windows.Forms.GroupBox groupBoxAction;
-        private DevExpress.XtraEditors.SimpleButton tbnExport;
-        private System.Windows.Forms.Label lblTenThongTinChiTiet;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBoxAction;
+        private System.Windows.Forms.Label lblTenThongTinChiTiet;
+        private DevExpress.XtraEditors.SimpleButton tbnExport;
     }
 }

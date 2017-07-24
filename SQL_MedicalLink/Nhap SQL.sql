@@ -735,26 +735,69 @@ G303TH
 G303YC
 G350
 
+===========
+select ot.tools_othertypelistid, ot.tools_othertypelistcode, ot.tools_othertypelistname, ot.tools_othertypeliststatus, ot.tools_othertypelistnote, o.tools_otherlistid, o.tools_otherlistcode, o.tools_otherlistname, o.tools_otherlistvalue, o.tools_otherliststatus from tools_othertypelist ot inner join tools_otherlist o on o.tools_othertypelistid=ot.tools_othertypelistid;
 
-vp.vienphiid,
-vp.patientid
-hsba.patientname
-namsinh
-gioitinh
-bhytcode
-departmentgroupname
-departmentname
-servicepricedate
-servicepricecode
-servicepricename
-servicepricegroupcode
-loaidoituong
-soluong
-servicepricemoney
-thanhtien
+CREATE TABLE IF NOT EXISTS tools_serviceref
+(
+  toolsservicerefid serial NOT NULL,
+  his_servicepricerefid integer,
+  servicegrouptype integer,
+  servicepricetype integer,
+  bhyt_groupcode text,
+  servicepricegroupcode text,
+  servicepricecode text,
+  servicepricename text,
+  servicepricenamenhandan text,
+  servicepricenamebhyt text,
+  servicepricenamenuocngoai text,
+  servicepriceunit text,
+  servicepricefee text,
+  servicepricefeenhandan text,
+  servicepricefeebhyt text,
+  servicepricefeenuocngoai text,
+  servicelock integer DEFAULT 0,
+  servicepricecodeuser text,
+  servicepricesttuser text,
+  pttt_hangid integer DEFAULT 0,
+  pttt_loaiid integer DEFAULT 0,
+  tools_otherlistid integer,
+  CONSTRAINT tools_serviceref_pkey PRIMARY KEY (toolsservicerefid)
+)
+  CREATE INDEX tools_serviceref_serrefid_idx
+  ON tools_serviceref
+  USING btree
+  (his_servicepricerefid);  
+   CREATE INDEX tools_serviceref_servicepricegroupcode_idx
+  ON tools_serviceref
+  USING btree
+  (servicepricegroupcode); 
+  CREATE INDEX tools_serviceref_serrecode_idx
+  ON tools_serviceref
+  USING btree
+  (servicepricecode);  
+  CREATE INDEX tools_serviceref_bhytcode_idx
+  ON tools_serviceref
+  USING btree
+  (bhyt_groupcode);  
+  CREATE INDEX tools_serviceref_tools_otherlistid_idx
+  ON tools_serviceref
+  USING btree
+  (tools_otherlistid);    
 
 
-
+  select se.servicecomment, 
+		mbp.usertrakq, 
+		mbp.userthuchien, 
+		mbp.usertraketqua,
+		nv.usercode,
+		nv.username 
+		
+  from service se
+	inner join maubenhpham mbp on mbp.maubenhphamid=se.maubenhphamid and maubenhphamgrouptype=0
+	left join tools_tblnhanvien nv on nv.userhisid=mbp.userthuchien
+  where se.servicecomment<>'' 
+  order by mbp.maubenhphamid desc limit 100
 
 
 

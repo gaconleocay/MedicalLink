@@ -39,6 +39,8 @@ namespace MedicalLink.ClassCommon
         public double money_vanchuyen { get; set; }
         public double money_khac { get; set; }
         public double money_tongcong { get; set; }
+        public double money_tong_bh { get; set; }
+        public double money_tong_vp { get; set; }
         public double money_mienphi { get; set; }
         public double money_bnthanhtoan { get; set; }
         public double money_bhytthanhtoan { get; set; }

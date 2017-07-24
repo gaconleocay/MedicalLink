@@ -1,4 +1,5 @@
---bao cao so chi tiet benh nhan
+--bao cao so chi tiet benh nhan ngay 23/7
+--chinh sua % BN thanh toan va BHYT thahn toan
 
 
 SELECT (rank() OVER (PARTITION BY VMS.khoanoitrudautien ORDER BY VMS.vienphidate)) as stt,
@@ -11,11 +12,11 @@ SELECT (rank() OVER (PARTITION BY VMS.khoanoitrudautien ORDER BY VMS.vienphidate
 		BH.bhytcode,
 		BH.macskcbbd,
 		VMS.vienphidate,
-		TO_CHAR(VMS.vienphidate_ravien, 'yyyy-MM-dd HH:mm:ss') as vienphidate_ravien,
+		TO_CHAR(VMS.vienphidate_ravien,'yyyy-MM-dd HH:mm:ss') as vienphidate_ravien,
 		VMS.chandoanravien_code,
 		VMS.vienphiid,
 		VMS.duyet_sothutuduyet_vp,
-		TO_CHAR(VMS.duyet_ngayduyet_vp, 'yyyy-MM-dd HH:mm:ss') as duyet_ngayduyet_vp,
+		TO_CHAR(VMS.duyet_ngayduyet_vp,'yyyy-MM-dd HH:mm:ss') as duyet_ngayduyet_vp,
 		VMS.bhyt_tuyenbenhvien,
 		BH.bhyt_loaiid,
 		VMS.loaivienphiid,
@@ -31,7 +32,9 @@ SELECT (rank() OVER (PARTITION BY VMS.khoanoitrudautien ORDER BY VMS.vienphidate
 		VMS.money_giuong,
 		VMS.money_vanchuyen,
 		VMS.money_khac,
-		(VMS.money_xetnghiem + VMS.money_cdhatdcn + VMS.money_thuoc + VMS.money_mau + VMS.money_pttt + VMS.money_vattu + VMS.money_dvktc + VMS.money_khambenh + VMS.money_giuong + VMS.money_vanchuyen + VMS.money_khac) as money_tongcong,
+		(VMS.money_tong_bh+VMS.money_tong_vp) as money_tongcong,
+		VMS.money_tong_bh,
+		VMS.money_tong_vp,
 		(case when VMS.doituongbenhnhanid=5 then (VMS.money_xetnghiem + VMS.money_cdhatdcn + VMS.money_thuoc + VMS.money_mau + VMS.money_pttt + VMS.money_vattu + VMS.money_dvktc + VMS.money_khambenh + VMS.money_giuong + VMS.money_vanchuyen + VMS.money_khac) else 0 end) as money_mienphi,
 		0 as money_bnthanhtoan,
 		0 as money_bhytthanhtoan,
@@ -56,38 +59,38 @@ FROM 	(select vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatu
 				(money_giuong_bh + money_giuong_vp) as money_giuong,
 				(money_vanchuyen_bh + money_vanchuyen_vp) as money_vanchuyen,
 				(money_khac_bh + money_khac_vp + money_phuthu_bh + money_phuthu_vp) as money_khac,
-				money_haophi
+				money_haophi,
+				(money_khambenh_bh+money_xetnghiem_bh+money_cdha_bh+money_tdcn_bh+money_thuoc_bh+money_mau_bh+money_pttt_bh+money_vattu_bh+money_dvktc_bh+money_giuong_bh+money_vanchuyen_bh+money_khac_bh+money_phuthu_bh) as money_tong_bh,
+				(money_khambenh_vp+money_xetnghiem_vp+money_cdha_vp+money_tdcn_vp+money_thuoc_vp+money_mau_vp+money_pttt_vp+money_vattu_vp+money_dvktc_vp+money_giuong_vp+money_vanchuyen_vp+money_khac_vp+money_phuthu_vp) as money_tong_vp
 			from vienphi_money_sobn 
-			where vienphidate between '2017-01-01 00:00:00' and '2017-01-04 00:00:00' ) VMS
+			where " + tieuchi_date + trangthaibenhan + " ) VMS
 		LEFT JOIN 
 			(select b.vienphiid,
 				STRING_AGG(case when b.loaiphieuthuid=0
 							then (b.billgroupcode || '/' || b.billcode || '/' || round(cast(b.datra as numeric),0))
 						 end, '; ') as hoadon_thutien, 
-				sum(case when b.loaiphieuthuid=0 and b.billdate<'2017-01-01 00:00:00'
+				sum(case when b.loaiphieuthuid=0 and b.billdate<'" + tungay + "'
 							then b.datra
 						else 0 end) as thutien_kytruoc,
-				sum(case when b.loaiphieuthuid=2 and b.billdate<'2017-01-01 00:00:00'
+				sum(case when b.loaiphieuthuid=2 and b.billdate<'" + tungay + "'
 							then b.datra
 						else 0 end) as tamung_kytruoc,
-				sum(case when b.loaiphieuthuid=2 and b.billdate between '2017-01-01 00:00:00' and '2017-01-04 00:00:00'
+				sum(case when b.loaiphieuthuid=2 and b.billdate between '" + tungay + "' and '" + denngay + "'
 							then b.datra
 						else 0 end) as tamung_trongky,
-				sum(case when b.loaiphieuthuid=0 and b.billdate between '2017-01-01 00:00:00' and '2017-01-04 00:00:00'
+				sum(case when b.loaiphieuthuid=0 and b.billdate between '" + tungay + "' and '" + denngay + "'
 							then b.datra
 						else 0 end) as thutien_trongky,
-				sum(case when b.loaiphieuthuid=1 and b.billdate between '2017-01-01 00:00:00' and '2017-01-04 00:00:00'
+				sum(case when b.loaiphieuthuid=1 and b.billdate between '" + tungay + "' and '" + denngay + "'
 							then b.datra
 						else 0 end) as hoanung_trongky		
 			from bill b
 			where b.dahuyphieu=0 
-				--and billdate between '2017-01-01 00:00:00' and '2017-01-04 00:00:00'
 			group by b.vienphiid) BIL on BIL.vienphiid=VMS.vienphiid
 		LEFT JOIN 	
 			(select hosobenhanid,patientcode,patientname,to_char(birthday, 'yyyy') as namsinh,gioitinhname from hosobenhan) HSBA on HSBA.hosobenhanid=VMS.hosobenhanid
 		INNER JOIN (select bhytid,bhytcode,macskcbbd,bhyt_loaiid,du5nam6thangluongcoban   from bhyt) BH on BH.bhytid=VMS.bhytid	
-		INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) DEGP on DEGP.departmentgroupid=VMS.khoanoitrudautien
---WHERE 			
+		INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) DEGP on DEGP.departmentgroupid=VMS.khoanoitrudautien;
 
 		
 		

@@ -260,6 +260,12 @@
     <Compile Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.Designer.cs">
       <DependentUpon>ucBCBNSDDVKetHop.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCBNThieuTienTamUng\ucBNThieuTienTamUng.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCBNThieuTienTamUng\ucBNThieuTienTamUng.Designer.cs">
+      <DependentUpon>ucBNThieuTienTamUng.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -398,6 +404,8 @@
     <Compile Include="ClassCommon\classUserMedicineNhomThuoc.cs" />
     <Compile Include="ClassCommon\classUserMedicinePhongLuu.cs" />
     <Compile Include="ClassCommon\classUserMedicineStore.cs" />
+    <Compile Include="ClassCommon\BNThieuTienTamUngDTO.cs" />
+    <Compile Include="ClassCommon\DoanhThuTheoNhomDichVuDTO.cs" />
     <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
     <Compile Include="Base\UtilsTable.cs" />
@@ -536,6 +544,7 @@
     <Compile Include="ClassCommon\reportExcelDTO.cs" />
     <Compile Include="ClassCommon\classBenhVienDTO.cs" />
     <Compile Include="ClassCommon\ToolsOtherListDTO.cs" />
+    <Compile Include="ClassCommon\ToolsServicerefDTO.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -693,6 +702,12 @@
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
     <Compile Include="DatabaseProcess\TinhMuaHuongBHYT.cs" />
+    <Compile Include="FormCommon\TabCaiDat\ucDanhMucDichVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucDanhMucDichVu.Designer.cs">
+      <DependentUpon>ucDanhMucDichVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\TabCaiDat\ucDanhSachBenhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -924,6 +939,7 @@
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Common.Excel\ExcelExport.cs" />
+    <Compile Include="Utilities\Common.String\Convert.cs" />
     <Compile Include="Utilities\GridControl\Util_GridcontrolConvert.cs" />
     <Compile Include="Utilities\GUIGridView\Util_GUIGridView.cs" />
     <Compile Include="Utilities\PrintPreview\PrintPreviewDev.cs">
@@ -949,6 +965,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.resx">
       <DependentUpon>ucBCBNSDDVKetHop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCBNThieuTienTamUng\ucBNThieuTienTamUng.resx">
+      <DependentUpon>ucBNThieuTienTamUng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
@@ -1121,6 +1140,9 @@
     <EmbeddedResource Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.resx">
       <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhMucDichVu.resx">
+      <DependentUpon>ucDanhMucDichVu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhSachBenhVien.resx">
       <DependentUpon>ucDanhSachBenhVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -1281,6 +1303,9 @@
     <None Include="Images\search-3-24.png" />
     <None Include="Images\printer-16.png" />
     <None Include="Images\check-mark-16.png" />
+    <None Include="Images\undo-2-16.png" />
+    <None Include="Images\x-mark-16.png" />
+    <None Include="Images\edit-5-16.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -1433,6 +1458,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\So_XetNghiem_SinhHoaThuongQuy.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BenhNhanThieuTienTamUng.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

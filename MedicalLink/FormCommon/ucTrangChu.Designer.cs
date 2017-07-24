@@ -68,13 +68,13 @@
             this.navBarItemListOption = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDMDungChung = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemDMBenhVien = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarItemDMDichVu = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarItemMaHoaGiaiMa = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemNhatKySuKien = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItemQLMayTram = new DevExpress.XtraNavBar.NavBarItem();
             this.panelCaiDatChiTiet = new DevExpress.XtraEditors.PanelControl();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
-            this.navBarItemDMDichVu = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlHome)).BeginInit();
             this.xtraTabControlHome.SuspendLayout();
             this.xtraTabTTCoBan.SuspendLayout();
@@ -110,10 +110,10 @@
             // 
             // xtraTabTTCoBan
             // 
-            this.xtraTabTTCoBan.Appearance.Header.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.xtraTabTTCoBan.Appearance.Header.ForeColor = System.Drawing.Color.Navy;
-            this.xtraTabTTCoBan.Appearance.Header.Options.UseFont = true;
             this.xtraTabTTCoBan.Appearance.Header.Options.UseForeColor = true;
+            this.xtraTabTTCoBan.Appearance.HeaderActive.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabTTCoBan.Appearance.HeaderActive.Options.UseFont = true;
             this.xtraTabTTCoBan.Appearance.PageClient.BackColor = System.Drawing.Color.DarkRed;
             this.xtraTabTTCoBan.Appearance.PageClient.Options.UseBackColor = true;
             this.xtraTabTTCoBan.Controls.Add(this.panel2);
@@ -399,6 +399,8 @@
             // 
             // xtraTabCaiDat
             // 
+            this.xtraTabCaiDat.Appearance.HeaderActive.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xtraTabCaiDat.Appearance.HeaderActive.Options.UseFont = true;
             this.xtraTabCaiDat.Controls.Add(this.splitContainerControlCaiDat);
             this.xtraTabCaiDat.Image = ((System.Drawing.Image)(resources.GetObject("xtraTabCaiDat.Image")));
             this.xtraTabCaiDat.Name = "xtraTabCaiDat";
@@ -590,6 +592,20 @@
             this.navBarItemDMBenhVien.Name = "navBarItemDMBenhVien";
             this.navBarItemDMBenhVien.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDMBenhVien_LinkClicked);
             // 
+            // navBarItemDMDichVu
+            // 
+            this.navBarItemDMDichVu.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.navBarItemDMDichVu.Appearance.Options.UseFont = true;
+            this.navBarItemDMDichVu.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarItemDMDichVu.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItemDMDichVu.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.navBarItemDMDichVu.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItemDMDichVu.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarItemDMDichVu.AppearancePressed.Options.UseFont = true;
+            this.navBarItemDMDichVu.Caption = "Danh mục dịch vụ";
+            this.navBarItemDMDichVu.Name = "navBarItemDMDichVu";
+            this.navBarItemDMDichVu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDMDichVu_LinkClicked);
+            // 
             // navBarGroup3
             // 
             this.navBarGroup3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
@@ -664,20 +680,6 @@
             // 
             this.timerThongBao.Interval = 2000;
             this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
-            // 
-            // navBarItemDMDichVu
-            // 
-            this.navBarItemDMDichVu.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.navBarItemDMDichVu.Appearance.Options.UseFont = true;
-            this.navBarItemDMDichVu.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.navBarItemDMDichVu.AppearanceDisabled.Options.UseFont = true;
-            this.navBarItemDMDichVu.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
-            this.navBarItemDMDichVu.AppearanceHotTracked.Options.UseFont = true;
-            this.navBarItemDMDichVu.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.navBarItemDMDichVu.AppearancePressed.Options.UseFont = true;
-            this.navBarItemDMDichVu.Caption = "Danh mục dịch vụ";
-            this.navBarItemDMDichVu.Name = "navBarItemDMDichVu";
-            this.navBarItemDMDichVu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemDMDichVu_LinkClicked);
             // 
             // ucTrangChu
             // 

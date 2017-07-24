@@ -35,6 +35,7 @@ namespace MedicalLink.ClassCommon
         public int bhyt_loaiid { get; set; }
         public int loaivienphiid { get; set; }
         public int du5nam6thangluongcoban { get; set; }
+        public int thangluongcoban { get; set; }
         public int isgroup { get; set; }
     }
 }

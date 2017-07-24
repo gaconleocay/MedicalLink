@@ -1,8 +1,9 @@
---Bao cao So chi tiet BN - bv Thanh Hoa ngay 7/7/2017
+--Bao cao So chi tiet BN - bv Thanh Hoa ngay 25/7/2017
 --------------- Dua vao View v1.9 ngay 19/6/2017 tach giuong Yeu cau-bv VietTiep
 -- DROP VIEW vienphi_money_sobn;
+
 CREATE OR REPLACE VIEW vienphi_money_sobn AS 
-SELECT vp.vienphiid, vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, vp.vienphistatus_bh,vp.duyet_ngayduyet_bh,vp.bhyt_tuyenbenhvien,vp.chandoanravien_code,
+SELECT vp.vienphiid, vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, vp.vienphistatus_bh,vp.duyet_ngayduyet_bh,vp.bhyt_tuyenbenhvien,vp.chandoanravien_code,vp.bhyt_thangluongtoithieu,
 vp.duyet_sothutuduyet_vp,
 (case when loaivienphiid=0 
 		then (select departmentgroupid from medicalrecord where hosobenhanid=vp.hosobenhanid and loaibenhanid=1 order by medicalrecordid limit 1)
@@ -98,7 +99,7 @@ sum(case when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '101VTtrongDMTT', '
 sum(case when ser.loaidoituong in (5,7) and ser.servicepriceid_master=0 then ser.servicepricemoney * ser.soluong else 0 end) as money_haophi
 	 
 FROM (select vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatus,departmentgroupid,departmentid,doituongbenhnhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet,vienphistatus_vp,duyet_ngayduyet_vp,vienphistatus_bh,
-duyet_ngayduyet_bh,bhyt_tuyenbenhvien,chandoanravien_code,duyet_sothutuduyet_vp 
+duyet_ngayduyet_bh,bhyt_tuyenbenhvien,chandoanravien_code,duyet_sothutuduyet_vp,bhyt_thangluongtoithieu
 		from vienphi 
 		where vienphidate >'2016-01-01 00:00:00' --and vienphidate<'2017-01-04 23:59:59'
 		) vp 
@@ -108,7 +109,7 @@ duyet_ngayduyet_bh,bhyt_tuyenbenhvien,chandoanravien_code,duyet_sothutuduyet_vp
 	from serviceprice where thuockhobanle=0) ser on vp.vienphiid=ser.vienphiid 
 --WHERE  
 GROUP BY vp.vienphiid,vp.patientid,vp.bhytid,vp.hosobenhanid,vp.loaivienphiid,vp.vienphistatus,vp.departmentgroupid,vp.departmentid,vp.doituongbenhnhanid,vp.vienphidate,vp.vienphidate_ravien,vp.duyet_ngayduyet,vp.vienphistatus_vp, 
-vp.duyet_ngayduyet_vp,vienphistatus_bh,duyet_ngayduyet_bh,bhyt_tuyenbenhvien,vp.chandoanravien_code,vp.duyet_sothutuduyet_vp
+vp.duyet_ngayduyet_vp,vienphistatus_bh,duyet_ngayduyet_bh,bhyt_tuyenbenhvien,vp.chandoanravien_code,vp.duyet_sothutuduyet_vp,vp.bhyt_thangluongtoithieu
 ORDER BY vp.vienphiid DESC;
 
 

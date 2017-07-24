@@ -159,7 +159,7 @@ namespace MedicalLink.BaoCao
                     this.lstDataSoChiTietBN = Util_DataTable.DataTableToList<ClassCommon.BCSoChiTietBenhNhan>(dataBaoCaoDSSoBenhNhan);
                     foreach (var item_data in this.lstDataSoChiTietBN)
                     {
-                        item_data.tylenop = 100 - TinhMuaHuongBHYT.TinhMucHuongTheoTheBHYT(item_data.bhytcode, item_data.bhyt_loaiid, item_data.loaivienphiid, item_data.du5nam6thangluongcoban, item_data.bhyt_tuyenbenhvien);
+                        item_data.tylenop = 100 - TinhMucHuongBHYT.TinhMucHuongTheoTheBHYT(item_data.bhytcode, item_data.bhyt_loaiid, item_data.loaivienphiid, item_data.du5nam6thangluongcoban, item_data.bhyt_tuyenbenhvien);
                         item_data.money_bnthanhtoan = ((item_data.money_tong_bh * item_data.tylenop) / 100) + item_data.money_tong_vp;
                         item_data.money_bhytthanhtoan = item_data.money_tongcong - item_data.money_bnthanhtoan;
                         if (item_data.vienphidate_ravien == "0001-01-01 12:01:00")

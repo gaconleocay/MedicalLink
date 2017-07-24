@@ -59,9 +59,9 @@
             this.bandedGridColumn_tien_bhyttt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn_tien_bntt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn_tien_tamung = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn_money_datra = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn_tien_thieu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.departmentgroupid = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -316,7 +316,7 @@
             this.bandedGridColumn_tien_bhyttt,
             this.bandedGridColumn_tien_bntt,
             this.bandedGridColumn_tien_tamung,
-            this.gridColumn1,
+            this.gridColumn_money_datra,
             this.bandedGridColumn_tien_thieu,
             this.departmentgroupid});
             this.gridViewDataBaoCao.GridControl = this.gridControlDataBaoCao;
@@ -327,6 +327,7 @@
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_bhyttt", this.bandedGridColumn_tien_bhyttt, "{0:#,##0}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_bntt", this.bandedGridColumn_tien_bntt, "{0:#,##0}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_tamung", this.bandedGridColumn_tien_tamung, "{0:#,##0}"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_datra", this.gridColumn_money_datra, "{0:#,##0}"),
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_thieu", this.bandedGridColumn_tien_thieu, "{0:#,##0}")});
             this.gridViewDataBaoCao.IndicatorWidth = 50;
             this.gridViewDataBaoCao.Name = "gridViewDataBaoCao";
@@ -649,6 +650,28 @@
             this.bandedGridColumn_tien_tamung.VisibleIndex = 13;
             this.bandedGridColumn_tien_tamung.Width = 145;
             // 
+            // gridColumn_money_datra
+            // 
+            this.gridColumn_money_datra.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_money_datra.AppearanceCell.Options.UseFont = true;
+            this.gridColumn_money_datra.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn_money_datra.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn_money_datra.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn_money_datra.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn_money_datra.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn_money_datra.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn_money_datra.Caption = "Đã trả";
+            this.gridColumn_money_datra.DisplayFormat.FormatString = "#,##0";
+            this.gridColumn_money_datra.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn_money_datra.FieldName = "money_datra";
+            this.gridColumn_money_datra.Name = "gridColumn_money_datra";
+            this.gridColumn_money_datra.OptionsColumn.AllowEdit = false;
+            this.gridColumn_money_datra.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_datra", "{0:#,##0}")});
+            this.gridColumn_money_datra.Visible = true;
+            this.gridColumn_money_datra.VisibleIndex = 14;
+            this.gridColumn_money_datra.Width = 145;
+            // 
             // bandedGridColumn_tien_thieu
             // 
             this.bandedGridColumn_tien_thieu.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -680,28 +703,6 @@
             this.departmentgroupid.Caption = "departmentgroupid";
             this.departmentgroupid.FieldName = "departmentgroupid";
             this.departmentgroupid.Name = "departmentgroupid";
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn1.AppearanceCell.Options.UseFont = true;
-            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn1.Caption = "Đã trả";
-            this.gridColumn1.DisplayFormat.FormatString = "#,##0";
-            this.gridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.gridColumn1.FieldName = "money_datra";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_datra", "{0:#,##0}")});
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 14;
-            this.gridColumn1.Width = 145;
             // 
             // ucBNThieuTienTamUng
             // 
@@ -761,6 +762,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn_tien_thieu;
         private DevExpress.XtraGrid.Columns.GridColumn stt;
         private DevExpress.XtraGrid.Columns.GridColumn departmentgroupid;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn_money_datra;
     }
 }

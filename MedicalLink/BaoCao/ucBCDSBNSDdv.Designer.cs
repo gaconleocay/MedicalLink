@@ -74,6 +74,7 @@
             this.benhchinh_name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkTheoNhomDV = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -87,6 +88,7 @@
             this.panelControlDV_DT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSDV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSDV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTheoNhomDV.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlTKDV_TK
@@ -104,9 +106,9 @@
             this.groupBoxXuatBC.Controls.Add(this.tbnExport);
             this.groupBoxXuatBC.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxXuatBC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxXuatBC.Location = new System.Drawing.Point(1068, 2);
+            this.groupBoxXuatBC.Location = new System.Drawing.Point(1080, 2);
             this.groupBoxXuatBC.Name = "groupBoxXuatBC";
-            this.groupBoxXuatBC.Size = new System.Drawing.Size(130, 111);
+            this.groupBoxXuatBC.Size = new System.Drawing.Size(118, 111);
             this.groupBoxXuatBC.TabIndex = 14;
             this.groupBoxXuatBC.TabStop = false;
             this.groupBoxXuatBC.Text = "Xuất báo cáo";
@@ -119,7 +121,7 @@
             this.tbnExport.Appearance.Options.UseForeColor = true;
             this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(13, 37);
+            this.tbnExport.Location = new System.Drawing.Point(9, 37);
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(100, 40);
             this.tbnExport.TabIndex = 7;
@@ -128,6 +130,7 @@
             // 
             // groupBoxBNBK_TK
             // 
+            this.groupBoxBNBK_TK.Controls.Add(this.chkTheoNhomDV);
             this.groupBoxBNBK_TK.Controls.Add(this.labelControl1);
             this.groupBoxBNBK_TK.Controls.Add(this.labelControl2);
             this.groupBoxBNBK_TK.Controls.Add(this.dateDenNgay);
@@ -152,7 +155,7 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(361, 59);
+            this.labelControl1.Location = new System.Drawing.Point(434, 59);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(54, 16);
             this.labelControl1.TabIndex = 17;
@@ -161,7 +164,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(362, 13);
+            this.labelControl2.Location = new System.Drawing.Point(435, 13);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(47, 16);
             this.labelControl2.TabIndex = 16;
@@ -173,7 +176,7 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(360, 76);
+            this.dateDenNgay.Location = new System.Drawing.Point(433, 76);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
@@ -186,7 +189,7 @@
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(360, 29);
+            this.dateTuNgay.Location = new System.Drawing.Point(433, 29);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
@@ -196,7 +199,7 @@
             // chkVP
             // 
             this.chkVP.EditValue = true;
-            this.chkVP.Location = new System.Drawing.Point(733, 79);
+            this.chkVP.Location = new System.Drawing.Point(803, 79);
             this.chkVP.Name = "chkVP";
             this.chkVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkVP.Properties.Appearance.Options.UseFont = true;
@@ -207,7 +210,7 @@
             // chkBHYT
             // 
             this.chkBHYT.EditValue = true;
-            this.chkBHYT.Location = new System.Drawing.Point(733, 32);
+            this.chkBHYT.Location = new System.Drawing.Point(803, 32);
             this.chkBHYT.Name = "chkBHYT";
             this.chkBHYT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkBHYT.Properties.Appearance.Options.UseFont = true;
@@ -218,7 +221,7 @@
             // cbbLoaiBA
             // 
             this.cbbLoaiBA.EditValue = "Ngoại trú+Nội trú";
-            this.cbbLoaiBA.Location = new System.Drawing.Point(545, 77);
+            this.cbbLoaiBA.Location = new System.Drawing.Point(618, 77);
             this.cbbLoaiBA.Name = "cbbLoaiBA";
             this.cbbLoaiBA.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbLoaiBA.Properties.Appearance.Options.UseFont = true;
@@ -247,7 +250,7 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(546, 59);
+            this.labelControl4.Location = new System.Drawing.Point(619, 59);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(73, 16);
             this.labelControl4.TabIndex = 11;
@@ -260,7 +263,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(878, 37);
+            this.btnTimKiem.Location = new System.Drawing.Point(948, 37);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 2;
@@ -270,7 +273,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(548, 14);
+            this.labelControl3.Location = new System.Drawing.Point(621, 14);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(46, 16);
             this.labelControl3.TabIndex = 10;
@@ -279,7 +282,7 @@
             // cbbTieuChi
             // 
             this.cbbTieuChi.EditValue = "Theo ngày chỉ định";
-            this.cbbTieuChi.Location = new System.Drawing.Point(546, 31);
+            this.cbbTieuChi.Location = new System.Drawing.Point(619, 31);
             this.cbbTieuChi.Name = "cbbTieuChi";
             this.cbbTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTieuChi.Properties.Appearance.Options.UseFont = true;
@@ -839,6 +842,19 @@
             this.benhkemtheo_name.VisibleIndex = 25;
             this.benhkemtheo_name.Width = 145;
             // 
+            // chkTheoNhomDV
+            // 
+            this.chkTheoNhomDV.Location = new System.Drawing.Point(350, 37);
+            this.chkTheoNhomDV.Name = "chkTheoNhomDV";
+            this.chkTheoNhomDV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTheoNhomDV.Properties.Appearance.Options.UseFont = true;
+            this.chkTheoNhomDV.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkTheoNhomDV.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkTheoNhomDV.Properties.Caption = "Theo nhóm dịch vụ";
+            this.chkTheoNhomDV.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkTheoNhomDV.Size = new System.Drawing.Size(62, 52);
+            this.chkTheoNhomDV.TabIndex = 18;
+            // 
             // ucBCDSBNSDdv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -862,6 +878,7 @@
             this.panelControlDV_DT.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSDV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSDV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTheoNhomDV.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -913,5 +930,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraEditors.CheckEdit chkTheoNhomDV;
     }
 }

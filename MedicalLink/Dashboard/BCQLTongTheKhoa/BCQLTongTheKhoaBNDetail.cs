@@ -204,7 +204,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                         databaocao.du5nam6thangluongcoban = Utilities.Util_TypeConvertParse.ToInt16(DataBaoCao[i]["du5nam6thangluongcoban"].ToString());
                         databaocao.bhyt_tuyenbenhvien = Utilities.Util_TypeConvertParse.ToInt16(DataBaoCao[i]["bhyt_tuyenbenhvien"].ToString());
 
-                        databaocao.muchuong = DatabaseProcess.TinhMuaHuongBHYT.TinhMucHuongTheoTheBHYT(databaocao.bhytcode, databaocao.bhyt_loaiid, databaocao.loaivienphiid, databaocao.du5nam6thangluongcoban, databaocao.bhyt_tuyenbenhvien);
+                        databaocao.muchuong = DatabaseProcess.TinhMucHuongBHYT.TinhMucHuongTheoTheBHYT(databaocao.bhytcode, databaocao.bhyt_loaiid, databaocao.loaivienphiid, databaocao.du5nam6thangluongcoban, databaocao.bhyt_tuyenbenhvien);
                         lstBCQL.Add(databaocao);
                     }
                 }

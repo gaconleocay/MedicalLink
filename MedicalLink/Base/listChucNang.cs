@@ -541,6 +541,22 @@ namespace MedicalLink.Base
                 DASHBOARD_10.permissionnote = "Báo cáo tổng hợp doanh thu khoa - toàn viện. Doanh thu chia theo khoa/phòng chỉ định";
                 lstresult.Add(DASHBOARD_10);
 
+                ClassCommon.classPermission DASHBOARD_11 = new ClassCommon.classPermission();
+                DASHBOARD_11.permissioncheck = false;
+                DASHBOARD_11.permissioncode = "DASHBOARD_11";
+                DASHBOARD_11.permissionname = "BC BN sử dụng thuốc theo nhóm \"Hạn chế sử dụng\" - Theo khoa";
+                DASHBOARD_11.permissiontype = 5;
+                DASHBOARD_11.permissionnote = "BC BN sử dụng thuốc theo nhóm \"Hạn chế sử dụng\" - Theo khoa";
+                lstresult.Add(DASHBOARD_11);
+
+                ClassCommon.classPermission DASHBOARD_12 = new ClassCommon.classPermission();
+                DASHBOARD_12.permissioncheck = false;
+                DASHBOARD_12.permissioncode = "DASHBOARD_12";
+                DASHBOARD_12.permissionname = "BC BN sử dụng thuốc theo nhóm \"Hạn chế sử dụng\" - Tổng hợp";
+                DASHBOARD_12.permissiontype = 5;
+                DASHBOARD_12.permissionnote = "BC BN sử dụng thuốc theo nhóm \"Hạn chế sử dụng\" - Tổng hợp";
+                lstresult.Add(DASHBOARD_12);
+
 
 
 

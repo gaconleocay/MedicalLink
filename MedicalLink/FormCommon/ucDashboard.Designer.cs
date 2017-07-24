@@ -49,6 +49,7 @@
             this.navBarBCXNTTuTruc = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarBCBNSDThuocTaiKhoa = new DevExpress.XtraNavBar.NavBarItem();
             this.xtraTabControlChucNang = new DevExpress.XtraTab.XtraTabControl();
+            this.navBarBCBNSDThuocTheoNhom = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -92,7 +93,8 @@
             this.navBarBCDTCLS,
             this.navBarItem10,
             this.navBarDBDTTungKhoa,
-            this.navBarDBBenhNhanNoiTru});
+            this.navBarDBBenhNhanNoiTru,
+            this.navBarBCBNSDThuocTheoNhom});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 152;
@@ -334,7 +336,8 @@
             this.navBarGroup2.Expanded = true;
             this.navBarGroup2.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCXNTTuTruc),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCBNSDThuocTaiKhoa)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCBNSDThuocTaiKhoa),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCBNSDThuocTheoNhom)});
             this.navBarGroup2.Name = "navBarGroup2";
             // 
             // navBarBCXNTTuTruc
@@ -384,6 +387,19 @@
             this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDashboard_SelectedPageChanged);
             this.xtraTabControlChucNang.CloseButtonClick += new System.EventHandler(this.xtraTabControlDashboard_CloseButtonClick);
             // 
+            // navBarBCBNSDThuocTheoNhom
+            // 
+            this.navBarBCBNSDThuocTheoNhom.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarBCBNSDThuocTheoNhom.Appearance.Options.UseFont = true;
+            this.navBarBCBNSDThuocTheoNhom.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.navBarBCBNSDThuocTheoNhom.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarBCBNSDThuocTheoNhom.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarBCBNSDThuocTheoNhom.AppearancePressed.Options.UseFont = true;
+            this.navBarBCBNSDThuocTheoNhom.Caption = "BCSD thuốc nhóm Hạn chế sử dụng";
+            this.navBarBCBNSDThuocTheoNhom.Name = "navBarBCBNSDThuocTheoNhom";
+            this.navBarBCBNSDThuocTheoNhom.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.navBarBCBNSDThuocTheoNhom.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCBNSDThuocTheoNhom_LinkClicked);
+            // 
             // ucDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,5 +439,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItem10;
         private DevExpress.XtraNavBar.NavBarItem navBarDBDTTungKhoa;
         private DevExpress.XtraNavBar.NavBarItem navBarDBBenhNhanNoiTru;
+        private DevExpress.XtraNavBar.NavBarItem navBarBCBNSDThuocTheoNhom;
     }
 }

@@ -15,6 +15,7 @@ select
 	bh.bhyt_loaiid,
 	vms.loaivienphiid,
 	bh.du5nam6thangluongcoban,
+	vms.bhyt_thangluongtoithieu as thangluongcoban,
 	vms.vienphidate,
 	(case when vms.vienphistatus>0 then vms.vienphidate_ravien end) as vienphidate_ravien,
 	degp.departmentgroupid,
@@ -29,7 +30,7 @@ select
 	0 as money_bntt,
 	0 as money_thieu,
 	0 as isgroup
-from (select vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatus,departmentgroupid,departmentid,doituongbenhnhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,bhyt_tuyenbenhvien,
+from (select vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatus,departmentgroupid,departmentid,doituongbenhnhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,bhyt_tuyenbenhvien,bhyt_thangluongtoithieu,
 				(money_khambenh_bh+money_xetnghiem_bh+money_cdha_bh+money_tdcn_bh+money_thuoc_bh+money_mau_bh+money_pttt_bh+money_vattu_bh+money_dvktc_bh+money_giuong_bh+money_vanchuyen_bh+money_khac_bh+money_phuthu_bh) as money_tong_bh,
 				(money_khambenh_vp+money_xetnghiem_vp+money_cdha_vp+money_tdcn_vp+money_thuoc_vp+money_mau_vp+money_pttt_vp+money_vattu_vp+money_dvktc_vp+money_giuong_vp+money_vanchuyen_vp+money_khac_vp+money_phuthu_vp) as money_tong_vp				
 			from vienphi_money_sobn 

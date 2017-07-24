@@ -543,6 +543,7 @@
     <Compile Include="ClassCommon\classUserDepartment.cs" />
     <Compile Include="ClassCommon\reportExcelDTO.cs" />
     <Compile Include="ClassCommon\classBenhVienDTO.cs" />
+    <Compile Include="ClassCommon\TinhBHYTThanhToanDTO.cs" />
     <Compile Include="ClassCommon\ToolsOtherListDTO.cs" />
     <Compile Include="ClassCommon\ToolsServicerefDTO.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
@@ -594,6 +595,15 @@
       <DependentUpon>ucBCBNSuDungThuocTaiKhoa.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\BCBNSuDungThuocTaiKhoa\ucBCBNSuDungThuocTaiKhoaProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTheoNhom\ucBCBNSuDungThuocTheoNhom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTheoNhom\ucBCBNSuDungThuocTheoNhom.Designer.cs">
+      <DependentUpon>ucBCBNSuDungThuocTheoNhom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BCBNSuDungThuocTheoNhom\ucBCBNSuDungThuocTheoNhomProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.cs">
@@ -701,7 +711,7 @@
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
-    <Compile Include="DatabaseProcess\TinhMuaHuongBHYT.cs" />
+    <Compile Include="DatabaseProcess\TinhMucHuongBHYT.cs" />
     <Compile Include="FormCommon\TabCaiDat\ucDanhMucDichVu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1097,6 +1107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCBNSuDungThuocTaiKhoa\ucBCBNSuDungThuocTaiKhoa.resx">
       <DependentUpon>ucBCBNSuDungThuocTaiKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BCBNSuDungThuocTheoNhom\ucBCBNSuDungThuocTheoNhom.resx">
+      <DependentUpon>ucBCBNSuDungThuocTheoNhom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSang.resx">
       <DependentUpon>ucBaoCaoCanLamSang.cs</DependentUpon>

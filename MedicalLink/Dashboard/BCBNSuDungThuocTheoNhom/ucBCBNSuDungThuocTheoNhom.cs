@@ -22,7 +22,8 @@ namespace MedicalLink.Dashboard
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private DataTable dataSDThuoc_Khoa { get; set; }
         private DataTable dataSDThuoc_TongHop { get; set; }
-
+        private string medicinegroupcode_thuoc { get; set; }
+        public string lstservicepricecode { get; set; }
         #endregion
 
         #region Load
@@ -39,6 +40,7 @@ namespace MedicalLink.Dashboard
             dateDenNgay_TongHop.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             LoadDanhMucKhoa();
             PhanQuyenTabChucNang();
+            LoadDanhSachThuocTheoNhom();
         }
         private void LoadDanhMucKhoa()
         {
@@ -68,6 +70,41 @@ namespace MedicalLink.Dashboard
             {
                 xtraTabPage_Khoa.PageVisible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_11");
                 xtraTabPage_TongHop.PageVisible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_12");
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void LoadDanhSachThuocTheoNhom()
+        {
+            try
+            {
+                List<ClassCommon.ToolsOtherListDTO> otherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "DASHBOARD_12_DSHCSD").ToList();
+                if (otherList != null && otherList.Count > 0)
+                {
+                    this.medicinegroupcode_thuoc = otherList[0].tools_otherlistvalue;
+                }
+
+                string dsthuoc = "select medicinecode from medicine_ref where medicinegroupcode='" + this.medicinegroupcode_thuoc + "' and medicinecode not like '%.%';";
+                DataTable dataThuoc = condb.GetDataTable_HIS(dsthuoc);
+                if (dataThuoc != null && dataThuoc.Rows.Count > 0)
+                {
+                    this.lstservicepricecode = "";
+                    for (int i = 0; i < dataThuoc.Rows.Count; i++)
+                    {
+                        this.lstservicepricecode += "'" + dataThuoc.Rows[i]["medicinecode"] + "%',";
+                    }
+                }
+                if (this.lstservicepricecode != "")
+                {
+                    string kytucuoicung = this.lstservicepricecode.Substring(this.lstservicepricecode.Length - 1, 1);
+                    if (kytucuoicung == ",")
+                    {
+                        this.lstservicepricecode = this.lstservicepricecode.Substring(0, this.lstservicepricecode.Length - 1);
+                    }
+                    this.lstservicepricecode = " and servicepricecode LIKE ANY(ARRAY[" + this.lstservicepricecode + "]) ";
+                }
             }
             catch (Exception ex)
             {

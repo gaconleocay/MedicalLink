@@ -16,8 +16,8 @@ namespace MedicalLink.ClassCommon
         public string diachi { get; set; }
         public string bhytcode { get; set; }
         public string macskcbbd { get; set; }
-        public string vienphidate { get; set; }
-        public string vienphidate_ravien { get; set; }
+        public object vienphidate { get; set; }
+        public object vienphidate_ravien { get; set; }
         public long departmentgroupid { get; set; }
         public string departmentgroupname { get; set; }
         public string departmentname { get; set; }

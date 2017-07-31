@@ -266,6 +266,12 @@
     <Compile Include="BaoCao\BCBNThieuTienTamUng\ucBNThieuTienTamUng.Designer.cs">
       <DependentUpon>ucBNThieuTienTamUng.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCChenhLechNgayGiuong\ucBCChenhLechNgayGiuong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCChenhLechNgayGiuong\ucBCChenhLechNgayGiuong.Designer.cs">
+      <DependentUpon>ucBCChenhLechNgayGiuong.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -304,6 +310,12 @@
     </Compile>
     <Compile Include="BaoCao\BCSuDungThuoc\ucBCSuDungThuoc.Designer.cs">
       <DependentUpon>ucBCSuDungThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BCTienBNPhaiThanhToan\ucBCTienBNPhaiThanhToan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCTienBNPhaiThanhToan\ucBCTienBNPhaiThanhToan.Designer.cs">
+      <DependentUpon>ucBCTienBNPhaiThanhToan.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\SoCDHA\ucBCSoCDHA.cs">
       <SubType>UserControl</SubType>
@@ -396,6 +408,7 @@
     <Compile Include="ChucNang\ThongTinThucHienCLS\ucThongTinThucHienCanLamSang.Designer.cs">
       <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
@@ -543,6 +556,7 @@
     <Compile Include="ClassCommon\classUserDepartment.cs" />
     <Compile Include="ClassCommon\reportExcelDTO.cs" />
     <Compile Include="ClassCommon\classBenhVienDTO.cs" />
+    <Compile Include="ClassCommon\TienBNPhaiThanhToanDTO.cs" />
     <Compile Include="ClassCommon\TinhBHYTThanhToanDTO.cs" />
     <Compile Include="ClassCommon\ToolsOtherListDTO.cs" />
     <Compile Include="ClassCommon\ToolsServicerefDTO.cs" />
@@ -979,6 +993,9 @@
     <EmbeddedResource Include="BaoCao\BCBNThieuTienTamUng\ucBNThieuTienTamUng.resx">
       <DependentUpon>ucBNThieuTienTamUng.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCChenhLechNgayGiuong\ucBCChenhLechNgayGiuong.resx">
+      <DependentUpon>ucBCChenhLechNgayGiuong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
     </EmbeddedResource>
@@ -1002,6 +1019,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCSuDungThuoc\ucBCSuDungThuoc.resx">
       <DependentUpon>ucBCSuDungThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCTienBNPhaiThanhToan\ucBCTienBNPhaiThanhToan.resx">
+      <DependentUpon>ucBCTienBNPhaiThanhToan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\SoCDHA\ucBCSoCDHA.resx">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
@@ -1480,6 +1500,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_BNSuDungThuocTheoNhom_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_ChenhLechNgayGiuong_KhoaQuocTe.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_TienBenhNhanPhaiThanhToan_ChiTiet.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

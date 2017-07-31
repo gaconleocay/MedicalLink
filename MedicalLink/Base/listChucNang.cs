@@ -456,6 +456,22 @@ namespace MedicalLink.Base
                 REPORT_24.permissionnote = "Báo cáo bệnh nhân thiếu tiền tạm ứng";
                 lstresult.Add(REPORT_24);
 
+                ClassCommon.classPermission REPORT_25 = new ClassCommon.classPermission();
+                REPORT_25.permissioncheck = false;
+                REPORT_25.permissioncode = "REPORT_25";
+                REPORT_25.permissionname = "Báo cáo số tiền bệnh nhân phải thanh toán";
+                REPORT_25.permissiontype = 3;
+                REPORT_25.permissionnote = "Báo cáo số tiền bệnh nhân phải thanh toán";
+                lstresult.Add(REPORT_25);
+
+                ClassCommon.classPermission REPORT_26 = new ClassCommon.classPermission();
+                REPORT_26.permissioncheck = false;
+                REPORT_26.permissioncode = "REPORT_26";
+                REPORT_26.permissionname = "Báo cáo chênh lệch tiền ngày giường";
+                REPORT_26.permissiontype = 3;
+                REPORT_26.permissionnote = "Báo cáo chênh lệch tiền ngày giường";
+                lstresult.Add(REPORT_26);
+
 
 
 

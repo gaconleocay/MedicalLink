@@ -210,6 +210,8 @@ namespace MedicalLink.BaoCao
 
                     data_groupname.departmentgroupid = item_group.departmentgroupid;
                     data_groupname.stt = item_group.departmentgroupname;
+                    data_groupname.vienphidate = null;
+                    data_groupname.vienphidate_ravien = null;
                     data_groupname.money_tong = money_tong;
                     data_groupname.money_bhyttt = money_bhyttt;
                     data_groupname.money_bntt = money_bntt;
@@ -252,6 +254,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
@@ -275,6 +278,8 @@ namespace MedicalLink.BaoCao
             {
                 Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
+
         }
 
     }

@@ -13,7 +13,6 @@ namespace MedicalLink.Utilities.PrintPreview
     {
         public static void ShowPrintPreview_UsingExcelTemplate(string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem, DataTable dataTable)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
@@ -29,7 +28,6 @@ namespace MedicalLink.Utilities.PrintPreview
             {
                 Base.Logging.Error(ex);
             }
-            SplashScreenManager.CloseForm();
         }
     }
 }

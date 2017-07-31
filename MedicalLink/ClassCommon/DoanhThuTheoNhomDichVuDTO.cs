@@ -17,7 +17,7 @@ namespace MedicalLink.ClassCommon
         public string bhytcode { get; set; }
         public string departmentgroupname { get; set; }
         public string departmentname { get; set; }
-        public string servicepricedate { get; set; }
+        public object servicepricedate { get; set; }
         public long departmentgroupid { get; set; }
         public string servicepricecode { get; set; }
         public string servicepricename { get; set; }

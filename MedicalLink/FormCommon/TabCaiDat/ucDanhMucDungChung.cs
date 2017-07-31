@@ -115,6 +115,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 txtLoaiDM_Ma.ReadOnly = false;
                 txtLoaiDM_Ten.ReadOnly = false;
                 txtLoaiDM_Ten.ReadOnly = false;
+                txtLoaiDM_GhiChu.ReadOnly = false;
                 txtLoaiDM_Ma.Text = "";
                 txtLoaiDM_Ten.Text = "";
                 txtLoaiDM_GhiChu.Text = "";

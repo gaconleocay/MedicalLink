@@ -159,7 +159,14 @@ namespace MedicalLink.BaoCao
                     this.lstDataSoChiTietBN = Util_DataTable.DataTableToList<ClassCommon.BCSoChiTietBenhNhan>(dataBaoCaoDSSoBenhNhan);
                     foreach (var item_data in this.lstDataSoChiTietBN)
                     {
-                        item_data.tylenop = 100 - TinhMucHuongBHYT.TinhMucHuongTheoTheBHYT(item_data.bhytcode, item_data.bhyt_loaiid, item_data.loaivienphiid, item_data.du5nam6thangluongcoban, item_data.bhyt_tuyenbenhvien);
+                        ClassCommon.TinhBHYTThanhToanDTO tinhBHYT = new ClassCommon.TinhBHYTThanhToanDTO();
+                        tinhBHYT.bhytcode = item_data.bhytcode;
+                        tinhBHYT.bhyt_loaiid = item_data.bhyt_loaiid;
+                        tinhBHYT.bhyt_tuyenbenhvien = item_data.bhyt_tuyenbenhvien;
+                        tinhBHYT.du5nam6thangluongcoban = item_data.du5nam6thangluongcoban;
+                        tinhBHYT.loaivienphiid = item_data.loaivienphiid;
+
+                        item_data.tylenop = 100 - TinhMucHuongBHYT.TinhMucHuongTheoTheBHYT(tinhBHYT);
                         item_data.money_bnthanhtoan = ((item_data.money_tong_bh * item_data.tylenop) / 100) + item_data.money_tong_vp;
                         item_data.money_bhytthanhtoan = item_data.money_tongcong - item_data.money_bnthanhtoan;
                         if (item_data.vienphidate_ravien == "0001-01-01 12:01:00")
@@ -278,6 +285,8 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+
                 //DataSet dataSetDSBN = new DataSet();
                 //PrintableComponentLink com = new PrintableComponentLink(new PrintingSystem());
                 //com.Component = gridControlDataBCCTBenhNhan;
@@ -311,6 +320,8 @@ namespace MedicalLink.BaoCao
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
+            SplashScreenManager.CloseForm();
+
         }
     }
 }

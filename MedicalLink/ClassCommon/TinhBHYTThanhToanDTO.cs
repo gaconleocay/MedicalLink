@@ -22,5 +22,8 @@ namespace MedicalLink.ClassCommon
         public decimal _15thanhluongcoban { get; set; }
         public decimal _46thanhluongcoban { get; set; }
         public int maquyenloithe { get; set; }
+
+        public decimal tyle_bntt_tb { get; set; }
+
     }
 }

@@ -1,4 +1,4 @@
---Bao cao Thuc hien Cận Lâm sàng ngay 11/7/2017
+--Bao cao Thuc hien Cận Lâm sàng ngay 26/7/2017
 -- chinh sua: mo chinh la người trả kết quả;
 --Chẩn đoán= chẩn đoán chỉ định
 
@@ -143,7 +143,7 @@ FROM (
 				when 3 then 30000 
 				when 4 then 15000 
 				when 5 then 36000
-				when 6 then 21000	
+				when 6 then 0	
 				when 7 then 9000 
 				when 8 then 4500 
 				else 0 end) * ser.soluong) as GIUPVIEC1_TIEN, 

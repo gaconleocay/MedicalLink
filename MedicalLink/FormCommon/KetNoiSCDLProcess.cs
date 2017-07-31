@@ -37,7 +37,7 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
                 result = KetNoiSCDLProcess.CreateTableVersion();
                 //result = KetNoiSCDLProcess.CreateFunctionByteaImport();
-                // result = KetNoiSCDLProcess.CreateView_ihs_servicespttt();
+                // result = KetNoiSCDLProcess.Createview_tools_serviceprice_pttt();
                 result = KetNoiSCDLProcess.CreateTableNhomPersonnel();
                 result = KetNoiSCDLProcess.CreateTableIhsServicespttt();
 
@@ -385,7 +385,7 @@ namespace MedicalLink.FormCommon
 
         #region Tao View
 
-        private static bool CreateView_ihs_servicespttt() //ngay 19/5 sử dụng ihs_servicespttt ngay  v 1.15 ngay 22/5
+        private static bool Createview_tools_serviceprice_pttt() //ngay 19/5 sử dụng ihs_servicespttt ngay  v 1.15 ngay 22/5
         {
             bool result = false;
             try
@@ -398,7 +398,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error("Lỗi tao VIEW CreateView_ihs_servicespttt" + ex.ToString());
+                MedicalLink.Base.Logging.Error("Lỗi tao VIEW Createview_tools_serviceprice_pttt" + ex.ToString());
             }
             return result;
         }

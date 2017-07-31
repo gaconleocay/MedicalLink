@@ -174,6 +174,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
@@ -201,6 +202,7 @@ namespace MedicalLink.BaoCao
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
         }
 
         //Xuat excel co group nhom
@@ -267,6 +269,8 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
@@ -294,6 +298,8 @@ namespace MedicalLink.BaoCao
             {
                 Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
+
         }
 
 

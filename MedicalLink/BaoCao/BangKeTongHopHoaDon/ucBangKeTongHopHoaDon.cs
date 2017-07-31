@@ -118,6 +118,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
@@ -136,6 +137,8 @@ namespace MedicalLink.BaoCao
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
+            SplashScreenManager.CloseForm();
+
         }
 
         private void gridViewDSHoaDon_RowCellStyle(object sender, RowCellStyleEventArgs e)

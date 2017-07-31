@@ -57,22 +57,22 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupBoxAction = new System.Windows.Forms.GroupBox();
+            this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
+            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.groupBoxAction = new System.Windows.Forms.GroupBox();
-            this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.groupBoxAction.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            this.groupBoxAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControlBNDetail
@@ -687,6 +687,42 @@
             this.panelControl1.Size = new System.Drawing.Size(1234, 53);
             this.panelControl1.TabIndex = 1;
             // 
+            // groupBoxAction
+            // 
+            this.groupBoxAction.Controls.Add(this.lblTenThongTinChiTiet);
+            this.groupBoxAction.Controls.Add(this.tbnExport);
+            this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBoxAction.Location = new System.Drawing.Point(2, 2);
+            this.groupBoxAction.Name = "groupBoxAction";
+            this.groupBoxAction.Size = new System.Drawing.Size(776, 49);
+            this.groupBoxAction.TabIndex = 12;
+            this.groupBoxAction.TabStop = false;
+            // 
+            // lblTenThongTinChiTiet
+            // 
+            this.lblTenThongTinChiTiet.AutoSize = true;
+            this.lblTenThongTinChiTiet.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(160, 19);
+            this.lblTenThongTinChiTiet.Name = "lblTenThongTinChiTiet";
+            this.lblTenThongTinChiTiet.Size = new System.Drawing.Size(0, 18);
+            this.lblTenThongTinChiTiet.TabIndex = 9;
+            // 
+            // tbnExport
+            // 
+            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbnExport.Appearance.Options.UseFont = true;
+            this.tbnExport.Appearance.Options.UseForeColor = true;
+            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
+            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.tbnExport.Location = new System.Drawing.Point(14, 15);
+            this.tbnExport.Name = "tbnExport";
+            this.tbnExport.Size = new System.Drawing.Size(110, 25);
+            this.tbnExport.TabIndex = 8;
+            this.tbnExport.Text = "Xuất file";
+            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label3);
@@ -746,41 +782,6 @@
             this.panelControl2.Size = new System.Drawing.Size(1234, 609);
             this.panelControl2.TabIndex = 2;
             // 
-            // groupBoxAction
-            // 
-            this.groupBoxAction.Controls.Add(this.lblTenThongTinChiTiet);
-            this.groupBoxAction.Controls.Add(this.tbnExport);
-            this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(2, 2);
-            this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(776, 49);
-            this.groupBoxAction.TabIndex = 12;
-            this.groupBoxAction.TabStop = false;
-            // 
-            // lblTenThongTinChiTiet
-            // 
-            this.lblTenThongTinChiTiet.AutoSize = true;
-            this.lblTenThongTinChiTiet.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenThongTinChiTiet.Location = new System.Drawing.Point(160, 19);
-            this.lblTenThongTinChiTiet.Name = "lblTenThongTinChiTiet";
-            this.lblTenThongTinChiTiet.Size = new System.Drawing.Size(0, 18);
-            this.lblTenThongTinChiTiet.TabIndex = 9;
-            // 
-            // tbnExport
-            // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(14, 15);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(110, 25);
-            this.tbnExport.TabIndex = 8;
-            this.tbnExport.Text = "Xuất file";
-            // 
             // BCQLTongTheKhoaBNDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -797,12 +798,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.groupBoxAction.ResumeLayout(false);
+            this.groupBoxAction.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            this.groupBoxAction.ResumeLayout(false);
-            this.groupBoxAction.PerformLayout();
             this.ResumeLayout(false);
 
         }

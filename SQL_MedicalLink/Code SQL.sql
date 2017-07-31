@@ -90,7 +90,8 @@ Thuốc: 09TDT
 Thuốc trong DM: 091TDTtrongDM 
 Thuốc ngoài DM: 092TDTngoaiDM 
 Thuốc ưng thư: 093TDTUngthu 
-Thuốc thanh toán theo tỷ lệ: 094TDTTyle ''09TDT'',''091TDTtrongDM'',''092TDTngoaiDM'',''093TDTUngthu'',''094TDTTyle''
+Thuốc thanh toán theo tỷ lệ: 094TDTTyle 
+--''09TDT'',''091TDTtrongDM'',''092TDTngoaiDM'',''093TDTUngthu'',''094TDTTyle''
 Vật tư: 10VT 
 Vật tư trong DM: 101VTtrongDM 
 Vật tư thay thế: 101VTtrongDMTT 
@@ -202,6 +203,8 @@ medicalrecordstatus:
 - dagiuthebhyt=1 có thẻ bhyt 
 - loaivienphiid=0 nội trú; =1 ngoại trú 
  
+ duyet_ngayduyet: duyet BHYT
+ duyet_ngayduyet_vp: duyet Vien phi
  
 ===============================bhyt==================== 
 bhyt_loaiid:  

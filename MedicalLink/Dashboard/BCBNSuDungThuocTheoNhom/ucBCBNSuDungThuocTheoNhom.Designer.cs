@@ -869,7 +869,7 @@
             this.bandedGridColumn4.Name = "bandedGridColumn4";
             this.bandedGridColumn4.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn4.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_dangdt_khoa", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dangdt_1127", "{0:#,##0 }")});
             this.bandedGridColumn4.Visible = true;
             this.bandedGridColumn4.Width = 120;
             // 
@@ -892,7 +892,7 @@
             this.bandedGridColumn5.Name = "bandedGridColumn5";
             this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_dangdt_tv", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rvchuatt_1127", "{0:#,##0 }")});
             this.bandedGridColumn5.Visible = true;
             this.bandedGridColumn5.Width = 120;
             // 
@@ -915,7 +915,7 @@
             this.bandedGridColumn6.Name = "bandedGridColumn6";
             this.bandedGridColumn6.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn6.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_rvchuatt_khoa", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "datt_1127", "{0:#,##0 }")});
             this.bandedGridColumn6.Visible = true;
             this.bandedGridColumn6.Width = 120;
             // 
@@ -940,7 +940,7 @@
             this.bandedGridColumn7.Name = "bandedGridColumn7";
             this.bandedGridColumn7.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_rvchuatt_tv", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tong_1127", "{0:#,##0 }")});
             this.bandedGridColumn7.Visible = true;
             this.bandedGridColumn7.Width = 120;
             // 
@@ -978,7 +978,7 @@
             this.bandedGridColumn8.Name = "bandedGridColumn8";
             this.bandedGridColumn8.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn8.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_datt_khoa", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dangdt_5411", "{0:#,##0 }")});
             this.bandedGridColumn8.Visible = true;
             this.bandedGridColumn8.Width = 120;
             // 
@@ -1001,7 +1001,7 @@
             this.bandedGridColumn9.Name = "bandedGridColumn9";
             this.bandedGridColumn9.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn9.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_datt_tv", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rvchuatt_5411", "{0:#,##0 }")});
             this.bandedGridColumn9.Visible = true;
             this.bandedGridColumn9.Width = 120;
             // 
@@ -1024,7 +1024,7 @@
             this.bandedGridColumn10.Name = "bandedGridColumn10";
             this.bandedGridColumn10.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn10.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_tong_khoa", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "datt_5411", "{0:#,##0 }")});
             this.bandedGridColumn10.Visible = true;
             this.bandedGridColumn10.Width = 120;
             // 
@@ -1049,7 +1049,7 @@
             this.bandedGridColumn11.Name = "bandedGridColumn11";
             this.bandedGridColumn11.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn11.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_tong_tv", "{0:#,##0 }")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tong_5411", "{0:#,##0 }")});
             this.bandedGridColumn11.Visible = true;
             this.bandedGridColumn11.Width = 120;
             // 

@@ -359,7 +359,7 @@ yyyy-MM-dd HH:mm:ss
  
 SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH:mm:ss') from vienphi vp where vp.vienphiid=800543  
 row_number() over() as stt, 
-ROW_NUMBER () OVER (ORDER BY A.NGAY_THUCHIEN desc) as stt 
+row_number () over (order by a.ngay_thuchien desc) as stt 
 --------- 
 9.16.3. NULLIF 
 NULLIF(value1, value2) 

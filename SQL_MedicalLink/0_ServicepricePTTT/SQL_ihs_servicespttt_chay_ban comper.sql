@@ -213,6 +213,36 @@ sum(case when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103
 						  then (case when ser.maubenhphamphieutype=0 then (ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong else 0-((ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong) end)
 					else 0 end)			
 		else 0 end) as money_vattu_vp,		
+/*		
+(sum(case when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong in (0,4,6) 
+			then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) else 0 end)
++
+sum(case when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,4,6) and cast(ser.servicepricebhytdinhmuc as numeric)>0
+			then (case when ser.maubenhphamphieutype=0 then cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong else 0-(cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong) end) 
+			else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) end)
+) as money_vattu_bh,
+--
+(sum(case when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle') and ser.loaidoituong in (1,8) then 
+		(case when ser.doituongbenhnhanid=4 
+				then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_nuocngoai*ser.soluong else 0-(ser.servicepricemoney_nuocngoai*ser.soluong) end) 
+			  else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_nhandan*ser.soluong else 0-(ser.servicepricemoney_nhandan*ser.soluong) end) end)
+	when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong in (4,6) 
+		then (case when ser.doituongbenhnhanid=4 
+					then (case when ser.maubenhphamphieutype=0 
+									then (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then (ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end)
+								else (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end) end) 
+					else (case when ser.maubenhphamphieutype=0 
+									then (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then (ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) 		
+								else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) end) end)		
+	 when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM','103VTtyle') and ser.loaidoituong=3 then 
+		(case when ser.doituongbenhnhanid=4 then (case when ser.maubenhphamphieutype=0 then servicepricemoney_nuocngoai*ser.soluong else 0-(servicepricemoney_nuocngoai*ser.soluong) end) else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney*ser.soluong else 0-(ser.servicepricemoney*ser.soluong) end) end)
+	 else 0 end)
++ 	 
+sum(case when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,4,6) and cast(ser.servicepricebhytdinhmuc as numeric)>0
+			then (case when ser.maubenhphamphieutype=0 then (ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong else 0-((ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong) end) 
+			else 0 end)	  
+	 ) as money_vattu_vp,
+*/
 --Vat tu thay the	 
 sum(case when ser.bhyt_groupcode='101VTtrongDMTT' and ser.loaidoituong in (0,4,6) 
 			then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) 
@@ -240,6 +270,32 @@ sum(case when ser.bhyt_groupcode='101VTtrongDMTT' and ser.loaidoituong in (1,8)
 													else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) end) end)
 						else 0 end)
 		else 0 end) as money_vtthaythe_vp,
+/*		
+(sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT') and ser.loaidoituong in (1,8) 
+			then (case when ser.doituongbenhnhanid=4 then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_nuocngoai*ser.soluong else 0-(ser.servicepricemoney_nuocngoai*ser.soluong) end) else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_nhandan*ser.soluong else 0-(ser.servicepricemoney_nhandan*ser.soluong) end) end)
+		when ser.bhyt_groupcode in ('101VTtrongDMTT') and ser.loaidoituong in (4,6) 
+			then (case when ser.doituongbenhnhanid=4 
+							then (case when ser.maubenhphamphieutype=0 
+											then (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then (ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end)
+										else (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end) end) 
+						else (case when ser.maubenhphamphieutype=0 
+										then (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then (ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) 		
+									else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) end) end)						
+		when ser.bhyt_groupcode in ('101VTtrongDMTT') and ser.loaidoituong=3 
+			then (case when ser.doituongbenhnhanid=4 then (case when ser.maubenhphamphieutype=0 then servicepricemoney_nuocngoai*ser.soluong else 0-(servicepricemoney_nuocngoai*ser.soluong) end) else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney*ser.soluong else 0-(ser.servicepricemoney*ser.soluong) end) end)
+		else 0 end)
++
+sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle') and ser.loaidoituong=2
+and ((select seref.tinhtoanlaigiadvktc from servicepriceref seref where seref.servicepricecode=(select ser_ktc.servicepricecode from serviceprice ser_ktc where ser_ktc.servicepriceid=ser.servicepriceid_master))=0)
+			then (case when ser.doituongbenhnhanid=4 
+							then (case when ser.maubenhphamphieutype=0 
+											then (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then (ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end)
+										else (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end) end) 
+						else (case when ser.maubenhphamphieutype=0 
+										then (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then (ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) 		
+									else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) end) end)
+			else 0 end)) as money_vtthaythe_vp,
+*/			
 ---dich vu KTC		
 sum(case when ser.bhyt_groupcode='07KTC' and ser.loaidoituong in (0,4,6) 
 			then ser.servicepricemoney_bhyt*ser.soluong 
@@ -343,7 +399,32 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '1
 							then (ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong 
 						else 0-((ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong)
 				  end)
-	 else 0 end) as money_dkpttt_vattu_vp,		
+	 else 0 end) as money_dkpttt_vattu_vp,
+
+/*
+(sum
+(case when ser.bhyt_groupcode in ('10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_master in (select ser_ktc.servicepriceid from serviceprice ser_ktc where ser_ktc.vienphiid=vp.vienphiid and ser_ktc.bhyt_groupcode='07KTC') and ((select seref.tinhtoanlaigiadvktc from servicepriceref seref where seref.servicepricecode=(select ser_ktc.servicepricecode from serviceprice ser_ktc where ser_ktc.servicepriceid=ser.servicepriceid_master))=1) and coalesce(ser.servicepriceid_thanhtoanrieng,0)=0
+			then (case when ser.doituongbenhnhanid=4 
+							then (case when ser.maubenhphamphieutype=0 
+											then (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then (ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end)
+										else (case when ser.servicepricemoney_nuocngoai>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney_nuocngoai-servicepricemoney_bhyt)*ser.soluong else 0 end) end) 
+						else (case when ser.maubenhphamphieutype=0 
+										then (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then (ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) 		
+									else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) end) end)
+			else 0 end)
++
+sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_master in (select ser_ktc.servicepriceid from serviceprice ser_ktc where ser_ktc.vienphiid=vp.vienphiid and ser_ktc.bhyt_groupcode='07KTC' and ser_ktc.loaidoituong in (1,3)) and ((select seref.tinhtoanlaigiadvktc from servicepriceref seref where seref.servicepricecode=(select ser_ktc.servicepricecode from serviceprice ser_ktc where ser_ktc.servicepriceid=ser.servicepriceid_master))=1) and coalesce(ser.servicepriceid_thanhtoanrieng,0)=0
+			then (case when ser.maubenhphamphieutype=0 
+							then servicepricemoney_bhyt*ser.soluong
+					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
+			else 0 end) 
++ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid<>1
+				then (case when ser.maubenhphamphieutype=0 
+							then servicepricemoney_bhyt*ser.soluong
+					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
+			else 0	end)			
+			) as money_dkpttt_vattu_vp,		*/
+			
 -----hao phi trong goi khong tinh tien
 sum(case when ser.servicepriceid_master<>0 and ser.loaidoituong in (5,7,9) and ser.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')
 			then (case when ser.maubenhphamphieutype=0 
@@ -371,14 +452,14 @@ FROM (select vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatus
 		from vienphi 
 		where 
 	--da thanh toan
-			/*duyet_ngayduyet_vp>='2017-07-01 00:00:00' 
+			/*duyet_ngayduyet_vp>='2017-07-01 23:59:59' 
 			and vienphiid not in (select vienphiid from ihs_servicespttt)
 			and vienphistatus_vp=1 
 			and vienphistatus>0
 	*/
 	--ra vien chua thanh toan
 			/*
-			vienphidate_ravien>='2017-07-01 00:00:00'
+			vienphidate_ravien>='2016-11-01 00:00:00'
 			and vienphiid not in (select vienphiid from ihs_servicespttt)
 			and COALESCE(vienphistatus_vp,0)=0
 			and vienphistatus>0
@@ -393,16 +474,7 @@ vp.vienphistatus_bh, vp.duyet_ngayduyet_bh, vp.bhyt_tuyenbenhvien, ser.departmen
 
 --select count(*) from ihs_servicespttt
 
-/*
-chay lai thang 7
-delete from ihs_servicespttt where duyet_ngayduyet_vp>='2017-07-01 00:00:00' 
-									and vienphistatus_vp=1 
-									and vienphistatus>0
-delete from ihs_servicespttt where vienphidate_ravien>='2017-07-01 00:00:00' 
-									and COALESCE(vienphistatus_vp,0)=0 
-									and vienphistatus>0
 
-*/
 
 
 

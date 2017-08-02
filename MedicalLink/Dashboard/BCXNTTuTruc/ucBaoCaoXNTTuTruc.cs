@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using DevExpress.XtraSplashScreen;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
+using System.Globalization;
+using MedicalLink.Utilities;
 
 namespace MedicalLink.Dashboard
 {
@@ -153,11 +155,11 @@ namespace MedicalLink.Dashboard
                 DataView dataKiemKe = new DataView(condb.GetDataTable_HIS(sql_getkiemke));
                 if (dataKiemKe != null && dataKiemKe.Count > 0 && Utilities.Util_TypeConvertParse.ToInt64(dataKiemKe[0]["medicinekiemkeid"].ToString()) > 0)
                 {
-                    medicinekiemkeid = " and msref.medicinekiemkeid=" + dataKiemKe[0]["medicinekiemkeid"] + " ";
+                    medicinekiemkeid = " and medicinekiemkeid=" + dataKiemKe[0]["medicinekiemkeid"] + " ";
                 }
                 lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
 
-                string sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc FROM medicine_ref me inner join medicine_store_ref msref on me.medicinerefid=msref.medicinerefid WHERE msref.medicinestoreid=" + cboTuTruc.EditValue + " and  (msref.soluongtutruc>0 or msref.soluongtonkho>0 or msref.soluongkhadung>0) and msref.medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + " GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename;";
+                string sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinename,donvitinh from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename; ";
                 DataView dataDanhMucThuoc = new DataView(condb.GetDataTable_HIS(sql_getThuoc));
                 gridControlThuocTuTruc.DataSource = dataDanhMucThuoc;
             }
@@ -166,19 +168,6 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Error(ex);
             }
             SplashScreenManager.CloseForm();
-        }
-
-        private void tbnExport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportDataGridViewToFile(gridControlThuocTuTruc, gridViewThuocTuTruc);
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Warn(ex);
-            }
         }
 
         private void gridViewThuocTuTruc_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -241,7 +230,97 @@ namespace MedicalLink.Dashboard
         }
 
 
+        private void tbnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    string tungaydenngay = "Thời gian " + lblThoiGianLayBaoCao.Text;
 
+                    List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                    ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                    reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                    reportitem.value = tungaydenngay;
+                    thongTinThem.Add(reportitem);
+                    ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                    reportitem_khoa.name = Base.bienTrongBaoCao.MEDICINESTORENAME;
+                    reportitem_khoa.value = cboTuTruc.Text;
+                    thongTinThem.Add(reportitem_khoa);
 
+                    string fileTemplatePath = "BC_XuatNhapTonTuTruc.xlsx";
+                    DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                    Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                    export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                }
+                catch (Exception ex)
+                {
+                    Base.Logging.Warn(ex);
+                }
+                SplashScreenManager.CloseForm();
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                string tungaydenngay = "Thời gian " + lblThoiGianLayBaoCao.Text;
+
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = tungaydenngay;
+                thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.MEDICINESTORENAME;
+                reportitem_khoa.value = cboTuTruc.Text;
+                thongTinThem.Add(reportitem_khoa);
+
+                string fileTemplatePath = "BC_XuatNhapTonTuTruc.xlsx";
+                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            SplashScreenManager.CloseForm();
+        }
+        private DataTable ExportExcel_GroupColume()
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                List<ClassCommon.BCXuatNhapTonTuTruc> lstData_XuatBaoCao = new List<ClassCommon.BCXuatNhapTonTuTruc>();
+                List<ClassCommon.BCXuatNhapTonTuTruc> lstDataDoanhThu = new List<ClassCommon.BCXuatNhapTonTuTruc>();
+                lstDataDoanhThu = Util_DataTable.DataTableToList<ClassCommon.BCXuatNhapTonTuTruc>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewThuocTuTruc));
+
+                List<ClassCommon.BCXuatNhapTonTuTruc> lstData_Group = lstDataDoanhThu.GroupBy(o => o.medicinegroupcode).Select(n => n.First()).ToList();
+                foreach (var item_group in lstData_Group)
+                {
+                    ClassCommon.BCXuatNhapTonTuTruc data_groupname = new ClassCommon.BCXuatNhapTonTuTruc();
+                    List<ClassCommon.BCXuatNhapTonTuTruc> lstData_doanhthu = lstDataDoanhThu.Where(o => o.medicinegroupcode == item_group.medicinegroupcode).ToList();
+
+                    data_groupname.stt = item_group.medicinegroupcode;
+                    data_groupname.isgroup = 1;
+
+                    lstData_XuatBaoCao.Add(data_groupname);
+                    lstData_XuatBaoCao.AddRange(lstData_doanhthu);
+                }
+                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
     }
 }

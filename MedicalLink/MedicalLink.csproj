@@ -410,6 +410,7 @@
     </Compile>
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
+    <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
     <Compile Include="ClassCommon\classLoaiPTTTDTO.cs" />
@@ -1506,6 +1507,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_TienBenhNhanPhaiThanhToan_ChiTiet.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_XuatNhapTonTuTruc.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

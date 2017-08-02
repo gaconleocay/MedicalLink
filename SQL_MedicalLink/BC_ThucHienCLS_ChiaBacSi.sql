@@ -1,4 +1,4 @@
---Bao cao Thuc hien Cận Lâm sàng ngay 26/7/2017
+--Bao cao Thuc hien Cận Lâm sàng ngay 2/8/2017
 -- chinh sua: mo chinh la người trả kết quả;
 --Chẩn đoán= chẩn đoán chỉ định
 
@@ -53,7 +53,8 @@ SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate) as stt,
 	(A.PHU2_TIEN * (A.TYLE/100)) AS PHU2_TIEN, 
 	A.giupviec1_idbs,
 	GV1.username AS GIUPVIEC1_TENBS, 
-	(A.GIUPVIEC1_TIEN * (A.TYLE/100)) AS GIUPVIEC1_TIEN, 
+	(A.GIUPVIEC1_TIEN * (A.TYLE/100)) AS GIUPVIEC1_TIEN,
+	(A.giupviec1nsdd_tien * (A.TYLE/100)) AS giupviec1nsdd_tien, 
 	A.giupviec2_idbs,
 	GV2.username AS GIUPVIEC2_TENBS, 
 	(A.GIUPVIEC2_TIEN * (A.TYLE/100)) AS GIUPVIEC2_TIEN, 
@@ -78,7 +79,6 @@ FROM (
 			ser.servicepriceid,
 			ser.servicepricecode,
 			(case ser.loaidoituong when 0 then ser.servicepricename_bhyt when 1 then ser.servicepricename_nhandan else ser.servicepricename end) as servicepricename,			
-			--ser.servicepricename, 
 			(case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as SERVICEPRICEFEE, 
 			(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as TYLE, 
 			(select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan*ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong=2 and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) as THUOC_TRONGGOI, 
@@ -102,7 +102,6 @@ FROM (
 			(case when serf.pttt_loaiid in (4,8) then 'x' else '' end) as LOAIPTTT_L3, 
 			ser.soluong as SOLUONG, 
 			((ser.chiphidauvao + ser.chiphimaymoc + ser.chiphipttt) + COALESCE((case when ser.mayytedbid<>0 then (select myt.chiphiliendoanh from mayyte myt where myt.mayytedbid=ser.mayytedbid) else 0 end),0))* ser.soluong as chiphikhac, 
-			--cls.phauthuatvien as mochinh_idbs, 
 			((case serf.pttt_loaiid 
 					when 1 then 280000 
 					when 2 then 125000 
@@ -147,6 +146,9 @@ FROM (
 				when 7 then 9000 
 				when 8 then 4500 
 				else 0 end) * ser.soluong) as GIUPVIEC1_TIEN, 
+		  ((case serf.pttt_loaiid 
+				when 6 then 21000
+				else 0 end) * ser.soluong) as giupviec1nsdd_tien, 
 			cls.phumo4 as giupviec2_idbs, 
 			((case serf.pttt_loaiid 
 				when 1 then 120000 
@@ -171,13 +173,12 @@ LEFT JOIN (select departmentid, departmentname from department where departmentt
 LEFT JOIN (select departmentid, departmentname from department where departmenttype in (6,7)) pth ON pth.departmentid=mbp.departmentid_des 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCD ON KCD.departmentgroupid=A.khoachuyenden 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) krv ON krv.departmentgroupid=A.khoaravien 
---LEFT JOIN tools_tblnhanvien mc ON mc.userhisid=A.mochinh_idbs 
-LEFT JOIN tools_tblnhanvien gm ON gm.userhisid=A.gayme_idbs 
-LEFT JOIN tools_tblnhanvien p1 ON p1.userhisid=A.phu1_idbs 
-LEFT JOIN tools_tblnhanvien p2 ON p2.userhisid=A.phu2_idbs 
-LEFT JOIN tools_tblnhanvien gv1 ON gv1.userhisid=A.giupviec1_idbs 
-LEFT JOIN tools_tblnhanvien gv2 ON gv2.userhisid=A.giupviec2_idbs
-LEFT JOIN tools_tblnhanvien ntkq ON ntkq.userhisid=mbp.usertrakq;
+LEFT JOIN nhompersonnel gm ON gm.userhisid=A.gayme_idbs 
+LEFT JOIN nhompersonnel p1 ON p1.userhisid=A.phu1_idbs 
+LEFT JOIN nhompersonnel p2 ON p2.userhisid=A.phu2_idbs 
+LEFT JOIN nhompersonnel gv1 ON gv1.userhisid=A.giupviec1_idbs 
+LEFT JOIN nhompersonnel gv2 ON gv2.userhisid=A.giupviec2_idbs
+LEFT JOIN nhompersonnel ntkq ON ntkq.userhisid=mbp.usertrakq;
 
 
 

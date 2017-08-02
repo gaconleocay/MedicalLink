@@ -127,6 +127,11 @@ Loại 3: 8
  
 ser.thuockhobanle=0 : don thuoc thuong 
  
+BHYT thanh toán định mức trần:
+ser.servicepricebhytdinhmuc : định mức trần cho dịch vụ mà nằm trong khoảng thanh toán của BHYT.
+
+ 
+ 
 ========================ServicePriceRef================= 
 ServiceGroupType: 
 - 1: Kham benh 
@@ -203,7 +208,7 @@ medicalrecordstatus:
 - dagiuthebhyt=1 có thẻ bhyt 
 - loaivienphiid=0 nội trú; =1 ngoại trú 
  
- duyet_ngayduyet: duyet BHYT
+ duyet_ngayduyet: duyet BHYT (khi duyet bhyt thi vienphistatus=2 & duyet_ngayduyet)
  duyet_ngayduyet_vp: duyet Vien phi
  
 ===============================bhyt==================== 
@@ -382,5 +387,13 @@ SELECT 1 as tools_othertypelistid, idmayxn as tools_otherlistcode, tenmayxn as t
 partition
 alter table tools_otherlist add tools_otherlistnote text;
 alter table tools_othertypelist add tools_othertypelistnote text;
+------------
+
+
+
+
+
+
+
 
  

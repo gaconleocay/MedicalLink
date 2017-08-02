@@ -369,8 +369,10 @@ namespace MedicalLink.BaoCao
                     gridBand_gayme.Visible = false;
                     gridBand_phumo1.Visible = false;
                     gridBand_phumo2.Visible = false;
-                    gridBand_giupviec1.Visible = true;
+                    //gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = false;
+                    bandedGridColumn_gv1_tien.Visible = false;
+                    bandedGridColumn_gv1nsdd_tien.Visible = true;
                 }
                 else
                 {
@@ -378,8 +380,11 @@ namespace MedicalLink.BaoCao
                     gridBand_gayme.Visible = true;
                     gridBand_phumo1.Visible = true;
                     gridBand_phumo2.Visible = true;
-                    gridBand_giupviec1.Visible = true;
+                    //gridBand_giupviec1.Visible = true;
                     gridBand_giupviec2.Visible = true;
+                    bandedGridColumn_gv1_tien.Visible = true;
+                    bandedGridColumn_gv1nsdd_tien.Visible = false;
+
                 }
             }
             catch (Exception ex)

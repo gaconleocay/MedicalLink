@@ -272,6 +272,7 @@ namespace MedicalLink.Dashboard
                     //dateDenNgay.Enabled = true;
                     dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                     dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                    cboLoaiThoiGian.Enabled = true;
                 }
                 else
                 {
@@ -279,6 +280,7 @@ namespace MedicalLink.Dashboard
                     //dateDenNgay.Enabled = false;
                     dateTuNgay.Value = Convert.ToDateTime(GlobalStore.KhoangThoiGianLayDuLieu);
                     dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                    cboLoaiThoiGian.Enabled = false;
                 }
             }
             catch (Exception ex)

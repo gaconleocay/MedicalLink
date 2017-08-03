@@ -114,7 +114,7 @@ namespace MedicalLink.BaoCao
                         tinhBHYT.chiphi_trongpvql = item_data.money_tong_bh;
                         tinhBHYT.du5nam6thangluongcoban = item_data.du5nam6thangluongcoban;
                         tinhBHYT.loaivienphiid = item_data.loaivienphiid;
-                        tinhBHYT.thangluongcoban = item_data.thangluongcoban;
+                        tinhBHYT.bhyt_thangluongtoithieu = item_data.thangluongcoban;
 
 
                         item_data.money_bhyttt = TinhMucHuongBHYT.TinhSoTienBHYTThanhToan(tinhBHYT);

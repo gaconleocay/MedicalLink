@@ -13,12 +13,15 @@ namespace MedicalLink.ClassCommon
         public string patientid { get; set; }
         public string patientcode { get; set; }
         public string patientname { get; set; }
+        public string namsinh { get; set; }
+        public string gioitinh { get; set; }
         public string diachi { get; set; }
         public string bhytcode { get; set; }
         public string macskcbbd { get; set; }
         public object vienphidate { get; set; }
         public object vienphidate_ravien { get; set; }
         public object duyet_ngayduyet_vp { get; set; }
+        public object duyet_ngayduyet { get; set; }
         public long departmentgroupid { get; set; }
         public string departmentgroupname { get; set; }
         public string departmentname { get; set; }
@@ -77,6 +80,11 @@ namespace MedicalLink.ClassCommon
         public decimal money_phuthu_vp { get; set; }
         public decimal money_phuthu_bntt { get; set; }
         public decimal money_phuthu_bhtt { get; set; }
+        public decimal money_vtthaythe { get; set; }
+        public decimal money_vtthaythe_bh { get; set; }
+        public decimal money_vtthaythe_vp { get; set; }
+        public decimal money_vtthaythe_bntt { get; set; }
+        public decimal money_vtthaythe_bhtt { get; set; }
         public decimal money_vanchuyen { get; set; }
         public decimal money_vanchuyen_bh { get; set; }
         public decimal money_vanchuyen_vp { get; set; }
@@ -88,10 +96,11 @@ namespace MedicalLink.ClassCommon
         public decimal money_khac_bntt { get; set; }
         public decimal money_khac_bhtt { get; set; }
         public int bhyt_tuyenbenhvien { get; set; }
+        public int doituongbenhnhanid { get; set; }
         public int bhyt_loaiid { get; set; }
         public int loaivienphiid { get; set; }
         public int du5nam6thangluongcoban { get; set; }
-        public int thangluongcoban { get; set; }
+        public decimal bhyt_thangluongtoithieu { get; set; }
         public int isgroup { get; set; }
     }
 }

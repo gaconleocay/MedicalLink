@@ -18,7 +18,7 @@ namespace MedicalLink.ClassCommon
         public decimal chiphi_trongpvql { get; set; }
         public decimal chiphi_goidvktc { get; set; }
         public decimal chiphi_ngoaigoidvktc { get; set; }
-        public decimal thangluongcoban { get; set; }
+        public decimal bhyt_thangluongtoithieu { get; set; }
         public decimal _15thanhluongcoban { get; set; }
         public decimal _46thanhluongcoban { get; set; }
         public int maquyenloithe { get; set; }

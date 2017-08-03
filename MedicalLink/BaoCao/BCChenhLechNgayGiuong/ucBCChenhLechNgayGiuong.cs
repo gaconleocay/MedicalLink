@@ -97,7 +97,7 @@ namespace MedicalLink.BaoCao
                         tinhBHYT.bhyt_tuyenbenhvien = item_data.bhyt_tuyenbenhvien;
                         tinhBHYT.du5nam6thangluongcoban = item_data.du5nam6thangluongcoban;
                         tinhBHYT.loaivienphiid = item_data.loaivienphiid;
-                        tinhBHYT.thangluongcoban = item_data.thangluongcoban;
+                        tinhBHYT.bhyt_thangluongtoithieu = item_data.thangluongcoban;
 
                         item_data.thu_chenhlech = (item_data.servicepricemoney - item_data.servicepricemoney_bhyt) * item_data.soluong;
                         int tyleBN_Thanhtoan = TinhMucHuongBHYT.TinhMucHuongTheoTheBHYT(tinhBHYT);

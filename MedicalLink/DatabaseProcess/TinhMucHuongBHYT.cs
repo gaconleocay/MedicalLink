@@ -168,8 +168,8 @@ namespace MedicalLink.DatabaseProcess
 
 
                 thongtinthanhtoan.chiphi_ngoaigoidvktc = thongtinthanhtoan.chiphi_trongpvql - thongtinthanhtoan.chiphi_goidvktc;
-                thongtinthanhtoan._46thanhluongcoban = thongtinthanhtoan.thangluongcoban * 46;
-                thongtinthanhtoan._15thanhluongcoban = thongtinthanhtoan.thangluongcoban * (decimal)0.15;
+                thongtinthanhtoan._46thanhluongcoban = thongtinthanhtoan.bhyt_thangluongtoithieu * 46;
+                thongtinthanhtoan._15thanhluongcoban = thongtinthanhtoan.bhyt_thangluongtoithieu * (decimal)0.15;
 
                 if (thongtinthanhtoan.bhytcode != "" && thongtinthanhtoan.bhytcode.Length == 15)
                 {
@@ -448,7 +448,7 @@ namespace MedicalLink.DatabaseProcess
         /// ngay 29/7/2017
         /// </summary>
         /// <returns></returns>
-        internal static decimal TinhSoTienBHYTThanhToan_TyLeTB(ClassCommon.TinhBHYTThanhToanDTO thongtinthanhtoan)
+        internal static decimal TinhSoTienBHYTThanhToan_TyLeTrungBinh(ClassCommon.TinhBHYTThanhToanDTO thongtinthanhtoan)
         {
             /*bhyt_loaiid: =1 đúng tuyến; =2: đúng tuyến giới thiệu; =3 đúng tuyến cấp cứu; =4 trái tuyến
             * loaivienphiid=0 nội trú; =1 ngoại trú
@@ -462,8 +462,8 @@ namespace MedicalLink.DatabaseProcess
 
 
                 thongtinthanhtoan.chiphi_ngoaigoidvktc = thongtinthanhtoan.chiphi_trongpvql - thongtinthanhtoan.chiphi_goidvktc;
-                thongtinthanhtoan._46thanhluongcoban = thongtinthanhtoan.thangluongcoban * 46;
-                thongtinthanhtoan._15thanhluongcoban = thongtinthanhtoan.thangluongcoban * (decimal)0.15;
+                thongtinthanhtoan._46thanhluongcoban = thongtinthanhtoan.bhyt_thangluongtoithieu * 46;
+                thongtinthanhtoan._15thanhluongcoban = thongtinthanhtoan.bhyt_thangluongtoithieu * (decimal)0.15;
 
                 if (thongtinthanhtoan.bhytcode != "" && thongtinthanhtoan.bhytcode.Length == 15)
                 {
@@ -472,8 +472,8 @@ namespace MedicalLink.DatabaseProcess
 
                 if (thongtinthanhtoan.chiphi_trongpvql <= thongtinthanhtoan._15thanhluongcoban)
                 {
-                    money_bhyttra_dvktc = thongtinthanhtoan.chiphi_trongpvql;
-                    //money_bhyttra_ngoaidvktc = 0;
+                    //money_bhyttra_dvktc = 0;
+                    money_bhyttra_ngoaidvktc = thongtinthanhtoan.chiphi_trongpvql;
                 }
                 else
                 {
@@ -728,7 +728,14 @@ namespace MedicalLink.DatabaseProcess
                             break;
                     }
                 }
-                result = money_bhyttra_dvktc + money_bhyttra_ngoaidvktc;
+                if ((money_bhyttra_dvktc + money_bhyttra_ngoaidvktc) == thongtinthanhtoan.chiphi_trongpvql)
+                {
+                    result = 1;
+                }
+                else
+                {
+                    result = (long)(money_bhyttra_dvktc + money_bhyttra_ngoaidvktc) / thongtinthanhtoan.chiphi_trongpvql;
+                }
             }
             catch (Exception ex)
             {

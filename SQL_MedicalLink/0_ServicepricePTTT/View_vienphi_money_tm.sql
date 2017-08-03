@@ -258,11 +258,12 @@ and ser.servicepriceid_master in (select ser_ktc.servicepriceid from servicepric
 			) as money_dkpttt_vattu_vp
    FROM (select vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatus,departmentgroupid,departmentid,doituongbenhnhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet,vienphistatus_vp,duyet_ngayduyet_vp,vienphistatus_bh,duyet_ngayduyet_bh,bhyt_tuyenbenhvien,bhyt_thangluongtoithieu
 			from vienphi 
-			where vienphidate >= '2016-01-01 00:00:00' AND vienphistatus = 0
+			where --vienphiid=237888
+			vienphidate >= '2017-01-01 00:00:00'
 		) vp 
 		left join serviceprice ser on vp.vienphiid=ser.vienphiid and ser.thuockhobanle=0	
   GROUP BY vp.vienphiid,vp.patientid,vp.bhytid,vp.hosobenhanid,vp.loaivienphiid,vp.vienphistatus,vp.departmentgroupid,vp.departmentid,vp.doituongbenhnhanid,vp.vienphidate,vp.vienphidate_ravien,vp.duyet_ngayduyet,vp.vienphistatus_vp,vp.duyet_ngayduyet_vp,vp.vienphistatus_bh,vp.duyet_ngayduyet_bh,vp.bhyt_tuyenbenhvien,vp.bhyt_thangluongtoithieu,ser.departmentid,ser.departmentgroupid,(case when ser.departmentid in (34,335,269,285) then (select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid)
-		  else ser.departmentgroupid end)
+		  else ser.departmentgroupid end);
 
 
 

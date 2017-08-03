@@ -1,9 +1,12 @@
 --Bao cao thu tien tu BN - ngay 28/7
 
 
-	SELECT 
+	SELECT --row_number () over (order by hsba.patientname) as stt,
+		(row_number() OVER (PARTITION BY krv.departmentgroupname order by hsba.patientname)) as stt,
 		spt.vienphiid,
 		spt.patientid,
+		hsba.patientcode,
+		hsba.patientname,
 		to_char(hsba.birthday, 'yyyy') as namsinh,
 		hsba.gioitinhname as gioitinh,
 		bh.bhytcode,
@@ -15,7 +18,10 @@
 		spt.duyet_ngayduyet,
 		spt.bhyt_tuyenbenhvien,
 		spt.doituongbenhnhanid,
-		spt.bhyt_thangluongtoithieu,	
+		spt.bhyt_thangluongtoithieu,
+		krv.departmentgroupid,
+		krv.departmentgroupname,
+		prv.departmentname,	
 		sum(spt.money_khambenh_bh) as money_khambenh_bh, 
 		sum(spt.money_khambenh_vp) as money_khambenh_vp, 
 		sum(spt.money_xetnghiem_bh) as money_xetnghiem_bh, 
@@ -46,28 +52,54 @@
 		sum(spt.money_khambenh_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_pttt_vp + spt.money_dvktc_vp + spt.money_mau_vp + spt.money_giuong_vp + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_vp + spt.money_vattu_vp + spt.money_dkpttt_vattu_vp + spt.money_phuthu_vp + spt.money_vtthaythe_vp + spt.money_vanchuyen_vp + spt.money_khac_vp) as money_tong_vp
 		FROM 
 			(select vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatus,khoaravien,phongravien,doituongbenhnhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet,duyet_ngayduyet_vp,bhyt_tuyenbenhvien,bhyt_thangluongtoithieu,money_khambenh_bh,money_xetnghiem_bh,money_cdha_bh,money_tdcn_bh,money_pttt_bh,money_dvktc_bh,money_mau_bh,money_giuong_bh,money_thuoc_bh,money_dkpttt_thuoc_bh,money_vattu_bh,money_dkpttt_vattu_bh,money_phuthu_bh,money_vtthaythe_bh,money_vanchuyen_bh,money_khac_bh,money_khambenh_vp,money_xetnghiem_vp,money_cdha_vp,money_tdcn_vp,money_pttt_vp,money_dvktc_vp,money_mau_vp,money_giuong_vp,money_thuoc_vp,money_dkpttt_thuoc_vp,money_vattu_vp,money_dkpttt_vattu_vp,money_phuthu_vp,money_vtthaythe_vp,money_vanchuyen_vp,money_khac_vp		
-			from vienphi_money_tm where vienphistatus_vp=1 and duyet_ngayduyet_vp between '2017-03-01 00:00:00' and '2017-03-01 23:59:59') spt 
+			from vienphi_money_tm where vienphistatus_vp=1 and "+tieuchi_vp+" between '" + datetungay + "' and '" + datedenngay + "' "+doituongbenhnhan_vp+") spt 
 		INNER JOIN (select hosobenhanid,patientcode,patientname,birthday,gioitinhname from hosobenhan) hsba on hsba.hosobenhanid=spt.hosobenhanid
 		INNER JOIN (select bhytid,bhytcode,bhyt_loaiid,du5nam6thangluongcoban from bhyt) bh on bh.bhytid=spt.bhytid	
-		GROUP BY spt.vienphiid
+		LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) krv ON krv.departmentgroupid=spt.khoaravien
+		LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) prv ON prv.departmentid=spt.phongravien
+		GROUP BY spt.vienphiid,spt.patientid,hsba.patientcode,hsba.patientname,hsba.birthday,hsba.gioitinhname,bh.bhytcode,bh.bhyt_loaiid,bh.du5nam6thangluongcoban,spt.vienphidate,spt.vienphidate_ravien,spt.duyet_ngayduyet_vp,spt.duyet_ngayduyet,spt.bhyt_tuyenbenhvien,spt.doituongbenhnhanid,spt.bhyt_thangluongtoithieu,krv.departmentgroupid,krv.departmentgroupname,prv.departmentname;
+		
 
 
+		money_tong_bh
 		
 		
 		
 		
 		
 		
-		
-		
+/*		
 ĐT Viện phí
 ĐT BHYT
 ĐT BHYT+DV Viện phí
 ĐT BHYT+DV BHYT
 Tất cả		
+
+doituongbenhnhan_vp<>1
+doituongbenhnhan_vp=1
+doituongbenhnhan_vp=1 	
+
+doituongbenhnhanid
 		
-		
-		
-		
+*/		
+	
+Theo ngày vào viện
+Theo ngày ra viện
+Theo ngày duyệt VP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 		
 		

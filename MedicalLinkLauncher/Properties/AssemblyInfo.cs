@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MedicalLinkLauncher")]
-[assembly: AssemblyDescription("OneOne solution co.")]
+[assembly: AssemblyDescription("Phần mềm hỗ trợ quản lý tổng thể bệnh viện")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Copyright © 2016 OneOne solution co.")]
+[assembly: AssemblyCompany("OneOne solution co.")]
 [assembly: AssemblyProduct("MedicalLinkLauncher")]
 [assembly: AssemblyCopyright("Copyright © 2016 OneOne solution co.")]
 [assembly: AssemblyTrademark("")]

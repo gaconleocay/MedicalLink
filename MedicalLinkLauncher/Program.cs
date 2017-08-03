@@ -15,8 +15,8 @@ namespace MedicalLinkLauncher
 {
     static class Program
     {
-        private const string TEMP_DIR = "MedicalLinkUpdate_Temp";
-        private const string UPDATE_FILE_NAME = "MedicalLinkUpdate.zip";
+        //private const string TEMP_DIR = "MedicalLinkUpdate_Temp";
+        //private const string UPDATE_FILE_NAME = "MedicalLinkUpdate.zip";
         private static ConnectDatabase condb = new ConnectDatabase();
         //private static string versionDatabase = "";
         private static string tempDirectory = "";

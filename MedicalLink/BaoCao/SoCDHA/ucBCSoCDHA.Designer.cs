@@ -64,6 +64,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn6 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandTuoi = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridBand3 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -296,6 +297,7 @@
             this.gridColumn15,
             this.bandedGridColumn2,
             this.bandedGridColumn3,
+            this.bandedGridColumn6,
             this.gridColumn8,
             this.bandedGridColumn1,
             this.gridColumn9,
@@ -670,6 +672,27 @@
             this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn5.Visible = true;
             // 
+            // bandedGridColumn6
+            // 
+            this.bandedGridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn6.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn6.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn6.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn6.Caption = "Ngày trả kết quả từng phần";
+            this.bandedGridColumn6.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn6.FieldName = "servicetimetrakq";
+            this.bandedGridColumn6.Name = "bandedGridColumn6";
+            this.bandedGridColumn6.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn6.Visible = true;
+            this.bandedGridColumn6.Width = 120;
+            // 
             // gridBand1
             // 
             this.gridBand1.Caption = "gridBand1";
@@ -706,12 +729,13 @@
             this.gridBand3.Columns.Add(this.gridColumn15);
             this.gridBand3.Columns.Add(this.bandedGridColumn2);
             this.gridBand3.Columns.Add(this.bandedGridColumn3);
+            this.gridBand3.Columns.Add(this.bandedGridColumn6);
             this.gridBand3.Columns.Add(this.gridColumn8);
             this.gridBand3.Columns.Add(this.bandedGridColumn1);
             this.gridBand3.Name = "gridBand3";
             this.gridBand3.OptionsBand.ShowCaption = false;
             this.gridBand3.VisibleIndex = 2;
-            this.gridBand3.Width = 2168;
+            this.gridBand3.Width = 2288;
             // 
             // gridBandCoPhim
             // 
@@ -809,6 +833,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand bandTuoi;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn6;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandCoPhim;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandThuocVTDiKem;
     }

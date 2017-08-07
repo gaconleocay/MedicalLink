@@ -22,5 +22,8 @@ namespace MedicalLink.ClassCommon
         public string solo { get; set; }
         public string sodangky { get; set; }
         public long medicinekiemkeid { get; set; }
+        public string departmentgroupname { get; set; }
+        public string departmentname { get; set; }
+
     }
 }

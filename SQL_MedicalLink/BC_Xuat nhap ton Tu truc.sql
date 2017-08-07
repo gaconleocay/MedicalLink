@@ -9,12 +9,40 @@ me.medicinename,
 me.donvitinh, 
 sum(msref.soluongtonkho) as soluongtonkho, 
 sum(msref.soluongkhadung) as soluongkhadung, 
-msref.soluongtutruc 
+msref.soluongtutruc,
+'' as hansudung,
+'' as solo
 FROM 
 (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinename,donvitinh from medicine_ref) me 
 inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid 
 GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc 
 ORDER BY me.medicinegroupcode,me.medicinename; 
+
+
+---- Xuất nhập tồn chi tiết từng lô -Tổng hợp ngày 7/8
+SELECT row_number() OVER (order by me.medicinegroupcode,me.medicinename,me.medicinecode) as stt,  
+me.medicinerefid,
+me.medicinerefid_org, 
+me.medicinegroupcode, 
+me.medicinecode, 
+me.medicinename, 
+me.donvitinh, 
+msref.soluongtonkho as soluongtonkho, 
+msref.soluongkhadung as soluongkhadung, 
+msref.soluongtutruc,
+me.hansudung,
+me.solo
+FROM 
+(select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me 
+inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid;
+--GROUP BY me.medicinecode,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc,me.medicinerefid_org
+
+
+
+medicinerefid_org
+
+
+
 
 
 

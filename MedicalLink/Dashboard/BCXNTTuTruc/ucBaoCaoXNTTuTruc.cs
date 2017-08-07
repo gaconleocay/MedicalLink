@@ -19,6 +19,7 @@ namespace MedicalLink.Dashboard
     {
         private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private List<ClassCommon.classMedicineRef> lstMedicineStore { get; set; }
+        private List<ClassCommon.classMedicineRef> lstMedicine_ThuocCurrent { get; set; }
 
         public ucBaoCaoXNTTuTruc()
         {
@@ -125,6 +126,7 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
+        #region Tim Kiem va HIen Thi
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             try
@@ -145,12 +147,14 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
+
         private void LayDuLieuThuocTrongKho()
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 string medicinekiemkeid = " ";
+                string sql_getThuoc = "";
                 string sql_getkiemke = "select COALESCE(max(medicinekiemkeid),0) as medicinekiemkeid from medicinekiemke where medicinestoreid=" + cboTuTruc.EditValue + " and medicinekiemkestatus=0;";
                 DataView dataKiemKe = new DataView(condb.GetDataTable_HIS(sql_getkiemke));
                 if (dataKiemKe != null && dataKiemKe.Count > 0 && Utilities.Util_TypeConvertParse.ToInt64(dataKiemKe[0]["medicinekiemkeid"].ToString()) > 0)
@@ -158,10 +162,135 @@ namespace MedicalLink.Dashboard
                     medicinekiemkeid = " and medicinekiemkeid=" + dataKiemKe[0]["medicinekiemkeid"] + " ";
                 }
                 lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+                if (chkXemChiTiet.Checked)
+                {
+                    sql_getThuoc = "SELECT '' as stt, me.medicinerefid_org, me.medicinegroupcode, me.medicinecode, me.medicinename, me.donvitinh, msref.soluongtonkho as soluongtonkho, msref.soluongkhadung as soluongkhadung, msref.soluongtutruc, me.hansudung, me.solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid order by me.medicinegroupcode,me.medicinename,me.medicinecode;";
+                }
+                else
+                {
+                    sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc,'' as hansudung, '' as solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinename,donvitinh from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename; ";
+                }
+                DataTable dataDanhMucThuoc = condb.GetDataTable_HIS(sql_getThuoc);
 
-                string sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinename,donvitinh from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename; ";
-                DataView dataDanhMucThuoc = new DataView(condb.GetDataTable_HIS(sql_getThuoc));
-                gridControlThuocTuTruc.DataSource = dataDanhMucThuoc;
+                List<ClassCommon.classMedicineRef> lstMedicine_ThuocHienThi = new List<ClassCommon.classMedicineRef>();
+
+                if (dataDanhMucThuoc != null && dataDanhMucThuoc.Rows.Count > 0)
+                {
+
+                    // List<ClassCommon.classMedicineRef> lstMedicine_Thuoc = Util_DataTable.DataTableToList<ClassCommon.classMedicineRef>(dataDanhMucThuoc);
+                    this.lstMedicine_ThuocCurrent = new List<ClassCommon.classMedicineRef>();
+                    for (int i = 0; i < dataDanhMucThuoc.Rows.Count; i++)
+                    {
+                        ClassCommon.classMedicineRef _datathuoc = new ClassCommon.classMedicineRef();
+                        _datathuoc.stt = dataDanhMucThuoc.Rows[i]["stt"];
+                        _datathuoc.medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(dataDanhMucThuoc.Rows[i]["medicinerefid_org"].ToString());
+                        _datathuoc.medicinecode = dataDanhMucThuoc.Rows[i]["medicinecode"].ToString();
+                        _datathuoc.medicinename = dataDanhMucThuoc.Rows[i]["medicinename"].ToString();
+                        _datathuoc.medicinegroupcode = dataDanhMucThuoc.Rows[i]["medicinegroupcode"].ToString();
+                        _datathuoc.donvitinh = dataDanhMucThuoc.Rows[i]["donvitinh"].ToString();
+                        _datathuoc.soluongtonkho = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongtonkho"].ToString());
+                        _datathuoc.soluongkhadung = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongkhadung"].ToString());
+                        _datathuoc.soluongtutruc = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongtutruc"].ToString());
+                        _datathuoc.hansudung = dataDanhMucThuoc.Rows[i]["hansudung"];
+                        _datathuoc.solo = dataDanhMucThuoc.Rows[i]["solo"].ToString();
+                        this.lstMedicine_ThuocCurrent.Add(_datathuoc);
+                    }
+
+
+
+                    if (chkXemChiTiet.Checked == false)
+                    {
+                        lstMedicine_ThuocHienThi = this.lstMedicine_ThuocCurrent;
+                    }
+                    else
+                    {
+                        //Lo thuoc Goc
+                        List<ClassCommon.classMedicineRef> lstMedicine_LoGoc = this.lstMedicine_ThuocCurrent.GroupBy(o => o.medicinerefid_org).Select(n => n.First()).ToList();
+                        for (int i = 0; i < lstMedicine_LoGoc.Count; i++)
+                        {
+                            ClassCommon.classMedicineRef medicineitem_logoc = new ClassCommon.classMedicineRef();
+
+                            string[] malothuocgoc = lstMedicine_LoGoc[i].medicinecode.Split('.');
+                            medicineitem_logoc.stt = i + 1;
+                            medicineitem_logoc.medicinecode = malothuocgoc[0];
+                            medicineitem_logoc.medicinerefid = lstMedicine_LoGoc[i].medicinerefid;
+                            medicineitem_logoc.medicinerefid_org = lstMedicine_LoGoc[i].medicinerefid_org;
+                            medicineitem_logoc.medicinename = lstMedicine_LoGoc[i].medicinename;
+                            medicineitem_logoc.medicinerefid_orgcode = lstMedicine_LoGoc[i].medicinerefid_orgcode;
+                            medicineitem_logoc.medicinegroupcode = lstMedicine_LoGoc[i].medicinegroupcode;
+                            medicineitem_logoc.donvitinh = lstMedicine_LoGoc[i].donvitinh;
+                            medicineitem_logoc.soluongtutruc = lstMedicine_LoGoc[i].soluongtutruc;
+                            medicineitem_logoc.isgroup = 1;
+
+                            decimal sum_soluongtonkho = 0;
+                            decimal sum_soluongkhadung = 0;
+                            //medicineitem_logoc.
+                            List<ClassCommon.classMedicineRef> lst_thuoccon = this.lstMedicine_ThuocCurrent.Where(o => o.medicinerefid_org == lstMedicine_LoGoc[i].medicinerefid_org && o.medicinecode != medicineitem_logoc.medicinecode).ToList();
+                            foreach (var item_locon in lst_thuoccon)
+                            {
+                                sum_soluongtonkho += item_locon.soluongtonkho;
+                                sum_soluongkhadung += item_locon.soluongkhadung;
+                            }
+
+                            medicineitem_logoc.soluongtonkho = sum_soluongtonkho;
+                            medicineitem_logoc.soluongkhadung = sum_soluongkhadung;
+
+                            lstMedicine_ThuocHienThi.Add(medicineitem_logoc);
+                            lstMedicine_ThuocHienThi.AddRange(lst_thuoccon);
+                        }
+                    }
+
+                    ////=======
+                    ////Nhom thuoc
+                    //List<ClassCommon.classMedicineRef> lstMedicine_ThuocGroup = lstMedicine_Thuoc.GroupBy(o => o.medicinegroupcode).Select(n => n.First()).ToList();
+                    //foreach (var item_group in lstMedicine_ThuocGroup)
+                    //{
+                    //    ClassCommon.classMedicineRef medicineitem_group = new ClassCommon.classMedicineRef();
+                    //    medicineitem_group.medicinegroupcode = item_group.medicinegroupcode;
+                    //    medicineitem_group.isgroup = 1;
+                    //    lstMedicine_ThuocHienThi.Add(medicineitem_group);
+                    //    //Lo thuoc Goc
+                    //    List<ClassCommon.classMedicineRef> lstMedicine_LoGoc = lstMedicine_Thuoc.Where(o => o.medicinegroupcode == item_group.medicinegroupcode).ToList().GroupBy(o => o.medicinerefid_org).Select(n => n.First()).ToList();
+
+                    //    if (chkXemChiTiet.Checked == false)
+                    //    {
+                    //        lstMedicine_ThuocHienThi.AddRange(lstMedicine_LoGoc);
+                    //    }
+                    //    else
+                    //    {
+                    //        foreach (var item_logoc in lstMedicine_LoGoc)
+                    //        {
+                    //            ClassCommon.classMedicineRef medicineitem_logoc = new ClassCommon.classMedicineRef();
+
+                    //            string[] malothuocgoc = item_logoc.medicinecode.Split('.');
+                    //            medicineitem_logoc.medicinecode = malothuocgoc[0];
+                    //            medicineitem_logoc.medicinerefid = item_logoc.medicinerefid;
+                    //            medicineitem_logoc.medicinerefid_org = item_logoc.medicinerefid_org;
+                    //            medicineitem_logoc.medicinename = item_logoc.medicinename;
+                    //            medicineitem_logoc.medicinerefid_orgcode = item_logoc.medicinerefid_orgcode;
+                    //            medicineitem_logoc.medicinegroupcode = item_logoc.medicinegroupcode;
+                    //            medicineitem_logoc.donvitinh = item_logoc.donvitinh;
+
+                    //            decimal sum_soluongtonkho = 0;
+                    //            decimal sum_soluongkhadung = 0;
+                    //            //medicineitem_logoc.
+                    //            List<ClassCommon.classMedicineRef> lst_thuoccon = lstMedicine_Thuoc.Where(o => o.medicinerefid_org == item_logoc.medicinerefid_org && o.medicinecode != medicineitem_logoc.medicinecode).ToList();
+                    //            foreach (var item_locon in lst_thuoccon)
+                    //            {
+                    //                sum_soluongtonkho += item_locon.soluongtonkho;
+                    //                sum_soluongkhadung += item_locon.soluongkhadung;
+                    //            }
+
+                    //            medicineitem_logoc.soluongtonkho = sum_soluongtonkho;
+                    //            medicineitem_logoc.soluongkhadung = sum_soluongkhadung;
+
+                    //            lstMedicine_ThuocHienThi.Add(medicineitem_logoc);
+                    //            lstMedicine_ThuocHienThi.AddRange(lst_thuoccon);
+                    //        }
+                    //    }
+                    //}
+                }
+                gridControlThuocTuTruc.DataSource = lstMedicine_ThuocHienThi;
             }
             catch (Exception ex)
             {
@@ -170,6 +299,8 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.CloseForm();
         }
 
+        #endregion
+
         private void gridViewThuocTuTruc_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
@@ -177,6 +308,11 @@ namespace MedicalLink.Dashboard
             {
                 e.Appearance.BackColor = Color.LightGreen;
                 e.Appearance.ForeColor = Color.Black;
+            }
+            if (view.GetRowCellValue(e.RowHandle,
+              view.Columns["isgroup"]).ToString() == "1")
+            {
+                e.Appearance.Font = new System.Drawing.Font(e.Appearance.Font, FontStyle.Bold);
             }
         }
         private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
@@ -321,6 +457,18 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
             return result;
+        }
+
+        private void chkXemChiTiet_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTimKiem_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
         }
     }
 }

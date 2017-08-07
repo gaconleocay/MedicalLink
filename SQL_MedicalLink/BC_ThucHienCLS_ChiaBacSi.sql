@@ -1,8 +1,9 @@
---Bao cao Thuc hien Cận Lâm sàng ngay 2/8/2017
+--Bao cao Thuc hien Cận Lâm sàng ngay 7/8/2017
 -- chinh sua: mo chinh la người trả kết quả;
 --Chẩn đoán= chẩn đoán chỉ định
+--Tra ket qua tung phan: nguoi tra kq, thoi gian tra kq
 
-SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate) as stt, 
+SELECT ROW_NUMBER () OVER (ORDER BY A.maubenhphamfinishdate) as stt, 
 	A.patientid, 
 	A.vienphiid, 
 	A.medicalrecordid,
@@ -15,13 +16,14 @@ SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate) as stt,
 	pcd.departmentname as phongchidinh, 
 	pth.departmentname as phongthuchien, 
 	A.NGAY_CHIDINH, 
-	(case when mbp.maubenhphamdate_thuchien<>'0001-01-01 00:00:00' then mbp.maubenhphamdate_thuchien end) as ngay_tiepnhan,
-	(case when mbp.maubenhphamfinishdate<>'0001-01-01 00:00:00' then mbp.maubenhphamfinishdate end) as ngay_thuchien, 
+	(case when A.maubenhphamdate_thuchien<>'0001-01-01 00:00:00' then A.maubenhphamdate_thuchien end) as ngay_tiepnhan,
+	(case when A.maubenhphamfinishdate<>'0001-01-01 00:00:00' then A.maubenhphamfinishdate end) as ngay_thuchien,
+	(case when A.servicetimetrakq<>'0001-01-01 00:00:00' then A.servicetimetrakq end) as ngay_thuchien_tp,
 	KCD.departmentgroupname AS khoachuyenden, 
 	KRV.departmentgroupname AS khoaravien,
-	mbp.chandoan as cd_chidinh,
-	mbp.maubenhphamid,
-	mbp.sophieu,	
+	A.chandoan as cd_chidinh,
+	A.maubenhphamid,
+	A.sophieu,	
 	A.thuchienclsid,
 	A.servicepriceid,
 	A.servicepricecode, 
@@ -39,7 +41,8 @@ SELECT ROW_NUMBER () OVER (ORDER BY mbp.maubenhphamfinishdate) as stt,
 	round(cast(A.chiphikhac as numeric),0) AS chiphikhac, 
 	(A.servicepricefee * A.soluong) as thanhtien, 
 	round(cast(((A.servicepricefee * A.soluong) - COALESCE(A.THUOC_TRONGGOI,0) - COALESCE(A.VATTU_TRONGGOI,0) - COALESCE(A.chiphikhac,0) " + chiachobacsi + " ) as numeric),0) as lai, 
-	mbp.usertrakq as mochinh_idbs,
+	--A.usertrakq as mochinh_idbs,
+	A.serviceusertrakq as mochinh_idbs,
 	ntkq.username AS MOCHINH_TENBS, 
 	(A.MOCHINH_TIEN * (A.TYLE/100)) AS MOCHINH_TIEN, 
 	A.gayme_idbs,
@@ -73,6 +76,14 @@ FROM (
 			ser.departmentid as phongchidinh, 
 			ser.servicepricedate as NGAY_CHIDINH, 
 			ser.maubenhphamid, 
+			mbp.sophieu,
+			mbp.departmentid_des,
+			mbp.maubenhphamfinishdate,
+			mbp.maubenhphamdate_thuchien,
+			se.servicetimetrakq,
+			se.serviceusertrakq,
+			--mbp.usertrakq,
+			mbp.chandoan,		
 			(select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid) as khoachuyenden, 
 			(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
 			cls.thuchienclsid,
@@ -160,17 +171,18 @@ FROM (
 			(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as NGAY_RAVIEN, 
 			(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as NGAY_THANHTOAN,
 		cls.tools_username as nguoinhapthuchien
-	FROM serviceprice ser 
-	left join thuchiencls cls on cls.servicepriceid=ser.servicepriceid 
-	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu+") serf on serf.servicepricecode=ser.servicepricecode 
-	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 
-	WHERE ser.bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') " + serf_pttt_loaiid + tieuchi_date + " ) A 
-INNER JOIN (select maubenhphamid, sophieu, departmentid_des, maubenhphamfinishdate,maubenhphamdate_thuchien, usertrakq, chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + ") mbp on mbp.maubenhphamid=A.maubenhphamid " + mbp_departmentid + " 
+	FROM (select vienphiid,servicepriceid,departmentgroupid,departmentid,servicepricedate,maubenhphamid,servicepricecode,servicepricename,loaidoituong,medicalrecordid,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+tieuchi_date_ser+") ser 
+	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid 
+	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
+	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 
+	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid
+	INNER JOIN (select servicepriceid,servicetimetrakq,serviceusertrakq from service) se on se.servicepriceid=ser.servicepriceid
+	) A
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=A.hosobenhanid 
 INNER JOIN bhyt bh on bh.bhytid=A.bhytid 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCHD ON KCHD.departmentgroupid=A.khoachidinh 
 LEFT JOIN (select departmentid, departmentname from department where departmenttype in (2,3,9,6,7)) pcd ON pcd.departmentid=A.phongchidinh 
-LEFT JOIN (select departmentid, departmentname from department where departmenttype in (6,7)) pth ON pth.departmentid=mbp.departmentid_des 
+LEFT JOIN (select departmentid, departmentname from department where departmenttype in (6,7)) pth ON pth.departmentid=A.departmentid_des 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCD ON KCD.departmentgroupid=A.khoachuyenden 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) krv ON krv.departmentgroupid=A.khoaravien 
 LEFT JOIN nhompersonnel gm ON gm.userhisid=A.gayme_idbs 
@@ -178,7 +190,7 @@ LEFT JOIN nhompersonnel p1 ON p1.userhisid=A.phu1_idbs
 LEFT JOIN nhompersonnel p2 ON p2.userhisid=A.phu2_idbs 
 LEFT JOIN nhompersonnel gv1 ON gv1.userhisid=A.giupviec1_idbs 
 LEFT JOIN nhompersonnel gv2 ON gv2.userhisid=A.giupviec2_idbs
-LEFT JOIN nhompersonnel ntkq ON ntkq.userhisid=mbp.usertrakq;
+LEFT JOIN nhompersonnel ntkq ON ntkq.usercode=A.serviceusertrakq;
 
 
 

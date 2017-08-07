@@ -36,7 +36,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                string sqlLayDanhMucThuoc = "select ROW_NUMBER () OVER (ORDER BY trim(medicinename)) as stt, medicinecode, medicinename, donvitinh from medicine_ref where medicinecode not like '%.%' and datatype=0 and medicinegroupcode<>'NHATHUOC' ; ";
+                string sqlLayDanhMucThuoc = "select ROW_NUMBER () OVER (ORDER BY trim(medicinecode)) as stt, medicinecode, medicinename, donvitinh, medicinegroupcode from medicine_ref where medicinecode not like '%.%' and datatype=0 and medicinegroupcode<>'NHATHUOC' and medicinecode not in (select medicinegroupcode from medicine_ref group by medicinegroupcode);";
                 DataTable danhSanhThuoc = condb.GetDataTable_HIS(sqlLayDanhMucThuoc);
                 cboDSThuoc.Properties.DataSource = danhSanhThuoc;
                 cboDSThuoc.Properties.DisplayMember = "medicinename";

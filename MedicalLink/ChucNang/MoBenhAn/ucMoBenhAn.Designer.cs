@@ -29,12 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucMoBenhAn));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucMoBenhAn));
             this.panelControlMBA_TK = new DevExpress.XtraEditors.PanelControl();
+            this.groupBoxMBA_TK = new System.Windows.Forms.GroupBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.txtSoTheBHYT = new DevExpress.XtraEditors.TextEdit();
+            this.btnMBATimKiem = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.txtMBAMaBenhNhan = new DevExpress.XtraEditors.TextEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labeltenbenhnhan = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -71,14 +77,11 @@
             this.phong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageCollectionMBA = new DevExpress.Utils.ImageCollection(this.components);
-            this.groupBoxMBA_TK = new System.Windows.Forms.GroupBox();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.txtSoTheBHYT = new DevExpress.XtraEditors.TextEdit();
-            this.btnMBATimKiem = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtMBAMaBenhNhan = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMBA_TK)).BeginInit();
             this.panelControlMBA_TK.SuspendLayout();
+            this.groupBoxMBA_TK.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMBAMaBenhNhan.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMBA_DT)).BeginInit();
             this.panelControlMBA_DT.SuspendLayout();
@@ -92,9 +95,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlMoBenhAn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMoBenhAn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionMBA)).BeginInit();
-            this.groupBoxMBA_TK.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMBAMaBenhNhan.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlMBA_TK
@@ -107,6 +107,80 @@
             this.panelControlMBA_TK.Size = new System.Drawing.Size(1200, 90);
             this.panelControlMBA_TK.TabIndex = 0;
             // 
+            // groupBoxMBA_TK
+            // 
+            this.groupBoxMBA_TK.Controls.Add(this.labelControl5);
+            this.groupBoxMBA_TK.Controls.Add(this.txtSoTheBHYT);
+            this.groupBoxMBA_TK.Controls.Add(this.btnMBATimKiem);
+            this.groupBoxMBA_TK.Controls.Add(this.labelControl1);
+            this.groupBoxMBA_TK.Controls.Add(this.txtMBAMaBenhNhan);
+            this.groupBoxMBA_TK.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxMBA_TK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBoxMBA_TK.Location = new System.Drawing.Point(2, 2);
+            this.groupBoxMBA_TK.Name = "groupBoxMBA_TK";
+            this.groupBoxMBA_TK.Size = new System.Drawing.Size(846, 86);
+            this.groupBoxMBA_TK.TabIndex = 7;
+            this.groupBoxMBA_TK.TabStop = false;
+            this.groupBoxMBA_TK.Text = "Tìm kiếm";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Location = new System.Drawing.Point(170, 18);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(71, 16);
+            this.labelControl5.TabIndex = 6;
+            this.labelControl5.Text = "Số thẻ BHYT";
+            // 
+            // txtSoTheBHYT
+            // 
+            this.txtSoTheBHYT.Location = new System.Drawing.Point(170, 37);
+            this.txtSoTheBHYT.Name = "txtSoTheBHYT";
+            this.txtSoTheBHYT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSoTheBHYT.Properties.Appearance.Options.UseFont = true;
+            this.txtSoTheBHYT.Properties.MaxLength = 15;
+            this.txtSoTheBHYT.Size = new System.Drawing.Size(249, 30);
+            this.txtSoTheBHYT.TabIndex = 5;
+            this.txtSoTheBHYT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSoTheBHYT_KeyDown);
+            this.txtSoTheBHYT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoTheBHYT_KeyPress);
+            // 
+            // btnMBATimKiem
+            // 
+            this.btnMBATimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMBATimKiem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnMBATimKiem.Appearance.Options.UseFont = true;
+            this.btnMBATimKiem.Appearance.Options.UseForeColor = true;
+            this.btnMBATimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnMBATimKiem.Image")));
+            this.btnMBATimKiem.Location = new System.Drawing.Point(691, 27);
+            this.btnMBATimKiem.Name = "btnMBATimKiem";
+            this.btnMBATimKiem.Size = new System.Drawing.Size(100, 40);
+            this.btnMBATimKiem.TabIndex = 2;
+            this.btnMBATimKiem.Text = "Tìm Kiếm";
+            this.btnMBATimKiem.Click += new System.EventHandler(this.btnMBATimKiem_Click);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(8, 18);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(81, 16);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "Mã bệnh nhân";
+            // 
+            // txtMBAMaBenhNhan
+            // 
+            this.txtMBAMaBenhNhan.Location = new System.Drawing.Point(8, 37);
+            this.txtMBAMaBenhNhan.Name = "txtMBAMaBenhNhan";
+            this.txtMBAMaBenhNhan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMBAMaBenhNhan.Properties.Appearance.Options.UseFont = true;
+            this.txtMBAMaBenhNhan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtMBAMaBenhNhan.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtMBAMaBenhNhan.Properties.MaxLength = 10;
+            this.txtMBAMaBenhNhan.Size = new System.Drawing.Size(150, 30);
+            this.txtMBAMaBenhNhan.TabIndex = 1;
+            this.txtMBAMaBenhNhan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMBAMaBenhNhan_KeyDown);
+            this.txtMBAMaBenhNhan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMBAMaBenhNhan_KeyPress);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.labeltenbenhnhan);
@@ -117,9 +191,9 @@
             this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(802, 2);
+            this.groupBox1.Location = new System.Drawing.Point(848, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(396, 86);
+            this.groupBox1.Size = new System.Drawing.Size(350, 86);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Đang chọn";
@@ -128,7 +202,7 @@
             // 
             this.labeltenbenhnhan.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labeltenbenhnhan.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labeltenbenhnhan.Location = new System.Drawing.Point(111, 54);
+            this.labeltenbenhnhan.Location = new System.Drawing.Point(103, 54);
             this.labeltenbenhnhan.Name = "labeltenbenhnhan";
             this.labeltenbenhnhan.Size = new System.Drawing.Size(95, 16);
             this.labeltenbenhnhan.TabIndex = 11;
@@ -138,7 +212,7 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl4.Location = new System.Drawing.Point(14, 54);
+            this.labelControl4.Location = new System.Drawing.Point(6, 54);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(91, 16);
             this.labelControl4.TabIndex = 10;
@@ -148,7 +222,7 @@
             // 
             this.labelmabenhnhan.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelmabenhnhan.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.labelmabenhnhan.Location = new System.Drawing.Point(111, 25);
+            this.labelmabenhnhan.Location = new System.Drawing.Point(103, 25);
             this.labelmabenhnhan.Name = "labelmabenhnhan";
             this.labelmabenhnhan.Size = new System.Drawing.Size(91, 16);
             this.labelmabenhnhan.TabIndex = 9;
@@ -158,7 +232,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl2.Location = new System.Drawing.Point(225, 25);
+            this.labelControl2.Location = new System.Drawing.Point(195, 25);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(70, 16);
             this.labelControl2.TabIndex = 8;
@@ -168,7 +242,7 @@
             // 
             this.lblmavienphi_frm1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblmavienphi_frm1.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblmavienphi_frm1.Location = new System.Drawing.Point(301, 25);
+            this.lblmavienphi_frm1.Location = new System.Drawing.Point(271, 25);
             this.lblmavienphi_frm1.Name = "lblmavienphi_frm1";
             this.lblmavienphi_frm1.Size = new System.Drawing.Size(73, 16);
             this.lblmavienphi_frm1.TabIndex = 6;
@@ -178,7 +252,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl3.Location = new System.Drawing.Point(19, 25);
+            this.labelControl3.Location = new System.Drawing.Point(11, 25);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(86, 16);
             this.labelControl3.TabIndex = 7;
@@ -686,80 +760,6 @@
             this.imageCollectionMBA.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionMBA.ImageStream")));
             this.imageCollectionMBA.Images.SetKeyName(0, "unlocked_01.png");
             // 
-            // groupBoxMBA_TK
-            // 
-            this.groupBoxMBA_TK.Controls.Add(this.labelControl5);
-            this.groupBoxMBA_TK.Controls.Add(this.txtSoTheBHYT);
-            this.groupBoxMBA_TK.Controls.Add(this.btnMBATimKiem);
-            this.groupBoxMBA_TK.Controls.Add(this.labelControl1);
-            this.groupBoxMBA_TK.Controls.Add(this.txtMBAMaBenhNhan);
-            this.groupBoxMBA_TK.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxMBA_TK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxMBA_TK.Location = new System.Drawing.Point(2, 2);
-            this.groupBoxMBA_TK.Name = "groupBoxMBA_TK";
-            this.groupBoxMBA_TK.Size = new System.Drawing.Size(800, 86);
-            this.groupBoxMBA_TK.TabIndex = 7;
-            this.groupBoxMBA_TK.TabStop = false;
-            this.groupBoxMBA_TK.Text = "Tìm kiếm";
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Location = new System.Drawing.Point(170, 18);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(71, 16);
-            this.labelControl5.TabIndex = 6;
-            this.labelControl5.Text = "Số thẻ BHYT";
-            // 
-            // txtSoTheBHYT
-            // 
-            this.txtSoTheBHYT.Location = new System.Drawing.Point(170, 37);
-            this.txtSoTheBHYT.Name = "txtSoTheBHYT";
-            this.txtSoTheBHYT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoTheBHYT.Properties.Appearance.Options.UseFont = true;
-            this.txtSoTheBHYT.Properties.MaxLength = 15;
-            this.txtSoTheBHYT.Size = new System.Drawing.Size(249, 30);
-            this.txtSoTheBHYT.TabIndex = 5;
-            this.txtSoTheBHYT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSoTheBHYT_KeyDown);
-            this.txtSoTheBHYT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSoTheBHYT_KeyPress);
-            // 
-            // btnMBATimKiem
-            // 
-            this.btnMBATimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMBATimKiem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnMBATimKiem.Appearance.Options.UseFont = true;
-            this.btnMBATimKiem.Appearance.Options.UseForeColor = true;
-            this.btnMBATimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnMBATimKiem.Image")));
-            this.btnMBATimKiem.Location = new System.Drawing.Point(685, 27);
-            this.btnMBATimKiem.Name = "btnMBATimKiem";
-            this.btnMBATimKiem.Size = new System.Drawing.Size(100, 40);
-            this.btnMBATimKiem.TabIndex = 2;
-            this.btnMBATimKiem.Text = "Tìm Kiếm";
-            this.btnMBATimKiem.Click += new System.EventHandler(this.btnMBATimKiem_Click);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(8, 18);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(81, 16);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Mã bệnh nhân";
-            // 
-            // txtMBAMaBenhNhan
-            // 
-            this.txtMBAMaBenhNhan.Location = new System.Drawing.Point(8, 37);
-            this.txtMBAMaBenhNhan.Name = "txtMBAMaBenhNhan";
-            this.txtMBAMaBenhNhan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMBAMaBenhNhan.Properties.Appearance.Options.UseFont = true;
-            this.txtMBAMaBenhNhan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtMBAMaBenhNhan.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtMBAMaBenhNhan.Properties.MaxLength = 10;
-            this.txtMBAMaBenhNhan.Size = new System.Drawing.Size(150, 30);
-            this.txtMBAMaBenhNhan.TabIndex = 1;
-            this.txtMBAMaBenhNhan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMBAMaBenhNhan_KeyDown);
-            this.txtMBAMaBenhNhan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMBAMaBenhNhan_KeyPress);
-            // 
             // ucMoBenhAn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -771,6 +771,10 @@
             this.Load += new System.EventHandler(this.ucMoBenhAn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMBA_TK)).EndInit();
             this.panelControlMBA_TK.ResumeLayout(false);
+            this.groupBoxMBA_TK.ResumeLayout(false);
+            this.groupBoxMBA_TK.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMBAMaBenhNhan.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMBA_DT)).EndInit();
@@ -785,10 +789,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlMoBenhAn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewMoBenhAn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionMBA)).EndInit();
-            this.groupBoxMBA_TK.ResumeLayout(false);
-            this.groupBoxMBA_TK.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSoTheBHYT.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMBAMaBenhNhan.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -365,6 +365,9 @@ yyyy-MM-dd HH:mm:ss
 SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH:mm:ss') from vienphi vp where vp.vienphiid=800543  
 row_number() over() as stt, 
 row_number () over (order by a.ngay_thuchien desc) as stt 
+(row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY vms.vienphidate)) as stt,
+
+
 --------- 
 9.16.3. NULLIF 
 NULLIF(value1, value2) 

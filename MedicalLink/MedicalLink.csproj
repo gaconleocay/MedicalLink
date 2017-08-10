@@ -317,6 +317,12 @@
     <Compile Include="BaoCao\BCTienBNPhaiThanhToan\ucBCTienBNPhaiThanhToan.Designer.cs">
       <DependentUpon>ucBCTienBNPhaiThanhToan.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCTinhHinhRaVaoVien\ucBCTinhHinhRaVaoVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCTinhHinhRaVaoVien\ucBCTinhHinhRaVaoVien.Designer.cs">
+      <DependentUpon>ucBCTinhHinhRaVaoVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\SoCDHA\ucBCSoCDHA.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1024,6 +1030,9 @@
     <EmbeddedResource Include="BaoCao\BCTienBNPhaiThanhToan\ucBCTienBNPhaiThanhToan.resx">
       <DependentUpon>ucBCTienBNPhaiThanhToan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCTinhHinhRaVaoVien\ucBCTinhHinhRaVaoVien.resx">
+      <DependentUpon>ucBCTinhHinhRaVaoVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\SoCDHA\ucBCSoCDHA.resx">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </EmbeddedResource>
@@ -1510,6 +1519,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_XuatNhapTonTuTruc.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_BenhNhanRaVaoVien.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

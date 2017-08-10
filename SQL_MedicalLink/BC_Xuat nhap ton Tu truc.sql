@@ -75,7 +75,7 @@ me.medicinekiemkeid,
 kyc.departmentgroupname,
 pyc.departmentname
 FROM (select medicinerefid,medicinedate,medicinestorebillid,medicinestorebillcode,medicinestorebilltype,medicinestorebillstatus,medicinestorebillremark,medicinestoreid,accept_soluong,accept_money,accept_vat,solo,sodangky,medicinekiemkeid from medicine where isremove=0 and medicinestoreid='" + this.medicinestoreid + "' and medicinerefid in (" + this.lstmedicineref_string + ") and medicinestorebilltype in (2,204,217) and medicinedate between '" + thoiGianTu + "' and '" + thoiGianDen + "') me 
-inner join (select medicinestorebillid,departmentgroupid,departmentid from medicine_store_bill where coalesce(isremove,0)=0 and medicinestoreid='" + this.medicinestoreid + "') ser on ser.medicinestorebillid=me.medicinestorebillid 
+inner join (select medicinestorebillid,departmentgroupid,departmentid from medicine_store_bill where coalesce(isremove,0)=0 and medicinestoreid='" + this.medicinestoreid + "' --and medicinestorebilldate between '" + thoiGianTu + "' and '" + thoiGianDen + "') ser on ser.medicinestorebillid=me.medicinestorebillid 
 left join (select departmentgroupid,departmentgroupname from departmentgroup) kyc on kyc.departmentgroupid=ser.departmentgroupid
 left join (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pyc on pyc.departmentid=ser.departmentid
 ORDER BY me.medicinedate DESC;
@@ -85,7 +85,8 @@ medicinestorerefid
 medicinestorerefid 
 
 
-
+select * from medicine_store_bill
+where medicinestorebillcode='BILL5600883'
 
 
 

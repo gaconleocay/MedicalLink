@@ -201,17 +201,23 @@ namespace MedicalLink.ChucNang
                     string datengaysinh = DateTime.ParseExact(dtNgaySinh.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00";
                     // string datenamsinh = datengaysinh.Substring(0,4);
                     string datenamsinh = "0";
+                    string noichuyendencode = "";
                     // Querry thực hiện
                     DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa thông tin về BN:\n " + PatientName + " - " + patientid + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
                         string sqlupdate_ttbn = "UPDATE hosobenhan SET patientname = '" + txtPatientName.Text.Trim() + "', birthday='" + datengaysinh + "', birthday_year='" + datenamsinh + "', gioitinhcode = '" + txtGioiTinh.Text.Trim() + "', gioitinhname='" + cbbGioiTinh.Text.Trim() + "', hc_tinhcode = '" + cboTinh.EditValue.ToString() + "', hc_tinhname='" + cboTinh.Text.Trim() + "', hc_huyencode='" + cboHuyen.EditValue.ToString() + "', hc_huyenname='" + cboHuyen.Text.Trim() + "', hc_xacode='" + cboXa.EditValue.ToString() + "', hc_xaname='" + cboXa.Text.Trim() + "', hc_sonha='" + txtSoNha.Text.Trim() + "', hc_thon='" + txtThonPho.Text.Trim() + "', noilamviec='" + txtNoiLamViec.Text.Trim() + "' WHERE hosobenhanid = '" + hosobenhanid + "';";
 
+                        if (cboNoiChuyenDen.EditValue != null)
+                        {
+                            noichuyendencode = cboNoiChuyenDen.EditValue.ToString();
+                        }
+                        
                         //Cap nhat noi chuyen den
-                        string update_noichuyenden = "UPDATE medicalrecord SET noigioithieucode='" + cboNoiChuyenDen.EditValue.ToString() + "' WHERE medicalrecordid=" + this.medicalrecordid + "; ";
+                        string update_noichuyenden = "UPDATE medicalrecord SET noigioithieucode='" + noichuyendencode + "' WHERE medicalrecordid=" + this.medicalrecordid + "; ";
                         //Log
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin về BN từ: " + PatientName + "; " + NgaySinh + "; " + GioiTinh + "; " + tinh_code + "; " + tinh_name + "; " + huyen_code + "; " + huyen_name + "; " + xa_code + "; " + xa_name + "; " + SoNha + "; " + ThonPho + "; " + NoiLamViec + " thành: " + txtPatientName.Text + "; " + datengaysinh + "; " + cbbGioiTinh.Text + "; " + cboTinh.EditValue.ToString() + "; " + cboTinh.Text + "; " + cboTinh.EditValue.ToString() + "; " + cboHuyen.Text + "; " + cboXa.EditValue.ToString() + "; " + cboXa.Text + "; " + txtSoNha.Text + "; " + txtThonPho.Text + "; " + txtNoiLamViec.Text + "  ' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                        string sqlinsert_log2 = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin Nơi chuyển đến từ: " + this.NoiChuyenDen + " thành: " + cboNoiChuyenDen.EditValue.ToString() + " ' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log2 = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin Nơi chuyển đến từ: " + this.NoiChuyenDen + " thành: " + noichuyendencode + " ' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                         condb.ExecuteNonQuery_HIS(sqlupdate_ttbn);
                         condb.ExecuteNonQuery_HIS(update_noichuyenden);
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
@@ -223,6 +229,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
+                    Base.Logging.Error(ex);
                 }
             }
             catch (Exception)

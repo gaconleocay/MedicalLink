@@ -162,9 +162,9 @@ namespace MedicalLink.Dashboard
                     medicinekiemkeid = " and medicinekiemkeid=" + dataKiemKe[0]["medicinekiemkeid"] + " ";
                 }
                 lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
-                if (chkXemChiTiet.Checked)
+                if (chkXemChiTiet.Checked) // xem chi tiet
                 {
-                    sql_getThuoc = "SELECT '' as stt, me.medicinerefid_org, me.medicinegroupcode, me.medicinecode, me.medicinename, me.donvitinh, msref.soluongtonkho as soluongtonkho, msref.soluongkhadung as soluongkhadung, msref.soluongtutruc, me.hansudung, me.solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid order by me.medicinegroupcode,me.medicinename,me.medicinecode;";
+                    sql_getThuoc = "SELECT '' as stt, me.medicinerefid_org, me.medicinegroupcode, me.medicinecode, me.medicinename, me.donvitinh, msref.soluongtonkho as soluongtonkho, msref.soluongkhadung as soluongkhadung, msref.soluongtutruc, me.hansudung, me.solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid order by me.medicinegroupcode,me.medicinename,me.medicinecode;";
                 }
                 else
                 {
@@ -220,7 +220,7 @@ namespace MedicalLink.Dashboard
                             medicineitem_logoc.medicinegroupcode = lstMedicine_LoGoc[i].medicinegroupcode;
                             medicineitem_logoc.donvitinh = lstMedicine_LoGoc[i].donvitinh;
                             medicineitem_logoc.soluongtutruc = lstMedicine_LoGoc[i].soluongtutruc;
-                            medicineitem_logoc.isgroup = 1;
+                            medicineitem_logoc.islogoc = 1;
 
                             decimal sum_soluongtonkho = 0;
                             decimal sum_soluongkhadung = 0;
@@ -310,7 +310,7 @@ namespace MedicalLink.Dashboard
                 e.Appearance.ForeColor = Color.Black;
             }
             if (view.GetRowCellValue(e.RowHandle,
-              view.Columns["isgroup"]).ToString() == "1")
+              view.Columns["islogoc"]).ToString() == "1")
             {
                 e.Appearance.Font = new System.Drawing.Font(e.Appearance.Font, FontStyle.Bold);
             }

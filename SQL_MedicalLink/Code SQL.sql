@@ -186,7 +186,7 @@ medicalrecord :
 - doituongbenhnhanid=1 có thẻ bhyt 
 - xutrikhambenhid=4 nhập viện; =7 
 - hinhthucravienid: 8=chuyển khoa; 1=ra viện; 2=xin về; 3=bỏ về; 4=đưa về; 5=chuyển viện; 
-- hinhthucvaovienid: 3=chuyển khoa 
+- hinhthucvaovienid: 3=chuyển khoa ;=2: nhap vien
  
 medicalrecordstatus: 
 0: chưa tiếp nhận 
@@ -362,7 +362,7 @@ yyyy-MM-dd HH:mm:ss
 {0:#,##0} 
 yyyy-MM-dd HH:mm:ss 
  
-SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH:mm:ss') from vienphi vp where vp.vienphiid=800543  
+SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') from vienphi vp where vp.vienphiid=800543  
 row_number() over() as stt, 
 row_number () over (order by a.ngay_thuchien desc) as stt 
 (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY vms.vienphidate)) as stt,

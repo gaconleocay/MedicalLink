@@ -41,9 +41,8 @@ SELECT ROW_NUMBER () OVER (ORDER BY A.maubenhphamfinishdate) as stt,
 	round(cast(A.chiphikhac as numeric),0) AS chiphikhac, 
 	(A.servicepricefee * A.soluong) as thanhtien, 
 	round(cast(((A.servicepricefee * A.soluong) - COALESCE(A.THUOC_TRONGGOI,0) - COALESCE(A.VATTU_TRONGGOI,0) - COALESCE(A.chiphikhac,0) " + chiachobacsi + " ) as numeric),0) as lai, 
-	--A.usertrakq as mochinh_idbs,
-	A.serviceusertrakq as mochinh_idbs,
-	ntkq.username AS MOCHINH_TENBS, 
+	COALESCE(ntkq.usercode,ntkq_cc.usercode) as mochinh_idbs,
+	COALESCE(ntkq.username,ntkq_cc.username) AS mochinh_tenbs, 
 	(A.MOCHINH_TIEN * (A.TYLE/100)) AS MOCHINH_TIEN, 
 	A.gayme_idbs,
 	GM.username AS GAYME_TENBS, 
@@ -64,7 +63,7 @@ SELECT ROW_NUMBER () OVER (ORDER BY A.maubenhphamfinishdate) as stt,
 	A.NGAY_VAOVIEN, 
 	A.NGAY_RAVIEN, 
 	A.NGAY_THANHTOAN,
-	ntkq.username as nguoitraketqua,
+	COALESCE(ntkq.username,ntkq_cc.username) as nguoitraketqua,
 	A.nguoinhapthuchien
 FROM (
 	SELECT vp.patientid, 
@@ -82,7 +81,7 @@ FROM (
 			mbp.maubenhphamdate_thuchien,
 			se.servicetimetrakq,
 			se.serviceusertrakq,
-			--mbp.usertrakq,
+			mbp.usertrakq,
 			mbp.chandoan,		
 			(select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid) as khoachuyenden, 
 			(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
@@ -176,7 +175,7 @@ FROM (
 	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 
 	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid
-	INNER JOIN (select servicepriceid,servicetimetrakq,serviceusertrakq from service) se on se.servicepriceid=ser.servicepriceid
+	INNER JOIN (select servicepriceid,servicetimetrakq,serviceusertrakq from service where servicecode not in (select sef.servicegroupcode from service_ref sef group by sef.servicegroupcode)) se on se.servicepriceid=ser.servicepriceid
 	) A
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=A.hosobenhanid 
 INNER JOIN bhyt bh on bh.bhytid=A.bhytid 
@@ -190,8 +189,8 @@ LEFT JOIN nhompersonnel p1 ON p1.userhisid=A.phu1_idbs
 LEFT JOIN nhompersonnel p2 ON p2.userhisid=A.phu2_idbs 
 LEFT JOIN nhompersonnel gv1 ON gv1.userhisid=A.giupviec1_idbs 
 LEFT JOIN nhompersonnel gv2 ON gv2.userhisid=A.giupviec2_idbs
-LEFT JOIN nhompersonnel ntkq ON ntkq.usercode=A.serviceusertrakq;
-
+LEFT JOIN nhompersonnel ntkq ON ntkq.usercode=A.serviceusertrakq
+LEFT JOIN nhompersonnel ntkq_cc ON ntkq_cc.userhisid=A.usertrakq;
 
 
 

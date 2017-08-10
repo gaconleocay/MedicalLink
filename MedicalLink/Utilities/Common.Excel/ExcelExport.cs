@@ -31,7 +31,7 @@ namespace MedicalLink.Utilities.Common.Excel
                     {
                         newRow[item_value.name] = item_value.value;
                     }
-                    newRow["CURRENTDATETIME"] = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+                    newRow["CURRENTDATETIME"] = DateTime.Now.Hour + ":" + DateTime.Now.Minute + " ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
                     orderTable.Rows.Add(newRow);
                 }
             }
@@ -254,7 +254,7 @@ namespace MedicalLink.Utilities.Common.Excel
 
                 DataTable dataTableCopy = dataTable.Copy();
                 dataExportExcel.Tables.Add(dataTableCopy);
-                
+
                 string fileTemplatePath = Environment.CurrentDirectory + "\\Templates\\" + fileNameTemplate;
                 WorkbookDesigner designer;
 

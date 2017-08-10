@@ -472,7 +472,13 @@ namespace MedicalLink.Base
                 REPORT_26.permissionnote = "Báo cáo chênh lệch tiền ngày giường";
                 lstresult.Add(REPORT_26);
 
-
+                ClassCommon.classPermission REPORT_27 = new ClassCommon.classPermission();
+                REPORT_27.permissioncheck = false;
+                REPORT_27.permissioncode = "REPORT_27";
+                REPORT_27.permissionname = "Báo cáo tình hình bệnh nhân ra vào viện";
+                REPORT_27.permissiontype = 3;
+                REPORT_27.permissionnote = "Báo cáo tình hình bệnh nhân ra vào viện";
+                lstresult.Add(REPORT_27);
 
 
                 //Dashboard

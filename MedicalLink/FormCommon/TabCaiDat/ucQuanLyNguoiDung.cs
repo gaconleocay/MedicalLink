@@ -422,7 +422,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         CreateNewUserMedicinePhongLuu(en_txtUsercode);
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                         frmthongbao.Show();
-                        LoadDanhSachNguoiDung();
+                        //LoadDanhSachNguoiDung();
+                        ucQuanLyNguoiDung_Load(null, null);
                     }
                 }
                 else //Update 
@@ -821,6 +822,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
 
         void itemXoaNguoiDung_Click(object sender, EventArgs e)
         {
+            if (currentUserCode == null)
+            {
+                return;
+            }
             String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản: " + currentUserCode + " không?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (dialogResult == DialogResult.Yes)

@@ -367,7 +367,6 @@ row_number() over() as stt,
 row_number () over (order by a.ngay_thuchien desc) as stt 
 (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY vms.vienphidate)) as stt,
 
-
 --------- 
 9.16.3. NULLIF 
 NULLIF(value1, value2) 
@@ -378,20 +377,11 @@ Trong ví dụ này, nếu giá trị value là (none), thì null sẽ được 
 (case when hsba.gioitinhcode='01' then to_char(hsba.birthday, 'yyyy') else '' end) as year_nam 
 -------------- Concat trong postgres
 string_agg(case when b.dahuyphieu=1 then b.billcode end, '; ') as billcode_huy,
- 
- kho tbyt tổng.
----------------Chay update may xet nghiem
-INSERT INTO tools_otherlist(tools_othertypelistid, tools_otherlistcode, 
-            tools_otherlistname, tools_otherlistvalue)
-SELECT 1 as tools_othertypelistid, idmayxn as tools_otherlistcode, tenmayxn as tools_otherlistname, idmayxn as tools_otherlistvalue from service where idmayxn is not null group by idmayxn, tenmayxn;
-
-
-
 partition
 alter table tools_otherlist add tools_otherlistnote text;
 alter table tools_othertypelist add tools_othertypelistnote text;
 ------------
-
+ //string lastupdatedate_bhyt = DateTime.ParseExact(datalichsuKCB.lastupdatedate_bhyt.ToString(), "d/M/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
 
 

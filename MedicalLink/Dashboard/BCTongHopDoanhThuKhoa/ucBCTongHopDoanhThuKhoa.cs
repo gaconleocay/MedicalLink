@@ -118,7 +118,7 @@ namespace MedicalLink.Dashboard
                     radioQuy.Checked = false;
                     cboChonNhanh.Properties.Items.Clear();
                     cboChonNhanh.Text = "";
-                    for (int i = DateTime.Now.Year - 2; i <= DateTime.Now.Year; i++)
+                    for (int i = DateTime.Now.Year - 5; i <= DateTime.Now.Year; i++)
                     {
                         cboChonNhanh.Properties.Items.Add("Năm " + i);
                     }
@@ -135,7 +135,22 @@ namespace MedicalLink.Dashboard
             try
             {
                 gridControlTTDTKhoa.DataSource = null;
-                LayDuLieuBaoCao_ChayMoi();
+
+                long thoiGianTu = Convert.ToInt64(DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd"));
+                long thoiGianDen = Convert.ToInt64(DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd"));
+
+                if (thoiGianTu > 20161231 && thoiGianDen > 20161231)
+                {
+                    LayDuLieuBaoCao_ChayMoi();
+                }
+                else if (thoiGianTu < 20161231 && thoiGianDen <= 20161231)
+                {
+                    LayDuLieuBaoCao_Old();
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chia làm 2 khoảng từ trước ngày 31/12/2016 và sau ngày 01/01/2017", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {

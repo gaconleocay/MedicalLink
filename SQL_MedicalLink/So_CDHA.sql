@@ -23,10 +23,10 @@ SELECT
 		A.YEUCAU,
 		A.KETQUA,
 		A.MAUBENHPHAMDATE,
-		A.MAUBENHPHAMFINISHDATE,
+		a.maubenhphamfinishdate, --tra ket qua cuoi cung
 		A.VIENPHIDATE_RAVIEN,
 		A.DUYET_NGAYDUYET_VP,
-		A.SERVICETIMETRAKQ,
+		(case when A.servicetimetrakq is not null then A.servicetimetrakq else (a.maubenhphamfinishdate) end) as servicetimetrakq, --tra kq tung phan
 		NTKQ.USERNAME AS NGUOIDOC,
 		(CASE WHEN A.DEPARTMENTID_DES=244 THEN 'X' ELSE '' END) AS PHIM_20X25,
 		(CASE WHEN A.DEPARTMENTID_DES IN (245,246) THEN 'X' ELSE '' END) AS PHIM_35X43,

@@ -1,7 +1,8 @@
---Bao cao Thuc hien Cận Lâm sàng ngay 7/8/2017
+--Bao cao Thuc hien Cận Lâm sàng ngay 14/8/2017
 -- chinh sua: mo chinh la người trả kết quả;
 --Chẩn đoán= chẩn đoán chỉ định
 --Tra ket qua tung phan: nguoi tra kq, thoi gian tra kq
+--khong co t.gian tra kq tung phan thi lay t.gian tra kq cuoi cung 14/8
 
 SELECT ROW_NUMBER () OVER (ORDER BY A.maubenhphamfinishdate) as stt, 
 	A.patientid, 
@@ -18,7 +19,7 @@ SELECT ROW_NUMBER () OVER (ORDER BY A.maubenhphamfinishdate) as stt,
 	A.NGAY_CHIDINH, 
 	(case when A.maubenhphamdate_thuchien<>'0001-01-01 00:00:00' then A.maubenhphamdate_thuchien end) as ngay_tiepnhan,
 	(case when A.maubenhphamfinishdate<>'0001-01-01 00:00:00' then A.maubenhphamfinishdate end) as ngay_thuchien,
-	(case when A.servicetimetrakq<>'0001-01-01 00:00:00' then A.servicetimetrakq end) as ngay_thuchien_tp,
+	(case when A.servicetimetrakq<>'0001-01-01 00:00:00' then A.servicetimetrakq else ((case when A.maubenhphamfinishdate<>'0001-01-01 00:00:00' then A.maubenhphamfinishdate end)) end) as ngay_thuchien_tp,
 	KCD.departmentgroupname AS khoachuyenden, 
 	KRV.departmentgroupname AS khoaravien,
 	A.chandoan as cd_chidinh,

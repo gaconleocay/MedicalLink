@@ -202,7 +202,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                string thongtinbv = "SELECT hospitalcode,hospitalname,hospitaladdress,giamdocname FROM hospital limit 1;";
+                string thongtinbv = "SELECT hospitalcode,hospitalname,hospitaladdress,giamdocname,soytename FROM hospital limit 1;";
                 DataView dtthongtindv = new DataView(condb.GetDataTable_HIS(thongtinbv));
                 if (dtthongtindv != null && dtthongtindv.Count > 0)
                 {
@@ -210,6 +210,8 @@ namespace MedicalLink.FormCommon
                     lblMaCSYT.Text = dtthongtindv[0]["hospitalcode"].ToString();
                     lblDiaChi.Text = dtthongtindv[0]["hospitaladdress"].ToString();
                     lblGiamDocBV.Text = dtthongtindv[0]["giamdocname"].ToString();
+                    GlobalStore.SoYTe_String = dtthongtindv[0]["soytename"].ToString();
+                    GlobalStore.TenBenhVien_String = dtthongtindv[0]["hospitalname"].ToString();
                 }
             }
             catch (Exception ex)

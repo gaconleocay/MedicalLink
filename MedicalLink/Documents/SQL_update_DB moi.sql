@@ -1,5 +1,5 @@
 --SQL update table OTHERS
-Alter table tools_othertypelist add tools_othertypelistnote text; Alter table tools_otherlist add tools_otherlistnote text;
+--Alter table tools_othertypelist add tools_othertypelistnote text; Alter table tools_otherlist add tools_otherlistnote text;
 ---
 DELETE FROM tools_othertypelist;
 DELETE FROM tools_otherlist;

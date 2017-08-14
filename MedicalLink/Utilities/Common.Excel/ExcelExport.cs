@@ -24,14 +24,20 @@ namespace MedicalLink.Utilities.Common.Excel
                     {
                         orderTable.Columns.Add(item_name.name, typeof(string));
                     }
-                    orderTable.Columns.Add("CURRENTDATETIME", typeof(string));
 
+                    orderTable.Columns.Add("CURRENTDATETIME", typeof(string));
                     DataRow newRow = orderTable.NewRow();
                     foreach (var item_value in thongTinThem)
                     {
                         newRow[item_value.name] = item_value.value;
                     }
                     newRow["CURRENTDATETIME"] = DateTime.Now.Hour + ":" + DateTime.Now.Minute + " ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+
+                    orderTable.Columns.Add("SOYTE", typeof(string));
+                    newRow["SOYTE"] = GlobalStore.SoYTe_String;
+
+                    orderTable.Columns.Add("TENBENHVIEN", typeof(string));
+                    newRow["TENBENHVIEN"] = GlobalStore.TenBenhVien_String;
                     orderTable.Rows.Add(newRow);
                 }
             }
@@ -174,75 +180,6 @@ namespace MedicalLink.Utilities.Common.Excel
                 frmthongbao.Show();
             }
         }
-
-        //public void ExportExcelTemplate_ReportTemps(string pv_sErr, string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem, DataTable dataTable)
-        //{
-        //    try
-        //    {
-        //        DataSet dataExportExcel = new DataSet();
-        //        dataExportExcel.Tables.Add(InsertOrders(thongTinThem));
-
-        //        DataTable dataTableCopy = dataTable.Copy();
-        //        dataExportExcel.Tables.Add(dataTableCopy);
-
-        //        string tempPath = Environment.CurrentDirectory + "\\ReportTemps";
-        //        if (!System.IO.Directory.Exists(tempPath))
-        //        {
-        //            System.IO.Directory.CreateDirectory(tempPath);
-        //        }
-
-        //        string fileTemplatePath = Environment.CurrentDirectory + "\\Templates\\" + fileNameTemplate;
-        //        WorkbookDesigner designer;
-        //        string exportFilePath = Environment.CurrentDirectory + "\\ReportTemps\\" + fileNameTemplate;
-        //        string fileExtenstion = new FileInfo(exportFilePath).Extension;
-
-        //        if (File.Exists(fileTemplatePath))
-        //        {
-        //            designer = new WorkbookDesigner();
-        //            string strRoot = Environment.CurrentDirectory + "\\Library\\";
-        //            Aspose.Cells.License l = new Aspose.Cells.License();
-        //            string strLicense = strRoot + "Aspose.Cells.lic";
-        //            l.SetLicense(strLicense);
-        //            designer.Open(fileTemplatePath);
-        //            if (dataExportExcel.Tables.Count > 0)
-        //            {
-        //                dataExportExcel.Tables[0].TableName = "DATA";
-        //                for (int i = 1; i < dataExportExcel.Tables.Count; i++)
-        //                {
-        //                    dataExportExcel.Tables[i].TableName = "DATA" + i;
-        //                }
-        //                designer.SetDataSource(dataExportExcel);
-        //                designer.Process();
-        //                designer.Workbook.CalculateFormula();
-        //                switch (fileExtenstion)
-        //                {
-        //                    case ".xls":
-        //                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
-        //                        break;
-        //                    case ".xlsx":
-        //                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Xlsx));
-        //                        break;
-        //                    case ".pdf":
-        //                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Pdf));
-        //                        break;
-        //                    case ".html":
-        //                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Html));
-        //                        break;
-        //                    default:
-        //                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
-        //                        break;
-        //                }
-        //                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
-        //                frmthongbao.Show();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Base.Logging.Error(ex);
-        //        MessageBox.Show("Export dữ liệu thất bại!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
         public MemoryStream ExportExcelTemplate_ToStream(string pv_sErr, string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem, DataTable dataTable)
         {

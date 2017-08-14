@@ -212,7 +212,6 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
         #region kiem tra va copy ban moi
         private void KiemTraVaCopyFileLaucherNew()
         {

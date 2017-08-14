@@ -10,11 +10,13 @@ using System.Windows.Forms;
 using System.Configuration;
 using Npgsql;
 using DevExpress.XtraSplashScreen;
+using MedicalLink.Base;
 
 namespace MedicalLink.FormCommon.TabTrangChu
 {
     public partial class ucSettingDatabase : UserControl
     {
+        private ConnectDatabase condb = new ConnectDatabase();
         public ucSettingDatabase()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             try
             {
                 LoadKetNoiDatabase();
+                Load_DuongDanDenFolderVersion();
             }
             catch (Exception ex)
             {
@@ -53,7 +56,22 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
+        private void Load_DuongDanDenFolderVersion()
+        {
+            try
+            {
+                string kiemtraApp = "SELECT * FROM tools_version WHERE app_type=0;";
+                DataTable dataApp = condb.GetDataTable_MeL(kiemtraApp);
+                if (dataApp != null || dataApp.Rows.Count > 0)
+                {
+                    txtUrlVersionServer.Text = dataApp.Rows[0]["app_link"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         #endregion
         private void btnDBKiemTra_Click(object sender, EventArgs e)
         {
@@ -111,6 +129,21 @@ namespace MedicalLink.FormCommon.TabTrangChu
         {
             try
             {
+                LuuLaiCauHinhPhanMem_FileConfig();
+                LuuLaiDuongDanFolderVersion();
+                ConfigurationManager.RefreshSection("appSettings");
+                MessageBox.Show("Lưu dữ liệu thành công", "Thông báo");
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+        private void LuuLaiCauHinhPhanMem_FileConfig()
+        {
+            try
+            {
                 Configuration _config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 _config.AppSettings.Settings["ServerHost"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBHost.Text.Trim(), true);
                 _config.AppSettings.Settings["ServerPort"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBPort.Text.Trim(), true);
@@ -123,15 +156,24 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 _config.AppSettings.Settings["Password_MeL"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBPass_MeL.Text.Trim(), true);
                 _config.AppSettings.Settings["Database_MeL"].Value = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtDBName_MeL.Text.Trim(), true);
                 _config.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection("appSettings");
-                MessageBox.Show("Lưu dữ liệu thành công", "Thông báo");
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
+        private void LuuLaiDuongDanFolderVersion()
+        {
+            try
+            {
+                string sqlcommit = "update tools_version set app_link= '" + txtUrlVersionServer.Text.Trim() + "';";
+                condb.ExecuteNonQuery_MeL(sqlcommit);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         private void btnDBUpdate_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));

@@ -17,8 +17,6 @@ namespace MedicalLink.ChucNang
     public partial class ucUpdateDataSerPrice : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        string chonkieuimport;
-        //DataView dv_bhytgroup;
         public ucUpdateDataSerPrice()
         {
             InitializeComponent();
@@ -27,82 +25,156 @@ namespace MedicalLink.ChucNang
         // Mở file Excel hiển thị lên DataGridView
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            chonkieuimport = cbbChonKieu.Text.Trim();
-            string trangthaiVP = "";
-            gridControlDichVu.DataSource = null;
-            string datetungay = "";
-            string datedenngay = "";
-            string tieuchi = "";
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-            if (cbbChonKieu.Text != "" && dateTuNgay.Text != "" && dateDenNgay.Text != "" && cbbTrangThaiVP.Text != "")
+            try
             {
-                // Lấy từ ngày, đến ngày
-                datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                if (cbbTrangThaiVP.Text.Trim() == "Đang điều trị")
+                string trangthaiVP = "";
+                gridControlDichVu.DataSource = null;
+                string tieuchi_ser = "";
+                string tieuchi_vp = "";
+                if (cbbChonKieu.Text != "" && cbbTrangThaiVP.Text != "")
                 {
-                    trangthaiVP = " and vienphi.vienphistatus=0 ";
-                }
-                else if (cbbTrangThaiVP.Text.Trim() == "Đóng BA nhưng chưa duyệt VP")
-                {
-                    trangthaiVP = " and vienphi.vienphidate_ravien != '0001-01-01 00:00:00' and (vienphi.vienphistatus_vp IS NULL or vienphi.vienphistatus_vp=0) ";
-                }
-                else if (cbbTrangThaiVP.Text.Trim() == "Đã duyệt viện phí")
-                {
-                    trangthaiVP = " and vienphi.vienphistatus_vp=1 ";
-                }
+                    // Lấy từ ngày, đến ngày
+                    string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
-                if (cboTieuChi.Text == "Theo ngày chỉ định")
-                {
-                    tieuchi = " serviceprice.servicepricedate ";
-                }
-                else if (cboTieuChi.Text == "Theo ngày ra viện")
-                {
-                    tieuchi = " vienphi.vienphidate_ravien ";
-                }
-                else if (cboTieuChi.Text == "Theo ngày duyệt viện phí")
-                {
-                    tieuchi = " vienphi.duyet_ngayduyet_vp ";
-                }
+                    if (cbbTrangThaiVP.Text.Trim() == "Đang điều trị")
+                    {
+                        trangthaiVP = " vienphistatus=0 ";
+                    }
+                    else if (cbbTrangThaiVP.Text.Trim() == "Đóng BA nhưng chưa duyệt VP")
+                    {
+                        trangthaiVP = " vienphistatus=0 and COALESCE(vienphistatus_vp,0)=0) ";
+                    }
+                    else if (cbbTrangThaiVP.Text.Trim() == "Đã duyệt viện phí")
+                    {
+                        trangthaiVP = " vienphistatus_vp=1 ";
+                    }
 
-                switch (chonkieuimport)
+                    if (cboTieuChi.Text == "Theo ngày chỉ định")
+                    {
+                        tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    }
+                    else if (cboTieuChi.Text == "Theo ngày ra viện")
+                    {
+                        tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                    }
+                    else if (cboTieuChi.Text == "Theo ngày duyệt viện phí")
+                    {
+                        tieuchi_vp = " and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                    }
+
+                    switch (cbbChonKieu.Text.Trim())
+                    {
+                        case "Update nhóm BHYT-Thuốc/VT":
+                            {
+                                try
+                                {
+                                    string sqlquerythuoc = "SELECT ser.servicepriceid as servicepriceid, ser.medicalrecordid as madieutri, ser.vienphiid as mavienphi, ser.hosobenhanid as hosobenhan, ser.maubenhphamid as maubenhpham, ser.servicepricecode as madichvu, ser.servicepricename as tendichvu, ser.servicepricemoney as gia, ser.servicepricemoney_bhyt as gia_bhyt, ser.servicepricemoney_nhandan as gia_nhandan, ser.servicepricemoney_nuocngoai as gia_nnn, ser.soluong as soluong, ser.bhyt_groupcode as bhyt_groupcode, ser.servicepricedate as ngaychidinh FROM (select servicepriceid,medicalrecordid,vienphiid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong,bhyt_groupcode,servicepricedate from serviceprice where (bhyt_groupcode is null or bhyt_groupcode='') " + tieuchi_ser + ") ser inner join (select medicinecode from medicine_ref) serf on serf.medicinecode=ser.servicepricecode inner join (select vienphiid from vienphi where " + trangthaiVP + tieuchi_vp + ") vp on vp.vienphiid=ser.vienphiid ORDER BY ser.servicepriceid;";
+                                    DataView dv_bhytgroup = new DataView(condb.GetDataTable_HIS(sqlquerythuoc));
+
+                                    // Hiển thị
+                                    if (dv_bhytgroup.Count > 0)
+                                    {
+                                        gridControlDichVu.DataSource = dv_bhytgroup;
+                                    }
+                                    else
+                                    {
+                                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                                        frmthongbao.Show();
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                                }
+                                break;
+                            }
+                        case "Update nhóm BHYT-Dịch vụ":
+                            {
+                                try
+                                {
+                                    string sqlquerythuoc = "SELECT ser.servicepriceid as servicepriceid, ser.medicalrecordid as madieutri, ser.vienphiid as mavienphi, ser.hosobenhanid as hosobenhan, ser.maubenhphamid as maubenhpham, ser.servicepricecode as madichvu, ser.servicepricename as tendichvu, ser.servicepricemoney as gia, ser.servicepricemoney_bhyt as gia_bhyt, ser.servicepricemoney_nhandan as gia_nhandan, ser.servicepricemoney_nuocngoai as gia_nnn, ser.soluong as soluong, ser.bhyt_groupcode as bhyt_groupcode, ser.servicepricedate as ngaychidinh FROM (select servicepriceid,medicalrecordid,vienphiid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong,bhyt_groupcode,servicepricedate from serviceprice where (bhyt_groupcode is null or bhyt_groupcode='') " + tieuchi_ser + ") ser inner join (select servicepricecode from servicepriceref) serf on serf.servicepricecode=ser.servicepricecode inner join (select vienphiid from vienphi where " + trangthaiVP + tieuchi_vp + ") vp on vp.vienphiid=ser.vienphiid ORDER BY ser.servicepriceid; ";
+                                    DataView dv_bhytgroup = new DataView(condb.GetDataTable_HIS(sqlquerythuoc));
+
+                                    // Hiển thị
+                                    if (dv_bhytgroup.Count > 0)
+                                    {
+                                        gridControlDichVu.DataSource = dv_bhytgroup;
+                                    }
+                                    else
+                                    {
+                                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                                        frmthongbao.Show();
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                                }
+                                break;
+                            }
+                        default:
+                            {
+                                MessageBox.Show("Chưa chọn kiểu cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                break;
+                            }
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+            SplashScreenManager.CloseForm();
+        }
+
+        // update danh mục dịch vụ
+        private void btnUpdateDVOK_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            try
+            {
+                int dem_sl = 0;
+                // String lưu 1 mảng các ServicepriceID để load lại dữ liệu
+                string arrayserID = "";
+                // Lấy thời gian hiện tại
+                String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+                switch (cbbChonKieu.Text.Trim())
                 {
                     case "Update nhóm BHYT-Thuốc/VT":
                         {
                             try
                             {
-                                string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice,medicine_ref, vienphi WHERE medicine_ref.medicinecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and " + tieuchi + " >= '" + datetungay + "' and " + tieuchi + " <= '" + datedenngay + "' and serviceprice.bhyt_groupcode is null " + trangthaiVP + " ORDER BY servicepriceid ;";
-                                DataView dv_bhytgroup = new DataView(condb.GetDataTable_HIS(sqlquerythuoc));
-
-                                // Hiển thị
-                                if (dv_bhytgroup.Count > 0)
+                                if (gridViewDichVu.RowCount > 0)
                                 {
-                                    gridControlDichVu.DataSource = dv_bhytgroup;
-                                }
-                                else
-                                {
-                                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
-                                    frmthongbao.Show();
-                                }
-
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
-                            }
-                            break;
-                        }
-                    case "Update nhóm BHYT-Dịch vụ":
-                        {
-                            try
-                            {
-                                string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice, servicepriceref, vienphi WHERE servicepriceref.servicepricecode=serviceprice.servicepricecode and vienphi.vienphiid=serviceprice.vienphiid and " + tieuchi + " >= '" + datetungay + "' and " + tieuchi + " <= '" + datedenngay + "' and serviceprice.bhyt_groupcode is null " + trangthaiVP + " ORDER BY servicepriceid ;";
-                                DataView dv_bhytgroup = new DataView(condb.GetDataTable_HIS(sqlquerythuoc));
-
-                                // Hiển thị
-                                if (dv_bhytgroup.Count > 0)
-                                {
-                                    gridControlDichVu.DataSource = dv_bhytgroup;
+                                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                                    {
+                                        //Tìm mã bhytgroupcode từ medicine_ref
+                                        string sqlget_bhytgroupcode = "SELECT medicine_ref.bhyt_groupcode as bhyt_groupcode FROM serviceprice, medicine_ref WHERE medicine_ref.medicinecode=serviceprice.servicepricecode and serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "'";
+                                        DataView dv_bhytgroupcode = new DataView(condb.GetDataTable_HIS(sqlget_bhytgroupcode));
+                                        if (dv_bhytgroupcode.Count > 0)
+                                        {
+                                            try
+                                            {
+                                                string update_bhyt_thuoc = "UPDATE serviceprice SET bhyt_groupcode = '" + dv_bhytgroupcode[0]["bhyt_groupcode"] + "' WHERE serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "' ;";
+                                                condb.ExecuteNonQuery_HIS(update_bhyt_thuoc);
+                                                dem_sl = dem_sl + 1;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                    }
                                 }
                                 else
                                 {
@@ -117,143 +189,81 @@ namespace MedicalLink.ChucNang
                             }
                             break;
                         }
+
+                    case "Update nhóm BHYT-Dịch vụ":
+                        {
+                            try
+                            {
+                                if (gridViewDichVu.RowCount > 0)
+                                {
+                                    for (int i = 0; i < gridViewDichVu.RowCount; i++)
+                                    {
+                                        //Tìm mã bhytgroupcode từ medicine_ref
+                                        string sqlget_bhytgroupcode = "SELECT servicepriceref.bhyt_groupcode as bhyt_groupcode FROM serviceprice, servicepriceref WHERE servicepriceref.servicepricecode=serviceprice.servicepricecode and serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "'";
+                                        DataView dv_bhytgroupcode = new DataView(condb.GetDataTable_HIS(sqlget_bhytgroupcode));
+                                        if (dv_bhytgroupcode.Count > 0)
+                                        {
+                                            try
+                                            {
+                                                string update_bhyt_dv = "UPDATE serviceprice SET bhyt_groupcode = '" + dv_bhytgroupcode[0]["bhyt_groupcode"] + "' WHERE serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "' ;";
+                                                condb.ExecuteNonQuery_HIS(update_bhyt_dv);
+                                                dem_sl = dem_sl + 1;
+                                            }
+                                            catch (Exception)
+                                            {
+                                                continue;
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                                    frmthongbao.Show();
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
+                            }
+                            break;
+                        }
+
                     default:
                         {
                             MessageBox.Show("Chưa chọn kiểu cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             break;
                         }
-
                 }
 
+                if (gridViewDichVu.RowCount > 0)
+                {
+                    // Load lại dữ liệu cho người dùng xem
+                    for (int i = 0; i < gridViewDichVu.RowCount - 1; i++)
+                    {
+                        arrayserID += gridViewDichVu.GetRowCellValue(i, "servicepriceid").ToString() + ",";
+                    }
+                    arrayserID += gridViewDichVu.GetRowCellValue(gridViewDichVu.RowCount - 1, "servicepriceid").ToString();
+
+                    string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice WHERE serviceprice.servicepriceid in (" + arrayserID + ")  ORDER BY servicepriceid;";
+                    DataView dv_bhytgroup = new DataView(condb.GetDataTable_HIS(sqlquerythuoc));
+                    gridControlDichVu.DataSource = dv_bhytgroup;
+                    // Luu lai log
+                    if (dem_sl > 0)
+                    {
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + dem_sl + " trường " + cbbChonKieu.Text.Trim() + " thành công. ServicepriceID: " + arrayserID + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        condb.ExecuteNonQuery_MeL(sqlinsert_log);
+                    }
+                    // Thông báo đã Update Tên dịch vụ
+                    MessageBox.Show("Update " + dem_sl + " danh mục \"nhóm BHYT của thuốc/vật tư\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
-                frmthongbao.Show();
+                Base.Logging.Error(ex);
             }
             SplashScreenManager.CloseForm();
-        }
-
-        // update danh mục dịch vụ
-        private void btnUpdateDVOK_Click(object sender, EventArgs e)
-        {
-            chonkieuimport = cbbChonKieu.Text.Trim();
-            int dem_sl = 0;
-            // String lưu 1 mảng các ServicepriceID để load lại dữ liệu
-            string arrayserID = "";
-            // Lấy thời gian hiện tại
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-            switch (chonkieuimport)
-            {
-                case "Update nhóm BHYT-Thuốc/VT":
-                    {
-                        try
-                        {
-                            if (gridViewDichVu.RowCount > 0)
-                            {
-                                for (int i = 0; i < gridViewDichVu.RowCount; i++)
-                                {
-                                    //Tìm mã bhytgroupcode từ medicine_ref
-                                    string sqlget_bhytgroupcode = "SELECT medicine_ref.bhyt_groupcode as bhyt_groupcode FROM serviceprice, medicine_ref WHERE medicine_ref.medicinecode=serviceprice.servicepricecode and serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "'";
-                                    DataView dv_bhytgroupcode = new DataView(condb.GetDataTable_HIS(sqlget_bhytgroupcode));
-                                    if (dv_bhytgroupcode.Count > 0)
-                                    {
-                                        try
-                                        {
-                                            string update_bhyt_thuoc = "UPDATE serviceprice SET bhyt_groupcode = '" + dv_bhytgroupcode[0]["bhyt_groupcode"] + "' WHERE serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "' ;";
-                                            condb.ExecuteNonQuery_HIS(update_bhyt_thuoc);
-                                            dem_sl = dem_sl + 1;
-                                        }
-                                        catch (Exception)
-                                        {
-                                            continue;
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
-                                frmthongbao.Show();
-                            }
-
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
-                        }
-                        break;
-                    }
-
-                case "Update nhóm BHYT-Dịch vụ":
-                    {
-                        try
-                        {
-                            if (gridViewDichVu.RowCount > 0)
-                            {
-                                for (int i = 0; i < gridViewDichVu.RowCount; i++)
-                                {
-                                    //Tìm mã bhytgroupcode từ medicine_ref
-                                    string sqlget_bhytgroupcode = "SELECT servicepriceref.bhyt_groupcode as bhyt_groupcode FROM serviceprice, servicepriceref WHERE servicepriceref.servicepricecode=serviceprice.servicepricecode and serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "'";
-                                    DataView dv_bhytgroupcode = new DataView(condb.GetDataTable_HIS(sqlget_bhytgroupcode));
-                                    if (dv_bhytgroupcode.Count > 0)
-                                    {
-                                        try
-                                        {
-                                            string update_bhyt_dv = "UPDATE serviceprice SET bhyt_groupcode = '" + dv_bhytgroupcode[0]["bhyt_groupcode"] + "' WHERE serviceprice.servicepriceid='" + gridViewDichVu.GetRowCellValue(i, "servicepriceid") + "' ;";
-                                            condb.ExecuteNonQuery_HIS(update_bhyt_dv);
-                                            dem_sl = dem_sl + 1;
-                                        }
-                                        catch (Exception)
-                                        {
-                                            continue;
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
-                                frmthongbao.Show();
-                            }
-
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
-                        }
-                        break;
-                    }
-
-                default:
-                    {
-                        MessageBox.Show("Chưa chọn kiểu cập nhật", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        break;
-                    }
-            }
-
-            if (gridViewDichVu.RowCount > 0)
-            {
-                // Load lại dữ liệu cho người dùng xem
-                for (int i = 0; i < gridViewDichVu.RowCount - 1; i++)
-                {
-                    arrayserID += gridViewDichVu.GetRowCellValue(i, "servicepriceid").ToString() + ",";
-                }
-                arrayserID += gridViewDichVu.GetRowCellValue(gridViewDichVu.RowCount - 1, "servicepriceid").ToString();
-
-                string sqlquerythuoc = "SELECT serviceprice.servicepriceid as servicepriceid, serviceprice.medicalrecordid as madieutri, serviceprice.vienphiid as mavienphi, serviceprice.hosobenhanid as hosobenhan, serviceprice.maubenhphamid as maubenhpham, serviceprice.servicepricecode as madichvu, serviceprice.servicepricename as tendichvu, serviceprice.servicepricemoney as gia, serviceprice.servicepricemoney_bhyt as gia_bhyt, serviceprice.servicepricemoney_nhandan as gia_nhandan, serviceprice.servicepricemoney_nuocngoai as gia_nnn, serviceprice.soluong as soluong, serviceprice.bhyt_groupcode as bhyt_groupcode, serviceprice.servicepricedate as ngaychidinh FROM serviceprice WHERE serviceprice.servicepriceid in (" + arrayserID + ")  ORDER BY servicepriceid;";
-                DataView dv_bhytgroup = new DataView(condb.GetDataTable_HIS(sqlquerythuoc));
-                gridControlDichVu.DataSource = dv_bhytgroup;
-                // Luu lai log
-                if (dem_sl > 0)
-                {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + dem_sl + " trường " + chonkieuimport + " thành công. ServicepriceID: " + arrayserID + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
-                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                }
-                // Thông báo đã Update Tên dịch vụ
-                MessageBox.Show("Update " + dem_sl + " danh mục \"nhóm BHYT của thuốc/vật tư\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
 
 

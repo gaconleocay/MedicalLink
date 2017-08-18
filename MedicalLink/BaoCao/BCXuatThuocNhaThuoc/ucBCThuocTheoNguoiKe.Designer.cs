@@ -43,7 +43,6 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlTheoNguoiKe = new DevExpress.XtraGrid.GridControl();
             this.gridViewTheoNguoiKe = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.stt = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -56,6 +55,8 @@
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -94,7 +95,7 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(927, 98);
+            this.groupBoxFile.Size = new System.Drawing.Size(921, 98);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -226,30 +227,16 @@
             // 
             // groupBoxAction
             // 
+            this.groupBoxAction.Controls.Add(this.btnPrint);
             this.groupBoxAction.Controls.Add(this.tbnExport);
             this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(929, 2);
+            this.groupBoxAction.Location = new System.Drawing.Point(923, 2);
             this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(119, 98);
+            this.groupBoxAction.Size = new System.Drawing.Size(125, 98);
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
-            // 
-            // tbnExport
-            // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(10, 33);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 40);
-            this.tbnExport.TabIndex = 8;
-            this.tbnExport.Text = "Xuất file";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // gridControlTheoNguoiKe
             // 
@@ -484,6 +471,36 @@
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
             this.imMenu.Images.SetKeyName(0, "calendar-3-16.png");
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Appearance.Options.UseForeColor = true;
+            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(9, 19);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 30);
+            this.btnPrint.TabIndex = 13;
+            this.btnPrint.Text = "In ấn...";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // tbnExport
+            // 
+            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbnExport.Appearance.Options.UseFont = true;
+            this.tbnExport.Appearance.Options.UseForeColor = true;
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.tbnExport.Location = new System.Drawing.Point(9, 57);
+            this.tbnExport.Name = "tbnExport";
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
+            this.tbnExport.TabIndex = 12;
+            this.tbnExport.Text = "Xuất file";
+            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
+            // 
             // ucBCThuocTheoNguoiKe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,7 +545,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraEditors.SimpleButton tbnExport;
         private DevExpress.XtraGrid.Columns.GridColumn stt;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
@@ -538,5 +554,7 @@
         private System.Windows.Forms.Label label1;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListPhongLuu;
         private DevExpress.XtraEditors.CheckEdit chkNhom_TatCa;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraEditors.SimpleButton tbnExport;
     }
 }

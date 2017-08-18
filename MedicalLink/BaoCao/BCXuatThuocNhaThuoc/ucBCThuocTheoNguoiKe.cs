@@ -89,7 +89,7 @@ namespace MedicalLink.BaoCao
                         lstPhongLuuChonLayBC += "'" + lstNhomCheck[i] + "',";
                     }
                     lstPhongLuuChonLayBC += "'" + lstNhomCheck[lstNhomCheck.Count - 1] + "') ";
-                 lstPhongLuuChonLayBC=   lstPhongLuuChonLayBC.Replace("'", "");
+                    lstPhongLuuChonLayBC = lstPhongLuuChonLayBC.Replace("'", "");
                 }
                 if (chkNhom_TatCa.Checked == false && lstPhongLuuChonLayBC == "")
                 {
@@ -119,36 +119,6 @@ namespace MedicalLink.BaoCao
                 Base.Logging.Error(ex);
             }
             SplashScreenManager.CloseForm();
-        }
-
-        private void tbnExport_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-
-                string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
-
-                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
-                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
-                reportitem.value = tungaydenngay;
-                ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
-                reportitem_kho.name = Base.bienTrongBaoCao.LST_MECICINESTORENAME;
-                reportitem_kho.value = chkcomboListDSKho.Text.ToUpper();
-
-                thongTinThem.Add(reportitem);
-                thongTinThem.Add(reportitem_kho);
-
-                string fileTemplatePath = "BC_ThuocTheoNguoiKeNhaThuoc.xlsx";
-                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, this.dataBCBXuatThuoc);
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
         }
 
         private void gridViewDonThuoc_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -222,8 +192,64 @@ namespace MedicalLink.BaoCao
             }
         }
 
+        private void tbnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
+                string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = tungaydenngay;
+                ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
+                reportitem_kho.name = Base.bienTrongBaoCao.LST_MECICINESTORENAME;
+                reportitem_kho.value = chkcomboListDSKho.Text.ToUpper();
 
+                thongTinThem.Add(reportitem);
+                thongTinThem.Add(reportitem_kho);
+
+                string fileTemplatePath = "BC_ThuocTheoNguoiKeNhaThuoc.xlsx";
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, this.dataBCBXuatThuoc);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
+
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = tungaydenngay;
+                ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
+                reportitem_kho.name = Base.bienTrongBaoCao.LST_MECICINESTORENAME;
+                reportitem_kho.value = chkcomboListDSKho.Text.ToUpper();
+
+                thongTinThem.Add(reportitem);
+                thongTinThem.Add(reportitem_kho);
+                string fileTemplatePath = "BC_ThuocTheoNguoiKeNhaThuoc.xlsx";
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBCBXuatThuoc);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+            SplashScreenManager.CloseForm();
+        }
     }
 }

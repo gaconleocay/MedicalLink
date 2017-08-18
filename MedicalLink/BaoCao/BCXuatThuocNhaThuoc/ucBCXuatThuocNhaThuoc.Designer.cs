@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCXuatThuocNhaThuoc));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,7 +46,6 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlDonThuoc = new DevExpress.XtraGrid.GridControl();
             this.gridViewDonThuoc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -71,6 +70,8 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -108,7 +109,7 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(927, 98);
+            this.groupBoxFile.Size = new System.Drawing.Size(921, 98);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -227,30 +228,16 @@
             // 
             // groupBoxAction
             // 
+            this.groupBoxAction.Controls.Add(this.btnPrint);
             this.groupBoxAction.Controls.Add(this.tbnExport);
             this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(929, 2);
+            this.groupBoxAction.Location = new System.Drawing.Point(923, 2);
             this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(119, 98);
+            this.groupBoxAction.Size = new System.Drawing.Size(125, 98);
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
-            // 
-            // tbnExport
-            // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(9, 33);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 40);
-            this.tbnExport.TabIndex = 8;
-            this.tbnExport.Text = "Xuất file";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // gridControlDonThuoc
             // 
@@ -337,7 +324,7 @@
             // 
             this.repositoryItemButtonEdit_detail.AutoHeight = false;
             this.repositoryItemButtonEdit_detail.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit_detail.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Chi tiết đơn thuốc", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit_detail.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Chi tiết đơn thuốc", null, null, true)});
             this.repositoryItemButtonEdit_detail.Name = "repositoryItemButtonEdit_detail";
             this.repositoryItemButtonEdit_detail.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit_detail.Click += new System.EventHandler(this.repositoryItemButtonEdit_detail_Click);
@@ -710,6 +697,36 @@
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
             this.imMenu.Images.SetKeyName(0, "fast-forward-2-16.png");
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Appearance.Options.UseForeColor = true;
+            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(14, 21);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 30);
+            this.btnPrint.TabIndex = 15;
+            this.btnPrint.Text = "In ấn...";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // tbnExport
+            // 
+            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbnExport.Appearance.Options.UseFont = true;
+            this.tbnExport.Appearance.Options.UseForeColor = true;
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.tbnExport.Location = new System.Drawing.Point(14, 59);
+            this.tbnExport.Name = "tbnExport";
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
+            this.tbnExport.TabIndex = 14;
+            this.tbnExport.Text = "Xuất file";
+            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
+            // 
             // ucBCXuatThuocNhaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -760,7 +777,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-        private DevExpress.XtraEditors.SimpleButton tbnExport;
         private DevExpress.XtraGrid.Columns.GridColumn stt;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
@@ -775,5 +791,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn18;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraEditors.SimpleButton tbnExport;
     }
 }

@@ -19,11 +19,11 @@ INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, 
 INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (9, 'DS_SOXETNGHIEM', 'Danh sách Sổ xét nghiệm', 0, '');
 INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (10, 'DASHBOARD_12_DSHCSD', 'Nhóm thuốc hạn chế sử dụng', 0, '');
 INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (11, 'REPORT_26_NHOMDV', 'REPORT_26_Danh sách nhóm dịch vụ', 0, 'Danh sách nhóm dịch vụ lấy báo cáo (cách nhau bởi dấu , )');
-
+INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (12, 'REPORT_28_NHOMDV', 'REPORT_28_Danh sách nhóm dịch vụ', 0, 'Nhóm Chi phí khác - bv Thanh Hóa');
 
 
 ----
-ALTER SEQUENCE tools_othertypelist_tools_othertypelistid_seq RESTART WITH 12;
+ALTER SEQUENCE tools_othertypelist_tools_othertypelistid_seq RESTART WITH 13;
 
 
 
@@ -48,7 +48,7 @@ INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_othe
 INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (9, 'SO_KM', 'Sổ Khí máu', 'SO_KM', '0', '');
 INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (10, 'T41446-1948', 'Nhóm thuốc hạn chế sử dụng', 'T41446-1948', '0', '');
 INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (11, '38TH10', 'Nhóm dịch vụ ngày giường khoa Quốc tế', '38TH10', '0', '');
-
+INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (12, 'U2918-0644', 'Nhóm chi phí khác - BV Thanh Hóa', 'U2918-0644', '0', '');
 
 --INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (2222, '222222', '222222', '222222', '0', '');
 

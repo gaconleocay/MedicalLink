@@ -79,6 +79,13 @@ namespace MedicalLink.Base
                 lstresult.Add(SYS_07);
 
 
+                ClassCommon.classPermission SYS_08 = new ClassCommon.classPermission();
+                SYS_08.permissioncheck = false;
+                SYS_08.permissioncode = "SYS_08";
+                SYS_08.permissionname = "Danh mục dịch vụ - cấu hình sổ xét nghiệm";
+                SYS_08.permissiontype = 1;
+                SYS_08.permissionnote = "Danh mục dịch vụ - cấu hình sổ xét nghiệm";
+                lstresult.Add(SYS_08);
 
 
                 //Tools
@@ -480,6 +487,13 @@ namespace MedicalLink.Base
                 REPORT_27.permissionnote = "Báo cáo tình hình bệnh nhân ra vào viện";
                 lstresult.Add(REPORT_27);
 
+                ClassCommon.classPermission REPORT_28 = new ClassCommon.classPermission();
+                REPORT_28.permissioncheck = false;
+                REPORT_28.permissioncode = "REPORT_28";
+                REPORT_28.permissionname = "Báo cáo sử dụng dịch vụ - Chi phí khác";
+                REPORT_28.permissiontype = 3;
+                REPORT_28.permissionnote = "Báo cáo sử dụng dịch vụ - Chi phí khác";
+                lstresult.Add(REPORT_28);
 
                 //Dashboard
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();

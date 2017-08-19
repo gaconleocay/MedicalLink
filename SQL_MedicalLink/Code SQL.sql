@@ -197,12 +197,14 @@ medicalrecordstatus:
  
 ===============================vienphi==================== 
  
-- doituongbenhnhanid=1: co the bhyt;   
-		=2: vien phi 
-		=3: dich vu 
-		=4: nguoi nuoc ngoai 
-		=5: mien phi 
-		=6: hop dong 
+(case vp.doituongbenhnhanid 
+			when 1 then 'BHYT'
+			when 2 then 'Viện phí'
+			when 3 then 'Dịch vụ'
+			when 4 then 'Người nước ngoài'
+			when 5 then 'Miễn phí'
+			when 6 then 'Hợp đồng'
+			end) as doituongbenhnhanid,
  
 =4:nguoi nuoc ngoai ;=0: 
 - dagiuthebhyt=1 có thẻ bhyt 
@@ -210,7 +212,9 @@ medicalrecordstatus:
  
  duyet_ngayduyet: duyet BHYT (khi duyet bhyt thi vienphistatus=2 & duyet_ngayduyet)
  duyet_ngayduyet_vp: duyet Vien phi
- 
+ (case when vp.vienphistatus=0 then 'Đang điều trị'
+		  else (case when vienphistatus_vp=1 then 'Đã thanh toán'
+					else 'Chưa thanh toán' end) end) as trangthai
 ===============================bhyt==================== 
 bhyt_loaiid:  
 -1: đúng tuyến 
@@ -264,7 +268,16 @@ status=9: phieu yeu cau: 200
 datatype=0: thuốc; =1:vật tư 
  
  
- 
+===============================hosobenhan
+(case mrd.xutrikhambenhid -- Xutrikhambenh ngoại trú
+		when 1 then 'Cấp toa cho về'
+		when 2 then 'Điều trị ngoại trú'
+		when 4 then 'Nhập viện'
+		when 5 then 'Chuyển viện'
+		when 6 then 'Tử vong'
+		when 7 then 'Trốn viện'
+		when 8 then 'Khác'
+	end) as xutrikhambenh, 
  
  
  
@@ -383,7 +396,7 @@ alter table tools_othertypelist add tools_othertypelistnote text;
 ------------
  //string lastupdatedate_bhyt = DateTime.ParseExact(datalichsuKCB.lastupdatedate_bhyt.ToString(), "d/M/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
-
+cast(A.VATTU_TRONGGOI as numeric)
 
 
 

@@ -29,11 +29,12 @@ CREATE TABLE bhyt
   noisinhsong text,
   du5nam6thangluongcoban integer,
   dtcbh_luyke6thang integer,
+  stt_dkbhyt text,
   CONSTRAINT bhyt_pkey PRIMARY KEY (bhytid)
 )
 
 
-CREATE TABLE hosobenhan
+CREATE TABLE hosobenhan	doituongbenhnhanid
 (
   hosobenhanid serial NOT NULL,
   soluutru text,
@@ -339,7 +340,7 @@ CREATE TABLE serviceprice
   servicepricename_nhandan text,
   servicepricename_bhyt text,
   servicepricename_nuocngoai text,
-  SERVICEPRICEDATE timestamp without time zone,
+  servicepricedate timestamp without time zone,
   servicepricestatus integer,
   servicepricedoer text,
   servicepricecomment text,
@@ -873,4 +874,20 @@ CREATE TABLE IF NOT EXISTS tools_serviceref
 
 
 
-
+-----
+CREATE INDEX serviceprice_bhyt_groupcode_idx
+  ON serviceprice
+  USING btree
+  (bhyt_groupcode);
+  
+  
+ INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (12, 'REPORT_28_NHOMDV', 'REPORT_28_Danh sách nhóm dịch vụ', 0, 'Nhóm Chi phí khác - bv Thanh Hóa');
+ALTER SEQUENCE tools_othertypelist_tools_othertypelistid_seq RESTART WITH 13;
+ 
+ INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (12, 'U2918-0644', 'Nhóm chi phí khác - BV Thanh Hóa', 'U2918-0644', '0', ''); 
+  
+  
+  
+  
+  
+  

@@ -67,6 +67,7 @@ serviceprice.loaidoituong as loaihinhthanhtoan, ser.loaidoituong in (0,1,3,4,6,8
 		when 7 then 'Hao phí PTTT'
 		when 8 then 'Đối tượng khác'
 		when 9 then 'Hao phí khác'
+		when 20 then 'thanh toan rieng'
 		end) as loaidoituong,
 -------------- 
 CASE servicepriceref.servicegrouptype  
@@ -97,12 +98,14 @@ Vật tư trong DM: 101VTtrongDM
 Vật tư thay thế: 101VTtrongDMTT 
 Vật tư ngoài DM: 102VTngoaiDM 
 Vật tư thanh toán theo tỷ lệ: 103VTtyle 
+
+--bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')
 Vận chuyển: 11VC 
 Ngày giường: 12NG 
 DV khác: 999DVKHAC 
 Phụ thu: 1000PhuThu 
  
- '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG'
+ '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC'
 --pttt_loaiid 
 Phẫu thuật đặc biệt: 1 
 Phẫu thuật loại 1: 2 
@@ -397,9 +400,16 @@ alter table tools_othertypelist add tools_othertypelistnote text;
  //string lastupdatedate_bhyt = DateTime.ParseExact(datalichsuKCB.lastupdatedate_bhyt.ToString(), "d/M/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
 cast(A.VATTU_TRONGGOI as numeric)
+ LIKE ANY(ARRAY[" + this.lstservicepricecode + "])
 
 
-
-
+1. cổng của bv gửi 
+https://gdbhyt.baohiemxahoi.gov.vn/
+acc : 31153_BV
+pass : viettiep31153
+2. cổng giám định của bh 
+giamdinh.baohiemxahoi.gov.vn
+acc: 31_HALT
+pass: Hadung6@
 
  

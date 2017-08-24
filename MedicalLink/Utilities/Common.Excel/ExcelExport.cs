@@ -25,13 +25,17 @@ namespace MedicalLink.Utilities.Common.Excel
                         orderTable.Columns.Add(item_name.name, typeof(string));
                     }
 
-                    orderTable.Columns.Add("CURRENTDATETIME", typeof(string));
                     DataRow newRow = orderTable.NewRow();
                     foreach (var item_value in thongTinThem)
                     {
                         newRow[item_value.name] = item_value.value;
                     }
+
+                    orderTable.Columns.Add("CURRENTDATETIME", typeof(string));
                     newRow["CURRENTDATETIME"] = DateTime.Now.Hour + ":" + DateTime.Now.Minute + " ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+
+                    orderTable.Columns.Add("CURRENTDATE", typeof(string));
+                    newRow["CURRENTDATE"] = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
 
                     orderTable.Columns.Add("SOYTE", typeof(string));
                     newRow["SOYTE"] = GlobalStore.SoYTe_String;

@@ -75,7 +75,7 @@ SELECT
 	degp.departmentgroupname,
 	ser.servicepricecode,
 	ser.servicepricename,
-	sum(case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt
+	(case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt
 		  when ser.loaidoituong=1 then ser.servicepricemoney_nhandan
 		  else ser.servicepricemoney
 		  end) as servicepricemoney,

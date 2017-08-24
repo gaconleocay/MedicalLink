@@ -34,8 +34,6 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chkcomboListDichVu = new DevExpress.XtraEditors.CheckedComboBoxEdit();
@@ -46,6 +44,9 @@
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
+            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDataBCPTTT = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewDataBCPTTT = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
@@ -124,10 +125,10 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDichVu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).BeginInit();
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBCPTTT)).BeginInit();
@@ -137,39 +138,13 @@
             // 
             // panelControlThongTinDV
             // 
-            this.panelControlThongTinDV.Controls.Add(this.groupBox1);
             this.panelControlThongTinDV.Controls.Add(this.groupBoxFile);
+            this.panelControlThongTinDV.Controls.Add(this.groupBox1);
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
             this.panelControlThongTinDV.Size = new System.Drawing.Size(1100, 94);
             this.panelControlThongTinDV.TabIndex = 3;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dropDownExport);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(979, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(119, 90);
-            this.groupBox1.TabIndex = 26;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Export";
-            // 
-            // dropDownExport
-            // 
-            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
-            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dropDownExport.Appearance.Options.UseFont = true;
-            this.dropDownExport.Appearance.Options.UseForeColor = true;
-            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_24;
-            this.dropDownExport.Location = new System.Drawing.Point(9, 31);
-            this.dropDownExport.Name = "dropDownExport";
-            this.dropDownExport.Size = new System.Drawing.Size(100, 40);
-            this.dropDownExport.TabIndex = 0;
-            this.dropDownExport.Text = "Export...";
             // 
             // groupBoxFile
             // 
@@ -186,8 +161,8 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(1096, 90);
-            this.groupBoxFile.TabIndex = 10;
+            this.groupBoxFile.Size = new System.Drawing.Size(972, 90);
+            this.groupBoxFile.TabIndex = 27;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
             // 
@@ -297,12 +272,53 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.search_3_24;
-            this.btnTimKiem.Location = new System.Drawing.Point(866, 31);
+            this.btnTimKiem.Location = new System.Drawing.Point(856, 32);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dropDownPrint);
+            this.groupBox1.Controls.Add(this.dropDownExport);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox1.Location = new System.Drawing.Point(974, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(124, 90);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Export";
+            // 
+            // dropDownPrint
+            // 
+            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownPrint.Appearance.Options.UseFont = true;
+            this.dropDownPrint.Appearance.Options.UseForeColor = true;
+            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.dropDownPrint.Location = new System.Drawing.Point(8, 18);
+            this.dropDownPrint.Name = "dropDownPrint";
+            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
+            this.dropDownPrint.TabIndex = 1;
+            this.dropDownPrint.Text = "In ấn...";
+            // 
+            // dropDownExport
+            // 
+            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownExport.Appearance.Options.UseFont = true;
+            this.dropDownExport.Appearance.Options.UseForeColor = true;
+            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.dropDownExport.Location = new System.Drawing.Point(8, 54);
+            this.dropDownExport.Name = "dropDownExport";
+            this.dropDownExport.Size = new System.Drawing.Size(110, 30);
+            this.dropDownExport.TabIndex = 0;
+            this.dropDownExport.Text = "Xuất file...";
             // 
             // panelControlData
             // 
@@ -1759,11 +1775,11 @@
             this.Load += new System.EventHandler(this.BCPhauThuat_YeuCau_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDichVu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBCPTTT)).EndInit();
@@ -1776,19 +1792,11 @@
         #endregion
 
         private DevExpress.XtraEditors.PanelControl panelControlThongTinDV;
-        private System.Windows.Forms.GroupBox groupBoxFile;
-        private DevExpress.XtraEditors.SimpleButton btnTimKiem;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.DateTimePicker dateDenNgay;
-        private System.Windows.Forms.DateTimePicker dateTuNgay;
         private DevExpress.XtraEditors.PanelControl panelControlData;
         private DevExpress.XtraGrid.GridControl gridControlDataBCPTTT;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridView bandedGridViewDataBCPTTT;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButton_View;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn1;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn2;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn3;
@@ -1835,8 +1843,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn41;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn43;
         private DevExpress.XtraEditors.DropDownButton dropDownExport;
-        private System.Windows.Forms.Label label2;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDichVu;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn47;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn46;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn45;
@@ -1864,5 +1870,16 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn54;
+        private DevExpress.XtraEditors.DropDownButton dropDownPrint;
+        private System.Windows.Forms.GroupBox groupBoxFile;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDichVu;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private System.Windows.Forms.DateTimePicker dateDenNgay;
+        private System.Windows.Forms.DateTimePicker dateTuNgay;
+        private DevExpress.XtraEditors.SimpleButton btnTimKiem;
     }
 }

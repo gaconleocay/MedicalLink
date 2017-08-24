@@ -2,6 +2,7 @@
 --Chia ra tung loai bao cao rieng biet (dung bien)
 --them chan doan chi dinh
 --Chinh sua ten theo ten cua doituongthanhtoan
+--24/8 sua nguoi nhap thuc hien lay : userid_gmhs
 
 SELECT row_number () over (order by A.ngay_thuchien) as stt, 
 A.patientid, 
@@ -94,7 +95,7 @@ FROM
 	vp.vienphidate as ngay_vaovien, 
 	(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
 	(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
-	pttt.userid as nguoinhapthuchien
+	pttt.userid_gmhs as nguoinhapthuchien
 	FROM serviceprice ser 
 	left join phauthuatthuthuat pttt on pttt.servicepriceid=ser.servicepriceid 
 	inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphidate_ravien, vienphistatus_vp, duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 

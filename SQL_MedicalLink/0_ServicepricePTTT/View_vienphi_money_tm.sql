@@ -2,6 +2,8 @@
 -- View: vienphi_money_tm
 -- DROP VIEW vienphi_money_tm;
 ---View tinh vien phi cua BN cho tat ca cac benh vien
+--ngay 21/8 chinh sua loaidoituong cua VT thanh toan rieng = 20 (servicepriceid_thanhtoanrieng)
+
 
 CREATE OR REPLACE VIEW vienphi_money_tm AS 
  SELECT vp.vienphiid, 
@@ -229,7 +231,7 @@ and ser.servicepriceid_master in (select ser_ktc.servicepriceid from servicepric
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
 			else 0 end)
 + 
-sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
+sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
 				then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
@@ -250,7 +252,7 @@ and ser.servicepriceid_master in (select ser_ktc.servicepriceid from servicepric
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
 			else 0 end) 
-+ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid<>1
++ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid<>1
 				then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
@@ -262,8 +264,7 @@ and ser.servicepriceid_master in (select ser_ktc.servicepriceid from servicepric
 			vienphidate >= '2017-01-01 00:00:00'
 		) vp 
 		left join serviceprice ser on vp.vienphiid=ser.vienphiid and ser.thuockhobanle=0	
-  GROUP BY vp.vienphiid,vp.patientid,vp.bhytid,vp.hosobenhanid,vp.loaivienphiid,vp.vienphistatus,vp.departmentgroupid,vp.departmentid,vp.doituongbenhnhanid,vp.vienphidate,vp.vienphidate_ravien,vp.duyet_ngayduyet,vp.vienphistatus_vp,vp.duyet_ngayduyet_vp,vp.vienphistatus_bh,vp.duyet_ngayduyet_bh,vp.bhyt_tuyenbenhvien,vp.bhyt_thangluongtoithieu,ser.departmentid,ser.departmentgroupid,(case when ser.departmentid in (34,335,269,285) then (select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid)
-		  else ser.departmentgroupid end);
+  GROUP BY vp.vienphiid,vp.patientid,vp.bhytid,vp.hosobenhanid,vp.loaivienphiid,vp.vienphistatus,vp.departmentgroupid,vp.departmentid,vp.doituongbenhnhanid,vp.vienphidate,vp.vienphidate_ravien,vp.duyet_ngayduyet,vp.vienphistatus_vp,vp.duyet_ngayduyet_vp,vp.vienphistatus_bh,vp.duyet_ngayduyet_bh,vp.bhyt_tuyenbenhvien,vp.bhyt_thangluongtoithieu,ser.departmentid,ser.departmentgroupid;
 
 
 

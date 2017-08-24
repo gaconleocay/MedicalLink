@@ -1,7 +1,8 @@
 ---update du lieu vao bang ihs_servicespttt ngay  v 1.16 ngay 21/7
 --bo sung them cot Thuoc/vat tu trong goi khong tinh tien 
 --chinh sua vật tư áp giá trần (tính thanh toán bhyt = trần) + gộp những case có cộng + ngày 2/8
-
+--ngay 21/8 chinh sua loaidoituong cua VT thanh toan rieng = 20 (servicepriceid_thanhtoanrieng)
+--View danh cho BV Việt Tiệp
 
 
 -- DROP VIEW view_tools_serviceprice_pttt;
@@ -309,11 +310,11 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VT
 											then servicepricemoney_bhyt*ser.soluong
 										else 0-(servicepricemoney_bhyt*ser.soluong) end)
 						else 0 end)		
-		when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
+		when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
 			then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
-		when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1 
+		when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1 
 			then (case when cast(ser.servicepricebhytdinhmuc as numeric)>0
 							then (case when ser.maubenhphamphieutype=0 then cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong else 0-(cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong) end)
 						else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) end)
@@ -335,14 +336,14 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '1
 												then servicepricemoney_bhyt*ser.soluong
 											else 0-(servicepricemoney_bhyt*ser.soluong) end)					
 				else 0 end)
-	when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 
+	when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 
 		then (case when vp.doituongbenhnhanid<>1
 						then (case when ser.maubenhphamphieutype=0 
 										then servicepricemoney_bhyt*ser.soluong
 									else 0-(servicepricemoney_bhyt*ser.soluong) end)
 				else 0 end)
 				---------?????
-	when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,2,4,6) and cast(ser.servicepricebhytdinhmuc as numeric)>0
+	when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,2,4,6,20) and cast(ser.servicepricebhytdinhmuc as numeric)>0
 			then (case when ser.maubenhphamphieutype=0 
 							then (ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong 
 						else 0-((ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong)
@@ -378,5 +379,5 @@ sum(case when ser.servicepriceid_master<>0 and ser.loaidoituong in (5,7,9) and s
 		left join serviceprice ser on vp.vienphiid=ser.vienphiid and ser.thuockhobanle=0
 		
   GROUP BY vp.vienphiid, vp.patientid, vp.bhytid, vp.hosobenhanid, vp.loaivienphiid, vp.vienphistatus, vp.departmentgroupid, vp.departmentid, vp.doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet, vp.vienphistatus_vp, vp.duyet_ngayduyet_vp, vp.vienphistatus_bh, vp.duyet_ngayduyet_bh, vp.bhyt_tuyenbenhvien, ser.departmentid, ser.departmentgroupid,(case when ser.departmentid in (34,335,269,285) then (select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid)
-		  else ser.departmentgroupid end)
+		  else ser.departmentgroupid end);
 

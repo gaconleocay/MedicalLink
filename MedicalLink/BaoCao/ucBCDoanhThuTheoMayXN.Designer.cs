@@ -78,6 +78,7 @@
             this.bandedGridColumn25 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -233,6 +234,7 @@
             // 
             // groupBoxAction
             // 
+            this.groupBoxAction.Controls.Add(this.btnPrint);
             this.groupBoxAction.Controls.Add(this.tbnExport);
             this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -249,11 +251,11 @@
             this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.tbnExport.Appearance.Options.UseFont = true;
             this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(17, 33);
+            this.tbnExport.Location = new System.Drawing.Point(13, 57);
             this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 40);
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
             this.tbnExport.TabIndex = 8;
             this.tbnExport.Text = "Xuất file";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
@@ -973,6 +975,21 @@
             // 
             this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Appearance.Options.UseForeColor = true;
+            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(13, 19);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 30);
+            this.btnPrint.TabIndex = 9;
+            this.btnPrint.Text = "In ấn";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // ucBCDoanhThuTheoMayXN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1050,5 +1067,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand6;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn24;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn25;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
     }
 }

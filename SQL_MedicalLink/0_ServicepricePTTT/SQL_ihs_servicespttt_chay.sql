@@ -1,6 +1,8 @@
 ﻿---update du lieu vao bang ihs_servicespttt ngay  v 1.16 ngay 21/7
 --bo sung them cot Thuoc/vat tu trong goi khong tinh tien 
 --chinh sua vật tư áp giá trần (tính thanh toán bhyt = trần) + gộp những case có cộng + ngày 2/8
+--ngay 21/8 chinh sua loaidoituong cua VT thanh toan rieng = 20 (servicepriceid_thanhtoanrieng)
+
 
 INSERT INTO ihs_servicespttt
 SELECT nextval('ihs_servicespttt_servicepriceptttid_seq'),
@@ -298,18 +300,18 @@ sum(case when ser.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092
 										then (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then (ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) 		
 									else (case when ser.servicepricemoney>ser.servicepricemoney_bhyt then 0-(ser.servicepricemoney-servicepricemoney_bhyt)*ser.soluong else 0 end) end) end)
 			else 0 end) as money_dkpttt_thuoc_vp,
----Vat tu di kem PTTT (co vat tu vuot tran)			
+---Vat tu di kem PTTT (co vat tu vuot tran)
 sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and coalesce(ser.servicepriceid_thanhtoanrieng,0)=0 and vp.doituongbenhnhanid=1
 			then (case when ser.servicepriceid_master in (select ser_ktc.servicepriceid from serviceprice ser_ktc where ser_ktc.vienphiid=vp.vienphiid and ser_ktc.bhyt_groupcode='07KTC' and ser_ktc.loaidoituong in (0,4,6)) and ((select seref.tinhtoanlaigiadvktc from servicepriceref seref where seref.servicepricecode=(select ser_ktc.servicepricecode from serviceprice ser_ktc where ser_ktc.servicepriceid=ser.servicepriceid_master))=1)	
 							then (case when ser.maubenhphamphieutype=0 
 											then servicepricemoney_bhyt*ser.soluong
 										else 0-(servicepricemoney_bhyt*ser.soluong) end)
 						else 0 end)		
-		when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
+		when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
 			then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
-		when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1 
+		when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1 
 			then (case when cast(ser.servicepricebhytdinhmuc as numeric)>0
 							then (case when ser.maubenhphamphieutype=0 then cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong else 0-(cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong) end)
 						else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) end)
@@ -331,14 +333,14 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '1
 												then servicepricemoney_bhyt*ser.soluong
 											else 0-(servicepricemoney_bhyt*ser.soluong) end)					
 				else 0 end)
-	when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 
+	when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 
 		then (case when vp.doituongbenhnhanid<>1
 						then (case when ser.maubenhphamphieutype=0 
 										then servicepricemoney_bhyt*ser.soluong
 									else 0-(servicepricemoney_bhyt*ser.soluong) end)
 				else 0 end)
 				---------?????
-	when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,2,4,6) and cast(ser.servicepricebhytdinhmuc as numeric)>0
+	when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,2,4,6,20) and cast(ser.servicepricebhytdinhmuc as numeric)>0
 			then (case when ser.maubenhphamphieutype=0 
 							then (ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong 
 						else 0-((ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong)

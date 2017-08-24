@@ -736,6 +736,7 @@
     <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="DatabaseProcess\CauLenhSQL_CSDL.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />

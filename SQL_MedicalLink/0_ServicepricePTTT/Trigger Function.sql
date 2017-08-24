@@ -1,4 +1,4 @@
-﻿--Ngay 2/8
+﻿--Ngay 21/8
 
 -- Function: servicespttt_cal()
 
@@ -316,11 +316,11 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VT
 											then servicepricemoney_bhyt*ser.soluong
 										else 0-(servicepricemoney_bhyt*ser.soluong) end)
 						else 0 end)		
-		when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
+		when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
 			then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
-		when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1 
+		when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1 
 			then (case when cast(ser.servicepricebhytdinhmuc as numeric)>0
 							then (case when ser.maubenhphamphieutype=0 then cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong else 0-(cast(ser.servicepricebhytdinhmuc as numeric)*ser.soluong) end)
 						else (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end) end)
@@ -342,14 +342,14 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '1
 												then servicepricemoney_bhyt*ser.soluong
 											else 0-(servicepricemoney_bhyt*ser.soluong) end)					
 				else 0 end)
-	when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=2 and ser.servicepriceid_thanhtoanrieng>0 
+	when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT', '101VTtrongDM', '102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 
 		then (case when vp.doituongbenhnhanid<>1
 						then (case when ser.maubenhphamphieutype=0 
 										then servicepricemoney_bhyt*ser.soluong
 									else 0-(servicepricemoney_bhyt*ser.soluong) end)
 				else 0 end)
 				---------?????
-	when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,2,4,6) and cast(ser.servicepricebhytdinhmuc as numeric)>0
+	when ser.bhyt_groupcode='103VTtyle' and ser.loaidoituong in (0,2,4,6,20) and cast(ser.servicepricebhytdinhmuc as numeric)>0
 			then (case when ser.maubenhphamphieutype=0 
 							then (ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong 
 						else 0-((ser.servicepricemoney_bhyt-cast(ser.servicepricebhytdinhmuc as numeric))*ser.soluong)

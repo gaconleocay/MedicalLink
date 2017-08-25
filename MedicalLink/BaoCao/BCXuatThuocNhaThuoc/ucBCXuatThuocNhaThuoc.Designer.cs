@@ -709,7 +709,7 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(100, 30);
             this.btnPrint.TabIndex = 15;
-            this.btnPrint.Text = "In ấn...";
+            this.btnPrint.Text = "In...";
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // tbnExport

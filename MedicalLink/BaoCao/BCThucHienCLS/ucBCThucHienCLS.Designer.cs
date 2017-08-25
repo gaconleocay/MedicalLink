@@ -1931,7 +1931,7 @@
             this.dropDownPrint.Name = "dropDownPrint";
             this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
             this.dropDownPrint.TabIndex = 2;
-            this.dropDownPrint.Text = "In ấn...";
+            this.dropDownPrint.Text = "In...";
             // 
             // ucBCThucHienCLS
             // 

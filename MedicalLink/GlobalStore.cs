@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalLink.ClassCommon;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace MedicalLink
         public static List<ClassCommon.ToolsOtherListDTO> lstOtherList_Global { get; set; }
         public static string SoYTe_String { get; set; }
         public static string TenBenhVien_String { get; set; }
-
+        public static List<DepartmentDTO> lstDepartmentBV { get; set; }
 
 
 

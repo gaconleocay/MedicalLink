@@ -142,6 +142,7 @@ namespace MedicalLink.FormCommon
             {
                 LoadDanhSachCauHinhDungChung();
                 LoadCauHinhThoiGianLayDuLieu();
+                //LoadDanhSachKhoaTrongBenhVien(); //chua su dung
             }
             catch (Exception ex)
             {
@@ -212,6 +213,36 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void LoadDanhSachKhoaTrongBenhVien()
+        {
+            try
+            {
+                string sqlKhoaBV = "SELECT degp.departmentgroupid,degp.departmentgroupcode,degp.departmentgroupname,degp.departmentgrouptype,de.departmentid,de.departmentcode,de.departmentname,de.departmenttype FROM departmentgroup degp inner join department de on de.departmentgroupid=degp.departmentgroupid; ";
+                DataTable dataKhoaBV = condb.GetDataTable_MeL(sqlKhoaBV);
+                if (dataKhoaBV != null && dataKhoaBV.Rows.Count > 0)
+                {
+                    GlobalStore.lstDepartmentBV = new List<DepartmentDTO>();
+                    for (int i = 0; i < dataKhoaBV.Rows.Count; i++)
+                    {
+                        ClassCommon.DepartmentDTO otherList = new DepartmentDTO();
+                        otherList.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentgroupid"].ToString());
+                        otherList.departmentgroupcode = dataKhoaBV.Rows[i]["departmentgroupcode"].ToString();
+                        otherList.departmentgroupname = dataKhoaBV.Rows[i]["departmentgroupname"].ToString();
+                        otherList.departmentgrouptype = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentgrouptype"].ToString());
+                        otherList.departmentid = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentid"].ToString());
+                        otherList.departmentcode = dataKhoaBV.Rows[i]["departmentcode"].ToString();
+                        otherList.departmentname = dataKhoaBV.Rows[i]["departmentname"].ToString();
+                        otherList.departmenttype = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmenttype"].ToString());
+                        GlobalStore.lstDepartmentBV.Add(otherList);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
         #region kiem tra va copy ban moi
         private void KiemTraVaCopyFileLaucherNew()
         {

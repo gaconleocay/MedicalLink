@@ -495,6 +495,28 @@ namespace MedicalLink.Base
                 REPORT_28.permissionnote = "Báo cáo sử dụng dịch vụ - Chi phí khác";
                 lstresult.Add(REPORT_28);
 
+                ClassCommon.classPermission REPORT_29 = new ClassCommon.classPermission();
+                REPORT_29.permissioncheck = false;
+                REPORT_29.permissioncode = "REPORT_29";
+                REPORT_29.permissionname = "Báo cáo thực hiện Cận lâm sàng - K.Ung bướu (doanh thu chia bác sĩ)";
+                REPORT_29.permissiontype = 3;
+                REPORT_29.permissionnote = "Báo cáo thực hiện Cận lâm sàng - K.Ung bướu (doanh thu chia bác sĩ)";
+                lstresult.Add(REPORT_29);
+
+                ClassCommon.classPermission REPORT_30 = new ClassCommon.classPermission();
+                REPORT_30.permissioncheck = false;
+                REPORT_30.permissioncode = "REPORT_30";
+                REPORT_30.permissionname = "Báo cáo BN sử dụng VTYT thanh toán riêng lớn hơn 45 TLCB";
+                REPORT_30.permissiontype = 3;
+                REPORT_30.permissionnote = "Báo cáo BN sử dụng VTYT thanh toán riêng lớn hơn 45 TLCB";
+                lstresult.Add(REPORT_30);
+
+
+
+
+
+
+
                 //Dashboard
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();
                 DASHBOARD_01.permissioncheck = false;

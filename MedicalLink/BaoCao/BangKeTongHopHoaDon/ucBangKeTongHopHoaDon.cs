@@ -37,8 +37,24 @@ namespace MedicalLink.BaoCao
         {
             dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+            LoadDanhSachNguoiThu();
         }
-
+        private void LoadDanhSachNguoiThu()
+        {
+            try
+            {
+                string sql_ngthu = "select userhisid,usercode,username from nhompersonnel where usergnhom='2';";
+                DataTable _dataThuNgan = condb.GetDataTable_HIS(sql_ngthu);
+                chkcomboListNguoiThu.Properties.DataSource = _dataThuNgan;
+                chkcomboListNguoiThu.Properties.DisplayMember = "username";
+                chkcomboListNguoiThu.Properties.ValueMember = "userhisid";
+                chkcomboListNguoiThu.CheckAll();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -53,6 +69,7 @@ namespace MedicalLink.BaoCao
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 int billgrouptype = 2;
+                string _listuserid = "";
                 if (cboLoaiSo.Text == "Tổng hợp")
                 {
                     billgrouptype = 0;
@@ -61,18 +78,32 @@ namespace MedicalLink.BaoCao
                 {
                     billgrouptype = 1;
                 }
-
-                string sql_getdata = "select ROW_NUMBER () OVER (ORDER BY big.billgroupdate) as stt, big.billgroupcode, big.billgroupdate, big.sophieusudung, (big.sophieufrom || '-' || big.sophieuto) sophieutu_den, string_agg(case when b.dahuyphieu=1 then b.billcode end, '; ') as billcode_huy, sum(case when b.dahuyphieu=0 then b.datra else 0 end) as tongtien_thu from (select billgroupcode,dahuyphieu,datra,billcode from bill where billdate between '" + tungay + "' and '" + denngay + "') b inner join billgroup big on big.billgroupcode=b.billgroupcode and billgrouptype=" + billgrouptype + " group by big.billgroupcode,big.sophieufrom,big.sophieuto,big.billgroupdate,big.sophieusudung;";
-
-                this.dataDanhSachSo = condb.GetDataTable_HIS(sql_getdata);
-
-                if (this.dataDanhSachSo != null && this.dataDanhSachSo.Rows.Count > 0)
+                List<Object> lstNhanVienCheck = chkcomboListNguoiThu.Properties.Items.GetCheckedValues();
+                if (lstNhanVienCheck.Count > 0)
                 {
-                    gridControlDSHoaDon.DataSource = this.dataDanhSachSo;
+                    for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                    {
+                        _listuserid += "'" + lstNhanVienCheck[i] + "', ";
+                    }
+                    _listuserid += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "'";
+
+                    string sql_getdata = "select ROW_NUMBER () OVER (ORDER BY big.billgroupdate) as stt, big.billgroupcode, big.billgroupdate, big.sophieusudung, (big.sophieufrom || '-' || big.sophieuto) sophieutu_den, string_agg(case when b.dahuyphieu=1 then b.billcode end, '; ') as billcode_huy, sum(case when b.dahuyphieu=0 then (b.datra-b.miengiam) else 0 end) as tongtien_thu, sum(case when b.dahuyphieu=0 then b.miengiam else 0 end) as miengiam, b.userid, ngthu.username as nguoithu from (select billgroupcode,dahuyphieu,datra,billcode,(case when miengiam<>'' then cast(replace(miengiam,',','') as numeric) else 0 end) as miengiam,userid from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") ) b inner join billgroup big on big.billgroupcode=b.billgroupcode and billgrouptype=" + billgrouptype + " LEFT JOIN nhompersonnel ngthu ON ngthu.userhisid=b.userid group by big.billgroupcode,big.sophieufrom,big.sophieuto,big.billgroupdate,big.sophieusudung,b.userid,ngthu.username;";
+
+                    this.dataDanhSachSo = condb.GetDataTable_HIS(sql_getdata);
+
+                    if (this.dataDanhSachSo != null && this.dataDanhSachSo.Rows.Count > 0)
+                    {
+                        gridControlDSHoaDon.DataSource = this.dataDanhSachSo;
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                        frmthongbao.Show();
+                    }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
             }

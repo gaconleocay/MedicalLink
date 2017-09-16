@@ -290,6 +290,12 @@
     <Compile Include="BaoCao\BCDoanhThuTheoNhomDV\ucDoanhThuTheoNhomDichVu.Designer.cs">
       <DependentUpon>ucDoanhThuTheoNhomDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.Designer.cs">
+      <DependentUpon>ucBCHoaDonThanhToanVP.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -433,6 +439,7 @@
       <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
+    <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
@@ -1033,6 +1040,9 @@
     <EmbeddedResource Include="BaoCao\BCDoanhThuTheoNhomDV\ucDoanhThuTheoNhomDichVu.resx">
       <DependentUpon>ucDoanhThuTheoNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.resx">
+      <DependentUpon>ucBCHoaDonThanhToanVP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.resx">
       <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
     </EmbeddedResource>
@@ -1336,6 +1346,7 @@
     <Content Include="Documents\Huongdansudung.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Documents\SQL_update_DB moi.sql" />
     <Content Include="Documents\Tools_DMDVChenh_New.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1348,13 +1359,12 @@
     <Content Include="Documents\Tools_DMThuoc_chuan.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Documents\Tools_tblNhanVien.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Documents\ToolsDMDV_v2_chuan.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="AppSettings.config" />
+    <None Include="Documents\Tools_tblCoSoYTe.xls" />
+    <None Include="Documents\Tools_tblNhanVien.xlsx" />
     <None Include="Library\Aspose.Cells.lic" />
     <None Include="Library\Aspose.Words.lic" />
     <None Include="packages.config" />
@@ -1559,6 +1569,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_VTYTTTRiengLonHon45TLCB.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_HoaDonThanhToanVienPhi.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,5 +1,8 @@
 ---Bao cao thu tien hang ngay nha thuoc ngay 7/7
 --Da xuat
+--ngay 31/8 - sua nguoi xuat
+
+
 SELECT ROW_NUMBER () OVER (ORDER BY msb_cd.medicinestorebilldate) as stt, 
 msb_cd.medicinestorebillid, 
 msb_cd.medicinestorebillcode, 
@@ -31,12 +34,12 @@ msb_cd.medicinestorebillstatus,
 msb_cd.medicinestorebillprocessingdate as ngayhethong, 
 (case when msb_cd.maubenhphamid=0 then 'Khách lẻ' else '' end) as ghichu 
 FROM medicine_store_bill msb_cd 
-LEFT JOIN (select medicinestorebillid,medicinestorebillprocessinger from medicine_store_bill) msb on msb.medicinestorebillid=msb_cd.medicinestorebillid_ex 
+LEFT JOIN (select medicinestorebillid,medicinestorebilldoer from medicine_store_bill) msb on msb.medicinestorebillid=msb_cd.medicinestorebillid_ex 
 LEFT JOIN (select maubenhphamid,hosobenhanid,patientid,vienphiid from maubenhpham where isloaidonthuoc=1) mbp on mbp.maubenhphamid=msb_cd.maubenhphamid
 LEFT JOIN (select hosobenhanid,patientname,gioitinhcode,birthday,bhytcode from hosobenhan) hsba on hsba.hosobenhanid=mbp.hosobenhanid 
 LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd on kcd.departmentgroupid=(case when msb_cd.departmentgroupid=0 then msb_cd.khoa_id else msb_cd.departmentgroupid end)
 LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,9)) pcd on pcd.departmentid=msb_cd.departmentid
-LEFT JOIN tools_tblnhanvien nx on nx.usercode=COALESCE(msb.medicinestorebillprocessinger,msb_cd.medicinestorebillprocessinger) 
+LEFT JOIN tools_tblnhanvien nx on nx.usercode=COALESCE(msb.medicinestorebilldoer,msb_cd.medicinestorebilldoer) 
 LEFT JOIN medicine_store mes on mes.medicinestoreid=msb_cd.partnerid or mes.medicinestoreid=msb_cd.medicinestoreid and mes.medicinestoretype=4
 WHERE msb_cd.isremove=0 and msb_cd.medicinestorebilltype in (200,6,8) and msb_cd.medicinestorebilldate>='" + datetungay + "' and msb_cd.medicinestorebilldate<='" + datedenngay + "' and mes.medicinestoreid in (" + lstKhoThuocChonLayBC + ") and msb_cd.medicinestorebillstatus<>9;
 
@@ -77,7 +80,7 @@ LEFT JOIN (select maubenhphamid,hosobenhanid,patientid,vienphiid,medicinestoreid
 LEFT JOIN (select hosobenhanid,patientname,gioitinhcode,birthday,bhytcode from hosobenhan) hsba on hsba.hosobenhanid=mbp.hosobenhanid 
 LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd on kcd.departmentgroupid=(case when msb_cd.departmentgroupid=0 then msb_cd.khoa_id else msb_cd.departmentgroupid end) 
 LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,9)) pcd on pcd.departmentid=msb_cd.departmentid 
-LEFT JOIN tools_tblnhanvien nx on nx.usercode=msb_cd.medicinestorebillprocessinger 
+LEFT JOIN tools_tblnhanvien nx on nx.usercode=msb_cd.medicinestorebilldoer 
 LEFT JOIN medicine_store mes on mes.medicinestoreid=mbp.medicinestoreid or mes.medicinestoreid=msb_cd.medicinestoreid and mes.medicinestoretype=4
 WHERE msb_cd.isremove=0 and msb_cd.medicinestorebilltype in (200,6,8) and msb_cd.medicinestorebilldate>='" + datetungay + "' and msb_cd.medicinestorebilldate<='" + datedenngay + "' and mes.medicinestoreid in (" + lstKhoThuocChonLayBC + ") and msb_cd.medicinestorebillstatus not in (2,11);
 

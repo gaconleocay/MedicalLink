@@ -1,9 +1,9 @@
----Bao cao VT thanh toan rieng > 45 TLCB ngay 28/8
+---Bao cao VT thanh toan rieng > 45 TLCB ngay 30/8
+--Chinh sua lay tat cả vtyt có id là tt riêng, không cần so sánh vs 45 tlcb
 
 
 
-
-SELECT row_number () over (order by SER.servicepricedate) as stt,
+SELECT row_number () over (" + _orderby + ") as stt,
 	VT.servicepriceid_thanhtoanrieng as servicepriceid,
 	VP.patientid,
 	VP.vienphiid,
@@ -22,6 +22,7 @@ SELECT row_number () over (order by SER.servicepricedate) as stt,
 	KCD.departmentgroupname as khoachidinh,
 	PCD.departmentname as phongchidinh,
 	VT.thanhtien_vtyt,
+	VT.thanhtien_vtyttran,
 	VT.ghichu,
 	VP.bhyt_thangluongtoithieu
 FROM
@@ -30,12 +31,16 @@ FROM
 				then (soluong*servicepricemoney_bhyt) 
 			  else 0-(soluong*servicepricemoney_bhyt)	
 			  end) as thanhtien_vtyt,
+		sum(case when maubenhphamphieutype=0 
+				then (soluong*(case when cast(servicepricebhytdinhmuc as numeric)>0 then cast(servicepricebhytdinhmuc as numeric) else servicepricemoney_bhyt end)) 
+			  else 0-(soluong*(case when cast(servicepricebhytdinhmuc as numeric)>0 then cast(servicepricebhytdinhmuc as numeric) else servicepricemoney_bhyt end))	
+			  end) as thanhtien_vtyttran,	  
 		string_agg(servicepricename_bhyt, '; ') as ghichu
 	from serviceprice
 	where servicepriceid_thanhtoanrieng>0 and loaidoituong=20 and bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') "+_tieuchi_ser+"
 	group by servicepriceid_thanhtoanrieng,vienphiid) VT
 INNER JOIN 
-	(select vienphiid,patientid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,departmentgroupid,bhyt_thangluongtoithieu from vienphi where "+_trangthaivienphi+_tieuchi_vp+") VP ON VP.vienphiid=VT.vienphiid
+	(select vienphiid,patientid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet,duyet_ngayduyet_vp,departmentgroupid,bhyt_thangluongtoithieu from vienphi where "+_trangthaivienphi+_tieuchi_vp+") VP ON VP.vienphiid=VT.vienphiid
 INNER JOIN 
 	(select hosobenhanid,patientid,patientname,bhytcode from hosobenhan) HSBA ON HSBA.hosobenhanid=VP.hosobenhanid 
 LEFT JOIN
@@ -51,8 +56,7 @@ LEFT JOIN
 		) SER ON SER.servicepriceid=VT.servicepriceid_thanhtoanrieng
 LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=SER.departmentgroupid
 LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=SER.departmentid		
-LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) Krv ON Krv.departmentgroupid=VP.departmentgroupid		
-WHERE VT.thanhtien_vtyt>(45*VP.bhyt_thangluongtoithieu);	
+LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) Krv ON Krv.departmentgroupid=VP.departmentgroupid;
 		
 		
 		

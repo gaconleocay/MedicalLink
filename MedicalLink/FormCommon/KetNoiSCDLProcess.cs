@@ -31,7 +31,7 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateTableUserMedicinePhongLuu();
                 result = KetNoiSCDLProcess.CreateTableOtherTypeList();
                 result = KetNoiSCDLProcess.CreateTableOtherList();
-                //result = KetNoiSCDLProcess.CreateTableToolsServicepricePttt();
+                //result = KetNoiSCDLProcess.CreateTableToolsServicepricePttt(); // dac thu tung bv nen ko chay
                 //result = KetNoiSCDLProcess.CapNhat_OtherList();
 
 
@@ -45,12 +45,14 @@ namespace MedicalLink.FormCommon
                 result = KetNoiSCDLProcess.CreateViewServicepriceMoney();
                 result = KetNoiSCDLProcess.CreateViewVienPhimoney_SoBN();
                 result = KetNoiSCDLProcess.CreateViewVienPhimoney_TM();
-                result = KetNoiSCDLProcess.Createview_tools_serviceprice_pttt();
+                //result = KetNoiSCDLProcess.Createview_tools_serviceprice_pttt();// dac thu tung bv nen ko chay
 
                 //Table ben HIS
                 result = KetNoiSCDLProcess.CreateTableNhomPersonnel();
                 result = KetNoiSCDLProcess.CreateTableIhsServicespttt();
 
+                //update
+               // result = KetNoiSCDLProcess.UpdateTableUser();
             }
             catch (Exception ex)
             {
@@ -254,7 +256,7 @@ namespace MedicalLink.FormCommon
             bool result = false;
             try
             {
-                string sql_tbluser = "CREATE TABLE IF NOT EXISTS nhompersonnel ( nhanvienid serial NOT NULL, usercode text NOT NULL, username text, userpassword text, userstatus integer, usergnhom integer, usernote text, userhisid integer, CONSTRAINT nhompersonnel_pkey PRIMARY KEY (nhanvienid));";
+                string sql_tbluser = "CREATE TABLE IF NOT EXISTS nhompersonnel ( nhanvienid serial NOT NULL, usercode text NOT NULL, username text, userpassword text, userstatus integer, usergnhom integer, usernote text, userhisid integer, usergnhom_name text, CONSTRAINT nhompersonnel_pkey PRIMARY KEY (nhanvienid));";
                 if (condb.ExecuteNonQuery_HIS(sql_tbluser))
                 {
                     result = true;
@@ -444,7 +446,7 @@ namespace MedicalLink.FormCommon
             }
             return result;
         }
-        private static bool CreateViewVienPhimoney_TM() 
+        private static bool CreateViewVienPhimoney_TM()
         {
             bool result = false;
             try
@@ -536,6 +538,20 @@ namespace MedicalLink.FormCommon
                 MedicalLink.Base.Logging.Error("Lỗi CapNhat_OtherList" + ex.ToString());
             }
             return result;
+        }
+        private static bool UpdateTableUser()
+        {
+            //bool result = false;
+            try
+            {
+                string sqlAddColume = "alter table nhompersonnel add usergnhom_name text;";
+                condb.ExecuteNonQuery_MeL(sqlAddColume);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi CapNhat_OtherList" + ex.ToString());
+            }
+            return true;
         }
 
         #endregion

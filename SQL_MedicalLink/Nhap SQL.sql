@@ -329,7 +329,7 @@ CREATE TABLE serviceprice
   doituongbenhnhanid integer DEFAULT 0,
   loaidoituong_org integer DEFAULT 0,
   loaidoituong_org_remark text,
-  LOAIDOITUONG integer DEFAULT 0,
+  loaidoituong integer DEFAULT 0,
   loaiduyetbhyt integer DEFAULT 0,
   loaidoituong_remark text,
   loaidoituong_userid integer DEFAULT 0,
@@ -385,6 +385,7 @@ CREATE TABLE serviceprice
   chiphimaymoc double precision,
   chiphipttt double precision,
   mayytedbid integer,
+  servicepriceid_thanhtoanrieng
   CONSTRAINT serviceprice_pkey PRIMARY KEY (servicepriceid)
 )
 WITH (
@@ -681,6 +682,63 @@ CREATE TABLE medicine
   CONSTRAINT medicine_pkey PRIMARY KEY (medicineid)
 )
 -----------
+-- Table: bill
+
+-- DROP TABLE bill;
+
+CREATE TABLE bill
+(
+  billid serial NOT NULL,
+  billcode text,
+  billgroupcode text,
+  medicalrecordid integer,
+  patientid integer DEFAULT 0,
+  vienphiid integer DEFAULT 0,
+  listmaubenhphamid text,
+  hosobenhanid integer DEFAULT 0,
+  loaiphieuthuid integer,
+  billmode integer,
+  userid integer DEFAULT 0,
+  billdate timestamp without time zone,
+  departmentgroupid integer,
+  departmentid integer,
+  tongtien double precision,
+  chietkhau double precision,
+  datra double precision,
+  conno double precision,
+  conno_henthanhtoan timestamp without time zone,
+  patientname text,
+  dahuyphieu integer,
+  billid_ketchuyenam integer,
+  billid_ketchuyenduong integer,
+  isyeucau integer,
+  thoigianhuyphieu timestamp without time zone,
+  lydohuyphieu text,
+  billremark text,
+  printremark text,
+  version timestamp without time zone,
+  miengiam text,
+  lydomiengiam text,
+  useridhuyphieu integer,
+  sync_flag integer,
+  update_flag integer,
+  hinhthucthanhtoan integer,
+  tracenumber integer,
+  pos_billcode text,
+  imei text,
+  hinhthucthanhtoanhuy integer,
+  isencript integer,
+  nguonhachtoan integer,
+  khoachuyenden integer,
+  phonghachtoan integer,
+  danhsachdoituongdichvu text,
+  iskhac integer,
+  CONSTRAINT bill_pkey PRIMARY KEY (billid)
+)
+
+
+
+
 Hiện giờ có những nhánh sau:
 
 1. Sử dụng x/y dịch vụ: 
@@ -886,8 +944,15 @@ ALTER SEQUENCE tools_othertypelist_tools_othertypelistid_seq RESTART WITH 13;
  
  INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (12, 'U2918-0644', 'Nhóm chi phí khác - BV Thanh Hóa', 'U2918-0644', '0', ''); 
   
+  select ser.* from serviceprice ser
+	inner join vienphi vp on vp.vienphiid=ser.vienphiid and vp.vienphistatus>0
+	
+where ser.loaidoituong=2 and ser.servicepriceid_master=0 and ser.servicepriceid_thanhtoanrieng=0 
+and vp.duyet_ngayduyet_vp between '2017-06-01 00:00:00' and '2017-07-31 23:59:59'
+and ser.maubenhphamphieutype=0
   
   
   
-  
+ALTER TABLE ie_bhyt_check
+ALTER COLUMN bhytcheckstatus type text;
   

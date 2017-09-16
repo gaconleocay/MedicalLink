@@ -29,7 +29,23 @@
         private void InitializeComponent()
         {
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
+            this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.cboSapXep = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboLoaiBaoCao = new DevExpress.XtraEditors.LookUpEdit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkChuaPhanLoaiPTTT = new DevExpress.XtraEditors.CheckEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkcomboListDSPhong = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
             this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDataBCPTTT = new DevExpress.XtraGrid.GridControl();
@@ -128,24 +144,14 @@
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBoxFile = new System.Windows.Forms.GroupBox();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.cboSapXep = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.cboLoaiBaoCao = new DevExpress.XtraEditors.LookUpEdit();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chkChuaPhanLoaiPTTT = new DevExpress.XtraEditors.CheckEdit();
-            this.label2 = new System.Windows.Forms.Label();
-            this.chkcomboListDSPhong = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
-            this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
-            this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
-            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
+            this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboSapXep.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiBaoCao.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkChuaPhanLoaiPTTT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).BeginInit();
             this.panelControlData.SuspendLayout();
@@ -163,12 +169,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit6View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUp_MoChinh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
-            this.groupBoxFile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboSapXep.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiBaoCao.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkChuaPhanLoaiPTTT.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -180,6 +180,217 @@
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
             this.panelControlThongTinDV.Size = new System.Drawing.Size(1190, 93);
             this.panelControlThongTinDV.TabIndex = 3;
+            // 
+            // groupBoxFile
+            // 
+            this.groupBoxFile.Controls.Add(this.labelControl2);
+            this.groupBoxFile.Controls.Add(this.cboSapXep);
+            this.groupBoxFile.Controls.Add(this.cboLoaiBaoCao);
+            this.groupBoxFile.Controls.Add(this.label1);
+            this.groupBoxFile.Controls.Add(this.chkChuaPhanLoaiPTTT);
+            this.groupBoxFile.Controls.Add(this.label2);
+            this.groupBoxFile.Controls.Add(this.chkcomboListDSPhong);
+            this.groupBoxFile.Controls.Add(this.labelControl4);
+            this.groupBoxFile.Controls.Add(this.cboTieuChi);
+            this.groupBoxFile.Controls.Add(this.labelControl1);
+            this.groupBoxFile.Controls.Add(this.labelControl3);
+            this.groupBoxFile.Controls.Add(this.dateDenNgay);
+            this.groupBoxFile.Controls.Add(this.dateTuNgay);
+            this.groupBoxFile.Controls.Add(this.btnTimKiem);
+            this.groupBoxFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
+            this.groupBoxFile.Name = "groupBoxFile";
+            this.groupBoxFile.Size = new System.Drawing.Size(1060, 89);
+            this.groupBoxFile.TabIndex = 27;
+            this.groupBoxFile.TabStop = false;
+            this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Location = new System.Drawing.Point(706, 53);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(46, 16);
+            this.labelControl2.TabIndex = 91;
+            this.labelControl2.Text = "Sắp xếp";
+            // 
+            // cboSapXep
+            // 
+            this.cboSapXep.EditValue = "Thời gian thực hiện";
+            this.cboSapXep.Location = new System.Drawing.Point(759, 50);
+            this.cboSapXep.Name = "cboSapXep";
+            this.cboSapXep.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSapXep.Properties.Appearance.Options.UseFont = true;
+            this.cboSapXep.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSapXep.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboSapXep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboSapXep.Properties.Items.AddRange(new object[] {
+            "Thời gian chỉ định",
+            "Thời gian thực hiện"});
+            this.cboSapXep.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboSapXep.Size = new System.Drawing.Size(156, 22);
+            this.cboSapXep.TabIndex = 90;
+            // 
+            // cboLoaiBaoCao
+            // 
+            this.cboLoaiBaoCao.Location = new System.Drawing.Point(309, 17);
+            this.cboLoaiBaoCao.Name = "cboLoaiBaoCao";
+            this.cboLoaiBaoCao.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiBaoCao.Properties.Appearance.Options.UseFont = true;
+            this.cboLoaiBaoCao.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiBaoCao.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLoaiBaoCao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboLoaiBaoCao.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("permissioncode", "CODE", 30, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("permissionname", 50, "Tên báo cáo")});
+            this.cboLoaiBaoCao.Properties.DropDownRows = 10;
+            this.cboLoaiBaoCao.Properties.NullText = "";
+            this.cboLoaiBaoCao.Properties.PopupSizeable = false;
+            this.cboLoaiBaoCao.Size = new System.Drawing.Size(300, 22);
+            this.cboLoaiBaoCao.TabIndex = 89;
+            this.cboLoaiBaoCao.EditValueChanged += new System.EventHandler(this.cboLoaiBaoCao_EditValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(253, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 16);
+            this.label1.TabIndex = 88;
+            this.label1.Text = "Loại BC";
+            // 
+            // chkChuaPhanLoaiPTTT
+            // 
+            this.chkChuaPhanLoaiPTTT.AutoSizeInLayoutControl = true;
+            this.chkChuaPhanLoaiPTTT.Location = new System.Drawing.Point(626, 12);
+            this.chkChuaPhanLoaiPTTT.Name = "chkChuaPhanLoaiPTTT";
+            this.chkChuaPhanLoaiPTTT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkChuaPhanLoaiPTTT.Properties.Appearance.Options.UseFont = true;
+            this.chkChuaPhanLoaiPTTT.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkChuaPhanLoaiPTTT.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkChuaPhanLoaiPTTT.Properties.Caption = "Chưa phân loại PTTT";
+            this.chkChuaPhanLoaiPTTT.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkChuaPhanLoaiPTTT.Size = new System.Drawing.Size(68, 68);
+            this.chkChuaPhanLoaiPTTT.TabIndex = 87;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(203, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 16);
+            this.label2.TabIndex = 81;
+            this.label2.Text = "Phòng thực hiện";
+            // 
+            // chkcomboListDSPhong
+            // 
+            this.chkcomboListDSPhong.EditValue = "";
+            this.chkcomboListDSPhong.Location = new System.Drawing.Point(309, 50);
+            this.chkcomboListDSPhong.Name = "chkcomboListDSPhong";
+            this.chkcomboListDSPhong.Properties.AllowMultiSelect = true;
+            this.chkcomboListDSPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSPhong.Properties.Appearance.Options.UseFont = true;
+            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.chkcomboListDSPhong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.chkcomboListDSPhong.Properties.DropDownRows = 15;
+            this.chkcomboListDSPhong.Size = new System.Drawing.Size(300, 22);
+            this.chkcomboListDSPhong.TabIndex = 80;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Location = new System.Drawing.Point(706, 20);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(46, 16);
+            this.labelControl4.TabIndex = 74;
+            this.labelControl4.Text = "Tiêu chí";
+            // 
+            // cboTieuChi
+            // 
+            this.cboTieuChi.EditValue = "Theo ngày thực hiện";
+            this.cboTieuChi.Location = new System.Drawing.Point(759, 16);
+            this.cboTieuChi.Name = "cboTieuChi";
+            this.cboTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTieuChi.Properties.Appearance.Options.UseFont = true;
+            this.cboTieuChi.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTieuChi.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboTieuChi.Properties.Items.AddRange(new object[] {
+            "Theo ngày thực hiện",
+            "Theo ngày thanh toán",
+            "Theo ngày chỉ định",
+            "Theo ngày tiếp nhận"});
+            this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboTieuChi.Size = new System.Drawing.Size(156, 22);
+            this.cboTieuChi.TabIndex = 72;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(5, 56);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(23, 16);
+            this.labelControl1.TabIndex = 21;
+            this.labelControl1.Text = "Đến";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl3.Location = new System.Drawing.Point(11, 23);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(16, 16);
+            this.labelControl3.TabIndex = 20;
+            this.labelControl3.Text = "Từ";
+            // 
+            // dateDenNgay
+            // 
+            this.dateDenNgay.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
+            this.dateDenNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateDenNgay.Location = new System.Drawing.Point(38, 52);
+            this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.dateDenNgay.Name = "dateDenNgay";
+            this.dateDenNgay.Size = new System.Drawing.Size(159, 22);
+            this.dateDenNgay.TabIndex = 19;
+            this.dateDenNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            // 
+            // dateTuNgay
+            // 
+            this.dateTuNgay.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
+            this.dateTuNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTuNgay.Location = new System.Drawing.Point(38, 19);
+            this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.dateTuNgay.Name = "dateTuNgay";
+            this.dateTuNgay.Size = new System.Drawing.Size(159, 22);
+            this.dateTuNgay.TabIndex = 18;
+            this.dateTuNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            // 
+            // btnTimKiem
+            // 
+            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTimKiem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnTimKiem.Appearance.Options.UseFont = true;
+            this.btnTimKiem.Appearance.Options.UseForeColor = true;
+            this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.search_3_24;
+            this.btnTimKiem.Location = new System.Drawing.Point(939, 32);
+            this.btnTimKiem.Name = "btnTimKiem";
+            this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
+            this.btnTimKiem.TabIndex = 91;
+            this.btnTimKiem.Text = "Tìm kiếm";
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // groupBox1
             // 
@@ -193,6 +404,20 @@
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Export";
+            // 
+            // dropDownPrint
+            // 
+            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownPrint.Appearance.Options.UseFont = true;
+            this.dropDownPrint.Appearance.Options.UseForeColor = true;
+            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.dropDownPrint.Location = new System.Drawing.Point(8, 16);
+            this.dropDownPrint.Name = "dropDownPrint";
+            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
+            this.dropDownPrint.TabIndex = 2;
+            this.dropDownPrint.Text = "In...";
             // 
             // dropDownExport
             // 
@@ -1708,231 +1933,6 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 0;
             // 
-            // groupBoxFile
-            // 
-            this.groupBoxFile.Controls.Add(this.labelControl2);
-            this.groupBoxFile.Controls.Add(this.cboSapXep);
-            this.groupBoxFile.Controls.Add(this.cboLoaiBaoCao);
-            this.groupBoxFile.Controls.Add(this.label1);
-            this.groupBoxFile.Controls.Add(this.chkChuaPhanLoaiPTTT);
-            this.groupBoxFile.Controls.Add(this.label2);
-            this.groupBoxFile.Controls.Add(this.chkcomboListDSPhong);
-            this.groupBoxFile.Controls.Add(this.labelControl4);
-            this.groupBoxFile.Controls.Add(this.cboTieuChi);
-            this.groupBoxFile.Controls.Add(this.labelControl1);
-            this.groupBoxFile.Controls.Add(this.labelControl3);
-            this.groupBoxFile.Controls.Add(this.dateDenNgay);
-            this.groupBoxFile.Controls.Add(this.dateTuNgay);
-            this.groupBoxFile.Controls.Add(this.btnTimKiem);
-            this.groupBoxFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
-            this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(1060, 89);
-            this.groupBoxFile.TabIndex = 27;
-            this.groupBoxFile.TabStop = false;
-            this.groupBoxFile.Text = "Tìm kiếm";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(706, 53);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(46, 16);
-            this.labelControl2.TabIndex = 91;
-            this.labelControl2.Text = "Sắp xếp";
-            // 
-            // cboSapXep
-            // 
-            this.cboSapXep.EditValue = "Thời gian thực hiện";
-            this.cboSapXep.Location = new System.Drawing.Point(759, 50);
-            this.cboSapXep.Name = "cboSapXep";
-            this.cboSapXep.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSapXep.Properties.Appearance.Options.UseFont = true;
-            this.cboSapXep.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboSapXep.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboSapXep.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboSapXep.Properties.Items.AddRange(new object[] {
-            "Thời gian chỉ định",
-            "Thời gian thực hiện"});
-            this.cboSapXep.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboSapXep.Size = new System.Drawing.Size(156, 22);
-            this.cboSapXep.TabIndex = 90;
-            // 
-            // cboLoaiBaoCao
-            // 
-            this.cboLoaiBaoCao.Location = new System.Drawing.Point(309, 17);
-            this.cboLoaiBaoCao.Name = "cboLoaiBaoCao";
-            this.cboLoaiBaoCao.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiBaoCao.Properties.Appearance.Options.UseFont = true;
-            this.cboLoaiBaoCao.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiBaoCao.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboLoaiBaoCao.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLoaiBaoCao.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("permissioncode", "CODE", 30, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("permissionname", 50, "Tên báo cáo")});
-            this.cboLoaiBaoCao.Properties.DropDownRows = 10;
-            this.cboLoaiBaoCao.Properties.NullText = "";
-            this.cboLoaiBaoCao.Properties.PopupSizeable = false;
-            this.cboLoaiBaoCao.Size = new System.Drawing.Size(300, 22);
-            this.cboLoaiBaoCao.TabIndex = 89;
-            this.cboLoaiBaoCao.EditValueChanged += new System.EventHandler(this.cboLoaiBaoCao_EditValueChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(253, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 16);
-            this.label1.TabIndex = 88;
-            this.label1.Text = "Loại BC";
-            // 
-            // chkChuaPhanLoaiPTTT
-            // 
-            this.chkChuaPhanLoaiPTTT.AutoSizeInLayoutControl = true;
-            this.chkChuaPhanLoaiPTTT.Location = new System.Drawing.Point(626, 12);
-            this.chkChuaPhanLoaiPTTT.Name = "chkChuaPhanLoaiPTTT";
-            this.chkChuaPhanLoaiPTTT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkChuaPhanLoaiPTTT.Properties.Appearance.Options.UseFont = true;
-            this.chkChuaPhanLoaiPTTT.Properties.Appearance.Options.UseTextOptions = true;
-            this.chkChuaPhanLoaiPTTT.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.chkChuaPhanLoaiPTTT.Properties.Caption = "Chưa phân loại PTTT";
-            this.chkChuaPhanLoaiPTTT.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-            this.chkChuaPhanLoaiPTTT.Size = new System.Drawing.Size(68, 68);
-            this.chkChuaPhanLoaiPTTT.TabIndex = 87;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(203, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 16);
-            this.label2.TabIndex = 81;
-            this.label2.Text = "Phòng thực hiện";
-            // 
-            // chkcomboListDSPhong
-            // 
-            this.chkcomboListDSPhong.EditValue = "";
-            this.chkcomboListDSPhong.Location = new System.Drawing.Point(309, 50);
-            this.chkcomboListDSPhong.Name = "chkcomboListDSPhong";
-            this.chkcomboListDSPhong.Properties.AllowMultiSelect = true;
-            this.chkcomboListDSPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSPhong.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSPhong.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.chkcomboListDSPhong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.chkcomboListDSPhong.Properties.DropDownRows = 15;
-            this.chkcomboListDSPhong.Size = new System.Drawing.Size(300, 22);
-            this.chkcomboListDSPhong.TabIndex = 80;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(706, 20);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(46, 16);
-            this.labelControl4.TabIndex = 74;
-            this.labelControl4.Text = "Tiêu chí";
-            // 
-            // cboTieuChi
-            // 
-            this.cboTieuChi.EditValue = "Theo ngày thực hiện";
-            this.cboTieuChi.Location = new System.Drawing.Point(759, 16);
-            this.cboTieuChi.Name = "cboTieuChi";
-            this.cboTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTieuChi.Properties.Appearance.Options.UseFont = true;
-            this.cboTieuChi.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTieuChi.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboTieuChi.Properties.Items.AddRange(new object[] {
-            "Theo ngày thực hiện",
-            "Theo ngày thanh toán",
-            "Theo ngày chỉ định",
-            "Theo ngày tiếp nhận"});
-            this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboTieuChi.Size = new System.Drawing.Size(156, 22);
-            this.cboTieuChi.TabIndex = 72;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(5, 56);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(23, 16);
-            this.labelControl1.TabIndex = 21;
-            this.labelControl1.Text = "Đến";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(11, 23);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(16, 16);
-            this.labelControl3.TabIndex = 20;
-            this.labelControl3.Text = "Từ";
-            // 
-            // dateDenNgay
-            // 
-            this.dateDenNgay.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
-            this.dateDenNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(38, 52);
-            this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            this.dateDenNgay.Name = "dateDenNgay";
-            this.dateDenNgay.Size = new System.Drawing.Size(159, 22);
-            this.dateDenNgay.TabIndex = 19;
-            this.dateDenNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            // 
-            // dateTuNgay
-            // 
-            this.dateTuNgay.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
-            this.dateTuNgay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(38, 19);
-            this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            this.dateTuNgay.Name = "dateTuNgay";
-            this.dateTuNgay.Size = new System.Drawing.Size(159, 22);
-            this.dateTuNgay.TabIndex = 18;
-            this.dateTuNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            // 
-            // btnTimKiem
-            // 
-            this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnTimKiem.Appearance.Options.UseFont = true;
-            this.btnTimKiem.Appearance.Options.UseForeColor = true;
-            this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.search_3_24;
-            this.btnTimKiem.Location = new System.Drawing.Point(939, 32);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
-            this.btnTimKiem.TabIndex = 5;
-            this.btnTimKiem.Text = "Tìm kiếm";
-            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
-            // 
-            // dropDownPrint
-            // 
-            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
-            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dropDownPrint.Appearance.Options.UseFont = true;
-            this.dropDownPrint.Appearance.Options.UseForeColor = true;
-            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
-            this.dropDownPrint.Location = new System.Drawing.Point(8, 16);
-            this.dropDownPrint.Name = "dropDownPrint";
-            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
-            this.dropDownPrint.TabIndex = 2;
-            this.dropDownPrint.Text = "In...";
-            // 
             // ucBCThucHienCLS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1946,6 +1946,13 @@
             this.Load += new System.EventHandler(this.ucBCThucHienCLS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);
+            this.groupBoxFile.ResumeLayout(false);
+            this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboSapXep.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiBaoCao.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkChuaPhanLoaiPTTT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
@@ -1963,13 +1970,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit6View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUp_MoChinh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
-            this.groupBoxFile.ResumeLayout(false);
-            this.groupBoxFile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboSapXep.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiBaoCao.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkChuaPhanLoaiPTTT.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

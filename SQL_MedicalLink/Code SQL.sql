@@ -380,7 +380,7 @@ yyyy-MM-dd HH:mm:ss
  
 SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') from vienphi vp where vp.vienphiid=800543  
 row_number() over() as stt, 
-row_number () over (order by a.ngay_thuchien desc) as stt 
+row_number () over (order by a.ngay_thuchien) as stt 
 (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY vms.vienphidate)) as stt,
 
 --------- 
@@ -401,6 +401,15 @@ alter table tools_othertypelist add tools_othertypelistnote text;
 
 cast(A.VATTU_TRONGGOI as numeric)
  LIKE ANY(ARRAY[" + this.lstservicepricecode + "])
+cast(sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric)
+
+//-------Gan vao DTO
+Mapper.Initialize(cfg => cfg.CreateMap<XML1_TagDTO, XML_HOSODTO>());
+_xmlHoSo = AutoMapper.Mapper.Map<XML1_TagDTO, XML_HOSODTO>(_xml1_TagDto);
+
+
+
+
 
 
 1. cổng của bv gửi 

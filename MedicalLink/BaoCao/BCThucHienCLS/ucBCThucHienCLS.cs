@@ -40,31 +40,12 @@ namespace MedicalLink.BaoCao
         {
             dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            LoadDanhMucPhongThucHien();
+            //LoadDanhMucPhongThucHien();
             LoadDanhSachExport();
             LoadDanhSachButonPrint();
             LoadDanhSachBaoCao();
         }
 
-        private void LoadDanhMucPhongThucHien()
-        {
-            try
-            {
-                var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7 || o.departmenttype == 6).OrderBy(o => o.departmentname).ToList();
-                if (lstDSPhong != null && lstDSPhong.Count > 0)
-                {
-                    chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
-                    chkcomboListDSPhong.Properties.DisplayMember = "departmentname";
-                    chkcomboListDSPhong.Properties.ValueMember = "departmentid";
-                }
-
-                chkcomboListDSPhong.CheckAll();
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
         private void LoadDanhSachExport()
         {
             try
@@ -116,15 +97,19 @@ namespace MedicalLink.BaoCao
                 {
                     lstBaoCaoCLS.AddRange(kiemtra);
                 }
-                ClassCommon.classPermission baocaoCLS = new classPermission();
-                baocaoCLS.permissioncode = "ALLL";
-                baocaoCLS.permissionname = "Tất cả";
-                lstBaoCaoCLS.Add(baocaoCLS);
+                ClassCommon.classPermission baocaoCLSXN = new classPermission();
+                baocaoCLSXN.permissioncode = "XN";
+                baocaoCLSXN.permissionname = "Xét nghiệm";
+                lstBaoCaoCLS.Add(baocaoCLSXN);
+                ClassCommon.classPermission baocaoCLSCDHA = new classPermission();
+                baocaoCLSCDHA.permissioncode = "CDHA";
+                baocaoCLSCDHA.permissionname = "Chẩn đoán hình ảnh";
+                lstBaoCaoCLS.Add(baocaoCLSCDHA);
 
                 cboLoaiBaoCao.Properties.DataSource = lstBaoCaoCLS;
                 cboLoaiBaoCao.Properties.DisplayMember = "permissionname";
                 cboLoaiBaoCao.Properties.ValueMember = "permissioncode";
-                cboLoaiBaoCao.EditValue = "ALLL";
+                cboLoaiBaoCao.EditValue = "XN";
             }
             catch (Exception ex)
             {
@@ -231,7 +216,7 @@ namespace MedicalLink.BaoCao
                     bandedGridColumn_gv1_tien.Visible = false;
                     bandedGridColumn_gv1nsdd_tien.Visible = true;
                 }
-                else
+                else if (cboLoaiBaoCao.EditValue.ToString() == "XN")
                 {
                     chkcomboListDSPhong.Enabled = true;
                     gridBand_gayme.Visible = true;
@@ -241,8 +226,51 @@ namespace MedicalLink.BaoCao
                     gridBand_giupviec2.Visible = true;
                     bandedGridColumn_gv1_tien.Visible = true;
                     bandedGridColumn_gv1nsdd_tien.Visible = false;
-
+                    LoadDanhMucPhongThucHien("XN");
                 }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "CDHA")
+                {
+                    chkcomboListDSPhong.Enabled = true;
+                    gridBand_gayme.Visible = true;
+                    gridBand_phumo1.Visible = true;
+                    gridBand_phumo2.Visible = true;
+                    //gridBand_giupviec1.Visible = true;
+                    gridBand_giupviec2.Visible = true;
+                    bandedGridColumn_gv1_tien.Visible = true;
+                    bandedGridColumn_gv1nsdd_tien.Visible = false;
+                    LoadDanhMucPhongThucHien("CDHA");
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void LoadDanhMucPhongThucHien(string _loaiBC)
+        {
+            try
+            {
+                if (_loaiBC == "XN")
+                {
+                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 6).OrderBy(o => o.departmentname).ToList();
+                    if (lstDSPhong != null && lstDSPhong.Count > 0)
+                    {
+                        chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
+                        chkcomboListDSPhong.Properties.DisplayMember = "departmentname";
+                        chkcomboListDSPhong.Properties.ValueMember = "departmentid";
+                    }
+                }
+                else if (_loaiBC == "CDHA")
+                {
+                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(o => o.departmentname).ToList();
+                    if (lstDSPhong != null && lstDSPhong.Count > 0)
+                    {
+                        chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
+                        chkcomboListDSPhong.Properties.DisplayMember = "departmentname";
+                        chkcomboListDSPhong.Properties.ValueMember = "departmentid";
+                    }
+                }
+                chkcomboListDSPhong.CheckAll();
             }
             catch (Exception ex)
             {

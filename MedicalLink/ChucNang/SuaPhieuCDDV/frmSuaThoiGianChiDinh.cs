@@ -14,16 +14,18 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
 {
     public partial class frmSuaThoiGianChiDinh : Form
     {
-        long maubenhphamid;
-        DateTime thoigianchidinh, thoigiansudung;
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private long mavienphi, maubenhphamid;
+        private DateTime thoigianchidinh, thoigiansudung;
+        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+
         public frmSuaThoiGianChiDinh()
         {
             InitializeComponent();
         }
-        public frmSuaThoiGianChiDinh(long _maubenhphamid, DateTime _thoigianchidinh, DateTime _thoigiansudung)
+        public frmSuaThoiGianChiDinh(long _mavienphi, long _maubenhphamid, DateTime _thoigianchidinh, DateTime _thoigiansudung)
         {
             InitializeComponent();
+            this.mavienphi = _mavienphi;
             this.maubenhphamid = _maubenhphamid;
             this.thoigianchidinh = _thoigianchidinh;
             this.thoigiansudung = _thoigiansudung;
@@ -57,7 +59,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
                 string sqlupdate_TG = "UPDATE serviceprice SET servicepricedate = '" + tg_chidinh + "' WHERE maubenhphamid = '" + this.maubenhphamid + "' ; UPDATE maubenhpham SET maubenhphamdate = '" + tg_chidinh + "', maubenhphamdate_sudung='" + tg_sudung + "' WHERE maubenhphamid = '" + this.maubenhphamid + "' ;";
 
                 //Log
-                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thời gian chỉ định từ: " + this.thoigianchidinh.ToString("yyyy-MM-dd HH:mm:ss") + "=> " + tg_chidinh + " ; thời gian sử dụng từ: " + this.thoigiansudung.ToString("yyyy-MM-dd HH:mm:ss") + " => " + tg_sudung + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thời gian chỉ định Mã Viện phí=" + this.mavienphi + " - Mã phiếu chỉ định=" + this.maubenhphamid + ". từ: " + this.thoigianchidinh.ToString("yyyy-MM-dd HH:mm:ss") + "=> " + tg_chidinh + " ; thời gian sử dụng từ: " + this.thoigiansudung.ToString("yyyy-MM-dd HH:mm:ss") + " => " + tg_sudung + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
                 condb.ExecuteNonQuery_HIS(sqlupdate_TG);
                 condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 MessageBox.Show("Sửa thời gian chỉ định/sử dụng phiếu DV: [" + this.maubenhphamid + "] thành công", "Thông báo !");

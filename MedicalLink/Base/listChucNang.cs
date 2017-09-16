@@ -269,6 +269,15 @@ namespace MedicalLink.Base
                 THAOTAC_02.permissionnote = "Thiết lập khoảng thời gian lấy dữ liệu trong báo cáo";
                 lstresult.Add(THAOTAC_02);
 
+                ClassCommon.classPermission THAOTAC_03 = new ClassCommon.classPermission();
+                THAOTAC_03.permissioncheck = false;
+                THAOTAC_03.permissioncode = "THAOTAC_03";
+                THAOTAC_03.permissionname = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng (đã ra viện)";
+                THAOTAC_03.permissiontype = 4;
+                THAOTAC_03.permissionnote = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng (đã ra viện)";
+                lstresult.Add(THAOTAC_03);
+
+
                 //report
                 ClassCommon.classPermission REPORT_01 = new ClassCommon.classPermission();
                 REPORT_01.permissioncheck = false;
@@ -511,7 +520,13 @@ namespace MedicalLink.Base
                 REPORT_30.permissionnote = "Báo cáo BN sử dụng VTYT thanh toán riêng lớn hơn 45 TLCB";
                 lstresult.Add(REPORT_30);
 
-
+                ClassCommon.classPermission REPORT_31 = new ClassCommon.classPermission();
+                REPORT_31.permissioncheck = false;
+                REPORT_31.permissioncode = "REPORT_31";
+                REPORT_31.permissionname = "Báo cáo hóa đơn thanh toán viện phí";
+                REPORT_31.permissiontype = 3;
+                REPORT_31.permissionnote = "Báo cáo hóa đơn thanh toán viện phí";
+                lstresult.Add(REPORT_31);
 
 
 

@@ -1,6 +1,7 @@
---So CDHA ser 1.1 ngay 8/8/2017
+--So CDHA ser 1.1 ngay 31/8/2017
 --them thuoc/vt di kem
 --7/8 bo sung thoi gian tra kq tung phan
+--31/8 bo sung ng tra ket qua neu nhu nguoi tra kq tung phan = null
 
 SELECT
 		 ROW_NUMBER () OVER (ORDER BY hsba.patientcode, A.maubenhphamid) as stt,
@@ -27,7 +28,7 @@ SELECT
 		A.VIENPHIDATE_RAVIEN,
 		A.DUYET_NGAYDUYET_VP,
 		(case when A.servicetimetrakq is not null then A.servicetimetrakq else (a.maubenhphamfinishdate) end) as servicetimetrakq, --tra kq tung phan
-		NTKQ.USERNAME AS NGUOIDOC,
+		(case when ntkq.username is not null then ntkq.username else ntkqcc.username end) AS NGUOIDOC,
 		(CASE WHEN A.DEPARTMENTID_DES=244 THEN 'X' ELSE '' END) AS PHIM_20X25,
 		(CASE WHEN A.DEPARTMENTID_DES IN (245,246) THEN 'X' ELSE '' END) AS PHIM_35X43,
 		A.isthuocdikem,
@@ -60,7 +61,7 @@ FROM
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kyc ON kyc.departmentgroupid=A.departmentgroupid
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pyc ON pyc.departmentid=A.departmentid
 	LEFT JOIN (select userhisid,usercode,username from nhompersonnel) ntkq ON ntkq.usercode=A.serviceusertrakq; --nguoi tra kq tung pham
-	--LEFT JOIN (select userhisid,username from nhompersonnel) ntkq ON ntkq.userhisid=COALESCE(A.usertrakq, A.userthuchien); //nguoi tra kq cuoi cung
+	LEFT JOIN (select userhisid,username from nhompersonnel) ntkqcc ON ntkqcc.userhisid=COALESCE(A.usertrakq, A.userthuchien); --nguoi tra kq cuoi cung
 	
 
 	

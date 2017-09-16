@@ -31,9 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucDanhSachNhanVien));
             this.panelControlThongTinNV = new DevExpress.XtraEditors.PanelControl();
-            this.groupBoxChucNang = new System.Windows.Forms.GroupBox();
-            this.btnNVThem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxThongTin = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboNhomNhanVien = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.btnNVThem = new DevExpress.XtraEditors.SimpleButton();
             this.txtIDHIS = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnThemTuExcel = new DevExpress.XtraEditors.SimpleButton();
@@ -49,12 +50,14 @@
             this.manv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tennv = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinNV)).BeginInit();
             this.panelControlThongTinNV.SuspendLayout();
-            this.groupBoxChucNang.SuspendLayout();
             this.groupBoxThongTin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboNhomNhanVien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIDHIS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNVName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNVID.Properties)).BeginInit();
@@ -67,7 +70,6 @@
             // 
             // panelControlThongTinNV
             // 
-            this.panelControlThongTinNV.Controls.Add(this.groupBoxChucNang);
             this.panelControlThongTinNV.Controls.Add(this.groupBoxThongTin);
             this.panelControlThongTinNV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinNV.Location = new System.Drawing.Point(0, 0);
@@ -75,34 +77,11 @@
             this.panelControlThongTinNV.Size = new System.Drawing.Size(1096, 85);
             this.panelControlThongTinNV.TabIndex = 1;
             // 
-            // groupBoxChucNang
-            // 
-            this.groupBoxChucNang.Controls.Add(this.btnNVThem);
-            this.groupBoxChucNang.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBoxChucNang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxChucNang.Location = new System.Drawing.Point(2, 2);
-            this.groupBoxChucNang.Name = "groupBoxChucNang";
-            this.groupBoxChucNang.Size = new System.Drawing.Size(146, 81);
-            this.groupBoxChucNang.TabIndex = 8;
-            this.groupBoxChucNang.TabStop = false;
-            this.groupBoxChucNang.Text = "Chức năng";
-            // 
-            // btnNVThem
-            // 
-            this.btnNVThem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNVThem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnNVThem.Appearance.Options.UseFont = true;
-            this.btnNVThem.Appearance.Options.UseForeColor = true;
-            this.btnNVThem.Image = ((System.Drawing.Image)(resources.GetObject("btnNVThem.Image")));
-            this.btnNVThem.Location = new System.Drawing.Point(15, 22);
-            this.btnNVThem.Name = "btnNVThem";
-            this.btnNVThem.Size = new System.Drawing.Size(100, 40);
-            this.btnNVThem.TabIndex = 5;
-            this.btnNVThem.Text = "Thêm";
-            this.btnNVThem.Click += new System.EventHandler(this.btnNVThem_Click);
-            // 
             // groupBoxThongTin
             // 
+            this.groupBoxThongTin.Controls.Add(this.label1);
+            this.groupBoxThongTin.Controls.Add(this.cboNhomNhanVien);
+            this.groupBoxThongTin.Controls.Add(this.btnNVThem);
             this.groupBoxThongTin.Controls.Add(this.txtIDHIS);
             this.groupBoxThongTin.Controls.Add(this.labelControl1);
             this.groupBoxThongTin.Controls.Add(this.btnThemTuExcel);
@@ -111,17 +90,64 @@
             this.groupBoxThongTin.Controls.Add(this.txtNVID);
             this.groupBoxThongTin.Controls.Add(this.lblUserCode);
             this.groupBoxThongTin.Controls.Add(this.lblUsername);
+            this.groupBoxThongTin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxThongTin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxThongTin.Location = new System.Drawing.Point(154, 2);
+            this.groupBoxThongTin.Location = new System.Drawing.Point(2, 2);
             this.groupBoxThongTin.Name = "groupBoxThongTin";
-            this.groupBoxThongTin.Size = new System.Drawing.Size(937, 80);
+            this.groupBoxThongTin.Size = new System.Drawing.Size(1092, 81);
             this.groupBoxThongTin.TabIndex = 7;
             this.groupBoxThongTin.TabStop = false;
             this.groupBoxThongTin.Text = "Thông tin về tài khoản";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(378, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 16);
+            this.label1.TabIndex = 88;
+            this.label1.Text = "Nhóm sử dụng";
+            // 
+            // cboNhomNhanVien
+            // 
+            this.cboNhomNhanVien.EditValue = "Khác";
+            this.cboNhomNhanVien.Location = new System.Drawing.Point(475, 48);
+            this.cboNhomNhanVien.Name = "cboNhomNhanVien";
+            this.cboNhomNhanVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboNhomNhanVien.Properties.Appearance.Options.UseFont = true;
+            this.cboNhomNhanVien.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboNhomNhanVien.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboNhomNhanVien.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboNhomNhanVien.Properties.Items.AddRange(new object[] {
+            "Bác sĩ",
+            "Thu ngân",
+            "CNTT",
+            "Ban lãnh đạo",
+            "Khác"});
+            this.cboNhomNhanVien.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboNhomNhanVien.Size = new System.Drawing.Size(246, 22);
+            this.cboNhomNhanVien.TabIndex = 87;
+            // 
+            // btnNVThem
+            // 
+            this.btnNVThem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNVThem.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnNVThem.Appearance.Options.UseFont = true;
+            this.btnNVThem.Appearance.Options.UseForeColor = true;
+            this.btnNVThem.Image = ((System.Drawing.Image)(resources.GetObject("btnNVThem.Image")));
+            this.btnNVThem.Location = new System.Drawing.Point(9, 27);
+            this.btnNVThem.Name = "btnNVThem";
+            this.btnNVThem.Size = new System.Drawing.Size(100, 40);
+            this.btnNVThem.TabIndex = 5;
+            this.btnNVThem.Text = "Thêm";
+            this.btnNVThem.Click += new System.EventHandler(this.btnNVThem_Click);
+            // 
             // txtIDHIS
             // 
-            this.txtIDHIS.Location = new System.Drawing.Point(315, 19);
+            this.txtIDHIS.Location = new System.Drawing.Point(218, 51);
             this.txtIDHIS.Name = "txtIDHIS";
             this.txtIDHIS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIDHIS.Properties.Appearance.Options.UseFont = true;
@@ -135,7 +161,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(272, 22);
+            this.labelControl1.Location = new System.Drawing.Point(175, 54);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(36, 16);
             this.labelControl1.TabIndex = 9;
@@ -148,7 +174,7 @@
             this.btnThemTuExcel.Appearance.Options.UseFont = true;
             this.btnThemTuExcel.Appearance.Options.UseForeColor = true;
             this.btnThemTuExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnThemTuExcel.Image")));
-            this.btnThemTuExcel.Location = new System.Drawing.Point(723, 22);
+            this.btnThemTuExcel.Location = new System.Drawing.Point(882, 27);
             this.btnThemTuExcel.Name = "btnThemTuExcel";
             this.btnThemTuExcel.Size = new System.Drawing.Size(130, 40);
             this.btnThemTuExcel.TabIndex = 8;
@@ -162,7 +188,7 @@
             this.btnNVOK.Appearance.Options.UseFont = true;
             this.btnNVOK.Appearance.Options.UseForeColor = true;
             this.btnNVOK.Image = ((System.Drawing.Image)(resources.GetObject("btnNVOK.Image")));
-            this.btnNVOK.Location = new System.Drawing.Point(584, 22);
+            this.btnNVOK.Location = new System.Drawing.Point(762, 27);
             this.btnNVOK.Name = "btnNVOK";
             this.btnNVOK.Size = new System.Drawing.Size(100, 40);
             this.btnNVOK.TabIndex = 7;
@@ -171,16 +197,16 @@
             // 
             // txtNVName
             // 
-            this.txtNVName.Location = new System.Drawing.Point(108, 54);
+            this.txtNVName.Location = new System.Drawing.Point(475, 18);
             this.txtNVName.Name = "txtNVName";
             this.txtNVName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNVName.Properties.Appearance.Options.UseFont = true;
-            this.txtNVName.Size = new System.Drawing.Size(352, 22);
+            this.txtNVName.Size = new System.Drawing.Size(246, 22);
             this.txtNVName.TabIndex = 6;
             // 
             // txtNVID
             // 
-            this.txtNVID.Location = new System.Drawing.Point(108, 20);
+            this.txtNVID.Location = new System.Drawing.Point(218, 18);
             this.txtNVID.Name = "txtNVID";
             this.txtNVID.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNVID.Properties.Appearance.Options.UseFont = true;
@@ -191,7 +217,7 @@
             // 
             this.lblUserCode.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserCode.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblUserCode.Location = new System.Drawing.Point(26, 22);
+            this.lblUserCode.Location = new System.Drawing.Point(136, 20);
             this.lblUserCode.Name = "lblUserCode";
             this.lblUserCode.Size = new System.Drawing.Size(76, 16);
             this.lblUserCode.TabIndex = 1;
@@ -201,7 +227,7 @@
             // 
             this.lblUsername.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblUsername.Location = new System.Drawing.Point(21, 57);
+            this.lblUsername.Location = new System.Drawing.Point(388, 21);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(81, 16);
             this.lblUsername.TabIndex = 3;
@@ -235,7 +261,9 @@
             this.stt,
             this.manv,
             this.tennv,
-            this.gridColumn1});
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3});
             this.gridViewDSNV.GridControl = this.gridControlDSNV;
             this.gridViewDSNV.Name = "gridViewDSNV";
             this.gridViewDSNV.OptionsFind.AlwaysVisible = true;
@@ -253,11 +281,11 @@
             // 
             // stt
             // 
-            this.stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.stt.AppearanceCell.Options.UseFont = true;
             this.stt.AppearanceCell.Options.UseTextOptions = true;
             this.stt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.stt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.stt.AppearanceHeader.Options.UseFont = true;
             this.stt.AppearanceHeader.Options.UseForeColor = true;
@@ -268,13 +296,13 @@
             this.stt.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.stt.Visible = true;
             this.stt.VisibleIndex = 0;
-            this.stt.Width = 70;
+            this.stt.Width = 72;
             // 
             // manv
             // 
-            this.manv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.manv.AppearanceCell.Options.UseFont = true;
-            this.manv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.manv.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.manv.AppearanceHeader.Options.UseFont = true;
             this.manv.AppearanceHeader.Options.UseForeColor = true;
@@ -286,13 +314,13 @@
             this.manv.OptionsColumn.AllowEdit = false;
             this.manv.Visible = true;
             this.manv.VisibleIndex = 1;
-            this.manv.Width = 293;
+            this.manv.Width = 186;
             // 
             // tennv
             // 
-            this.tennv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tennv.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.tennv.AppearanceCell.Options.UseFont = true;
-            this.tennv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tennv.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.tennv.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.tennv.AppearanceHeader.Options.UseFont = true;
             this.tennv.AppearanceHeader.Options.UseForeColor = true;
@@ -304,15 +332,15 @@
             this.tennv.OptionsColumn.AllowEdit = false;
             this.tennv.Visible = true;
             this.tennv.VisibleIndex = 2;
-            this.tennv.Width = 533;
+            this.tennv.Width = 451;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn1.AppearanceCell.Options.UseFont = true;
             this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
@@ -324,11 +352,44 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 3;
-            this.gridColumn1.Width = 154;
+            this.gridColumn1.Width = 100;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn2.AppearanceCell.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn2.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn2.Caption = "Nhóm sử dụng";
+            this.gridColumn2.FieldName = "usergnhom_name";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 4;
+            this.gridColumn2.Width = 156;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn3.AppearanceCell.Options.UseFont = true;
+            this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn3.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn3.Caption = "usergnhom";
+            this.gridColumn3.FieldName = "usergnhom";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.OptionsColumn.AllowEdit = false;
             // 
             // openFileDialogSelect
             // 
-            this.openFileDialogSelect.Filter = "Excel 2003|*.xls|Excel 2007-2013|*.xlsx";
+            this.openFileDialogSelect.Filter = "Excel 2007-2013|*.xlsx|Excel 2003|*.xls";
             this.openFileDialogSelect.Title = "Mở file Excel";
             // 
             // imMenu
@@ -354,9 +415,9 @@
             this.Load += new System.EventHandler(this.ucDanhSachNhanVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinNV)).EndInit();
             this.panelControlThongTinNV.ResumeLayout(false);
-            this.groupBoxChucNang.ResumeLayout(false);
             this.groupBoxThongTin.ResumeLayout(false);
             this.groupBoxThongTin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboNhomNhanVien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIDHIS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNVName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNVID.Properties)).EndInit();
@@ -372,7 +433,6 @@
         #endregion
 
         private DevExpress.XtraEditors.PanelControl panelControlThongTinNV;
-        private System.Windows.Forms.GroupBox groupBoxChucNang;
         private DevExpress.XtraEditors.SimpleButton btnNVThem;
         private System.Windows.Forms.GroupBox groupBoxThongTin;
         private DevExpress.XtraEditors.TextEdit txtNVName;
@@ -392,6 +452,9 @@
         private DevExpress.XtraEditors.TextEdit txtIDHIS;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.Utils.ImageCollection imMenu;
-
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.ComboBoxEdit cboNhomNhanVien;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

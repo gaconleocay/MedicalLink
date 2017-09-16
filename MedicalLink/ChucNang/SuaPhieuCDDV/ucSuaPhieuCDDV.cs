@@ -39,6 +39,7 @@ namespace MedicalLink.ChucNang
             this.txtMaBN.Enter += new System.EventHandler(this.txtMaBN_Enter);
         }
 
+        #region Custom
         // Hiển thị Text Hint Mã dịch vụ
         private void mmeMaDV_Leave(object sender, EventArgs e)
         {
@@ -95,6 +96,7 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        #endregion
         //Sự kiện tìm kiếm
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -179,7 +181,6 @@ namespace MedicalLink.ChucNang
             }
             SplashScreenManager.CloseForm();
         }
-
         private void tbnExport_Click(object sender, EventArgs e)
         {
             if (gridViewDS_PhieuDichVu.RowCount > 0)
@@ -233,6 +234,7 @@ namespace MedicalLink.ChucNang
 
         }
 
+        #region Custom Comtrol
         private void txtMaBN_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -312,7 +314,6 @@ namespace MedicalLink.ChucNang
                 this.txtMaBN.Enter += new System.EventHandler(this.txtMaBN_Enter);
             }
         }
-
 
         // Chỉ cho nhập số và ký từ điểu khiển và dấu phẩy.
         private void mmeMaPhieuYC_KeyPress(object sender, KeyPressEventArgs e)
@@ -428,6 +429,8 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        #endregion
+
         private void gridViewDS_PhieuDichVu_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
             try
@@ -437,17 +440,24 @@ namespace MedicalLink.ChucNang
                     e.Menu.Items.Clear();
                     DXMenuItem itemXoaPhieuChiDinh = new DXMenuItem("Xóa phiếu chỉ định");
                     itemXoaPhieuChiDinh.Image = imMenu.Images[1];
-                    //itemXoaToanBA.Shortcut = Shortcut.F6;
                     itemXoaPhieuChiDinh.Click += new EventHandler(itemXoaPhieuChiDinh_Click);
                     e.Menu.Items.Add(itemXoaPhieuChiDinh);
 
-                    DXMenuItem itemSuaThoiGian = new DXMenuItem("Sửa thời gian chỉ định/sử dụng");
-                    itemSuaThoiGian.Image = imMenu.Images[4];
-                    //itemXoaToanBA.Shortcut = Shortcut.F6;
-                    itemSuaThoiGian.Click += new EventHandler(itemSuaThoiGian_Click);
-                    e.Menu.Items.Add(itemSuaThoiGian);
-                    //itemXoaPhieuChiDinh.BeginGroup = true;
-
+                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
+                    {
+                        DXMenuItem itemSuaThoiGian = new DXMenuItem("Sửa thời gian chỉ định/sử dụng");
+                        itemSuaThoiGian.Image = imMenu.Images[4];
+                        itemSuaThoiGian.Click += new EventHandler(itemSuaThoiGian_Click);
+                        e.Menu.Items.Add(itemSuaThoiGian);
+                    }
+                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_03"))
+                    {
+                        DXMenuItem itemSuaThoiGian_TT = new DXMenuItem("Sửa thời gian chỉ định/sử dụng (Đã ra viện)");
+                        itemSuaThoiGian_TT.Image = imMenu.Images[6];
+                        itemSuaThoiGian_TT.Click += new EventHandler(itemSuaThoiGian_TT_Click);
+                        e.Menu.Items.Add(itemSuaThoiGian_TT);
+                        itemSuaThoiGian_TT.BeginGroup = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -457,36 +467,57 @@ namespace MedicalLink.ChucNang
         }
 
         //Sua thoi gian chi dinh dich vu
-        void itemSuaThoiGian_Click(object sender, EventArgs e)
+        private void itemSuaThoiGian_Click(object sender, EventArgs e)
         {
             try
             {
-                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
+                //if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
+                //{
+                // lấy giá trị tại dòng click chuột
+                var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
+                long _mavienphi = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "vienphiid").ToString());
+                string trangthai = Convert.ToString(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString());
+                long maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                DateTime thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
+                DateTime thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
+                if (trangthai == "Đang điều trị")
                 {
-                    // lấy giá trị tại dòng click chuột
-                    var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
-                    string trangthai = Convert.ToString(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString());
-                    long maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
-                    DateTime thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
-                    DateTime thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
-                    if (trangthai == "Đang điều trị")
-                    {
-                        //truyền biến sang bên form thực hiện
-                        MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(maubenhphamid, thoigianchidinh, thoigiansudung);
-                        frmsuaTGCD.ShowDialog();
-                        gridControlDS_PhieuDichVu.DataSource = null;
-                        btnTimKiem_Click(null, null);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hồ sơ bệnh án đã đóng. \nKhông cho phép sửa", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    //truyền biến sang bên form thực hiện
+                    MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(_mavienphi,maubenhphamid, thoigianchidinh, thoigiansudung);
+                    frmsuaTGCD.ShowDialog();
+                    gridControlDS_PhieuDichVu.DataSource = null;
+                    btnTimKiem_Click(null, null);
                 }
                 else
                 {
-                    MessageBox.Show("Bạn không có quyền sử dụng chức năng này", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Hồ sơ bệnh án đã đóng. \nKhông cho phép sửa", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Bạn không có quyền sử dụng chức năng này", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void itemSuaThoiGian_TT_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
+                long _mavienphi = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "vienphiid").ToString());
+                long maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                DateTime thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
+                DateTime thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
 
+                    //Khong can kiem tra trang thai
+                    MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(_mavienphi,maubenhphamid, thoigianchidinh, thoigiansudung);
+                    frmsuaTGCD.ShowDialog();
+                    gridControlDS_PhieuDichVu.DataSource = null;
+                    btnTimKiem_Click(null, null);
             }
             catch (Exception ex)
             {

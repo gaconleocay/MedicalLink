@@ -126,11 +126,11 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(276, 23);
+            this.labelControl4.Location = new System.Drawing.Point(248, 23);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(40, 16);
+            this.labelControl4.Size = new System.Drawing.Size(80, 16);
             this.labelControl4.TabIndex = 74;
-            this.labelControl4.Text = "Loại sổ";
+            this.labelControl4.Text = "Loại phiếu thu";
             // 
             // cboLoaiSo
             // 
@@ -144,9 +144,9 @@
             this.cboLoaiSo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboLoaiSo.Properties.Items.AddRange(new object[] {
-            "Tổng hợp",
             "Tạm ứng",
-            "Thu tiền"});
+            "Thu tiền",
+            "Hoàn ứng"});
             this.cboLoaiSo.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboLoaiSo.Size = new System.Drawing.Size(222, 22);
             this.cboLoaiSo.TabIndex = 72;
@@ -360,8 +360,6 @@
             this.gridColumn3.FieldName = "billgroupdate";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
             this.gridColumn3.Width = 125;
             // 
             // gridColumn4

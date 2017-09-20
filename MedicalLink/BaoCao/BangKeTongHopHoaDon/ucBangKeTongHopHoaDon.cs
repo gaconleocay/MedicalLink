@@ -25,6 +25,8 @@ namespace MedicalLink.BaoCao
         #region Declaration
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private DataTable dataDanhSachSo { get; set; }
+        //private decimal tongTienBaoCao = 0;
+
         #endregion
 
         #region Load
@@ -68,15 +70,15 @@ namespace MedicalLink.BaoCao
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
-                int billgrouptype = 2;
+                int loaiphieuthuid = 0; //thu tien
                 string _listuserid = "";
-                if (cboLoaiSo.Text == "Tổng hợp")
+                if (cboLoaiSo.Text == "Hoàn ứng")
                 {
-                    billgrouptype = 0;
+                    loaiphieuthuid = 1;
                 }
                 else if (cboLoaiSo.Text == "Tạm ứng")
                 {
-                    billgrouptype = 1;
+                    loaiphieuthuid = 2;
                 }
                 List<Object> lstNhanVienCheck = chkcomboListNguoiThu.Properties.Items.GetCheckedValues();
                 if (lstNhanVienCheck.Count > 0)
@@ -87,7 +89,7 @@ namespace MedicalLink.BaoCao
                     }
                     _listuserid += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "'";
 
-                    string sql_getdata = "select ROW_NUMBER () OVER (ORDER BY big.billgroupdate) as stt, big.billgroupcode, big.billgroupdate, big.sophieusudung, (big.sophieufrom || '-' || big.sophieuto) sophieutu_den, string_agg(case when b.dahuyphieu=1 then b.billcode end, '; ') as billcode_huy, sum(case when b.dahuyphieu=0 then (b.datra-b.miengiam) else 0 end) as tongtien_thu, sum(case when b.dahuyphieu=0 then b.miengiam else 0 end) as miengiam, b.userid, ngthu.username as nguoithu from (select billgroupcode,dahuyphieu,datra,billcode,(case when miengiam<>'' then cast(replace(miengiam,',','') as numeric) else 0 end) as miengiam,userid from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") ) b inner join billgroup big on big.billgroupcode=b.billgroupcode and billgrouptype=" + billgrouptype + " LEFT JOIN nhompersonnel ngthu ON ngthu.userhisid=b.userid group by big.billgroupcode,big.sophieufrom,big.sophieuto,big.billgroupdate,big.sophieusudung,b.userid,ngthu.username;";
+                    string sql_getdata = " SELECT ROW_NUMBER () OVER (ORDER BY O.billgroupcode) as stt, O.billgroupcode, '' as billgroupdate, (O.sophieuden-O.sophieutu+1) as sophieusudung, (O.sophieutu || '-' || O.sophieuden) as sophieutu_den, O.billcode_huy, O.tongtien_thu, O.miengiam, O.userid, O.nguoithu FROM (SELECT b.billgroupcode, (select min(cast(billcode as numeric)) from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") and loaiphieuthuid='" + loaiphieuthuid + "' and billgroupcode=b.billgroupcode) as sophieutu, (select max(cast(billcode as numeric)) from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") and loaiphieuthuid='" + loaiphieuthuid + "' and billgroupcode=b.billgroupcode) as sophieuden, string_agg(case when b.dahuyphieu=1 then b.billcode end,'; ') as billcode_huy, sum(case when b.dahuyphieu=0 then (b.datra-b.miengiam) else 0 end) as tongtien_thu, sum(case when b.dahuyphieu=0 then b.miengiam else 0 end) as miengiam, b.userid, ngthu.username as nguoithu FROM (select billgroupcode,dahuyphieu,datra,billcode,(case when miengiam<>'' then cast(replace(miengiam,',','') as numeric) else 0 end) as miengiam,userid from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") and loaiphieuthuid='" + loaiphieuthuid + "') b LEFT JOIN nhompersonnel ngthu ON ngthu.userhisid=b.userid group by b.billgroupcode,b.userid,ngthu.username) O ;";
 
                     this.dataDanhSachSo = condb.GetDataTable_HIS(sql_getdata);
 
@@ -114,7 +116,7 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
-        #region Xuat bao cao
+        #region Xuat bao cao va In an
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -130,8 +132,13 @@ namespace MedicalLink.BaoCao
                     ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
                     reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
                     reportitem.value = tungaydenngay;
-
                     thongTinThem.Add(reportitem);
+
+                    ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
+                    reportitem_tientong.name = "TONGTIEN_THU_STRING";
+                    reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucThu(), 0).ToString());
+                    thongTinThem.Add(reportitem_tientong);
+
                     string fileTemplatePath = "BC_BangKeTongHopHoaDon.xlsx";
                     Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                     export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, this.dataDanhSachSo);
@@ -142,9 +149,6 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
-        #endregion
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -159,8 +163,13 @@ namespace MedicalLink.BaoCao
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
                 reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
-
                 thongTinThem.Add(reportitem);
+
+                ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
+                reportitem_tientong.name = "TONGTIEN_THU_STRING";
+                reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucThu(), 0).ToString());
+                thongTinThem.Add(reportitem_tientong);
+
                 string fileTemplatePath = "BC_BangKeTongHopHoaDon.xlsx";
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataDanhSachSo);
             }
@@ -172,6 +181,28 @@ namespace MedicalLink.BaoCao
 
         }
 
+        private decimal TinhTongTienThucThu()
+        {
+            decimal result = 0;
+            try
+            {
+                if (this.dataDanhSachSo != null && this.dataDanhSachSo.Rows.Count > 0)
+                {
+                    for (int i = 0; i < this.dataDanhSachSo.Rows.Count; i++)
+                    {
+                        result += Utilities.Util_TypeConvertParse.ToDecimal(this.dataDanhSachSo.Rows[i]["tongtien_thu"].ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
+        #endregion
+
+        #region Custom
         private void gridViewDSHoaDon_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
             try
@@ -188,5 +219,7 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+        #endregion
     }
 }

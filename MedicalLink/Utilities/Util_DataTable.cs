@@ -62,7 +62,7 @@ namespace MedicalLink.Utilities
                 }
                 return list;
             }
-            catch
+            catch (Exception ex)
             {
                 return null;
             }

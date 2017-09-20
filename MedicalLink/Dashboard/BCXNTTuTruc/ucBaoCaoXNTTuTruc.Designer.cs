@@ -63,6 +63,7 @@
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMenu)).BeginInit();
             this.panelControlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkXemChiTiet.Properties)).BeginInit();
@@ -257,7 +258,8 @@
             this.gridColumn11,
             this.gridColumn12,
             this.gridColumn13,
-            this.gridColumn14});
+            this.gridColumn14,
+            this.gridColumn15});
             this.gridViewThuocTuTruc.GridControl = this.gridControlThuocTuTruc;
             this.gridViewThuocTuTruc.GroupCount = 1;
             this.gridViewThuocTuTruc.GroupRowHeight = 25;
@@ -512,6 +514,12 @@
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
             this.imMenu.Images.SetKeyName(0, "calendar-3-16.png");
             // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "isgroup";
+            this.gridColumn15.FieldName = "isgroup";
+            this.gridColumn15.Name = "gridColumn15";
+            // 
             // ucBaoCaoXNTTuTruc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -568,5 +576,6 @@
         private DevExpress.XtraEditors.CheckEdit chkXemChiTiet;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
     }
 }

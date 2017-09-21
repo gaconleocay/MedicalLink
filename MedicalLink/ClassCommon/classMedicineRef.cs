@@ -21,6 +21,7 @@ namespace MedicalLink.ClassCommon
         public decimal soluongkhadung { get; set; }
         public decimal soluongtutruc { get; set; }
         public object hansudung { get; set; }
+        public long songay { get; set; }
         public string solo { get;set;}
         public int islogoc { get; set; }
         public int isgroup { get; set; }

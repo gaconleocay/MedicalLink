@@ -19,6 +19,10 @@ GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,
 ORDER BY me.medicinegroupcode,me.medicinename; 
 
 
+
+
+
+
 ---- Xuất nhập tồn chi tiết từng lô -Tổng hợp ngày 7/8
 SELECT row_number() OVER (order by me.medicinegroupcode,me.medicinename,me.medicinecode) as stt,  
 me.medicinerefid,
@@ -39,9 +43,10 @@ inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from
 
 
 
-medicinerefid_org
 
 
+
+----============================================
 
 
 
@@ -81,12 +86,6 @@ left join (select departmentid,departmentname from department where departmentty
 ORDER BY me.medicinedate DESC;
 -----------------
 
-medicinestorerefid
-medicinestorerefid 
-
-
-select * from medicine_store_bill
-where medicinestorebillcode='BILL5600883'
 
 
 

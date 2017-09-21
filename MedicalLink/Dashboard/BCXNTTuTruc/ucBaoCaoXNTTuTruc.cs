@@ -17,15 +17,17 @@ namespace MedicalLink.Dashboard
 {
     public partial class ucBaoCaoXNTTuTruc : UserControl
     {
+        #region Khai bao
         private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private List<ClassCommon.classMedicineRef> lstMedicineStore { get; set; }
         private List<ClassCommon.classMedicineRef> lstMedicine_ThuocCurrent { get; set; }
-
+        #endregion
         public ucBaoCaoXNTTuTruc()
         {
             InitializeComponent();
         }
 
+        #region Load
         private void ucBaoCaoXNTTuTruc_Load(object sender, EventArgs e)
         {
             try
@@ -38,7 +40,6 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
-
         private void LoadDanhSachTuTruc()
         {
             try
@@ -99,7 +100,6 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
-
         private void LoadDanhMucThuocVatTu()
         {
             try
@@ -126,6 +126,9 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
+
+        #endregion
+
         #region Tim Kiem va HIen Thi
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -147,7 +150,6 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
-
         private void LayDuLieuThuocTrongKho()
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -164,11 +166,11 @@ namespace MedicalLink.Dashboard
                 lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
                 if (chkXemChiTiet.Checked) // xem chi tiet
                 {
-                    sql_getThuoc = "SELECT '' as stt, me.medicinerefid_org, me.medicinegroupcode, me.medicinecode, me.medicinename, me.donvitinh, msref.soluongtonkho as soluongtonkho, msref.soluongkhadung as soluongkhadung, msref.soluongtutruc, me.hansudung, me.solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid order by me.medicinegroupcode,me.medicinename,me.medicinecode;";
+                    sql_getThuoc = "SELECT '' as stt, me.medicinerefid_org, me.medicinegroupcode, me.medicinecode, me.medicinename, me.donvitinh, msref.soluongtonkho as soluongtonkho, msref.soluongkhadung as soluongkhadung, msref.soluongtutruc, me.hansudung, DATE_PART('day', me.hansudung - now()) as songay, me.solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid order by me.medicinegroupcode,me.medicinename,me.medicinecode;";
                 }
                 else
                 {
-                    sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc,'' as hansudung, '' as solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinename,donvitinh from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename; ";
+                    sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc,'' as hansudung, 100 as songay, '' as solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinename,donvitinh from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename; ";
                 }
                 DataTable dataDanhMucThuoc = condb.GetDataTable_HIS(sql_getThuoc);
 
@@ -192,6 +194,7 @@ namespace MedicalLink.Dashboard
                         _datathuoc.soluongkhadung = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongkhadung"].ToString());
                         _datathuoc.soluongtutruc = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongtutruc"].ToString());
                         _datathuoc.hansudung = dataDanhMucThuoc.Rows[i]["hansudung"];
+                        _datathuoc.songay= Utilities.Util_TypeConvertParse.ToInt64(dataDanhMucThuoc.Rows[i]["songay"].ToString());
                         _datathuoc.solo = dataDanhMucThuoc.Rows[i]["solo"].ToString();
                         this.lstMedicine_ThuocCurrent.Add(_datathuoc);
                     }
@@ -221,7 +224,7 @@ namespace MedicalLink.Dashboard
                             medicineitem_logoc.donvitinh = lstMedicine_LoGoc[i].donvitinh;
                             medicineitem_logoc.soluongtutruc = lstMedicine_LoGoc[i].soluongtutruc;
                             medicineitem_logoc.islogoc = 1;
-
+                            medicineitem_logoc.songay = 100;
                             decimal sum_soluongtonkho = 0;
                             decimal sum_soluongkhadung = 0;
                             //medicineitem_logoc.
@@ -301,20 +304,6 @@ namespace MedicalLink.Dashboard
 
         #endregion
 
-        private void gridViewThuocTuTruc_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
-            }
-            if (view.GetRowCellValue(e.RowHandle,
-              view.Columns["islogoc"]).ToString() == "1")
-            {
-                e.Appearance.Font = new System.Drawing.Font(e.Appearance.Font, FontStyle.Bold);
-            }
-        }
         private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
         {
             try
@@ -364,7 +353,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
 
         private void tbnExport_Click(object sender, EventArgs e)
         {
@@ -470,5 +458,55 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+        #region Custom
+        private void gridViewThuocTuTruc_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+            if (view.GetRowCellValue(e.RowHandle,
+              view.Columns["islogoc"]).ToString() == "1")
+            {
+                e.Appearance.Font = new System.Drawing.Font(e.Appearance.Font, FontStyle.Bold);
+            }
+        }
+
+        private void gridViewThuocTuTruc_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            try
+            {
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    int tongsongay = Utilities.Util_TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songay"]));
+                    if (tongsongay >= 1 && tongsongay <= 30)
+                    {
+                        e.Appearance.BackColor = Color.LightSalmon;
+                        //e.Appearance.BackColor2 = Color.LightCyan;
+                        e.HighPriority = true;
+                    }
+                    else if (tongsongay <= 0)
+                    {
+                        e.Appearance.BackColor = Color.Red;
+                        //e.Appearance.BackColor2 = Color.LightCyan;
+                        e.HighPriority = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+
+
+
+
+        #endregion
     }
 }

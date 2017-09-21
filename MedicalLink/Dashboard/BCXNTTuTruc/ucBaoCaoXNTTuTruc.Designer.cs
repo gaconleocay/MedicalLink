@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBaoCaoXNTTuTruc));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlMenu = new DevExpress.XtraEditors.PanelControl();
             this.chkXemChiTiet = new DevExpress.XtraEditors.CheckEdit();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
@@ -62,8 +62,12 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlMenu)).BeginInit();
             this.panelControlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkXemChiTiet.Properties)).BeginInit();
@@ -79,6 +83,9 @@
             // 
             // panelControlMenu
             // 
+            this.panelControlMenu.Controls.Add(this.label1);
+            this.panelControlMenu.Controls.Add(this.label3);
+            this.panelControlMenu.Controls.Add(this.label2);
             this.panelControlMenu.Controls.Add(this.chkXemChiTiet);
             this.panelControlMenu.Controls.Add(this.groupBoxAction);
             this.panelControlMenu.Controls.Add(this.btnTimKiem);
@@ -94,7 +101,7 @@
             // 
             // chkXemChiTiet
             // 
-            this.chkXemChiTiet.Location = new System.Drawing.Point(222, 65);
+            this.chkXemChiTiet.Location = new System.Drawing.Point(198, 65);
             this.chkXemChiTiet.Name = "chkXemChiTiet";
             this.chkXemChiTiet.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkXemChiTiet.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -176,7 +183,7 @@
             this.lblTenKhoaLayBaoCao.AutoSize = true;
             this.lblTenKhoaLayBaoCao.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenKhoaLayBaoCao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(219, 10);
+            this.lblTenKhoaLayBaoCao.Location = new System.Drawing.Point(196, 9);
             this.lblTenKhoaLayBaoCao.Name = "lblTenKhoaLayBaoCao";
             this.lblTenKhoaLayBaoCao.Size = new System.Drawing.Size(72, 14);
             this.lblTenKhoaLayBaoCao.TabIndex = 76;
@@ -194,7 +201,7 @@
             // 
             // cboTuTruc
             // 
-            this.cboTuTruc.Location = new System.Drawing.Point(222, 28);
+            this.cboTuTruc.Location = new System.Drawing.Point(198, 28);
             this.cboTuTruc.Name = "cboTuTruc";
             this.cboTuTruc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTuTruc.Properties.Appearance.Options.UseFont = true;
@@ -208,7 +215,7 @@
             this.cboTuTruc.Properties.DropDownRows = 10;
             this.cboTuTruc.Properties.NullText = "";
             this.cboTuTruc.Properties.PopupSizeable = false;
-            this.cboTuTruc.Size = new System.Drawing.Size(465, 28);
+            this.cboTuTruc.Size = new System.Drawing.Size(489, 28);
             this.cboTuTruc.TabIndex = 74;
             // 
             // panelControlData
@@ -259,7 +266,8 @@
             this.gridColumn12,
             this.gridColumn13,
             this.gridColumn14,
-            this.gridColumn15});
+            this.gridColumn15,
+            this.gridColumn16});
             this.gridViewThuocTuTruc.GridControl = this.gridControlThuocTuTruc;
             this.gridViewThuocTuTruc.GroupCount = 1;
             this.gridViewThuocTuTruc.GroupRowHeight = 25;
@@ -276,6 +284,7 @@
             this.gridViewThuocTuTruc.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn8, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridViewThuocTuTruc.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewThuocTuTruc_RowCellStyle);
+            this.gridViewThuocTuTruc.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewThuocTuTruc_RowStyle);
             this.gridViewThuocTuTruc.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridViewThuocTuTruc_PopupMenuShowing);
             // 
             // gridColumn9
@@ -296,7 +305,7 @@
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem lịch sử nhập xuất", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "Xem lịch sử nhập xuất", null, null, true)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
@@ -509,16 +518,57 @@
             this.gridColumn14.FieldName = "islogoc";
             this.gridColumn14.Name = "gridColumn14";
             // 
-            // imMenu
-            // 
-            this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
-            this.imMenu.Images.SetKeyName(0, "calendar-3-16.png");
-            // 
             // gridColumn15
             // 
             this.gridColumn15.Caption = "isgroup";
             this.gridColumn15.FieldName = "isgroup";
             this.gridColumn15.Name = "gridColumn15";
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "songay";
+            this.gridColumn16.FieldName = "songay";
+            this.gridColumn16.Name = "gridColumn16";
+            // 
+            // imMenu
+            // 
+            this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
+            this.imMenu.Images.SetKeyName(0, "calendar-3-16.png");
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Red;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(597, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 16);
+            this.label3.TabIndex = 82;
+            this.label3.Text = "Thuốc hết hạn";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.LightSalmon;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(442, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 16);
+            this.label2.TabIndex = 81;
+            this.label2.Text = "Hạn sử dụng <=30 ngày";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(383, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.TabIndex = 83;
+            this.label1.Text = "Ghi chú:";
             // 
             // ucBaoCaoXNTTuTruc
             // 
@@ -577,5 +627,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

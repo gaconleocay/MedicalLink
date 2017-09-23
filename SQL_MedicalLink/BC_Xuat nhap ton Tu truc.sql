@@ -35,6 +35,7 @@ msref.soluongtonkho as soluongtonkho,
 msref.soluongkhadung as soluongkhadung, 
 msref.soluongtutruc,
 me.hansudung,
+DATE_PART('day', me.hansudung - now()) as songay,
 me.solo
 FROM 
 (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me 

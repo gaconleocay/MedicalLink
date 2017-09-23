@@ -43,9 +43,10 @@ select (row_number() OVER (PARTITION BY kcden.departmentgroupname ORDER BY ser.s
 	0 as tongthu,
 	vp.loaivienphiid,
 	vp.bhyt_tuyenbenhvien,
-	vp.bhyt_thangluongtoithieu,
+	vp.bhyt_thangluongtoithieu as thangluongcoban,
 	bh.du5nam6thangluongcoban,
-	bh.bhyt_loaiid
+	bh.bhyt_loaiid,
+	0 as isgroup
 from (select patientid,vienphiid,hosobenhanid,bhytid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,doituongbenhnhanid,departmentgroupid,departmentid,loaivienphiid,bhyt_tuyenbenhvien,bhyt_thangluongtoithieu from vienphi "+tieuchi_vp+") vp 
 	inner join (select vienphiid,medicalrecordid,departmentgroupid,servicepricecode,servicepricename,servicepricedate,loaidoituong,soluong,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai from serviceprice "+tieuchi_ser+") ser on ser.vienphiid=vp.vienphiid
 	inner join (select servicepricecode from servicepriceref where servicepricegroupcode='"+mmeMaNhomDV.Text+"') serf on serf.servicepricecode=ser.servicepricecode

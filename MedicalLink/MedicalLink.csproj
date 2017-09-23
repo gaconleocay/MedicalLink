@@ -296,6 +296,12 @@
     <Compile Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.Designer.cs">
       <DependentUpon>ucBCHoaDonThanhToanVP.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.Designer.cs">
+      <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1043,6 +1049,9 @@
     <EmbeddedResource Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.resx">
       <DependentUpon>ucBCHoaDonThanhToanVP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.resx">
+      <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.resx">
       <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
     </EmbeddedResource>
@@ -1572,6 +1581,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_HoaDonThanhToanVienPhi.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_ThanhToanPTTT_TongHop.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

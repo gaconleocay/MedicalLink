@@ -69,6 +69,12 @@
             this.gridColumn_bhyt_thanhtoan = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_tongthu = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -327,7 +333,13 @@
             this.gridColumn_bn_thanhtoan,
             this.gridColumn_bhyt_thanhtoan,
             this.gridColumn_tongthu,
-            this.gridColumn6});
+            this.gridColumn6,
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn11,
+            this.gridColumn12,
+            this.gridColumn13});
             this.gridViewDataBaoCao.GridControl = this.gridControlDataBaoCao;
             this.gridViewDataBaoCao.GroupCount = 1;
             this.gridViewDataBaoCao.GroupRowHeight = 25;
@@ -836,6 +848,42 @@
             this.gridColumn6.FieldName = "khoachuyendenid";
             this.gridColumn6.Name = "gridColumn6";
             // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "isgroup";
+            this.gridColumn8.FieldName = "isgroup";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.Caption = "bhyt_tuyenbenhvien";
+            this.gridColumn9.FieldName = "bhyt_tuyenbenhvien";
+            this.gridColumn9.Name = "gridColumn9";
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "bhyt_loaiid";
+            this.gridColumn10.FieldName = "bhyt_loaiid";
+            this.gridColumn10.Name = "gridColumn10";
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "loaivienphiid";
+            this.gridColumn11.FieldName = "loaivienphiid";
+            this.gridColumn11.Name = "gridColumn11";
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "du5nam6thangluongcoban";
+            this.gridColumn12.FieldName = "du5nam6thangluongcoban";
+            this.gridColumn12.Name = "gridColumn12";
+            // 
+            // gridColumn13
+            // 
+            this.gridColumn13.Caption = "thangluongcoban";
+            this.gridColumn13.FieldName = "thangluongcoban";
+            this.gridColumn13.Name = "gridColumn13";
+            // 
             // ucBCChenhLechNgayGiuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -902,5 +950,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn_bhyt_thanhtoan;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn_tongthu;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
     }
 }

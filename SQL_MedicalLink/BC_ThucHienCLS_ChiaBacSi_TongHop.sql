@@ -1,5 +1,5 @@
---Bao cao Tong hop thanh toan PTTT theo bac si - noi tru 
----ngay 23/9
+--Bao cao Tong hop thanh toan PTTT theo bac si - Can lam sang
+---ngay 27/9
 
 
 SELECT O.*,
@@ -17,24 +17,24 @@ SELECT O.*,
 	  (O.ttdb_mc*84000+O.ttdb_phu*60000+O.ttdb_gv*36000+O.ttl1_mc*37500+O.ttl1_phu*27000+O.ttl1_gv*21000+O.ttl2_mc*19500+O.ttl2_phu*0+O.ttl2_gv*9000+O.ttl3_mc*15000+O.ttl3_phu*0+O.ttl3_gv*4500) as tt_tongtien,
 	  (O.ptdb_moi*280000+O.ptdb_mc*280000+O.ptdb_phu*200000+O.ptdb_gv*120000+O.ptl1_moi*125000+O.ptl1_mc*125000+O.ptl1_phu*90000+O.ptl1_gv*70000+O.ptl2_moi*65000+O.ptl2_mc*65000+O.ptl2_phu*50000+O.ptl2_gv*30000+O.ptl3_moi*50000+O.ptl3_mc*50000+O.ptl3_phu*30000+O.ptl3_gv*15000+O.ttdb_mc*84000+O.ttdb_phu*60000+O.ttdb_gv*36000+O.ttl1_mc*37500+O.ttl1_phu*27000+O.ttl1_gv*21000+O.ttl2_mc*19500+O.ttl2_phu*0+O.ttl2_gv*9000+O.ttl3_mc*15000+O.ttl3_phu*0+O.ttl3_gv*4500) as tongtien
 FROM
-	(SELECT row_number () over (order by degp.departmentgroupname,nv.username) as stt,
+	(SELECT row_number () over (order by de.departmentname,nv.username) as stt,
 		U.userid,
 		nv.username,	
-		U.departmentgroupid,
-		degp.departmentgroupname,
-		sum(case when U.pttt_loaiid=1 and U.user_loai='phauthuatvien2' then U.soluong else 0 end) as ptdb_moi,
+		U.departmentid_des,
+		de.departmentname,
+		sum(case when U.pttt_loaiid=1 and U.user_loai='bacsigayme' then U.soluong else 0 end) as ptdb_moi,
 		sum(case when U.pttt_loaiid=1 and U.user_loai='phauthuatvien' then U.soluong else 0 end) as ptdb_mc,
 		sum(case when U.pttt_loaiid=1 and U.user_loai='phumo1' then U.soluong else 0 end) as ptdb_phu,
 		sum(case when U.pttt_loaiid=1 and U.user_loai='phumo3' then U.soluong else 0 end) as ptdb_gv,
-		sum(case when U.pttt_loaiid=2 and U.user_loai='phauthuatvien2' then U.soluong else 0 end) as ptl1_moi,
+		sum(case when U.pttt_loaiid=2 and U.user_loai='bacsigayme' then U.soluong else 0 end) as ptl1_moi,
 		sum(case when U.pttt_loaiid=2 and U.user_loai='phauthuatvien' then U.soluong else 0 end) as ptl1_mc,
 		sum(case when U.pttt_loaiid=2 and U.user_loai='phumo1' then U.soluong else 0 end) as ptl1_phu,
 		sum(case when U.pttt_loaiid=2 and U.user_loai='phumo3' then U.soluong else 0 end) as ptl1_gv,		
-		sum(case when U.pttt_loaiid=3 and U.user_loai='phauthuatvien2' then U.soluong else 0 end) as ptl2_moi,
+		sum(case when U.pttt_loaiid=3 and U.user_loai='bacsigayme' then U.soluong else 0 end) as ptl2_moi,
 		sum(case when U.pttt_loaiid=3 and U.user_loai='phauthuatvien' then U.soluong else 0 end) as ptl2_mc,
 		sum(case when U.pttt_loaiid=3 and U.user_loai='phumo1' then U.soluong else 0 end) as ptl2_phu,
 		sum(case when U.pttt_loaiid=3 and U.user_loai='phumo3' then U.soluong else 0 end) as ptl2_gv,		
-		sum(case when U.pttt_loaiid=4 and U.user_loai='phauthuatvien2' then U.soluong else 0 end) as ptl3_moi,
+		sum(case when U.pttt_loaiid=4 and U.user_loai='bacsigayme' then U.soluong else 0 end) as ptl3_moi,
 		sum(case when U.pttt_loaiid=4 and U.user_loai='phauthuatvien' then U.soluong else 0 end) as ptl3_mc,
 		sum(case when U.pttt_loaiid=4 and U.user_loai='phumo1' then U.soluong else 0 end) as ptl3_phu,
 		sum(case when U.pttt_loaiid=4 and U.user_loai='phumo3' then U.soluong else 0 end) as ptl3_gv,	
@@ -51,52 +51,56 @@ FROM
 		sum(case when U.pttt_loaiid=8 and U.user_loai='phumo1' then U.soluong else 0 end) as ttl3_phu,
 		sum(case when U.pttt_loaiid=8 and U.user_loai='phumo3' then U.soluong else 0 end) as ttl3_gv			
 	FROM 
-		(select pttt.phauthuatvien2 as userid,
-			   'phauthuatvien2' as user_loai,
+		(select pttt.bacsigayme as userid,
+			   'bacsigayme' as user_loai,
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
-			   ser.departmentgroupid
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') and "+_tieuchi_ser+lstKhoacheck+" ) ser
-			inner join (select servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien2>0 and "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			   mbp.departmentid_des
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where bacsigayme>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
-			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		group by pttt.phauthuatvien2,serf.pttt_loaiid,ser.departmentgroupid
+			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
+		group by pttt.bacsigayme,serf.pttt_loaiid,mbp.departmentid_des
 		union all
 		select pttt.phauthuatvien as userid,
 			   'phauthuatvien' as user_loai,
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
-			   ser.departmentgroupid
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') and "+_tieuchi_ser+lstKhoacheck+" ) ser
-			inner join (select servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien>0 and "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			   mbp.departmentid_des
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where phauthuatvien>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
-			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		group by pttt.phauthuatvien,serf.pttt_loaiid,ser.departmentgroupid
+			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
+		group by pttt.phauthuatvien,serf.pttt_loaiid,mbp.departmentid_des
 		union all
 		select pttt.phumo1 as userid,
 			   'phumo1' as user_loai,
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
-			   ser.departmentgroupid
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') and "+_tieuchi_ser+lstKhoacheck+" ) ser
-			inner join (select servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo1>0 and "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			   mbp.departmentid_des
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where phumo1>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
-			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		group by pttt.phumo1,serf.pttt_loaiid,ser.departmentgroupid
+			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
+		group by pttt.phumo1,serf.pttt_loaiid,mbp.departmentid_des
 		union all
 		select pttt.phumo3 as userid,
 			   'phumo3' as user_loai,
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
-			   ser.departmentgroupid
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') and "+_tieuchi_ser+lstKhoacheck+" ) ser
-			inner join (select servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo3>0 and "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			   mbp.departmentid_des
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where phumo3>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
-			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		group by pttt.phumo3,serf.pttt_loaiid,ser.departmentgroupid) U
+			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
+		group by pttt.phumo3,serf.pttt_loaiid,mbp.departmentid_des) U
 	LEFT JOIN nhompersonnel nv ON nv.userhisid=U.userid	
-	INNER JOIN departmentgroup degp on degp.departmentgroupid=U.departmentgroupid
-	GROUP BY U.userid,nv.username,U.departmentgroupid,degp.departmentgroupname) O;
+	INNER JOIN department de on de.departmentid=U.departmentid_des
+	GROUP BY U.userid,nv.username,U.departmentid_des,de.departmentname) O;
 
 
 
@@ -106,7 +110,41 @@ FROM
 
 
 
+departmentid_des
 
-	
-	
+Theo ngày thực hiện
+Theo ngày thanh toán
+Theo ngày chỉ định
 
+Theo ngày thực hiện
+Theo ngày thanh toán
+Theo ngày chỉ định
+Theo ngày tiếp nhận	
+
+
+CREATE TABLE thuchiencls
+(
+  thuchienclsid serial NOT NULL,
+  medicalrecordid integer DEFAULT 0,
+  medicalrecordid_gmhs integer DEFAULT 0,
+  patientid integer DEFAULT 0,
+  maubenhphamid integer DEFAULT 0,
+  servicepriceid integer DEFAULT 0,
+  thuchienclsdate timestamp without time zone,
+  phauthuatvien integer DEFAULT 0,
+  bacsigayme integer DEFAULT 0,
+  phumo1 integer DEFAULT 0,
+  phumo2 integer DEFAULT 0,
+  phumo3 integer DEFAULT 0,
+  phumo4 integer DEFAULT 0,
+  mota text,
+  version timestamp without time zone,
+  sync_flag integer,
+  update_flag integer,
+  pttt_hangid integer DEFAULT 0,
+  phuongphappttt_code text,
+  phuongphappttt text,
+  tools_userid integer,
+  tools_username text,
+  CONSTRAINT thuchiencls_pkey PRIMARY KEY (thuchienclsid)
+)

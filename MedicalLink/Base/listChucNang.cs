@@ -536,6 +536,15 @@ namespace MedicalLink.Base
                 REPORT_32.permissionnote = "Báo cáo thanh toán PTTT cho bác sĩ nội trú";
                 lstresult.Add(REPORT_32);
 
+                ClassCommon.classPermission REPORT_33 = new ClassCommon.classPermission();
+                REPORT_33.permissioncheck = false;
+                REPORT_33.permissioncode = "REPORT_33";
+                REPORT_33.permissionname = "Báo cáo thanh toán PTTT cho bác sĩ cận lâm sàng";
+                REPORT_33.permissiontype = 3;
+                REPORT_33.permissionnote = "Báo cáo thanh toán PTTT cho bác sĩ cận lâm sàng";
+                lstresult.Add(REPORT_33);
+
+
 
 
                 //Dashboard

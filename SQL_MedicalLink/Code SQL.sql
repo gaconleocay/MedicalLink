@@ -373,9 +373,9 @@ table:
 ----- 
 yyyy-MM-dd HH:mm:ss 
  
-#,##0.00 
-#,##0 
-{0:#,##0} 
+#,##0.00
+#,##0
+{0:#,##0}
 yyyy-MM-dd HH:mm:ss 
  
 SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') from vienphi vp where vp.vienphiid=800543  

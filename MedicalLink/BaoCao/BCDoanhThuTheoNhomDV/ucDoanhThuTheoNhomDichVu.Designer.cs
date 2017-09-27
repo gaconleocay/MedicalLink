@@ -67,6 +67,7 @@
             this.bandedGridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.departmentgroupid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -382,7 +383,8 @@
             this.bandedGridColumn_soluong,
             this.bandedGridColumn5,
             this.bandedGridColumn_thanhtien,
-            this.departmentgroupid});
+            this.departmentgroupid,
+            this.gridColumn1});
             this.gridViewDataBaoCao.GridControl = this.gridControlDataBaoCao;
             this.gridViewDataBaoCao.GroupCount = 1;
             this.gridViewDataBaoCao.GroupRowHeight = 25;
@@ -744,6 +746,12 @@
             this.departmentgroupid.FieldName = "departmentgroupid";
             this.departmentgroupid.Name = "departmentgroupid";
             // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "isgroup";
+            this.gridColumn1.FieldName = "isgroup";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
             // ucDoanhThuTheoNhomDichVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,5 +817,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn bandedGridColumn_thanhtien;
         private DevExpress.XtraGrid.Columns.GridColumn stt;
         private DevExpress.XtraGrid.Columns.GridColumn departmentgroupid;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
     }
 }

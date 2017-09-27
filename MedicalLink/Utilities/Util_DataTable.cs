@@ -56,6 +56,7 @@ namespace MedicalLink.Utilities
                         }
                         catch (Exception ex)
                         {//this write exception to my logger
+                            continue;
                         }
                     }
                     list.Add(obj);

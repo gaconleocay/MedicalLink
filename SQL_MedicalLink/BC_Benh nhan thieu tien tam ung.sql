@@ -26,6 +26,8 @@ select
 	b.money_hoanung,
 	vms.money_tong_bh,
 	vms.money_tong_vp,
+	0 as money_tong,
+	0 as tyle_bntt,
 	0 as money_bhyttt,
 	0 as money_bntt,
 	0 as money_thieu,

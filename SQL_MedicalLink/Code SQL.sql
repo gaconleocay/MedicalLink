@@ -378,7 +378,11 @@ yyyy-MM-dd HH:mm:ss
 {0:#,##0}
 yyyy-MM-dd HH:mm:ss 
  
-SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') from vienphi vp where vp.vienphiid=800543  
+SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') from vienphi vp where vp.vienphiid=800543 
+	 TO_CHAR(vienphidate_ravien, 'HH24:MI dd/MM/yyyy')
+
+
+ 
 row_number() over() as stt, 
 row_number () over (order by a.ngay_thuchien) as stt 
 (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY vms.vienphidate)) as stt,

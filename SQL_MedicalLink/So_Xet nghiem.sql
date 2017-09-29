@@ -46,7 +46,7 @@ FROM (
 			se.ketqua,
 			mbp.userthuchien as nguoidoc, 
 			mbp.userid as nguoigui
-	from (select maubenhphamid,hosobenhanid,departmentgroupid,departmentid,departmentid_des,chandoan,usertrakq,userthuchien,maubenhphamdate,maubenhphamfinishdate from maubenhpham where maubenhphamgrouptype=0 and maubenhphamdate between '2017-01-01 00:00:00' and '2017-01-04 00:00:00') mbp 
+	from (select maubenhphamid,hosobenhanid,departmentgroupid,departmentid,departmentid_des,chandoan,usertrakq,userthuchien,maubenhphamdate,maubenhphamfinishdate,userid from maubenhpham where maubenhphamgrouptype=0 and maubenhphamdate between '2017-01-01 00:00:00' and '2017-01-04 00:00:00') mbp 
 		inner join (select maubenhphamid,servicepricecode,
 							(case when upper(servicename)='NA+' then servicevalue end) as ketqua_na1,
 							(case when upper(servicename)='CL+' then servicevalue end) as ketqua_cl1,

@@ -120,7 +120,7 @@ Theo ngày thực hiện
 Theo ngày thanh toán
 Theo ngày chỉ định
 Theo ngày tiếp nhận	
-
+DEPARTMENTNAME
 
 CREATE TABLE thuchiencls
 (

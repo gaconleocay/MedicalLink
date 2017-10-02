@@ -40,6 +40,7 @@ namespace MedicalLink.Base
         internal static string CHUA_CHON_DICH_VU = "Chưa chọn dịch vụ!";
         internal static string TEN_TAI_KHOA_DA_TON_TAI = "Tên tài khoản đã tồn tại!";
         internal static string MA_HIS_ID_DA_TON_TAI = "Mã HIS ID đã tồn tại!";
+        internal static string CHUA_CHON_SO_XET_NGHIEM = "Chưa chọn sổ xét nghiệm!";
 
 
         internal static void HienThiThongBao(System.Windows.Forms.Timer timerThongBao, DevExpress.XtraEditors.LabelControl lblThongBao, string tenThongBao)

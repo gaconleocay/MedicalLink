@@ -20,5 +20,7 @@ namespace MedicalLink.Base
         public static string MEDICINENAME = "MEDICINENAME";
         public static string MEDICINECODE = "MEDICINECODE";
         public static string MEDICINESTORENAME = "MEDICINESTORENAME";
+        public static string LOAIDOITUONG = "LOAIDOITUONG";
+
     }
 }

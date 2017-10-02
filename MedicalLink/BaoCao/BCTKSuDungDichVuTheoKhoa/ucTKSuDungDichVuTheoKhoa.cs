@@ -110,7 +110,7 @@ namespace MedicalLink.BaoCao
             {
                 string _tieuchi_ser = "";
                 string _tieuchi_hsba = "";
-                string _doituong_ser = "";
+                string _doituong_ser = " and loaidoituong not in (5,7,9) ";
                 string _lstPhongChonLayBC = "";
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -126,11 +126,11 @@ namespace MedicalLink.BaoCao
                 // doi tuong
                 if (cboDoiTuong.Text == "Viện phí")
                 {
-                    _doituong_ser = " and loaidoituong<>0 ";
+                    _doituong_ser = " and loaidoituong in (1,2,3,8,20) ";
                 }
                 else if (cboDoiTuong.Text == "BHYT")
                 {
-                    _doituong_ser = " and loaidoituong=0 ";
+                    _doituong_ser = " and loaidoituong in (0,4,6)";
                 }
                 //phong
                 List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
@@ -142,11 +142,17 @@ namespace MedicalLink.BaoCao
                     }
                     _lstPhongChonLayBC += lstPhongCheck[lstPhongCheck.Count - 1];
                 }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                    frmthongbao.Show();
+                    return;
+                }
 
                 //Lay du lieu bao cao
                 if (radioXemTongHop.Checked) //xem tong hop
                 {
-                    string _sql_timkiem = "select row_number () over (order by ser.bhyt_groupcode,ser.servicepricename) as stt, ser.servicepricecode, ser.servicepricename, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' when 20 then 'thanh toan rieng' end) as loaidoituong, (case ser.bhyt_groupcode when '01KB' then '01-Khám bệnh' when '03XN' then '02-Xét nghiệm' when '04CDHA' then '04-CĐHA' when '05TDCN' then '05-Thăm dò chức năng' when '06PTTT' then '06-PTTT' when '07KTC' then '07-DV KTC' else '99-Khác' end) as bhyt_groupcode, sum(ser.soluong) as soluong, (case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end) as servicepricemoney, sum((case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end)*ser.soluong) as thanhtien, '0' as isgroup from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode from serviceprice where departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + _doituong_ser + ") ser inner join (select hosobenhanid from hosobenhan " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=ser.hosobenhanid group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney; ";
+                    string _sql_timkiem = "select row_number () over (order by ser.bhyt_groupcode,ser.servicepricename) as stt, ser.servicepricecode, ser.servicepricename, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' when 20 then 'Thanh toán riêng' end) as loaidoituong, (case ser.bhyt_groupcode when '01KB' then '01-Khám bệnh' when '03XN' then '02-Xét nghiệm' when '04CDHA' then '04-CĐHA' when '05TDCN' then '05-Thăm dò chức năng' when '06PTTT' then '06-PTTT' when '07KTC' then '07-DV KTC' else '99-Khác' end) as bhyt_groupcode, sum(ser.soluong) as soluong, (case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end) as servicepricemoney, sum((case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end)*ser.soluong) as thanhtien, '0' as isgroup from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode from serviceprice where departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + _doituong_ser + ") ser inner join (select hosobenhanid from hosobenhan " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=ser.hosobenhanid group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney; ";
 
                     this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -162,7 +168,7 @@ namespace MedicalLink.BaoCao
                 }
                 else //xem chi tiet
                 {
-                    string _sql_timkiem = "select row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname,ser.servicepricename) as stt, hsba.patientid, ser.vienphiid, hsba.patientname, hsba.bhytcode, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi, ser.servicepricecode, ser.servicepricename, ser.servicepricedate, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' when 20 then 'thanh toan rieng' end) as loaidoituong, ser.soluong, (case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end) as servicepricemoney, ((case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end)*ser.soluong) as thanhtien, ser.departmentid, de.departmentname, ser.departmentgroupid, degp.departmentgroupname,'0' as isgroup from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,servicepricedate from serviceprice where departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + _doituong_ser + ") ser inner join (select hosobenhanid,patientid,patientname,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname from hosobenhan " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department) de on de.departmentid=ser.departmentid; ";
+                    string _sql_timkiem = "select row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname,ser.servicepricename) as stt, hsba.patientid, ser.vienphiid, hsba.patientname, bh.bhytcode, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi, ser.servicepricecode, ser.servicepricename, ser.servicepricedate, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' when 20 then 'Thanh toán riêng' end) as loaidoituong, ser.soluong, (case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end) as servicepricemoney, ((case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end)*ser.soluong) as thanhtien, ser.departmentid, de.departmentname, ser.departmentgroupid, degp.departmentgroupname, '0' as isgroup from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,servicepricedate from serviceprice where departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + _doituong_ser + ") ser inner join (select hosobenhanid,patientid,patientname,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname from hosobenhan " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select vienphiid,hosobenhanid,bhytid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid inner join (select bhytid,bhytcode from bhyt) bh on bh.bhytid=vp.bhytid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department) de on de.departmentid=ser.departmentid;";
 
                     this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -205,6 +211,10 @@ namespace MedicalLink.BaoCao
                 report_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
                 report_khoa.value = chkcomboListDSKhoa.Text; ;
                 thongTinThem.Add(report_khoa);
+                ClassCommon.reportExcelDTO report_doituong = new ClassCommon.reportExcelDTO();
+                report_doituong.name = Base.bienTrongBaoCao.LOAIDOITUONG;
+                report_doituong.value = cboDoiTuong.Text;
+                thongTinThem.Add(report_doituong);
 
                 string fileTemplatePath = "";
                 DataTable data_XuatBaoCao = new DataTable();
@@ -247,6 +257,11 @@ namespace MedicalLink.BaoCao
                 report_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
                 report_khoa.value = chkcomboListDSKhoa.Text; ;
                 thongTinThem.Add(report_khoa);
+                ClassCommon.reportExcelDTO report_doituong = new ClassCommon.reportExcelDTO();
+                report_doituong.name = Base.bienTrongBaoCao.LOAIDOITUONG;
+                report_doituong.value = cboDoiTuong.Text;
+                thongTinThem.Add(report_doituong);
+
 
                 string fileTemplatePath = "";
                 DataTable data_XuatBaoCao = new DataTable();
@@ -343,7 +358,7 @@ namespace MedicalLink.BaoCao
                     foreach (var item_phong in lstGroup_Phong)
                     {
                         ClassCommon.BCTKSuDungDV_UngBuouCTDTO data_phong_name = new ClassCommon.BCTKSuDungDV_UngBuouCTDTO();
-                        List<ClassCommon.BCTKSuDungDV_UngBuouCTDTO> lstData_Phong = lstDataDoanhThu.Where(o => o.departmentid == item_khoa.departmentid).ToList();
+                        List<ClassCommon.BCTKSuDungDV_UngBuouCTDTO> lstData_Phong = lstData_Khoa.Where(o => o.departmentid == item_phong.departmentid).ToList();
                         decimal sum_soluong_phong = 0;
                         decimal sum_thanhtien_phong = 0;
 
@@ -352,18 +367,18 @@ namespace MedicalLink.BaoCao
                             sum_soluong_phong += item_tinhsum.soluong;
                             sum_thanhtien_phong += item_tinhsum.thanhtien;
                         }
-                        data_phong_name.departmentname = item_khoa.departmentname;
-                        data_phong_name.stt ="' - "+ item_khoa.departmentname;
+                        data_phong_name.departmentname = item_phong.departmentname;
+                        data_phong_name.stt ="' - "+ item_phong.departmentname;
                         data_phong_name.soluong = sum_soluong_phong;
                         data_phong_name.thanhtien = sum_thanhtien_phong;
                         data_phong_name.isgroup = 2;
                         lstData_XuatBaoCao.Add(data_phong_name);
                         //Benh nhan
-                        List<ClassCommon.BCTKSuDungDV_UngBuouCTDTO> lstGroup_BN = lstData_Khoa.GroupBy(o => o.vienphiid).Select(n => n.First()).ToList();
+                        List<ClassCommon.BCTKSuDungDV_UngBuouCTDTO> lstGroup_BN = lstData_Phong.GroupBy(o => o.vienphiid).Select(n => n.First()).ToList();
                         foreach (var item_bn in lstGroup_BN)
                         {
                             ClassCommon.BCTKSuDungDV_UngBuouCTDTO data_bn_name = new ClassCommon.BCTKSuDungDV_UngBuouCTDTO();
-                            List<ClassCommon.BCTKSuDungDV_UngBuouCTDTO> lstData_bn = lstDataDoanhThu.Where(o => o.vienphiid == item_khoa.vienphiid).ToList();
+                            List<ClassCommon.BCTKSuDungDV_UngBuouCTDTO> lstData_bn = lstData_Phong.Where(o => o.vienphiid == item_bn.vienphiid).ToList();
                             decimal sum_soluong_bn = 0;
                             decimal sum_thanhtien_bn = 0;
 
@@ -385,11 +400,11 @@ namespace MedicalLink.BaoCao
 
                                 lstData_DichVu.Add(data_bn_dichvu);
                             }
-                            data_bn_name.patientname = item_khoa.patientname;
-                            data_bn_name.patientid = item_khoa.patientid;
-                            data_bn_name.vienphiid = item_khoa.vienphiid;
-                            data_bn_name.bhytcode = item_khoa.bhytcode;
-                            data_bn_name.diachi = item_khoa.diachi;
+                            data_bn_name.patientname = item_bn.patientname;
+                            data_bn_name.patientid = item_bn.patientid;
+                            data_bn_name.vienphiid = item_bn.vienphiid;
+                            data_bn_name.bhytcode = item_bn.bhytcode;
+                            data_bn_name.diachi = item_bn.diachi;
                             data_bn_name.stt = "";
                             data_bn_name.soluong = sum_soluong_bn;
                             data_bn_name.thanhtien = sum_thanhtien_bn;

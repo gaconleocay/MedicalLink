@@ -26,10 +26,22 @@ namespace MedicalLink.BaoCao
         #region Load
         private void ucUpdateDataSerPrice_Load(object sender, EventArgs e)
         {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            gridControlSoViSinh.DataSource = null;
-            LoadDataPhongThucHien();
+            try
+            {
+                dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                gridControlSoViSinh.DataSource = null;
+                LoadDataPhongThucHien();
+                gridControlSoViSinh.Visible = false;
+                gridControlSoSHTQ.Visible = false;
+                gridControlSoNTVD.Visible = false;
+                gridControlSoMienDich.Visible = false;
+                gridControlSoKhiMau.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
         }
         private void LoadDataPhongThucHien()
         {
@@ -155,6 +167,9 @@ namespace MedicalLink.BaoCao
                 {
                     gridControlSoViSinh.Visible = true;
                     gridControlSoSHTQ.Visible = false;
+                    gridControlSoNTVD.Visible = false;
+                    gridControlSoMienDich.Visible = false;
+                    gridControlSoKhiMau.Visible = false;
 
                     gridControlSoViSinh.Dock = DockStyle.Fill;
                 }
@@ -162,7 +177,41 @@ namespace MedicalLink.BaoCao
                 {
                     gridControlSoViSinh.Visible = false;
                     gridControlSoSHTQ.Visible = true;
+                    gridControlSoNTVD.Visible = false;
+                    gridControlSoMienDich.Visible = false;
+                    gridControlSoKhiMau.Visible = false;
+
                     gridControlSoSHTQ.Dock = DockStyle.Fill;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_NTVD")
+                {
+                    gridControlSoViSinh.Visible = false;
+                    gridControlSoSHTQ.Visible = false;
+                    gridControlSoNTVD.Visible = true;
+                    gridControlSoMienDich.Visible = false;
+                    gridControlSoKhiMau.Visible = false;
+
+                    gridControlSoNTVD.Dock = DockStyle.Fill;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_MD")
+                {
+                    gridControlSoViSinh.Visible = false;
+                    gridControlSoSHTQ.Visible = false;
+                    gridControlSoNTVD.Visible = false;
+                    gridControlSoMienDich.Visible = true;
+                    gridControlSoKhiMau.Visible = false;
+
+                    gridControlSoMienDich.Dock = DockStyle.Fill;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_KM")
+                {
+                    gridControlSoViSinh.Visible = false;
+                    gridControlSoSHTQ.Visible = false;
+                    gridControlSoNTVD.Visible = false;
+                    gridControlSoMienDich.Visible = false;
+                    gridControlSoKhiMau.Visible = true;
+
+                    gridControlSoKhiMau.Dock = DockStyle.Fill;
                 }
             }
             catch (Exception ex)
@@ -189,7 +238,7 @@ namespace MedicalLink.BaoCao
         #endregion
 
         #region Tim kiem
-        private void btnTimKiem_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click1(object sender, EventArgs e)
         {
             if (cboLoaiSoXN.EditValue == null)
             {
@@ -240,36 +289,52 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
-        private void btnTimKiem_Click1(object sender, EventArgs e)
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
             if (cboLoaiSoXN.EditValue == null)
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_THUC_HIEN);
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_SO_XET_NGHIEM);
                 frmthongbao.Show();
                 return;
             }
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
 
-            string tieuchi = "";
+            string tieuchi_mbp = "";
             string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
             string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
             if (cboTieuChi.Text == "Theo ngày chỉ định")
             {
-                tieuchi = " mbp.maubenhphamdate between '"+ datetungay + "' and '" + datedenngay + "' ";
+                tieuchi_mbp = " and maubenhphamdate between '"+ datetungay + "' and '" + datedenngay + "' ";
             }
             else if (cboTieuChi.Text == "Theo ngày trả kết quả")
             {
-                tieuchi = " mbp.maubenhphamfinishdate between '" + datetungay + "' and '" + datedenngay + "' ";
+                tieuchi_mbp = " and maubenhphamfinishdate between '" + datetungay + "' and '" + datedenngay + "' ";
             }
 
             if (cboLoaiSoXN.EditValue.ToString() == "SO_VS")
             {
-                LayDuLieu_SoViSinh(tieuchi);
+               long _tools_otherlistid = GlobalStore.lstOtherList_Global.Where(o => o.tools_otherlistcode == "SO_VS").FirstOrDefault().tools_otherlistid;
+                LayDuLieuSo_ViSinh(tieuchi_mbp, _tools_otherlistid);
             }
             else if (cboLoaiSoXN.EditValue.ToString() == "SO_SHTQ")
             {
-                LayDuLieu_SoSinhHoaThuongQuy(tieuchi);
-
+                long _tools_otherlistid = GlobalStore.lstOtherList_Global.Where(o => o.tools_otherlistcode == "SO_SHTQ").FirstOrDefault().tools_otherlistid;
+                LayDuLieuSo_SinhHoaThuongQuy(tieuchi_mbp, _tools_otherlistid);
+            }
+            else if (cboLoaiSoXN.EditValue.ToString() == "SO_NTVD")
+            {
+                long _tools_otherlistid = GlobalStore.lstOtherList_Global.Where(o => o.tools_otherlistcode == "SO_NTVD").FirstOrDefault().tools_otherlistid;
+                LayDuLieuSo_NuocTieuVaDichKhac(tieuchi_mbp, _tools_otherlistid);
+            }
+            else if (cboLoaiSoXN.EditValue.ToString() == "SO_MD")
+            {
+                long _tools_otherlistid = GlobalStore.lstOtherList_Global.Where(o => o.tools_otherlistcode == "SO_MD").FirstOrDefault().tools_otherlistid;
+                LayDuLieuSo_MienDich(tieuchi_mbp, _tools_otherlistid);
+            }
+            else if (cboLoaiSoXN.EditValue.ToString() == "SO_KM")
+            {
+                long _tools_otherlistid = GlobalStore.lstOtherList_Global.Where(o => o.tools_otherlistcode == "SO_KM").FirstOrDefault().tools_otherlistid;
+                LayDuLieuSo_KhiMau(tieuchi_mbp, _tools_otherlistid);
             }
             SplashScreenManager.CloseForm();
         }

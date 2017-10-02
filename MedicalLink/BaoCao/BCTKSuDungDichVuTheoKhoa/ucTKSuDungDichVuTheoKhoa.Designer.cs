@@ -55,10 +55,10 @@
             this.gridColumn_MaVP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_MaBN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_TenBN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn_NamSinh = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn_GioiTinh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_TheBHYT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn_GioiTinh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn_NamSinh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_TGChiDinh = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -314,7 +314,7 @@
             this.btnTimKiem.Location = new System.Drawing.Point(945, 27);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
-            this.btnTimKiem.TabIndex = 5;
+            this.btnTimKiem.TabIndex = 95;
             this.btnTimKiem.Text = "Tìm Kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
@@ -524,43 +524,6 @@
             this.gridColumn_TenBN.VisibleIndex = 3;
             this.gridColumn_TenBN.Width = 189;
             // 
-            // gridColumn_NamSinh
-            // 
-            this.gridColumn_NamSinh.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn_NamSinh.AppearanceCell.Options.UseFont = true;
-            this.gridColumn_NamSinh.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn_NamSinh.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn_NamSinh.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn_NamSinh.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn_NamSinh.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn_NamSinh.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn_NamSinh.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn_NamSinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn_NamSinh.Caption = "Phòng";
-            this.gridColumn_NamSinh.FieldName = "departmentname";
-            this.gridColumn_NamSinh.Name = "gridColumn_NamSinh";
-            this.gridColumn_NamSinh.OptionsColumn.AllowEdit = false;
-            this.gridColumn_NamSinh.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
-            this.gridColumn_NamSinh.Width = 170;
-            // 
-            // gridColumn_GioiTinh
-            // 
-            this.gridColumn_GioiTinh.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn_GioiTinh.AppearanceCell.Options.UseFont = true;
-            this.gridColumn_GioiTinh.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn_GioiTinh.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn_GioiTinh.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn_GioiTinh.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn_GioiTinh.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn_GioiTinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn_GioiTinh.Caption = "Địa chỉ";
-            this.gridColumn_GioiTinh.FieldName = "diachi";
-            this.gridColumn_GioiTinh.Name = "gridColumn_GioiTinh";
-            this.gridColumn_GioiTinh.OptionsColumn.AllowEdit = false;
-            this.gridColumn_GioiTinh.Visible = true;
-            this.gridColumn_GioiTinh.VisibleIndex = 5;
-            this.gridColumn_GioiTinh.Width = 451;
-            // 
             // gridColumn_TheBHYT
             // 
             this.gridColumn_TheBHYT.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -582,6 +545,24 @@
             this.gridColumn_TheBHYT.VisibleIndex = 4;
             this.gridColumn_TheBHYT.Width = 153;
             // 
+            // gridColumn_GioiTinh
+            // 
+            this.gridColumn_GioiTinh.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_GioiTinh.AppearanceCell.Options.UseFont = true;
+            this.gridColumn_GioiTinh.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_GioiTinh.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn_GioiTinh.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn_GioiTinh.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn_GioiTinh.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn_GioiTinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn_GioiTinh.Caption = "Địa chỉ";
+            this.gridColumn_GioiTinh.FieldName = "diachi";
+            this.gridColumn_GioiTinh.Name = "gridColumn_GioiTinh";
+            this.gridColumn_GioiTinh.OptionsColumn.AllowEdit = false;
+            this.gridColumn_GioiTinh.Visible = true;
+            this.gridColumn_GioiTinh.VisibleIndex = 5;
+            this.gridColumn_GioiTinh.Width = 451;
+            // 
             // gridColumn7
             // 
             this.gridColumn7.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -598,6 +579,25 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn7.Width = 181;
+            // 
+            // gridColumn_NamSinh
+            // 
+            this.gridColumn_NamSinh.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_NamSinh.AppearanceCell.Options.UseFont = true;
+            this.gridColumn_NamSinh.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn_NamSinh.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn_NamSinh.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_NamSinh.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn_NamSinh.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn_NamSinh.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn_NamSinh.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn_NamSinh.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn_NamSinh.Caption = "Phòng";
+            this.gridColumn_NamSinh.FieldName = "departmentname";
+            this.gridColumn_NamSinh.Name = "gridColumn_NamSinh";
+            this.gridColumn_NamSinh.OptionsColumn.AllowEdit = false;
+            this.gridColumn_NamSinh.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
+            this.gridColumn_NamSinh.Width = 170;
             // 
             // bandedGridColumn10
             // 

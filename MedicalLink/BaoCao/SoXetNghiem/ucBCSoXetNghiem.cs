@@ -11,13 +11,26 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using System.IO;
 using DevExpress.XtraGrid.Views.Grid;
+using MedicalLink.ClassCommon;
+using Aspose.Cells;
 
 namespace MedicalLink.BaoCao
 {
     public partial class ucBCSoXetNghiem : UserControl
     {
+        #region Khai bao
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        private DataTable dataBaoCao { get; set; }
+        private DataTable dataBaoCao_VS { get; set; }
+        private DataTable dataBaoCao_SHTQ { get; set; }
+        private DataTable dataBaoCao_NTVD { get; set; }
+        private DataTable dataBaoCao_MD { get; set; }
+        private DataTable dataBaoCao_KM { get; set; }
+
+        private SoXetNghiem_ChiSo_SHTQDTO maChiSo_SHTQ { get; set; }
+        private SoXetNghiem_ChiSo_NTVDDTO maChiSo_NTVD { get; set; }
+        private SoXetNghiem_ChiSo_KMDTO maChiSo_KM { get; set; }
+
+        #endregion
         public ucBCSoXetNghiem()
         {
             InitializeComponent();
@@ -30,8 +43,8 @@ namespace MedicalLink.BaoCao
             {
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-                gridControlSoViSinh.DataSource = null;
                 LoadDataPhongThucHien();
+                LoadMaChiSoXetNghiem();
                 gridControlSoViSinh.Visible = false;
                 gridControlSoSHTQ.Visible = false;
                 gridControlSoNTVD.Visible = false;
@@ -54,7 +67,7 @@ namespace MedicalLink.BaoCao
                 //    cboLoaiSoXN.Properties.DisplayMember = "departmentname";
                 //    cboLoaiSoXN.Properties.ValueMember = "departmentid";
                 //}
-                List<ClassCommon.ToolsOtherListDTO>  lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "DS_SOXETNGHIEM").ToList();
+                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "DS_SOXETNGHIEM").ToList();
 
                 cboLoaiSoXN.Properties.DataSource = lstOtherList;
                 cboLoaiSoXN.Properties.DisplayMember = "tools_otherlistname";
@@ -65,7 +78,85 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void LoadMaChiSoXetNghiem()
+        {
+            try
+            {
+                //So Sinh hoa thuong quy
+                this.maChiSo_SHTQ = new SoXetNghiem_ChiSo_SHTQDTO();
+                Workbook workbook = new Workbook(@"Templates\So_XetNghiem_SinhHoaThuongQuy.xlsx");
+                Worksheet worksheet = workbook.Worksheets[0];
+                DataTable _data_Excel = worksheet.Cells.ExportDataTable(8, 0, 2, worksheet.Cells.MaxDataColumn, true);
+                if (_data_Excel != null && _data_Excel.Rows.Count > 0)
+                {
+                    this.maChiSo_SHTQ.KETQUA_NA1 = _data_Excel.Rows[0]["KETQUA_NA1"].ToString();
+                    this.maChiSo_SHTQ.KETQUA_CL1 = _data_Excel.Rows[0]["KETQUA_CL1"].ToString();
+                    this.maChiSo_SHTQ.KETQUA_K1 = _data_Excel.Rows[0]["KETQUA_K1"].ToString();
+                    this.maChiSo_SHTQ.KETQUA_NA2 = _data_Excel.Rows[0]["KETQUA_NA2"].ToString();
+                    this.maChiSo_SHTQ.KETQUA_CL2 = _data_Excel.Rows[0]["KETQUA_CL2"].ToString();
+                    this.maChiSo_SHTQ.KETQUA_K2 = _data_Excel.Rows[0]["KETQUA_K2"].ToString();
+                }
+                //So Nuoc tieu va dich khac
+                this.maChiSo_NTVD = new SoXetNghiem_ChiSo_NTVDDTO();
+                Workbook workbook_NTVD = new Workbook(@"Templates\So_XetNghiem_NuocTieuVaDichKhac.xlsx");
+                Worksheet worksheet__NTVD = workbook_NTVD.Worksheets[0];
+                DataTable _data_Excel_NTVD = worksheet__NTVD.Cells.ExportDataTable(8, 0, 2, worksheet__NTVD.Cells.MaxDataColumn, true);
+                if (_data_Excel_NTVD != null && _data_Excel_NTVD.Rows.Count > 0)
+                {
+                    this.maChiSo_NTVD.KETQUA_UBG = _data_Excel_NTVD.Rows[0]["KETQUA_UBG"].ToString();
+                    this.maChiSo_NTVD.KETQUA_BIL = _data_Excel_NTVD.Rows[0]["KETQUA_BIL"].ToString();
+                    this.maChiSo_NTVD.KETQUA_KET = _data_Excel_NTVD.Rows[0]["KETQUA_KET"].ToString();
+                    this.maChiSo_NTVD.KETQUA_PRO = _data_Excel_NTVD.Rows[0]["KETQUA_PRO"].ToString();
+                    this.maChiSo_NTVD.KETQUA_NIT = _data_Excel_NTVD.Rows[0]["KETQUA_NIT"].ToString();
+                    this.maChiSo_NTVD.KETQUA_LEU = _data_Excel_NTVD.Rows[0]["KETQUA_LEU"].ToString();
+                    this.maChiSo_NTVD.KETQUA_GLU = _data_Excel_NTVD.Rows[0]["KETQUA_GLU"].ToString();
+                    this.maChiSo_NTVD.KETQUA_SG = _data_Excel_NTVD.Rows[0]["KETQUA_SG"].ToString();
+                    this.maChiSo_NTVD.KETQUA_PH = _data_Excel_NTVD.Rows[0]["KETQUA_PH"].ToString();
+                    this.maChiSo_NTVD.KETQUA_BLO = _data_Excel_NTVD.Rows[0]["KETQUA_BLO"].ToString();
+                }
 
+                //So Khi mau
+                this.maChiSo_KM = new SoXetNghiem_ChiSo_KMDTO();
+                Workbook workbook_KM = new Workbook(@"Templates\So_XetNghiem_KhiMau.xlsx");
+                Worksheet worksheet_KM = workbook_KM.Worksheets[0];
+                DataTable _data_Excel_KM = worksheet_KM.Cells.ExportDataTable(8, 0, 2, worksheet_KM.Cells.MaxDataColumn, true);
+                if (_data_Excel_KM != null && _data_Excel_KM.Rows.Count > 0)
+                {
+                    this.maChiSo_KM.KETQUA_FIO2 = _data_Excel_KM.Rows[0]["KETQUA_FIO2"].ToString();
+                    this.maChiSo_KM.KETQUA_PTEM = _data_Excel_KM.Rows[0]["KETQUA_PTEM"].ToString();
+                    this.maChiSo_KM.KETQUA_AG = _data_Excel_KM.Rows[0]["KETQUA_AG"].ToString();
+                    this.maChiSo_KM.KETQUA_AO2 = _data_Excel_KM.Rows[0]["KETQUA_AO2"].ToString();
+                    this.maChiSo_KM.KETQUA_HCO = _data_Excel_KM.Rows[0]["KETQUA_HCO"].ToString();
+                    this.maChiSo_KM.KETQUA_CTC_B = _data_Excel_KM.Rows[0]["KETQUA_CTC_B"].ToString();
+                    this.maChiSo_KM.KETQUA_CTO2 = _data_Excel_KM.Rows[0]["KETQUA_CTO2"].ToString();
+                    this.maChiSo_KM.KETQUA_BB = _data_Excel_KM.Rows[0]["KETQUA_BB"].ToString();
+                    this.maChiSo_KM.KETQUA_BEE = _data_Excel_KM.Rows[0]["KETQUA_BEE"].ToString();
+                    this.maChiSo_KM.KETQUA_BE = _data_Excel_KM.Rows[0]["KETQUA_BE"].ToString();
+                    this.maChiSo_KM.KETQUA_CTC_P = _data_Excel_KM.Rows[0]["KETQUA_CTC_P"].ToString();
+                    this.maChiSo_KM.KETQUA_CHC = _data_Excel_KM.Rows[0]["KETQUA_CHC"].ToString();
+                    this.maChiSo_KM.KETQUA_BARO = _data_Excel_KM.Rows[0]["KETQUA_BARO"].ToString();
+                    this.maChiSo_KM.KETQUA_BILI = _data_Excel_KM.Rows[0]["KETQUA_BILI"].ToString();
+                    this.maChiSo_KM.KETQUA_HHB = _data_Excel_KM.Rows[0]["KETQUA_HHB"].ToString();
+                    this.maChiSo_KM.KETQUA_MET = _data_Excel_KM.Rows[0]["KETQUA_MET"].ToString();
+                    this.maChiSo_KM.KETQUA_COH = _data_Excel_KM.Rows[0]["KETQUA_COH"].ToString();
+                    this.maChiSo_KM.KETQUA_O2H = _data_Excel_KM.Rows[0]["KETQUA_O2H"].ToString();
+                    this.maChiSo_KM.KETQUA_SO2 = _data_Excel_KM.Rows[0]["KETQUA_SO2"].ToString();
+                    this.maChiSo_KM.KETQUA_THB = _data_Excel_KM.Rows[0]["KETQUA_THB"].ToString();
+                    this.maChiSo_KM.KETQUA_CL = _data_Excel_KM.Rows[0]["KETQUA_CL"].ToString();
+                    this.maChiSo_KM.KETQUA_CA2 = _data_Excel_KM.Rows[0]["KETQUA_CA2"].ToString();
+                    this.maChiSo_KM.KETQUA_K = _data_Excel_KM.Rows[0]["KETQUA_K"].ToString();
+                    this.maChiSo_KM.KETQUA_NA = _data_Excel_KM.Rows[0]["KETQUA_NA"].ToString();
+                    this.maChiSo_KM.KETQUA_HCT = _data_Excel_KM.Rows[0]["KETQUA_HCT"].ToString();
+                    this.maChiSo_KM.KETQUA_PCO = _data_Excel_KM.Rows[0]["KETQUA_PCO"].ToString();
+                    this.maChiSo_KM.KETQUA_PO2 = _data_Excel_KM.Rows[0]["KETQUA_PO2"].ToString();
+                    this.maChiSo_KM.KETQUA_PH = _data_Excel_KM.Rows[0]["KETQUA_PH"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         #endregion
 
         #region Xuat file va in
@@ -89,24 +180,35 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 thongTinThem.Add(reportitem_kho);
 
-                ClassCommon.reportExcelDTO reportitem_tenbc = new ClassCommon.reportExcelDTO();
-                reportitem_tenbc.name = Base.bienTrongBaoCao.TENBAOCAO;
-
-                switch (cboLoaiSoXN.EditValue.ToString())
+                DataTable _dataBaoCao = new DataTable();
+                if (cboLoaiSoXN.EditValue.ToString() == "SO_VS")
                 {
-                    case "SO_VS": //Xet nghiem vi sinh
-                        reportitem_tenbc.value = "SỔ XÉT NGHIỆM VI SINH";
-                        fileTemplatePath = "So_XetNghiem_ViSinh.xlsx";
-                        break;
-                    default:
-                        reportitem_tenbc.value = "SỔ XÉT NGHIỆM";
-
-                        break;
+                    fileTemplatePath = "So_XetNghiem_ViSinh.xlsx";
+                    _dataBaoCao = this.dataBaoCao_VS;
                 }
-                thongTinThem.Add(reportitem_tenbc);
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_SHTQ")
+                {
+                    fileTemplatePath = "So_XetNghiem_SinhHoaThuongQuy.xlsx";
+                    _dataBaoCao = this.dataBaoCao_SHTQ;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_NTVD")
+                {
+                    fileTemplatePath = "So_XetNghiem_NuocTieuVaDichKhac.xlsx";
+                    _dataBaoCao = this.dataBaoCao_NTVD;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_MD")
+                {
+                    fileTemplatePath = "So_XetNghiem_MienDich.xlsx";
+                    _dataBaoCao = this.dataBaoCao_MD;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_KM")
+                {
+                    fileTemplatePath = "So_XetNghiem_KhiMau.xlsx";
+                    _dataBaoCao = this.dataBaoCao_KM;
+                }
 
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBaoCao);
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
             }
             catch (Exception ex)
             {
@@ -115,6 +217,7 @@ namespace MedicalLink.BaoCao
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -133,28 +236,40 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 thongTinThem.Add(reportitem_kho);
 
-                ClassCommon.reportExcelDTO reportitem_tenbc = new ClassCommon.reportExcelDTO();
-                reportitem_tenbc.name = Base.bienTrongBaoCao.TENBAOCAO;
-
-                switch (cboLoaiSoXN.EditValue.ToString())
+                DataTable _dataBaoCao = new DataTable();
+                if (cboLoaiSoXN.EditValue.ToString() == "SO_VS")
                 {
-                    case "SO_VS": //Xet nghiem vi sinh
-                        reportitem_tenbc.value = "SỔ XÉT NGHIỆM VI SINH";
-                        fileTemplatePath = "So_XetNghiem_ViSinh.xlsx";
-                        break;
-                    default:
-                        reportitem_tenbc.value = "SỔ XÉT NGHIỆM";
-
-                        break;
+                    fileTemplatePath = "So_XetNghiem_ViSinh.xlsx";
+                    _dataBaoCao = this.dataBaoCao_VS;
                 }
-                thongTinThem.Add(reportitem_tenbc);
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_SHTQ")
+                {
+                    fileTemplatePath = "So_XetNghiem_SinhHoaThuongQuy.xlsx";
+                    _dataBaoCao = this.dataBaoCao_SHTQ;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_NTVD")
+                {
+                    fileTemplatePath = "So_XetNghiem_NuocTieuVaDichKhac.xlsx";
+                    _dataBaoCao = this.dataBaoCao_NTVD;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_MD")
+                {
+                    fileTemplatePath = "So_XetNghiem_MienDich.xlsx";
+                    _dataBaoCao = this.dataBaoCao_MD;
+                }
+                else if (cboLoaiSoXN.EditValue.ToString() == "SO_KM")
+                {
+                    fileTemplatePath = "So_XetNghiem_KhiMau.xlsx";
+                    _dataBaoCao = this.dataBaoCao_KM;
+                }
 
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaoCao);
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
         }
         #endregion
 
@@ -238,57 +353,6 @@ namespace MedicalLink.BaoCao
         #endregion
 
         #region Tim kiem
-        private void btnTimKiem_Click1(object sender, EventArgs e)
-        {
-            if (cboLoaiSoXN.EditValue == null)
-            {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_THUC_HIEN);
-                frmthongbao.Show();
-                return;
-            }
-            if (cboLoaiSoXN.EditValue.ToString() != "SO_VS")
-            {
-                MessageBox.Show("Chưa có báo cáo cho phòng thực hiện này.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-            try
-            {
-                string tieuchi = "";
-                string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                if (cboTieuChi.Text == "Theo ngày chỉ định")
-                {
-                    tieuchi = " mbp.maubenhphamdate ";
-                }
-                else if (cboTieuChi.Text == "Theo ngày trả kết quả")
-                {
-                    tieuchi = " mbp.maubenhphamfinishdate ";
-                }
-
-                if (dateTuNgay.Text != "" && dateDenNgay.Text != "")
-                {
-                    string sql_timkiem = "SELECT ROW_NUMBER () OVER (ORDER BY hsba.patientcode, A.maubenhphamid) as stt, hsba.patientcode, hsba.patientname, A.maubenhphamid, (case when hsba.gioitinhcode='01' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nam, (case hsba.gioitinhcode when '02' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nu, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, (case when hsba.bhytcode <>'' then 'x' else '' end) as COBHYT, A.CHANDOAN, (KYC.DEPARTMENTGROUPNAME || ' - ' || PYC.DEPARTMENTNAME) AS NOIGUI, A.YEUCAU, A.KETQUA, A.MAUBENHPHAMDATE, (case when A.maubenhphamfinishdate<>'0001-01-01 00:00:00' then A.maubenhphamfinishdate end) as maubenhphamfinishdate, nth.username AS nguoithuchien, nd.username as nguoiduyet FROM (SELECT mbp.maubenhphamid, mbp.hosobenhanid, mbp.departmentgroupid, mbp.departmentid, mbp.departmentid_des, mbp.chandoan, mbp.usertrakq, mbp.userthuchien, mbp.maubenhphamdate, mbp.maubenhphamfinishdate, se.servicename as yeucau, se.servicevalue as ketqua, se.servicedoer, se.servicecomment FROM maubenhpham mbp LEFT JOIN service se ON se.maubenhphamid=mbp.maubenhphamid WHERE se.servicecode not in (select sef.servicegroupcode from service_ref sef group by sef.servicegroupcode) and mbp.maubenhphamgrouptype=0 and mbp.departmentid_des='" + 253 + "' and " + tieuchi + ">='" + datetungay + "' and " + tieuchi + "<='" + datedenngay + "' ) A INNER JOIN hosobenhan hsba ON hsba.hosobenhanid=A.hosobenhanid LEFT JOIN departmentgroup kyc ON kyc.departmentgroupid=A.departmentgroupid LEFT JOIN department pyc ON pyc.departmentid=A.departmentid and pyc.departmenttype in (2,3,9) LEFT JOIN nhompersonnel nth ON nth.usercode=A.servicedoer LEFT JOIN nhompersonnel nd ON 'UP_OK:' || nd.usercode=A.servicecomment;  ";
-                    dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
-                    if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
-                    {
-                        gridControlSoViSinh.DataSource = this.dataBaoCao;
-                    }
-                    else
-                    {
-                        gridControlSoViSinh.DataSource = null;
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
-                        frmthongbao.Show();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Warn(ex);
-            }
-            SplashScreenManager.CloseForm();
-        }
-
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             if (cboLoaiSoXN.EditValue == null)
@@ -304,7 +368,7 @@ namespace MedicalLink.BaoCao
             string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
             if (cboTieuChi.Text == "Theo ngày chỉ định")
             {
-                tieuchi_mbp = " and maubenhphamdate between '"+ datetungay + "' and '" + datedenngay + "' ";
+                tieuchi_mbp = " and maubenhphamdate between '" + datetungay + "' and '" + datedenngay + "' ";
             }
             else if (cboTieuChi.Text == "Theo ngày trả kết quả")
             {
@@ -313,7 +377,7 @@ namespace MedicalLink.BaoCao
 
             if (cboLoaiSoXN.EditValue.ToString() == "SO_VS")
             {
-               long _tools_otherlistid = GlobalStore.lstOtherList_Global.Where(o => o.tools_otherlistcode == "SO_VS").FirstOrDefault().tools_otherlistid;
+                long _tools_otherlistid = GlobalStore.lstOtherList_Global.Where(o => o.tools_otherlistcode == "SO_VS").FirstOrDefault().tools_otherlistid;
                 LayDuLieuSo_ViSinh(tieuchi_mbp, _tools_otherlistid);
             }
             else if (cboLoaiSoXN.EditValue.ToString() == "SO_SHTQ")

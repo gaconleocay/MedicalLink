@@ -166,7 +166,7 @@ namespace MedicalLink.BaoCao
                         frmthongbao.Show();
                     }
                 }
-                else //xem chi tiet
+                else if (radioXemChiTiet.Checked)//xem chi tiet
                 {
                     string _sql_timkiem = "select row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname,ser.servicepricename) as stt, hsba.patientid, ser.vienphiid, hsba.patientname, bh.bhytcode, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi, ser.servicepricecode, ser.servicepricename, ser.servicepricedate, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' when 20 then 'Thanh toán riêng' end) as loaidoituong, ser.soluong, (case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end) as servicepricemoney, ((case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end)*ser.soluong) as thanhtien, ser.departmentid, de.departmentname, ser.departmentgroupid, degp.departmentgroupname, '0' as isgroup from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,servicepricedate from serviceprice where departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + _doituong_ser + ") ser inner join (select hosobenhanid,patientid,patientname,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname from hosobenhan " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select vienphiid,hosobenhanid,bhytid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid inner join (select bhytid,bhytcode from bhyt) bh on bh.bhytid=vp.bhytid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department) de on de.departmentid=ser.departmentid;";
 
@@ -178,6 +178,22 @@ namespace MedicalLink.BaoCao
                     else
                     {
                         gridControlDataBaoCao.DataSource = null;
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        frmthongbao.Show();
+                    }
+                }
+                else if (radioXemDSBenhNhan.Checked)
+                {
+                    string _sql_timkiem = "SELECT row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname) as stt, hsba.patientid, ser.vienphiid, hsba.patientname, bh.bhytcode, to_char(hsba.birthday,'yyyy') as year, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi, sum((case ser.loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan when 3 then servicepricemoney else servicepricemoney end)*ser.soluong) as thanhtien, ser.departmentid, de.departmentname, ser.departmentgroupid, degp.departmentgroupname, '0' as isgroup FROM (select hosobenhanid,vienphiid,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid from serviceprice where departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + _doituong_ser + ") ser inner join (select hosobenhanid,patientid,patientname,bhytcode,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname from hosobenhan " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select vienphiid,hosobenhanid,bhytid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid inner join (select bhytid,bhytcode from bhyt) bh on bh.bhytid=vp.bhytid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department) de on de.departmentid=ser.departmentid GROUP BY hsba.patientid,ser.vienphiid,hsba.patientname,bh.bhytcode,hsba.birthday,hsba.hc_sonha,hsba.hc_thon,hsba.hc_xacode,hsba.hc_xaname,hsba.hc_huyencode,hsba.hc_huyenname,ser.departmentid,de.departmentname,ser.departmentgroupid,degp.departmentgroupname; ";
+
+                    this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
+                    if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
+                    {
+                        gridControlDataDSBN.DataSource = this.dataBaoCao;
+                    }
+                    else
+                    {
+                        gridControlDataDSBN.DataSource = null;
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                     }
@@ -223,10 +239,15 @@ namespace MedicalLink.BaoCao
                     fileTemplatePath = "BC_34_ThongKeSuDungDichVuUngBuou_ChiTiet.xlsx";
                     data_XuatBaoCao = ExportExcel_GroupColume_CT();
                 }
-                else
+                else if (radioXemTongHop.Checked)
                 {
                     fileTemplatePath = "BC_34_ThongKeSuDungDichVuUngBuou_TongHop.xlsx";
                     data_XuatBaoCao = ExportExcel_GroupColume_TH();
+                }
+                else if (radioXemDSBenhNhan.Checked)
+                {
+                    fileTemplatePath = "BC_34_DanhSachBenhNhanUngBuou.xlsx";
+                    data_XuatBaoCao = ExportExcel_GroupColume_DSBN();
                 }
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
@@ -270,10 +291,15 @@ namespace MedicalLink.BaoCao
                     fileTemplatePath = "BC_34_ThongKeSuDungDichVuUngBuou_ChiTiet.xlsx";
                     data_XuatBaoCao = ExportExcel_GroupColume_CT();
                 }
-                else
+                else if (radioXemTongHop.Checked)
                 {
                     fileTemplatePath = "BC_34_ThongKeSuDungDichVuUngBuou_TongHop.xlsx";
                     data_XuatBaoCao = ExportExcel_GroupColume_TH();
+                }
+                else if (radioXemDSBenhNhan.Checked)
+                {
+                    fileTemplatePath = "BC_34_DanhSachBenhNhanUngBuou.xlsx";
+                    data_XuatBaoCao = ExportExcel_GroupColume_DSBN();
                 }
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
@@ -422,6 +448,58 @@ namespace MedicalLink.BaoCao
             }
             return result;
         }
+        private DataTable ExportExcel_GroupColume_DSBN()
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                List<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO> lstData_XuatBaoCao = new List<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO>();
+                List<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO> lstDataDoanhThu = Util_DataTable.DataTableToList<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO>(this.dataBaoCao);
+                //Khoa
+                List<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO> lstGroup_Khoa = lstDataDoanhThu.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                foreach (var item_khoa in lstGroup_Khoa)
+                {
+                    ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO data_khoa_name = new ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO();
+                    List<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO> lstData_Khoa = lstDataDoanhThu.Where(o => o.departmentgroupid == item_khoa.departmentgroupid).ToList();
+                    decimal sum_thanhtien = 0;
+
+                    foreach (var item_tinhsum in lstData_Khoa)
+                    {
+                        sum_thanhtien += item_tinhsum.thanhtien;
+                    }
+                    data_khoa_name.departmentgroupname = item_khoa.departmentgroupname;
+                    data_khoa_name.stt = item_khoa.departmentgroupname;
+                    data_khoa_name.thanhtien = sum_thanhtien;
+                    data_khoa_name.isgroup = 1;
+                    lstData_XuatBaoCao.Add(data_khoa_name);
+                    //Phong
+                    List<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO> lstGroup_Phong = lstData_Khoa.GroupBy(o => o.departmentid).Select(n => n.First()).ToList();
+                    foreach (var item_phong in lstGroup_Phong)
+                    {
+                        ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO data_phong_name = new ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO();
+                        List<ClassCommon.BCTKSuDungDV_UngBuouDSBNDTO> lstData_Phong = lstData_Khoa.Where(o => o.departmentid == item_phong.departmentid).ToList();
+                        decimal sum_thanhtien_phong = 0;
+
+                        foreach (var item_tinhsum in lstData_Phong)
+                        {
+                            sum_thanhtien_phong += item_tinhsum.thanhtien;
+                        }
+                        data_phong_name.departmentname = item_phong.departmentname;
+                        data_phong_name.stt = "' - " + item_phong.departmentname;
+                        data_phong_name.thanhtien = sum_thanhtien_phong;
+                        data_phong_name.isgroup = 2;
+                        lstData_XuatBaoCao.Add(data_phong_name);
+                        lstData_XuatBaoCao.AddRange(lstData_Phong);
+                    }
+                }
+                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
 
         #endregion
 
@@ -433,10 +511,12 @@ namespace MedicalLink.BaoCao
                 if (radioXemTongHop.Checked)
                 {
                     radioXemChiTiet.Checked = false;
+                    radioXemDSBenhNhan.Checked = false;
                     gridControlDataBaoCao_TH.Visible = true;
                     gridControlDataBaoCao_TH.DataSource = null;
                     gridControlDataBaoCao_TH.Dock = DockStyle.Fill;
                     gridControlDataBaoCao.Visible = false;
+                    gridControlDataDSBN.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -451,10 +531,12 @@ namespace MedicalLink.BaoCao
                 if (radioXemChiTiet.Checked)
                 {
                     radioXemTongHop.Checked = false;
+                    radioXemDSBenhNhan.Checked = false;
                     gridControlDataBaoCao.Visible = true;
                     gridControlDataBaoCao.DataSource = null;
                     gridControlDataBaoCao.Dock = DockStyle.Fill;
                     gridControlDataBaoCao_TH.Visible = false;
+                    gridControlDataDSBN.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -462,6 +544,27 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void radioXemDSBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (radioXemDSBenhNhan.Checked)
+                {
+                    radioXemTongHop.Checked = false;
+                    radioXemChiTiet.Checked = false;
+                    gridControlDataDSBN.Visible = true;
+                    gridControlDataDSBN.DataSource = null;
+                    gridControlDataDSBN.Dock = DockStyle.Fill;
+                    gridControlDataBaoCao_TH.Visible = false;
+                    gridControlDataBaoCao.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
         private void bandedGridViewSoCDHA_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
@@ -512,6 +615,7 @@ namespace MedicalLink.BaoCao
 
 
         #endregion
+
 
     }
 }

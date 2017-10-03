@@ -462,6 +462,7 @@
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
+    <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouDSBNDTO.cs" />
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouCTDTO.cs" />
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouTHDTO.cs" />
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />

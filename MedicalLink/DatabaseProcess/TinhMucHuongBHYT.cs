@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MedicalLink.ClassCommon;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -744,5 +745,34 @@ namespace MedicalLink.DatabaseProcess
             return result;
         }
 
+        /// <summary>
+        /// Tính số tiền BHYT thanh toán đối với gói dịch vụ TT theo tỷ lệ - bv Việt Tiệp
+        /// ngay 11/10
+        /// </summary>
+        /// <param name="_filter"></param>
+        /// <returns></returns>
+        internal static decimal TinhSoTienBHYTThanhToan_VTYTTTRieng
+            (TinhBHYTThanhToanTTRiengDTO _filter)
+        {
+            decimal result = 0;
+            try
+            {
+                /*bhyt_loaiid: =1 đúng tuyến; =2: đúng tuyến giới thiệu; =3 đúng tuyến cấp cứu; =4 trái tuyến
+                * loaivienphiid=0 nội trú; =1 ngoại trú
+                * bhyt_tuyenbenhvien=1: huyen; =2: tinh; ==3 TW
+                */
+                if (_filter.bhytcode != "" && _filter.bhytcode.Length == 15)
+                {
+                    _filter.maquyenloithe = Utilities.Util_TypeConvertParse.ToInt16(_filter.bhytcode.Substring(2, 1));
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+            return result;
+        }
     }
 }

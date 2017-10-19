@@ -161,7 +161,7 @@ namespace MedicalLink.ChucNang
                     timkiemtheo = " vp.patientid = " + txtMaBN.Text.Trim() + maubenhphamgrouptype + " ";
                 }
 
-                sqlquerry = "SELECT mbp.maubenhphamid, mbp.medicalrecordid, hsba.patientid, vp.vienphiid, hsba.patientname, mbp.maubenhphamtype, (case mbp.maubenhphamgrouptype when 0 then 'Xét nghiệm' when 1 then 'CĐHA' when 2 then 'Khám bệnh' when 4 then 'Chuyên khoa' when 5 then 'Thuốc' when 6 then 'Vật tư' else '' end) as maubenhphamgrouptype, (case mbp.maubenhphamstatus when 0 then 'Chưa gửi YC' when 1 then 'Đã gửi YC' when 2 then 'Đã trả kết quả' when 4 then 'Tổng hợp y lệnh' when 5 then 'Đã xuất thuốc/VT' when 7 then 'Đã trả thuốc' when 8 then 'Chưa duyệt thuốc' when 9 then 'Đã xuất tủ trực' when 16 then 'Đã tiếp nhận bệnh phẩm' else '' end) as maubenhphamstatus, mbp.maubenhphamdate, mbp.maubenhphamdate_sudung,(case mbp.dathutien when 1 then 'Đã thu tiền' else '' end) as dathutien, mbp.dathutien as dathutienid, kcd.departmentgroupname, pcd.departmentname, mbp.isdeleted, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai,(case when maubenhphamgrouptype in (5,6) then (select msto.medicinestorename from medicine_store msto where mbp.medicinestoreid=msto.medicinestoreid) when maubenhphamgrouptype in (0,1,2) then (select dep.departmentname from department dep where mbp.departmentid_des=dep.departmentid) else '' end) as phongthuchien, COALESCE(vp.vienphistatus_vp,0) as vienphistatus_vp,medicinestorebillid,(case mbp.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as maubenhphamphieutype, mbp.maubenhphamphieutype as maubenhphamphieutypeid FROM maubenhpham mbp inner join hosobenhan hsba on mbp.hosobenhanid=hsba.hosobenhanid inner join vienphi vp on vp.hosobenhanid=hsba.hosobenhanid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=mbp.departmentid INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=mbp.departmentgroupid WHERE " + timkiemtheo + " ORDER BY mbp.maubenhphamgrouptype, mbp.maubenhphamid; ";
+                sqlquerry = "SELECT mbp.maubenhphamid, mbp.medicalrecordid, hsba.patientid, vp.vienphiid, hsba.patientname, mbp.maubenhphamtype, mbp.phieudieutriid, (case mbp.maubenhphamgrouptype when 0 then 'Xét nghiệm' when 1 then 'CĐHA' when 2 then 'Khám bệnh' when 4 then 'Chuyên khoa' when 5 then 'Thuốc' when 6 then 'Vật tư' else '' end) as maubenhphamgrouptype, (case mbp.maubenhphamstatus when 0 then 'Chưa gửi YC' when 1 then 'Đã gửi YC' when 2 then 'Đã trả kết quả' when 4 then 'Tổng hợp y lệnh' when 5 then 'Đã xuất thuốc/VT' when 7 then 'Đã trả thuốc' when 8 then 'Chưa duyệt thuốc' when 9 then 'Đã xuất tủ trực' when 16 then 'Đã tiếp nhận bệnh phẩm' else '' end) as maubenhphamstatus, mbp.maubenhphamdate, mbp.maubenhphamdate_sudung,(case mbp.dathutien when 1 then 'Đã thu tiền' else '' end) as dathutien, mbp.dathutien as dathutienid, kcd.departmentgroupname, pcd.departmentname, mbp.isdeleted, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai,(case when maubenhphamgrouptype in (5,6) then (select msto.medicinestorename from medicine_store msto where mbp.medicinestoreid=msto.medicinestoreid) when maubenhphamgrouptype in (0,1,2) then (select dep.departmentname from department dep where mbp.departmentid_des=dep.departmentid) else '' end) as phongthuchien, COALESCE(vp.vienphistatus_vp,0) as vienphistatus_vp,medicinestorebillid,(case mbp.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as maubenhphamphieutype, mbp.maubenhphamphieutype as maubenhphamphieutypeid FROM maubenhpham mbp inner join hosobenhan hsba on mbp.hosobenhanid=hsba.hosobenhanid inner join vienphi vp on vp.hosobenhanid=hsba.hosobenhanid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=mbp.departmentid INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=mbp.departmentgroupid WHERE " + timkiemtheo + " ORDER BY mbp.maubenhphamgrouptype, mbp.maubenhphamid; ";
 
                 DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
 
@@ -478,12 +478,13 @@ namespace MedicalLink.ChucNang
                 long _mavienphi = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "vienphiid").ToString());
                 string trangthai = Convert.ToString(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString());
                 long maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                long phieudieutriid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "phieudieutriid").ToString());
                 DateTime thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
                 DateTime thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
                 if (trangthai == "Đang điều trị")
                 {
                     //truyền biến sang bên form thực hiện
-                    MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(_mavienphi,maubenhphamid, thoigianchidinh, thoigiansudung);
+                    MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(_mavienphi, maubenhphamid, thoigianchidinh, thoigiansudung, phieudieutriid);
                     frmsuaTGCD.ShowDialog();
                     gridControlDS_PhieuDichVu.DataSource = null;
                     btnTimKiem_Click(null, null);
@@ -510,14 +511,15 @@ namespace MedicalLink.ChucNang
                 var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
                 long _mavienphi = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "vienphiid").ToString());
                 long maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                long phieudieutriid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "phieudieutriid").ToString());
                 DateTime thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
                 DateTime thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
 
-                    //Khong can kiem tra trang thai
-                    MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new MedicalLink.ChucNang.XyLyMauBenhPham.frmSuaThoiGianChiDinh(_mavienphi,maubenhphamid, thoigianchidinh, thoigiansudung);
-                    frmsuaTGCD.ShowDialog();
-                    gridControlDS_PhieuDichVu.DataSource = null;
-                    btnTimKiem_Click(null, null);
+                //Khong can kiem tra trang thai
+                XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new XyLyMauBenhPham.frmSuaThoiGianChiDinh(_mavienphi, maubenhphamid, thoigianchidinh, thoigiansudung, phieudieutriid);
+                frmsuaTGCD.ShowDialog();
+                gridControlDS_PhieuDichVu.DataSource = null;
+                btnTimKiem_Click(null, null);
             }
             catch (Exception ex)
             {

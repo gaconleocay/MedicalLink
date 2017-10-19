@@ -738,6 +738,105 @@ CREATE TABLE bill
 
 
 
+CREATE TABLE maubenhpham
+(
+  maubenhphamid serial NOT NULL,
+  medicalrecordid integer DEFAULT 0,
+  patientid integer DEFAULT 0,
+  vienphiid integer DEFAULT 0,
+  hosobenhanid integer DEFAULT 0,
+  dathutien integer DEFAULT 0,
+  datamung integer DEFAULT 0,
+  servicepriceid_master integer DEFAULT 0,
+  phieudieutriid integer DEFAULT 0,
+  sothutuid integer DEFAULT 0,
+  sothutunumber integer DEFAULT 0,
+  sothutunumberdagoi integer DEFAULT 0,
+  sothutuid_laymau integer DEFAULT 0,
+  sothutunumber_laymau integer DEFAULT 0,
+  sothutunumberdagoi_laymau integer DEFAULT 0,
+  medicinestoreid integer DEFAULT 0,
+  departmentgroupid integer DEFAULT 0,
+  departmentid integer DEFAULT 0,
+  buonggiuong text,
+  userid integer DEFAULT 0,
+  departmentgroupid_des integer DEFAULT 0,
+  departmentid_des integer DEFAULT 0,
+  departmentid_des_org integer DEFAULT 0,
+  departmentid_laymau integer DEFAULT 0,
+  medicinestorebillid integer DEFAULT 0,
+  sophieu text,
+  barcode text,
+  maubenhphamtype integer DEFAULT 0,
+  maubenhphamhaophi integer DEFAULT 0,
+  maubenhphamphieutype integer DEFAULT 0,
+  maubenhphamgrouptype integer DEFAULT 0,
+  maubenhphamdatastatus integer DEFAULT 0,
+  maubenhphamstatus_laymau integer DEFAULT 0,
+  maubenhphamprintstatus integer DEFAULT 0,
+  maubenhphamstatus integer DEFAULT 0,
+  maubenhphamdate timestamp without time zone,
+  maubenhphamdate_sudung timestamp without time zone,
+  maubenhphamdate_thuchien timestamp without time zone,
+  maubenhphamdate_laymau timestamp without time zone,
+  maubenhphamfinishdate timestamp without time zone,
+  unmapedhisservice text,
+  isdeleted integer DEFAULT 0,
+  maubenhphamdeletedate timestamp without time zone,
+  userdelete text,
+  usercreate text,
+  userupdatebarcode text,
+  userlastupdate text,
+  userupdatebarcodedate timestamp without time zone,
+  userlastupdatedate timestamp without time zone,
+  patientpid text,
+  doituong text,
+  patientname text,
+  patientaddress text,
+  patientphone text,
+  patientbirthday timestamp without time zone,
+  patientsex integer,
+  chandoan text,
+  remark text,
+  version timestamp without time zone,
+  userduyetall integer DEFAULT 0,
+  usertrakq integer DEFAULT 0,
+  ismaubenhphamtemp integer DEFAULT 0,
+  sothutuphongkhamid integer DEFAULT 0,
+  userthuchien integer,
+  thoigiandukiencoketqua timestamp without time zone,
+  sodienthoaibaotinkhicoketqua text,
+  sync_flag integer,
+  update_flag integer,
+  dacodichvuthutien integer,
+  dacodichvuduyetcanlamsang integer,
+  sessionid integer DEFAULT 0,
+  isautongaygiuong integer,
+  sothutuchidinhcanlamsang integer,
+  isencript integer,
+  maubenhphamdate_org timestamp without time zone,
+  departmentid_traketqua integer,
+  numbertraketqua integer,
+  isdatraketqua integer,
+  usertraketqua integer,
+  maubenhphamtraketquadate timestamp without time zone,
+  remarkdetail text,
+  chandoan_code text,
+  hl7_is integer,
+  hl7_isdatraketqua integer,
+  hl7_maubenhphamtraketquadate timestamp without time zone,
+  loidanbacsi text,
+  phieutonghopsuatanid integer,
+  medicinekiemkeid integer,
+  isloaidonthuoc integer,
+  servicepriceid_thanhtoanrieng integer,
+  sothutunumber_h_n integer,
+  userlaymau integer,
+  CONSTRAINT maubenhpham_pkey PRIMARY KEY (maubenhphamid)
+)
+
+
+
 
 Hiện giờ có những nhánh sau:
 
@@ -908,7 +1007,7 @@ CREATE TABLE IF NOT EXISTS tools_serviceref
   USING btree
   (servicepricecode);  
   CREATE INDEX tools_serviceref_bhytcode_idx
-  ON tools_serviceref
+  ON tools_servicefref
   USING btree
   (bhyt_groupcode);  
   CREATE INDEX tools_serviceref_tools_otherlistid_idx
@@ -953,6 +1052,90 @@ and ser.maubenhphamphieutype=0
   
   
   
-ALTER TABLE ie_bhyt_check
-ALTER COLUMN bhytcheckstatus type text;
+
+CREATE TABLE client_machine
+(
+  clientmachineid serial NOT NULL,
+  clientmachinecode text,
+  machineid text,
+  machineserial text,
+  appversion text,
+  apptype integer,
+  usenfc integer,
+  reportstatus integer,
+  softstatus integer,
+  servicestatus integer,
+  installedtime timestamp without time zone,
+  lastping timestamp without time zone,
+  currentusercode text,
+  processorid text,
+  baseboardproduct text,
+  baseboardmanufacturer text,
+  diskdrivesignature text,
+  videocontrollercaption text,
+  physicalmediaserialnumber text,
+  biosversion text,
+  operatingsystemserialnumber text,
+  ipaddress text,
+  macadddress text,
+  computername text,
+  username text,
+  domain text,
+  version timestamp without time zone,
+  alertdata text,
+  alertstatus integer,
+  sync_flag integer,
+  update_flag integer,
+  CONSTRAINT client_machine_pkey PRIMARY KEY (clientmachineid)
+)
+  
+  
+----Thuật toán yêu cầu tắt phần mềm
+
+- Client khi đăng nhập lấy thông tin về phần cứng máy tính => insert/update thông tin vào bảng ds client
+Thông tin bao gồm:
+	+ ID máy tính
+	+ ID CPU
+	+ ID Main
+	+ ID OS
+	+ Thời gian tạo
+	+ Thời gian update 
+	+ Thời gian ping cuối?
+	+ Tên người đăng nhập
+	
+	+ Trạng thái hoạt động
+	+ Yêu cầu thực hiện chức năng: khởi động lại PM, tắt phần mềm, tắt máy tính, khởi động lại máy tính
+
+- Khi yêu cầu thực hiện chức năng: update yêu cầu thực hiện chức năng: tất cả các máy, từng máy
+- Client thiết lập timer để truy vấn vào DB kiểm tra yêu cầu thực hiện, khi đó thực hiện yêu cầu
+
+* Timer truy vấn thường xuyên -> ảnh hưởng server, 
+* Dùng chung timer thời gian của phần mềm, sau mỗi 10s thì truy vấn CSDL
+* Thiết lập thời gian truy vấn CSDL trên server
+
+ 	
+ F1_3
+F1_4
+
+Kiểm tra với phiếu chỉ định dịch vụ, nếu phiếu chỉ định là Viện phí thì không check
+Kiểm tra hạn thẻ trước và sau thời gian điều trị.
+Kiểm tra xem có tồn tại phiếu chỉ định trước/hoặc sau hạn thẻ. Nếu có thì cảnh báo Lỗi này
+
+
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   

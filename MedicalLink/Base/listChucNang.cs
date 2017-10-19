@@ -531,17 +531,17 @@ namespace MedicalLink.Base
                 ClassCommon.classPermission REPORT_32 = new ClassCommon.classPermission();
                 REPORT_32.permissioncheck = false;
                 REPORT_32.permissioncode = "REPORT_32";
-                REPORT_32.permissionname = "Báo cáo thanh toán PTTT cho bác sĩ nội trú";
+                REPORT_32.permissionname = "Báo cáo thanh toán PTTT cho bác sĩ nội trú (tổng hợp)";
                 REPORT_32.permissiontype = 3;
-                REPORT_32.permissionnote = "Báo cáo thanh toán PTTT cho bác sĩ nội trú";
+                REPORT_32.permissionnote = "Báo cáo thanh toán PTTT cho bác sĩ nội trú (tổng hợp)";
                 lstresult.Add(REPORT_32);
 
                 ClassCommon.classPermission REPORT_33 = new ClassCommon.classPermission();
                 REPORT_33.permissioncheck = false;
                 REPORT_33.permissioncode = "REPORT_33";
-                REPORT_33.permissionname = "Báo cáo thanh toán PTTT cho bác sĩ cận lâm sàng";
+                REPORT_33.permissionname = "Báo cáo thanh toán PTTT cho bác sĩ cận lâm sàng (tổng hợp)";
                 REPORT_33.permissiontype = 3;
-                REPORT_33.permissionnote = "Báo cáo thanh toán PTTT cho bác sĩ cận lâm sàng";
+                REPORT_33.permissionnote = "Báo cáo thanh toán PTTT cho bác sĩ cận lâm sàng (tổng hợp)";
                 lstresult.Add(REPORT_33);
 
                 ClassCommon.classPermission REPORT_34 = new ClassCommon.classPermission();
@@ -552,6 +552,13 @@ namespace MedicalLink.Base
                 REPORT_34.permissionnote = "Báo cáo thống kê sử dụng dịch vụ (Ung bướu)";
                 lstresult.Add(REPORT_34);
 
+                ClassCommon.classPermission REPORT_35 = new ClassCommon.classPermission();
+                REPORT_35.permissioncheck = false;
+                REPORT_35.permissioncode = "REPORT_35";
+                REPORT_35.permissionname = "Bảng kê hóa đơn, chứng từ của thuốc, VTYT-HCXN sử dụng";
+                REPORT_35.permissiontype = 3;
+                REPORT_35.permissionnote = "Bảng kê hóa đơn, chứng từ của thuốc, VTYT-HCXN sử dụng";
+                lstresult.Add(REPORT_35);
 
                 //Dashboard
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();

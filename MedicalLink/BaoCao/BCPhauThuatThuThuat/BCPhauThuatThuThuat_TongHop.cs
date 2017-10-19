@@ -77,7 +77,7 @@ namespace MedicalLink.BaoCao
 
                 if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
-                    _tieuchi_vp = " where duyet_ngayduyet_vp between '" + tungay + "' and '" + denngay + "' ";
+                    _tieuchi_vp = " where vienphistatus_vp=1 and duyet_ngayduyet_vp between '" + tungay + "' and '" + denngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày thực hiện")
                 {

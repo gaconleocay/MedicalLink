@@ -34,7 +34,7 @@ namespace MedicalLink.BaoCao
 
                 if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
-                    tieuchi_date = " vp.duyet_ngayduyet_vp>='" + tungay + "' and vp.duyet_ngayduyet_vp<='" + denngay + "' ";
+                    tieuchi_date = " vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp>='" + tungay + "' and vp.duyet_ngayduyet_vp<='" + denngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày thực hiện")
                 {

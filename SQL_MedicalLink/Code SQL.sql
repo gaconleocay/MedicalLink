@@ -67,7 +67,7 @@ serviceprice.loaidoituong as loaihinhthanhtoan, ser.loaidoituong in (0,1,3,4,6,8
 		when 7 then 'Hao phí PTTT'
 		when 8 then 'Đối tượng khác'
 		when 9 then 'Hao phí khác'
-		when 20 then 'thanh toan rieng'
+		when 20 then 'Thanh toán riêng'
 		end) as loaidoituong,
 -------------- 
 CASE servicepriceref.servicegrouptype  

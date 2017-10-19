@@ -71,6 +71,7 @@ FROM (select servicepricecode from servicepriceref where servicepricegroupcode i
 ---Xem tong hop
 SELECT 
 	(row_number() over (partition by degp.departmentgroupid order by ser.servicepricename)) as stt,
+	'' as vienphiid, '' as patientid, '' as patientname, '' as namsinh, '' as gioitinh, '' as bhytcode, '' as doituongbenhnhanid, '' as servicepricedate, '' as loaidoituong, '' as trangthai, '' as vienphidate, '' as vienphidate_ravien, '' as duyet_ngayduyet_vp,
 	degp.departmentgroupid,
 	degp.departmentgroupname,
 	ser.servicepricecode,

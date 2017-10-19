@@ -168,7 +168,7 @@ namespace MedicalLink.BaoCao
 
                 if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
-                    tieuchi_date_vp = " where duyet_ngayduyet_vp between '" + tungay + "' and '" + denngay + "' ";
+                    tieuchi_date_vp = " where vienphistatus_vp=1 and duyet_ngayduyet_vp between '" + tungay + "' and '" + denngay + "' ";
                     sapxeptheo = "order by A.NGAY_THANHTOAN";
                 }
                 else if (cboTieuChi.Text == "Theo ngày thực hiện")

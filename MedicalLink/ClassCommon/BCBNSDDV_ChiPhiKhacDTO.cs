@@ -16,13 +16,13 @@ namespace MedicalLink.ClassCommon
         public string gioitinh { get; set; }
         public string bhytcode { get; set; }
         public string departmentgroupname { get; set; }
-        public string departmentname { get; set; }
+        //public string departmentname { get; set; }
         public string doituongbenhnhanid { get; set; }
         public object servicepricedate { get; set; }
         public long departmentgroupid { get; set; }
         public string servicepricecode { get; set; }
         public string servicepricename { get; set; }
-        public string servicepricegroupcode { get; set; }
+        //public string servicepricegroupcode { get; set; }
         public string loaidoituong { get; set; }
         public decimal soluong { get; set; }
         public decimal servicepricemoney { get; set; }
@@ -32,7 +32,6 @@ namespace MedicalLink.ClassCommon
         public object vienphidate { get; set; }
         public object vienphidate_ravien { get; set; }
         public object duyet_ngayduyet_vp { get; set; }
-
         public int isgroup { get; set; }
     }
 }

@@ -179,11 +179,11 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
                 {
-                    tieuchi = "and vp.duyet_ngayduyet_vp ";
+                    tieuchi = " and vienphistatus_vp=1 and vp.duyet_ngayduyet_vp ";
                 }
                 else if (cbbTieuChi.Text == "Theo ngày duyệt BHYT")
                 {
-                    tieuchi = "and vp.duyet_ngayduyet ";
+                    tieuchi = " and vienphistatus_bh=1 and vp.duyet_ngayduyet ";
                 }
                 else
                 {

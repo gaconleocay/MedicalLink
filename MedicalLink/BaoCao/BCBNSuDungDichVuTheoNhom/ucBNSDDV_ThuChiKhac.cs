@@ -91,7 +91,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
                 {
-                    _tieuchi_vp = " and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                    _tieuchi_vp = " and vienphistatus=1 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 //
                 if (cboTrangThaiVienPhi.Text == "Đang điều trị")
@@ -110,7 +110,7 @@ namespace MedicalLink.BaoCao
                 //
                 if (radioXemTongHop.Checked) //xem tong hop
                 {
-                    string _sql_timkiem = "SELECT (row_number() over (partition by degp.departmentgroupid order by ser.servicepricename)) as stt, degp.departmentgroupid, degp.departmentgroupname, ser.servicepricecode, ser.servicepricename, (case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt when ser.loaidoituong=1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricemoney, sum(ser.soluong) as soluong, sum((case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt when ser.loaidoituong=1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end)*ser.soluong) as thanhtien, sum(case when (ser.billid_thutien<>0 or ser.billid_clbh_thutien<>0) then (case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt*ser.soluong when ser.loaidoituong=1 then ser.servicepricemoney_nhandan*ser.soluong else ser.servicepricemoney*ser.soluong end) else 0 end) as dathu, '0' as isgroup FROM (select servicepricecode from servicepriceref where servicepricegroupcode in (" + _dsnhomdv + ")) serf inner join (select vienphiid,servicepricecode,servicepricename,loaidoituong,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,soluong,departmentgroupid,billid_thutien,billid_clbh_thutien from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') " + _tieuchi_ser + ") ser on ser.servicepricecode=serf.servicepricecode inner join (select vienphiid,doituongbenhnhanid,departmentgroupid,vienphistatus,vienphistatus_vp,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp from vienphi where " + _trangthaivienphi + _tieuchi_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select departmentgroupid,departmentgroupname from departmentgroup order by departmentgroupname) degp on degp.departmentgroupid=" + _partitiongroup + " GROUP BY degp.departmentgroupid,degp.departmentgroupname,ser.servicepricecode,ser.servicepricename,(case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt when ser.loaidoituong=1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end);";
+                    string _sql_timkiem = "SELECT (row_number() over (partition by degp.departmentgroupid order by ser.servicepricename)) as stt, '' as vienphiid, '' as patientid, '' as patientname, '' as namsinh, '' as gioitinh, '' as bhytcode, '' as departmentname, '' as doituongbenhnhanid, '' as servicepricedate, '' as loaidoituong, '' as trangthai, '' as vienphidate, '' as vienphidate_ravien, '' as duyet_ngayduyet_vp, degp.departmentgroupid, degp.departmentgroupname, ser.servicepricecode, ser.servicepricename, (case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt when ser.loaidoituong=1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricemoney, sum(ser.soluong) as soluong, sum((case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt when ser.loaidoituong=1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end)*ser.soluong) as thanhtien, sum(case when (ser.billid_thutien<>0 or ser.billid_clbh_thutien<>0) then (case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt*ser.soluong when ser.loaidoituong=1 then ser.servicepricemoney_nhandan*ser.soluong else ser.servicepricemoney*ser.soluong end) else 0 end) as dathu, '0' as isgroup FROM (select servicepricecode from servicepriceref where servicepricegroupcode in (" + _dsnhomdv + ")) serf inner join (select vienphiid,servicepricecode,servicepricename,loaidoituong,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,soluong,departmentgroupid,billid_thutien,billid_clbh_thutien from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') " + _tieuchi_ser + ") ser on ser.servicepricecode=serf.servicepricecode inner join (select vienphiid,doituongbenhnhanid,departmentgroupid,vienphistatus,vienphistatus_vp,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp from vienphi where " + _trangthaivienphi + _tieuchi_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select departmentgroupid,departmentgroupname from departmentgroup order by departmentgroupname) degp on degp.departmentgroupid=" + _partitiongroup + " GROUP BY degp.departmentgroupid,degp.departmentgroupname,ser.servicepricecode,ser.servicepricename,(case when ser.loaidoituong=0 then ser.servicepricemoney_bhyt when ser.loaidoituong=1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end);";
 
                     this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -150,7 +150,7 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
-        #region Export
+        #region Export and Print
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -229,8 +229,6 @@ namespace MedicalLink.BaoCao
             return result;
         }
 
-        #endregion
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -263,6 +261,8 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
 
         }
+
+        #endregion
 
         #region Event Change
         private void radioXemTongHop_CheckedChanged(object sender, EventArgs e)

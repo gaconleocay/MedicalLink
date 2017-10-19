@@ -290,6 +290,12 @@
     <Compile Include="BaoCao\BCDoanhThuTheoNhomDV\ucDoanhThuTheoNhomDichVu.Designer.cs">
       <DependentUpon>ucDoanhThuTheoNhomDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCHoaDonChungTuThuocSD\ucBCHoaDonChungTuThuocSD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCHoaDonChungTuThuocSD\ucBCHoaDonChungTuThuocSD.Designer.cs">
+      <DependentUpon>ucBCHoaDonChungTuThuocSD.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -460,6 +466,7 @@
       <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
+    <Compile Include="ClassCommon\BCHoaDonChungTuThuocSDDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouDSBNDTO.cs" />
@@ -616,6 +623,7 @@
     <Compile Include="ClassCommon\classBenhVienDTO.cs" />
     <Compile Include="ClassCommon\SoXetNghiem_ChiSoDTO.cs" />
     <Compile Include="ClassCommon\TienBNPhaiThanhToanDTO.cs" />
+    <Compile Include="ClassCommon\TinhBHYTThanhToanTTRiengDTO.cs" />
     <Compile Include="ClassCommon\TinhBHYTThanhToanDTO.cs" />
     <Compile Include="ClassCommon\ToolsOtherListDTO.cs" />
     <Compile Include="ClassCommon\ToolsServicerefDTO.cs" />
@@ -1064,6 +1072,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCDoanhThuTheoNhomDV\ucDoanhThuTheoNhomDichVu.resx">
       <DependentUpon>ucDoanhThuTheoNhomDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCHoaDonChungTuThuocSD\ucBCHoaDonChungTuThuocSD.resx">
+      <DependentUpon>ucBCHoaDonChungTuThuocSD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.resx">
       <DependentUpon>ucBCHoaDonThanhToanVP.cs</DependentUpon>
@@ -1618,6 +1629,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_34_ThongKeSuDungDichVuUngBuou_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_34_DanhSachBenhNhanUngBuou.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_35_HoaDonChungTuCuaThuocVTYTSuDung.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

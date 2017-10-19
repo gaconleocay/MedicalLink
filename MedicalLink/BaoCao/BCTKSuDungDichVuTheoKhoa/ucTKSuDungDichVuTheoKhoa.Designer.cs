@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucTKSuDungDichVuTheoKhoa));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.radioXemDSBenhNhan = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.chkcomboListDSPhong = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.label2 = new System.Windows.Forms.Label();
@@ -76,18 +77,17 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.radioXemDSBenhNhan = new System.Windows.Forms.RadioButton();
             this.gridControlDataDSBN = new DevExpress.XtraGrid.GridControl();
             this.gridViewDataDSBN = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
@@ -140,6 +140,18 @@
             this.groupBoxFile.Size = new System.Drawing.Size(1081, 90);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
+            // 
+            // radioXemDSBenhNhan
+            // 
+            this.radioXemDSBenhNhan.AutoSize = true;
+            this.radioXemDSBenhNhan.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioXemDSBenhNhan.Location = new System.Drawing.Point(817, 64);
+            this.radioXemDSBenhNhan.Name = "radioXemDSBenhNhan";
+            this.radioXemDSBenhNhan.Size = new System.Drawing.Size(136, 20);
+            this.radioXemDSBenhNhan.TabIndex = 96;
+            this.radioXemDSBenhNhan.Text = "Xem DS bệnh nhân";
+            this.radioXemDSBenhNhan.UseVisualStyleBackColor = true;
+            this.radioXemDSBenhNhan.CheckedChanged += new System.EventHandler(this.radioXemDSBenhNhan_CheckedChanged);
             // 
             // label1
             // 
@@ -246,8 +258,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbTieuChi.Properties.Items.AddRange(new object[] {
             "Theo ngày chỉ định",
-            "Theo ngày ra viện",
-            "Theo ngày duyệt VP"});
+            "Theo ngày ra viện"});
             this.cbbTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbbTieuChi.Size = new System.Drawing.Size(151, 22);
             this.cbbTieuChi.TabIndex = 86;
@@ -979,18 +990,6 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             // 
-            // radioXemDSBenhNhan
-            // 
-            this.radioXemDSBenhNhan.AutoSize = true;
-            this.radioXemDSBenhNhan.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioXemDSBenhNhan.Location = new System.Drawing.Point(817, 64);
-            this.radioXemDSBenhNhan.Name = "radioXemDSBenhNhan";
-            this.radioXemDSBenhNhan.Size = new System.Drawing.Size(136, 20);
-            this.radioXemDSBenhNhan.TabIndex = 96;
-            this.radioXemDSBenhNhan.Text = "Xem DS bệnh nhân";
-            this.radioXemDSBenhNhan.UseVisualStyleBackColor = true;
-            this.radioXemDSBenhNhan.CheckedChanged += new System.EventHandler(this.radioXemDSBenhNhan_CheckedChanged);
-            // 
             // gridControlDataDSBN
             // 
             this.gridControlDataDSBN.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
@@ -1149,6 +1148,24 @@
             this.gridColumn4.VisibleIndex = 3;
             this.gridColumn4.Width = 189;
             // 
+            // gridColumn12
+            // 
+            this.gridColumn12.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn12.AppearanceCell.Options.UseFont = true;
+            this.gridColumn12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn12.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn12.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn12.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn12.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn12.Caption = "Năm sinh";
+            this.gridColumn12.FieldName = "year";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 4;
+            this.gridColumn12.Width = 70;
+            // 
             // gridColumn8
             // 
             this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -1223,24 +1240,6 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn11.Width = 170;
-            // 
-            // gridColumn12
-            // 
-            this.gridColumn12.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn12.AppearanceCell.Options.UseFont = true;
-            this.gridColumn12.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn12.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn12.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn12.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn12.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn12.Caption = "Năm sinh";
-            this.gridColumn12.FieldName = "year";
-            this.gridColumn12.Name = "gridColumn12";
-            this.gridColumn12.OptionsColumn.AllowEdit = false;
-            this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 4;
-            this.gridColumn12.Width = 70;
             // 
             // gridColumn22
             // 

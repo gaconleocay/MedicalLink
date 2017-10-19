@@ -22,7 +22,7 @@ INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, 
 INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (12, 'REPORT_28_NHOMDV', 'REPORT_28_Danh sách nhóm dịch vụ', 0, 'Nhóm Chi phí khác - bv Thanh Hóa');
 INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (13, 'REPORT_29_NHOMDV', 'REPORT_29_Danh sách dịch vụ', 0, 'Danh sách từng dịch vụ');
 INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (14, 'REPORT_34_KHOA', 'REPORT_34_Danh sách khoa', 0, 'ID khoa cách nhau bởi dấu phẩy (,)');
-
+INSERT INTO tools_othertypelist(tools_othertypelistid, tools_othertypelistcode, tools_othertypelistname, tools_othertypeliststatus, tools_othertypelistnote) VALUES (15, 'REPORT_35_KHO', 'REPORT_35_Danh sách kho thuốc', 0, 'ID kho thuốc cách nhau bởi dấu phẩy (,)');
 
 
 ----
@@ -54,6 +54,7 @@ INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_othe
 INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (12, 'U2918-0644', 'Nhóm chi phí khác - BV Thanh Hóa', 'U2918-0644', '0', '');
 INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (13, 'UB3025094', 'Xạ trị sử dụng CT mô phỏng', 'UB3025094', '0', '');
 INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (14, 'REPORT34_ID_KHOA', 'Danh sách Khoa', '1,2,3', '0', '');
+INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (15, 'REPORT35_ID_KHO', 'Danh sách Kho', '1,2,5', '0', '');
 --INSERT INTO tools_otherlist(tools_othertypelistid,tools_otherlistcode,tools_otherlistname,tools_otherlistvalue,tools_otherliststatus,tools_otherlistnote) VALUES (2222, '222222', '222222', '222222', '0', '');
 
 

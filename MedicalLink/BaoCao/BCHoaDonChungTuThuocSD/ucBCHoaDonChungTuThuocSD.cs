@@ -96,7 +96,7 @@ namespace MedicalLink.BaoCao
                     }
                     _listKhoThuoc += "'" + lstKhoCheck[lstKhoCheck.Count - 1] + "') ";
 
-                    string sql_getdata = "SELECT (row_number() over (partition by msb.medicinestoreid order by msb.medicinestorebilldate)) as stt, msb.medicinestorebillcode, msb.medicinestorebilldate, msb.sochungtu, msb.medicinestorebilltotalmoney as tongtien, (select count(*) from medicine where medicinestorebillid=msb.medicinestorebillid) as soluong, ncc.nhacungcapname as nhacungcap, msb.customername as nguoigiaohang, (case when msb.ngaychungtu<>'0001-01-01 00:00:00' then msb.ngaychungtu end) as ngaynhanduhang, '' as nguoinhanhang, msb.medicinestoreid, kho.medicinestorename as khonhanhang, msb.medicinestorebillremark as ghichu, '0' as isgroup FROM (select medicinestorebillid,medicinestorebillcode,medicinestorebilldate,sochungtu,medicinestorebilltotalmoney,partnerid,customername,ngaychungtu,medicinestoreid,medicinestorebillremark from medicine_store_bill where medicinestorebilltype=1 and medicineperiodid=3 and medicinestorebilldate between '" + _tungay + "' and '" + _denngay + "' " + _listKhoThuoc + " ) msb LEFT JOIN (select nhacungcapid,nhacungcapname from nhacungcap_medicine) ncc on ncc.nhacungcapid=msb.partnerid INNER JOIN (select medicinestoreid,medicinestorename from medicine_store) kho on kho.medicinestoreid=msb.medicinestoreid;";
+                    string sql_getdata = "SELECT (row_number() over (partition by kho.medicinestoreremark order by msb.medicinestorebilldate)) as stt, msb.medicinestorebillcode, msb.medicinestorebilldate, msb.sochungtu, msb.medicinestorebilltotalmoney as tongtien, (select count(*) from medicine where medicinestorebillid=msb.medicinestorebillid) as soluong, ncc.nhacungcapname as nhacungcap, msb.customername as nguoigiaohang, (case when msb.ngaychungtu<>'0001-01-01 00:00:00' then msb.ngaychungtu end) as ngaynhanduhang, '' as nguoinhanhang, msb.medicinestoreid, kho.medicinestorename, kho.medicinestoreremark as khonhanhang, msb.medicinestorebillremark as ghichu, '0' as isgroup FROM (select medicinestorebillid,medicinestorebillcode,medicinestorebilldate,sochungtu,medicinestorebilltotalmoney,partnerid,customername,ngaychungtu,medicinestoreid,medicinestorebillremark from medicine_store_bill where medicinestorebilltype=1 and medicinestorebillstatus=2 and medicinestorebilldate between '" + _tungay + "' and '" + _denngay + "' " + _listKhoThuoc + " ) msb LEFT JOIN (select nhacungcapid,nhacungcapname from nhacungcap_medicine) ncc on ncc.nhacungcapid=msb.partnerid INNER JOIN (select medicinestoreid,medicinestorename,medicinestoreremark from medicine_store) kho on kho.medicinestoreid=msb.medicinestoreid;";
 
                     this.dataBaoCao = condb.GetDataTable_HIS(sql_getdata);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -209,7 +209,7 @@ namespace MedicalLink.BaoCao
                         sum_tongtien += item_tinhsum.tongtien;
                     }
 
-                    data_groupname.medicinestoreid = item_group.medicinestoreid;
+                    //data_groupname.medicinestoreid = item_group.medicinestoreid;
                     data_groupname.stt = item_group.khonhanhang;
                     data_groupname.tongtien = sum_tongtien;
                     data_groupname.isgroup = 1;

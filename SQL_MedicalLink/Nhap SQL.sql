@@ -1123,7 +1123,56 @@ Kiểm tra xem có tồn tại phiếu chỉ định trước/hoặc sau hạn t
 
 
  
+  Allow Internet access	GUANGDONG OPPO MOBILE TELECOMMUNICATIONS CORP.LTD	GUANGDONG OPPO MOBILE TELECOMMUN	192.168.2.215	Automatic IP	A8:1B:5A:FA:1A:A7	2.4 GHz	-	-	0:00:00	
+
   
+  
+---Thống kê số lượng hóa đơn phát hành trong tháng 10- bv Việt Tiệp
+select
+	count(*) as soluong_hd,
+	sum(datra) as thanhtien
+from bill 
+where 
+	loaiphieuthuid=0 
+	and dahuyphieu=0
+	and billdate between '2017-10-01 00:00:00' and '2017-10-31 23:59:59'
+
+
+21935;
+216697046508.055
+  
+22231;217171864444.154  
+  
+  duongthihuong.2212
+  096867190
+  hoathuytinh
+  chauanh042015@yahoo.com
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ch
   
   
   

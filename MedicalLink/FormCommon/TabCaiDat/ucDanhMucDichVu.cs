@@ -86,7 +86,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     TreeListNode rootNode_0 = treeListDSDichVu.AppendNode(
 new object[] { "0", servicegrouptype_code, servicegrouptype_name, null, null, null, null, null, null },
 parentForRootNodes, null);
-                    CreateChildNodeServiceType(parentForRootNodes, servicegrouptype_code, lsttools_serviceref_hienthi);
+                    CreateChildNodeServiceType(rootNode_0, servicegrouptype_code, lsttools_serviceref_hienthi);
                     treeListDSDichVu.ExpandAll();
                 }
                 else

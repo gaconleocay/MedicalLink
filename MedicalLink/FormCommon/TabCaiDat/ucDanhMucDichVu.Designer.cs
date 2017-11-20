@@ -176,9 +176,9 @@
             this.panelControlChucNang.Controls.Add(this.panelControl2);
             this.panelControlChucNang.Controls.Add(this.panelControl1);
             this.panelControlChucNang.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelControlChucNang.Location = new System.Drawing.Point(565, 52);
+            this.panelControlChucNang.Location = new System.Drawing.Point(677, 52);
             this.panelControlChucNang.Name = "panelControlChucNang";
-            this.panelControlChucNang.Size = new System.Drawing.Size(531, 561);
+            this.panelControlChucNang.Size = new System.Drawing.Size(419, 561);
             this.panelControlChucNang.TabIndex = 6;
             // 
             // panelControl2
@@ -210,12 +210,12 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(2, 2);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(527, 511);
+            this.panelControl2.Size = new System.Drawing.Size(415, 511);
             this.panelControl2.TabIndex = 1;
             // 
             // cboSoXetNghiem
             // 
-            this.cboSoXetNghiem.Location = new System.Drawing.Point(113, 371);
+            this.cboSoXetNghiem.Location = new System.Drawing.Point(5, 384);
             this.cboSoXetNghiem.Name = "cboSoXetNghiem";
             this.cboSoXetNghiem.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSoXetNghiem.Properties.Appearance.Options.UseFont = true;
@@ -230,14 +230,14 @@
             this.cboSoXetNghiem.Properties.NullText = "";
             this.cboSoXetNghiem.Properties.PopupSizeable = false;
             this.cboSoXetNghiem.Properties.ShowHeader = false;
-            this.cboSoXetNghiem.Size = new System.Drawing.Size(407, 22);
+            this.cboSoXetNghiem.Size = new System.Drawing.Size(405, 22);
             this.cboSoXetNghiem.TabIndex = 76;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(45, 218);
+            this.label12.Location = new System.Drawing.Point(21, 218);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 16);
             this.label12.TabIndex = 45;
@@ -246,17 +246,17 @@
             // txtservicepricenamepttt
             // 
             this.txtservicepricenamepttt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricenamepttt.Location = new System.Drawing.Point(115, 215);
+            this.txtservicepricenamepttt.Location = new System.Drawing.Point(91, 215);
             this.txtservicepricenamepttt.Name = "txtservicepricenamepttt";
             this.txtservicepricenamepttt.ReadOnly = true;
-            this.txtservicepricenamepttt.Size = new System.Drawing.Size(407, 23);
+            this.txtservicepricenamepttt.Size = new System.Drawing.Size(321, 23);
             this.txtservicepricenamepttt.TabIndex = 44;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(32, 138);
+            this.label11.Location = new System.Drawing.Point(8, 138);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(74, 16);
             this.label11.TabIndex = 43;
@@ -265,25 +265,25 @@
             // txtservicepricenamenhandan
             // 
             this.txtservicepricenamenhandan.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricenamenhandan.Location = new System.Drawing.Point(113, 135);
+            this.txtservicepricenamenhandan.Location = new System.Drawing.Point(89, 135);
             this.txtservicepricenamenhandan.Name = "txtservicepricenamenhandan";
             this.txtservicepricenamenhandan.ReadOnly = true;
-            this.txtservicepricenamenhandan.Size = new System.Drawing.Size(407, 23);
+            this.txtservicepricenamenhandan.Size = new System.Drawing.Size(321, 23);
             this.txtservicepricenamenhandan.TabIndex = 42;
             // 
             // txtservicepricegroupcode
             // 
             this.txtservicepricegroupcode.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricegroupcode.Location = new System.Drawing.Point(370, 15);
+            this.txtservicepricegroupcode.Location = new System.Drawing.Point(308, 15);
             this.txtservicepricegroupcode.Name = "txtservicepricegroupcode";
             this.txtservicepricegroupcode.ReadOnly = true;
-            this.txtservicepricegroupcode.Size = new System.Drawing.Size(150, 23);
+            this.txtservicepricegroupcode.Size = new System.Drawing.Size(100, 23);
             this.txtservicepricegroupcode.TabIndex = 41;
             // 
             // txtbhyt_groupcode
             // 
             this.txtbhyt_groupcode.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbhyt_groupcode.Location = new System.Drawing.Point(113, 95);
+            this.txtbhyt_groupcode.Location = new System.Drawing.Point(89, 95);
             this.txtbhyt_groupcode.Name = "txtbhyt_groupcode";
             this.txtbhyt_groupcode.ReadOnly = true;
             this.txtbhyt_groupcode.Size = new System.Drawing.Size(150, 23);
@@ -293,7 +293,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(16, 374);
+            this.label10.Location = new System.Drawing.Point(8, 365);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(90, 16);
             this.label10.TabIndex = 32;
@@ -303,7 +303,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(303, 18);
+            this.label9.Location = new System.Drawing.Point(243, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 16);
             this.label9.TabIndex = 29;
@@ -313,7 +313,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(271, 298);
+            this.label5.Location = new System.Drawing.Point(202, 298);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(93, 16);
             this.label5.TabIndex = 27;
@@ -323,7 +323,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(33, 298);
+            this.label8.Location = new System.Drawing.Point(9, 298);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(74, 16);
             this.label8.TabIndex = 26;
@@ -332,28 +332,27 @@
             // txtservicepricefeenuocngoai
             // 
             this.txtservicepricefeenuocngoai.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricefeenuocngoai.Location = new System.Drawing.Point(370, 295);
+            this.txtservicepricefeenuocngoai.Location = new System.Drawing.Point(301, 295);
             this.txtservicepricefeenuocngoai.Name = "txtservicepricefeenuocngoai";
             this.txtservicepricefeenuocngoai.ReadOnly = true;
-            this.txtservicepricefeenuocngoai.Size = new System.Drawing.Size(150, 23);
+            this.txtservicepricefeenuocngoai.Size = new System.Drawing.Size(110, 23);
             this.txtservicepricefeenuocngoai.TabIndex = 25;
             this.txtservicepricefeenuocngoai.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtservicepricefee
             // 
             this.txtservicepricefee.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricefee.Location = new System.Drawing.Point(114, 295);
+            this.txtservicepricefee.Location = new System.Drawing.Point(90, 295);
             this.txtservicepricefee.Name = "txtservicepricefee";
             this.txtservicepricefee.ReadOnly = true;
-            this.txtservicepricefee.Size = new System.Drawing.Size(150, 23);
+            this.txtservicepricefee.Size = new System.Drawing.Size(110, 23);
             this.txtservicepricefee.TabIndex = 24;
-            this.txtservicepricefee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(290, 258);
+            this.label6.Location = new System.Drawing.Point(221, 258);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(74, 16);
             this.label6.TabIndex = 23;
@@ -363,7 +362,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(47, 258);
+            this.label7.Location = new System.Drawing.Point(23, 258);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 16);
             this.label7.TabIndex = 22;
@@ -372,20 +371,20 @@
             // txtservicepricefeenhandan
             // 
             this.txtservicepricefeenhandan.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricefeenhandan.Location = new System.Drawing.Point(370, 251);
+            this.txtservicepricefeenhandan.Location = new System.Drawing.Point(301, 251);
             this.txtservicepricefeenhandan.Name = "txtservicepricefeenhandan";
             this.txtservicepricefeenhandan.ReadOnly = true;
-            this.txtservicepricefeenhandan.Size = new System.Drawing.Size(150, 23);
+            this.txtservicepricefeenhandan.Size = new System.Drawing.Size(110, 23);
             this.txtservicepricefeenhandan.TabIndex = 21;
             this.txtservicepricefeenhandan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtservicepricefeebhyt
             // 
             this.txtservicepricefeebhyt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricefeebhyt.Location = new System.Drawing.Point(114, 255);
+            this.txtservicepricefeebhyt.Location = new System.Drawing.Point(90, 255);
             this.txtservicepricefeebhyt.Name = "txtservicepricefeebhyt";
             this.txtservicepricefeebhyt.ReadOnly = true;
-            this.txtservicepricefeebhyt.Size = new System.Drawing.Size(150, 23);
+            this.txtservicepricefeebhyt.Size = new System.Drawing.Size(110, 23);
             this.txtservicepricefeebhyt.TabIndex = 20;
             this.txtservicepricefeebhyt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -393,7 +392,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(32, 98);
+            this.label4.Location = new System.Drawing.Point(8, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 16);
             this.label4.TabIndex = 18;
@@ -403,7 +402,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(42, 178);
+            this.label3.Location = new System.Drawing.Point(18, 178);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 17;
@@ -413,7 +412,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(53, 58);
+            this.label2.Location = new System.Drawing.Point(29, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 16);
             this.label2.TabIndex = 16;
@@ -423,7 +422,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 18);
+            this.label1.Location = new System.Drawing.Point(14, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 16);
             this.label1.TabIndex = 15;
@@ -432,16 +431,16 @@
             // txtservicepricenamebhyt
             // 
             this.txtservicepricenamebhyt.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricenamebhyt.Location = new System.Drawing.Point(113, 175);
+            this.txtservicepricenamebhyt.Location = new System.Drawing.Point(89, 175);
             this.txtservicepricenamebhyt.Name = "txtservicepricenamebhyt";
             this.txtservicepricenamebhyt.ReadOnly = true;
-            this.txtservicepricenamebhyt.Size = new System.Drawing.Size(407, 23);
+            this.txtservicepricenamebhyt.Size = new System.Drawing.Size(321, 23);
             this.txtservicepricenamebhyt.TabIndex = 14;
             // 
             // txtservicepricecodeuser
             // 
             this.txtservicepricecodeuser.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricecodeuser.Location = new System.Drawing.Point(113, 55);
+            this.txtservicepricecodeuser.Location = new System.Drawing.Point(89, 55);
             this.txtservicepricecodeuser.Name = "txtservicepricecodeuser";
             this.txtservicepricecodeuser.ReadOnly = true;
             this.txtservicepricecodeuser.Size = new System.Drawing.Size(150, 23);
@@ -450,7 +449,7 @@
             // txtservicepricecode
             // 
             this.txtservicepricecode.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtservicepricecode.Location = new System.Drawing.Point(113, 15);
+            this.txtservicepricecode.Location = new System.Drawing.Point(89, 15);
             this.txtservicepricecode.Name = "txtservicepricecode";
             this.txtservicepricecode.ReadOnly = true;
             this.txtservicepricecode.Size = new System.Drawing.Size(150, 23);
@@ -464,7 +463,7 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(2, 513);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(527, 46);
+            this.panelControl1.Size = new System.Drawing.Size(415, 46);
             this.panelControl1.TabIndex = 0;
             // 
             // btnHuy
@@ -515,7 +514,7 @@
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControlData.Location = new System.Drawing.Point(0, 52);
             this.panelControlData.Name = "panelControlData";
-            this.panelControlData.Size = new System.Drawing.Size(565, 561);
+            this.panelControlData.Size = new System.Drawing.Size(677, 561);
             this.panelControlData.TabIndex = 7;
             // 
             // treeListDSDichVu
@@ -554,7 +553,7 @@
             this.treeListDSDichVu.OptionsView.AutoWidth = false;
             this.treeListDSDichVu.OptionsView.ShowIndicator = false;
             this.treeListDSDichVu.RowHeight = 25;
-            this.treeListDSDichVu.Size = new System.Drawing.Size(561, 557);
+            this.treeListDSDichVu.Size = new System.Drawing.Size(673, 557);
             this.treeListDSDichVu.TabIndex = 0;
             this.treeListDSDichVu.TreeLevelWidth = 25;
             this.treeListDSDichVu.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.treeListDSDichVu_NodeCellStyle);

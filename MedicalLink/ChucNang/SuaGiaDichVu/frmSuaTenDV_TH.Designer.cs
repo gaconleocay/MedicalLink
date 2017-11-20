@@ -134,9 +134,10 @@
             // 
             this.lblTenNNN_Moi.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenNNN_Moi.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lblTenNNN_Moi.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblTenNNN_Moi.Location = new System.Drawing.Point(118, 173);
             this.lblTenNNN_Moi.Name = "lblTenNNN_Moi";
-            this.lblTenNNN_Moi.Size = new System.Drawing.Size(86, 16);
+            this.lblTenNNN_Moi.Size = new System.Drawing.Size(748, 16);
             this.lblTenNNN_Moi.TabIndex = 41;
             this.lblTenNNN_Moi.Text = "lblTenNNN_Moi";
             // 
@@ -156,9 +157,10 @@
             // 
             this.lblTenYC_Moi.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenYC_Moi.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lblTenYC_Moi.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblTenYC_Moi.Location = new System.Drawing.Point(118, 145);
             this.lblTenYC_Moi.Name = "lblTenYC_Moi";
-            this.lblTenYC_Moi.Size = new System.Drawing.Size(77, 16);
+            this.lblTenYC_Moi.Size = new System.Drawing.Size(748, 16);
             this.lblTenYC_Moi.TabIndex = 39;
             this.lblTenYC_Moi.Text = "lblTenYC_Moi";
             // 
@@ -198,6 +200,7 @@
             // 
             // searchLookUpEdit1View
             // 
+            this.searchLookUpEdit1View.ColumnPanelRowHeight = 25;
             this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
@@ -215,6 +218,7 @@
             this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.searchLookUpEdit1View.OptionsView.ColumnAutoWidth = false;
             this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.searchLookUpEdit1View.ViewCaptionHeight = 25;
             // 
             // gridColumn1
             // 
@@ -224,6 +228,8 @@
             this.gridColumn1.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn1.AppearanceHeader.Options.UseFont = true;
             this.gridColumn1.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn1.Caption = "Mã dịch vụ";
             this.gridColumn1.FieldName = "dv_ma";
             this.gridColumn1.Name = "gridColumn1";
@@ -240,13 +246,15 @@
             this.gridColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn2.AppearanceHeader.Options.UseFont = true;
             this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn2.Caption = "Tên BHYT";
             this.gridColumn2.FieldName = "dv_tenbhyt";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 272;
+            this.gridColumn2.Width = 463;
             // 
             // gridColumn3
             // 
@@ -256,6 +264,8 @@
             this.gridColumn3.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn3.Caption = "Tên viện phí";
             this.gridColumn3.FieldName = "dv_tenvp";
             this.gridColumn3.Name = "gridColumn3";
@@ -290,6 +300,8 @@
             this.gridColumn4.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn4.AppearanceHeader.Options.UseFont = true;
             this.gridColumn4.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.Caption = "Giá BHYT";
             this.gridColumn4.FieldName = "gia_bhyt";
             this.gridColumn4.Name = "gridColumn4";
@@ -306,6 +318,8 @@
             this.gridColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn5.AppearanceHeader.Options.UseFont = true;
             this.gridColumn5.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn5.Caption = "Giá viện phí";
             this.gridColumn5.FieldName = "gia_vp";
             this.gridColumn5.Name = "gridColumn5";
@@ -322,6 +336,8 @@
             this.gridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn6.AppearanceHeader.Options.UseFont = true;
             this.gridColumn6.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.Caption = "Giá yêu cầu";
             this.gridColumn6.FieldName = "gia_yc";
             this.gridColumn6.Name = "gridColumn6";
@@ -338,6 +354,8 @@
             this.gridColumn7.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn7.AppearanceHeader.Options.UseFont = true;
             this.gridColumn7.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn7.Caption = "Giá người nước ngoài";
             this.gridColumn7.FieldName = "gia_nnn";
             this.gridColumn7.Name = "gridColumn7";
@@ -390,9 +408,10 @@
             // 
             this.lblTenVP_Moi.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenVP_Moi.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lblTenVP_Moi.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblTenVP_Moi.Location = new System.Drawing.Point(118, 116);
             this.lblTenVP_Moi.Name = "lblTenVP_Moi";
-            this.lblTenVP_Moi.Size = new System.Drawing.Size(77, 16);
+            this.lblTenVP_Moi.Size = new System.Drawing.Size(748, 16);
             this.lblTenVP_Moi.TabIndex = 32;
             this.lblTenVP_Moi.Text = "lblTenVP_Moi";
             // 
@@ -400,9 +419,10 @@
             // 
             this.lblTenBHYT_Moi.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTenBHYT_Moi.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.lblTenBHYT_Moi.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblTenBHYT_Moi.Location = new System.Drawing.Point(118, 89);
             this.lblTenBHYT_Moi.Name = "lblTenBHYT_Moi";
-            this.lblTenBHYT_Moi.Size = new System.Drawing.Size(92, 16);
+            this.lblTenBHYT_Moi.Size = new System.Drawing.Size(748, 16);
             this.lblTenBHYT_Moi.TabIndex = 31;
             this.lblTenBHYT_Moi.Text = "lblTenBHYT_Moi";
             // 

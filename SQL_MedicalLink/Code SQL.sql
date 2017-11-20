@@ -425,4 +425,23 @@ giamdinh.baohiemxahoi.gov.vn
 acc: 31_HALT
 pass: Hadung6@
 
+ &=&=IF(P{r}=1,M{r},0)
+ 
+ 
+ Host server: 179.84.31.5
+ Port: 5432
+ tên DB: bvhaiphong
+ user: baixe
+ pass: 123456a@
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  

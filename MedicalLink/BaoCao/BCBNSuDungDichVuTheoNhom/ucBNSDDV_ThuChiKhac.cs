@@ -91,7 +91,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
                 {
-                    _tieuchi_vp = " and vienphistatus=1 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                    _tieuchi_vp = " and vienphistatus_vp=1 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 //
                 if (cboTrangThaiVienPhi.Text == "Đang điều trị")

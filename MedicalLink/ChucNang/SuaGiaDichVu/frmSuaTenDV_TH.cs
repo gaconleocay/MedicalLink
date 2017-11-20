@@ -131,22 +131,22 @@ namespace MedicalLink.ChucNang
                 {
                     if (this.trangthai_kt == 0)
                     {
-                        sqldsdv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicelock=0 and isremove is null and servicepricegroupcode <> '' and ServiceGroupType in (1,2,3,4,11) ORDER BY servicepricegroupcode;";
+                        sqldsdv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE COALESCE(servicelock,0)=0 and COALESCE(isremove,0)=0 and servicepricegroupcode <> '' and ServiceGroupType in (1,2,3,4,11) ORDER BY servicepricegroupcode;";
                     }
                     else
                     {
-                        sqldsdv = "SELECT sef.servicepricecode as dv_ma, sef.servicepricenamebhyt as dv_tenbhyt, sef.servicepricenamenhandan as dv_tenvp, sef.servicepricenamenuocngoai as dv_tennnn, sef.servicepricefeebhyt as gia_bhyt, sef.servicepricefeenhandan as gia_vp, sef.servicepricefee as gia_yc, sef.servicepricefeenuocngoai as gia_nnn FROM servicepriceref sef inner join (select sefc.servicepricefee, sefc.servicepricefeebhyt, sefc.servicepricefeenhandan from servicepriceref sefc where sefc.servicepricecode='" + madv + "') serf on serf.servicepricefee=sef.servicepricefee and serf.servicepricefeebhyt=sef.servicepricefeebhyt and serf.servicepricefeenhandan=sef.servicepricefeenhandan WHERE sef.servicelock=0 and sef.isremove is null and sef.servicepricegroupcode <> '' and sef.ServiceGroupType in (1,2,3,4,11) ORDER BY sef.servicepricegroupcode; ";
+                        sqldsdv = "SELECT sef.servicepricecode as dv_ma, sef.servicepricenamebhyt as dv_tenbhyt, sef.servicepricenamenhandan as dv_tenvp, sef.servicepricenamenuocngoai as dv_tennnn, sef.servicepricefeebhyt as gia_bhyt, sef.servicepricefeenhandan as gia_vp, sef.servicepricefee as gia_yc, sef.servicepricefeenuocngoai as gia_nnn FROM servicepriceref sef inner join (select sefc.servicepricefee, sefc.servicepricefeebhyt, sefc.servicepricefeenhandan from servicepriceref sefc where sefc.servicepricecode='" + madv + "') serf on serf.servicepricefee=sef.servicepricefee and serf.servicepricefeebhyt=sef.servicepricefeebhyt and serf.servicepricefeenhandan=sef.servicepricefeenhandan WHERE COALESCE(sef.servicelock,0)=0 and COALESCE(sef.isremove,0)=0 and sef.servicepricegroupcode <> '' and sef.ServiceGroupType in (1,2,3,4,11) ORDER BY sef.servicepricegroupcode; ";
                     }
                 }
                 else //thuoc, vat tu
                 {
                     if (this.trangthai_kt == 0)
                     {
-                        sqldsdv = "SELECT medicinecode as dv_ma, medicinename as dv_tenbhyt, medicinename as dv_tenvp, medicinename as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM medicine_ref WHERE servicelock is null and isremove=0 ORDER BY datatype, medicinename;";
+                        sqldsdv = "SELECT medicinecode as dv_ma, medicinename as dv_tenbhyt, medicinename as dv_tenvp, medicinename as dv_tennnn, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM medicine_ref WHERE COALESCE(servicelock ,0)=0 and COALESCE(isremove,0)=0 ORDER BY datatype, medicinename;";
                     }
                     else
                     {
-                        sqldsdv = "SELECT mef.medicinecode as dv_ma, mef.medicinename as dv_tenbhyt, mef.medicinename as dv_tenvp, mef.medicinename as dv_tennnn, mef.servicepricefeebhyt as gia_bhyt, mef.servicepricefeenhandan as gia_vp, mef.servicepricefee as gia_yc, mef.servicepricefeenuocngoai as gia_nnn FROM medicine_ref mef inner join (select mefc.servicepricefee, mefc.servicepricefeebhyt, mefc.servicepricefeenhandan from medicine_ref mefc where mefc.medicinecode='" + madv + "') serf on serf.servicepricefee=mef.servicepricefee and serf.servicepricefeebhyt=mef.servicepricefeebhyt and serf.servicepricefeenhandan=mef.servicepricefeenhandan WHERE mef.servicelock is null and mef.isremove=0 ORDER BY mef.datatype, mef.medicinename;     ";
+                        sqldsdv = "SELECT mef.medicinecode as dv_ma, mef.medicinename as dv_tenbhyt, mef.medicinename as dv_tenvp, mef.medicinename as dv_tennnn, mef.servicepricefeebhyt as gia_bhyt, mef.servicepricefeenhandan as gia_vp, mef.servicepricefee as gia_yc, mef.servicepricefeenuocngoai as gia_nnn FROM medicine_ref mef inner join (select mefc.servicepricefee, mefc.servicepricefeebhyt, mefc.servicepricefeenhandan from medicine_ref mefc where mefc.medicinecode='" + madv + "') serf on serf.servicepricefee=mef.servicepricefee and serf.servicepricefeebhyt=mef.servicepricefeebhyt and serf.servicepricefeenhandan=mef.servicepricefeenhandan WHERE mef.COALESCE(servicelock,0)=0 and COALESCE(mef.isremove,0)=0 ORDER BY mef.datatype, mef.medicinename;     ";
                     }
                 }
                 dv_dmdv = new DataView(condb.GetDataTable_HIS(sqldsdv));
@@ -168,6 +168,7 @@ namespace MedicalLink.ChucNang
             this.Visible = false;
         }
 
+        #region Custom
         private void txtMaDV_Moi_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -249,51 +250,6 @@ namespace MedicalLink.ChucNang
                 LoadData_DichVu_TheoMa(txtMaDV_Moi.Text.Trim());
             }
         }
-        private void LoadData_DichVu_TheoMa(string dv_ma_timkiem)
-        {
-            try
-            {
-                string sql_dv = "";
-                if (this.current_loaidichvu == "")
-                {
-                     sql_dv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn,servicepricename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicepricecode ='" + dv_ma_timkiem + "';";
-                }
-                else
-                {
-                    sql_dv = "SELECT medicinecode as dv_ma, medicinename as dv_tenbhyt, medicinename as dv_tenvp, medicinename as dv_tennnn, medicinename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM medicine_ref WHERE medicinecode='" + dv_ma_timkiem + "';";
-                }
-                DataView data_tk = new DataView(condb.GetDataTable_HIS(sql_dv));
-                if (data_tk.Count > 0)
-                {
-                    cbbTenDV_Moi.EditValue = data_tk[0]["dv_ma"].ToString();
-                    lblTenBHYT_Moi.Text = cbbTenDV_Moi.Text;
-                    lblTenVP_Moi.Text = data_tk[0]["dv_tenvp"].ToString();
-                    lblTenYC_Moi.Text = data_tk[0]["dv_tenyc"].ToString();
-                    lblTenNNN_Moi.Text = data_tk[0]["dv_tennnn"].ToString();
-                    lblGiaBHYT.Text = data_tk[0]["gia_bhyt"].ToString();
-                    lblGiaVP.Text = data_tk[0]["gia_vp"].ToString();
-                    lblGiaYC.Text = data_tk[0]["gia_yc"].ToString();
-                    lblGiaNNN.Text = data_tk[0]["gia_nnn"].ToString();
-                }
-                else
-                {
-                    cbbTenDV_Moi.EditValue = null;
-                    lblTenBHYT_Moi.Text = "";
-                    lblTenVP_Moi.Text = "";
-                    lblTenYC_Moi.Text = "";
-                    lblTenNNN_Moi.Text = "";
-                    lblGiaBHYT.Text = "";
-                    lblGiaVP.Text = "";
-                    lblGiaYC.Text = "";
-                    lblGiaNNN.Text = "";
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Warn(ex);
-            }
-        }
         //hien thi noi dung lay tu searchlookedit
         private void cbbTenDV_Moi_EditValueChanged(object sender, EventArgs e)
         {
@@ -341,6 +297,55 @@ namespace MedicalLink.ChucNang
                 Base.Logging.Warn(ex);
             }
         }
+
+        private void LoadData_DichVu_TheoMa(string dv_ma_timkiem)
+        {
+            try
+            {
+                string sql_dv = "";
+                if (this.current_loaidichvu == "")
+                {
+                    sql_dv = "SELECT servicepricecode as dv_ma, servicepricenamebhyt as dv_tenbhyt, servicepricenamenhandan as dv_tenvp, servicepricenamenuocngoai as dv_tennnn,servicepricename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM servicepriceref WHERE servicepricecode ='" + dv_ma_timkiem + "';";
+                }
+                else
+                {
+                    sql_dv = "SELECT medicinecode as dv_ma, medicinename as dv_tenbhyt, medicinename as dv_tenvp, medicinename as dv_tennnn, medicinename as dv_tenyc, servicepricefeebhyt as gia_bhyt, servicepricefeenhandan as gia_vp, servicepricefee as gia_yc, servicepricefeenuocngoai as gia_nnn FROM medicine_ref WHERE medicinecode='" + dv_ma_timkiem + "';";
+                }
+                DataView data_tk = new DataView(condb.GetDataTable_HIS(sql_dv));
+                if (data_tk.Count > 0)
+                {
+                    cbbTenDV_Moi.EditValue = data_tk[0]["dv_ma"].ToString();
+                    lblTenBHYT_Moi.Text = cbbTenDV_Moi.Text;
+                    lblTenVP_Moi.Text = data_tk[0]["dv_tenvp"].ToString();
+                    lblTenYC_Moi.Text = data_tk[0]["dv_tenyc"].ToString();
+                    lblTenNNN_Moi.Text = data_tk[0]["dv_tennnn"].ToString();
+                    lblGiaBHYT.Text = data_tk[0]["gia_bhyt"].ToString();
+                    lblGiaVP.Text = data_tk[0]["gia_vp"].ToString();
+                    lblGiaYC.Text = data_tk[0]["gia_yc"].ToString();
+                    lblGiaNNN.Text = data_tk[0]["gia_nnn"].ToString();
+                }
+                else
+                {
+                    cbbTenDV_Moi.EditValue = null;
+                    lblTenBHYT_Moi.Text = "";
+                    lblTenVP_Moi.Text = "";
+                    lblTenYC_Moi.Text = "";
+                    lblTenNNN_Moi.Text = "";
+                    lblGiaBHYT.Text = "";
+                    lblGiaVP.Text = "";
+                    lblGiaYC.Text = "";
+                    lblGiaNNN.Text = "";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
+
 
         #region Click Sua
         private void btnSuaTenMoi_Row_Click(object sender, EventArgs e)

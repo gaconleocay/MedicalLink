@@ -137,7 +137,7 @@ namespace MedicalLink.BaoCao
 
                 if (radioXemTongHop.Checked) //xem tong hop
                 {
-                    sql_timkiem = " SELECT serf.servicepricegroupcode, serf.bhyt_groupcode, serf.servicegrouptype, serf.servicepricetype, (case serf.servicegrouptype when 1 then 'Khám bệnh' when 2 then 'Xét nghiệm' when 3 then 'CĐHA' when 4 then 'Chuyên khoa' end) as servicegrouptype_name, serf.servicepricecode, serf.servicepricename, serf.servicepricenamebhyt, serf.servicepriceunit, ser.loaidoituong, ser.loaidoituong_name, ser.soluong, ser.servicepricemoney, ser.thanhtien FROM (select servicepricegroupcode,bhyt_groupcode,servicegrouptype,servicepricetype,servicepricecode,servicepricename,servicepricenamebhyt,servicepriceunit,servicepricefee,servicepricefeenhandan,servicepricefeebhyt,servicepricefeenuocngoai from servicepriceref where " + _servicegrouptype + ") serf left join (select se.servicepricecode, sum(se.soluong) as soluong, se.loaidoituong, (case se.loaidoituong when 0 then 'BHYT' when 1 then 'VP' when 2 then 'Đi kèm' when 3 then 'YC' when 4 then 'BHYT+YC' when 6 then 'BHYT+YC' when 20 then 'TT riêng' end) as loaidoituong_name, (case se.loaidoituong when 0 then se.servicepricemoney_bhyt when 1 then se.servicepricemoney_nhandan when 2 then se.servicepricemoney_bhyt when 3 then se.servicepricemoney when 4 then se.servicepricemoney when 6 then se.servicepricemoney when 20 then se.servicepricemoney_bhyt else 0 end) as servicepricemoney, sum((case se.loaidoituong when 0 then se.servicepricemoney_bhyt when 1 then se.servicepricemoney_nhandan when 2 then se.servicepricemoney_bhyt when 3 then se.servicepricemoney when 4 then se.servicepricemoney when 6 then se.servicepricemoney when 20 then se.servicepricemoney_bhyt else 0 end)*se.soluong) as thanhtien, se.bhyt_groupcode from (select vienphiid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney from serviceprice where " + _bhyt_groupcode + _servicepricedate + ") se inner join (select vienphiid from vienphi where " + _trangthaibenhan + _vienphidate + ") vp on vp.vienphiid=se.vienphiid group by se.servicepricecode,se.loaidoituong,se.bhyt_groupcode,se.servicepricemoney_bhyt,se.servicepricemoney_nhandan,se.servicepricemoney) ser on ser.servicepricecode=serf.servicepricecode WHERE ser.soluong>0 or serf.servicepricetype=1 ORDER BY serf.servicegrouptype,serf.servicepricegroupcode,serf.servicepricename;";
+                    sql_timkiem = " SELECT serf.servicepricegroupcode, serf.bhyt_groupcode, serf.servicegrouptype, serf.servicepricetype, (case serf.servicegrouptype when 1 then 'Khám bệnh' when 2 then 'Xét nghiệm' when 3 then 'CĐHA' when 4 then 'Chuyên khoa' end) as servicegrouptype_name, serf.servicepricecode, serf.servicepricename, serf.servicepricenamebhyt, serf.servicepriceunit, ser.loaidoituong, ser.loaidoituong_name, ser.soluong, ser.servicepricemoney, ser.thanhtien, '0' as isgroup FROM (select servicepricegroupcode,bhyt_groupcode,servicegrouptype,servicepricetype,servicepricecode,servicepricename,servicepricenamebhyt,servicepriceunit,servicepricefee,servicepricefeenhandan,servicepricefeebhyt,servicepricefeenuocngoai from servicepriceref where " + _servicegrouptype + ") serf left join (select se.servicepricecode, sum(se.soluong) as soluong, se.loaidoituong, (case se.loaidoituong when 0 then 'BHYT' when 1 then 'VP' when 2 then 'Đi kèm' when 3 then 'YC' when 4 then 'BHYT+YC' when 6 then 'BHYT+YC' when 20 then 'TT riêng' end) as loaidoituong_name, (case se.loaidoituong when 0 then se.servicepricemoney_bhyt when 1 then se.servicepricemoney_nhandan when 2 then se.servicepricemoney_bhyt when 3 then se.servicepricemoney when 4 then se.servicepricemoney when 6 then se.servicepricemoney when 20 then se.servicepricemoney_bhyt else 0 end) as servicepricemoney, sum((case se.loaidoituong when 0 then se.servicepricemoney_bhyt when 1 then se.servicepricemoney_nhandan when 2 then se.servicepricemoney_bhyt when 3 then se.servicepricemoney when 4 then se.servicepricemoney when 6 then se.servicepricemoney when 20 then se.servicepricemoney_bhyt else 0 end)*se.soluong) as thanhtien, se.bhyt_groupcode from (select vienphiid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney from serviceprice where " + _bhyt_groupcode + _servicepricedate + ") se inner join (select vienphiid from vienphi where " + _trangthaibenhan + _vienphidate + ") vp on vp.vienphiid=se.vienphiid group by se.servicepricecode,se.loaidoituong,se.bhyt_groupcode,se.servicepricemoney_bhyt,se.servicepricemoney_nhandan,se.servicepricemoney) ser on ser.servicepricecode=serf.servicepricecode WHERE ser.soluong>0 or serf.servicepricetype=1 ORDER BY serf.servicegrouptype,serf.servicepricegroupcode,serf.servicepricename;";
                 }
                 else
                 {
@@ -146,14 +146,14 @@ namespace MedicalLink.BaoCao
                 DataTable _dataBC = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBC != null && _dataBC.Rows.Count > 0)
                 {
-                    List<BCDoanhThuDichVuBC08DTO> lstDataBaoCao = new List<BCDoanhThuDichVuBC08DTO>();
-                    lstDataBaoCao = Utilities.Util_DataTable.DataTableToList<BCDoanhThuDichVuBC08DTO>(_dataBC);
+                    //List<BCDoanhThuDichVuBC08DTO> lstDataBaoCao = new List<BCDoanhThuDichVuBC08DTO>();
+                    //lstDataBaoCao = Utilities.Util_DataTable.DataTableToList<BCDoanhThuDichVuBC08DTO>(_dataBC);
+                    gridControlDataBaoCao.DataSource = _dataBC;
                     //Hien thi du lieu len TreeList
-                    HienThiLenTreeList(lstDataBaoCao);
+                    //HienThiLenTreeList(lstDataBaoCao);
                 }
                 else
                 {
-                    treeListDSDichVu.ClearNodes();
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
@@ -165,6 +165,7 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
+        /*
         #region  Hien thi len Tree list
         private void HienThiLenTreeList(List<BCDoanhThuDichVuBC08DTO> _lstDataBaoCao)
         {
@@ -261,14 +262,14 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
         }
         #endregion
-
+        */
         #endregion
 
         #region Export and Print
         private void tbnExport_Click(object sender, EventArgs e)
         {
             //DataTable _dataBaoCao = TraverseTreeView(treeListDSDichVu);
-            List<BCDoanhThuDichVuBC08DTO> _list = TreeListToList(treeListDSDichVu);
+            //List<BCDoanhThuDichVuBC08DTO> _list = TreeListToList(treeListDSDichVu);
             //try
             //{
             //    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -298,38 +299,38 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             //SplashScreenManager.CloseForm();
         }
 
-        public List<BCDoanhThuDichVuBC08DTO> TreeListToList(TreeList treelist)
-        {
-            List<BCDoanhThuDichVuBC08DTO> result = new List<BCDoanhThuDichVuBC08DTO>();
-            try
-            {
-                var nodes = treeListDSDichVu.Selection;
-                //List<string> values = new List<string>();
-                foreach (TreeListNode item in nodes)
-                {
-                //    for (int i = 0; i < treelist.AllNodesCount; i++)
-                //{
-                    //TreeListNode item = treelist.Nodes[i];
-                    //DataRow _dr = (DataRow)treelist.GetDataRecordByNode(i);
-                    BCDoanhThuDichVuBC08DTO _itemData = new BCDoanhThuDichVuBC08DTO();
-                    _itemData.servicepricegroupcode = item.GetValue("servicepricegroupcode").ToString();
-                    _itemData.servicegrouptype_name = item.GetValue("servicegrouptype_name").ToString();
-                    _itemData.servicepricecode = item.GetValue("servicepricecode").ToString();
-                    _itemData.servicepricename = item.GetValue("servicepricename").ToString();
-                    _itemData.loaidoituong_name = (item.GetValue("loaidoituong_name") ?? "").ToString();
-                    _itemData.soluong = Utilities.Util_TypeConvertParse.ToDecimal((item.GetValue("soluong") ?? "0").ToString());
-                    _itemData.servicepricemoney = Utilities.Util_TypeConvertParse.ToDecimal((item.GetValue("servicepricemoney") ?? "0").ToString());
-                    _itemData.thanhtien = Utilities.Util_TypeConvertParse.ToDecimal((item.GetValue("thanhtien") ?? "0").ToString());
+        //public List<BCDoanhThuDichVuBC08DTO> TreeListToList(TreeList treelist)
+        //{
+        //    List<BCDoanhThuDichVuBC08DTO> result = new List<BCDoanhThuDichVuBC08DTO>();
+        //    try
+        //    {
+        //        var nodes = treeListDSDichVu.Selection;
+        //        //List<string> values = new List<string>();
+        //        foreach (TreeListNode item in nodes)
+        //        {
+        //        //    for (int i = 0; i < treelist.AllNodesCount; i++)
+        //        //{
+        //            //TreeListNode item = treelist.Nodes[i];
+        //            //DataRow _dr = (DataRow)treelist.GetDataRecordByNode(i);
+        //            BCDoanhThuDichVuBC08DTO _itemData = new BCDoanhThuDichVuBC08DTO();
+        //            _itemData.servicepricegroupcode = item.GetValue("servicepricegroupcode").ToString();
+        //            _itemData.servicegrouptype_name = item.GetValue("servicegrouptype_name").ToString();
+        //            _itemData.servicepricecode = item.GetValue("servicepricecode").ToString();
+        //            _itemData.servicepricename = item.GetValue("servicepricename").ToString();
+        //            _itemData.loaidoituong_name = (item.GetValue("loaidoituong_name") ?? "").ToString();
+        //            _itemData.soluong = Utilities.Util_TypeConvertParse.ToDecimal((item.GetValue("soluong") ?? "0").ToString());
+        //            _itemData.servicepricemoney = Utilities.Util_TypeConvertParse.ToDecimal((item.GetValue("servicepricemoney") ?? "0").ToString());
+        //            _itemData.thanhtien = Utilities.Util_TypeConvertParse.ToDecimal((item.GetValue("thanhtien") ?? "0").ToString());
 
-                    result.Add(_itemData);
-                }
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-            return result;
-        }
+        //            result.Add(_itemData);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return null;
+        //    }
+        //    return result;
+        //}
 
 
 
@@ -409,11 +410,12 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
         #endregion
 
         #region Custom
-        private void treeListDSDichVu_NodeCellStyle(object sender, DevExpress.XtraTreeList.GetCustomNodeCellStyleEventArgs e)
+        private void gridViewDataBaoCao_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
             try
             {
-                if (e.Node == (sender as TreeList).FocusedNode)
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
                 {
                     e.Appearance.BackColor = Color.LightGreen;
                     e.Appearance.ForeColor = Color.Black;
@@ -451,7 +453,6 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void radioXemChiTiet_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -496,6 +497,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
 
         #endregion
 

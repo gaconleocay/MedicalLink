@@ -560,6 +560,25 @@ namespace MedicalLink.Base
                 REPORT_35.permissionnote = "Bảng kê hóa đơn, chứng từ của thuốc, VTYT-HCXN sử dụng";
                 lstresult.Add(REPORT_35);
 
+                ClassCommon.classPermission REPORT_36 = new ClassCommon.classPermission();
+                REPORT_36.permissioncheck = false;
+                REPORT_36.permissioncode = "REPORT_36";
+                REPORT_36.permissionname = "Báo cáo doanh thu theo dịch vụ (BC08)";
+                REPORT_36.permissiontype = 3;
+                REPORT_36.permissionnote = "Báo cáo doanh thu theo dịch vụ (BC08)";
+                lstresult.Add(REPORT_36);
+
+                ClassCommon.classPermission REPORT_37 = new ClassCommon.classPermission();
+                REPORT_37.permissioncheck = false;
+                REPORT_37.permissioncode = "REPORT_37";
+                REPORT_37.permissionname = "Báo cáo doanh thu theo loại hình dịch vụ";
+                REPORT_37.permissiontype = 3;
+                REPORT_37.permissionnote = "Báo cáo doanh thu theo loại hình dịch vụ";
+                lstresult.Add(REPORT_37);
+
+
+
+
                 //Dashboard
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();
                 DASHBOARD_01.permissioncheck = false;

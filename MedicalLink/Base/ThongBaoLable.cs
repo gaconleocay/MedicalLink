@@ -38,6 +38,7 @@ namespace MedicalLink.Base
         internal static string CHUA_CHON_DOI_TUONG_BENH_NHAN = "Chưa chọn đối tượng bệnh nhân!";
         internal static string KHONG_THE_SU_DUNG_MA_NAY = "Không thể sử dụng mã này!";
         internal static string CHUA_CHON_DICH_VU = "Chưa chọn dịch vụ!";
+        internal static string CHUA_CHON_NHOM_DICH_VU = "Chưa chọn nhóm dịch vụ!";
         internal static string TEN_TAI_KHOA_DA_TON_TAI = "Tên tài khoản đã tồn tại!";
         internal static string MA_HIS_ID_DA_TON_TAI = "Mã HIS ID đã tồn tại!";
         internal static string CHUA_CHON_SO_XET_NGHIEM = "Chưa chọn sổ xét nghiệm!";

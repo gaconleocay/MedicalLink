@@ -153,6 +153,16 @@ namespace MedicalLink.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap group_16 {
+            get {
+                object obj = ResourceManager.GetObject("group-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ok_16 {
             get {
                 object obj = ResourceManager.GetObject("ok-16", resourceCulture);
@@ -226,6 +236,16 @@ namespace MedicalLink.Properties {
         internal static System.Drawing.Bitmap save_16 {
             get {
                 object obj = ResourceManager.GetObject("save-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_3_16 {
+            get {
+                object obj = ResourceManager.GetObject("search-3-16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

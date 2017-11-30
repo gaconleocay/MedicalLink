@@ -41,6 +41,8 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
+            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
+            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
             this.gridControlDataBaoCao = new DevExpress.XtraGrid.GridControl();
             this.gridViewDataBaoCao = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.stt = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,8 +57,6 @@
             this.gridColumn_thanhtien_bh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_thanhtien_chenh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_tienthucthu = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
-            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -120,7 +120,8 @@
             this.cboTrangThaiVienPhi.Properties.Items.AddRange(new object[] {
             "Đang điều trị",
             "Ra viện chưa thanh toán",
-            "Đã thanh toán"});
+            "Đã thanh toán",
+            "Tất cả"});
             this.cboTrangThaiVienPhi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTrangThaiVienPhi.Size = new System.Drawing.Size(151, 22);
             this.cboTrangThaiVienPhi.TabIndex = 90;
@@ -223,6 +224,34 @@
             this.groupBoxAction.Size = new System.Drawing.Size(138, 90);
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
+            // 
+            // dropDownPrint
+            // 
+            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownPrint.Appearance.Options.UseFont = true;
+            this.dropDownPrint.Appearance.Options.UseForeColor = true;
+            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.dropDownPrint.Location = new System.Drawing.Point(14, 15);
+            this.dropDownPrint.Name = "dropDownPrint";
+            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
+            this.dropDownPrint.TabIndex = 11;
+            this.dropDownPrint.Text = "In...";
+            // 
+            // dropDownExport
+            // 
+            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownExport.Appearance.Options.UseFont = true;
+            this.dropDownExport.Appearance.Options.UseForeColor = true;
+            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.dropDownExport.Location = new System.Drawing.Point(14, 51);
+            this.dropDownExport.Name = "dropDownExport";
+            this.dropDownExport.Size = new System.Drawing.Size(110, 30);
+            this.dropDownExport.TabIndex = 10;
+            this.dropDownExport.Text = "Xuất file...";
             // 
             // gridControlDataBaoCao
             // 
@@ -343,6 +372,8 @@
             this.gridColumn1.FieldName = "departmentgroupname";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 10;
             this.gridColumn1.Width = 145;
             // 
             // gridColumn2
@@ -558,34 +589,6 @@
             this.gridColumn_tienthucthu.Visible = true;
             this.gridColumn_tienthucthu.VisibleIndex = 9;
             this.gridColumn_tienthucthu.Width = 140;
-            // 
-            // dropDownExport
-            // 
-            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
-            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dropDownExport.Appearance.Options.UseFont = true;
-            this.dropDownExport.Appearance.Options.UseForeColor = true;
-            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.dropDownExport.Location = new System.Drawing.Point(14, 51);
-            this.dropDownExport.Name = "dropDownExport";
-            this.dropDownExport.Size = new System.Drawing.Size(110, 30);
-            this.dropDownExport.TabIndex = 10;
-            this.dropDownExport.Text = "Xuất file...";
-            // 
-            // dropDownPrint
-            // 
-            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
-            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dropDownPrint.Appearance.Options.UseFont = true;
-            this.dropDownPrint.Appearance.Options.UseForeColor = true;
-            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
-            this.dropDownPrint.Location = new System.Drawing.Point(14, 15);
-            this.dropDownPrint.Name = "dropDownPrint";
-            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
-            this.dropDownPrint.TabIndex = 11;
-            this.dropDownPrint.Text = "In...";
             // 
             // ucBCDoanhThuTheoLoaiHinhDV
             // 

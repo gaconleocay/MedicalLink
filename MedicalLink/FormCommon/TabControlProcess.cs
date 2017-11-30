@@ -377,6 +377,12 @@ namespace MedicalLink.FormCommon
                     case "DASHBOARD_12":
                         ucResult = new Dashboard.ucBCBNSuDungThuocTheoNhom();
                         break;
+                    case "DASHBOARD_13":
+                        ucResult = new Dashboard.ucCapNhatVaDieuDongNhanSu();
+                        break;
+
+
+
 
                     default:
                         break;

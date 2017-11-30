@@ -1143,36 +1143,59 @@ where
   
 22231;217171864444.154  
   
-  duongthihuong.2212
-  096867190
-  hoathuytinh
-  chauanh042015@yahoo.com
+ 
+  
+A. DUy
+
+F3_32: Natri clorid 0,9% [500ml] cùng số Đăng kí và tên thuốc, nhưng cái giám định chỉ nhận lô thuốc có giá thấp hơn ở trên, trong khi lô dưới mới là lô đúng giá nên pmem báo vượt giá thầu  
+  
+=> Chạy lại giám định là ok
+
+F4_40
+F4_41: thừa 1 dấu " " so với danh mục
+Danh mục: Vasofix Safety[Kim luồn mạch máu an toàn có cánh số 20G]
+XML: 	  Vasofix Safety[ Kim luồn mạch máu an toàn có cánh số 20G]
+  
+  
+  
+Kim chọc dò tủy sống(Spinocan G18 đến G27)
+  
+  
+  
+  Vít khóa 4,5 mm, các cỡ[IEC]
+  Vít khóa 4,5 mm, các cỡ[IEC]
+  
+  Selection	STT	MA_NHOM_VTYT	MA_NHOM_AX	TEN_NHOM_VTYT	TEN_NHOM_AX	MA_HIEU	MA_VTYT_BV	TEN_VTYT_BV	QUY_CACH	NUOC_SX	HANG_SX	DON_VI_TINH	DON_GIA	DON_GIA_TT	NHA_THAU	QUYET_DINH	KETQUA	HIEULUC	MANHOM_9324	LOAI_THAU	MA_CSKCB	SO_LUONG	DINH_MUC	CONG_BO	LYDOTUCHOI	Người cập nhật	Thời gian cập nhật
+Đã đánh dấu	1657	N07.06.040	N07.06.040	Đinh, nẹp, ghim, kim, khóa, ốc, vít, lồng dùng trong phẫu thuật các loại, các cỡ	Đinh, nẹp, ghim, kim, khóa, ốc, vít, lồng dùng trong phẫu thuật các loại, các cỡ		N07.06.040	Vít khóa 4,5 mm, các cỡ[IEC]	25 cái/ túi		Intercus/ CHLB Đức - G7	cái	450000	450000	Công ty TNHH Hà Nội IEC	756/QĐ-BVVT	Đã phê duyệt	Có	10	2	31153	5	1	20170503		tdduy-it	2017-11-15 08:17
   
   
   
   
   
+ -- kiem tra 1 the xe chi duoc cap nhat cho 1 BN tai 1 thoi diem
+ 
+  
+ alter table cp_benhnhanthexe add cardeventid text;
+
+CREATE INDEX cp_benhnhanthexe_cardeventid_idx
+  ON cp_benhnhanthexe
+  USING btree
+  (cardeventid);
+
+------
+alter table cp_benhnhanthexe add sothexe text;
+
+CREATE INDEX cp_benhnhanthexe_sothexe_idx
+  ON cp_benhnhanthexe
+  USING btree
+  (sothexe);
+
+
+ 
   
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  ch
   
   
   

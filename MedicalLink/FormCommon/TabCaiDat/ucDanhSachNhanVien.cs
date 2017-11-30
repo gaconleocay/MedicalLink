@@ -92,12 +92,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
         // Thêm, sửa danh sách nhân viên
         private void btnNVOK_Click_1(object sender, EventArgs e)
         {
-            string en_txtNVID = txtNVID.Text.Trim().ToLower();
-            string en_txtNVName = txtNVName.Text.Trim();
-            string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
-
             try
             {
+                if (txtNVID.Text.Trim() == "")
+                {
+                    return;
+                }
+                string en_txtNVID = txtNVID.Text.Trim().ToLower();
+                string en_txtNVName = txtNVName.Text.Trim();
+                string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
                 string _usergnhom = "99";
                 if (cboNhomNhanVien.Text == "Bác sĩ")
                 {
@@ -199,7 +202,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                     Workbook workbook = new Workbook(openFileDialogSelect.FileName);
                     Worksheet worksheet = workbook.Worksheets[worksheetName];
-                    DataTable dmUser_Import = worksheet.Cells.ExportDataTable(4, 0, worksheet.Cells.MaxDataRow-3, worksheet.Cells.MaxDataColumn + 1, true);
+                    DataTable dmUser_Import = worksheet.Cells.ExportDataTable(4, 0, worksheet.Cells.MaxDataRow - 3, worksheet.Cells.MaxDataColumn + 1, true);
                     dmUser_Import.TableName = "DATA";
                     if (dmUser_Import != null)
                     {

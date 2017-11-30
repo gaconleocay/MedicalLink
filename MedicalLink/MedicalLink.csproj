@@ -487,6 +487,7 @@
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouCTDTO.cs" />
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouTHDTO.cs" />
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
+    <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
     <Compile Include="ClassCommon\classLoaiPTTTDTO.cs" />
@@ -499,6 +500,7 @@
     <Compile Include="ClassCommon\DepartmentDTO.cs" />
     <Compile Include="ClassCommon\DoanhThuTheoNhomDichVuDTO.cs" />
     <Compile Include="ClassCommon\BCBNSDDV_ChiPhiKhacDTO.cs" />
+    <Compile Include="ClassCommon\MoBenhAnTimKiemDTO.cs" />
     <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
     <Compile Include="Base\UtilsTable.cs" />
@@ -780,6 +782,12 @@
     </Compile>
     <Compile Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.Designer.cs">
       <DependentUpon>ucBaoCaoXNTTuTruc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\CapNhatVaDieuDongNhanSu\ucCapNhatVaDieuDongNhanSu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\CapNhatVaDieuDongNhanSu\ucCapNhatVaDieuDongNhanSu.Designer.cs">
+      <DependentUpon>ucCapNhatVaDieuDongNhanSu.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\DBBenhNhanNoiTru\DashboardBenhNhanNoiTruFullSize.cs">
       <SubType>Form</SubType>
@@ -1281,6 +1289,9 @@
     <EmbeddedResource Include="Dashboard\BCXNTTuTruc\ucBaoCaoXNTTuTruc.resx">
       <DependentUpon>ucBaoCaoXNTTuTruc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\CapNhatVaDieuDongNhanSu\ucCapNhatVaDieuDongNhanSu.resx">
+      <DependentUpon>ucCapNhatVaDieuDongNhanSu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\DBBenhNhanNoiTru\DashboardBenhNhanNoiTruFullSize.resx">
       <DependentUpon>DashboardBenhNhanNoiTruFullSize.cs</DependentUpon>
     </EmbeddedResource>
@@ -1457,6 +1468,8 @@
     <None Include="Images\undo-2-16.png" />
     <None Include="Images\x-mark-16.png" />
     <None Include="Images\edit-5-16.png" />
+    <None Include="Images\search-3-16.png" />
+    <None Include="Images\group-16.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -1663,6 +1676,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_37_DoanhThuTheoLoaiHinhDichVu_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\DB_13_CapNhatVaDieuDongNhanLuc.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

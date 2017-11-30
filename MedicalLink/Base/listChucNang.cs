@@ -277,6 +277,15 @@ namespace MedicalLink.Base
                 THAOTAC_03.permissionnote = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng (đã ra viện)";
                 lstresult.Add(THAOTAC_03);
 
+                ClassCommon.classPermission THAOTAC_04 = new ClassCommon.classPermission();
+                THAOTAC_04.permissioncheck = false;
+                THAOTAC_04.permissioncode = "THAOTAC_04";
+                THAOTAC_04.permissionname = "Thêm mới và cập nhật nhân sự";
+                THAOTAC_04.permissiontype = 4;
+                THAOTAC_04.permissionnote = "Thêm mới và cập nhật nhân sự";
+                lstresult.Add(THAOTAC_04);
+
+
 
                 //report
                 ClassCommon.classPermission REPORT_01 = new ClassCommon.classPermission();
@@ -677,7 +686,13 @@ namespace MedicalLink.Base
                 DASHBOARD_12.permissionnote = "BC BN sử dụng thuốc theo nhóm \"Hạn chế sử dụng\" - Tổng hợp";
                 lstresult.Add(DASHBOARD_12);
 
-
+                ClassCommon.classPermission DASHBOARD_13 = new ClassCommon.classPermission();
+                DASHBOARD_13.permissioncheck = false;
+                DASHBOARD_13.permissioncode = "DASHBOARD_13";
+                DASHBOARD_13.permissionname = "Cập nhật và điều động nhân lực";
+                DASHBOARD_13.permissiontype = 5;
+                DASHBOARD_13.permissionnote = "Cập nhật và điều động nhân lực điều dưỡng/kỹ thuật viên hàng ngày";
+                lstresult.Add(DASHBOARD_13);
 
 
                 //Bao cao in ra

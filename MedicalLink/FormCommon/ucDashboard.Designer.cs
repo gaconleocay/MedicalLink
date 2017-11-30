@@ -34,6 +34,7 @@
             this.navBarGroup1 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCTongHopToanVien = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarBCTHDTKhoa = new DevExpress.XtraNavBar.NavBarItem();
+            this.navBarTinhHinhNhanSu = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarGroup3 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCBenhNhanNgoaiTru = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarItem6 = new DevExpress.XtraNavBar.NavBarItem();
@@ -48,8 +49,8 @@
             this.navBarGroup2 = new DevExpress.XtraNavBar.NavBarGroup();
             this.navBarBCXNTTuTruc = new DevExpress.XtraNavBar.NavBarItem();
             this.navBarBCBNSDThuocTaiKhoa = new DevExpress.XtraNavBar.NavBarItem();
-            this.xtraTabControlChucNang = new DevExpress.XtraTab.XtraTabControl();
             this.navBarBCBNSDThuocTheoNhom = new DevExpress.XtraNavBar.NavBarItem();
+            this.xtraTabControlChucNang = new DevExpress.XtraTab.XtraTabControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -94,7 +95,8 @@
             this.navBarItem10,
             this.navBarDBDTTungKhoa,
             this.navBarDBBenhNhanNoiTru,
-            this.navBarBCBNSDThuocTheoNhom});
+            this.navBarBCBNSDThuocTheoNhom,
+            this.navBarTinhHinhNhanSu});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 152;
@@ -112,7 +114,8 @@
             this.navBarGroup1.Expanded = true;
             this.navBarGroup1.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCTongHopToanVien),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCTHDTKhoa)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarBCTHDTKhoa),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarTinhHinhNhanSu)});
             this.navBarGroup1.Name = "navBarGroup1";
             // 
             // navBarBCTongHopToanVien
@@ -148,6 +151,23 @@
             this.navBarBCTHDTKhoa.Name = "navBarBCTHDTKhoa";
             this.navBarBCTHDTKhoa.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarBCTHDTKhoa.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCTHDTKhoa_LinkClicked);
+            // 
+            // navBarTinhHinhNhanSu
+            // 
+            this.navBarTinhHinhNhanSu.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarTinhHinhNhanSu.Appearance.Options.UseFont = true;
+            this.navBarTinhHinhNhanSu.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarTinhHinhNhanSu.AppearanceDisabled.Options.UseFont = true;
+            this.navBarTinhHinhNhanSu.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.navBarTinhHinhNhanSu.AppearanceHotTracked.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.navBarTinhHinhNhanSu.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarTinhHinhNhanSu.AppearanceHotTracked.Options.UseForeColor = true;
+            this.navBarTinhHinhNhanSu.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarTinhHinhNhanSu.AppearancePressed.Options.UseFont = true;
+            this.navBarTinhHinhNhanSu.Caption = "Tình hình nhân sự";
+            this.navBarTinhHinhNhanSu.Name = "navBarTinhHinhNhanSu";
+            this.navBarTinhHinhNhanSu.SmallImage = global::MedicalLink.Properties.Resources.group_16;
+            this.navBarTinhHinhNhanSu.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarTinhHinhNhanSu_LinkClicked);
             // 
             // navBarGroup3
             // 
@@ -374,19 +394,6 @@
             this.navBarBCBNSDThuocTaiKhoa.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarBCBNSDThuocTaiKhoa.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCBNSDThuocTaiKhoa_LinkClicked);
             // 
-            // xtraTabControlChucNang
-            // 
-            this.xtraTabControlChucNang.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
-            this.xtraTabControlChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControlChucNang.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControlChucNang.Margin = new System.Windows.Forms.Padding(0);
-            this.xtraTabControlChucNang.Name = "xtraTabControlChucNang";
-            this.xtraTabControlChucNang.Size = new System.Drawing.Size(1013, 613);
-            this.xtraTabControlChucNang.TabIndex = 1;
-            this.xtraTabControlChucNang.TabPageWidth = 150;
-            this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDashboard_SelectedPageChanged);
-            this.xtraTabControlChucNang.CloseButtonClick += new System.EventHandler(this.xtraTabControlDashboard_CloseButtonClick);
-            // 
             // navBarBCBNSDThuocTheoNhom
             // 
             this.navBarBCBNSDThuocTheoNhom.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -399,6 +406,19 @@
             this.navBarBCBNSDThuocTheoNhom.Name = "navBarBCBNSDThuocTheoNhom";
             this.navBarBCBNSDThuocTheoNhom.SmallImage = global::MedicalLink.Properties.Resources.arrow_32_16;
             this.navBarBCBNSDThuocTheoNhom.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarBCBNSDThuocTheoNhom_LinkClicked);
+            // 
+            // xtraTabControlChucNang
+            // 
+            this.xtraTabControlChucNang.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
+            this.xtraTabControlChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControlChucNang.Location = new System.Drawing.Point(0, 0);
+            this.xtraTabControlChucNang.Margin = new System.Windows.Forms.Padding(0);
+            this.xtraTabControlChucNang.Name = "xtraTabControlChucNang";
+            this.xtraTabControlChucNang.Size = new System.Drawing.Size(1013, 613);
+            this.xtraTabControlChucNang.TabIndex = 1;
+            this.xtraTabControlChucNang.TabPageWidth = 150;
+            this.xtraTabControlChucNang.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtraTabControlDashboard_SelectedPageChanged);
+            this.xtraTabControlChucNang.CloseButtonClick += new System.EventHandler(this.xtraTabControlDashboard_CloseButtonClick);
             // 
             // ucDashboard
             // 
@@ -440,5 +460,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarDBDTTungKhoa;
         private DevExpress.XtraNavBar.NavBarItem navBarDBBenhNhanNoiTru;
         private DevExpress.XtraNavBar.NavBarItem navBarBCBNSDThuocTheoNhom;
+        private DevExpress.XtraNavBar.NavBarItem navBarTinhHinhNhanSu;
     }
 }

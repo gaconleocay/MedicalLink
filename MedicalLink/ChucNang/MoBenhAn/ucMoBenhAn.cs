@@ -14,6 +14,9 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
 using MedicalLink.Base;
 using MedicalLink.ChucNang.MoBenhAn;
+using System.Globalization;
+using MedicalLink.ClassCommon;
+using DevExpress.XtraSplashScreen;
 
 namespace MedicalLink.ChucNang
 {
@@ -24,139 +27,95 @@ namespace MedicalLink.ChucNang
         public ucMoBenhAn()
         {
             InitializeComponent();
-            // Hiển thị Text Hint
-            txtMBAMaBenhNhan.ForeColor = SystemColors.GrayText;
-            txtMBAMaBenhNhan.Text = "Mã bệnh nhân";
-            this.txtMBAMaBenhNhan.Leave += new System.EventHandler(this.textBox1_Leave);
-            this.txtMBAMaBenhNhan.Enter += new System.EventHandler(this.textBox1_Enter);
-            HienThiThongTinBenhNhanDangChon(null, null, null);
-
-            txtSoTheBHYT.ForeColor = SystemColors.GrayText;
-            txtSoTheBHYT.Text = "Số thẻ BHYT";
-            this.txtSoTheBHYT.Leave += new System.EventHandler(this.textBoxBHYT_Leave);
-            this.txtSoTheBHYT.Enter += new System.EventHandler(this.textBoxBHYT_Enter);
         }
 
-        #region Load
-        // Hiển thị Text Hint
-        private void textBox1_Leave(object sender, EventArgs e)
+        #region Load      
+        private void ucMoBenhAn_Load(object sender, EventArgs e)
         {
-            if (txtMBAMaBenhNhan.Text.Length == 0)
-            {
-                txtMBAMaBenhNhan.Text = "Mã bệnh nhân";
-                txtMBAMaBenhNhan.ForeColor = SystemColors.GrayText;
-            }
+            txtMBAMaBenhNhan.Focus();
+            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.AddYears(-1).ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
         }
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (txtMBAMaBenhNhan.Text == "Mã bệnh nhân")
-            {
-                txtMBAMaBenhNhan.Text = "";
-                txtMBAMaBenhNhan.ForeColor = SystemColors.WindowText;
-            }
-        }
-
-        //Hien thi text hint BHYT
-        private void textBoxBHYT_Leave(object sender, EventArgs e)
-        {
-            if (txtSoTheBHYT.Text.Length == 0)
-            {
-                txtSoTheBHYT.Text = "Số thẻ BHYT";
-                txtSoTheBHYT.ForeColor = SystemColors.GrayText;
-            }
-        }
-        private void textBoxBHYT_Enter(object sender, EventArgs e)
-        {
-            if (txtSoTheBHYT.Text == "Số thẻ BHYT")
-            {
-                txtSoTheBHYT.Text = "";
-                txtSoTheBHYT.ForeColor = SystemColors.WindowText;
-            }
-        }
-
-        #endregion
-
-        #region Custom
-        private void txtMBAMaBenhNhan_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                txtSoTheBHYT.Text = "";
-                btnMBATimKiem.PerformClick();
-            }
-        }
-
-        private void txtMBAMaBenhNhan_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtSoTheBHYT_KeyPress(object sender, KeyPressEventArgs e)
+        internal void gridControlMBA_TH_Load()
         {
             try
             {
-                string sotheBHYT = txtSoTheBHYT.Text.Trim();
-                if (txtSoTheBHYT.Text.Length > 15)
-                {
-                    txtSoTheBHYT.Text = sotheBHYT;
-                }
+                string sqlquerry = "select distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.medicalrecordid_next as madieutrisau, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then 'Kết thúc' else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, CASE medicalrecord.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where medicalrecord.departmentid=department.departmentid) END as tenphong, medicalrecord.departmentgroupid as idkhoa, medicalrecord.departmentid as idphong, case medicalrecord.nextdepartmentid when 0 then 'Khoa cuối' end as lakhoacuoi, medicalrecord.hosobenhanid as mahosobenhan, medicalrecord.loaibenhanid as loaibenhanid FROM medicalrecord, hosobenhan,departmentgroup,department WHERE medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.hosobenhanid=hosobenhan.hosobenhanid and vienphiid=" + lblmavienphi_frm1.Text + " order by madieutri;";
+                DataView dv_madieutri = new DataView(condb.GetDataTable_HIS(sqlquerry));
+                gridControlMBA_TH.DataSource = dv_madieutri;
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Error(ex);
             }
         }
-        private void txtSoTheBHYT_KeyDown(object sender, KeyEventArgs e)
-        {
-            try
-            {
-                if (e.KeyCode == Keys.Enter && txtSoTheBHYT.Text.Length == 15)
-                {
-                    btnMBATimKiem.PerformClick();
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         #endregion
+
+        #region Tim kiem
+
         private void btnMBATimKiem_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                gridControlMBA_TH.DataSource = null;
-                HienThiThongTinBenhNhanDangChon(null, null, null);
-                string sqlquerry = "";
-                if (txtMBAMaBenhNhan.Text != "Mã bệnh nhân")
+                HienThiThongTinBenhNhanDangChon("", "", "");
+
+                string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+
+                string _tieuchi = " vp.vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
+                string _tukhoatimkiem = "";
+
+                if (txtMBAMaBenhNhan.Text.Trim() != "")
                 {
-                    sqlquerry = "SELECT DISTINCT vienphi.vienphiid as mavienphi, vienphi.patientid as mabenhnhan,hosobenhan.patientname as tenbenhnhan, vienphi.vienphidate as ngayvaovien, vienphi.vienphidate_ravien as ngayravien, case vienphi.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, departmentgroup.departmentgroupname as khoa, CASE vienphi.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where vienphi.departmentid=department.departmentid) END as phong, bhyt.bhytcode FROM vienphi,hosobenhan,departmentgroup,department,bhyt WHERE vienphi.hosobenhanid=hosobenhan.hosobenhanid and bhyt.bhytid=vienphi.bhytid and vienphi.departmentgroupid=departmentgroup.departmentgroupid and vienphi.patientid=" + txtMBAMaBenhNhan.Text + " order by mavienphi desc";
+                    long _mabenhnhan = Utilities.Util_TypeConvertParse.ToInt64(txtMBAMaBenhNhan.Text.ToUpper().Replace("BN", ""));
+                    _tukhoatimkiem = " and vp.patientid='" + _mabenhnhan + "' ";
                 }
-                else if (txtMBAMaBenhNhan.Text == "Mã bệnh nhân" && txtSoTheBHYT.Text.Trim().Length == 15)
+                else if (txtMBAMaBenhNhan.Text.Trim() == "" && txtSoTheBHYT.Text.Trim().Length == 15)
                 {
-                    sqlquerry = "SELECT DISTINCT vienphi.vienphiid as mavienphi, vienphi.patientid as mabenhnhan,hosobenhan.patientname as tenbenhnhan, vienphi.vienphidate as ngayvaovien, vienphi.vienphidate_ravien as ngayravien, case vienphi.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, departmentgroup.departmentgroupname as khoa, CASE vienphi.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where vienphi.departmentid=department.departmentid) END as phong,bhyt.bhytcode FROM vienphi,hosobenhan,departmentgroup,department,bhyt WHERE vienphi.hosobenhanid=hosobenhan.hosobenhanid and vienphi.bhytid=bhyt.bhytid and vienphi.departmentgroupid=departmentgroup.departmentgroupid and bhyt.bhytcode='" + txtSoTheBHYT.Text.Trim().ToUpper() + "' order by mavienphi desc";
+                    _tukhoatimkiem = " and bh.bhytcode='" + txtSoTheBHYT.Text.Trim().ToUpper() + "' ";
                 }
 
-                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
-                gridControlMoBenhAn.DataSource = dv;
+                string _sqlquerry = " SELECT DISTINCT vp.vienphiid as mavienphi, vp.patientid as mabenhnhan, hsba.patientname as tenbenhnhan, '' as tenbenhnhan_khongdau, hsba.gioitinhname, (case when hsba.birthday_year<>0 then cast(hsba.birthday_year as text) else to_char(hsba.birthday,'dd/MM/yyyy') end) as namsinh, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname else '' end)) as diachi, to_char(vp.vienphidate, 'yyyy-MM-dd HH24:MI:ss') as ngayvaovien, (case when vp.vienphistatus<>0 then to_char(vp.vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') end) as ngayravien, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai, degp.departmentgroupname as khoa, (CASE vp.departmentid WHEN '0' THEN 'Hành chính' ELSE de.departmentname END) as phong, bh.bhytcode, (vp.chandoanravien_code || ' - ' || vp.chandoanravien) as tenbenh FROM vienphi vp inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid inner join bhyt bh on bh.bhytid=vp.bhytid inner join departmentgroup degp on degp.departmentgroupid=vp.departmentgroupid left join department de on de.departmentid=vp.departmentid WHERE " + _tieuchi + _tukhoatimkiem + " ORDER BY mavienphi desc;";
 
-                if (gridViewMoBenhAn.RowCount == 0)
+                DataTable _dataTimKiem = condb.GetDataTable_HIS(_sqlquerry);
+                if (_dataTimKiem != null && _dataTimKiem.Rows.Count > 0)
                 {
+                    if (txtMBAMaBenhNhan.Text.Trim() == "" && txtSoTheBHYT.Text.Trim() == "" && txtTenBenhNhan.Text.Trim() != "")
+                    {
+                        List<MoBenhAnTimKiemDTO> lstHoSoBenhAn = Utilities.Util_DataTable.DataTableToList<MoBenhAnTimKiemDTO>(_dataTimKiem);
+                        if (lstHoSoBenhAn != null && lstHoSoBenhAn.Count > 0)
+                        {
+                            foreach (var item_HSBA in lstHoSoBenhAn)
+                            {
+                                item_HSBA.tenbenhnhan_khongdau = Utilities.Common.String.Convert.UnSignVNese(item_HSBA.tenbenhnhan).ToLower();
+                            }
+                            List<MoBenhAnTimKiemDTO> lstHoSoBenhAn_TK = lstHoSoBenhAn.Where(o => o.tenbenhnhan_khongdau.Contains(txtTenBenhNhan.Text.Trim().ToLower())).ToList();
+                            gridControlMoBenhAn.DataSource = lstHoSoBenhAn_TK;
+                        }
+                    }
+                    else
+                    {
+                        gridControlMoBenhAn.DataSource = _dataTimKiem;
+                    }
+                }
+                else
+                {
+                    gridControlMoBenhAn.DataSource = null;
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
-
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
         }
 
+        #endregion
+
+        #region Events
         private void gridControlMoBenhAn_Click(object sender, EventArgs e)
         {
             try
@@ -186,90 +145,18 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        // Đổi màu row khi kích chuột vào dòng đó, và đổi cỡ chữ
-        private void gridViewMoBenhAn_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
-            }
-        }
-
-        private void ucMoBenhAn_Load(object sender, EventArgs e)
-        {
-            txtMBAMaBenhNhan.Focus();
-        }
-
-        internal void gridControlMBA_TH_Load()
-        {
-            try
-            {
-                string sqlquerry = "select distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.medicalrecordid_next as madieutrisau, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then 'Kết thúc' else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, CASE medicalrecord.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where medicalrecord.departmentid=department.departmentid) END as tenphong, medicalrecord.departmentgroupid as idkhoa, medicalrecord.departmentid as idphong, case medicalrecord.nextdepartmentid when 0 then 'Khoa cuối' else 'None' end as lakhoacuoi, medicalrecord.hosobenhanid as mahosobenhan, medicalrecord.loaibenhanid as loaibenhanid FROM medicalrecord, hosobenhan,departmentgroup,department WHERE medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.hosobenhanid=hosobenhan.hosobenhanid and vienphiid=" + lblmavienphi_frm1.Text + " order by madieutri;";
-                DataView dv_madieutri = new DataView(condb.GetDataTable_HIS(sqlquerry));
-                gridControlMBA_TH.DataSource = dv_madieutri;
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Error(ex);
-            }
-        }
-
         internal void HienThiThongTinBenhNhanDangChon(string mabenhnhan, string mavienphi, string tenbenhnhan)
         {
             try
             {
-                if (mabenhnhan != null && mavienphi != null && tenbenhnhan != null)
-                {
-                    labelmabenhnhan.Text = mabenhnhan;
-                    lblmavienphi_frm1.Text = mavienphi;
-                    labeltenbenhnhan.Text = tenbenhnhan;
-                }
-                else
-                {
-                    labelmabenhnhan.Text = "";
-                    lblmavienphi_frm1.Text = "";
-                    labeltenbenhnhan.Text = "";
-                }
-
+                labelmabenhnhan.Text = mabenhnhan;
+                lblmavienphi_frm1.Text = mavienphi;
+                labeltenbenhnhan.Text = tenbenhnhan;
             }
             catch (Exception)
             {
             }
         }
-
-        private void gridViewMBA_TH_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
-        {
-            try
-            {
-                if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                    e.Info.DisplayText = (e.RowHandle + 1).ToString();
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-        private void gridViewMBA_TH_RowCellStyle(object sender, RowCellStyleEventArgs e)
-        {
-            try
-            {
-                GridView view = sender as GridView;
-                if (e.RowHandle == view.FocusedRowHandle)
-                {
-                    e.Appearance.BackColor = Color.LightGreen;
-                    e.Appearance.ForeColor = Color.Black;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         private void gridViewMBA_TH_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
             try
@@ -291,7 +178,6 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         internal void moBenhAnItem_Click(object sender, EventArgs e)
         {
             try
@@ -384,19 +270,6 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        private void repositoryItemButtonEdit_MBA_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                moBenhAnItem_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         private void gridControlMBA_TH_Click(object sender, EventArgs e)
         {
             try
@@ -412,5 +285,121 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        #endregion
+
+        #region Custom
+        private void repositoryItemButtonEdit_MBA_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                moBenhAnItem_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void gridViewMBA_TH_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            try
+            {
+                if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                    e.Info.DisplayText = (e.RowHandle + 1).ToString();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void gridViewMBA_TH_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.ForeColor = Color.Black;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void txtMBAMaBenhNhan_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtSoTheBHYT.Text = "";
+                txtTenBenhNhan.Text = "";
+                btnMBATimKiem.PerformClick();
+            }
+        }
+        private void txtTenBenhNhan_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    txtSoTheBHYT.Text = "";
+                    txtMBAMaBenhNhan.Text = "";
+                    btnMBATimKiem.PerformClick();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void txtSoTheBHYT_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                txtTenBenhNhan.Text = "";
+                txtMBAMaBenhNhan.Text = "";
+                if (e.KeyCode == Keys.Enter && txtSoTheBHYT.Text.Length == 15)
+                {
+                    btnMBATimKiem.PerformClick();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void txtMBAMaBenhNhan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            //{
+            //    e.Handled = true;
+            //}
+        }
+        private void txtSoTheBHYT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                string sotheBHYT = txtSoTheBHYT.Text.Trim();
+                if (txtSoTheBHYT.Text.Length > 15)
+                {
+                    txtSoTheBHYT.Text = sotheBHYT;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void gridViewMoBenhAn_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+
+        #endregion
     }
 }

@@ -60,6 +60,11 @@ namespace MedicalLink.FormCommon
                 navBarDBBenhNhanNoiTru.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_09");
                 navBarBCTHDTKhoa.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_10");
                 navBarBCBNSDThuocTheoNhom.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_11") || MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_12");
+                navBarTinhHinhNhanSu.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("DASHBOARD_13");
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -257,6 +262,14 @@ namespace MedicalLink.FormCommon
             UserControl ucControlActive = new UserControl();
             ucControlActive = TabControlProcess.SelectUCControlActive("DASHBOARD_12");
             MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "DASHBOARD_12", "BC BN sử dụng thuốc theo nhóm \"Hạn chế sử dụng\"", "BC BN sử dụng thuốc theo nhóm \"Hạn chế sử dụng\"", ucControlActive);
+            ucControlActive.Show();
+        }
+
+        private void navBarTinhHinhNhanSu_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            UserControl ucControlActive = new UserControl();
+            ucControlActive = TabControlProcess.SelectUCControlActive("DASHBOARD_13");
+            MedicalLink.FormCommon.TabControlProcess.TabCreating(xtraTabControlChucNang, "DASHBOARD_13", "Cập nhật và điều động nhân lực điều dưỡng/kỹ thuật viên hàng ngày", "Cập nhật và điều động nhân lực điều dưỡng/kỹ thuật viên hàng ngày", ucControlActive);
             ucControlActive.Show();
         }
     }

@@ -67,10 +67,6 @@
             this.gridBand12 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn_ddktv_soluong = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridColumn_ddktv_khoadenid = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.repositoryItemGridLookUp_KhoaDen = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_ddktv_songay = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.gridBand2 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.gridColumn_ghichu_khoa = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -84,15 +80,19 @@
             this.bandedGridColumn3 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.repositoryItemGridLookUp_KhoaDen = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemo_ghichu_dieuduong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUp_KhoaDen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemo_ghichu_dieuduong)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -800,61 +800,10 @@
             this.gridColumn_ddktv_khoadenid.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn_ddktv_khoadenid.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn_ddktv_khoadenid.Caption = "Khoa đến";
-            this.gridColumn_ddktv_khoadenid.ColumnEdit = this.repositoryItemGridLookUp_KhoaDen;
-            this.gridColumn_ddktv_khoadenid.FieldName = "ddktv_khoadenid";
+            this.gridColumn_ddktv_khoadenid.FieldName = "ddktv_khoadenname";
             this.gridColumn_ddktv_khoadenid.Name = "gridColumn_ddktv_khoadenid";
             this.gridColumn_ddktv_khoadenid.Visible = true;
             this.gridColumn_ddktv_khoadenid.Width = 184;
-            // 
-            // repositoryItemGridLookUp_KhoaDen
-            // 
-            this.repositoryItemGridLookUp_KhoaDen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repositoryItemGridLookUp_KhoaDen.Appearance.Options.UseFont = true;
-            this.repositoryItemGridLookUp_KhoaDen.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.repositoryItemGridLookUp_KhoaDen.AppearanceDropDown.Options.UseFont = true;
-            this.repositoryItemGridLookUp_KhoaDen.AutoHeight = false;
-            this.repositoryItemGridLookUp_KhoaDen.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemGridLookUp_KhoaDen.ImmediatePopup = true;
-            this.repositoryItemGridLookUp_KhoaDen.Name = "repositoryItemGridLookUp_KhoaDen";
-            this.repositoryItemGridLookUp_KhoaDen.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            this.repositoryItemGridLookUp_KhoaDen.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.repositoryItemGridLookUp_KhoaDen.View = this.repositoryItemGridLookUpEdit1View;
-            // 
-            // repositoryItemGridLookUpEdit1View
-            // 
-            this.repositoryItemGridLookUpEdit1View.ColumnPanelRowHeight = 25;
-            this.repositoryItemGridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn22,
-            this.gridColumn23});
-            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemGridLookUpEdit1View.FooterPanelHeight = 25;
-            this.repositoryItemGridLookUpEdit1View.GroupRowHeight = 25;
-            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
-            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            this.repositoryItemGridLookUpEdit1View.RowHeight = 25;
-            this.repositoryItemGridLookUpEdit1View.ViewCaptionHeight = 25;
-            // 
-            // gridColumn22
-            // 
-            this.gridColumn22.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn22.AppearanceCell.Options.UseFont = true;
-            this.gridColumn22.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn22.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn22.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn22.Caption = "Khoa";
-            this.gridColumn22.FieldName = "ddktv_khoadenname";
-            this.gridColumn22.Name = "gridColumn22";
-            this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 0;
-            // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "ddktv_khoadenid";
-            this.gridColumn23.FieldName = "ddktv_khoadenid";
-            this.gridColumn23.Name = "gridColumn23";
             // 
             // gridColumn_ddktv_songay
             // 
@@ -972,7 +921,7 @@
             // bandedGridColumn1
             // 
             this.bandedGridColumn1.Caption = "ddktv_khoadenname";
-            this.bandedGridColumn1.FieldName = "ddktv_khoadenname";
+            this.bandedGridColumn1.FieldName = "ddktv_khoadenid";
             this.bandedGridColumn1.Name = "bandedGridColumn1";
             // 
             // bandedGridColumn2
@@ -999,6 +948,56 @@
             this.bandedGridColumn5.FieldName = "isgroup";
             this.bandedGridColumn5.Name = "bandedGridColumn5";
             // 
+            // repositoryItemGridLookUp_KhoaDen
+            // 
+            this.repositoryItemGridLookUp_KhoaDen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.repositoryItemGridLookUp_KhoaDen.Appearance.Options.UseFont = true;
+            this.repositoryItemGridLookUp_KhoaDen.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.repositoryItemGridLookUp_KhoaDen.AppearanceDropDown.Options.UseFont = true;
+            this.repositoryItemGridLookUp_KhoaDen.AutoHeight = false;
+            this.repositoryItemGridLookUp_KhoaDen.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemGridLookUp_KhoaDen.ImmediatePopup = true;
+            this.repositoryItemGridLookUp_KhoaDen.Name = "repositoryItemGridLookUp_KhoaDen";
+            this.repositoryItemGridLookUp_KhoaDen.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.repositoryItemGridLookUp_KhoaDen.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.repositoryItemGridLookUp_KhoaDen.View = this.repositoryItemGridLookUpEdit1View;
+            // 
+            // repositoryItemGridLookUpEdit1View
+            // 
+            this.repositoryItemGridLookUpEdit1View.ColumnPanelRowHeight = 25;
+            this.repositoryItemGridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn22,
+            this.gridColumn23});
+            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemGridLookUpEdit1View.FooterPanelHeight = 25;
+            this.repositoryItemGridLookUpEdit1View.GroupRowHeight = 25;
+            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
+            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.repositoryItemGridLookUpEdit1View.RowHeight = 25;
+            this.repositoryItemGridLookUpEdit1View.ViewCaptionHeight = 25;
+            // 
+            // gridColumn22
+            // 
+            this.gridColumn22.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn22.AppearanceCell.Options.UseFont = true;
+            this.gridColumn22.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn22.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn22.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn22.Caption = "Khoa";
+            this.gridColumn22.FieldName = "ddktv_khoadenname";
+            this.gridColumn22.Name = "gridColumn22";
+            this.gridColumn22.Visible = true;
+            this.gridColumn22.VisibleIndex = 0;
+            // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "ddktv_khoadenid";
+            this.gridColumn23.FieldName = "ddktv_khoadenid";
+            this.gridColumn23.Name = "gridColumn23";
+            // 
             // ucCapNhatVaDieuDongNhanSu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1015,9 +1014,9 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.advBandedGridViewData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemo_ghichu_dieuduong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUp_KhoaDen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemo_ghichu_dieuduong)).EndInit();
             this.ResumeLayout(false);
 
         }

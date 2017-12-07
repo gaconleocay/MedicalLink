@@ -1192,18 +1192,55 @@ CREATE INDEX cp_benhnhanthexe_sothexe_idx
 
 
  
+alter table cp_bill add benhnhanthexeid integer;
+
+CREATE INDEX cp_bill_benhnhanthexeid_idx
+  ON cp_bill
+  USING btree
+  (benhnhanthexeid);
+  
+  
+alter table cp_checkxera add mathexe text;
+alter table cp_checkxera add sothexe text;
+alter table cp_checkxera add biensoxe text;
+alter table cp_checkxera add loaixe text;
+alter table cp_checkxera add thoigianvao timestamp without time zone;
+alter table cp_checkxera add cardeventid text;
+
+CREATE INDEX cp_checkxera_mathexe_idx ON cp_checkxera USING btree (mathexe);
+CREATE INDEX cp_checkxera_sothexe_idx ON cp_checkxera USING btree (sothexe);
+CREATE INDEX cp_checkxera_thoigianvao_idx ON cp_checkxera USING btree (thoigianvao);
+CREATE INDEX cp_checkxera_cardeventid_idx ON cp_checkxera USING btree (cardeventid);
+  
+  
+  
+SELECT row_number () over (order by chk.checkdate) as stt, chk.patientid, chk.patientcode, chk.vienphiid, chk.hosobenhanid, chk.patientname, (case when chk.checkstatus=1 then 'Miễn phí' else 'Trả phí' end) as checkstatus_name, chk.checkdate, chk.checknote, (chk.checkusercode || ' - ' || chk.checkusername) as checkuser, chk.vienphidate, (case when chk.vienphidate_ravien<>'0001-01-01 00:00:00' then to_char(chk.vienphidate_ravien,'HH24:MI dd/MM/yyyy') end) as vienphidate_ravien, chk.bhytcode, chk.gioitinhname, to_char(chk.namsinh,'dd/MM/yyyy') as namsinh, chk.diachi, chk.vienphistatus, (case when chk.vienphistatus=0 then 'Đang điều trị' else 'Đã ra viện' end) as vienphistatus_name, chk.loaivienphiid, (case chk.loaivienphiid when 0 then 'Nội trú' when 1 then 'Ngoại trú' when 2 then 'Điều trị ngoại trú' end) as loaivienphi_name, (chk.departmentgroupname || ' - ' || chk.departmentname) as khoaphong, (case when chk.thuhoithe=1 then 'Thu lại thẻ gửi xe' end) as thuhoithe,
+chk.mathexe as mathexe,
+chk.sothexe as sothexe,
+chk.biensoxe as biensoxe,
+chk.loaixe as loaixe,
+to_char(chk.thoigianvao,'HH24:MI dd/MM/yyyy') as thoigianvao,
+chk.cardeventid as cardeventid
+FROM (select * from cp_checkxera where " + _tieuchi + _trangthai + _loaibenhan + ") chk;   
   
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
+-------
+2817298624 - 1989
+2817465920 - 1987
+2816790128 - 1988
+2815600416 - 1995
+2817462400 - 1986
+2815600992 - 1991
+2815601008 - 1992
+
+
+
+
+
+
+
   
   
   

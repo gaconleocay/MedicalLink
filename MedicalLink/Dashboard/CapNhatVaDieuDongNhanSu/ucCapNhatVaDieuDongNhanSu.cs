@@ -32,7 +32,7 @@ namespace MedicalLink.Dashboard
             {
                 dateNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
                 LoadDanhSachKhoa();
-                LoadDanhSachKhoaDen();
+               // LoadDanhSachKhoaDen();
                 btnTimKiem.PerformClick();
             }
             catch (Exception ex)
@@ -184,7 +184,8 @@ namespace MedicalLink.Dashboard
                 int hvsv_hocvien = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "hvsv_hocvien").ToString());
                 int hvsv_sinhvien = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "hvsv_sinhvien").ToString());
                 int ddktv_soluong = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_soluong").ToString());
-                int ddktv_khoadenid = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_khoadenid").ToString());
+                //int ddktv_khoadenid = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_khoadenid").ToString());
+                int ddktv_khoadenid = 0;
                 string ddktv_khoadenname = advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_khoadenname").ToString();
                 int ddktv_songay = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_songay").ToString());
                 string ghichu_khoa = advBandedGridViewData.GetRowCellValue(rowHandle, "ghichu_khoa").ToString();

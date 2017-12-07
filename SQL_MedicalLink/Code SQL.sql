@@ -189,7 +189,7 @@ medicalrecord :
 - doituongbenhnhanid=1 có thẻ bhyt 
 - xutrikhambenhid=4 nhập viện; =7 
 - hinhthucravienid: 8=chuyển khoa; 1=ra viện; 2=xin về; 3=bỏ về; 4=đưa về; 5=chuyển viện; 
-- hinhthucvaovienid: 3=chuyển khoa ;=2: nhap vien
+- hinhthucvaovienid: 3=chuyển khoa ;=2: nhap vien; 0=
  
 medicalrecordstatus: 
 0: chưa tiếp nhận 

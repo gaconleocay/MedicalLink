@@ -585,7 +585,13 @@ namespace MedicalLink.Base
                 REPORT_37.permissionnote = "Báo cáo doanh thu theo loại hình dịch vụ";
                 lstresult.Add(REPORT_37);
 
-
+                ClassCommon.classPermission REPORT_38 = new ClassCommon.classPermission();
+                REPORT_38.permissioncheck = false;
+                REPORT_38.permissioncode = "REPORT_38";
+                REPORT_38.permissionname = "Báo cáo tình hình khám chữa bệnh - Tổng hợp";
+                REPORT_38.permissiontype = 3;
+                REPORT_38.permissionnote = "Báo cáo tình hình khám chữa bệnh - Tổng hợp";
+                lstresult.Add(REPORT_38);
 
 
                 //Dashboard

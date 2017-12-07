@@ -437,6 +437,12 @@
     <Compile Include="BaoCao\SoXetNghiem\ucBCSoXetNghiemPartial.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="BaoCao\TinhHinhKhamChuaBenh\ucTinhHinhKhamChuaBenhTongHop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\TinhHinhKhamChuaBenh\ucTinhHinhKhamChuaBenhTongHop.Designer.cs">
+      <DependentUpon>ucTinhHinhKhamChuaBenhTongHop.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\ucBCDoanhThuTheoMayXN.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -643,6 +649,8 @@
     <Compile Include="ClassCommon\TienBNPhaiThanhToanDTO.cs" />
     <Compile Include="ClassCommon\TinhBHYTThanhToanTTRiengDTO.cs" />
     <Compile Include="ClassCommon\TinhBHYTThanhToanDTO.cs" />
+    <Compile Include="ClassCommon\TinhHinhKCBDTO.cs" />
+    <Compile Include="ClassCommon\TinhHinhKCB_THDTO.cs" />
     <Compile Include="ClassCommon\ToolsOtherListDTO.cs" />
     <Compile Include="ClassCommon\ToolsServicerefDTO.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
@@ -1172,6 +1180,9 @@
     <EmbeddedResource Include="BaoCao\BCXuatThuocNhaThuoc\ucBCXuatThuocNhaThuoc.resx">
       <DependentUpon>ucBCXuatThuocNhaThuoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\TinhHinhKhamChuaBenh\ucTinhHinhKhamChuaBenhTongHop.resx">
+      <DependentUpon>ucTinhHinhKhamChuaBenhTongHop.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\ucBCDoanhThuTheoMayXN.resx">
       <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
     </EmbeddedResource>
@@ -1679,6 +1690,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\DB_13_CapNhatVaDieuDongNhanLuc.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_38_TinhHinhKhamChuaBenh_TongHop.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -17,9 +17,23 @@ namespace MedicalLink.Utilities.GridControl
             {
                 foreach (GridColumn column in gridViewData.Columns)
                 {
-                    if (result.Columns.Contains(column.FieldName)==false)
+                    if (result.Columns.Contains(column.FieldName) == false && column.FieldName != null)
                     {
-                        result.Columns.Add(column.FieldName, column.ColumnType);
+                        if (column.ColumnType.Name.Contains("Nullable"))
+                        {
+                            if (column.ColumnType.FullName.Contains("Decimal"))
+                            {
+                                result.Columns.Add(column.FieldName, Type.GetType("System.Decimal"));
+                            }
+                            else
+                            {
+                                result.Columns.Add(column.FieldName, Type.GetType("System.String"));
+                            }
+                        }
+                        else
+                        {
+                            result.Columns.Add(column.FieldName, column.ColumnType);
+                        }
                     }
                 }
                 for (int i = 0; i < gridViewData.DataRowCount; i++)

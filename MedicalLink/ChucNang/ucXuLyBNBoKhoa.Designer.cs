@@ -52,6 +52,8 @@
             this.phong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.codvnoitru = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlBNBK_TK)).BeginInit();
             this.panelControlBNBK_TK.SuspendLayout();
             this.groupBoxBNBK_TK.SuspendLayout();
@@ -197,7 +199,9 @@
             this.ngayravien,
             this.khoa,
             this.phong,
-            this.codvnoitru});
+            this.codvnoitru,
+            this.gridColumn1,
+            this.gridColumn2});
             this.gridViewBNBK.GridControl = this.gridControlBNBK;
             this.gridViewBNBK.Name = "gridViewBNBK";
             this.gridViewBNBK.OptionsView.EnableAppearanceEvenRow = true;
@@ -224,6 +228,7 @@
             this.madieutri.FieldName = "madieutri";
             this.madieutri.Name = "madieutri";
             this.madieutri.OptionsColumn.AllowEdit = false;
+            this.madieutri.OptionsColumn.ReadOnly = true;
             this.madieutri.Visible = true;
             this.madieutri.VisibleIndex = 0;
             this.madieutri.Width = 80;
@@ -243,6 +248,7 @@
             this.mabenhnhan.Caption = "Mã bệnh nhân";
             this.mabenhnhan.FieldName = "mabenhnhan";
             this.mabenhnhan.Name = "mabenhnhan";
+            this.mabenhnhan.OptionsColumn.ReadOnly = true;
             this.mabenhnhan.Visible = true;
             this.mabenhnhan.VisibleIndex = 1;
             this.mabenhnhan.Width = 79;
@@ -262,6 +268,7 @@
             this.mavienphi.Caption = "Mã viện phí";
             this.mavienphi.FieldName = "mavienphi";
             this.mavienphi.Name = "mavienphi";
+            this.mavienphi.OptionsColumn.ReadOnly = true;
             this.mavienphi.Visible = true;
             this.mavienphi.VisibleIndex = 2;
             this.mavienphi.Width = 80;
@@ -280,6 +287,7 @@
             this.tenbenhnhan.FieldName = "tenbenhnhan";
             this.tenbenhnhan.Name = "tenbenhnhan";
             this.tenbenhnhan.OptionsColumn.AllowEdit = false;
+            this.tenbenhnhan.OptionsColumn.ReadOnly = true;
             this.tenbenhnhan.Visible = true;
             this.tenbenhnhan.VisibleIndex = 3;
             this.tenbenhnhan.Width = 134;
@@ -298,6 +306,7 @@
             this.trangthai.FieldName = "trangthai";
             this.trangthai.Name = "trangthai";
             this.trangthai.OptionsColumn.AllowEdit = false;
+            this.trangthai.OptionsColumn.ReadOnly = true;
             this.trangthai.Visible = true;
             this.trangthai.VisibleIndex = 4;
             this.trangthai.Width = 78;
@@ -318,6 +327,7 @@
             this.ngayvaovien.FieldName = "thoigianvaovien";
             this.ngayvaovien.Name = "ngayvaovien";
             this.ngayvaovien.OptionsColumn.AllowEdit = false;
+            this.ngayvaovien.OptionsColumn.ReadOnly = true;
             this.ngayvaovien.Visible = true;
             this.ngayvaovien.VisibleIndex = 5;
             this.ngayvaovien.Width = 108;
@@ -338,6 +348,7 @@
             this.ngayravien.FieldName = "thoigianravien";
             this.ngayravien.Name = "ngayravien";
             this.ngayravien.OptionsColumn.AllowEdit = false;
+            this.ngayravien.OptionsColumn.ReadOnly = true;
             this.ngayravien.Visible = true;
             this.ngayravien.VisibleIndex = 6;
             this.ngayravien.Width = 102;
@@ -356,6 +367,7 @@
             this.khoa.FieldName = "tenkhoa";
             this.khoa.Name = "khoa";
             this.khoa.OptionsColumn.AllowEdit = false;
+            this.khoa.OptionsColumn.ReadOnly = true;
             this.khoa.Visible = true;
             this.khoa.VisibleIndex = 7;
             this.khoa.Width = 106;
@@ -374,6 +386,7 @@
             this.phong.FieldName = "tenphong";
             this.phong.Name = "phong";
             this.phong.OptionsColumn.AllowEdit = false;
+            this.phong.OptionsColumn.ReadOnly = true;
             this.phong.Visible = true;
             this.phong.VisibleIndex = 8;
             this.phong.Width = 114;
@@ -392,8 +405,7 @@
             this.codvnoitru.FieldName = "codvnoitru";
             this.codvnoitru.Name = "codvnoitru";
             this.codvnoitru.OptionsColumn.AllowEdit = false;
-            this.codvnoitru.Visible = true;
-            this.codvnoitru.VisibleIndex = 9;
+            this.codvnoitru.OptionsColumn.ReadOnly = true;
             this.codvnoitru.Width = 101;
             // 
             // imMenu
@@ -403,6 +415,20 @@
             this.imMenu.Images.SetKeyName(1, "HanhChinh.png");
             this.imMenu.Images.SetKeyName(2, "XoaDT.png");
             this.imMenu.Images.SetKeyName(3, "XoaBA.png");
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "departmentgroupid";
+            this.gridColumn1.FieldName = "departmentgroupid";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.ReadOnly = true;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "gridColumn2";
+            this.gridColumn2.FieldName = "departmentid";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
             // 
             // ucXuLyBNBoKhoa
             // 
@@ -452,5 +478,7 @@
         private DevExpress.XtraEditors.TextEdit txtBNBKMaVP;
         private DevExpress.Utils.ImageCollection imMenu;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

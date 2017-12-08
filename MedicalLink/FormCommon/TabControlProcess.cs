@@ -226,6 +226,13 @@ namespace MedicalLink.FormCommon
                     case "TOOL_20":
                         ucResult = new ChucNang.CapNhatThangLuongCoBan.ucCapNhatThangLuongCoBan();
                         break;
+                    case "TOOL_21":
+                        ucResult = new ChucNang.ucSuaPhieuTamUng();
+                        break;
+
+
+
+
 
                     //Bao cao
                     case "REPORT_01":

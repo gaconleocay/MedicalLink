@@ -471,6 +471,18 @@
     <Compile Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.Designer.cs">
       <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\PhieuTamUng\frmSuaPhieuTamUng.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucNang\PhieuTamUng\frmSuaPhieuTamUng.Designer.cs">
+      <DependentUpon>frmSuaPhieuTamUng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.Designer.cs">
+      <DependentUpon>ucSuaPhieuTamUng.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\ThongTinThucHienCLS\frmNhapThongTinPTTT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -616,10 +628,10 @@
     <Compile Include="ChucNang\ucCapNhatKhaDungTonKho.Designer.cs">
       <DependentUpon>ucCapNhatKhaDungTonKho.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\ucChuyenTienTamUng.cs">
+    <Compile Include="ChucNang\PhieuTamUng\ucChuyenTienTamUng.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\ucChuyenTienTamUng.Designer.cs">
+    <Compile Include="ChucNang\PhieuTamUng\ucChuyenTienTamUng.Designer.cs">
       <DependentUpon>ucChuyenTienTamUng.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\ucSuaDanhMucDichVu.cs">
@@ -1204,6 +1216,12 @@
     <EmbeddedResource Include="ChucNang\MoBenhAn\ucMoBenhAn.resx">
       <DependentUpon>ucMoBenhAn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\PhieuTamUng\frmSuaPhieuTamUng.resx">
+      <DependentUpon>frmSuaPhieuTamUng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.resx">
+      <DependentUpon>ucSuaPhieuTamUng.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\SuaGiaDichVu\frmSuaGiaDV_TH.resx">
       <DependentUpon>frmSuaGiaDV_TH.cs</DependentUpon>
     </EmbeddedResource>
@@ -1234,7 +1252,7 @@
     <EmbeddedResource Include="ChucNang\ucCapNhatKhaDungTonKho.resx">
       <DependentUpon>ucCapNhatKhaDungTonKho.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\ucChuyenTienTamUng.resx">
+    <EmbeddedResource Include="ChucNang\PhieuTamUng\ucChuyenTienTamUng.resx">
       <DependentUpon>ucChuyenTienTamUng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucSuaDanhMucDichVu.resx">

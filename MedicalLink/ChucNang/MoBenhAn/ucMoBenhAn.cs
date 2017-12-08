@@ -161,7 +161,6 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-
                 if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
                 {
                     //GridView view = sender as GridView;

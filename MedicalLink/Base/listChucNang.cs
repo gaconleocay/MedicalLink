@@ -249,6 +249,13 @@ namespace MedicalLink.Base
                 TOOL_20.permissionnote = "Cập nhật tháng lương cơ bản của bệnh nhân";
                 lstresult.Add(TOOL_20);
 
+                ClassCommon.classPermission TOOL_21 = new ClassCommon.classPermission();
+                TOOL_21.permissioncheck = false;
+                TOOL_21.permissioncode = "TOOL_21";
+                TOOL_21.permissionname = "Sửa hóa đơn tạm ứng";
+                TOOL_21.permissiontype = 2;
+                TOOL_21.permissionnote = "Sửa hóa đơn tạm ứng";
+                lstresult.Add(TOOL_21);
 
 
 

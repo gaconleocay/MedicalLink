@@ -18,41 +18,43 @@ namespace MedicalLink.FormCommon
             bool result = true;
             try
             {
-                result = KetNoiSCDLProcess.CreateTableTblUser();
-                result = KetNoiSCDLProcess.CreateTableTblPermission();
-                result = KetNoiSCDLProcess.CreateTableTblLog();
-                result = KetNoiSCDLProcess.CreateTableTblUpdateKhaDung();
-                result = KetNoiSCDLProcess.CreateTableLicense();
-                result = KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh();
-                result = KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew();
-                result = KetNoiSCDLProcess.CreateTableOption();
-                result = KetNoiSCDLProcess.CreateTableTblNhanVien();
-                result = KetNoiSCDLProcess.CreateTableUserMedicineStore();
-                result = KetNoiSCDLProcess.CreateTableUserMedicinePhongLuu();
-                result = KetNoiSCDLProcess.CreateTableOtherTypeList();
-                result = KetNoiSCDLProcess.CreateTableOtherList();
+                //result = KetNoiSCDLProcess.CreateTableTblUser();
+                //result = KetNoiSCDLProcess.CreateTableTblPermission();
+                //result = KetNoiSCDLProcess.CreateTableTblLog();
+                //result = KetNoiSCDLProcess.CreateTableTblUpdateKhaDung();
+                //result = KetNoiSCDLProcess.CreateTableLicense();
+                //result = KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenh();
+                //result = KetNoiSCDLProcess.CreateTableTblDVKTBHYTChenhNew();
+                //result = KetNoiSCDLProcess.CreateTableOption();
+                //result = KetNoiSCDLProcess.CreateTableTblNhanVien();
+                //result = KetNoiSCDLProcess.CreateTableUserMedicineStore();
+                //result = KetNoiSCDLProcess.CreateTableUserMedicinePhongLuu();
+                //result = KetNoiSCDLProcess.CreateTableOtherTypeList();
+                //result = KetNoiSCDLProcess.CreateTableOtherList();
                 //result = KetNoiSCDLProcess.CreateTableToolsServicepricePttt(); // dac thu tung bv nen ko chay
                 //result = KetNoiSCDLProcess.CapNhat_OtherList();
 
 
                 //result= KetNoiSCDLProcess.UpdateTableUser();
-                result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
-                result = KetNoiSCDLProcess.CreateTableVersion();
+                //result = KetNoiSCDLProcess.CreateTableUserDepartmentgroup();
+                //result = KetNoiSCDLProcess.CreateTableVersion();
                 //result = KetNoiSCDLProcess.CreateFunctionByteaImport();
 
                 //View ben HIS
-                result = KetNoiSCDLProcess.CreateViewServicepriceDepartment();
-                result = KetNoiSCDLProcess.CreateViewServicepriceMoney();
-                result = KetNoiSCDLProcess.CreateViewVienPhimoney_SoBN();
-                result = KetNoiSCDLProcess.CreateViewVienPhimoney_TM();
+                //result = KetNoiSCDLProcess.CreateViewServicepriceDepartment();
+                //result = KetNoiSCDLProcess.CreateViewServicepriceMoney();
+                //result = KetNoiSCDLProcess.CreateViewVienPhimoney_SoBN();
+                //result = KetNoiSCDLProcess.CreateViewVienPhimoney_TM();
                 //result = KetNoiSCDLProcess.Createview_tools_serviceprice_pttt();// dac thu tung bv nen ko chay
 
                 //Table ben HIS
-                result = KetNoiSCDLProcess.CreateTableNhomPersonnel();
-                result = KetNoiSCDLProcess.CreateTableIhsServicespttt();
+                //result = KetNoiSCDLProcess.CreateTableNhomPersonnel();
+                //result = KetNoiSCDLProcess.CreateTableIhsServicespttt();
 
                 //update
-               // result = KetNoiSCDLProcess.UpdateTableUser();
+                // result = KetNoiSCDLProcess.UpdateTableUser();
+                result = KetNoiSCDLProcess.UpdateTableLog();
+
             }
             catch (Exception ex)
             {
@@ -553,7 +555,19 @@ namespace MedicalLink.FormCommon
             }
             return true;
         }
-
+        private static bool UpdateTableLog()
+        {
+            try
+            {
+                string sqlAddColume = "alter table tools_tbllog add vienphiid integer; alter table tools_tbllog add patientid integer;";
+                condb.ExecuteNonQuery_MeL(sqlAddColume);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi tools_tbllog" + ex.ToString());
+            }
+            return true;
+        }
         #endregion
     }
 }

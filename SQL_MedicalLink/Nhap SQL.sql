@@ -1234,10 +1234,13 @@ FROM (select * from cp_checkxera where " + _tieuchi + _trangthai + _loaibenhan +
 2817462400 - 1986
 2815600992 - 1991
 2815601008 - 1992
+01638660011
+01229229266
 
 
 
 
+alter table tools_tbllog add vienphiid integer; alter table tools_tbllog add patientid integer;
 
 
 

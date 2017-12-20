@@ -98,6 +98,7 @@ namespace MedicalLink.BaoCao
                 string _tieuchi_vp = "";
                 string _trangthaivienphi = "";
                 string lstKhoacheck = " and departmentgroupid in (";
+                string _loaihinhthanhtoan = " loaidoituong in (1,3,4) ";
 
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -149,6 +150,20 @@ namespace MedicalLink.BaoCao
                         _trangthaivienphi = " and vienphistatus>0 and vienphistatus_vp=1 ";
                     }
                 }
+                //loai hinh thanh toan
+                if (cboLoaiHinhThanhToan.Text == "Yêu cầu")
+                {
+                    _loaihinhthanhtoan = " loaidoituong=3 ";
+                }
+                else if (cboLoaiHinhThanhToan.Text == "Viện phí")
+                {
+                    _loaihinhthanhtoan = " loaidoituong=1 ";
+                }
+                else if (cboLoaiHinhThanhToan.Text == "BHYT+YC")
+                {
+                    _loaihinhthanhtoan = " loaidoituong=4 ";
+                }
+
                 List<Object> lstPhongCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
                 if (lstPhongCheck.Count > 0)
                 {
@@ -164,7 +179,7 @@ namespace MedicalLink.BaoCao
                     frmthongbao.Show();
                 }
 
-                string _sql_timkiem = " SELECT row_number () over (order by serf.servicepricename) as stt, serf.servicepricegroupcode, serf.bhyt_groupcode, serf.servicegrouptype, (case serf.servicegrouptype when 1 then 'Khám bệnh' when 2 then 'Xét nghiệm' when 3 then 'CĐHA' when 4 then 'Chuyên khoa' end) as servicegrouptype_name, ser.departmentgroupid, degp.departmentgroupname, serf.servicepricecode, serf.servicepricename, serf.servicepricenamebhyt, serf.servicepriceunit, ser.soluong, ser.servicepricemoney, ser.thanhtien_dv, ser.servicepricemoney_bhyt, ser.thanhtien_bh, ser.thanhtien_chenh, ser.thanhtien_chenh as tienthucthu, '0' as isgroup FROM (select servicepricegroupcode,bhyt_groupcode,servicegrouptype,servicepricetype,servicepricecode,servicepricename,servicepricenamebhyt,servicepriceunit,servicepricefee,servicepricefeenhandan,servicepricefeebhyt,servicepricefeenuocngoai from servicepriceref where servicegrouptype in (1,2,3,4)) serf inner join (select se.servicepricecode, se.departmentgroupid, sum(se.soluong) as soluong, se.servicepricemoney, (se.servicepricemoney*sum(se.soluong)) as thanhtien_dv, se.servicepricemoney_bhyt, (se.servicepricemoney_bhyt*sum(se.soluong)) as thanhtien_bh, ((se.servicepricemoney-se.servicepricemoney_bhyt)*sum(se.soluong)) as thanhtien_chenh, se.bhyt_groupcode from (select vienphiid,departmentgroupid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney from serviceprice where loaidoituong in (3,4) and bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') " + _tieuchi_ser + lstKhoacheck + " ) se inner join (select vienphiid from vienphi " + _tieuchi_vp + _trangthaivienphi + " ) vp on vp.vienphiid=se.vienphiid group by se.servicepricecode,se.departmentgroupid,se.bhyt_groupcode,se.servicepricemoney_bhyt,se.servicepricemoney) ser on ser.servicepricecode=serf.servicepricecode inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid WHERE ser.soluong>0 ORDER BY serf.servicegrouptype,serf.servicepricegroupcode,serf.servicepricename; ";
+                string _sql_timkiem = " SELECT row_number () over (order by serf.servicepricename) as stt, serf.servicepricegroupcode, serf.bhyt_groupcode, serf.servicegrouptype, (case serf.servicegrouptype when 1 then 'Khám bệnh' when 2 then 'Xét nghiệm' when 3 then 'CĐHA' when 4 then 'Chuyên khoa' end) as servicegrouptype_name, ser.departmentgroupid, degp.departmentgroupname, serf.servicepricecode, serf.servicepricename, serf.servicepricenamebhyt, serf.servicepriceunit, ser.soluong, ser.servicepricemoney, ser.thanhtien_dv, ser.servicepricemoney_bhyt, ser.thanhtien_bh, ser.thanhtien_chenh, ser.thanhtien_chenh as tienthucthu, '0' as isgroup FROM (select servicepricegroupcode,bhyt_groupcode,servicegrouptype,servicepricetype,servicepricecode,servicepricename,servicepricenamebhyt,servicepriceunit,servicepricefee,servicepricefeenhandan,servicepricefeebhyt,servicepricefeenuocngoai from servicepriceref where servicegrouptype in (1,2,3,4)) serf inner join (select se.servicepricecode, se.departmentgroupid, sum(se.soluong) as soluong, se.servicepricemoney, (se.servicepricemoney*sum(se.soluong)) as thanhtien_dv, se.servicepricemoney_bhyt, (se.servicepricemoney_bhyt*sum(se.soluong)) as thanhtien_bh, ((se.servicepricemoney-se.servicepricemoney_bhyt)*sum(se.soluong)) as thanhtien_chenh, se.bhyt_groupcode from (select vienphiid,departmentgroupid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney from serviceprice where " + _loaihinhthanhtoan + " and bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') " + _tieuchi_ser + lstKhoacheck + " ) se inner join (select vienphiid from vienphi " + _tieuchi_vp + _trangthaivienphi + " ) vp on vp.vienphiid=se.vienphiid group by se.servicepricecode,se.departmentgroupid,se.bhyt_groupcode,se.servicepricemoney_bhyt,se.servicepricemoney) ser on ser.servicepricecode=serf.servicepricecode inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid WHERE ser.soluong>0 ORDER BY serf.servicegrouptype,serf.servicepricegroupcode,serf.servicepricename; ";
 
                 this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                 if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)

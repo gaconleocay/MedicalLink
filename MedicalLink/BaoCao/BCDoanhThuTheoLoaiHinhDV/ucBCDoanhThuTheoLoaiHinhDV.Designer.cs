@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCDoanhThuTheoLoaiHinhDV));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.cboLoaiHinhThanhToan = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.cboTrangThaiVienPhi = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -57,17 +61,16 @@
             this.gridColumn_thanhtien_bh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_thanhtien_chenh = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_tienthucthu = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiHinhThanhToan.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThaiVienPhi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTieuChi.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBaoCao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBaoCao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -82,6 +85,8 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.labelControl5);
+            this.groupBoxFile.Controls.Add(this.cboLoaiHinhThanhToan);
             this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSKhoa);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -102,10 +107,66 @@
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
             // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Location = new System.Drawing.Point(448, 25);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(116, 16);
+            this.labelControl5.TabIndex = 95;
+            this.labelControl5.Text = "Loại hình thanh toán";
+            // 
+            // cboLoaiHinhThanhToan
+            // 
+            this.cboLoaiHinhThanhToan.EditValue = "Cả 3 loại";
+            this.cboLoaiHinhThanhToan.Location = new System.Drawing.Point(570, 22);
+            this.cboLoaiHinhThanhToan.Name = "cboLoaiHinhThanhToan";
+            this.cboLoaiHinhThanhToan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiHinhThanhToan.Properties.Appearance.Options.UseFont = true;
+            this.cboLoaiHinhThanhToan.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiHinhThanhToan.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLoaiHinhThanhToan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboLoaiHinhThanhToan.Properties.Items.AddRange(new object[] {
+            "Yêu cầu",
+            "Viện phí",
+            "BHYT+YC",
+            "Cả 3 loại"});
+            this.cboLoaiHinhThanhToan.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboLoaiHinhThanhToan.Size = new System.Drawing.Size(151, 22);
+            this.cboLoaiHinhThanhToan.TabIndex = 94;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(445, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 16);
+            this.label2.TabIndex = 93;
+            this.label2.Text = "Khoa";
+            // 
+            // chkcomboListDSKhoa
+            // 
+            this.chkcomboListDSKhoa.EditValue = "";
+            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(492, 59);
+            this.chkcomboListDSKhoa.Name = "chkcomboListDSKhoa";
+            this.chkcomboListDSKhoa.Properties.AllowMultiSelect = true;
+            this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSKhoa.Properties.Appearance.Options.UseFont = true;
+            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
+            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(356, 22);
+            this.chkcomboListDSKhoa.TabIndex = 92;
+            // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(461, 26);
+            this.labelControl4.Location = new System.Drawing.Point(207, 62);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(59, 16);
             this.labelControl4.TabIndex = 91;
@@ -114,7 +175,7 @@
             // cboTrangThaiVienPhi
             // 
             this.cboTrangThaiVienPhi.EditValue = "Đã thanh toán";
-            this.cboTrangThaiVienPhi.Location = new System.Drawing.Point(535, 23);
+            this.cboTrangThaiVienPhi.Location = new System.Drawing.Point(281, 59);
             this.cboTrangThaiVienPhi.Name = "cboTrangThaiVienPhi";
             this.cboTrangThaiVienPhi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTrangThaiVienPhi.Properties.Appearance.Options.UseFont = true;
@@ -211,7 +272,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(713, 28);
+            this.btnTimKiem.Location = new System.Drawing.Point(889, 29);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 85;
@@ -595,33 +656,6 @@
             this.gridColumn_tienthucthu.VisibleIndex = 9;
             this.gridColumn_tienthucthu.Width = 140;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(234, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 16);
-            this.label2.TabIndex = 93;
-            this.label2.Text = "Khoa";
-            // 
-            // chkcomboListDSKhoa
-            // 
-            this.chkcomboListDSKhoa.EditValue = "";
-            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(281, 59);
-            this.chkcomboListDSKhoa.Name = "chkcomboListDSKhoa";
-            this.chkcomboListDSKhoa.Properties.AllowMultiSelect = true;
-            this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSKhoa.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
-            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(405, 22);
-            this.chkcomboListDSKhoa.TabIndex = 92;
-            // 
             // ucBCDoanhThuTheoLoaiHinhDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,12 +671,13 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiHinhThanhToan.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThaiVienPhi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTieuChi.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBaoCao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBaoCao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -679,5 +714,7 @@
         private DevExpress.XtraEditors.DropDownButton dropDownPrint;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSKhoa;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.ComboBoxEdit cboLoaiHinhThanhToan;
     }
 }

@@ -1,5 +1,8 @@
 --BÁO CÁO DOANH THU THEO LOẠI HÌNH DỊCH VỤ CHI TIẾT bv Thanh Hoa
--- ngay 18/11
+-- ngay 18/12
+--lọc theo đối tượng thanh toán dịch vụ: 
+
+
 
 
 SELECT row_number () over (order by serf.servicepricename) as stt,
@@ -39,7 +42,7 @@ FROM (select servicepricegroupcode,bhyt_groupcode,servicegrouptype,servicepricet
 					se.bhyt_groupcode					
 				from (select vienphiid,departmentgroupid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney 
 					from serviceprice 
-					where loaidoituong in (3,4) and bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') "+_tieuchi_ser+" ) se
+					where " + _loaihinhthanhtoan + " and bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') "+_tieuchi_ser+" ) se
 					inner join (select vienphiid from vienphi where "+_trangthaivienphi+_tieuchi_vp+" ) vp on vp.vienphiid=se.vienphiid
 				group by se.servicepricecode,se.departmentgroupid,se.bhyt_groupcode,se.servicepricemoney_bhyt,se.servicepricemoney) ser on ser.servicepricecode=serf.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid
@@ -63,7 +66,10 @@ WHERE servicepricecode in (select servicepricegroupcode
 
 
 
-
+Yêu cầu
+Viện phí
+BHYT+YC
+Cả 3 loại
 
 
 

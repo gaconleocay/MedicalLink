@@ -4,8 +4,29 @@
 --Chinh sua ten theo ten cua doituongthanhtoan
 --24/8 sua nguoi nhap thuc hien lay : userid_gmhs
 --ngay 9/11: nhap nguoi thuc hien moi chia tien cho BS
+--ngay 28/12: them chuc nang duyet pttt
 
-SELECT row_number () over (order by A.ngay_thuchien) as stt, 
+
+--Duyet PTTT:
+/*
+Alter table serviceprice add duyetpttt_stt integer;
+Alter table serviceprice add duyetpttt_date timestamp without time zone;
+Alter table serviceprice add duyetpttt_usercode text;
+Alter table serviceprice add duyetpttt_username text;
+
+CREATE INDEX serviceprice_duyetpttt_stt_idx ON serviceprice USING btree (duyetpttt_stt);
+CREATE INDEX serviceprice_duyetpttt_date_idx ON serviceprice USING btree (duyetpttt_date);
+CREATE INDEX serviceprice_duyetpttt_user_idx ON serviceprice USING btree (duyetpttt_usercode);
+*/
+
+---------
+
+SELECT row_number () over (order by A.ngay_chidinh) as stt, 
+A.servicepriceid,
+coalesce(A.duyetpttt_stt,0) as duyetpttt_stt,
+(case when A.duyetpttt_stt=1 then A.duyetpttt_date end) as duyetpttt_date,
+A.duyetpttt_usercode,
+A.duyetpttt_username,
 A.patientid, 
 A.vienphiid, 
 hsbA.patientname, 
@@ -16,6 +37,7 @@ kchd.departmentgroupname as khoachidinh,
 pcd.departmentname as phongchidinh, 
 A.ngay_chidinh, 
 A.ngay_thuchien, 
+(case when A.ngay_ketthuc<>'0001-01-01 00:00:00' then A.ngay_ketthuc end) as ngay_ketthuc,
 kcd.departmentgroupname as khoachuyenden, 
 krv.departmentgroupname as khoaravien, 
 mbp.chandoan as cd_chidinh,
@@ -59,11 +81,17 @@ FROM
 	vp.vienphiid, 
 	vp.hosobenhanid, 
 	vp.bhytid, 
+	ser.servicepriceid,
+	ser.duyetpttt_stt,
+	ser.duyetpttt_date,
+	ser.duyetpttt_usercode,
+	ser.duyetpttt_username,
 	ser.maubenhphamid,
 	ser.departmentgroupid as khoachidinh, 
 	ser.departmentid as phongchidinh, 
 	ser.servicepricedate as ngay_chidinh, 
 	pttt.phauthuatthuthuatdate as ngay_thuchien, 
+	pttt.phauthuatthuthuatdate_ketthuc as ngay_ketthuc,
 	(select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid) as khoachuyenden, 
 	(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
 	ser.servicepricecode, 
@@ -99,29 +127,36 @@ FROM
 	(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
 	(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
 	pttt.userid_gmhs as nguoinhapthuchien
-	FROM serviceprice ser 
+	FROM (select * from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+_trangthaipttt+" ) ser
 	left join phauthuatthuthuat pttt on pttt.servicepriceid=ser.servicepriceid 
 	inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphidate_ravien, vienphistatus_vp, duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 
 	inner join (select servicepricecode, tinhtoanlaigiadvktc, pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and " + serf_pttt_loaiid + ") serf on serf.servicepricecode=ser.servicepricecode 
-	WHERE ser.bhyt_groupcode in ('06PTTT','07KTC') 
-		and " + ser_departmentid + " and " + tieuchi_date + ") A 
+	WHERE " + ser_departmentid + " and " + tieuchi_date + ") A 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsbA.hosobenhanid=A.hosobenhanid 
 INNER JOIN (select maubenhphamid, chandoan from maubenhpham) mbp on mbp.maubenhphamid=A.maubenhphamid 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCHD ON KCHD.departmentgroupid=A.khoachidinh 
 LEFT JOIN department pcd ON pcd.departmentid=A.phongchidinh 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCD ON KCD.departmentgroupid=A.khoachuyenden 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) krv ON krv.departmentgroupid=A.khoaravien 
-LEFT JOIN tools_tblnhanvien mc ON mc.userhisid=A.mochinh_tenbs 
-LEFT JOIN tools_tblnhanvien mmc ON mmc.userhisid=A.moimochinh_tenbs 
-LEFT JOIN tools_tblnhanvien gm ON gm.userhisid=A.gayme_tenbs 
-LEFT JOIN tools_tblnhanvien mgm ON mgm.userhisid=A.moigayme_tenbs 
-LEFT JOIN tools_tblnhanvien p1 ON p1.userhisid=A.phu1_tenbs 
-LEFT JOIN tools_tblnhanvien p2 ON p2.userhisid=A.PHU2_TENBS 
-LEFT JOIN tools_tblnhanvien gv1 ON gv1.userhisid=A.giupviec1_tenbs 
-LEFT JOIN tools_tblnhanvien gv2 ON gv2.userhisid=A.giupviec2_tenbs
-LEFT JOIN tools_tblnhanvien nnth ON nnth.userhisid=A.nguoinhapthuchien;
+LEFT JOIN nhompersonnel mc ON mc.userhisid=A.mochinh_tenbs 
+LEFT JOIN nhompersonnel mmc ON mmc.userhisid=A.moimochinh_tenbs 
+LEFT JOIN nhompersonnel gm ON gm.userhisid=A.gayme_tenbs 
+LEFT JOIN nhompersonnel mgm ON mgm.userhisid=A.moigayme_tenbs 
+LEFT JOIN nhompersonnel p1 ON p1.userhisid=A.phu1_tenbs 
+LEFT JOIN nhompersonnel p2 ON p2.userhisid=A.PHU2_TENBS 
+LEFT JOIN nhompersonnel gv1 ON gv1.userhisid=A.giupviec1_tenbs 
+LEFT JOIN nhompersonnel gv2 ON gv2.userhisid=A.giupviec2_tenbs
+LEFT JOIN nhompersonnel nnth ON nnth.userhisid=A.nguoinhapthuchien;
 
 
+
+
+
+
+
+Chưa duyệt PTTT
+Đã duyệt PTTT
+Tất cả
 
 
 
@@ -510,14 +545,14 @@ LEFT JOIN departmentgroup KCHD ON KCHD.departmentgroupid=A.khoachidinh
 LEFT JOIN department pcd ON pcd.departmentid=A.phongchidinh 
 LEFT JOIN departmentgroup KCD ON KCD.departmentgroupid=A.khoachuyenden 
 LEFT JOIN departmentgroup krv ON krv.departmentgroupid=A.khoaravien 
-LEFT JOIN tools_tblnhanvien mc ON mc.userhisid=A.mochinh_tenbs 
-LEFT JOIN tools_tblnhanvien mmc ON mmc.userhisid=A.moimochinh_tenbs 
-LEFT JOIN tools_tblnhanvien gm ON gm.userhisid=A.gayme_tenbs 
-LEFT JOIN tools_tblnhanvien mgm ON mgm.userhisid=A.moigayme_tenbs 
-LEFT JOIN tools_tblnhanvien p1 ON p1.userhisid=A.phu1_tenbs 
-LEFT JOIN tools_tblnhanvien p2 ON p2.userhisid=A.PHU2_TENBS 
-LEFT JOIN tools_tblnhanvien gv1 ON gv1.userhisid=A.giupviec1_tenbs 
-LEFT JOIN tools_tblnhanvien gv2 ON gv2.userhisid=A.giupviec2_tenbs;  
+LEFT JOIN nhompersonnel mc ON mc.userhisid=A.mochinh_tenbs 
+LEFT JOIN nhompersonnel mmc ON mmc.userhisid=A.moimochinh_tenbs 
+LEFT JOIN nhompersonnel gm ON gm.userhisid=A.gayme_tenbs 
+LEFT JOIN nhompersonnel mgm ON mgm.userhisid=A.moigayme_tenbs 
+LEFT JOIN nhompersonnel p1 ON p1.userhisid=A.phu1_tenbs 
+LEFT JOIN nhompersonnel p2 ON p2.userhisid=A.PHU2_TENBS 
+LEFT JOIN nhompersonnel gv1 ON gv1.userhisid=A.giupviec1_tenbs 
+LEFT JOIN nhompersonnel gv2 ON gv2.userhisid=A.giupviec2_tenbs;  
 
 
 

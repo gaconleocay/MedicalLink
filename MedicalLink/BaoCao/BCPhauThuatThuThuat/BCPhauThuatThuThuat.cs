@@ -15,6 +15,8 @@ using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using DevExpress.Utils.Menu;
 using MedicalLink.Utilities.GridControl;
+using MedicalLink.Utilities.BandGridView;
+using MedicalLink.Utilities.GUIGridView;
 
 namespace MedicalLink.BaoCao
 {
@@ -24,9 +26,10 @@ namespace MedicalLink.BaoCao
     public partial class BCPhauThuatThuThuat : UserControl
     {
         #region Declaration
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        DataTable dataBCPTTT { get; set; }
+        private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DataTable dataBCPTTT { get; set; }
         private List<ClassCommon.ToolsOtherListDTO> lstOtherList { get; set; }
+        private Utilities.BandGridView.GridCheckMarksSelection helper;
 
         #endregion
 
@@ -34,6 +37,7 @@ namespace MedicalLink.BaoCao
         public BCPhauThuatThuThuat()
         {
             InitializeComponent();
+            helper = new GridCheckMarksSelection(bandedGridViewDataBCPTTT);
         }
 
         private void BCPhauThuatThuThuat_Load(object sender, EventArgs e)
@@ -174,7 +178,7 @@ namespace MedicalLink.BaoCao
                     frmthongbao.Show();
                     return;
                 }
-                if (cboLoaiBaoCao.EditValue == "BAOCAO_005" || cboLoaiBaoCao.EditValue == "BAOCAO_008")
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005" || cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")
                 {
                     if (cboKhoa.EditValue == null)
                     {
@@ -380,6 +384,26 @@ namespace MedicalLink.BaoCao
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void bandedGridViewDataBCPTTT_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            try
+            {
+                if (e.Column.FieldName == "img_duyetstt")
+                {
+                    string val = bandedGridViewDataBCPTTT.GetRowCellValue(e.RowHandle, "duyetpttt_stt").ToString();
+                    if (val == "1")
+                    {
+                        e.Handled = true;
+                        Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[2]);
+                        e.Graphics.DrawImage(imMenu.Images[2], pos);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
             }
         }
         #endregion
@@ -813,5 +837,42 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
         #endregion
+
+        private void bandedGridViewDataBCPTTT_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            try
+            {
+                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_05"))
+                {
+                    if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
+                    {
+                        e.Menu.Items.Clear();
+                        DXMenuItem item_DuyetPTTTChon = new DXMenuItem("Duyệt PTTT đã chọn");
+                        item_DuyetPTTTChon.Image = imMenu.Images[0];
+                        item_DuyetPTTTChon.Click += new EventHandler(DuyetPTTTDaChon_Click);
+                        e.Menu.Items.Add(item_DuyetPTTTChon);
+                        //DXMenuItem item_DuyetAll = new DXMenuItem("Duyệt tất cả PTTT");
+                        //item_DuyetAll.Image = imMenu.Images[0];
+                        //item_DuyetAll.Click += new EventHandler(DuyetTatCaPTTT_Click);
+                        //e.Menu.Items.Add(item_DuyetAll);
+                        DXMenuItem item_GoDuyetPTTTChon = new DXMenuItem("Gỡ duyệt PTTT đã chọn");
+                        item_GoDuyetPTTTChon.Image = imMenu.Images[1];
+                        item_GoDuyetPTTTChon.Click += new EventHandler(GoDuyetPTTTDaChon_Click);
+                        e.Menu.Items.Add(item_GoDuyetPTTTChon);
+                        item_GoDuyetPTTTChon.BeginGroup = true;
+                        //DXMenuItem item_GoDuyetAll = new DXMenuItem("Gỡ duyệt tất cả PTTT");
+                        //item_GoDuyetAll.Image = imMenu.Images[1];
+                        //item_GoDuyetAll.Click += new EventHandler(GoDuyetTatCaPTTT_Click);
+                        //e.Menu.Items.Add(item_GoDuyetAll);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+
     }
 }

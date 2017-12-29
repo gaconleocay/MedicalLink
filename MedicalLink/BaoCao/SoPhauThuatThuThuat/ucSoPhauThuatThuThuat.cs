@@ -119,6 +119,7 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
+        #region In va xuat file
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -151,6 +152,42 @@ namespace MedicalLink.BaoCao
             }
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
+
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = tungaydenngay;
+
+                thongTinThem.Add(reportitem);
+
+                string fileTemplatePath = "So_PhauThuatThuThuat_CacKhoa.xlsx";
+                if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
+                {
+                    fileTemplatePath = "So_PhauThuatThuThuat_ThanNhanTao.xlsx";
+                }
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            SplashScreenManager.CloseForm();
+
+        }
+
+        #endregion
+
+        #region Custom
         private void bandedGridViewSoCDHA_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
@@ -194,38 +231,6 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-
-                string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
-
-                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
-                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
-                reportitem.value = tungaydenngay;
-
-                thongTinThem.Add(reportitem);
-
-                string fileTemplatePath = "So_PhauThuatThuThuat_CacKhoa.xlsx";
-                if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
-                {
-                    fileTemplatePath = "So_PhauThuatThuThuat_ThanNhanTao.xlsx";
-                }
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Warn(ex);
-            }
-            SplashScreenManager.CloseForm();
-
-        }
+        #endregion
     }
 }

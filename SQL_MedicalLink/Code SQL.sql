@@ -411,8 +411,11 @@ cast(sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric)
 Mapper.Initialize(cfg => cfg.CreateMap<XML1_TagDTO, XML_HOSODTO>());
 _xmlHoSo = AutoMapper.Mapper.Map<XML1_TagDTO, XML_HOSODTO>(_xml1_TagDto);
 
-
-
+-----
+if (SplashScreenManager.Default == null || SplashScreenManager.Default.IsSplashFormVisible == false)
+{
+SplashScreenManager.ShowForm(typeof(O2S_MedicalRecord.Utilities.ThongBao.WaitForm1));
+}
 
 
 
@@ -427,20 +430,7 @@ pass: Hadung6@
 
  &=&=IF(P{r}=1,M{r},0)
  
- 
- Host server: 179.84.31.5
- Port: 5432
- tên DB: bvhaiphong
- user: baixe
- pass: 123456a@
- 
- 
- WIN-9PJP3F9D9D9
- 12...25
- 
- 
- 
- 
+
  
  
  

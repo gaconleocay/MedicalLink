@@ -1,7 +1,7 @@
 --BÁO CÁO DOANH THU THEO LOẠI HÌNH DỊCH VỤ CHI TIẾT bv Thanh Hoa
--- ngay 18/12
+-- ngay 22/12
 --lọc theo đối tượng thanh toán dịch vụ: 
-
+--tieu chi theo ngay thu tien
 
 
 
@@ -40,10 +40,11 @@ FROM (select servicepricegroupcode,bhyt_groupcode,servicegrouptype,servicepricet
 					(se.servicepricemoney_bhyt*sum(se.soluong)) as thanhtien_bh,
 					((se.servicepricemoney-se.servicepricemoney_bhyt)*sum(se.soluong)) as thanhtien_chenh,				
 					se.bhyt_groupcode					
-				from (select vienphiid,departmentgroupid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney 
+				from (select vienphiid,departmentgroupid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,billid_clbh_thutien
 					from serviceprice 
 					where " + _loaihinhthanhtoan + " and bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG') "+_tieuchi_ser+" ) se
 					inner join (select vienphiid from vienphi where "+_trangthaivienphi+_tieuchi_vp+" ) vp on vp.vienphiid=se.vienphiid
+					"+_tieuchi_bill+"
 				group by se.servicepricecode,se.departmentgroupid,se.bhyt_groupcode,se.servicepricemoney_bhyt,se.servicepricemoney) ser on ser.servicepricecode=serf.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid
 WHERE ser.soluong>0
@@ -61,15 +62,12 @@ WHERE servicepricecode in (select servicepricegroupcode
 							group by servicepricegroupcode)
 
 
+--_tieuchi_bill
+inner join (select billid from bill where dahuyphieu=0 and billdate between '" + datetungay + "' and '" + datedenngay + "') bi on bi.billid=se.billid_clbh_thutien
 
 
 
 
-
-Yêu cầu
-Viện phí
-BHYT+YC
-Cả 3 loại
 
 
 

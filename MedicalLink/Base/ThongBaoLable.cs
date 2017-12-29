@@ -31,7 +31,7 @@ namespace MedicalLink.Base
         internal static string BENH_AN_DANG_MO = "Bệnh án đang mở!";
         internal static string MO_BENH_AN_THANH_CONG = "Mở bệnh án thành công!";
         internal static string BENH_NHAN_DA_DUYET_VIEN_PHI = "Bệnh nhân đã duyệt viện phí!";
-        internal static string BENH_AN_DA_THANH_TOAN ="Bệnh án đã thanh toán!";
+        internal static string BENH_AN_DA_THANH_TOAN = "Bệnh án đã thanh toán!";
         internal static string BENH_NHAN_CHUA_DUYET_VIEN_PHI = "Bệnh nhân chưa duyệt viện phí!";
         internal static string CHUA_CHON_KHO_THUOC = "Chưa chọn kho thuốc!";
         internal static string CHUA_CHON_PHONG_LUU = "Chưa chọn phòng lưu!";
@@ -42,6 +42,9 @@ namespace MedicalLink.Base
         internal static string TEN_TAI_KHOA_DA_TON_TAI = "Tên tài khoản đã tồn tại!";
         internal static string MA_HIS_ID_DA_TON_TAI = "Mã HIS ID đã tồn tại!";
         internal static string CHUA_CHON_SO_XET_NGHIEM = "Chưa chọn sổ xét nghiệm!";
+        internal static string CHUA_CHON_BAN_GHI_NAO = "Chưa chọn bản ghi nào!";
+        internal static string DICH_VU_DA_DUOC_DUYET = "Các dịch vụ đã được duyệt!";
+        internal static string DICH_VU_CHUA_DUOC_DUYET_HOAC_NGUOI_KHAC_DUYET = "Dịch vụ chưa được duyệt hoặc của người khác duyệt!";
 
 
         internal static void HienThiThongBao(System.Windows.Forms.Timer timerThongBao, DevExpress.XtraEditors.LabelControl lblThongBao, string tenThongBao)

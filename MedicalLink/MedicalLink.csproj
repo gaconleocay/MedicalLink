@@ -656,6 +656,7 @@
     <Compile Include="ClassCommon\classUserDepartment.cs" />
     <Compile Include="ClassCommon\reportExcelDTO.cs" />
     <Compile Include="ClassCommon\classBenhVienDTO.cs" />
+    <Compile Include="ClassCommon\ServicepriceDuyetPTTTDTO.cs" />
     <Compile Include="ClassCommon\ServicepricegroupcodeDTO.cs" />
     <Compile Include="ClassCommon\SoXetNghiem_ChiSoDTO.cs" />
     <Compile Include="ClassCommon\TienBNPhaiThanhToanDTO.cs" />
@@ -1074,6 +1075,7 @@
     <Compile Include="ThongBao\WaitForm1.Designer.cs">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\BandGridView\CheckMarkSelection.cs" />
     <Compile Include="Utilities\Common.Excel\ExcelExport.cs" />
     <Compile Include="Utilities\Common.String\Convert.cs" />
     <Compile Include="Utilities\GridControl\Util_GridcontrolConvert.cs" />

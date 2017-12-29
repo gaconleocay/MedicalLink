@@ -292,7 +292,13 @@ namespace MedicalLink.Base
                 THAOTAC_04.permissionnote = "Thêm mới và cập nhật nhân sự";
                 lstresult.Add(THAOTAC_04);
 
-
+                ClassCommon.classPermission THAOTAC_05 = new ClassCommon.classPermission();
+                THAOTAC_05.permissioncheck = false;
+                THAOTAC_05.permissioncode = "THAOTAC_05";
+                THAOTAC_05.permissionname = "Duyệt giám định phẫu thuật thủ thuật";
+                THAOTAC_05.permissiontype = 4;
+                THAOTAC_05.permissionnote = "Duyệt giám định phẫu thuật thủ thuật";
+                lstresult.Add(THAOTAC_05);
 
                 //report
                 ClassCommon.classPermission REPORT_01 = new ClassCommon.classPermission();

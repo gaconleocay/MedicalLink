@@ -15,25 +15,27 @@ using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using DevExpress.Utils.Menu;
 using MedicalLink.Utilities.GridControl;
+using MedicalLink.Utilities.GUIGridView;
+using MedicalLink.Utilities.BandGridView;
 
 namespace MedicalLink.BaoCao
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public partial class ucBCThucHienCLS : UserControl
     {
         #region Declaration
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         DataTable dataBCPTTT { get; set; }
-        bool kiemtrasuadulieu = false;
+        private bool kiemtrasuadulieu = false;
         private DataTable dataNguoiThucHien { get; set; }
+        private Utilities.BandGridView.GridCheckMarksSelection helper;
+        private bool _duyetPTTT = false;
         #endregion
 
         #region Load
         public ucBCThucHienCLS()
         {
             InitializeComponent();
+            helper = new GridCheckMarksSelection(bandedGridViewDataBCPTTT);
         }
 
         private void ucBCThucHienCLS_Load(object sender, EventArgs e)
@@ -44,6 +46,7 @@ namespace MedicalLink.BaoCao
             LoadDanhSachExport();
             LoadDanhSachButonPrint();
             LoadDanhSachBaoCao();
+            KiemTraQuyenDuyetPTTT();
         }
 
         private void LoadDanhSachExport()
@@ -86,7 +89,6 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
         private void LoadDanhSachBaoCao()
         {
             try
@@ -116,8 +118,23 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void KiemTraQuyenDuyetPTTT()
+        {
+            try
+            {
+                if (!MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_05"))
+                {
+                    helper.CheckMarkColumn.ColumnEdit.ReadOnly = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
+        #region Events
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             try
@@ -128,7 +145,6 @@ namespace MedicalLink.BaoCao
                     frmthongbao.Show();
                     return;
                 }
-                gridControlDataBCPTTT.DataSource = null;
                 LayDuLieuBaoCao_ChayMoi();
             }
             catch (Exception ex)
@@ -136,6 +152,59 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+
+        private void bandedGridViewDataBCPTTT_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        {
+            try
+            {
+                if (!this._duyetPTTT && helper.SelectedCount == 0)
+                {
+                    kiemtrasuadulieu = true;
+                    var rowHandle = bandedGridViewDataBCPTTT.FocusedRowHandle;
+                    long thuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "thuchienclsid").ToString());
+                    long medicalrecordid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
+                    long maubenhphamid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                    long patientid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "patientid").ToString());
+                    long servicepriceid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "servicepriceid").ToString());
+                    string thuchienclsdate = Utilities.Util_TypeConvertParse.ToDateTime(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "ngay_thuchien").ToString()).ToString("yyyy-MM-dd HH:mm:ss");
+
+                    long mochinh_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "mochinh_idbs").ToString());
+                    long gayme_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "gayme_idbs").ToString());
+                    long phu1_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu1_idbs").ToString());
+                    long phu2_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu2_idbs").ToString());
+                    long giupviec1_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec1_idbs").ToString());
+                    long giupviec2_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec2_idbs").ToString());
+
+                    if (thuchienclsid == 0) //kiemtra xem co ban ghi nao hay ko?
+                    {
+                        string sqlkiemtra = "select thuchienclsid from thuchiencls where servicepriceid=" + servicepriceid + ";";
+                        DataTable dataKiemTra = condb.GetDataTable_HIS(sqlkiemtra);
+                        if (dataKiemTra != null && dataKiemTra.Rows.Count > 0)
+                        {
+                            thuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(dataKiemTra.Rows[0]["thuchienclsid"].ToString());
+                        }
+                    }
+
+                    string luulaithuchien = "";
+                    if (thuchienclsid == 0) //them moi
+                    {
+                        luulaithuchien = "INSERT INTO thuchiencls(medicalrecordid, medicalrecordid_gmhs, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, tools_userid, tools_username) VALUES ('" + medicalrecordid + "', '" + medicalrecordid + "', '" + patientid + "', '" + maubenhphamid + "', '" + servicepriceid + "', '" + thuchienclsdate + "', '" + mochinh_idbs + "', '" + gayme_idbs + "', '" + phu1_idbs + "', '" + phu2_idbs + "', '" + giupviec1_idbs + "', '" + giupviec2_idbs + "', '" + SessionLogin.SessionUserID + "', '" + SessionLogin.SessionUsername + "');";
+                    }
+                    else
+                    {
+                        luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + mochinh_idbs + "',  bacsigayme = '" + gayme_idbs + "', phumo1 = '" + phu1_idbs + "', phumo2 = '" + phu2_idbs + "', phumo3 = '" + giupviec1_idbs + "', phumo4 = '" + giupviec2_idbs + "', tools_userid='" + SessionLogin.SessionUserID + "', tools_username='" + SessionLogin.SessionUsername + "' WHERE thuchienclsid = " + thuchienclsid + "; ";
+                    }
+
+                    condb.ExecuteNonQuery_HIS(luulaithuchien);
+                }
+                this._duyetPTTT = false;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        #endregion
 
         #region Custom
         private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -154,53 +223,7 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-        private void bandedGridViewDataBCPTTT_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
-        {
-            try
-            {
-                kiemtrasuadulieu = true;
-                var rowHandle = bandedGridViewDataBCPTTT.FocusedRowHandle;
-                long thuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "thuchienclsid").ToString());
-                long medicalrecordid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
-                long maubenhphamid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
-                long patientid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "patientid").ToString());
-                long servicepriceid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "servicepriceid").ToString());
-                string thuchienclsdate = Utilities.Util_TypeConvertParse.ToDateTime(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "ngay_thuchien").ToString()).ToString("yyyy-MM-dd HH:mm:ss");
 
-                long mochinh_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "mochinh_idbs").ToString());
-                long gayme_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "gayme_idbs").ToString());
-                long phu1_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu1_idbs").ToString());
-                long phu2_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu2_idbs").ToString());
-                long giupviec1_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec1_idbs").ToString());
-                long giupviec2_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec2_idbs").ToString());
-
-                if (thuchienclsid == 0) //kiemtra xem co ban ghi nao hay ko?
-                {
-                    string sqlkiemtra = "select thuchienclsid from thuchiencls where servicepriceid=" + servicepriceid + ";";
-                    DataTable dataKiemTra = condb.GetDataTable_HIS(sqlkiemtra);
-                    if (dataKiemTra != null && dataKiemTra.Rows.Count > 0)
-                    {
-                        thuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(dataKiemTra.Rows[0]["thuchienclsid"].ToString());
-                    }
-                }
-
-                string luulaithuchien = "";
-                if (thuchienclsid == 0) //them moi
-                {
-                    luulaithuchien = "INSERT INTO thuchiencls(medicalrecordid, medicalrecordid_gmhs, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, tools_userid, tools_username) VALUES ('" + medicalrecordid + "', '" + medicalrecordid + "', '" + patientid + "', '" + maubenhphamid + "', '" + servicepriceid + "', '" + thuchienclsdate + "', '" + mochinh_idbs + "', '" + gayme_idbs + "', '" + phu1_idbs + "', '" + phu2_idbs + "', '" + giupviec1_idbs + "', '" + giupviec2_idbs + "', '" + SessionLogin.SessionUserID + "', '" + SessionLogin.SessionUsername + "');";
-                }
-                else
-                {
-                    luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + mochinh_idbs + "',  bacsigayme = '" + gayme_idbs + "', phumo1 = '" + phu1_idbs + "', phumo2 = '" + phu2_idbs + "', phumo3 = '" + giupviec1_idbs + "', phumo4 = '" + giupviec2_idbs + "', tools_userid='" + SessionLogin.SessionUserID + "', tools_username='" + SessionLogin.SessionUsername + "' WHERE thuchienclsid = " + thuchienclsid + "; ";
-                }
-
-                condb.ExecuteNonQuery_HIS(luulaithuchien);
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
         private void cboLoaiBaoCao_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -277,7 +300,52 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
+        private void bandedGridViewDataBCPTTT_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            try
+            {
+                if (e.Column.FieldName == "img_duyetstt")
+                {
+                    string val = bandedGridViewDataBCPTTT.GetRowCellValue(e.RowHandle, "duyetpttt_stt").ToString();
+                    if (val == "1")
+                    {
+                        e.Handled = true;
+                        Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[2]);
+                        e.Graphics.DrawImage(imMenu.Images[2], pos);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+        private void bandedGridViewDataBCPTTT_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            try
+            {
+                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_05"))
+                {
+                    if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
+                    {
+                        e.Menu.Items.Clear();
+                        DXMenuItem item_DuyetPTTTChon = new DXMenuItem("Duyệt PTTT đã chọn");
+                        item_DuyetPTTTChon.Image = imMenu.Images[0];
+                        item_DuyetPTTTChon.Click += new EventHandler(DuyetPTTTDaChon_Click);
+                        e.Menu.Items.Add(item_DuyetPTTTChon);
+                        DXMenuItem item_GoDuyetPTTTChon = new DXMenuItem("Gỡ duyệt PTTT đã chọn");
+                        item_GoDuyetPTTTChon.Image = imMenu.Images[1];
+                        item_GoDuyetPTTTChon.Click += new EventHandler(GoDuyetPTTTDaChon_Click);
+                        e.Menu.Items.Add(item_GoDuyetPTTTChon);
+                        item_GoDuyetPTTTChon.BeginGroup = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
         #endregion
 
         #region Xuat bao cao
@@ -443,7 +511,7 @@ namespace MedicalLink.BaoCao
 
         #endregion
 
-        #region Xuat bao cao
+        #region In bao cao
         void Item_Print_Click(object sender, EventArgs e)
         {
             try
@@ -468,7 +536,6 @@ namespace MedicalLink.BaoCao
                 Base.Logging.Warn(ex);
             }
         }
-
         private void tbnPrintBCCLS_Click()
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -534,6 +601,9 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
+
+
         #endregion
+
     }
 }

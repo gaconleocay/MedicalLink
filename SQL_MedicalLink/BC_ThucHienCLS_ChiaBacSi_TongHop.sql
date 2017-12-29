@@ -1,5 +1,5 @@
 --Bao cao Tong hop thanh toan PTTT theo bac si - Can lam sang
----ngay 27/9
+---ngay 28/12
 
 
 SELECT O.*,
@@ -56,7 +56,7 @@ FROM
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
 			   mbp.departmentid_des
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+_trangthaipttt+" ) ser
 			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where bacsigayme>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
@@ -68,7 +68,7 @@ FROM
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
 			   mbp.departmentid_des
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+_trangthaipttt+" ) ser
 			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where phauthuatvien>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
@@ -80,7 +80,7 @@ FROM
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
 			   mbp.departmentid_des
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+_trangthaipttt+" ) ser
 			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where phumo1>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
@@ -92,7 +92,7 @@ FROM
 			   sum(ser.soluong) as soluong,
 			   serf.pttt_loaiid,
 			   mbp.departmentid_des
-		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+" ) ser
+		from (select servicepriceid,vienphiid,servicepricecode,soluong,maubenhphamid from serviceprice where bhyt_groupcode in ('03XN','04CDHA','05TDCN','07KTC')  "+_tieuchi_ser+_trangthaipttt+" ) ser
 			inner join (select maubenhphamid,departmentid_des from maubenhpham "+lstKhoacheck + _tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 			inner join (select servicepriceid,bacsigayme,phauthuatvien,phumo1,phumo3 from thuchiencls where phumo3>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
@@ -109,42 +109,3 @@ FROM
 
 
 
-
-departmentid_des
-
-Theo ngày thực hiện
-Theo ngày thanh toán
-Theo ngày chỉ định
-
-Theo ngày thực hiện
-Theo ngày thanh toán
-Theo ngày chỉ định
-Theo ngày tiếp nhận	
-DEPARTMENTNAME
-
-CREATE TABLE thuchiencls
-(
-  thuchienclsid serial NOT NULL,
-  medicalrecordid integer DEFAULT 0,
-  medicalrecordid_gmhs integer DEFAULT 0,
-  patientid integer DEFAULT 0,
-  maubenhphamid integer DEFAULT 0,
-  servicepriceid integer DEFAULT 0,
-  thuchienclsdate timestamp without time zone,
-  phauthuatvien integer DEFAULT 0,
-  bacsigayme integer DEFAULT 0,
-  phumo1 integer DEFAULT 0,
-  phumo2 integer DEFAULT 0,
-  phumo3 integer DEFAULT 0,
-  phumo4 integer DEFAULT 0,
-  mota text,
-  version timestamp without time zone,
-  sync_flag integer,
-  update_flag integer,
-  pttt_hangid integer DEFAULT 0,
-  phuongphappttt_code text,
-  phuongphappttt text,
-  tools_userid integer,
-  tools_username text,
-  CONSTRAINT thuchiencls_pkey PRIMARY KEY (thuchienclsid)
-)

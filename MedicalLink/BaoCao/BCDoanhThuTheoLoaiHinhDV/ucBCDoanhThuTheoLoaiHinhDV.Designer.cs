@@ -216,7 +216,8 @@
             "Theo ngày chỉ định",
             "Theo ngày vào viện",
             "Theo ngày ra viện",
-            "Theo ngày duyệt VP"});
+            "Theo ngày duyệt VP",
+            "Theo ngày thu tiền"});
             this.cbbTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbbTieuChi.Size = new System.Drawing.Size(151, 22);
             this.cbbTieuChi.TabIndex = 86;

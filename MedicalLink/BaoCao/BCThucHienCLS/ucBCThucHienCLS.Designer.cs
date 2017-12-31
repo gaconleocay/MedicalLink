@@ -574,13 +574,11 @@
             this.bandedGridViewDataBCPTTT.OptionsView.ShowGroupPanel = false;
             this.bandedGridViewDataBCPTTT.OptionsView.ShowIndicator = false;
             this.bandedGridViewDataBCPTTT.RowHeight = 25;
-            //this.bandedGridViewDataBCPTTT.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.bandedGridViewDataBCPTTT_RowClick);
             this.bandedGridViewDataBCPTTT.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.bandedGridViewDataBCPTTT_CustomDrawCell);
             this.bandedGridViewDataBCPTTT.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.bandedGridViewDataBNNT_RowCellStyle);
             this.bandedGridViewDataBCPTTT.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.bandedGridViewDataBCPTTT_PopupMenuShowing);
-            //this.bandedGridViewDataBCPTTT.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.bandedGridViewDataBCPTTT_SelectionChanged);
-            //this.bandedGridViewDataBCPTTT.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.bandedGridViewDataBCPTTT_CellValueChanged);
             this.bandedGridViewDataBCPTTT.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.bandedGridViewDataBCPTTT_RowUpdated);
+            this.bandedGridViewDataBCPTTT.ShowFilterPopupCheckedListBox += new DevExpress.XtraGrid.Views.Grid.FilterPopupCheckedListBoxEventHandler(this.bandedGridViewDataBCPTTT_ShowFilterPopupCheckedListBox);
             // 
             // gridBand1
             // 
@@ -616,7 +614,7 @@
             this.gridBand1.Name = "gridBand1";
             this.gridBand1.OptionsBand.ShowCaption = false;
             this.gridBand1.VisibleIndex = 0;
-            this.gridBand1.Width = 3405;
+            this.gridBand1.Width = 3465;
             // 
             // bandedGridColumn1
             // 
@@ -634,6 +632,7 @@
             this.bandedGridColumn1.FieldName = "stt";
             this.bandedGridColumn1.Name = "bandedGridColumn1";
             this.bandedGridColumn1.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn1.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn1.Visible = true;
             this.bandedGridColumn1.Width = 45;
             // 
@@ -645,6 +644,7 @@
             this.bandedGridColumn53.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn53.OptionsColumn.FixedWidth = true;
             this.bandedGridColumn53.OptionsColumn.ShowCaption = false;
+            this.bandedGridColumn53.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn53.ToolTip = "Trạng thái duyệt CLS";
             this.bandedGridColumn53.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.bandedGridColumn53.Visible = true;
@@ -665,6 +665,7 @@
             this.bandedGridColumn2.Caption = "Mã bệnh nhân";
             this.bandedGridColumn2.FieldName = "patientid";
             this.bandedGridColumn2.Name = "bandedGridColumn2";
+            this.bandedGridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn2.Visible = true;
             this.bandedGridColumn2.Width = 85;
             // 
@@ -683,6 +684,7 @@
             this.bandedGridColumn3.Caption = "Mã viện phí";
             this.bandedGridColumn3.FieldName = "vienphiid";
             this.bandedGridColumn3.Name = "bandedGridColumn3";
+            this.bandedGridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn3.Visible = true;
             this.bandedGridColumn3.Width = 85;
             // 
@@ -699,6 +701,7 @@
             this.bandedGridColumn4.Caption = "Tên bệnh nhân";
             this.bandedGridColumn4.FieldName = "patientname";
             this.bandedGridColumn4.Name = "bandedGridColumn4";
+            this.bandedGridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn4.Visible = true;
             this.bandedGridColumn4.Width = 130;
             // 
@@ -717,6 +720,7 @@
             this.bandedGridColumn5.Caption = "Số thẻ BHYT";
             this.bandedGridColumn5.FieldName = "bhytcode";
             this.bandedGridColumn5.Name = "bandedGridColumn5";
+            this.bandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn5.Visible = true;
             this.bandedGridColumn5.Width = 130;
             // 
@@ -734,6 +738,7 @@
             this.bandedGridColumn6.FieldName = "khoachidinh";
             this.bandedGridColumn6.Name = "bandedGridColumn6";
             this.bandedGridColumn6.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn6.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn6.Visible = true;
             this.bandedGridColumn6.Width = 130;
             // 
@@ -751,6 +756,7 @@
             this.bandedGridColumn35.FieldName = "phongchidinh";
             this.bandedGridColumn35.Name = "bandedGridColumn35";
             this.bandedGridColumn35.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn35.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn35.Visible = true;
             this.bandedGridColumn35.Width = 130;
             // 
@@ -768,6 +774,7 @@
             this.bandedGridColumn51.FieldName = "phongthuchien";
             this.bandedGridColumn51.Name = "bandedGridColumn51";
             this.bandedGridColumn51.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn51.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn51.Visible = true;
             this.bandedGridColumn51.Width = 130;
             // 
@@ -789,6 +796,7 @@
             this.bandedGridColumn7.FieldName = "ngay_chidinh";
             this.bandedGridColumn7.Name = "bandedGridColumn7";
             this.bandedGridColumn7.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn7.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn7.Visible = true;
             this.bandedGridColumn7.Width = 125;
             // 
@@ -810,6 +818,7 @@
             this.bandedGridColumn52.FieldName = "ngay_tiepnhan";
             this.bandedGridColumn52.Name = "bandedGridColumn52";
             this.bandedGridColumn52.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn52.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn52.Visible = true;
             this.bandedGridColumn52.Width = 125;
             // 
@@ -831,6 +840,7 @@
             this.bandedGridColumn33.FieldName = "ngay_thuchien";
             this.bandedGridColumn33.Name = "bandedGridColumn33";
             this.bandedGridColumn33.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn33.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn33.Visible = true;
             this.bandedGridColumn33.Width = 125;
             // 
@@ -852,6 +862,7 @@
             this.bandedGridColumn48.FieldName = "ngay_thuchien_tp";
             this.bandedGridColumn48.Name = "bandedGridColumn48";
             this.bandedGridColumn48.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn48.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn48.Visible = true;
             this.bandedGridColumn48.Width = 125;
             // 
@@ -869,6 +880,7 @@
             this.bandedGridColumn8.FieldName = "khoachuyenden";
             this.bandedGridColumn8.Name = "bandedGridColumn8";
             this.bandedGridColumn8.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn8.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn8.Visible = true;
             this.bandedGridColumn8.Width = 130;
             // 
@@ -886,6 +898,7 @@
             this.bandedGridColumn9.FieldName = "khoaravien";
             this.bandedGridColumn9.Name = "bandedGridColumn9";
             this.bandedGridColumn9.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn9.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn9.Visible = true;
             this.bandedGridColumn9.Width = 130;
             // 
@@ -901,6 +914,7 @@
             this.bandedGridColumn42.FieldName = "cd_chidinh";
             this.bandedGridColumn42.Name = "bandedGridColumn42";
             this.bandedGridColumn42.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn42.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn42.Visible = true;
             this.bandedGridColumn42.Width = 313;
             // 
@@ -917,6 +931,7 @@
             this.bandedGridColumn40.Caption = "Mã phiếu CĐ";
             this.bandedGridColumn40.FieldName = "sophieu";
             this.bandedGridColumn40.Name = "bandedGridColumn40";
+            this.bandedGridColumn40.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn40.Visible = true;
             this.bandedGridColumn40.Width = 92;
             // 
@@ -933,6 +948,7 @@
             this.bandedGridColumn10.Caption = "Mã dịch vụ";
             this.bandedGridColumn10.FieldName = "servicepricecode";
             this.bandedGridColumn10.Name = "bandedGridColumn10";
+            this.bandedGridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn10.Visible = true;
             this.bandedGridColumn10.Width = 85;
             // 
@@ -950,8 +966,9 @@
             this.bandedGridColumn11.FieldName = "servicepricename";
             this.bandedGridColumn11.Name = "bandedGridColumn11";
             this.bandedGridColumn11.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn11.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn11.Visible = true;
-            this.bandedGridColumn11.Width = 190;
+            this.bandedGridColumn11.Width = 250;
             // 
             // bandedGridColumn17
             // 
@@ -971,6 +988,7 @@
             this.bandedGridColumn17.FieldName = "soluong";
             this.bandedGridColumn17.Name = "bandedGridColumn17";
             this.bandedGridColumn17.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn17.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn17.Visible = true;
             this.bandedGridColumn17.Width = 85;
             // 
@@ -992,6 +1010,7 @@
             this.bandedGridColumn12.FieldName = "servicepricefee";
             this.bandedGridColumn12.Name = "bandedGridColumn12";
             this.bandedGridColumn12.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn12.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn12.Visible = true;
             this.bandedGridColumn12.Width = 120;
             // 
@@ -1011,6 +1030,7 @@
             this.bandedGridColumn_tyle.FieldName = "tyle";
             this.bandedGridColumn_tyle.Name = "bandedGridColumn_tyle";
             this.bandedGridColumn_tyle.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn_tyle.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn_tyle.Visible = true;
             this.bandedGridColumn_tyle.Width = 85;
             // 
@@ -1030,6 +1050,7 @@
             this.bandedGridColumn14.FieldName = "thuoc_tronggoi";
             this.bandedGridColumn14.Name = "bandedGridColumn14";
             this.bandedGridColumn14.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn14.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn14.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "thuoc_tronggoi", "{0:#,##0}")});
             this.bandedGridColumn14.Visible = true;
@@ -1051,6 +1072,7 @@
             this.bandedGridColumn15.FieldName = "vattu_tronggoi";
             this.bandedGridColumn15.Name = "bandedGridColumn15";
             this.bandedGridColumn15.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn15.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn15.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vattu_tronggoi", "{0:#,##0}")});
             this.bandedGridColumn15.Visible = true;
@@ -1074,6 +1096,7 @@
             this.bandedGridColumn38.FieldName = "chiphikhac";
             this.bandedGridColumn38.Name = "bandedGridColumn38";
             this.bandedGridColumn38.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn38.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn38.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "chiphikhac", "{0:#,##0}")});
             this.bandedGridColumn38.Visible = true;
@@ -1097,6 +1120,7 @@
             this.bandedGridColumn37.FieldName = "thanhtien";
             this.bandedGridColumn37.Name = "bandedGridColumn37";
             this.bandedGridColumn37.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn37.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn37.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "thanhtien", "{0:#,##0}")});
             this.bandedGridColumn37.Visible = true;
@@ -1122,6 +1146,7 @@
             this.bandedGridColumn36.FieldName = "lai";
             this.bandedGridColumn36.Name = "bandedGridColumn36";
             this.bandedGridColumn36.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn36.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn36.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "lai", "{0:#,##0}")});
             this.bandedGridColumn36.Visible = true;
@@ -1141,6 +1166,7 @@
             this.bandedGridColumn16.FieldName = "loaipttt";
             this.bandedGridColumn16.Name = "bandedGridColumn16";
             this.bandedGridColumn16.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn16.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn16.Visible = true;
             this.bandedGridColumn16.Width = 130;
             // 
@@ -1171,6 +1197,7 @@
             this.bandedGridColumn18.FieldName = "mochinh_tenbs";
             this.bandedGridColumn18.Name = "bandedGridColumn18";
             this.bandedGridColumn18.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn18.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn18.Visible = true;
             this.bandedGridColumn18.Width = 250;
             // 
@@ -1192,6 +1219,7 @@
             this.bandedGridColumn19.FieldName = "mochinh_tien";
             this.bandedGridColumn19.Name = "bandedGridColumn19";
             this.bandedGridColumn19.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn19.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn19.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "mochinh_tien", "{0:#,##0}")});
             this.bandedGridColumn19.Visible = true;
@@ -1224,6 +1252,7 @@
             this.bandedGridColumn20.ColumnEdit = this.repositoryItemGridLookUp_GayMe;
             this.bandedGridColumn20.FieldName = "gayme_idbs";
             this.bandedGridColumn20.Name = "bandedGridColumn20";
+            this.bandedGridColumn20.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn20.Visible = true;
             this.bandedGridColumn20.Width = 250;
             // 
@@ -1297,6 +1326,7 @@
             this.bandedGridColumn21.FieldName = "gayme_tien";
             this.bandedGridColumn21.Name = "bandedGridColumn21";
             this.bandedGridColumn21.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn21.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn21.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gayme_tien", "{0:#,##0}")});
             this.bandedGridColumn21.Visible = true;
@@ -1329,6 +1359,7 @@
             this.bandedGridColumn22.ColumnEdit = this.repositoryItemGridLookUp_Phu1;
             this.bandedGridColumn22.FieldName = "phu1_idbs";
             this.bandedGridColumn22.Name = "bandedGridColumn22";
+            this.bandedGridColumn22.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn22.Visible = true;
             this.bandedGridColumn22.Width = 250;
             // 
@@ -1402,6 +1433,7 @@
             this.bandedGridColumn23.FieldName = "phu1_tien";
             this.bandedGridColumn23.Name = "bandedGridColumn23";
             this.bandedGridColumn23.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn23.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn23.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "phu1_tien", "{0:#,##0}")});
             this.bandedGridColumn23.Visible = true;
@@ -1434,6 +1466,7 @@
             this.bandedGridColumn24.ColumnEdit = this.repositoryItemGridLookUp_Phu2;
             this.bandedGridColumn24.FieldName = "phu2_idbs";
             this.bandedGridColumn24.Name = "bandedGridColumn24";
+            this.bandedGridColumn24.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn24.Visible = true;
             this.bandedGridColumn24.Width = 250;
             // 
@@ -1507,6 +1540,7 @@
             this.bandedGridColumn25.FieldName = "phu2_tien";
             this.bandedGridColumn25.Name = "bandedGridColumn25";
             this.bandedGridColumn25.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn25.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn25.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "phu2_tien", "{0:#,##0}")});
             this.bandedGridColumn25.Visible = true;
@@ -1540,6 +1574,7 @@
             this.bandedGridColumn26.ColumnEdit = this.repositoryItemGridLookUp_GiupViec1;
             this.bandedGridColumn26.FieldName = "giupviec1_idbs";
             this.bandedGridColumn26.Name = "bandedGridColumn26";
+            this.bandedGridColumn26.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn26.Visible = true;
             this.bandedGridColumn26.Width = 250;
             // 
@@ -1613,6 +1648,7 @@
             this.bandedGridColumn_gv1_tien.FieldName = "giupviec1_tien";
             this.bandedGridColumn_gv1_tien.Name = "bandedGridColumn_gv1_tien";
             this.bandedGridColumn_gv1_tien.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn_gv1_tien.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn_gv1_tien.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "giupviec1_tien", "{0:#,##0}")});
             this.bandedGridColumn_gv1_tien.Visible = true;
@@ -1636,6 +1672,7 @@
             this.bandedGridColumn_gv1nsdd_tien.FieldName = "giupviec1nsdd_tien";
             this.bandedGridColumn_gv1nsdd_tien.Name = "bandedGridColumn_gv1nsdd_tien";
             this.bandedGridColumn_gv1nsdd_tien.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn_gv1nsdd_tien.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn_gv1nsdd_tien.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "giupviec1nsdd_tien", "{0:#,##0}")});
             this.bandedGridColumn_gv1nsdd_tien.Visible = true;
@@ -1668,6 +1705,7 @@
             this.bandedGridColumn28.ColumnEdit = this.repositoryItemGridLookUp_GiupViec2;
             this.bandedGridColumn28.FieldName = "giupviec2_idbs";
             this.bandedGridColumn28.Name = "bandedGridColumn28";
+            this.bandedGridColumn28.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn28.Visible = true;
             this.bandedGridColumn28.Width = 250;
             // 
@@ -1741,6 +1779,7 @@
             this.bandedGridColumn29.FieldName = "giupviec2_tien";
             this.bandedGridColumn29.Name = "bandedGridColumn29";
             this.bandedGridColumn29.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn29.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn29.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "giupviec2_tien", "{0:#,##0}")});
             this.bandedGridColumn29.Visible = true;
@@ -1779,6 +1818,7 @@
             this.bandedGridColumn30.FieldName = "ngay_vaovien";
             this.bandedGridColumn30.Name = "bandedGridColumn30";
             this.bandedGridColumn30.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn30.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn30.Visible = true;
             this.bandedGridColumn30.Width = 125;
             // 
@@ -1800,6 +1840,7 @@
             this.bandedGridColumn31.FieldName = "ngay_ravien";
             this.bandedGridColumn31.Name = "bandedGridColumn31";
             this.bandedGridColumn31.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn31.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn31.Visible = true;
             this.bandedGridColumn31.Width = 125;
             // 
@@ -1821,6 +1862,7 @@
             this.bandedGridColumn32.FieldName = "ngay_thanhtoan";
             this.bandedGridColumn32.Name = "bandedGridColumn32";
             this.bandedGridColumn32.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn32.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn32.Visible = true;
             this.bandedGridColumn32.Width = 125;
             // 
@@ -1836,6 +1878,7 @@
             this.bandedGridColumn43.FieldName = "nguoitraketqua";
             this.bandedGridColumn43.Name = "bandedGridColumn43";
             this.bandedGridColumn43.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn43.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn43.Visible = true;
             this.bandedGridColumn43.Width = 150;
             // 
@@ -1853,6 +1896,7 @@
             this.bandedGridColumn50.FieldName = "nguoinhapthuchien";
             this.bandedGridColumn50.Name = "bandedGridColumn50";
             this.bandedGridColumn50.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn50.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn50.Visible = true;
             this.bandedGridColumn50.Width = 150;
             // 
@@ -1870,6 +1914,7 @@
             this.bandedGridColumn54.FieldName = "duyetpttt_username";
             this.bandedGridColumn54.Name = "bandedGridColumn54";
             this.bandedGridColumn54.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn54.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn54.Visible = true;
             this.bandedGridColumn54.Width = 135;
             // 
@@ -1891,6 +1936,7 @@
             this.bandedGridColumn55.FieldName = "duyetpttt_date";
             this.bandedGridColumn55.Name = "bandedGridColumn55";
             this.bandedGridColumn55.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn55.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn55.Visible = true;
             this.bandedGridColumn55.Width = 125;
             // 
@@ -1899,54 +1945,63 @@
             this.bandedGridColumn39.Caption = "maubenhphamid";
             this.bandedGridColumn39.FieldName = "maubenhphamid";
             this.bandedGridColumn39.Name = "bandedGridColumn39";
+            this.bandedGridColumn39.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn13
             // 
             this.bandedGridColumn13.Caption = "medicalrecordid";
             this.bandedGridColumn13.FieldName = "medicalrecordid";
             this.bandedGridColumn13.Name = "bandedGridColumn13";
+            this.bandedGridColumn13.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn34
             // 
             this.bandedGridColumn34.Caption = "thuchienclsid";
             this.bandedGridColumn34.FieldName = "thuchienclsid";
             this.bandedGridColumn34.Name = "bandedGridColumn34";
+            this.bandedGridColumn34.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn44
             // 
             this.bandedGridColumn44.Caption = "không được bỏ";
             this.bandedGridColumn44.FieldName = "mochinh_tenbs";
             this.bandedGridColumn44.Name = "bandedGridColumn44";
+            this.bandedGridColumn44.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn45
             // 
             this.bandedGridColumn45.Caption = "gayme_tenbs";
             this.bandedGridColumn45.FieldName = "gayme_tenbs";
             this.bandedGridColumn45.Name = "bandedGridColumn45";
+            this.bandedGridColumn45.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn46
             // 
             this.bandedGridColumn46.Caption = "phu1_tenbs";
             this.bandedGridColumn46.FieldName = "phu1_tenbs";
             this.bandedGridColumn46.Name = "bandedGridColumn46";
+            this.bandedGridColumn46.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn47
             // 
             this.bandedGridColumn47.Caption = "phu2_tenbs";
             this.bandedGridColumn47.FieldName = "phu2_tenbs";
             this.bandedGridColumn47.Name = "bandedGridColumn47";
+            this.bandedGridColumn47.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn49
             // 
             this.bandedGridColumn49.Caption = "giupviec2_tenbs";
             this.bandedGridColumn49.FieldName = "giupviec2_tenbs";
             this.bandedGridColumn49.Name = "bandedGridColumn49";
+            this.bandedGridColumn49.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn27
             // 
             this.bandedGridColumn27.Caption = "giupviec1_tenbs";
             this.bandedGridColumn27.FieldName = "giupviec1_tenbs";
             this.bandedGridColumn27.Name = "bandedGridColumn27";
+            this.bandedGridColumn27.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn56
             // 
@@ -1962,6 +2017,7 @@
             this.bandedGridColumn56.FieldName = "servicepriceid";
             this.bandedGridColumn56.Name = "bandedGridColumn56";
             this.bandedGridColumn56.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn56.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn57
             // 
@@ -1977,6 +2033,7 @@
             this.bandedGridColumn57.FieldName = "duyetpttt_stt";
             this.bandedGridColumn57.Name = "bandedGridColumn57";
             this.bandedGridColumn57.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn57.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // bandedGridColumn41
             // 
@@ -1984,6 +2041,7 @@
             this.bandedGridColumn41.FieldName = "duyetpttt_usercode";
             this.bandedGridColumn41.Name = "bandedGridColumn41";
             this.bandedGridColumn41.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn41.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             // 
             // repositoryItemGridLookUp_MoChinh
             // 

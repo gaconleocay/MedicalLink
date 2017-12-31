@@ -605,5 +605,32 @@ namespace MedicalLink.BaoCao
 
         #endregion
 
+        private void bandedGridViewDataBCPTTT_ShowFilterPopupCheckedListBox(object sender, FilterPopupCheckedListBoxEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.Column.FieldName != "servicepricename") return;
+            //    // Hide the "Select All" item.
+            //    e.CheckedComboBox.SelectAllItemVisible = false;
+            //    // Locate and disable checked items that contain specific values.
+            //    for (int i = 0; i < e.CheckedComboBox.Items.Count; i++)
+            //    {
+            //        DevExpress.XtraEditors.Controls.CheckedListBoxItem item = e.CheckedComboBox.Items[i];
+            //        string itemValue = (string)(item.Value as FilterItem).Value;
+            //        //if (itemValue == "Seafood" || itemValue == "Condiments")
+            //        //{
+            //        //    e.CheckedComboBox.Items[i].Enabled = false;
+            //        //}
+            //    }
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
+        }
+
+
+
     }
 }

@@ -234,5 +234,6 @@ namespace MedicalLink.BaoCao
             }
             SplashScreenManager.CloseForm();
         }
+
     }
 }

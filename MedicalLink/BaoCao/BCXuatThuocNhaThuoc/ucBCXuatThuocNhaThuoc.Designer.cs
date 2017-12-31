@@ -46,6 +46,8 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlDonThuoc = new DevExpress.XtraGrid.GridControl();
             this.gridViewDonThuoc = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,8 +72,6 @@
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
-            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -238,6 +238,36 @@
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
             this.groupBoxAction.Text = "Action";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Appearance.Options.UseForeColor = true;
+            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(14, 21);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 30);
+            this.btnPrint.TabIndex = 15;
+            this.btnPrint.Text = "In...";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // tbnExport
+            // 
+            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbnExport.Appearance.Options.UseFont = true;
+            this.tbnExport.Appearance.Options.UseForeColor = true;
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.tbnExport.Location = new System.Drawing.Point(14, 59);
+            this.tbnExport.Name = "tbnExport";
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
+            this.tbnExport.TabIndex = 14;
+            this.tbnExport.Text = "Xuất file";
+            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // gridControlDonThuoc
             // 
@@ -696,36 +726,6 @@
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
             this.imMenu.Images.SetKeyName(0, "fast-forward-2-16.png");
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnPrint.Appearance.Options.UseFont = true;
-            this.btnPrint.Appearance.Options.UseForeColor = true;
-            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
-            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(14, 21);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 30);
-            this.btnPrint.TabIndex = 15;
-            this.btnPrint.Text = "In...";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // tbnExport
-            // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(14, 59);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 30);
-            this.tbnExport.TabIndex = 14;
-            this.tbnExport.Text = "Xuất file";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // ucBCXuatThuocNhaThuoc
             // 

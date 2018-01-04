@@ -157,13 +157,13 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.chkcomboNhomDichVu.Properties.DropDownRows = 15;
             this.chkcomboNhomDichVu.Size = new System.Drawing.Size(395, 22);
-            this.chkcomboNhomDichVu.TabIndex = 87;
+            this.chkcomboNhomDichVu.TabIndex = 4;
             // 
             // radioXemChiTiet
             // 
             this.radioXemChiTiet.AutoSize = true;
             this.radioXemChiTiet.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioXemChiTiet.Location = new System.Drawing.Point(779, 60);
+            this.radioXemChiTiet.Location = new System.Drawing.Point(691, 60);
             this.radioXemChiTiet.Name = "radioXemChiTiet";
             this.radioXemChiTiet.Size = new System.Drawing.Size(113, 20);
             this.radioXemChiTiet.TabIndex = 85;
@@ -175,7 +175,7 @@
             // 
             this.radioXemTongHop.AutoSize = true;
             this.radioXemTongHop.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioXemTongHop.Location = new System.Drawing.Point(779, 23);
+            this.radioXemTongHop.Location = new System.Drawing.Point(691, 23);
             this.radioXemTongHop.Name = "radioXemTongHop";
             this.radioXemTongHop.Size = new System.Drawing.Size(106, 20);
             this.radioXemTongHop.TabIndex = 84;
@@ -272,7 +272,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(923, 27);
+            this.btnTimKiem.Location = new System.Drawing.Point(835, 27);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -554,7 +554,7 @@
             this.gridColumn_PhongChiDinh.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn_PhongChiDinh.Visible = true;
             this.gridColumn_PhongChiDinh.VisibleIndex = 2;
-            this.gridColumn_PhongChiDinh.Width = 109;
+            this.gridColumn_PhongChiDinh.Width = 100;
             // 
             // gridColumn_TGChiDinh
             // 
@@ -589,7 +589,7 @@
             this.bandedGridColumn10.Name = "bandedGridColumn10";
             this.bandedGridColumn10.Visible = true;
             this.bandedGridColumn10.VisibleIndex = 3;
-            this.bandedGridColumn10.Width = 183;
+            this.bandedGridColumn10.Width = 120;
             // 
             // bandedGridColumn9
             // 
@@ -607,7 +607,7 @@
             this.bandedGridColumn9.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn9.Visible = true;
             this.bandedGridColumn9.VisibleIndex = 4;
-            this.bandedGridColumn9.Width = 201;
+            this.bandedGridColumn9.Width = 180;
             // 
             // bandedGridColumn8
             // 
@@ -625,7 +625,7 @@
             this.bandedGridColumn8.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn8.Visible = true;
             this.bandedGridColumn8.VisibleIndex = 5;
-            this.bandedGridColumn8.Width = 477;
+            this.bandedGridColumn8.Width = 400;
             // 
             // bandedGridColumn7
             // 

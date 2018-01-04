@@ -33,6 +33,7 @@
             this.groupBoxXuatBC = new System.Windows.Forms.GroupBox();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxBNBK_TK = new System.Windows.Forms.GroupBox();
+            this.chkTheoNhomDV = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
@@ -74,11 +75,11 @@
             this.benhchinh_name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.chkTheoNhomDV = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
             this.groupBoxBNBK_TK.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTheoNhomDV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkVP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBHYT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbLoaiBA.Properties)).BeginInit();
@@ -88,7 +89,6 @@
             this.panelControlDV_DT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSDV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSDV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTheoNhomDV.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlTKDV_TK
@@ -152,6 +152,19 @@
             this.groupBoxBNBK_TK.TabStop = false;
             this.groupBoxBNBK_TK.Text = "Tìm kiếm dịch vụ";
             // 
+            // chkTheoNhomDV
+            // 
+            this.chkTheoNhomDV.Location = new System.Drawing.Point(350, 37);
+            this.chkTheoNhomDV.Name = "chkTheoNhomDV";
+            this.chkTheoNhomDV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTheoNhomDV.Properties.Appearance.Options.UseFont = true;
+            this.chkTheoNhomDV.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkTheoNhomDV.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkTheoNhomDV.Properties.Caption = "Theo nhóm dịch vụ";
+            this.chkTheoNhomDV.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkTheoNhomDV.Size = new System.Drawing.Size(62, 52);
+            this.chkTheoNhomDV.TabIndex = 18;
+            // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -193,7 +206,7 @@
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
-            this.dateTuNgay.TabIndex = 14;
+            this.dateTuNgay.TabIndex = 144;
             this.dateTuNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             // 
             // chkVP
@@ -266,7 +279,7 @@
             this.btnTimKiem.Location = new System.Drawing.Point(948, 37);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
-            this.btnTimKiem.TabIndex = 2;
+            this.btnTimKiem.TabIndex = 14;
             this.btnTimKiem.Text = "Tìm Kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
@@ -842,19 +855,6 @@
             this.benhkemtheo_name.VisibleIndex = 25;
             this.benhkemtheo_name.Width = 145;
             // 
-            // chkTheoNhomDV
-            // 
-            this.chkTheoNhomDV.Location = new System.Drawing.Point(350, 37);
-            this.chkTheoNhomDV.Name = "chkTheoNhomDV";
-            this.chkTheoNhomDV.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkTheoNhomDV.Properties.Appearance.Options.UseFont = true;
-            this.chkTheoNhomDV.Properties.Appearance.Options.UseTextOptions = true;
-            this.chkTheoNhomDV.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.chkTheoNhomDV.Properties.Caption = "Theo nhóm dịch vụ";
-            this.chkTheoNhomDV.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-            this.chkTheoNhomDV.Size = new System.Drawing.Size(62, 52);
-            this.chkTheoNhomDV.TabIndex = 18;
-            // 
             // ucBCDSBNSDdv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -869,6 +869,7 @@
             this.groupBoxXuatBC.ResumeLayout(false);
             this.groupBoxBNBK_TK.ResumeLayout(false);
             this.groupBoxBNBK_TK.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTheoNhomDV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkVP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkBHYT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbLoaiBA.Properties)).EndInit();
@@ -878,7 +879,6 @@
             this.panelControlDV_DT.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSDV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSDV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTheoNhomDV.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

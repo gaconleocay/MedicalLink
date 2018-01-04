@@ -32,9 +32,9 @@
             this.panelControlTT = new DevExpress.XtraEditors.PanelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSuaThoiGianOK = new DevExpress.XtraEditors.SimpleButton();
-            this.dateThoiGianSua = new System.Windows.Forms.DateTimePicker();
+            this.dateThoiGianRa = new System.Windows.Forms.DateTimePicker();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.dateThoiGianHienTai = new System.Windows.Forms.DateTimePicker();
+            this.dateThoiGianVao = new System.Windows.Forms.DateTimePicker();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -56,6 +56,8 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTT)).BeginInit();
             this.panelControlTT.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -81,9 +83,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnSuaThoiGianOK);
-            this.groupBox2.Controls.Add(this.dateThoiGianSua);
+            this.groupBox2.Controls.Add(this.dateThoiGianRa);
             this.groupBox2.Controls.Add(this.labelControl2);
-            this.groupBox2.Controls.Add(this.dateThoiGianHienTai);
+            this.groupBox2.Controls.Add(this.dateThoiGianVao);
             this.groupBox2.Controls.Add(this.labelControl3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -109,51 +111,51 @@
             this.btnSuaThoiGianOK.Text = "Sửa";
             this.btnSuaThoiGianOK.Click += new System.EventHandler(this.btnSuaThoiGianOK_Click);
             // 
-            // dateThoiGianSua
+            // dateThoiGianRa
             // 
-            this.dateThoiGianSua.CalendarFont = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateThoiGianSua.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateThoiGianSua.Enabled = false;
-            this.dateThoiGianSua.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateThoiGianSua.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateThoiGianSua.Location = new System.Drawing.Point(128, 50);
-            this.dateThoiGianSua.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            this.dateThoiGianSua.Name = "dateThoiGianSua";
-            this.dateThoiGianSua.Size = new System.Drawing.Size(165, 23);
-            this.dateThoiGianSua.TabIndex = 5;
-            this.dateThoiGianSua.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
+            this.dateThoiGianRa.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateThoiGianRa.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dateThoiGianRa.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateThoiGianRa.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateThoiGianRa.Location = new System.Drawing.Point(128, 50);
+            this.dateThoiGianRa.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.dateThoiGianRa.Name = "dateThoiGianRa";
+            this.dateThoiGianRa.Size = new System.Drawing.Size(165, 23);
+            this.dateThoiGianRa.TabIndex = 5;
+            this.dateThoiGianRa.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
+            this.dateThoiGianRa.ValueChanged += new System.EventHandler(this.dateThoiGianRa_ValueChanged);
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(26, 55);
+            this.labelControl2.Location = new System.Drawing.Point(22, 55);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(84, 16);
+            this.labelControl2.Size = new System.Drawing.Size(100, 16);
             this.labelControl2.TabIndex = 4;
-            this.labelControl2.Text = "TG ra viện sửa";
+            this.labelControl2.Text = "Thời gian ra khoa";
             // 
-            // dateThoiGianHienTai
+            // dateThoiGianVao
             // 
-            this.dateThoiGianHienTai.CalendarFont = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateThoiGianHienTai.CustomFormat = "yyyy-MM-dd HH:mm:ss";
-            this.dateThoiGianHienTai.Enabled = false;
-            this.dateThoiGianHienTai.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateThoiGianHienTai.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateThoiGianHienTai.Location = new System.Drawing.Point(128, 13);
-            this.dateThoiGianHienTai.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            this.dateThoiGianHienTai.Name = "dateThoiGianHienTai";
-            this.dateThoiGianHienTai.Size = new System.Drawing.Size(165, 23);
-            this.dateThoiGianHienTai.TabIndex = 3;
-            this.dateThoiGianHienTai.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
+            this.dateThoiGianVao.CalendarFont = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateThoiGianVao.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dateThoiGianVao.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateThoiGianVao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateThoiGianVao.Location = new System.Drawing.Point(128, 13);
+            this.dateThoiGianVao.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.dateThoiGianVao.Name = "dateThoiGianVao";
+            this.dateThoiGianVao.Size = new System.Drawing.Size(165, 23);
+            this.dateThoiGianVao.TabIndex = 3;
+            this.dateThoiGianVao.Value = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
+            this.dateThoiGianVao.ValueChanged += new System.EventHandler(this.dateThoiGianVao_ValueChanged);
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(9, 20);
+            this.labelControl3.Location = new System.Drawing.Point(14, 20);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(105, 16);
+            this.labelControl3.Size = new System.Drawing.Size(108, 16);
             this.labelControl3.TabIndex = 0;
-            this.labelControl3.Text = "TG ra viện hiện tại";
+            this.labelControl3.Text = "Thời gian vào khoa";
             // 
             // groupBox1
             // 
@@ -217,7 +219,7 @@
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 2;
             this.btnTimKiem.Text = "Tìm Kiếm";
-            this.btnTimKiem.Click += new System.EventHandler(this.btnSuaThoiGianRV_Click);
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // labelControl1
             // 
@@ -281,11 +283,14 @@
             this.gridColumn6,
             this.gridColumn5,
             this.gridColumn7,
-            this.gridColumn9});
+            this.gridColumn9,
+            this.gridColumn10,
+            this.gridColumn11});
             this.gridViewSuaThoiGianRV.GridControl = this.gridControlSuaThoiGianRaVien;
             this.gridViewSuaThoiGianRV.Name = "gridViewSuaThoiGianRV";
             this.gridViewSuaThoiGianRV.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridViewSuaThoiGianRV.OptionsFilter.AllowFilterEditor = false;
+            this.gridViewSuaThoiGianRV.OptionsView.ColumnAutoWidth = false;
             this.gridViewSuaThoiGianRV.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewSuaThoiGianRV.OptionsView.ShowGroupPanel = false;
             this.gridViewSuaThoiGianRV.RowHeight = 25;
@@ -387,7 +392,7 @@
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 4;
-            this.gridColumn4.Width = 74;
+            this.gridColumn4.Width = 100;
             // 
             // gridColumnthoigianvaovien
             // 
@@ -409,7 +414,7 @@
             this.gridColumnthoigianvaovien.OptionsColumn.AllowEdit = false;
             this.gridColumnthoigianvaovien.Visible = true;
             this.gridColumnthoigianvaovien.VisibleIndex = 5;
-            this.gridColumnthoigianvaovien.Width = 141;
+            this.gridColumnthoigianvaovien.Width = 140;
             // 
             // gridColumn6
             // 
@@ -429,7 +434,7 @@
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 6;
-            this.gridColumn6.Width = 149;
+            this.gridColumn6.Width = 140;
             // 
             // gridColumn5
             // 
@@ -447,7 +452,7 @@
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
             this.gridColumn5.VisibleIndex = 7;
-            this.gridColumn5.Width = 116;
+            this.gridColumn5.Width = 190;
             // 
             // gridColumn7
             // 
@@ -465,7 +470,7 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 8;
-            this.gridColumn7.Width = 144;
+            this.gridColumn7.Width = 200;
             // 
             // gridColumn9
             // 
@@ -476,6 +481,18 @@
             this.gridColumn9.Caption = "Khoa Cuối";
             this.gridColumn9.FieldName = "lakhoacuoi";
             this.gridColumn9.Name = "gridColumn9";
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.Caption = "lakhoadau";
+            this.gridColumn10.FieldName = "lakhoadau";
+            this.gridColumn10.Name = "gridColumn10";
+            // 
+            // gridColumn11
+            // 
+            this.gridColumn11.Caption = "hosobenhanid";
+            this.gridColumn11.FieldName = "hosobenhanid";
+            this.gridColumn11.Name = "gridColumn11";
             // 
             // ucSuaThoiGianRaVien
             // 
@@ -520,9 +537,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private System.Windows.Forms.GroupBox groupBox2;
         private DevExpress.XtraEditors.SimpleButton btnSuaThoiGianOK;
-        private System.Windows.Forms.DateTimePicker dateThoiGianSua;
+        private System.Windows.Forms.DateTimePicker dateThoiGianRa;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private System.Windows.Forms.DateTimePicker dateThoiGianHienTai;
+        private System.Windows.Forms.DateTimePicker dateThoiGianVao;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
@@ -531,5 +548,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit txtMaBN;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
     }
 }

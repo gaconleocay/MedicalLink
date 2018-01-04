@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils.Menu;
 using DevExpress.XtraSplashScreen;
+using MedicalLink.Base;
 using MedicalLink.ClassCommon;
 using MedicalLink.DatabaseProcess;
 using MedicalLink.DatabaseProcess.FilterDTO;
@@ -197,29 +198,27 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (cboTrangThai.Text == "Đã duyệt PTTT")
+                if (cboTrangThai.Text == "Đã duyệt PTTT" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     dropDownPrint.Enabled = true;
+                }
+                else
+                {
+                    dropDownPrint.Enabled = false;
+                }
+
+                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã duyệt PTTT") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                {
                     dropDownExport.Enabled = true;
                 }
                 else
                 {
-                    if (MedicalLink.Base.CheckPermission.ChkPerModule("SYS_05"))
-                    {
-                        dropDownPrint.Enabled = true;
-                        dropDownExport.Enabled = true;
-                    }
-                    else
-                    {
-                        dropDownPrint.Enabled = false;
-                        dropDownExport.Enabled = false;
-                    }
+                    dropDownExport.Enabled = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
         #endregion

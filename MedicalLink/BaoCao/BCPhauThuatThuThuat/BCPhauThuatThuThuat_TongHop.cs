@@ -210,29 +210,27 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (cboTrangThai.Text == "Đã duyệt PTTT")
+                if (cboTrangThai.Text == "Đã duyệt PTTT" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     btnPrint.Enabled = true;
+                }
+                else
+                {
+                    btnPrint.Enabled = false;
+                }
+
+                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã duyệt PTTT") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                {
                     tbnExport.Enabled = true;
                 }
                 else
                 {
-                    if (MedicalLink.Base.CheckPermission.ChkPerModule("SYS_05"))
-                    {
-                        btnPrint.Enabled = true;
-                        tbnExport.Enabled = true;
-                    }
-                    else
-                    {
-                        btnPrint.Enabled = false;
-                        tbnExport.Enabled = false;
-                    }
+                    tbnExport.Enabled = false;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
         #endregion

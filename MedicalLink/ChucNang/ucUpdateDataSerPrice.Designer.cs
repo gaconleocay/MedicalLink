@@ -218,8 +218,10 @@
             this.cbbChonKieu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cbbChonKieu.Properties.Items.AddRange(new object[] {
-            "Update nhóm BHYT-Thuốc/VT",
-            "Update nhóm BHYT-Dịch vụ"});
+            "Nhóm BHYT-Thuốc/VT trắng",
+            "Nhóm BHYT-Dịch vụ trắng",
+            "Sai giá BHYT",
+            "Sai giá yêu cầu"});
             this.cbbChonKieu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbbChonKieu.Size = new System.Drawing.Size(165, 22);
             this.cbbChonKieu.TabIndex = 9;

@@ -300,6 +300,23 @@ namespace MedicalLink.Base
                 THAOTAC_05.permissionnote = "Duyệt giám định phẫu thuật thủ thuật";
                 lstresult.Add(THAOTAC_05);
 
+                ClassCommon.classPermission THAOTAC_06 = new ClassCommon.classPermission();
+                THAOTAC_06.permissioncheck = false;
+                THAOTAC_06.permissioncode = "THAOTAC_06";
+                THAOTAC_06.permissionname = "In và xuất excel khi chưa duyệt PTTT";
+                THAOTAC_06.permissiontype = 4;
+                THAOTAC_06.permissionnote = "In và xuất excel khi chưa duyệt PTTT";
+                lstresult.Add(THAOTAC_06);
+
+                ClassCommon.classPermission THAOTAC_07 = new ClassCommon.classPermission();
+                THAOTAC_07.permissioncheck = false;
+                THAOTAC_07.permissioncode = "THAOTAC_07";
+                THAOTAC_07.permissionname = "Xuất file excel";
+                THAOTAC_07.permissiontype = 4;
+                THAOTAC_07.permissionnote = "Xuất file excel";
+                lstresult.Add(THAOTAC_07);
+
+
                 //report
                 ClassCommon.classPermission REPORT_01 = new ClassCommon.classPermission();
                 REPORT_01.permissioncheck = false;

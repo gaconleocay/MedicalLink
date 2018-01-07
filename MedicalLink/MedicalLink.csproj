@@ -465,6 +465,12 @@
     <Compile Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.Designer.cs">
       <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\GopBenhAn\ucGopBenhAn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\GopBenhAn\ucGopBenhAn.Designer.cs">
+      <DependentUpon>ucGopBenhAn.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -518,6 +524,7 @@
     <Compile Include="ClassCommon\DepartmentDTO.cs" />
     <Compile Include="ClassCommon\DoanhThuTheoNhomDichVuDTO.cs" />
     <Compile Include="ClassCommon\BCBNSDDV_ChiPhiKhacDTO.cs" />
+    <Compile Include="ClassCommon\MedicalrecordGopBADTO.cs" />
     <Compile Include="ClassCommon\MoBenhAnTimKiemDTO.cs" />
     <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
@@ -1205,6 +1212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.resx">
       <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\GopBenhAn\ucGopBenhAn.resx">
+      <DependentUpon>ucGopBenhAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ImportDMDichVu\frmChonNhomDichVu.resx">
       <DependentUpon>frmChonNhomDichVu.cs</DependentUpon>

@@ -3,7 +3,7 @@
 -- DROP TABLE bhyt;
 
 CREATE TABLE bhyt
-(
+(medicalrecordid
   bhytid serial NOT NULL,
   patientid integer,
   hosobenhanid integer,
@@ -104,7 +104,7 @@ CREATE TABLE hosobenhan	doituongbenhnhanid
   CONSTRAINT hosobenhan_pkey PRIMARY KEY (hosobenhanid)
 )
   
-CREATE TABLE medicalrecord bhytid
+CREATE TABLE medicalrecord 
 (
   medicalrecordid serial NOT NULL,
   MEDICALRECORDCODE text,

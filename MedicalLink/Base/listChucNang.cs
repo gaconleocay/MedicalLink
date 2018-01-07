@@ -257,6 +257,17 @@ namespace MedicalLink.Base
                 TOOL_21.permissionnote = "Sửa hóa đơn tạm ứng";
                 lstresult.Add(TOOL_21);
 
+                ClassCommon.classPermission TOOL_22 = new ClassCommon.classPermission();
+                TOOL_22.permissioncheck = false;
+                TOOL_22.permissioncode = "TOOL_22";
+                TOOL_22.permissionname = "Gộp bệnh án";
+                TOOL_22.permissiontype = 2;
+                TOOL_22.permissionnote = "Gộp bệnh án";
+                lstresult.Add(TOOL_22);
+
+
+
+
 
 
                 // Phan quyen thao tac

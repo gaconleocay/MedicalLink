@@ -150,7 +150,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ BHYT thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ BHYT thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
                 MessageBox.Show("Update " + count_dv + " danh mục \"Tên dịch vụ BHYT\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -190,7 +190,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ Nhân dân thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ Nhân dân thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
                 MessageBox.Show("Update " + count_dv + " danh mục \"Tên dịch vụ Nhân dân\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -231,7 +231,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục tên dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
                 // Thông báo đã Update Tên dịch vụ
@@ -274,7 +274,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục mã user dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục mã user dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
                 MessageBox.Show("Update " + count_dv + " danh mục \"Mã DM BYT (mã User)\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -316,7 +316,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục mã STT Thầu BHYT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục mã STT Thầu BHYT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
 
@@ -360,7 +360,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục đơn vị tính dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục đơn vị tính dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
 
@@ -404,7 +404,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục hạng PTTT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục hạng PTTT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
 
@@ -448,7 +448,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục loại PTTT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục loại PTTT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
 
@@ -492,7 +492,7 @@ namespace MedicalLink.ChucNang
                 //lưu lại log
                 if (count_dv > 0)
                 {
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục khóa dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " danh mục khóa dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 }
 
@@ -537,7 +537,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá nhân dân của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá nhân dân của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
                     MessageBox.Show("Update " + count_dv + " danh mục \"giá Viện phí\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -579,7 +579,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá nhân dân của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá nhân dân của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
 
@@ -629,7 +629,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá BHYT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá BHYT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
 
@@ -673,7 +673,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá BHYT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá BHYT dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
 
@@ -723,7 +723,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá yêu cầu của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá yêu cầu của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
                     MessageBox.Show("Update " + count_dv + " danh mục \"giá Yêu cầu\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -765,7 +765,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá yêu cầu của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá yêu cầu của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
 
@@ -815,7 +815,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá người nước ngoài của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " giá người nước ngoài của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
                     MessageBox.Show("Update " + count_dv + " danh mục \"giá Người nước ngoài\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -857,7 +857,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá người nước ngoài của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Backup và Update " + count_dv + " giá người nước ngoài của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
                     MessageBox.Show("Backup và Update " + count_dv + " danh mục \"giá Người nước ngoài\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -905,7 +905,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " 4 loại giá của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " 4 loại giá của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
                     MessageBox.Show("Update " + count_dv + " danh mục \"4 loại giá (VP+BH+YC+NN)\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -947,7 +947,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (count_dv > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " 4 loại giá của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + count_dv + " 4 loại giá của dịch vụ thành công','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
                     MessageBox.Show("Update " + count_dv + " danh mục \"4 loại giá (VP+BH+YC+NN)\" thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1010,7 +1010,7 @@ namespace MedicalLink.ChucNang
                     //lưu lại log
                     if (dem_dv_themmoi > 0)
                     {
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Insert " + dem_dv_themmoi + " dịch vụ thành công. Update thành công=" + dem_dv_trungma + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Insert " + dem_dv_themmoi + " dịch vụ thành công. Update thành công=" + dem_dv_trungma + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_07');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     }
                     SplashScreenManager.CloseForm();

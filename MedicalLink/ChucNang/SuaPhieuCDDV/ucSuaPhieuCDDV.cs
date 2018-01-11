@@ -566,7 +566,7 @@ namespace MedicalLink.ChucNang
 
                                 string delete_maubenhpham = "DELETE FROM maubenhpham WHERE maubenhphamid='" + maubenhphamid + "';";
                                 string delete_serviceprice = "DELETE FROM serviceprice WHERE maubenhphamid='" + maubenhphamid + "';";
-                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và thuốc/vật tư mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và thuốc/vật tư mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_12');";
                                 string update_medicine_store_bill = "UPDATE medicine_store_bill SET isremove=1 WHERE maubenhphamid='" + maubenhphamid + "';";
 
                                 if (maubenhphamphieutypeid == 0) //phieu chi dinh
@@ -623,7 +623,7 @@ namespace MedicalLink.ChucNang
                             // thực thi câu lệnh update và lưu log
                             string sqlxecute_mbp = "DELETE FROM maubenhpham WHERE maubenhphamid='" + maubenhphamid + "';";
                             string sqlexcute_ser = "DELETE FROM serviceprice WHERE maubenhphamid='" + maubenhphamid + "';";
-                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và dịch vụ mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và dịch vụ mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_12');";
                             condb.ExecuteNonQuery_HIS(sqlxecute_mbp);
                             condb.ExecuteNonQuery_HIS(sqlexcute_ser);
                             condb.ExecuteNonQuery_MeL(sqlinsert_log);

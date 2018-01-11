@@ -376,7 +376,6 @@ yyyy-MM-dd HH:mm:ss
 #,##0.00
 #,##0
 {0:#,##0}
-yyyy-MM-dd HH:mm:ss 
  
 SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') from vienphi vp where vp.vienphiid=800543 
 	 TO_CHAR(vienphidate_ravien, 'HH24:MI dd/MM/yyyy')
@@ -430,8 +429,38 @@ pass: Hadung6@
 
  &=&=IF(P{r}=1,M{r},0)
  
+------=====================
+--SQL Server
+SELECT FORMAT(SYSDATETIME(),'yyyyMMddHHmmss') as 'yyyyMMddHHmmss'
 
- 
+--hay
+
+SELECT CONVERT(VARCHAR(19), SYSDATETIME(), 120) AS 'YYYY-MM-DD HH:MI:SS(24h)'
+
+SELECT REPLACE(REPLACE(REPLACE(CAST(CONVERT(VARCHAR(19),SYSDATETIME(),120) AS VARCHAR(20)),'-',''),':',''),' ','') AS 'YYYYMMDDHHMISS'
+
+SELECT (CONVERT(VARCHAR(8), SYSDATETIME(), 24) + ' ' + CONVERT(VARCHAR(10), SYSDATETIME(), 101)) AS 'HH:MI:SS DD/MM/YYYY'
+
+
+-----
+select service_broker_guid from sys.databases where name='O2S_STUDENTMANAGEMENT'
+
+
+   using (var db = new DAL.O2S_STUDENTMANAGEMENTEntities())
+                {
+                    List<SM_VERSION> lstVersion = db.SM_VERSION.Where(o => o.app_type == 0).ToList();
+                    if (lstVersion == null || lstVersion.Count > 0)
+                    {
+                        txtUpdateVersionLink.Text = lstVersion[0].app_link;
+                        txtUrlFullServer.Text = lstVersion[0].urlfullserver;
+                    }
+                }
+
+
+
+
+------
+https://svn.3asoft.vn:444/svn/Invoice3A 
  
  
  

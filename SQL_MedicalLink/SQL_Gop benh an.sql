@@ -59,7 +59,7 @@ WHERE maubenhphamgrouptype<>3 and medicalrecordid='"+_medicalrecordid+"';
 
 
 -----------
-SELECT bhytcode, macskcbbd, to_char(bhytfromdate,'yyyy-MM-dd HH24:MI:ss') as bhytfromdate, to_char(bhytutildate,'yyyy-MM-dd HH24:MI:ss') as bhytutildate, du5nam6thangluongcoban, dtcbh_luyke6thang, noisinhsong FROM bhyt WHERE hosobenhanid='"++"';
+SELECT bhytcode, macskcbbd, to_char(bhytfromdate,'yyyy-MM-dd HH24:MI:ss') as bhytfromdate, to_char(bhytutildate,'yyyy-MM-dd HH24:MI:ss') as bhytutildate, coalesce(du5nam6thangluongcoban,0) as du5nam6thangluongcoban, coalesce(dtcbh_luyke6thang,0) as dtcbh_luyke6thang, noisinhsong FROM bhyt WHERE hosobenhanid='"++"';
   
 UPDATE bhyt 
 SET theghep_bhytcode='"+_dataBHYT_B.Rows[0]["bhytcode"].ToString()+"',
@@ -69,37 +69,48 @@ theghep_macskcbbd='"+_dataBHYT_B.Rows[0]["macskcbbd"].ToString()+"',
 theghep_du5nam6thangluongcoban='"+_dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString()+"',
 theghep_dtcbh_luyke6thang='"+_dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString()+"',
 theghep_noisinhsong='"+_dataBHYT_B.Rows[0]["noisinhsong"].ToString()+"'
-WHERE bhytid='"++"'
+WHERE bhytid='" + this.lstHSBA_A[0].bhytid + "';
+
+UPDATE vienphi 
+SET theghep_bhytcode='"+_dataBHYT_B.Rows[0]["bhytcode"].ToString()+"',
+theghep_bhytfromdate='"+_dataBHYT_B.Rows[0]["bhytfromdate"].ToString()+"',
+theghep_bhytutildate='"+_dataBHYT_B.Rows[0]["bhytutildate"].ToString()+"',
+theghep_macskcbbd='"+_dataBHYT_B.Rows[0]["macskcbbd"].ToString()+"',
+theghep_du5nam6thangluongcoban='"+_dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString()+"',
+theghep_dtcbh_luyke6thang='"+_dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString()+"',
+theghep_noisinhsong='"+_dataBHYT_B.Rows[0]["noisinhsong"].ToString()+"'
+WHERE vienphiid='" + this.lstHSBA_A[0].vienphiid + "';
 
 
 --- neu co department
 update maubenhpham
 set vienphiid="+_lst_Phong[0].vienphiid+",hosobenhanid="+_lst_Phong[0].hosobenhanid+",medicalrecordid="+_lst_Phong[0].medicalrecordid+",patientid="+_lst_Phong[0].patientid+"
-where vienphiid="+item_B.vienphiid+";
+where medicalrecordid="+item_B.medicalrecordid+";
 
 update serviceprice
 set vienphiid="+_lst_Phong[0].vienphiid+",hosobenhanid="+_lst_Phong[0].hosobenhanid+",medicalrecordid="+_lst_Phong[0].medicalrecordid+"
-where vienphiid="+item_B.vienphiid+";
+where medicalrecordid="+item_B.medicalrecordid+";
 
 update bill 
 set vienphiid="+_lst_Phong[0].vienphiid+",hosobenhanid="+_lst_Phong[0].hosobenhanid+",medicalrecordid="+_lst_Phong[0].medicalrecordid+",patientid="+_lst_Phong[0].patientid+"
-where vienphiid="+item_B.vienphiid+";
+where medicalrecordid="+item_B.medicalrecordid+";
+
 
 --Neu chua co department
 update maubenhpham
-set vienphiid="+_lst_Phong[0].vienphiid+",hosobenhanid="+_lst_Phong[0].hosobenhanid+",patientid="+_lst_Phong[0].patientid+"
-where vienphiid="+item_B.vienphiid+";
+set vienphiid="+this.lstHSBA_A[0].vienphiid+",hosobenhanid="+this.lstHSBA_A[0].hosobenhanid+",patientid="+this.lstHSBA_A[0].patientid+"
+where medicalrecordid="+item_B.medicalrecordid+";
 
 update serviceprice
-set vienphiid="+_lst_Phong[0].vienphiid+",hosobenhanid="+_lst_Phong[0].hosobenhanid+"
-where vienphiid="+item_B.vienphiid+";
+set vienphiid="+this.lstHSBA_A[0].vienphiid+",hosobenhanid="+this.lstHSBA_A[0].hosobenhanid+"
+where medicalrecordid="+item_B.medicalrecordid+";
 
 update bill 
-set vienphiid="+_lst_Phong[0].vienphiid+",hosobenhanid="+_lst_Phong[0].hosobenhanid+",patientid="+_lst_Phong[0].patientid+"
-where vienphiid="+item_B.vienphiid+";
+set vienphiid="+this.lstHSBA_A[0].vienphiid+",hosobenhanid="+this.lstHSBA_A[0].hosobenhanid+",patientid="+this.lstHSBA_A[0].patientid+"
+where medicalrecordid="+item_B.medicalrecordid+";
 
 update medicalrecord 
-set vienphiid="+_lst_Phong[0].vienphiid+",hosobenhanid="+_lst_Phong[0].hosobenhanid+",patientid="+_lst_Phong[0].patientid+"
+set vienphiid="+this.lstHSBA_A[0].vienphiid+",hosobenhanid="+this.lstHSBA_A[0].hosobenhanid+",patientid="+this.lstHSBA_A[0].patientid+"
 where medicalrecordid="+item_B.medicalrecordid+";
 
 

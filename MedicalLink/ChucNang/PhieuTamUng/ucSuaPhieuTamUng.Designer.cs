@@ -54,6 +54,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtMaVienPhi = new DevExpress.XtraEditors.TextEdit();
             this.imageCollectionMBA = new DevExpress.Utils.ImageCollection(this.components);
+            this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChuyenTien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewChuyenTien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -96,7 +97,8 @@
             this.gridColumn13,
             this.gridColumn14,
             this.gridColumn15,
-            this.gridColumn16});
+            this.gridColumn16,
+            this.gridColumn17});
             this.gridViewChuyenTien.GridControl = this.gridControlChuyenTien;
             this.gridViewChuyenTien.Name = "gridViewChuyenTien";
             this.gridViewChuyenTien.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
@@ -463,6 +465,12 @@
             this.imageCollectionMBA.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionMBA.ImageStream")));
             this.imageCollectionMBA.Images.SetKeyName(0, "edit-2-16.png");
             // 
+            // gridColumn17
+            // 
+            this.gridColumn17.Caption = "hosobenhanid";
+            this.gridColumn17.FieldName = "hosobenhanid";
+            this.gridColumn17.Name = "gridColumn17";
+            // 
             // ucSuaPhieuTamUng
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,5 +518,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.Utils.ImageCollection imageCollectionMBA;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
     }
 }

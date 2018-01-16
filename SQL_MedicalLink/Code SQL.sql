@@ -146,7 +146,7 @@ ServiceGroupType:
 - 11: Khac 
  
  
- servicegrouptype
+where servicegrouptype in (1,2,3,4,11)
  
  
  
@@ -461,6 +461,18 @@ select service_broker_guid from sys.databases where name='O2S_STUDENTMANAGEMENT'
 
 ------
 https://svn.3asoft.vn:444/svn/Invoice3A 
+
+
+
+
+
+
+
+
+
+
+
+
  
  
  

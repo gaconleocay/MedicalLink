@@ -1,4 +1,5 @@
 ﻿using MedicalLink.Base;
+using MedicalLink.ClassCommon;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +16,8 @@ namespace MedicalLink.ChucNang.PhieuTamUng
     {
         #region Khai bao
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        private string billid { get; set; }
-        private string departmentgroupid { get; set; }
-        private string departmentid { get; set; }
-        private string userid { get; set; }
-        private string vienphiid { get; set; }
-        private string patientid { get; set; }
+        private List<DepartmentgroupDTO> lstDepartGroup { get; set; }
+        private SuaPhieuTamUngDTO PhieuTamUng { get; set; }
         #endregion
         public frmSuaPhieuTamUng()
         {
@@ -28,27 +25,22 @@ namespace MedicalLink.ChucNang.PhieuTamUng
         }
 
         #region Load
-        public frmSuaPhieuTamUng(string _billid, string _departmentgroupid, string _departmentid, string _userid, string _vienphiid, string _patientid)
+
+        public frmSuaPhieuTamUng(SuaPhieuTamUngDTO _tamung)
         {
             InitializeComponent();
-            this.billid = _billid;
-            this.departmentgroupid = _departmentgroupid;
-            this.departmentid = _departmentid;
-            this.userid = _userid;
-            this.vienphiid = _vienphiid;
-            this.patientid = _patientid;
+            this.PhieuTamUng = _tamung;
         }
-
         private void frmSuaPhieuTamUng_Load(object sender, EventArgs e)
         {
             try
             {
-                lblBillID.Text = this.billid;
-                cboPhong.EditValue = this.departmentid;
-                cboKhoa.EditValue = this.departmentgroupid;
+                lblBillID.Text = this.PhieuTamUng.billid.ToString();
+                cboPhong.EditValue = this.PhieuTamUng.departmentid;
+                cboKhoa.EditValue = this.PhieuTamUng.departmentgroupid;
                 LoadDanhMucKhoa();
                 LoadDanhMucNguoiSuDung();
-                cboNguoiThu.EditValue = this.userid;
+                cboNguoiThu.EditValue = this.PhieuTamUng.userid;
             }
             catch (Exception ex)
             {
@@ -59,11 +51,12 @@ namespace MedicalLink.ChucNang.PhieuTamUng
         {
             try
             {
-                string _getDSKhoa = "select departmentgroupid,departmentgroupname from departmentgroup where departmentgrouptype in (1,4,11) order by departmentgroupname;";
+                string _getDSKhoa = "select departmentgroupid, departmentgroupname, COALESCE(cumthutien,'KHÁC') as cumthutien from departmentgroup where departmentgrouptype in (1,4,11) order by departmentgroupname;";
                 DataTable _DSKhoa = condb.GetDataTable_HIS(_getDSKhoa);
                 if (_DSKhoa != null && _DSKhoa.Rows.Count > 0)
                 {
-                    cboKhoa.Properties.DataSource = _DSKhoa;
+                    this.lstDepartGroup = Utilities.Util_DataTable.DataTableToList<DepartmentgroupDTO>(_DSKhoa);
+                    cboKhoa.Properties.DataSource = this.lstDepartGroup;
                     cboKhoa.Properties.DisplayMember = "departmentgroupname";
                     cboKhoa.Properties.ValueMember = "departmentgroupid";
                 }
@@ -142,14 +135,22 @@ namespace MedicalLink.ChucNang.PhieuTamUng
                 }
                 else
                 {
-                    if (cboKhoa.EditValue.ToString() != this.departmentgroupid || cboPhong.EditValue.ToString() != this.departmentid || cboNguoiThu.EditValue.ToString() != this.userid)
+                    if (cboKhoa.EditValue.ToString() != this.PhieuTamUng.departmentgroupid.ToString() || cboPhong.EditValue.ToString() != this.PhieuTamUng.departmentid.ToString() || cboNguoiThu.EditValue.ToString() != this.PhieuTamUng.userid.ToString())
                     {
-                        string _sqlUpdate = "UPDATE bill SET departmentgroupid='" + cboKhoa.EditValue + "', departmentid='" + cboPhong.EditValue + "', userid='" + cboNguoiThu.EditValue + "' WHERE billid='" + this.billid + "' ;";
+                        string _sqlUpdate = "UPDATE bill SET departmentgroupid='" + cboKhoa.EditValue + "', departmentid='" + cboPhong.EditValue + "', userid='" + cboNguoiThu.EditValue + "' WHERE billid='" + this.PhieuTamUng.billid + "' ;";
                         if (condb.ExecuteNonQuery_HIS(_sqlUpdate))
                         {
-                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, patientid, logtype) VALUES ('" + Base.SessionLogin.SessionUsercode + "', 'Sửa hóa đơn tạm ứng ID=" + this.billid + " từ departmentgroupid: " + this.departmentgroupid + " => " + cboKhoa.EditValue + "; departmentid: " + this.departmentid + " => " + cboPhong.EditValue + "; userid: " + this.userid + " => " + cboNguoiThu.EditValue + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '"+this.vienphiid + "' , '" + this.patientid + "', 'TOOL_21');";
-                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                            MessageBox.Show("Cập nhật thành công", "Thông báo");
+                            string _cumthutien = this.lstDepartGroup.Where(o => o.departmentgroupid.ToString() == cboKhoa.EditValue.ToString()).FirstOrDefault().cumthutien;
+                           // string _deleteBillEdit = 
+                            string _slqBaoCao = "INSERT INTO tools_billedit(billid, billcode, billgroupcode, patientid, vienphiid, hosobenhanid, loaiphieuthuid, userid, username, billdate, cumthutien, departmentgroupid, departmentgroupname, departmentid, departmentname, patientname, userid_nhan, username_nhan, departmentgroupid_nhan, departmentgroupname_nhan, departmentid_nhan, departmentname_nhan, sotien, createusercode, createdate) VALUES ('" + this.PhieuTamUng.billid + "', '" + this.PhieuTamUng.billcode + "', '" + this.PhieuTamUng.billgroupcode + "', '" + this.PhieuTamUng.patientid + "', '" + this.PhieuTamUng.vienphiid + "', '" + this.PhieuTamUng.hosobenhanid + "', '2', '" + this.PhieuTamUng.userid + "', '" + this.PhieuTamUng.username + "', '" + this.PhieuTamUng.billdate + "', '" + _cumthutien + "', '" + this.PhieuTamUng.departmentgroupid + "', '" + this.PhieuTamUng.departmentgroupname + "', '" + this.PhieuTamUng.departmentid + "', '" + this.PhieuTamUng.departmentname + "', '" + this.PhieuTamUng.patientname + "', '" + cboNguoiThu.EditValue + "', '" + cboNguoiThu.Text + "', '" + cboKhoa.EditValue + "', '" + cboKhoa.Text + "', '" + cboPhong.EditValue + "', '" + cboPhong.Text + "', '" + this.PhieuTamUng.sotien + "', '" + Base.SessionLogin.SessionUsercode + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, patientid, logtype) VALUES ('" + Base.SessionLogin.SessionUsercode + "', 'Sửa hóa đơn tạm ứng ID=" + this.PhieuTamUng.billid + " từ departmentgroupid: " + this.PhieuTamUng.departmentgroupid + " => " + cboKhoa.EditValue + "; departmentid: " + this.PhieuTamUng.departmentid + " => " + cboPhong.EditValue + "; userid: " + this.PhieuTamUng.userid + " => " + cboNguoiThu.EditValue + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + this.PhieuTamUng.vienphiid + "' , '" + this.PhieuTamUng.patientid + "', 'TOOL_21'); ";
+                            if (condb.ExecuteNonQuery_MeL(_slqBaoCao))
+                            {
+                                MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cập nhật thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                 }

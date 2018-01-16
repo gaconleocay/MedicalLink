@@ -18,7 +18,7 @@ namespace MedicalLink.FormCommon
             bool result = true;
             try
             {
-                //result = KetNoiSCDLProcess.CreateTableTblUser();
+                result = KetNoiSCDLProcess.CreateTabletools_billedit();
                 //result = KetNoiSCDLProcess.CreateTableTblPermission();
                 //result = KetNoiSCDLProcess.CreateTableTblLog();
                 //result = KetNoiSCDLProcess.CreateTableTblUpdateKhaDung();
@@ -53,7 +53,9 @@ namespace MedicalLink.FormCommon
 
                 //update
                 // result = KetNoiSCDLProcess.UpdateTableUser();
-                result = KetNoiSCDLProcess.UpdateTableLog();
+                //result = KetNoiSCDLProcess.UpdateTableLog();
+                result = KetNoiSCDLProcess.UpdateTableDepartmentGroup();
+
 
             }
             catch (Exception ex)
@@ -391,6 +393,26 @@ namespace MedicalLink.FormCommon
             return result;
         }
 
+        private static bool CreateTabletools_billedit()
+        {
+            bool result = false;
+            try
+            {
+                string sql_tbluser = "CREATE TABLE IF NOT EXISTS tools_billedit ( billeditid serial NOT NULL, billid integer, billcode text, billgroupcode text, patientid integer DEFAULT 0, vienphiid integer DEFAULT 0, hosobenhanid integer DEFAULT 0, loaiphieuthuid integer, userid integer DEFAULT 0, username text, billdate timestamp without time zone, cumthutien text, departmentgroupid integer, departmentgroupname text, departmentid integer, departmentname text, patientname text, userid_nhan integer DEFAULT 0, username_nhan text, departmentgroupid_nhan integer, departmentgroupname_nhan text, departmentid_nhan integer, departmentname_nhan text, sotien double precision, createusercode text, createdate timestamp without time zone, CONSTRAINT tools_billedit_pkey PRIMARY KEY (billeditid) ) WITH ( OIDS=FALSE ); CREATE INDEX billedit_billid_idx ON tools_billedit USING btree (billid); CREATE INDEX billedit_vienphiid_idx ON tools_billedit USING btree (vienphiid); CREATE INDEX billedit_departmentgroupid_idx ON tools_billedit USING btree (departmentgroupid); CREATE INDEX billedit_departmentgroupid_nhan_idx ON tools_billedit USING btree (departmentgroupid_nhan); CREATE INDEX billedit_createdate_idx ON tools_billedit USING btree (createdate);";
+                if (condb.ExecuteNonQuery_MeL(sql_tbluser))
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi CreateTabletools_billedit" + ex.ToString());
+            }
+            return result;
+        }
+
+
+
         #endregion
 
         #region Cap nhat sua chua bang
@@ -568,6 +590,20 @@ namespace MedicalLink.FormCommon
             }
             return true;
         }
+        private static bool UpdateTableDepartmentGroup()
+        {
+            try
+            {
+                string sqlAddColume = "alter table departmentgroup add cumthutien text; CREATE INDEX departmentgroup_cumthutien_idx ON departmentgroup USING btree(cumthutien); ";
+                condb.ExecuteNonQuery_HIS(sqlAddColume);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error("Lỗi departmentgroup" + ex.ToString());
+            }
+            return true;
+        }
+
         #endregion
     }
 }

@@ -284,6 +284,12 @@
     <Compile Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.Designer.cs">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCChinhSuaHoaDon\BCChinhSuaHoaDon_TamUng.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCChinhSuaHoaDon\BCChinhSuaHoaDon_TamUng.Designer.cs">
+      <DependentUpon>BCChinhSuaHoaDon_TamUng.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCDoanhThuDichVuBC08\ucBCDoanhThuDichVuBC08.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -513,6 +519,7 @@
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\DepartmentgroupDTO.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
     <Compile Include="ClassCommon\classLoaiPTTTDTO.cs" />
     <Compile Include="ClassCommon\classNhapThongTinPTTT.cs" />
@@ -666,6 +673,8 @@
     <Compile Include="ClassCommon\ServicepriceDuyetPTTTDTO.cs" />
     <Compile Include="ClassCommon\ServicepricegroupcodeDTO.cs" />
     <Compile Include="ClassCommon\SoXetNghiem_ChiSoDTO.cs" />
+    <Compile Include="ClassCommon\SuaPhieuTamUng_BCDTO.cs" />
+    <Compile Include="ClassCommon\SuaPhieuTamUngDTO.cs" />
     <Compile Include="ClassCommon\TienBNPhaiThanhToanDTO.cs" />
     <Compile Include="ClassCommon\TinhBHYTThanhToanTTRiengDTO.cs" />
     <Compile Include="ClassCommon\TinhBHYTThanhToanDTO.cs" />
@@ -1122,6 +1131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT_G304\ucBCChiDinhPTTT_G304.resx">
       <DependentUpon>ucBCChiDinhPTTT_G304.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCChinhSuaHoaDon\BCChinhSuaHoaDon_TamUng.resx">
+      <DependentUpon>BCChinhSuaHoaDon_TamUng.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCDoanhThuDichVuBC08\ucBCDoanhThuDichVuBC08.resx">
       <DependentUpon>ucBCDoanhThuDichVuBC08.cs</DependentUpon>
@@ -1723,6 +1735,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_38_TinhHinhKhamChuaBenh_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_39_ChinhSuaHoaDonTamUng.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

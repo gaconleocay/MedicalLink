@@ -206,7 +206,8 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboKhoa.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("departmentgroupid", 35, "ID"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("departmentgroupname", 100, "Tên")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("departmentgroupname", 100, "Tên"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("cumthutien", "Cụm")});
             this.cboKhoa.Properties.DropDownRows = 15;
             this.cboKhoa.Properties.NullText = "";
             this.cboKhoa.Size = new System.Drawing.Size(399, 22);

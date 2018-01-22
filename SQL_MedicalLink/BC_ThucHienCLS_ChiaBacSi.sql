@@ -3,7 +3,7 @@
 --Chẩn đoán= chẩn đoán chỉ định
 --Tra ket qua tung phan: nguoi tra kq, thoi gian tra kq
 --khong co t.gian tra kq tung phan thi lay t.gian tra kq cuoi cung 14/8
---ngay 28/12: them chuc nang duyet PTTT
+--ngay 22/1: sua chuc nang duyet PTTT
 
 
 
@@ -28,6 +28,7 @@ SELECT ROW_NUMBER () OVER (ORDER BY "+_sapxeptheo+") as stt,
 	KRV.departmentgroupname AS khoaravien,
 	A.chandoan as cd_chidinh,
 	A.maubenhphamid,
+	A.bhyt_groupcode,
 	A.sophieu,	
 	A.thuchienclsid,
 	A.servicepriceid,
@@ -70,10 +71,16 @@ SELECT ROW_NUMBER () OVER (ORDER BY "+_sapxeptheo+") as stt,
 	A.NGAY_THANHTOAN,
 	COALESCE(ntkq.username,ntkq_cc.username) as nguoitraketqua,
 	A.nguoinhapthuchien,
-	A.duyetpttt_stt,
-	(case when A.duyetpttt_stt=1 then A.duyetpttt_date end) as duyetpttt_date,
-	A.duyetpttt_username,
-	A.duyetpttt_usercode
+	coalesce(A.duyetpttt_stt,0) as duyetpttt_stt,
+	(case A.duyetpttt_stt
+			when 1 then 'Đã gửi YC' 
+			when 2 then 'Đã tiếp nhận YC' 
+			when 3 then 'Đã duyệt PTTT' 
+			when 99 then 'Đã khóa' 
+			else 'Chưa gửi YC' end) as duyetpttt_sttname,
+	(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_date end) as duyetpttt_date,
+	(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_usercode end) as duyetpttt_usercode,
+	(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_username end) as duyetpttt_username	
 FROM (
 	SELECT vp.patientid, 
 			vp.vienphiid, 
@@ -84,6 +91,7 @@ FROM (
 			ser.departmentid as phongchidinh, 
 			ser.servicepricedate as NGAY_CHIDINH, 
 			ser.maubenhphamid, 
+			ser.bhyt_groupcode,
 			mbp.sophieu,
 			mbp.departmentid_des,
 			mbp.maubenhphamfinishdate,
@@ -183,7 +191,7 @@ FROM (
 		ser.duyetpttt_date,
 		ser.duyetpttt_username,
 		ser.duyetpttt_usercode
-	FROM (select vienphiid,servicepriceid,departmentgroupid,departmentid,servicepricedate,maubenhphamid,servicepricecode,servicepricename,loaidoituong,medicalrecordid,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,duyetpttt_stt,duyetpttt_date,duyetpttt_username,duyetpttt_usercode from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+tieuchi_date_ser+_trangthaipttt+") ser 
+	FROM (select vienphiid,servicepriceid,departmentgroupid,departmentid,servicepricedate,maubenhphamid,servicepricecode,servicepricename,loaidoituong,medicalrecordid,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,duyetpttt_stt,duyetpttt_date,duyetpttt_username,duyetpttt_usercode,bhyt_groupcode from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+tieuchi_date_ser+_trangthaipttt+") ser 
 	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid 
 	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 
@@ -209,7 +217,7 @@ LEFT JOIN nhompersonnel ntkq_cc ON ntkq_cc.userhisid=A.usertrakq;
 
 
 
----ngay 28/12: Su dung cho phong Xet nghiem
+---ngay 22/1: Su dung cho phong Xet nghiem
 SELECT ROW_NUMBER () OVER (ORDER BY "+_sapxeptheo+") as stt, 
 	A.patientid, 
 	A.vienphiid, 
@@ -230,6 +238,7 @@ SELECT ROW_NUMBER () OVER (ORDER BY "+_sapxeptheo+") as stt,
 	KRV.departmentgroupname AS khoaravien,
 	A.chandoan as cd_chidinh,
 	A.maubenhphamid,
+	A.bhyt_groupcode,
 	A.sophieu,	
 	A.thuchienclsid,
 	A.servicepriceid,
@@ -272,10 +281,16 @@ SELECT ROW_NUMBER () OVER (ORDER BY "+_sapxeptheo+") as stt,
 	A.NGAY_THANHTOAN,
 	ntkq_cc.username as nguoitraketqua,
 	A.nguoinhapthuchien,
-	A.duyetpttt_stt,
-	(case when A.duyetpttt_stt=1 then A.duyetpttt_date end) as duyetpttt_date,
-	A.duyetpttt_username,
-	A.duyetpttt_usercode
+	coalesce(A.duyetpttt_stt,0) as duyetpttt_stt,
+	(case A.duyetpttt_stt
+			when 1 then 'Đã gửi YC' 
+			when 2 then 'Đã tiếp nhận YC' 
+			when 3 then 'Đã duyệt PTTT' 
+			when 99 then 'Đã khóa' 
+			else 'Chưa gửi YC' end) as duyetpttt_sttname,
+	(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_date end) as duyetpttt_date,
+	(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_usercode end) as duyetpttt_usercode,
+	(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_username end) as duyetpttt_username
 FROM (
 	SELECT vp.patientid, 
 			vp.vienphiid, 
@@ -286,6 +301,7 @@ FROM (
 			ser.departmentid as phongchidinh, 
 			ser.servicepricedate as NGAY_CHIDINH, 
 			ser.maubenhphamid, 
+			ser.bhyt_groupcode,
 			mbp.sophieu,
 			mbp.departmentid_des,
 			mbp.maubenhphamfinishdate,
@@ -383,7 +399,7 @@ FROM (
 		ser.duyetpttt_date,
 		ser.duyetpttt_username,
 		ser.duyetpttt_usercode
-	FROM (select vienphiid,servicepriceid,departmentgroupid,departmentid,servicepricedate,maubenhphamid,servicepricecode,servicepricename,loaidoituong,medicalrecordid,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,duyetpttt_stt,duyetpttt_date,duyetpttt_username,duyetpttt_usercode from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+tieuchi_date_ser+_trangthaipttt+") ser 
+	FROM (select vienphiid,servicepriceid,departmentgroupid,departmentid,servicepricedate,maubenhphamid,servicepricecode,servicepricename,loaidoituong,medicalrecordid,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,duyetpttt_stt,duyetpttt_date,duyetpttt_username,duyetpttt_usercode,bhyt_groupcode from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+tieuchi_date_ser+_trangthaipttt+") ser 
 	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid 
 	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 

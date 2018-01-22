@@ -46,3 +46,48 @@ CREATE INDEX billedit_departmentgroupid_idx ON tools_billedit USING btree (depar
 CREATE INDEX billedit_departmentgroupid_nhan_idx ON tools_billedit USING btree (departmentgroupid_nhan);
 CREATE INDEX billedit_createdate_idx ON tools_billedit USING btree (createdate);
 
+
+---=========Table: tools_duyet_pttt
+--drop table tools_duyet_pttt
+
+CREATE TABLE tools_duyet_pttt
+(
+  duyetptttid serial NOT NULL,
+  servicepriceid integer,
+  vienphiid integer,
+  maubenhphamid integer,
+  bhyt_groupcode text,
+  duyetpttt_stt integer,
+  gui_usercode text,
+  gui_username text,
+  gui_date timestamp without time zone,
+  tiepnhan_usercode text,
+  tiepnhan_username text,
+  tiepnhan_date timestamp without time zone,
+  duyet_usercode text,
+  duyet_username text,
+  duyet_date timestamp without time zone,  
+  khoa_usercode text,
+  khoa_username text,
+  khoa_date timestamp without time zone,
+  CONSTRAINT tools_duyet_pttt_pkey PRIMARY KEY (duyetptttid)
+)
+WITH (
+  OIDS=FALSE
+);
+
+CREATE INDEX duyet_pttt_servicepriceid_idx ON tools_duyet_pttt USING btree (servicepriceid);
+CREATE INDEX duyet_pttt_vienphiid_idx ON tools_duyet_pttt USING btree (vienphiid);
+CREATE INDEX duyet_pttt_bhyt_groupcode_idx ON tools_duyet_pttt USING btree (bhyt_groupcode);
+CREATE INDEX duyet_pttt_maubenhphamid_idx ON tools_duyet_pttt USING btree (maubenhphamid);
+CREATE INDEX duyet_pttt_duyetpttt_stt_idx ON tools_duyet_pttt USING btree (duyetpttt_stt);
+CREATE INDEX duyet_pttt_gui_usercode_idx ON tools_duyet_pttt USING btree (gui_usercode);
+CREATE INDEX duyet_pttt_tiepnhan_usercode_idx ON tools_duyet_pttt USING btree (tiepnhan_usercode);
+CREATE INDEX duyet_pttt_duyet_usercode_idx ON tools_duyet_pttt USING btree (duyet_usercode);
+CREATE INDEX duyet_pttt_khoa_usercode_idx ON tools_duyet_pttt USING btree (khoa_usercode);
+
+
+
+
+
+

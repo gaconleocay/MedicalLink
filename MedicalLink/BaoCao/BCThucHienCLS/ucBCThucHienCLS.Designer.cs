@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCThucHienCLS));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
+            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.cboTrangThai = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -46,9 +50,14 @@
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
-            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPTTT_HuyGui = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTT_HuyTiepNhan = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTT_HuyDuyet = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTT_Khoa = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTT_Duyet = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTT_TiepNhan = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTT_Gui = new DevExpress.XtraEditors.SimpleButton();
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDataBCPTTT = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewDataBCPTTT = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
@@ -131,6 +140,7 @@
             this.bandedGridColumn32 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn43 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn50 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn58 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn54 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn55 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn39 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -154,13 +164,15 @@
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLoaiBaoCao.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkChuaPhanLoaiPTTT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).BeginInit();
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBCPTTT)).BeginInit();
@@ -182,13 +194,64 @@
             // 
             // panelControlThongTinDV
             // 
-            this.panelControlThongTinDV.Controls.Add(this.groupBoxFile);
-            this.panelControlThongTinDV.Controls.Add(this.groupBox1);
+            this.panelControlThongTinDV.Controls.Add(this.panel2);
+            this.panelControlThongTinDV.Controls.Add(this.panel1);
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
-            this.panelControlThongTinDV.Size = new System.Drawing.Size(1190, 93);
+            this.panelControlThongTinDV.Size = new System.Drawing.Size(1190, 135);
             this.panelControlThongTinDV.TabIndex = 3;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Controls.Add(this.groupBoxFile);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(2, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1186, 99);
+            this.panel2.TabIndex = 88;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dropDownPrint);
+            this.groupBox1.Controls.Add(this.dropDownExport);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox1.Location = new System.Drawing.Point(1060, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(126, 99);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Export";
+            // 
+            // dropDownPrint
+            // 
+            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownPrint.Appearance.Options.UseFont = true;
+            this.dropDownPrint.Appearance.Options.UseForeColor = true;
+            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.dropDownPrint.Location = new System.Drawing.Point(8, 16);
+            this.dropDownPrint.Name = "dropDownPrint";
+            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
+            this.dropDownPrint.TabIndex = 2;
+            this.dropDownPrint.Text = "In...";
+            // 
+            // dropDownExport
+            // 
+            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownExport.Appearance.Options.UseFont = true;
+            this.dropDownExport.Appearance.Options.UseForeColor = true;
+            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.dropDownExport.Location = new System.Drawing.Point(8, 51);
+            this.dropDownExport.Name = "dropDownExport";
+            this.dropDownExport.Size = new System.Drawing.Size(110, 30);
+            this.dropDownExport.TabIndex = 1;
+            this.dropDownExport.Text = "Export...";
             // 
             // groupBoxFile
             // 
@@ -208,9 +271,9 @@
             this.groupBoxFile.Controls.Add(this.btnTimKiem);
             this.groupBoxFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
+            this.groupBoxFile.Location = new System.Drawing.Point(0, 0);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(1060, 89);
+            this.groupBoxFile.Size = new System.Drawing.Size(1186, 99);
             this.groupBoxFile.TabIndex = 27;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -227,8 +290,11 @@
             this.cboTrangThai.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboTrangThai.Properties.Items.AddRange(new object[] {
-            "Chưa duyệt PTTT",
+            "Chưa gửi YC",
+            "Đã gửi YC",
+            "Đã tiếp nhận YC",
             "Đã duyệt PTTT",
+            "Đã khóa",
             "Tất cả"});
             this.cboTrangThai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTrangThai.Size = new System.Drawing.Size(156, 22);
@@ -402,54 +468,133 @@
             this.btnTimKiem.Text = "Tìm kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
-            // groupBox1
+            // panel1
             // 
-            this.groupBox1.Controls.Add(this.dropDownPrint);
-            this.groupBox1.Controls.Add(this.dropDownExport);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(1062, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(126, 89);
-            this.groupBox1.TabIndex = 26;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Export";
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnPTTT_HuyGui);
+            this.panel1.Controls.Add(this.btnPTTT_HuyTiepNhan);
+            this.panel1.Controls.Add(this.btnPTTT_HuyDuyet);
+            this.panel1.Controls.Add(this.btnPTTT_Khoa);
+            this.panel1.Controls.Add(this.btnPTTT_Duyet);
+            this.panel1.Controls.Add(this.btnPTTT_TiepNhan);
+            this.panel1.Controls.Add(this.btnPTTT_Gui);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(2, 101);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1186, 32);
+            this.panel1.TabIndex = 87;
             // 
-            // dropDownPrint
+            // btnPTTT_HuyGui
             // 
-            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
-            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dropDownPrint.Appearance.Options.UseFont = true;
-            this.dropDownPrint.Appearance.Options.UseForeColor = true;
-            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
-            this.dropDownPrint.Location = new System.Drawing.Point(8, 16);
-            this.dropDownPrint.Name = "dropDownPrint";
-            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
-            this.dropDownPrint.TabIndex = 2;
-            this.dropDownPrint.Text = "In...";
+            this.btnPTTT_HuyGui.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnPTTT_HuyGui.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_HuyGui.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.btnPTTT_HuyGui.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_HuyGui.Appearance.Options.UseFont = true;
+            this.btnPTTT_HuyGui.Appearance.Options.UseForeColor = true;
+            this.btnPTTT_HuyGui.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_HuyGui.Location = new System.Drawing.Point(129, 3);
+            this.btnPTTT_HuyGui.Name = "btnPTTT_HuyGui";
+            this.btnPTTT_HuyGui.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_HuyGui.TabIndex = 12;
+            this.btnPTTT_HuyGui.Text = "Hủy gửi duyệt";
+            this.btnPTTT_HuyGui.Click += new System.EventHandler(this.btnPTTT_HuyGui_Click);
             // 
-            // dropDownExport
+            // btnPTTT_HuyTiepNhan
             // 
-            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
-            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.dropDownExport.Appearance.Options.UseFont = true;
-            this.dropDownExport.Appearance.Options.UseForeColor = true;
-            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.dropDownExport.Location = new System.Drawing.Point(8, 51);
-            this.dropDownExport.Name = "dropDownExport";
-            this.dropDownExport.Size = new System.Drawing.Size(110, 30);
-            this.dropDownExport.TabIndex = 1;
-            this.dropDownExport.Text = "Export...";
+            this.btnPTTT_HuyTiepNhan.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnPTTT_HuyTiepNhan.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_HuyTiepNhan.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.btnPTTT_HuyTiepNhan.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_HuyTiepNhan.Appearance.Options.UseFont = true;
+            this.btnPTTT_HuyTiepNhan.Appearance.Options.UseForeColor = true;
+            this.btnPTTT_HuyTiepNhan.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_HuyTiepNhan.Location = new System.Drawing.Point(401, 3);
+            this.btnPTTT_HuyTiepNhan.Name = "btnPTTT_HuyTiepNhan";
+            this.btnPTTT_HuyTiepNhan.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_HuyTiepNhan.TabIndex = 11;
+            this.btnPTTT_HuyTiepNhan.Text = "Hủy tiếp nhận YC";
+            this.btnPTTT_HuyTiepNhan.Click += new System.EventHandler(this.btnPTTT_HuyTiepNhan_Click);
+            // 
+            // btnPTTT_HuyDuyet
+            // 
+            this.btnPTTT_HuyDuyet.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnPTTT_HuyDuyet.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_HuyDuyet.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.btnPTTT_HuyDuyet.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_HuyDuyet.Appearance.Options.UseFont = true;
+            this.btnPTTT_HuyDuyet.Appearance.Options.UseForeColor = true;
+            this.btnPTTT_HuyDuyet.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_HuyDuyet.Location = new System.Drawing.Point(686, 3);
+            this.btnPTTT_HuyDuyet.Name = "btnPTTT_HuyDuyet";
+            this.btnPTTT_HuyDuyet.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_HuyDuyet.TabIndex = 10;
+            this.btnPTTT_HuyDuyet.Text = "Hủy duyệt PTTT";
+            this.btnPTTT_HuyDuyet.Click += new System.EventHandler(this.btnPTTT_HuyDuyet_Click);
+            // 
+            // btnPTTT_Khoa
+            // 
+            this.btnPTTT_Khoa.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnPTTT_Khoa.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_Khoa.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_Khoa.Appearance.Options.UseFont = true;
+            this.btnPTTT_Khoa.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_Khoa.Location = new System.Drawing.Point(837, 3);
+            this.btnPTTT_Khoa.Name = "btnPTTT_Khoa";
+            this.btnPTTT_Khoa.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_Khoa.TabIndex = 9;
+            this.btnPTTT_Khoa.Text = "Khóa";
+            this.btnPTTT_Khoa.Click += new System.EventHandler(this.btnPTTT_Khoa_Click);
+            // 
+            // btnPTTT_Duyet
+            // 
+            this.btnPTTT_Duyet.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnPTTT_Duyet.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_Duyet.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_Duyet.Appearance.Options.UseFont = true;
+            this.btnPTTT_Duyet.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_Duyet.Location = new System.Drawing.Point(565, 3);
+            this.btnPTTT_Duyet.Name = "btnPTTT_Duyet";
+            this.btnPTTT_Duyet.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_Duyet.TabIndex = 8;
+            this.btnPTTT_Duyet.Text = "Duyệt PTTT";
+            this.btnPTTT_Duyet.Click += new System.EventHandler(this.btnPTTT_Duyet_Click);
+            // 
+            // btnPTTT_TiepNhan
+            // 
+            this.btnPTTT_TiepNhan.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnPTTT_TiepNhan.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_TiepNhan.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_TiepNhan.Appearance.Options.UseFont = true;
+            this.btnPTTT_TiepNhan.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_TiepNhan.Location = new System.Drawing.Point(280, 3);
+            this.btnPTTT_TiepNhan.Name = "btnPTTT_TiepNhan";
+            this.btnPTTT_TiepNhan.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_TiepNhan.TabIndex = 7;
+            this.btnPTTT_TiepNhan.Text = "Tiếp nhận yêu cầu";
+            this.btnPTTT_TiepNhan.Click += new System.EventHandler(this.btnPTTT_TiepNhan_Click);
+            // 
+            // btnPTTT_Gui
+            // 
+            this.btnPTTT_Gui.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnPTTT_Gui.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_Gui.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_Gui.Appearance.Options.UseFont = true;
+            this.btnPTTT_Gui.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_Gui.Location = new System.Drawing.Point(8, 3);
+            this.btnPTTT_Gui.Name = "btnPTTT_Gui";
+            this.btnPTTT_Gui.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_Gui.TabIndex = 6;
+            this.btnPTTT_Gui.Text = "Gửi duyệt";
+            this.btnPTTT_Gui.Click += new System.EventHandler(this.btnPTTT_Gui_Click);
             // 
             // panelControlData
             // 
             this.panelControlData.Controls.Add(this.gridControlDataBCPTTT);
             this.panelControlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControlData.Location = new System.Drawing.Point(0, 93);
+            this.panelControlData.Location = new System.Drawing.Point(0, 135);
             this.panelControlData.Name = "panelControlData";
-            this.panelControlData.Size = new System.Drawing.Size(1190, 520);
+            this.panelControlData.Size = new System.Drawing.Size(1190, 478);
             this.panelControlData.TabIndex = 4;
             // 
             // gridControlDataBCPTTT
@@ -467,7 +612,7 @@
             this.repositoryItemGridLookUp_Phu2,
             this.repositoryItemGridLookUp_GiupViec1,
             this.repositoryItemGridLookUp_GiupViec2});
-            this.gridControlDataBCPTTT.Size = new System.Drawing.Size(1186, 516);
+            this.gridControlDataBCPTTT.Size = new System.Drawing.Size(1186, 474);
             this.gridControlDataBCPTTT.TabIndex = 29;
             this.gridControlDataBCPTTT.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.bandedGridViewDataBCPTTT});
@@ -555,6 +700,7 @@
             this.bandedGridColumn47,
             this.bandedGridColumn49,
             this.bandedGridColumn27,
+            this.bandedGridColumn58,
             this.bandedGridColumn54,
             this.bandedGridColumn55,
             this.bandedGridColumn56,
@@ -576,9 +722,7 @@
             this.bandedGridViewDataBCPTTT.RowHeight = 25;
             this.bandedGridViewDataBCPTTT.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.bandedGridViewDataBCPTTT_CustomDrawCell);
             this.bandedGridViewDataBCPTTT.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.bandedGridViewDataBNNT_RowCellStyle);
-            this.bandedGridViewDataBCPTTT.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.bandedGridViewDataBCPTTT_PopupMenuShowing);
             this.bandedGridViewDataBCPTTT.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.bandedGridViewDataBCPTTT_RowUpdated);
-            this.bandedGridViewDataBCPTTT.ShowFilterPopupCheckedListBox += new DevExpress.XtraGrid.Views.Grid.FilterPopupCheckedListBoxEventHandler(this.bandedGridViewDataBCPTTT_ShowFilterPopupCheckedListBox);
             // 
             // gridBand1
             // 
@@ -1793,12 +1937,13 @@
             this.gridBand8.Columns.Add(this.bandedGridColumn32);
             this.gridBand8.Columns.Add(this.bandedGridColumn43);
             this.gridBand8.Columns.Add(this.bandedGridColumn50);
+            this.gridBand8.Columns.Add(this.bandedGridColumn58);
             this.gridBand8.Columns.Add(this.bandedGridColumn54);
             this.gridBand8.Columns.Add(this.bandedGridColumn55);
             this.gridBand8.Name = "gridBand8";
             this.gridBand8.OptionsBand.ShowCaption = false;
             this.gridBand8.VisibleIndex = 7;
-            this.gridBand8.Width = 935;
+            this.gridBand8.Width = 1065;
             // 
             // bandedGridColumn30
             // 
@@ -1899,6 +2044,23 @@
             this.bandedGridColumn50.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn50.Visible = true;
             this.bandedGridColumn50.Width = 150;
+            // 
+            // bandedGridColumn58
+            // 
+            this.bandedGridColumn58.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn58.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn58.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn58.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn58.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn58.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn58.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn58.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn58.Caption = "Trạng thái duyệt";
+            this.bandedGridColumn58.FieldName = "duyetpttt_sttname";
+            this.bandedGridColumn58.Name = "bandedGridColumn58";
+            this.bandedGridColumn58.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn58.Visible = true;
+            this.bandedGridColumn58.Width = 130;
             // 
             // bandedGridColumn54
             // 
@@ -2100,7 +2262,10 @@
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
             this.imMenu.Images.SetKeyName(0, "check-mark-16.png");
             this.imMenu.Images.SetKeyName(1, "x-mark-16.png");
-            this.imMenu.Images.SetKeyName(2, "status_1.png");
+            this.imMenu.Images.SetKeyName(2, "status_0.png");
+            this.imMenu.Images.SetKeyName(3, "status_2a.png");
+            this.imMenu.Images.SetKeyName(4, "status_1.png");
+            this.imMenu.Images.SetKeyName(5, "status_3.png");
             // 
             // ucBCThucHienCLS
             // 
@@ -2115,6 +2280,8 @@
             this.Load += new System.EventHandler(this.ucBCThucHienCLS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).EndInit();
@@ -2122,7 +2289,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkChuaPhanLoaiPTTT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBCPTTT)).EndInit();
@@ -2254,6 +2421,11 @@
         private DevExpress.XtraEditors.DropDownButton dropDownPrint;
         private DevExpress.XtraEditors.ComboBoxEdit cboTrangThai;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn53;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn54;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn55;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn56;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn57;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn41;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand_gayme;
@@ -2262,11 +2434,16 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand_giupviec1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand_giupviec2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn54;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn55;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn56;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn57;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn58;
+        private System.Windows.Forms.Panel panel1;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_HuyGui;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_HuyTiepNhan;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_HuyDuyet;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_Khoa;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_Duyet;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_TiepNhan;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_Gui;
+        private System.Windows.Forms.Panel panel2;
         private DevExpress.Utils.ImageCollection imMenu;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn41;
     }
 }

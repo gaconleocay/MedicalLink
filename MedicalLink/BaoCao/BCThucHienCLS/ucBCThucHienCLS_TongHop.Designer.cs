@@ -168,8 +168,11 @@
             this.cboTrangThai.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboTrangThai.Properties.Items.AddRange(new object[] {
-            "Chưa duyệt PTTT",
+            "Chưa gửi YC",
+            "Đã gửi YC",
+            "Đã tiếp nhận YC",
             "Đã duyệt PTTT",
+            "Đã khóa",
             "Tất cả"});
             this.cboTrangThai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTrangThai.Size = new System.Drawing.Size(156, 22);

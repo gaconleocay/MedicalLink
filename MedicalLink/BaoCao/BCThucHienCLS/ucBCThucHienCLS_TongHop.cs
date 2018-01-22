@@ -112,13 +112,25 @@ namespace MedicalLink.BaoCao
                     _tieuchi_mbp= " and maubenhphamdate between '" + tungay + "' and '" + denngay + "' ";
                 }
 
-                if (cboTrangThai.Text == "Chưa duyệt PTTT")
+                if (cboTrangThai.Text == "Chưa gửi YC")
                 {
                     _trangthaipttt = " and coalesce(duyetpttt_stt,0)=0 ";
                 }
-                if (cboTrangThai.Text == "Đã duyệt PTTT")
+                else if (cboTrangThai.Text == "Đã gửi YC")
                 {
                     _trangthaipttt = " and duyetpttt_stt=1 ";
+                }
+                else if (cboTrangThai.Text == "Đã tiếp nhận YC")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=2 ";
+                }
+                else if (cboTrangThai.Text == "Đã duyệt PTTT")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=3 ";
+                }
+                else if (cboTrangThai.Text == "Đã khóa")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=99 ";
                 }
 
                 List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
@@ -223,7 +235,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (cboTrangThai.Text == "Đã duyệt PTTT" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (cboTrangThai.Text == "Đã khóa" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     btnPrint.Enabled = true;
                 }
@@ -232,7 +244,7 @@ namespace MedicalLink.BaoCao
                     btnPrint.Enabled = false;
                 }
 
-                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã duyệt PTTT") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã khóa") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     tbnExport.Enabled = true;
                 }

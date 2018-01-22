@@ -47,6 +47,7 @@ namespace MedicalLink.BaoCao
             LoadDanhSachButonPrint();
             LoadDanhSachBaoCao();
             KiemTraQuyenDuyetPTTT();
+            LoadControlDuyetPTT();
         }
 
         private void LoadDanhSachExport()
@@ -126,6 +127,36 @@ namespace MedicalLink.BaoCao
                 {
                     helper.CheckMarkColumn.ColumnEdit.ReadOnly = true;
                 }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void LoadControlDuyetPTT()
+        {
+            try
+            {
+                bool _enable = false;
+                if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_05"))
+                {
+                    _enable = true;
+                }
+                if (CheckPermission.ChkPerModule("SYS_05"))
+                {
+                    btnPTTT_Gui.Visible = true;
+                    btnPTTT_HuyGui.Visible = true;
+                }
+                else
+                {
+                    btnPTTT_Gui.Visible = !_enable;
+                    btnPTTT_HuyGui.Visible = !_enable;
+                }
+                btnPTTT_TiepNhan.Visible = _enable;
+                btnPTTT_HuyTiepNhan.Visible = _enable;
+                btnPTTT_Duyet.Visible = _enable;
+                btnPTTT_HuyDuyet.Visible = _enable;
+                btnPTTT_Khoa.Visible = _enable;
             }
             catch (Exception ex)
             {
@@ -313,6 +344,24 @@ namespace MedicalLink.BaoCao
                         Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[2]);
                         e.Graphics.DrawImage(imMenu.Images[2], pos);
                     }
+                    else if (val == "2")
+                    {
+                        e.Handled = true;
+                        Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[3]);
+                        e.Graphics.DrawImage(imMenu.Images[3], pos);
+                    }
+                    else if (val == "3")
+                    {
+                        e.Handled = true;
+                        Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[4]);
+                        e.Graphics.DrawImage(imMenu.Images[4], pos);
+                    }
+                    else if (val == "99")
+                    {
+                        e.Handled = true;
+                        Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[5]);
+                        e.Graphics.DrawImage(imMenu.Images[5], pos);
+                    }
                 }
             }
             catch (Exception ex)
@@ -345,6 +394,30 @@ namespace MedicalLink.BaoCao
             {
                 Base.Logging.Warn(ex);
             }
+        }
+        private void bandedGridViewDataBCPTTT_ShowFilterPopupCheckedListBox(object sender, FilterPopupCheckedListBoxEventArgs e)
+        {
+            //try
+            //{
+            //    if (e.Column.FieldName != "servicepricename") return;
+            //    // Hide the "Select All" item.
+            //    e.CheckedComboBox.SelectAllItemVisible = false;
+            //    // Locate and disable checked items that contain specific values.
+            //    for (int i = 0; i < e.CheckedComboBox.Items.Count; i++)
+            //    {
+            //        DevExpress.XtraEditors.Controls.CheckedListBoxItem item = e.CheckedComboBox.Items[i];
+            //        string itemValue = (string)(item.Value as FilterItem).Value;
+            //        //if (itemValue == "Seafood" || itemValue == "Condiments")
+            //        //{
+            //        //    e.CheckedComboBox.Items[i].Enabled = false;
+            //        //}
+            //    }
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
         }
         #endregion
 
@@ -605,30 +678,290 @@ namespace MedicalLink.BaoCao
 
         #endregion
 
-        private void bandedGridViewDataBCPTTT_ShowFilterPopupCheckedListBox(object sender, FilterPopupCheckedListBoxEventArgs e)
+        #region Duyet PTTT
+        private void btnPTTT_Gui_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (e.Column.FieldName != "servicepricename") return;
-            //    // Hide the "Select All" item.
-            //    e.CheckedComboBox.SelectAllItemVisible = false;
-            //    // Locate and disable checked items that contain specific values.
-            //    for (int i = 0; i < e.CheckedComboBox.Items.Count; i++)
-            //    {
-            //        DevExpress.XtraEditors.Controls.CheckedListBoxItem item = e.CheckedComboBox.Items[i];
-            //        string itemValue = (string)(item.Value as FilterItem).Value;
-            //        //if (itemValue == "Seafood" || itemValue == "Condiments")
-            //        //{
-            //        //    e.CheckedComboBox.Items[i].Enabled = false;
-            //        //}
-            //    }
-            //}
-            //catch (Exception)
-            //{
-
-            //    throw;
-            //}
+            try
+            {
+                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
+                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                {
+                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 0).ToList();
+                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
+                    {
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=1 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
+                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
+                        {
+                            MessageBox.Show("Gửi yêu cầu duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CapNhatTools_DuyetPTTT(lstServicepriceids, 1);
+                            LayDuLieuBaoCao_ChayMoi();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_DA_DUOC_GUI_YC_DUYET_PTTT);
+                        frmthongbao.Show();
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
         }
+        private void btnPTTT_HuyGui_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
+                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                {
+                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 1).ToList();
+                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
+                    {
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=0 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
+                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
+                        {
+                            MessageBox.Show("Hủy gửi yêu cầu duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CapNhatTools_DuyetPTTT(lstServicepriceids, 0);
+                            LayDuLieuBaoCao_ChayMoi();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DANG_GUI_YC_PTTT);
+                        frmthongbao.Show();
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+        private void btnPTTT_TiepNhan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
+                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                {
+                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 1).ToList();
+                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
+                    {
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=2 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
+                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
+                        {
+                            MessageBox.Show("Tiếp nhận yêu cầu duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CapNhatTools_DuyetPTTT(lstServicepriceids, 2);
+                            LayDuLieuBaoCao_ChayMoi();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DANG_GUI_YC_PTTT);
+                        frmthongbao.Show();
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+        private void btnPTTT_HuyTiepNhan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
+                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                {
+                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 2).ToList();
+                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
+                    {
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=1 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
+                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
+                        {
+                            MessageBox.Show("Hủy tiếp nhận yêu cầu duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CapNhatTools_DuyetPTTT(lstServicepriceids, 1);
+                            LayDuLieuBaoCao_ChayMoi();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_TIEP_NHAN_PTTT);
+                        frmthongbao.Show();
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+        private void btnPTTT_Duyet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
+                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                {
+                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 2).ToList();
+                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
+                    {
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=3, duyetpttt_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', duyetpttt_usercode='" + Base.SessionLogin.SessionUsercode + "', duyetpttt_username='" + Base.SessionLogin.SessionUsername + "' WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
+                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
+                        {
+                            MessageBox.Show("Duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CapNhatTools_DuyetPTTT(lstServicepriceids, 3);
+                            LayDuLieuBaoCao_ChayMoi();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_TIEP_NHAN_PTTT);
+                        frmthongbao.Show();
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+        private void btnPTTT_HuyDuyet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
+                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                {
+                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 3).ToList();
+                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
+                    {
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=2 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
+                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
+                        {
+                            MessageBox.Show("Hủy duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CapNhatTools_DuyetPTTT(lstServicepriceids, 2);
+                            LayDuLieuBaoCao_ChayMoi();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_DUYET_PTTT);
+                        frmthongbao.Show();
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+
+        private void btnPTTT_Khoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
+                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                {
+                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 3).ToList();
+                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
+                    {
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=99 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
+                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
+                        {
+                            MessageBox.Show("Khóa duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            CapNhatTools_DuyetPTTT(lstServicepriceids, 99);
+                            LayDuLieuBaoCao_ChayMoi();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_DUYET_PTTT);
+                        frmthongbao.Show();
+                    }
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    frmthongbao.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+
+        #endregion
 
 
 

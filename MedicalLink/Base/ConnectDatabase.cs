@@ -94,7 +94,7 @@ namespace MedicalLink.Base
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi khi thực thi đến CSDL", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logging.Error("Loi ExecuteNonQuery: " + ex.ToString());
+                Logging.Error("Loi ExecuteNonQuery: " + ex.ToString() + " \nSQL=["+ sql + "]");
             }
             return result;
         }
@@ -208,7 +208,7 @@ namespace MedicalLink.Base
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi khi thực thi đến CSDL", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logging.Error("Loi ExecuteNonQuery: " + ex.ToString());
+                Logging.Error("Loi ExecuteNonQuery: " + ex.ToString() + " \nSQL=[" + sql + "]");
             }
             return result;
         }

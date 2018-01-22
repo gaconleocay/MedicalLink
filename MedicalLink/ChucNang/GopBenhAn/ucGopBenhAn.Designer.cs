@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucGopBenhAn));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
@@ -70,6 +71,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.vienphistatus_vp = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnTimKiem_A = new DevExpress.XtraEditors.SimpleButton();
@@ -117,6 +119,7 @@
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bhytid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnGopHSBVaoHSA = new DevExpress.XtraEditors.SimpleButton();
@@ -128,8 +131,7 @@
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.bhytid = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.imageCollectionMBA = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
@@ -161,6 +163,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionMBA)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -907,6 +910,12 @@
             this.vienphistatus_vp.FieldName = "vienphistatus_vp";
             this.vienphistatus_vp.Name = "vienphistatus_vp";
             // 
+            // gridColumn44
+            // 
+            this.gridColumn44.Caption = "bhytid";
+            this.gridColumn44.FieldName = "bhytid";
+            this.gridColumn44.Name = "gridColumn44";
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.groupBox1);
@@ -1517,6 +1526,7 @@
             this.gridViewHSDT_B.RowHeight = 25;
             this.gridViewHSDT_B.ViewCaption = "25";
             this.gridViewHSDT_B.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewHSDT_A_RowCellStyle);
+            this.gridViewHSDT_B.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridViewHSDT_B_PopupMenuShowing);
             this.gridViewHSDT_B.Click += new System.EventHandler(this.gridViewHSDT_B_Click);
             // 
             // gridColumn9
@@ -1721,6 +1731,11 @@
             this.gridColumn43.FieldName = "vienphistatus_vp";
             this.gridColumn43.Name = "gridColumn43";
             // 
+            // bhytid
+            // 
+            this.bhytid.Caption = "bhytid";
+            this.bhytid.Name = "bhytid";
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.groupBox2);
@@ -1849,16 +1864,10 @@
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // gridColumn44
+            // imageCollectionMBA
             // 
-            this.gridColumn44.Caption = "bhytid";
-            this.gridColumn44.FieldName = "bhytid";
-            this.gridColumn44.Name = "gridColumn44";
-            // 
-            // bhytid
-            // 
-            this.bhytid.Caption = "bhytid";
-            this.bhytid.Name = "bhytid";
+            this.imageCollectionMBA.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionMBA.ImageStream")));
+            this.imageCollectionMBA.Images.SetKeyName(0, "check-mark-16.png");
             // 
             // ucGopBenhAn
             // 
@@ -1900,6 +1909,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionMBA)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2007,5 +2017,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
         private DevExpress.XtraGrid.Columns.GridColumn bhytid;
+        private DevExpress.Utils.ImageCollection imageCollectionMBA;
     }
 }

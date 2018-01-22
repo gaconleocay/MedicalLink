@@ -4,7 +4,7 @@
 --Chinh sua ten theo ten cua doituongthanhtoan
 --24/8 sua nguoi nhap thuc hien lay : userid_gmhs
 --ngay 9/11: nhap nguoi thuc hien moi chia tien cho BS
---ngay 28/12: them chuc nang duyet pttt
+--ngay 21/1: sua chuc nang duyet pttt
 
 
 --Duyet PTTT:
@@ -20,15 +20,43 @@ CREATE INDEX serviceprice_duyetpttt_user_idx ON serviceprice USING btree (duyetp
 */
 
 ---------
+- Trạng thái
++ 0=Chưa gửi
++ 1=Đã gửi (từ trạng thái null,0,3)
++ 0=Khoa hủy gửi (từ trạng thái 1)
++ 2=Đã tiếp nhận (từ trạng thái 1)
++ 1=KHTH hủy tiếp nhận : hủy cả khoa, từng dv (từ trạng thái 2)
++ 3=Đã duyệt PTTT (từ trạng thái 2)
++ 2=KHTH hủy duyệt PTTT (từ trạng thái 3)
++ 99=KHTH khóa dịch vụ (từ trạng thái 3)
+
+- Gửi: người gửi; thời gian gửi
+- Tiếp nhận: người gửi; thời gian gửi
+- Duyệt: người gửi; thời gian gửi
+- Khóa: người gửi; thời gian gửi
+Chưa gửi YC
+Đã gửi YC
+Đã tiếp nhận YC
+Đã duyệt PTTT
+Đã khóa
+Tất cả
 
 SELECT row_number () over (order by A.ngay_chidinh) as stt, 
 A.servicepriceid,
 coalesce(A.duyetpttt_stt,0) as duyetpttt_stt,
-(case when A.duyetpttt_stt=1 then A.duyetpttt_date end) as duyetpttt_date,
-A.duyetpttt_usercode,
-A.duyetpttt_username,
+(case A.duyetpttt_stt
+		when 1 then 'Đã gửi YC' 
+		when 2 then 'Đã tiếp nhận YC' 
+		when 3 then 'Đã duyệt PTTT' 
+		when 99 then 'Đã khóa' 
+		else 'Chưa gửi YC' end) as duyetpttt_sttname,
+(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_date end) as duyetpttt_date,
+(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_usercode end) as duyetpttt_usercode,
+(case when A.duyetpttt_stt in (3,99) then A.duyetpttt_username end) as duyetpttt_username,
 A.patientid, 
 A.vienphiid, 
+A.maubenhphamid,
+A.bhyt_groupcode,
 hsbA.patientname, 
 (case when hsbA.gioitinhcode='01' then to_char(hsbA.birthday, 'yyyy') else '' end) as year_nam, 
 (case hsbA.gioitinhcode when '02' then to_char(hsbA.birthday, 'yyyy') else '' end) as year_nu, hsba.bhytcode, 
@@ -87,6 +115,7 @@ FROM
 	ser.duyetpttt_usercode,
 	ser.duyetpttt_username,
 	ser.maubenhphamid,
+	ser.bhyt_groupcode,
 	ser.departmentgroupid as khoachidinh, 
 	ser.departmentid as phongchidinh, 
 	ser.servicepricedate as ngay_chidinh, 
@@ -96,7 +125,6 @@ FROM
 	(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
 	ser.servicepricecode, 
 	(case ser.loaidoituong when 0 then ser.servicepricename_bhyt when 1 then ser.servicepricename_nhandan else ser.servicepricename end) as servicepricename, 
-			--ser.servicepricename, 
 	(case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee, 
 	(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle, 
 	(case when serf.tinhtoanlaigiadvktc=1 
@@ -152,11 +180,6 @@ LEFT JOIN nhompersonnel nnth ON nnth.userhisid=A.nguoinhapthuchien;
 
 
 
-
-
-Chưa duyệt PTTT
-Đã duyệt PTTT
-Tất cả
 
 
 

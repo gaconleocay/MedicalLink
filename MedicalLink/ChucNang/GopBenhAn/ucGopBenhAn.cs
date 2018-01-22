@@ -11,6 +11,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using DevExpress.XtraSplashScreen;
 using MedicalLink.Base;
+using DevExpress.Utils.Menu;
 
 namespace MedicalLink.ChucNang
 {
@@ -235,6 +236,25 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        private void gridViewHSDT_B_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            try
+            {
+                if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
+                {
+                    //GridView view = sender as GridView;
+                    e.Menu.Items.Clear();
+                    DXMenuItem itemMoBenhAn = new DXMenuItem("Gộp đợt điều trị"); 
+                    itemMoBenhAn.Image = imageCollectionMBA.Images[0]; 
+                    itemMoBenhAn.Click += new EventHandler(GopDotDieuTri_Click);
+                    e.Menu.Items.Add(itemMoBenhAn);
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
 
         #endregion
@@ -290,9 +310,80 @@ namespace MedicalLink.ChucNang
             }
         }
 
+
+
+
         #endregion
 
+        #region Process
+        internal void GopDotDieuTri_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn gộp Mã điều trị này của VP=" + this.lstHSBA_B[0].vienphiid + " sang VP=" + this.lstHSBA_A[0].vienphiid + " ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    try
+                    {
+                        var rowHandle = gridViewHSDT_B.FocusedRowHandle;
+                        long _medicalrecordid_B = Utilities.Util_TypeConvertParse.ToInt64(gridViewHSDT_B.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
+                        long _departmentid_B = this.lstHSBA_B.Where(o => o.medicalrecordid == _medicalrecordid_B).FirstOrDefault().departmentid;
 
+                        string _sqlBHYT_B = "SELECT bhytcode, macskcbbd, to_char(bhytfromdate,'yyyy-MM-dd HH24:MI:ss') as bhytfromdate, to_char(bhytutildate,'yyyy-MM-dd HH24:MI:ss') as bhytutildate, coalesce(du5nam6thangluongcoban,0) as du5nam6thangluongcoban, coalesce(dtcbh_luyke6thang,0) as dtcbh_luyke6thang, noisinhsong FROM bhyt WHERE bhytid='" + this.lstHSBA_B[0].bhytid + "';";
+                        DataTable _dataBHYT_B = condb.GetDataTable_HIS(_sqlBHYT_B);
+                        if (_dataBHYT_B != null && _dataBHYT_B.Rows.Count > 0)
+                        {
+                            //update BHYT
+                            string _sqlUpdateBHYT_A = "UPDATE bhyt SET theghep_bhytcode='" + _dataBHYT_B.Rows[0]["bhytcode"].ToString() + "', theghep_bhytfromdate='" + _dataBHYT_B.Rows[0]["bhytfromdate"].ToString() + "', theghep_bhytutildate='" + _dataBHYT_B.Rows[0]["bhytutildate"].ToString() + "', theghep_macskcbbd='" + _dataBHYT_B.Rows[0]["macskcbbd"].ToString() + "', theghep_du5nam6thangluongcoban='" + _dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString() + "', theghep_dtcbh_luyke6thang='" + _dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString() + "', theghep_noisinhsong='" + _dataBHYT_B.Rows[0]["noisinhsong"].ToString() + "' WHERE bhytid='" + this.lstHSBA_A[0].bhytid + "'; UPDATE vienphi SET theghep_bhytcode='" + _dataBHYT_B.Rows[0]["bhytcode"].ToString() + "', theghep_bhytfromdate='" + _dataBHYT_B.Rows[0]["bhytfromdate"].ToString() + "', theghep_bhytutildate='" + _dataBHYT_B.Rows[0]["bhytutildate"].ToString() + "', theghep_macskcbbd='" + _dataBHYT_B.Rows[0]["macskcbbd"].ToString() + "', theghep_du5nam6thangluongcoban='" + _dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString() + "', theghep_dtcbh_luyke6thang='" + _dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString() + "', theghep_noisinhsong='" + _dataBHYT_B.Rows[0]["noisinhsong"].ToString() + "' WHERE vienphiid='" + this.lstHSBA_A[0].vienphiid + "';";
+
+                            //Update maubenhpham, serviceprice, serviceprice, bill
+                            string _updateCoPhong = "";
+
+                            List<MedicalrecordGopBADTO> _lst_Phong = this.lstHSBA_A.Where(o => o.departmentid == _departmentid_B).ToList(); //kiemr tra trong HS A có phòng hay ko?
+                            if (_lst_Phong != null && _lst_Phong.Count > 0) //co phong
+                            {
+                                _updateCoPhong += "update maubenhpham set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + ",patientid=" + _lst_Phong[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; update serviceprice set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + " where medicalrecordid=" + _medicalrecordid_B + "; update bill set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + ",patientid=" + _lst_Phong[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; ";
+                            }
+                            else //chua co phong update them medicalrecord
+                            {
+                                _updateCoPhong += "update maubenhpham set vienphiid=" + this.lstHSBA_A[0].vienphiid + ",hosobenhanid=" + this.lstHSBA_A[0].hosobenhanid + ",patientid=" + this.lstHSBA_A[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; update serviceprice set vienphiid=" + this.lstHSBA_A[0].vienphiid + ",hosobenhanid=" + this.lstHSBA_A[0].hosobenhanid + " where medicalrecordid=" + _medicalrecordid_B + "; update bill set vienphiid=" + this.lstHSBA_A[0].vienphiid + ",hosobenhanid=" + this.lstHSBA_A[0].hosobenhanid + ",patientid=" + this.lstHSBA_A[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; update medicalrecord set vienphiid=" + this.lstHSBA_A[0].vienphiid + ",hosobenhanid=" + this.lstHSBA_A[0].hosobenhanid + ",patientid=" + this.lstHSBA_A[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; ";
+                            }
+
+                            if (condb.ExecuteNonQuery_HIS(_updateCoPhong) && condb.ExecuteNonQuery_HIS(_sqlUpdateBHYT_A))
+                            {
+                                //Log vào DB
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Gộp bệnh án thành công: VP=" + this.lstHSBA_B[0].vienphiid + " sang VP=" + this.lstHSBA_A[0].vienphiid + " DS medicalrecordid_B=[" + _medicalrecordid_B + "]' ,'" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + this.lstHSBA_B[0].vienphiid + "', 'TOOL_22');";
+                                condb.ExecuteNonQuery_MeL(sqlinsert_log);
+                                MessageBox.Show("Gộp bệnh án thành công: VP=" + this.lstHSBA_B[0].vienphiid + " sang VP=" + this.lstHSBA_A[0].vienphiid, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                btnTimKiem_A.PerformClick();
+                                btnTimKiem_B.PerformClick();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Gộp bệnh án thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_THUC_HIEN_DUOC);
+                            frmthongbao.Show();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MedicalLink.Base.Logging.Error(ex);
+                    }
+                    SplashScreenManager.CloseForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
 
 
     }

@@ -67,10 +67,10 @@ namespace MedicalLink.BaoCao
                 {
                     _trangthaipttt = " and duyetpttt_stt=3 ";
                 }
-                else if (cboTrangThai.Text == "Đã khóa")
-                {
-                    _trangthaipttt = " and duyetpttt_stt=99 ";
-                }
+                //else if (cboTrangThai.Text == "Đã khóa")
+                //{
+                //    _trangthaipttt = " and duyetpttt_stt=99 ";
+                //}
 
                 if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_001")//phau thuat - lay phong mo phien va phong mo cap cuu: ser.departmentid in (285,34)
                 {
@@ -298,7 +298,7 @@ namespace MedicalLink.BaoCao
         }
         #endregion
 
-        #region Process
+        #region Process Get ID
         private List<ServicepriceDuyetPTTTDTO> GetIdCollection()
         {
             List<ServicepriceDuyetPTTTDTO> IDs = new List<ServicepriceDuyetPTTTDTO>();
@@ -383,7 +383,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (cboTrangThai.Text == "Đã khóa" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (cboTrangThai.Text == "Đã duyệt PTTT" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     dropDownPrint.Enabled = true;
                 }
@@ -392,7 +392,7 @@ namespace MedicalLink.BaoCao
                     dropDownPrint.Enabled = false;
                 }
 
-                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã khóa") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã duyệt PTTT") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     dropDownExport.Enabled = true;
                 }
@@ -439,11 +439,11 @@ namespace MedicalLink.BaoCao
                                     _update_user = " , duyet_usercode='" + Base.SessionLogin.SessionUsercode + "', duyet_username='" + Base.SessionLogin.SessionUsername + "', duyet_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
                                     break;
                                 }
-                            case 99:
-                                {
-                                    _update_user = " , khoa_usercode='" + Base.SessionLogin.SessionUsercode + "', khoa_username='" + Base.SessionLogin.SessionUsername + "', khoa_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
-                                    break;
-                                }
+                            //case 99:
+                            //    {
+                            //        _update_user = " , khoa_usercode='" + Base.SessionLogin.SessionUsercode + "', khoa_username='" + Base.SessionLogin.SessionUsername + "', khoa_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
+                            //        break;
+                            //    }
                             default:
                                 break;
                         }
@@ -455,7 +455,7 @@ namespace MedicalLink.BaoCao
                         {
                             case 1:
                                 {
-                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,gui_usercode,gui_username,gui_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '"+Base.SessionLogin.SessionUsercode+ "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
+                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,gui_usercode,gui_username,gui_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
                                     break;
                                 }
                             case 2:
@@ -468,11 +468,11 @@ namespace MedicalLink.BaoCao
                                     _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,duyet_usercode,duyet_username,duyet_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "''" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
                                     break;
                                 }
-                            case 99:
-                                {
-                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,khoa_usercode,khoa_username,khoa_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
-                                    break;
-                                }
+                            //case 99:
+                            //    {
+                            //        _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,khoa_usercode,khoa_username,khoa_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
+                            //        break;
+                            //    }
                             default:
                                 {
                                     _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "'); ";
@@ -487,6 +487,24 @@ namespace MedicalLink.BaoCao
             {
                 Base.Logging.Error(ex);
             }
+        }
+        private int KiemTraTrangThaiKhoaGuiPTTT()
+        {
+            int result = 0;
+            try
+            {
+                string _sqlTrangThai = "SELECT toolsoptionvalue FROM tools_option WHERE toolsoptioncode='REPORT_08_KhoaGuiYeuCau';";
+                DataTable _dataTrangThai = condb.GetDataTable_MeL(_sqlTrangThai);
+                if (_dataTrangThai != null && _dataTrangThai.Rows.Count > 0)
+                {
+                    result = Utilities.Util_TypeConvertParse.ToInt16(_dataTrangThai.Rows[0]["toolsoptionvalue"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
         }
         #endregion
 

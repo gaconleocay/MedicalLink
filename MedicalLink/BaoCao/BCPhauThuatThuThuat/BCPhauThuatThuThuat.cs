@@ -20,9 +20,6 @@ using MedicalLink.Utilities.GUIGridView;
 
 namespace MedicalLink.BaoCao
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public partial class BCPhauThuatThuThuat : UserControl
     {
         #region Declaration
@@ -67,13 +64,13 @@ namespace MedicalLink.BaoCao
                 var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
-                    cboKhoa.Properties.DataSource = lstDSKhoa;
-                    cboKhoa.Properties.DisplayMember = "departmentgroupname";
-                    cboKhoa.Properties.ValueMember = "departmentgroupid";
+                    chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
+                    chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
+                    chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
                 }
                 if (lstDSKhoa.Count == 1)
                 {
-                    cboKhoa.ItemIndex = 0;
+                    chkcomboListDSKhoa.CheckAll();
                 }
             }
             catch (Exception ex)
@@ -196,14 +193,22 @@ namespace MedicalLink.BaoCao
                 btnPTTT_HuyTiepNhan.Visible = _enable;
                 btnPTTT_Duyet.Visible = _enable;
                 btnPTTT_HuyDuyet.Visible = _enable;
-                btnPTTT_Khoa.Visible = _enable;
+                btnPTTT_KhoaMoKhoa.Visible = _enable;
+
+                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                {
+                    btnPTTT_KhoaMoKhoa.Text = "Mở khóa gửi YC";
+                }
+                else
+                {
+                    btnPTTT_KhoaMoKhoa.Text = "Khóa gửi YC";
+                }
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
         #endregion
 
         #region Tim kiem
@@ -219,7 +224,7 @@ namespace MedicalLink.BaoCao
                 }
                 if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005" || cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")
                 {
-                    if (cboKhoa.EditValue == null)
+                    if (chkcomboListDSKhoa.EditValue == null)
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
                         frmthongbao.Show();
@@ -269,11 +274,11 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                cboKhoa.EditValue = null;
+                chkcomboListDSKhoa.EditValue = null;
 
                 if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_001") //gay me
                 {
-                    cboKhoa.Enabled = false;
+                    chkcomboListDSKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = true;
@@ -287,7 +292,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002") //tai mui hong
                 {
-                    cboKhoa.Enabled = false;
+                    chkcomboListDSKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = false;
@@ -301,7 +306,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003")//rang ham mat
                 {
-                    cboKhoa.Enabled = false;
+                    chkcomboListDSKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = false;
@@ -315,7 +320,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004")//mat
                 {
-                    cboKhoa.Enabled = false;
+                    chkcomboListDSKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = true;
@@ -329,7 +334,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005")//khoa khac    ------
                 {
-                    cboKhoa.Enabled = true;
+                    chkcomboListDSKhoa.Enabled = true;
                     chkcomboListDSPhong.Enabled = true;
                     bandedGridColumn_tyle.Visible = true;
                     gridBand_gayme.Visible = true;
@@ -343,7 +348,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")//thu thuat - mat
                 {
-                    cboKhoa.Enabled = false;
+                    chkcomboListDSKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = false;
                     gridBand_gayme.Visible = false;
@@ -357,7 +362,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//thua thuat - tru mat
                 {
-                    cboKhoa.Enabled = false;
+                    chkcomboListDSKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = false;
                     gridBand_gayme.Visible = false;
@@ -371,7 +376,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//thu thuat khac    ---------
                 {
-                    cboKhoa.Enabled = true;
+                    chkcomboListDSKhoa.Enabled = true;
                     chkcomboListDSPhong.Enabled = true;
                     bandedGridColumn_tyle.Visible = false;
                     gridBand_gayme.Visible = false;
@@ -385,7 +390,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day (mo chinh + giup viec1)
                 {
-                    cboKhoa.Enabled = false;
+                    chkcomboListDSKhoa.Enabled = false;
                     chkcomboListDSPhong.Enabled = false;
                     bandedGridColumn_tyle.Visible = false;
                     gridBand_gayme.Visible = false;
@@ -408,10 +413,16 @@ namespace MedicalLink.BaoCao
             try
             {
                 chkcomboListDSPhong.Properties.Items.Clear();
-                if (cboKhoa.EditValue != null)
+                if (chkcomboListDSKhoa.EditValue != null && chkcomboListDSKhoa.EditValue.ToString() != "")
                 {
                     //Load danh muc phong thuoc khoa
-                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(cboKhoa.EditValue.ToString())).OrderBy(o => o.departmentname).ToList();
+                    List<ClassCommon.classUserDepartment> lstDSPhong = new List<classUserDepartment>();
+                    string[] dsKhoa_temp = chkcomboListDSKhoa.EditValue.ToString().Split(',');
+                    for (int i = 0; i < dsKhoa_temp.Length; i++)
+                    {
+                        lstDSPhong.AddRange(Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(dsKhoa_temp[i])).OrderBy(o => o.departmentname).ToList());
+                    }
+
                     if (lstDSPhong != null && lstDSPhong.Count > 0)
                     {
                         chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
@@ -452,12 +463,12 @@ namespace MedicalLink.BaoCao
                         Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[4]);
                         e.Graphics.DrawImage(imMenu.Images[4], pos);
                     }
-                    else if (val == "99")
-                    {
-                        e.Handled = true;
-                        Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[5]);
-                        e.Graphics.DrawImage(imMenu.Images[5], pos);
-                    }
+                    //else if (val == "99")
+                    //{
+                    //    e.Handled = true;
+                    //    Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[5]);
+                    //    e.Graphics.DrawImage(imMenu.Images[5], pos);
+                    //}
                 }
             }
             catch (Exception ex)
@@ -509,7 +520,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
                 reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
-                reportitem_khoa.value = cboKhoa.Text.ToUpper();
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_CHUNG.xlsx";
@@ -571,7 +582,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
                 reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
-                reportitem_khoa.value = cboKhoa.Text.ToUpper();
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
@@ -633,7 +644,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
                 reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
-                reportitem_khoa.value = cboKhoa.Text.ToUpper();
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_CHUNG.xlsx";
@@ -697,7 +708,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
                 reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
-                reportitem_khoa.value = cboKhoa.Text.ToUpper();
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
@@ -784,7 +795,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
                 reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
-                reportitem_khoa.value = cboKhoa.Text.ToUpper();
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_CHUNG.xlsx";
@@ -847,7 +858,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
                 reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
-                reportitem_khoa.value = cboKhoa.Text.ToUpper();
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
@@ -932,6 +943,11 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                {
+                    MessageBox.Show(Base.ThongBaoLable.DA_KHOA_YC_GUI_PTTT, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
                 List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
                 if (lstServicepriceids != null && lstServicepriceids.Count > 0)
                 {
@@ -972,6 +988,11 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                {
+                    MessageBox.Show(Base.ThongBaoLable.DA_KHOA_YC_GUI_PTTT, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
                 List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
                 if (lstServicepriceids != null && lstServicepriceids.Count > 0)
                 {
@@ -1173,34 +1194,22 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
-                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                string _toolsoptionvalue = "1";
+                string _btnPTTT_KhoaMoKhoaText = "Mở khóa gửi YC";
+                if (btnPTTT_KhoaMoKhoa.Text == "Mở khóa gửi YC")
                 {
-                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 3).ToList();
-                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
-                    {
-                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=99 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
-                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
-                        {
-                            MessageBox.Show("Khóa duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CapNhatTools_DuyetPTTT(lstServicepriceids, 99);
-                            LayDuLieuBaoCao_ChayMoi();
-                        }
-                        else
-                        {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
-                            frmthongbao.Show();
-                        }
-                    }
-                    else
-                    {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_DUYET_PTTT);
-                        frmthongbao.Show();
-                    }
+                    _toolsoptionvalue = "0";
+                    _btnPTTT_KhoaMoKhoaText = "Khóa gửi YC";
+                }
+                string _updateKhoa = "UPDATE tools_option SET toolsoptionvalue='" + _toolsoptionvalue + "' WHERE toolsoptioncode='REPORT_08_KhoaGuiYeuCau';";
+                if (condb.ExecuteNonQuery_MeL(_updateKhoa))
+                {
+                    MessageBox.Show(btnPTTT_KhoaMoKhoa.Text + " PTTT thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnPTTT_KhoaMoKhoa.Text = _btnPTTT_KhoaMoKhoaText;
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                     frmthongbao.Show();
                 }
             }

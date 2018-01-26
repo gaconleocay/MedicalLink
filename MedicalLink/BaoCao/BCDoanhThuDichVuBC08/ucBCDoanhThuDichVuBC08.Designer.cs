@@ -169,6 +169,7 @@
             this.radioXemChiTiet.TabIndex = 85;
             this.radioXemChiTiet.Text = "Xem chi tiết BN";
             this.radioXemChiTiet.UseVisualStyleBackColor = true;
+            this.radioXemChiTiet.Visible = false;
             this.radioXemChiTiet.CheckedChanged += new System.EventHandler(this.radioXemChiTiet_CheckedChanged);
             // 
             // radioXemTongHop

@@ -461,8 +461,10 @@ select service_broker_guid from sys.databases where name='O2S_STUDENTMANAGEMENT'
 
 ------
 https://svn.3asoft.vn:444/svn/Invoice3A 
+Data Source=119.17.215.98,1433\SQL2008;Initial Catalog=QLBL;Persist Security Info=True;User ID=ktx;Password=ktxa2oi6
 
-
+Tóm lại, cấu trúc của lệnh IF rút gọn là:
+( biểu-thức-điều-kiện ) ? giá-trị-khi-BTDK-đúng : giá-trị-khi-BTĐK-sai ;
 
 
 

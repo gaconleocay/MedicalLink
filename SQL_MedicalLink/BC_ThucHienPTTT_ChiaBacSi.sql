@@ -30,16 +30,6 @@ CREATE INDEX serviceprice_duyetpttt_user_idx ON serviceprice USING btree (duyetp
 + 2=KHTH hủy duyệt PTTT (từ trạng thái 3)
 + 99=KHTH khóa dịch vụ (từ trạng thái 3)
 
-- Gửi: người gửi; thời gian gửi
-- Tiếp nhận: người gửi; thời gian gửi
-- Duyệt: người gửi; thời gian gửi
-- Khóa: người gửi; thời gian gửi
-Chưa gửi YC
-Đã gửi YC
-Đã tiếp nhận YC
-Đã duyệt PTTT
-Đã khóa
-Tất cả
 
 SELECT row_number () over (order by A.ngay_chidinh) as stt, 
 A.servicepriceid,

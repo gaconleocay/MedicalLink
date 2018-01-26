@@ -49,7 +49,7 @@ namespace MedicalLink.Base
         internal static string DICH_VU_KO_PHAI_TT_DANG_GUI_YC_PTTT = "Các dịch vụ không phải trạng thái đang gửi yêu cầu!";
         internal static string DICH_VU_KO_PHAI_TT_DA_TIEP_NHAN_PTTT = "Các dịch vụ không phải trạng thái tiếp nhận yêu cầu!";
         internal static string DICH_VU_KO_PHAI_TT_DA_DUYET_PTTT = "Các dịch vụ không phải trạng thái duyệt PTTT!";
-
+        internal static string DA_KHOA_YC_GUI_PTTT = "Đã khóa yêu cầu gửi duyệt PTTT!";
 
 
 

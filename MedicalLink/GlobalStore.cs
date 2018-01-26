@@ -16,7 +16,7 @@ namespace MedicalLink
         public static string TenBenhVien_String { get; set; }
         public static List<DepartmentDTO> lstDepartmentBV { get; set; }
 
-
+        public static List<ToolsOptionDTO> lstOption { get; set; }
 
     }
 }

@@ -54,7 +54,7 @@
             this.btnPTTT_HuyGui = new DevExpress.XtraEditors.SimpleButton();
             this.btnPTTT_HuyTiepNhan = new DevExpress.XtraEditors.SimpleButton();
             this.btnPTTT_HuyDuyet = new DevExpress.XtraEditors.SimpleButton();
-            this.btnPTTT_Khoa = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPTTT_KhoaMoKhoa = new DevExpress.XtraEditors.SimpleButton();
             this.btnPTTT_Duyet = new DevExpress.XtraEditors.SimpleButton();
             this.btnPTTT_TiepNhan = new DevExpress.XtraEditors.SimpleButton();
             this.btnPTTT_Gui = new DevExpress.XtraEditors.SimpleButton();
@@ -294,7 +294,6 @@
             "Đã gửi YC",
             "Đã tiếp nhận YC",
             "Đã duyệt PTTT",
-            "Đã khóa",
             "Tất cả"});
             this.cboTrangThai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTrangThai.Size = new System.Drawing.Size(156, 22);
@@ -474,7 +473,7 @@
             this.panel1.Controls.Add(this.btnPTTT_HuyGui);
             this.panel1.Controls.Add(this.btnPTTT_HuyTiepNhan);
             this.panel1.Controls.Add(this.btnPTTT_HuyDuyet);
-            this.panel1.Controls.Add(this.btnPTTT_Khoa);
+            this.panel1.Controls.Add(this.btnPTTT_KhoaMoKhoa);
             this.panel1.Controls.Add(this.btnPTTT_Duyet);
             this.panel1.Controls.Add(this.btnPTTT_TiepNhan);
             this.panel1.Controls.Add(this.btnPTTT_Gui);
@@ -493,7 +492,7 @@
             this.btnPTTT_HuyGui.Appearance.Options.UseFont = true;
             this.btnPTTT_HuyGui.Appearance.Options.UseForeColor = true;
             this.btnPTTT_HuyGui.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnPTTT_HuyGui.Location = new System.Drawing.Point(129, 3);
+            this.btnPTTT_HuyGui.Location = new System.Drawing.Point(125, 3);
             this.btnPTTT_HuyGui.Name = "btnPTTT_HuyGui";
             this.btnPTTT_HuyGui.Size = new System.Drawing.Size(115, 24);
             this.btnPTTT_HuyGui.TabIndex = 12;
@@ -509,7 +508,7 @@
             this.btnPTTT_HuyTiepNhan.Appearance.Options.UseFont = true;
             this.btnPTTT_HuyTiepNhan.Appearance.Options.UseForeColor = true;
             this.btnPTTT_HuyTiepNhan.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnPTTT_HuyTiepNhan.Location = new System.Drawing.Point(401, 3);
+            this.btnPTTT_HuyTiepNhan.Location = new System.Drawing.Point(379, 3);
             this.btnPTTT_HuyTiepNhan.Name = "btnPTTT_HuyTiepNhan";
             this.btnPTTT_HuyTiepNhan.Size = new System.Drawing.Size(115, 24);
             this.btnPTTT_HuyTiepNhan.TabIndex = 11;
@@ -525,26 +524,26 @@
             this.btnPTTT_HuyDuyet.Appearance.Options.UseFont = true;
             this.btnPTTT_HuyDuyet.Appearance.Options.UseForeColor = true;
             this.btnPTTT_HuyDuyet.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnPTTT_HuyDuyet.Location = new System.Drawing.Point(686, 3);
+            this.btnPTTT_HuyDuyet.Location = new System.Drawing.Point(633, 3);
             this.btnPTTT_HuyDuyet.Name = "btnPTTT_HuyDuyet";
             this.btnPTTT_HuyDuyet.Size = new System.Drawing.Size(115, 24);
             this.btnPTTT_HuyDuyet.TabIndex = 10;
             this.btnPTTT_HuyDuyet.Text = "Hủy duyệt PTTT";
             this.btnPTTT_HuyDuyet.Click += new System.EventHandler(this.btnPTTT_HuyDuyet_Click);
             // 
-            // btnPTTT_Khoa
+            // btnPTTT_KhoaMoKhoa
             // 
-            this.btnPTTT_Khoa.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnPTTT_Khoa.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPTTT_Khoa.Appearance.Options.UseBackColor = true;
-            this.btnPTTT_Khoa.Appearance.Options.UseFont = true;
-            this.btnPTTT_Khoa.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnPTTT_Khoa.Location = new System.Drawing.Point(837, 3);
-            this.btnPTTT_Khoa.Name = "btnPTTT_Khoa";
-            this.btnPTTT_Khoa.Size = new System.Drawing.Size(115, 24);
-            this.btnPTTT_Khoa.TabIndex = 9;
-            this.btnPTTT_Khoa.Text = "Khóa";
-            this.btnPTTT_Khoa.Click += new System.EventHandler(this.btnPTTT_Khoa_Click);
+            this.btnPTTT_KhoaMoKhoa.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnPTTT_KhoaMoKhoa.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPTTT_KhoaMoKhoa.Appearance.Options.UseBackColor = true;
+            this.btnPTTT_KhoaMoKhoa.Appearance.Options.UseFont = true;
+            this.btnPTTT_KhoaMoKhoa.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnPTTT_KhoaMoKhoa.Location = new System.Drawing.Point(899, 3);
+            this.btnPTTT_KhoaMoKhoa.Name = "btnPTTT_KhoaMoKhoa";
+            this.btnPTTT_KhoaMoKhoa.Size = new System.Drawing.Size(115, 24);
+            this.btnPTTT_KhoaMoKhoa.TabIndex = 9;
+            this.btnPTTT_KhoaMoKhoa.Text = "Khóa/mở gửi YC";
+            this.btnPTTT_KhoaMoKhoa.Click += new System.EventHandler(this.btnPTTT_Khoa_Click);
             // 
             // btnPTTT_Duyet
             // 
@@ -553,7 +552,7 @@
             this.btnPTTT_Duyet.Appearance.Options.UseBackColor = true;
             this.btnPTTT_Duyet.Appearance.Options.UseFont = true;
             this.btnPTTT_Duyet.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnPTTT_Duyet.Location = new System.Drawing.Point(565, 3);
+            this.btnPTTT_Duyet.Location = new System.Drawing.Point(516, 3);
             this.btnPTTT_Duyet.Name = "btnPTTT_Duyet";
             this.btnPTTT_Duyet.Size = new System.Drawing.Size(115, 24);
             this.btnPTTT_Duyet.TabIndex = 8;
@@ -567,7 +566,7 @@
             this.btnPTTT_TiepNhan.Appearance.Options.UseBackColor = true;
             this.btnPTTT_TiepNhan.Appearance.Options.UseFont = true;
             this.btnPTTT_TiepNhan.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnPTTT_TiepNhan.Location = new System.Drawing.Point(280, 3);
+            this.btnPTTT_TiepNhan.Location = new System.Drawing.Point(262, 3);
             this.btnPTTT_TiepNhan.Name = "btnPTTT_TiepNhan";
             this.btnPTTT_TiepNhan.Size = new System.Drawing.Size(115, 24);
             this.btnPTTT_TiepNhan.TabIndex = 7;
@@ -2439,7 +2438,7 @@
         private DevExpress.XtraEditors.SimpleButton btnPTTT_HuyGui;
         private DevExpress.XtraEditors.SimpleButton btnPTTT_HuyTiepNhan;
         private DevExpress.XtraEditors.SimpleButton btnPTTT_HuyDuyet;
-        private DevExpress.XtraEditors.SimpleButton btnPTTT_Khoa;
+        private DevExpress.XtraEditors.SimpleButton btnPTTT_KhoaMoKhoa;
         private DevExpress.XtraEditors.SimpleButton btnPTTT_Duyet;
         private DevExpress.XtraEditors.SimpleButton btnPTTT_TiepNhan;
         private DevExpress.XtraEditors.SimpleButton btnPTTT_Gui;

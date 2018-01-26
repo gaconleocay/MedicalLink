@@ -128,10 +128,10 @@ namespace MedicalLink.BaoCao
                 {
                     _trangthaipttt = " and duyetpttt_stt=3 ";
                 }
-                else if (cboTrangThai.Text == "Đã khóa")
-                {
-                    _trangthaipttt = " and duyetpttt_stt=99 ";
-                }
+                //else if (cboTrangThai.Text == "Đã khóa")
+                //{
+                //    _trangthaipttt = " and duyetpttt_stt=99 ";
+                //}
 
                 List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
                 for (int i = 0; i < lstPhongCheck.Count - 1; i++)
@@ -235,7 +235,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (cboTrangThai.Text == "Đã khóa" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (cboTrangThai.Text == "Đã duyệt PTTT" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     btnPrint.Enabled = true;
                 }
@@ -244,7 +244,7 @@ namespace MedicalLink.BaoCao
                     btnPrint.Enabled = false;
                 }
 
-                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã khóa") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã duyệt PTTT") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     tbnExport.Enabled = true;
                 }

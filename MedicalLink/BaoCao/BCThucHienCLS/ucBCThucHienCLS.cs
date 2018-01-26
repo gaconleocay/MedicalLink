@@ -156,7 +156,15 @@ namespace MedicalLink.BaoCao
                 btnPTTT_HuyTiepNhan.Visible = _enable;
                 btnPTTT_Duyet.Visible = _enable;
                 btnPTTT_HuyDuyet.Visible = _enable;
-                btnPTTT_Khoa.Visible = _enable;
+                btnPTTT_KhoaMoKhoa.Visible = _enable;
+                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                {
+                    btnPTTT_KhoaMoKhoa.Text = "Mở khóa gửi YC";
+                }
+                else
+                {
+                    btnPTTT_KhoaMoKhoa.Text = "Khóa gửi YC";
+                }
             }
             catch (Exception ex)
             {
@@ -683,6 +691,11 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                {
+                    MessageBox.Show(Base.ThongBaoLable.DA_KHOA_YC_GUI_PTTT, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
                 List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
                 if (lstServicepriceids != null && lstServicepriceids.Count > 0)
                 {
@@ -723,6 +736,11 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                {
+                    MessageBox.Show(Base.ThongBaoLable.DA_KHOA_YC_GUI_PTTT, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
+                }
                 List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
                 if (lstServicepriceids != null && lstServicepriceids.Count > 0)
                 {
@@ -924,34 +942,22 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                List<ServicepriceDuyetPTTTDTO> lstServicepriceids = GetIdCollection();
-                if (lstServicepriceids != null && lstServicepriceids.Count > 0)
+                string _toolsoptionvalue = "1";
+                string _btnPTTT_KhoaMoKhoaText = "Mở khóa gửi YC";
+                if (btnPTTT_KhoaMoKhoa.Text == "Mở khóa gửi YC")
                 {
-                    List<ServicepriceDuyetPTTTDTO> _lstChuaGui_PTTT = lstServicepriceids.Where(o => o.duyetpttt_stt == 3).ToList();
-                    if (_lstChuaGui_PTTT != null && _lstChuaGui_PTTT.Count > 0)
-                    {
-                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=99 WHERE servicepriceid in (" + ConvertListObjToListString(_lstChuaGui_PTTT) + ");";
-                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
-                        {
-                            MessageBox.Show("Khóa duyệt PTTT thành công SL=" + _lstChuaGui_PTTT.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            CapNhatTools_DuyetPTTT(lstServicepriceids, 99);
-                            LayDuLieuBaoCao_ChayMoi();
-                        }
-                        else
-                        {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
-                            frmthongbao.Show();
-                        }
-                    }
-                    else
-                    {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_DUYET_PTTT);
-                        frmthongbao.Show();
-                    }
+                    _toolsoptionvalue = "0";
+                    _btnPTTT_KhoaMoKhoaText = "Khóa gửi YC";
+                }
+                string _updateKhoa = "UPDATE tools_option SET toolsoptionvalue='" + _toolsoptionvalue + "' WHERE toolsoptioncode='REPORT_12_KhoaGuiYeuCau';";
+                if (condb.ExecuteNonQuery_MeL(_updateKhoa))
+                {
+                    MessageBox.Show(btnPTTT_KhoaMoKhoa.Text + " PTTT thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnPTTT_KhoaMoKhoa.Text = _btnPTTT_KhoaMoKhoaText;
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                     frmthongbao.Show();
                 }
             }

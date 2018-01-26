@@ -471,6 +471,12 @@
     <Compile Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.Designer.cs">
       <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\GopBenhAn\frmChonDotDieuTri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucNang\GopBenhAn\frmChonDotDieuTri.Designer.cs">
+      <DependentUpon>frmChonDotDieuTri.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\GopBenhAn\ucGopBenhAn.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -680,6 +686,7 @@
     <Compile Include="ClassCommon\TinhBHYTThanhToanDTO.cs" />
     <Compile Include="ClassCommon\TinhHinhKCBDTO.cs" />
     <Compile Include="ClassCommon\TinhHinhKCB_THDTO.cs" />
+    <Compile Include="ClassCommon\ToolsOptionDTO.cs" />
     <Compile Include="ClassCommon\ToolsOtherListDTO.cs" />
     <Compile Include="ClassCommon\ToolsServicerefDTO.cs" />
     <Compile Include="Dashboard\BCBenhNhanNgoaiTru\BCBenhNhanNgoaiTruFullSize.cs">
@@ -1224,6 +1231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.resx">
       <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\GopBenhAn\frmChonDotDieuTri.resx">
+      <DependentUpon>frmChonDotDieuTri.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\GopBenhAn\ucGopBenhAn.resx">
       <DependentUpon>ucGopBenhAn.cs</DependentUpon>

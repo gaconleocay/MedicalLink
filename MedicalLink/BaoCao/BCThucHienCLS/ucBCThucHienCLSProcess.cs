@@ -90,10 +90,10 @@ namespace MedicalLink.BaoCao
                 {
                     _trangthaipttt = " and duyetpttt_stt=3 ";
                 }
-                else if (cboTrangThai.Text == "Đã khóa")
-                {
-                    _trangthaipttt = " and duyetpttt_stt=99 ";
-                }
+                //else if (cboTrangThai.Text == "Đã khóa")
+                //{
+                //    _trangthaipttt = " and duyetpttt_stt=99 ";
+                //}
 
                 if (chkChuaPhanLoaiPTTT.Checked)
                 {
@@ -211,7 +211,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (cboTrangThai.Text == "Đã khóa" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (cboTrangThai.Text == "Đã duyệt PTTT" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     dropDownPrint.Enabled = true;
                 }
@@ -220,7 +220,7 @@ namespace MedicalLink.BaoCao
                     dropDownPrint.Enabled = false;
                 }
 
-                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã khóa") || CheckPermission.ChkPerModule("THAOTAC_06"))
+                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã duyệt PTTT") || CheckPermission.ChkPerModule("THAOTAC_06"))
                 {
                     dropDownExport.Enabled = true;
                 }
@@ -445,6 +445,25 @@ namespace MedicalLink.BaoCao
                 Base.Logging.Error(ex);
             }
         }
+        private int KiemTraTrangThaiKhoaGuiPTTT()
+        {
+            int result = 0;
+            try
+            {
+                string _sqlTrangThai = "SELECT toolsoptionvalue FROM tools_option WHERE toolsoptioncode='REPORT_12_KhoaGuiYeuCau';";
+                DataTable _dataTrangThai = condb.GetDataTable_MeL(_sqlTrangThai);
+                if (_dataTrangThai != null && _dataTrangThai.Rows.Count > 0)
+                {
+                    result = Utilities.Util_TypeConvertParse.ToInt16(_dataTrangThai.Rows[0]["toolsoptionvalue"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
+
         #endregion
     }
 }

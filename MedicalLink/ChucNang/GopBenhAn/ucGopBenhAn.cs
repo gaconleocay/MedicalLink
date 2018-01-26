@@ -21,7 +21,7 @@ namespace MedicalLink.ChucNang
         private Base.ConnectDatabase condb = new Base.ConnectDatabase();
         private List<MedicalrecordGopBADTO> lstHSBA_A { get; set; }
         private List<MedicalrecordGopBADTO> lstHSBA_B { get; set; }
-
+        private long medicalrecordid_A { get; set; }
         #endregion
         public ucGopBenhAn()
         {
@@ -244,8 +244,8 @@ namespace MedicalLink.ChucNang
                 {
                     //GridView view = sender as GridView;
                     e.Menu.Items.Clear();
-                    DXMenuItem itemMoBenhAn = new DXMenuItem("Gộp đợt điều trị"); 
-                    itemMoBenhAn.Image = imageCollectionMBA.Images[0]; 
+                    DXMenuItem itemMoBenhAn = new DXMenuItem("Gộp đợt điều trị");
+                    itemMoBenhAn.Image = imageCollectionMBA.Images[0];
                     itemMoBenhAn.Click += new EventHandler(GopDotDieuTri_Click);
                     e.Menu.Items.Add(itemMoBenhAn);
                 }
@@ -343,7 +343,20 @@ namespace MedicalLink.ChucNang
                             List<MedicalrecordGopBADTO> _lst_Phong = this.lstHSBA_A.Where(o => o.departmentid == _departmentid_B).ToList(); //kiemr tra trong HS A có phòng hay ko?
                             if (_lst_Phong != null && _lst_Phong.Count > 0) //co phong
                             {
-                                _updateCoPhong += "update maubenhpham set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + ",patientid=" + _lst_Phong[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; update serviceprice set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + " where medicalrecordid=" + _medicalrecordid_B + "; update bill set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + ",patientid=" + _lst_Phong[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; ";
+                                //todo
+                                GopBenhAn.frmChonDotDieuTri frm = new GopBenhAn.frmChonDotDieuTri(_lst_Phong, _medicalrecordid_B);
+                                frm.MyGetData = new GopBenhAn.frmChonDotDieuTri.GetString(Get_Mdicalrecordid_A);
+                                frm.ShowDialog();
+                                if (this.medicalrecordid_A == 0)
+                                {
+                                    SplashScreenManager.CloseForm();
+                                    return;
+                                }
+                                MedicalrecordGopBADTO _maDieuTri = _lst_Phong.Where(o => o.medicalrecordid == this.medicalrecordid_A).FirstOrDefault();
+
+                                _updateCoPhong += "update maubenhpham set vienphiid=" + _maDieuTri.vienphiid + ",hosobenhanid=" + _maDieuTri.hosobenhanid + ",medicalrecordid=" + _maDieuTri.medicalrecordid + ",patientid=" + _maDieuTri.patientid + " where medicalrecordid=" + _medicalrecordid_B + "; update serviceprice set vienphiid=" + _maDieuTri.vienphiid + ",hosobenhanid=" + _maDieuTri.hosobenhanid + ",medicalrecordid=" + _maDieuTri.medicalrecordid + " where medicalrecordid=" + _medicalrecordid_B + "; update bill set vienphiid=" + _maDieuTri.vienphiid + ",hosobenhanid=" + _maDieuTri.hosobenhanid + ",medicalrecordid=" + _maDieuTri.medicalrecordid + ",patientid=" + _maDieuTri.patientid + " where medicalrecordid=" + _medicalrecordid_B + "; ";
+
+                                //_updateCoPhong += "update maubenhpham set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + ",patientid=" + _lst_Phong[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; update serviceprice set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + " where medicalrecordid=" + _medicalrecordid_B + "; update bill set vienphiid=" + _lst_Phong[0].vienphiid + ",hosobenhanid=" + _lst_Phong[0].hosobenhanid + ",medicalrecordid=" + _lst_Phong[0].medicalrecordid + ",patientid=" + _lst_Phong[0].patientid + " where medicalrecordid=" + _medicalrecordid_B + "; ";
                             }
                             else //chua co phong update them medicalrecord
                             {
@@ -381,6 +394,10 @@ namespace MedicalLink.ChucNang
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+        }
+        public void Get_Mdicalrecordid_A(long _medicalrecordid_A)
+        {
+            this.medicalrecordid_A = _medicalrecordid_A;
         }
 
         #endregion

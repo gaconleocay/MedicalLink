@@ -172,7 +172,6 @@
             "Đã gửi YC",
             "Đã tiếp nhận YC",
             "Đã duyệt PTTT",
-            "Đã khóa",
             "Tất cả"});
             this.cboTrangThai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTrangThai.Size = new System.Drawing.Size(156, 22);

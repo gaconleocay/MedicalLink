@@ -42,7 +42,7 @@ namespace MedicalLink.ChucNang
                 int servicepriceid = Convert.ToInt32(suaPhoiTT.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "servicepriceid").ToString());
                 // thực thi câu lệnh update và lưu log
                 string sqlxecute = "UPDATE serviceprice SET soluong='" + spinSoLuong.Value.ToString() + "' WHERE servicepriceid=" + servicepriceid + ";";
-                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa số lượng của servicepriceid=" + servicepriceid + " từ " + soluong_old + " thành " + spinSoLuong.Text + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa số lượng của servicepriceid=" + servicepriceid + " từ " + soluong_old + " thành " + spinSoLuong.Text + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_11');";
                 condb.ExecuteNonQuery_HIS(sqlxecute);
                 condb.ExecuteNonQuery_MeL(sqlinsert_log);
                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Sửa số lượng từ " + soluong_old + " thành " + spinSoLuong.Value.ToString() + " thành công.\nVui lòng kiểm tra lại");

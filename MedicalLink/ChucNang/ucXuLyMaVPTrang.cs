@@ -174,7 +174,7 @@ namespace MedicalLink.ChucNang
                             if (condb.ExecuteNonQuery_HIS(xoaVienPhi) && condb.ExecuteNonQuery_HIS(xoaMauBenhPham))
                             {
                                 //Log vào DB
-                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa hồ sơ bệnh án: SL= " + gridViewVPTrang.RowCount + "; Chi tiết mã VP: " + lstVienphiId + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa hồ sơ bệnh án: SL= " + gridViewVPTrang.RowCount + "; Chi tiết mã VP: " + lstVienphiId + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_16');";
                                 condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                 MessageBox.Show("Xóa [" + gridViewVPTrang.RowCount + "] HSSBA thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 gridControlVPTrang.DataSource = null;

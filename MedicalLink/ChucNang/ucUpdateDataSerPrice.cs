@@ -509,7 +509,7 @@ namespace MedicalLink.ChucNang
                         // Luu lai log
                         if (dem_sl > 0)
                         {
-                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + dem_sl + " trường " + cbbChonKieu.Text.Trim() + " thành công. ServicepriceID: " + arrayserID + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "');";
+                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update " + dem_sl + " trường " + cbbChonKieu.Text.Trim() + " thành công. ServicepriceID: " + arrayserID + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_09');";
                             condb.ExecuteNonQuery_MeL(sqlinsert_log);
                         }
                         // Thông báo đã Update Tên dịch vụ

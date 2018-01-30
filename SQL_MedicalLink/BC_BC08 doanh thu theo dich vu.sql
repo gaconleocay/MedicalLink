@@ -1,8 +1,22 @@
 ---Báo cáo Doanh thu theo dịch vụ - BC08
 --ngay 23/1/2018
-
-
-SELECT serf.servicepricegroupcode,
+ public string stt { get; set; }
+        public string servicepricegroupcode { get; set; }
+        public string bhyt_groupcode { get; set; }
+        public int servicegrouptype { get; set; }
+        public string servicegrouptype_name { get; set; }
+        public string servicepricecode { get; set; }
+        public string servicepricename { get; set; }
+        public decimal servicepricenamebhyt { get; set; }
+        public string servicepriceunit { get; set; }
+        public int loaidoituong { get; set; }
+        public string loaidoituong_name { get; set; }
+        public decimal soluong { get; set; }
+        public decimal servicepricemoney { get; set; }
+        public decimal thanhtien { get; set; }
+        public int isgroup { get;set;}
+SELECT row_number () over (order by serf.servicegrouptype,serf.servicepricegroupcode,serf.servicepricename) as stt,
+		serf.servicepricegroupcode,
 		serf.bhyt_groupcode,
 		serf.servicegrouptype,
 		serf.servicepricetype,
@@ -48,9 +62,7 @@ FROM (select servicepricegroupcode,bhyt_groupcode,servicegrouptype,servicepricet
 				from (select vienphiid,servicepricecode,loaidoituong,bhyt_groupcode,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,servicepricemoney_nuocngoai,doituongbenhnhanid from serviceprice where "+_bhyt_groupcode +_servicepricedate+") se
 					inner join (select vienphiid from vienphi where "+_trangthaibenhan+") vp on vp.vienphiid=se.vienphiid
 				group by se.servicepricecode,se.loaidoituong,se.bhyt_groupcode,se.servicepricemoney_bhyt,se.servicepricemoney_nhandan,se.servicepricemoney,se.servicepricemoney_nuocngoai,se.doituongbenhnhanid) ser on ser.servicepricecode=serf.servicepricecode
-WHERE ser.soluong>0 or serf.servicepricetype=1
-ORDER BY serf.servicegrouptype,serf.servicepricegroupcode,serf.servicepricename;
-
+WHERE ser.soluong>0 or serf.servicepricetype=1;
 -------
 
 

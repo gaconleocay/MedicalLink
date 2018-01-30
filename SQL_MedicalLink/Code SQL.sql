@@ -467,8 +467,8 @@ Tóm lại, cấu trúc của lệnh IF rút gọn là:
 ( biểu-thức-điều-kiện ) ? giá-trị-khi-BTDK-đúng : giá-trị-khi-BTĐK-sai ;
 
 
-
-
+//DateTime NgayBD = DateTime.ParseExact(dateNgayBD.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+ dateTuNgay.MaxDate = dateDenNgay.MaxDate = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
 
 

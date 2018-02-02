@@ -265,7 +265,13 @@ namespace MedicalLink.Base
                 TOOL_22.permissionnote = "Gộp bệnh án";
                 lstresult.Add(TOOL_22);
 
-
+                ClassCommon.classPermission TOOL_23 = new ClassCommon.classPermission();
+                TOOL_23.permissioncheck = false;
+                TOOL_23.permissioncode = "TOOL_23";
+                TOOL_23.permissionname = "Cập nhật thuốc phát miễn phí";
+                TOOL_23.permissiontype = 2;
+                TOOL_23.permissionnote = "Cập nhật thuốc phát miễn phí";
+                lstresult.Add(TOOL_23);
 
 
 

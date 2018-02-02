@@ -935,8 +935,10 @@ Có 1 cái là giám dịnh theo thuốc tỷ lệ ko áp dụng với các truo
 Cc1, te 1, cy5, ca5, qn5
 
 
-  
-  
+103910000
+25500000
+
+
   
   
   

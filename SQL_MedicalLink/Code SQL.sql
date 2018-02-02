@@ -11,7 +11,7 @@ billaccountrefcode in ('KB''','KBYC''');
 Chú ý khi dùng SQL postgres: Khi chia lấy double thì phải viết sau dấu phẩy. 
 VD: 80.0/100.0 
 NVLS trong orracle 
-COALESCE(A.servicepricecode,B.servicepricecode,C.servicepricecode,D.servicepricecode) 
+coalesce(A.servicepricecode,B.servicepricecode,C.servicepricecode,D.servicepricecode) 
 ---- 
 ==========================maubenhpham============= 
 KT là đơn thuốc/VT hay phiếu DV: 
@@ -468,7 +468,8 @@ Tóm lại, cấu trúc của lệnh IF rút gọn là:
 
 
 //DateTime NgayBD = DateTime.ParseExact(dateNgayBD.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
- dateTuNgay.MaxDate = dateDenNgay.MaxDate = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+ dateTuNgay.MaxDate = dateDenNgay.MaxDate = 
+ DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
 
 

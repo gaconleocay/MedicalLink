@@ -232,7 +232,9 @@ namespace MedicalLink.FormCommon
                     case "TOOL_22":
                         ucResult = new ChucNang.ucGopBenhAn();
                         break;
-
+                    case "TOOL_23":
+                        ucResult = new ChucNang.ucThuocCapPhatMienPhi();
+                        break;
 
 
 

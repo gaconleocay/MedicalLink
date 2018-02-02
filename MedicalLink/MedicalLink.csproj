@@ -513,6 +513,12 @@
     <Compile Include="ChucNang\ThongTinThucHienCLS\ucThongTinThucHienCanLamSang.Designer.cs">
       <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.Designer.cs">
+      <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClassCommon\BCDoanhThuTheoLoaiHinhDVDTO.cs" />
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
     <Compile Include="ClassCommon\BCDoanhThuDichVuBC08DTO.cs" />
@@ -1283,6 +1289,9 @@
     <EmbeddedResource Include="ChucNang\ThongTinThucHienCLS\ucThongTinThucHienCanLamSang.resx">
       <DependentUpon>ucThongTinThucHienCanLamSang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.resx">
+      <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucCapNhatKhaDungTonKho.resx">
       <DependentUpon>ucCapNhatKhaDungTonKho.cs</DependentUpon>
     </EmbeddedResource>
@@ -1748,6 +1757,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_39_ChinhSuaHoaDonTamUng.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\TOOL_23_BNCapPhatThuocVatTuMienPhi.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -65,7 +65,7 @@ left join (select departmentid,departmentname from department where departmentty
 
 
 
-
+select * from tbllogdata where logvalue like '%IsKhoCapPhatMienPhi = ''1''%' and logtime >'2017-11-01 00:00:00'
 
 
 

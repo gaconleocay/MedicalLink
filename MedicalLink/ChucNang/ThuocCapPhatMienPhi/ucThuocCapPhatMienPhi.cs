@@ -13,6 +13,7 @@ using System.IO;
 using MedicalLink.Utilities.GridControl;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
+using MedicalLink.Base;
 
 namespace MedicalLink.ChucNang
 {
@@ -142,7 +143,7 @@ namespace MedicalLink.ChucNang
                     {
                         //GridView view = sender as GridView;
                         e.Menu.Items.Clear();
-                        DXMenuItem itemMoBenhAn = new DXMenuItem("Cập nhật loại hình TT=Đối tượng BN");
+                        DXMenuItem itemMoBenhAn = new DXMenuItem("Cập nhật loại hình TT=Đối tượng BN (tất cả)");
                         itemMoBenhAn.Image = imageCollectionMBA.Images[0];
                         itemMoBenhAn.Click += new EventHandler(CapNhatLoaiHinhThanhToan_Click);
                         e.Menu.Items.Add(itemMoBenhAn);
@@ -162,7 +163,22 @@ namespace MedicalLink.ChucNang
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                 try
                 {
-                    MessageBox.Show("Chức năng đang phát triển!");
+                    string _lstservicepriceId = "";
+                    for (int i = 0; i < gridViewBaoCao.RowCount - 1; i++)
+                    {
+                        _lstservicepriceId += gridViewBaoCao.GetRowCellValue(i, "servicepriceid").ToString() + ",";
+                    }
+                    _lstservicepriceId += gridViewBaoCao.GetRowCellValue(gridViewBaoCao.RowCount - 1, "servicepriceid").ToString();
+
+                    string _sqlUpdate = "UPDATE serviceprice SET loaidoituong=loaidoituong_org WHERE servicepriceid in (" + _lstservicepriceId + ");";
+                    if (condb.ExecuteNonQuery_HIS(_sqlUpdate))
+                    {
+                        //Log vào DB
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Cập nhật đối tượng thanh toán thành công SL=[" + gridViewBaoCao.RowCount + "]; " + _lstservicepriceId + "' ,'" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_23');";
+                        condb.ExecuteNonQuery_MeL(sqlinsert_log);
+                        MessageBox.Show("Cập nhật đối tượng thanh toán thành công SL=[" + gridViewBaoCao.RowCount + "]", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnTimKiem.PerformClick();
+                    }
                 }
                 catch (Exception ex)
                 {

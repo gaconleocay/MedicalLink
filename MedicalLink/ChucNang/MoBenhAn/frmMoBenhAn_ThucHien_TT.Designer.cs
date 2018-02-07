@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMoBenhAn_ThucHien_TT));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.cboLyDoMoBenhAn = new DevExpress.XtraEditors.ComboBoxEdit();
             this.comboBoxNYC = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.memoEditLyDo = new DevExpress.XtraEditors.MemoEdit();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
@@ -53,11 +53,12 @@
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLyDoMoBenhAn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxNYC.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -74,15 +75,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.cboLyDoMoBenhAn);
             this.layoutControl1.Controls.Add(this.comboBoxNYC);
-            this.layoutControl1.Controls.Add(this.labelControl1);
             this.layoutControl1.Controls.Add(this.panelControl1);
             this.layoutControl1.Controls.Add(this.navBarControl1);
             this.layoutControl1.Controls.Add(this.btnMBAOK);
@@ -93,6 +94,32 @@
             this.layoutControl1.Size = new System.Drawing.Size(554, 362);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // cboLyDoMoBenhAn
+            // 
+            this.cboLyDoMoBenhAn.Location = new System.Drawing.Point(122, 156);
+            this.cboLyDoMoBenhAn.Name = "cboLyDoMoBenhAn";
+            this.cboLyDoMoBenhAn.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLyDoMoBenhAn.Properties.Appearance.Options.UseFont = true;
+            this.cboLyDoMoBenhAn.Properties.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboLyDoMoBenhAn.Properties.AppearanceDisabled.Options.UseFont = true;
+            this.cboLyDoMoBenhAn.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboLyDoMoBenhAn.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLyDoMoBenhAn.Properties.AppearanceFocused.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboLyDoMoBenhAn.Properties.AppearanceFocused.Options.UseFont = true;
+            this.cboLyDoMoBenhAn.Properties.AppearanceReadOnly.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.cboLyDoMoBenhAn.Properties.AppearanceReadOnly.Options.UseFont = true;
+            this.cboLyDoMoBenhAn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboLyDoMoBenhAn.Properties.Items.AddRange(new object[] {
+            "Sửa chữa bệnh án",
+            "Đóng bệnh án nhầm",
+            "Lý do khác"});
+            this.cboLyDoMoBenhAn.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboLyDoMoBenhAn.Size = new System.Drawing.Size(420, 22);
+            this.cboLyDoMoBenhAn.StyleController = this.layoutControl1;
+            this.cboLyDoMoBenhAn.TabIndex = 13;
+            this.cboLyDoMoBenhAn.SelectedIndexChanged += new System.EventHandler(this.cboLyDoMoBenhAn_SelectedIndexChanged);
             // 
             // comboBoxNYC
             // 
@@ -158,23 +185,12 @@
             this.gridColumn2.VisibleIndex = 0;
             this.gridColumn2.Width = 800;
             // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl1.Location = new System.Drawing.Point(12, 183);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(107, 16);
-            this.labelControl1.StyleController = this.layoutControl1;
-            this.labelControl1.TabIndex = 11;
-            this.labelControl1.Text = "Lý do mở bệnh án:";
-            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.memoEditLyDo);
-            this.panelControl1.Location = new System.Drawing.Point(12, 203);
+            this.panelControl1.Location = new System.Drawing.Point(12, 182);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(530, 111);
+            this.panelControl1.Size = new System.Drawing.Size(530, 132);
             this.panelControl1.TabIndex = 10;
             // 
             // memoEditLyDo
@@ -184,7 +200,7 @@
             this.memoEditLyDo.Name = "memoEditLyDo";
             this.memoEditLyDo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.memoEditLyDo.Properties.Appearance.Options.UseFont = true;
-            this.memoEditLyDo.Size = new System.Drawing.Size(526, 107);
+            this.memoEditLyDo.Size = new System.Drawing.Size(526, 128);
             this.memoEditLyDo.TabIndex = 7;
             // 
             // navBarControl1
@@ -196,7 +212,7 @@
             this.navBarControl1.Location = new System.Drawing.Point(12, 55);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 530;
-            this.navBarControl1.Size = new System.Drawing.Size(530, 124);
+            this.navBarControl1.Size = new System.Drawing.Size(530, 97);
             this.navBarControl1.TabIndex = 9;
             this.navBarControl1.Text = "navBarControl1";
             // 
@@ -303,9 +319,9 @@
             this.emptySpaceItem2,
             this.layoutControlItem6,
             this.layoutControlItem2,
-            this.layoutControlItem3,
             this.layoutControlItem1,
-            this.emptySpaceItem3});
+            this.emptySpaceItem3,
+            this.layoutControlItem4});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Padding = new DevExpress.XtraLayout.Utils.Padding(10, 10, 10, 2);
@@ -345,27 +361,18 @@
             this.layoutControlItem6.Control = this.navBarControl1;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 43);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(534, 128);
+            this.layoutControlItem6.Size = new System.Drawing.Size(534, 101);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.panelControl1;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 191);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 170);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(534, 115);
+            this.layoutControlItem2.Size = new System.Drawing.Size(534, 136);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem3
-            // 
-            this.layoutControlItem3.Control = this.labelControl1;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 171);
-            this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(534, 20);
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem1
             // 
@@ -392,6 +399,19 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(534, 13);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem4.AppearanceItemCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.layoutControlItem4.AppearanceItemCaption.Options.UseFont = true;
+            this.layoutControlItem4.AppearanceItemCaption.Options.UseForeColor = true;
+            this.layoutControlItem4.Control = this.cboLyDoMoBenhAn;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 144);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(534, 26);
+            this.layoutControlItem4.Text = "Lý do mở bệnh án:";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(107, 16);
+            // 
             // frmMoBenhAn_ThucHien_TT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,6 +429,7 @@
             this.Load += new System.EventHandler(this.frmMoBenhAn_ThucHien_TT_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboLyDoMoBenhAn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxNYC.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -426,9 +447,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -453,14 +474,14 @@
         private DevExpress.XtraEditors.SimpleButton btnThemNhanVien;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.MemoEdit memoEditLyDo;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraEditors.GridLookUpEdit comboBoxNYC;
         private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.ComboBoxEdit cboLyDoMoBenhAn;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

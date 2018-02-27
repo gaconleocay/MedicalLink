@@ -942,6 +942,26 @@ khoa tran: 240880227
 khoa tran: pass: Ankhoa2016
   
   
+SELECT mrd.medicalrecordid,
+		degp.departmentgroupname,
+		de.departmentname,
+		(mrd.medicalrecordid || ' - ' || degp.departmentgroupname) as medicalrecordkhoa
+FROM medicalrecord mrd
+	inner join departmentgroup degp on degp.departmentgroupid=mrd.departmentgroupid
+	inner join department de on de.departmentid=mrd.departmentid
+WHERE mrd.vienphiid = '" + this.vienphiId + "' 
+	and mrd.thoigianvaovien <='" + _tgiansudung + "' and mrd.thoigianravien >='" + _tgiansudung + "';  
   
   
-  
+---------
+File.Exists(this.txtPath.Text)
+
+
+
+
+
+
+
+
+
+

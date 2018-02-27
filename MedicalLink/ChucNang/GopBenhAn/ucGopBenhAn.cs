@@ -93,7 +93,7 @@ namespace MedicalLink.ChucNang
 
 
 
-        #endregion
+        #endregion.
 
         #region Events
         private void btnTimKiem_A_Click(object sender, EventArgs e)
@@ -182,7 +182,7 @@ namespace MedicalLink.ChucNang
                             {
                                 //update BHYT
                                 string _sqlUpdateBHYT_A = "UPDATE bhyt SET theghep_bhytcode='" + _dataBHYT_B.Rows[0]["bhytcode"].ToString() + "', theghep_bhytfromdate='" + _dataBHYT_B.Rows[0]["bhytfromdate"].ToString() + "', theghep_bhytutildate='" + _dataBHYT_B.Rows[0]["bhytutildate"].ToString() + "', theghep_macskcbbd='" + _dataBHYT_B.Rows[0]["macskcbbd"].ToString() + "', theghep_du5nam6thangluongcoban='" + _dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString() + "', theghep_dtcbh_luyke6thang='" + _dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString() + "', theghep_noisinhsong='" + _dataBHYT_B.Rows[0]["noisinhsong"].ToString() + "' WHERE bhytid='" + this.lstHSBA_A[0].bhytid + "'; UPDATE vienphi SET theghep_bhytcode='" + _dataBHYT_B.Rows[0]["bhytcode"].ToString() + "', theghep_bhytfromdate='" + _dataBHYT_B.Rows[0]["bhytfromdate"].ToString() + "', theghep_bhytutildate='" + _dataBHYT_B.Rows[0]["bhytutildate"].ToString() + "', theghep_macskcbbd='" + _dataBHYT_B.Rows[0]["macskcbbd"].ToString() + "', theghep_du5nam6thangluongcoban='" + _dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString() + "', theghep_dtcbh_luyke6thang='" + _dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString() + "', theghep_noisinhsong='" + _dataBHYT_B.Rows[0]["noisinhsong"].ToString() + "' WHERE vienphiid='" + this.lstHSBA_A[0].vienphiid + "';";
-                                //Update maubenhpham, serviceprice, serviceprice, bill
+                                //Update: maubenhpham, serviceprice, serviceprice, bill
                                 string _updateCoPhong = "";
                                 foreach (var item_B in this.lstHSBA_B)
                                 {
@@ -337,7 +337,7 @@ namespace MedicalLink.ChucNang
                             //update BHYT
                             string _sqlUpdateBHYT_A = "UPDATE bhyt SET theghep_bhytcode='" + _dataBHYT_B.Rows[0]["bhytcode"].ToString() + "', theghep_bhytfromdate='" + _dataBHYT_B.Rows[0]["bhytfromdate"].ToString() + "', theghep_bhytutildate='" + _dataBHYT_B.Rows[0]["bhytutildate"].ToString() + "', theghep_macskcbbd='" + _dataBHYT_B.Rows[0]["macskcbbd"].ToString() + "', theghep_du5nam6thangluongcoban='" + _dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString() + "', theghep_dtcbh_luyke6thang='" + _dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString() + "', theghep_noisinhsong='" + _dataBHYT_B.Rows[0]["noisinhsong"].ToString() + "' WHERE bhytid='" + this.lstHSBA_A[0].bhytid + "'; UPDATE vienphi SET theghep_bhytcode='" + _dataBHYT_B.Rows[0]["bhytcode"].ToString() + "', theghep_bhytfromdate='" + _dataBHYT_B.Rows[0]["bhytfromdate"].ToString() + "', theghep_bhytutildate='" + _dataBHYT_B.Rows[0]["bhytutildate"].ToString() + "', theghep_macskcbbd='" + _dataBHYT_B.Rows[0]["macskcbbd"].ToString() + "', theghep_du5nam6thangluongcoban='" + _dataBHYT_B.Rows[0]["du5nam6thangluongcoban"].ToString() + "', theghep_dtcbh_luyke6thang='" + _dataBHYT_B.Rows[0]["dtcbh_luyke6thang"].ToString() + "', theghep_noisinhsong='" + _dataBHYT_B.Rows[0]["noisinhsong"].ToString() + "' WHERE vienphiid='" + this.lstHSBA_A[0].vienphiid + "';";
 
-                            //Update maubenhpham, serviceprice, serviceprice, bill
+                            //Update: maubenhpham, serviceprice, serviceprice, bill
                             string _updateCoPhong = "";
 
                             List<MedicalrecordGopBADTO> _lst_Phong = this.lstHSBA_A.Where(o => o.departmentid == _departmentid_B).ToList(); //kiemr tra trong HS A có phòng hay ko?

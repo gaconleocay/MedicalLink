@@ -280,9 +280,9 @@ namespace MedicalLink.Base
                 ClassCommon.classPermission THAOTAC_01 = new ClassCommon.classPermission();
                 THAOTAC_01.permissioncheck = false;
                 THAOTAC_01.permissioncode = "THAOTAC_01";
-                THAOTAC_01.permissionname = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng";
+                THAOTAC_01.permissionname = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng/trả kết quả";
                 THAOTAC_01.permissiontype = 4;
-                THAOTAC_01.permissionnote = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng";
+                THAOTAC_01.permissionnote = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng/trả kết quả";
                 lstresult.Add(THAOTAC_01);
 
                 ClassCommon.classPermission THAOTAC_02 = new ClassCommon.classPermission();
@@ -296,9 +296,9 @@ namespace MedicalLink.Base
                 ClassCommon.classPermission THAOTAC_03 = new ClassCommon.classPermission();
                 THAOTAC_03.permissioncheck = false;
                 THAOTAC_03.permissioncode = "THAOTAC_03";
-                THAOTAC_03.permissionname = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng (đã ra viện)";
+                THAOTAC_03.permissionname = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng/trả kết quả (đã ra viện)";
                 THAOTAC_03.permissiontype = 4;
-                THAOTAC_03.permissionnote = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng (đã ra viện)";
+                THAOTAC_03.permissionnote = "Sửa phiếu chỉ định dịch vụ - Sửa TG chỉ định/sử dụng/trả kết quả (đã ra viện)";
                 lstresult.Add(THAOTAC_03);
 
                 ClassCommon.classPermission THAOTAC_04 = new ClassCommon.classPermission();

@@ -306,7 +306,8 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','103VTtyle','10VT', '101VT
 							then (case when ser.maubenhphamphieutype=0 
 											then servicepricemoney_bhyt*ser.soluong
 										else 0-(servicepricemoney_bhyt*ser.soluong) end)
-						else 0 end)		
+						else 0 end)	
+--tach VT TT rieng						
 		when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
 			then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong

@@ -69,6 +69,13 @@ serviceprice.loaidoituong as loaihinhthanhtoan, ser.loaidoituong in (0,1,3,4,6,8
 		when 9 then 'Hao phí khác'
 		when 20 then 'Thanh toán riêng'
 		end) as loaidoituong,
+		
+loaingaygiuong
+	=1 then 'Nam ghep 2'
+	=2 then 'Nam ghep 3 tro len'
+	
+(case when ser.loaipttt=2 then 'Có thay kíp mổ'
+		when ser.loaipttt=1 then 'Không thay kíp mổ'		
 -------------- 
 CASE servicepriceref.servicegrouptype  
 		WHEN 1 THEN 'KHÁM BỆNH'  

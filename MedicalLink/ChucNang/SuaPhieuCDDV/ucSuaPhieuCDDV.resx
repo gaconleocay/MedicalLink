@@ -149,6 +149,16 @@
         tWvj31ZJAgQSCGgnZXa9tURARboRuSy3y863TKDUibOrI4Wb7iT/AGcZ7VCFlQM4AAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="repositoryItemButton_SuaDV.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAESSURBVDhPvdKhawJhHMbxQ8bCBTHJwhgGg0EWRAwiBhERg5gWxLBoEIOIScRqGAaDYRhERMQk
+        C0PEsOSfsLhkMIjJfH5/8BMMnnciTPjwnvq8z/vyvmcY//VpG1YeXQyQumldJjzhG1l84QNTPLoqIviJ
+        CGYIqj/GsmMBoagWZBg7MkGLQozrqwUEJCxbf8YKXqSlCG9oOBUUCdVRxTsetMivo/0ZEDDxixJ+4EFF
+        i1qMeafV44TmkF30McQSL/r79fMjlETtlOI5hrEWhd2cfuq8QE9f3oGe42QNy7XtkYDcwgjyJppuC3KE
+        LRywwOvFifyxwU5XkxWFHF4BW8j1eWxX1a1NGM81+R6Az9V27wkdAV30xT/2iRZ1AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="repositoryItemButtonDelete.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -157,6 +167,16 @@
         FFBAdWtB3sQWeHVAie1AzAHEl4FYBWpoO5CWg4rxAen1hAzggoaDDpCeDcSLoYaBwkYIakA7PhcMrAE7
         gU4k2wU1QM3EGLARqA5rGIAM2E2EC/AasBdoABsomoBYAoiDgDgMiEWgYiDvgRJdK7ZYKAJK3AViJyC2
         A2IbNAwScwDi60Bchc0AAaDEQSCGZWFc9FGQi2AGAAAVnHS8+b+X/AAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="repositoryItemButtonEdit.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAESSURBVDhPvdKhawJhHMbxQ8bCBTHJwhgGg0EWRAwiBhERg5gWxLBoEIOIScRqGAaDYRhERMQk
+        C0PEsOSfsLhkMIjJfH5/8BMMnnciTPjwnvq8z/vyvmcY//VpG1YeXQyQumldJjzhG1l84QNTPLoqIviJ
+        CGYIqj/GsmMBoagWZBg7MkGLQozrqwUEJCxbf8YKXqSlCG9oOBUUCdVRxTsetMivo/0ZEDDxixJ+4EFF
+        i1qMeafV44TmkF30McQSL/r79fMjlETtlOI5hrEWhd2cfuq8QE9f3oGe42QNy7XtkYDcwgjyJppuC3KE
+        LRywwOvFifyxwU5XkxWFHF4BW8j1eWxX1a1NGM81+R6Az9V27wkdAV30xT/2iRZ1AAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="imMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

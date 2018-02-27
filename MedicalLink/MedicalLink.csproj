@@ -501,6 +501,12 @@
     <Compile Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.Designer.cs">
       <DependentUpon>ucSuaPhieuTamUng.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.Designer.cs">
+      <DependentUpon>frmSuaThoiGianTraKQ_DV.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\ThongTinThucHienCLS\frmNhapThongTinPTTT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -685,6 +691,7 @@
     <Compile Include="ClassCommon\ServicepriceDuyetPTTTDTO.cs" />
     <Compile Include="ClassCommon\ServicepricegroupcodeDTO.cs" />
     <Compile Include="ClassCommon\SoXetNghiem_ChiSoDTO.cs" />
+    <Compile Include="ClassCommon\SuaPhieuCDDVDTO.cs" />
     <Compile Include="ClassCommon\SuaPhieuTamUng_BCDTO.cs" />
     <Compile Include="ClassCommon\SuaPhieuTamUngDTO.cs" />
     <Compile Include="ClassCommon\TienBNPhaiThanhToanDTO.cs" />
@@ -1270,6 +1277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\SuaGiaDichVu\ucSuaMaTenGiaDV.resx">
       <DependentUpon>ucSuaMaTenGiaDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.resx">
+      <DependentUpon>frmSuaThoiGianTraKQ_DV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\SuaPhoiThanhToan\SuaPhoiThanhToan_SoLuong.resx">
       <DependentUpon>SuaPhoiThanhToan_SoLuong.cs</DependentUpon>

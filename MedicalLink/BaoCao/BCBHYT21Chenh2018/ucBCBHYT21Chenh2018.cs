@@ -25,7 +25,7 @@ namespace MedicalLink.BaoCao
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private DataTable dataBaoCao { get; set; }
         private List<ServicePriceRef_ChenhBHYT21> lstServicePriceRef_Chenh21 { get; set; }
-
+        private DataView DMDV_Import { get; set; }
         #endregion
 
         public ucBCBHYT21Chenh2018()
@@ -39,13 +39,14 @@ namespace MedicalLink.BaoCao
             dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             LoadDanhMucDichVuChenh2018();
+            btnLuuLai.Enabled = false;
         }
 
         private void LoadDanhMucDichVuChenh2018()
         {
             try
             {
-                string _sqlGetDVKT = "select * from tools_servicerefchenh2018 ORDER BY servicepricenamebhyt;";
+                string _sqlGetDVKT = "select row_number () over (order by servicepricenamebhyt) as stt, * from tools_servicerefchenh2018 ORDER BY servicepricenamebhyt;";
                 DataTable _dataDVKT = condb.GetDataTable_MeL(_sqlGetDVKT);
                 if (_dataDVKT != null && _dataDVKT.Rows.Count > 0)
                 {
@@ -157,44 +158,46 @@ namespace MedicalLink.BaoCao
                 {
                     for (int i = 0; i < _dataBHYT21TMP.Rows.Count; i++)
                     {
-                        string _sqlInsert = @"insert into tools_datachenh2018tmp( loaivienphiid, doituongbenhnhanid, servicepricecodeuser, bhyt_groupcode, servicepricecode, servicepricenamebhyt, servicepricemoney_bhyt, soluong, tyle, thanhtien, createusercode, createdate) values ('" + _dataBHYT21TMP.Rows[i]["loaivienphiid"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["doituongbenhnhanid"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["servicepricecodeuser"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["bhyt_groupcode"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["servicepricecode"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["servicepricenamebhyt"].ToString().Replace("'","''") + "', '" + _dataBHYT21TMP.Rows[i]["servicepricemoney_bhyt"].ToString().Replace(",", ".") + "', '" + _dataBHYT21TMP.Rows[i]["soluong"].ToString().Replace(",",".") + "', '" + _dataBHYT21TMP.Rows[i]["tyle"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["thanhtien"].ToString().Replace(",", ".") + "', '" + Base.SessionLogin.SessionUsercode + "', '" + _createdate + "');";
+                        string _sqlInsert = @"insert into tools_datachenh2018tmp( loaivienphiid, doituongbenhnhanid, servicepricecodeuser, bhyt_groupcode, servicepricecode, servicepricenamebhyt, servicepricemoney_bhyt, soluong, tyle, thanhtien, createusercode, createdate) values ('" + _dataBHYT21TMP.Rows[i]["loaivienphiid"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["doituongbenhnhanid"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["servicepricecodeuser"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["bhyt_groupcode"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["servicepricecode"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["servicepricenamebhyt"].ToString().Replace("'", "''") + "', '" + _dataBHYT21TMP.Rows[i]["servicepricemoney_bhyt"].ToString().Replace(",", ".") + "', '" + _dataBHYT21TMP.Rows[i]["soluong"].ToString().Replace(",", ".") + "', '" + _dataBHYT21TMP.Rows[i]["tyle"].ToString() + "', '" + _dataBHYT21TMP.Rows[i]["thanhtien"].ToString().Replace(",", ".") + "', '" + Base.SessionLogin.SessionUsercode + "', '" + _createdate + "');";
                         condb.ExecuteNonQuery_MeL(_sqlInsert);
                     }
 
-                    //Lay bao cao chenh
-                    string _sql_dataChenh = @"SELECT (row_number() OVER (PARTITION BY chenh.bhyt_groupcode ORDER BY chenh.servicepricenamebhyt)) as stt,
-	                chenh.servicepricecode,
-	                chenh.bhyt_groupcode,
-	                (case when chenh.bhyt_groupcode='01KB' then 'I - Công khám'
-			                when chenh.bhyt_groupcode='12NG' then 'II - Ngày giường'
-			                when chenh.bhyt_groupcode='03XN' then 'III - Xét nghiệm'
-			                when chenh.bhyt_groupcode in ('04CDHA','05TDCN') then 'IV - Chẩn đoán hình ảnh'
-			                when chenh.bhyt_groupcode='06PTTT' then 'V - Phẫu thuật thủ thuật'
-			                when chenh.bhyt_groupcode='07KTC' then 'VI - Dịch vụ KTC'
-			                else 'VII - Khác' end
-		                ) as tennhom_bhyt,
-	                chenh.servicepricecodeuser,
-	                chenh.servicepricenamebhyt,
-	                chenh.tyle,
-	                chenh.soluong,
-	                sef.servicepricemoney_bhyt_tr13 as giabhyt_truoc13,
-	                (chenh.soluong*sef.servicepricemoney_bhyt_tr13) as thanhtien_truoc13,
-	                sef.servicepricemoney_bhyt_13 as giabhyt_13,
-	                (chenh.soluong*sef.servicepricemoney_bhyt_13) as thanhtien_13,
-	                chenh.servicepricemoney_bhyt as giabhyt_17,
-	                chenh.thanhtien as thanhtien_17,
-	                (chenh.thanhtien-(chenh.soluong*sef.servicepricemoney_bhyt_13))as chenh_17_13,
-	                (chenh.thanhtien-(chenh.soluong*sef.servicepricemoney_bhyt_tr13)) as chenh_17_truoc13,
-	                '0' as isgroup
-                FROM tools_datachenh2018tmp chenh
-	                left join tools_servicerefchenh2018 sef on sef.servicepricecode=chenh.servicepricecode
-                WHERE chenh.createdate='" + _createdate + "' and chenh.createusercode='" + Base.SessionLogin.SessionUsercode + "'; ";
+                    //Lay bao cao chenh --ngay 28/2/2018
+                    string _sql_dataChenh = @"SELECT (row_number() OVER (PARTITION BY O.tennhom_bhyt ORDER BY O.servicepricenamebhyt)) as stt, O.*
+                    FROM
+	                    (SELECT distinct chenh.datachenh2018tmpid,		   
+		                    chenh.servicepricecode,
+		                    chenh.bhyt_groupcode,
+		                    (case when chenh.bhyt_groupcode='01KB' then 'I - Công khám'
+				                    when chenh.bhyt_groupcode='12NG' then 'II - Ngày giường'
+				                    when chenh.bhyt_groupcode='03XN' then 'III - Xét nghiệm'
+				                    when chenh.bhyt_groupcode in ('04CDHA','05TDCN') then 'IV - Chẩn đoán hình ảnh'
+				                    when chenh.bhyt_groupcode='06PTTT' then 'V - Phẫu thuật thủ thuật'
+				                    when chenh.bhyt_groupcode='07KTC' then 'VI - Dịch vụ KTC'
+				                    else 'VII - Khác' end
+			                    ) as tennhom_bhyt,
+		                    chenh.servicepricecodeuser,
+		                    chenh.servicepricenamebhyt,
+		                    chenh.tyle,
+		                    chenh.soluong,
+		                    sef.servicepricemoney_bhyt_tr13 as giabhyt_truoc13,
+		                    (chenh.soluong*sef.servicepricemoney_bhyt_tr13*(chenh.tyle/100.0)) as thanhtien_truoc13,
+		                    sef.servicepricemoney_bhyt_13 as giabhyt_13,
+		                    (chenh.soluong*sef.servicepricemoney_bhyt_13*(chenh.tyle/100.0)) as thanhtien_13,
+		                    chenh.servicepricemoney_bhyt as giabhyt_17,
+		                    chenh.thanhtien as thanhtien_17,
+		                    (chenh.thanhtien-(chenh.soluong*coalesce(sef.servicepricemoney_bhyt_13,0)*(chenh.tyle/100.0))) as chenh_17_13,
+		                    (chenh.thanhtien-(chenh.soluong*coalesce(sef.servicepricemoney_bhyt_tr13,0)*(chenh.tyle/100.0))) as chenh_17_truoc13,
+		                    '0' as isgroup
+	                    FROM tools_datachenh2018tmp chenh
+		                    left join tools_servicerefchenh2018 sef on sef.servicepricecodeuser=chenh.servicepricecodeuser
+	                    WHERE chenh.createdate='" + _createdate + "' and chenh.createusercode='" + Base.SessionLogin.SessionUsercode + "') O; ";   
                     this.dataBaoCao = condb.GetDataTable_MeL(_sql_dataChenh);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
                     {
                         gridControlDataBaoCao.DataSource = this.dataBaoCao;
                         string _sqldeleteTmp = "DELETE FROM tools_datachenh2018tmp WHERE createdate='" + _createdate + "' and createusercode='" + Base.SessionLogin.SessionUsercode + "';";
-                        condb.ExecuteNonQuery_MeL(_sqldeleteTmp);
+                        //condb.ExecuteNonQuery_MeL(_sqldeleteTmp);
                     }
                     else
                     {
@@ -205,9 +208,10 @@ namespace MedicalLink.BaoCao
                 }
                 else
                 {
+                    gridControlDataBaoCao.DataSource = null;
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
-                }             
+                }
             }
             catch (Exception ex)
             {
@@ -283,12 +287,12 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.BCBHYT21Chenh2018DTO> lstDataDoanhThu = Util_DataTable.DataTableToList<ClassCommon.BCBHYT21Chenh2018DTO>(this.dataBaoCao);
 
-                List<ClassCommon.BCBHYT21Chenh2018DTO> lstData_Group = lstDataDoanhThu.GroupBy(o => o.bhyt_groupcode).Select(n => n.First()).ToList();
+                List<ClassCommon.BCBHYT21Chenh2018DTO> lstData_Group = lstDataDoanhThu.GroupBy(o => o.tennhom_bhyt).Select(n => n.First()).ToList();
                 foreach (var item_group in lstData_Group)
                 {
                     ClassCommon.BCBHYT21Chenh2018DTO data_groupname = new ClassCommon.BCBHYT21Chenh2018DTO();
 
-                    List<ClassCommon.BCBHYT21Chenh2018DTO> lstData_doanhthu = lstDataDoanhThu.Where(o => o.bhyt_groupcode == item_group.bhyt_groupcode).ToList();
+                    List<ClassCommon.BCBHYT21Chenh2018DTO> lstData_doanhthu = lstDataDoanhThu.Where(o => o.tennhom_bhyt == item_group.tennhom_bhyt).ToList();
 
                     decimal sum_soluong = 0;
                     decimal sum_thanhtien_tr13 = 0;
@@ -333,7 +337,7 @@ namespace MedicalLink.BaoCao
         #endregion
 
         #region Custom
-        private void bandedGridViewSoCDHA_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        private void gridViewDataBaoCao_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
             {
@@ -364,59 +368,88 @@ namespace MedicalLink.BaoCao
             {
                 if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
+                    this.DMDV_Import = new DataView();
                     gridControlDSGanMa.DataSource = null;
                     Workbook workbook = new Workbook(openFileDialogSelect.FileName);
-                    Worksheet worksheet = workbook.Worksheets["DANHMUC"];
+                    Worksheet worksheet = workbook.Worksheets[0];
+                    //row chay tu 0
                     DataTable data_Excel = worksheet.Cells.ExportDataTable(3, 0, worksheet.Cells.MaxDataRow, worksheet.Cells.MaxDataColumn + 1, true);
                     data_Excel.TableName = "DATA";
                     if (data_Excel != null)
                     {
-                        int dem_update = 0;
-                        int dem_insert = 0;
-                        DataView dmDV_Import = new DataView(data_Excel);
-                        for (int i = 0; i < dmDV_Import.Count; i++)
-                        {
-                            if (dmDV_Import[i]["SERVICEPRICECODE"].ToString() != "")
-                            {
-                                string sql_kt = "SELECT servicerefchenh2018id FROM tools_servicerefchenh2018 WHERE servicepricecode='" + dmDV_Import[i]["SERVICEPRICECODE"].ToString() + "';";
-                                DataView dv_kt = new DataView(condb.GetDataTable_MeL(sql_kt));
-                                if (dv_kt.Count > 0) //update
-                                {
-                                    string sql_updateDVKT = "UPDATE tools_servicerefchenh2018 SET servicepricecodeuser='" + dmDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', servicepricecodeuser_old='" + dmDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', servicepricecodeuser_new'" + dmDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', servicepricenamebhyt'" + dmDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', servicepricenamebhyt_old='" + dmDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', servicepricenamebhyt_new='" + dmDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', servicepricemoney_bhyt='" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString() + "', servicepricemoney_bhyt_tr13='" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString() + "', servicepricemoney_bhyt_13='" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString() + "', servicepricemoney_bhyt_17='" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT_17"].ToString() + "', servicepricemoney_vp_new='" + dmDV_Import[i]["SERVICEPRICEMONEY_VP_NEW"].ToString() + "', servicepricemoney_vp_old='" + dmDV_Import[i]["SERVICEPRICEMONEY_VP_OLD"].ToString() + "', createusercode='" + Base.SessionLogin.SessionUsercode + "', createusername='" + Base.SessionLogin.SessionUsername + "', createdate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "') WHERE servicepricecode='" + dmDV_Import[i]["SERVICEPRICECODE"].ToString() + "';";
-                                    try
-                                    {
-                                        condb.ExecuteNonQuery_MeL(sql_updateDVKT);
-                                        dem_update += 1;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
-                                else
-                                {
-                                    string sql_insertDVKT = @"INSERT INTO tools_servicerefchenh2018(servicepricecode, servicepricecodeuser, servicepricecodeuser_old, servicepricecodeuser_new, servicepricenamebhyt, servicepricenamebhyt_old, servicepricenamebhyt_new, servicepricemoney_bhyt, servicepricemoney_bhyt_tr13, servicepricemoney_bhyt_13, servicepricemoney_bhyt_17, servicepricemoney_vp_new, servicepricemoney_vp_old, createusercode, createusername, createdate) VALUES('" + dmDV_Import[i]["SERVICEPRICECODE"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', '" + dmDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', '" + dmDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', '" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICEMONEY_BHYT_17"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICEMONEY_VP_NEW"].ToString() + "', '" + dmDV_Import[i]["SERVICEPRICEMONEY_VP_OLD"].ToString() + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
-                                    try
-                                    {
-                                        condb.ExecuteNonQuery_MeL(sql_insertDVKT);
-                                        dem_insert += 1;
-                                    }
-                                    catch (Exception)
-                                    {
-                                        continue;
-                                    }
-                                }
-                            }
-                        }
-                        MessageBox.Show("Thêm mới [ " + dem_insert + " ] & cập nhật [ " + dem_update + " ] danh mục dịch vụ thành công.");
-                        LoadDanhMucDichVuChenh2018();
+                        this.DMDV_Import = new DataView(data_Excel);
+                        gridControlDSGanMa.DataSource = this.DMDV_Import;
+                        btnLuuLai.Enabled = true;
+                    }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                        frmthongbao.Show();
+                        btnLuuLai.Enabled = false;
                     }
                 }
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                frmthongbao.Show();
+                btnLuuLai.Enabled = false;
             }
+        }
+        private void btnLuuLai_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            try
+            {
+                int dem_update = 0;
+                int dem_insert = 0;
+                for (int i = 0; i < this.DMDV_Import.Count; i++)
+                {
+                    if (this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() != "")
+                    {
+                        string sql_kt = "SELECT servicerefchenh2018id FROM tools_servicerefchenh2018 WHERE servicepricecodeuser='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "';";
+                        DataView dv_kt = new DataView(condb.GetDataTable_MeL(sql_kt));
+                        if (dv_kt.Count > 0) //update
+                        {
+                            string sql_updateDVKT = "UPDATE tools_servicerefchenh2018 SET servicepricecodeuser='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', servicepricecodeuser_old='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', servicepricecodeuser_new='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', servicepricenamebhyt='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', servicepricenamebhyt_old='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', servicepricenamebhyt_new='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', servicepricemoney_bhyt='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString() + "', servicepricemoney_bhyt_tr13='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString() + "', servicepricemoney_bhyt_13='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString() + "', servicepricemoney_bhyt_17='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_17"].ToString() + "', servicepricemoney_vp_new='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_NEW"].ToString() + "', servicepricemoney_vp_old='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_OLD"].ToString() + "', createusercode='" + Base.SessionLogin.SessionUsercode + "', createusername='" + Base.SessionLogin.SessionUsername + "', createdate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE servicepricecode='" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "';";
+                            try
+                            {
+                                if (condb.ExecuteNonQuery_MeL(sql_updateDVKT))
+                                {
+                                    dem_update += 1;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            string sql_insertDVKT = @"INSERT INTO tools_servicerefchenh2018(servicepricecode, servicepricecodeuser, servicepricecodeuser_old, servicepricecodeuser_new, servicepricenamebhyt, servicepricenamebhyt_old, servicepricenamebhyt_new, servicepricemoney_bhyt, servicepricemoney_bhyt_tr13, servicepricemoney_bhyt_13, servicepricemoney_bhyt_17, servicepricemoney_vp_new, servicepricemoney_vp_old, createusercode, createusername, createdate) VALUES('" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', '" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_17"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_NEW"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_OLD"].ToString() + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
+                            try
+                            {
+                                if (condb.ExecuteNonQuery_MeL(sql_insertDVKT))
+                                {
+                                    dem_insert += 1;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                continue;
+                            }
+                        }
+                    }
+                }
+                MessageBox.Show("Thêm mới [ " + dem_insert + " ] & cập nhật [ " + dem_update + " ] danh mục dịch vụ thành công.");
+                LoadDanhMucDichVuChenh2018();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            SplashScreenManager.CloseForm();
         }
 
 

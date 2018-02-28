@@ -87,6 +87,7 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.btnLuuLai = new DevExpress.XtraEditors.SimpleButton();
             this.txtFilePath = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.btnThemTuFileExcel = new DevExpress.XtraEditors.SimpleButton();
@@ -236,6 +237,7 @@
             this.gridViewDataBaoCao.RowHeight = 25;
             this.gridViewDataBaoCao.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridViewDataBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDataBaoCao_RowCellStyle);
             // 
             // stt
             // 
@@ -844,6 +846,7 @@
             this.gridViewDSGanMa.OptionsView.ShowIndicator = false;
             this.gridViewDSGanMa.RowHeight = 25;
             this.gridViewDSGanMa.ViewCaptionHeight = 25;
+            this.gridViewDSGanMa.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDataBaoCao_RowCellStyle);
             // 
             // gridColumn18
             // 
@@ -911,8 +914,9 @@
             this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.Caption = "Mã DVKT BYT cũ";
-            this.gridColumn6.FieldName = "servicepricecode_old";
+            this.gridColumn6.FieldName = "servicepricecodeuser_old";
             this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 3;
             this.gridColumn6.Width = 130;
@@ -967,6 +971,7 @@
             this.gridColumn7.Caption = "Tên DVKT cũ";
             this.gridColumn7.FieldName = "servicepricenamebhyt_old";
             this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
             this.gridColumn7.VisibleIndex = 6;
             this.gridColumn7.Width = 300;
@@ -1003,6 +1008,7 @@
             this.gridColumn11.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn11.Caption = "Đơn giá";
+            this.gridColumn11.FieldName = "servicepricemoney_bhyt";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
@@ -1078,6 +1084,7 @@
             this.gridColumn9.Caption = "Đơn giá VP cũ";
             this.gridColumn9.FieldName = "servicepricemoney_vp_old";
             this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 12;
             this.gridColumn9.Width = 160;
@@ -1095,6 +1102,7 @@
             this.gridColumn8.Caption = "Đơn giá VP mới";
             this.gridColumn8.FieldName = "servicepricemoney_vp_new";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 13;
             this.gridColumn8.Width = 160;
@@ -1112,6 +1120,7 @@
             this.gridColumn12.Caption = "Người tạo";
             this.gridColumn12.FieldName = "createusercode";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 14;
             this.gridColumn12.Width = 150;
@@ -1133,12 +1142,14 @@
             this.gridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn13.FieldName = "createdate";
             this.gridColumn13.Name = "gridColumn13";
+            this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
             this.gridColumn13.VisibleIndex = 15;
             this.gridColumn13.Width = 125;
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.btnLuuLai);
             this.panelControl3.Controls.Add(this.txtFilePath);
             this.panelControl3.Controls.Add(this.labelControl7);
             this.panelControl3.Controls.Add(this.btnThemTuFileExcel);
@@ -1147,6 +1158,20 @@
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(1190, 56);
             this.panelControl3.TabIndex = 0;
+            // 
+            // btnLuuLai
+            // 
+            this.btnLuuLai.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuuLai.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnLuuLai.Appearance.Options.UseFont = true;
+            this.btnLuuLai.Appearance.Options.UseForeColor = true;
+            this.btnLuuLai.Image = global::MedicalLink.Properties.Resources.save_16;
+            this.btnLuuLai.Location = new System.Drawing.Point(213, 14);
+            this.btnLuuLai.Name = "btnLuuLai";
+            this.btnLuuLai.Size = new System.Drawing.Size(100, 30);
+            this.btnLuuLai.TabIndex = 50;
+            this.btnLuuLai.Text = "Lưu lại";
+            this.btnLuuLai.Click += new System.EventHandler(this.btnLuuLai_Click);
             // 
             // txtFilePath
             // 
@@ -1316,5 +1341,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private System.Windows.Forms.OpenFileDialog openFileDialogSelect;
+        private DevExpress.XtraEditors.SimpleButton btnLuuLai;
     }
 }

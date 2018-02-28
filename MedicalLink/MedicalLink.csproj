@@ -254,6 +254,12 @@
     <Compile Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.Designer.cs">
       <DependentUpon>ucBangKeTongHopHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.Designer.cs">
+      <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -525,6 +531,7 @@
     <Compile Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.Designer.cs">
       <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassCommon\BCBHYT21Chenh2018DTO.cs" />
     <Compile Include="ClassCommon\BCDoanhThuTheoLoaiHinhDVDTO.cs" />
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
     <Compile Include="ClassCommon\BCDoanhThuDichVuBC08DTO.cs" />
@@ -537,6 +544,7 @@
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\ServicePriceRef_ChenhBHYT21.cs" />
     <Compile Include="ClassCommon\DepartmentgroupDTO.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
     <Compile Include="ClassCommon\classLoaiPTTTDTO.cs" />
@@ -1137,6 +1145,9 @@
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenh.resx">
       <DependentUpon>ucBaoCaoBHYT21_NewChenh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
+      <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.resx">
       <DependentUpon>ucBCBNSDDVKetHop.cs</DependentUpon>
     </EmbeddedResource>
@@ -1552,6 +1563,7 @@
     <None Include="Images\edit-5-16.png" />
     <None Include="Images\search-3-16.png" />
     <None Include="Images\group-16.png" />
+    <None Include="Images\add-file-16.png" />
     <Content Include="Library\Aspose.Cells.dll" />
     <Content Include="Library\Aspose.Words.dll" />
     <Content Include="Library\AutoMapper.dll" />
@@ -1770,6 +1782,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\TOOL_23_BNCapPhatThuocVatTuMienPhi.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_40_BHYT21ChenhLech2018.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

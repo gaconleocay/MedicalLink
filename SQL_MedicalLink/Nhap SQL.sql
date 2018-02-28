@@ -396,7 +396,7 @@ CREATE TABLE servicepriceref
   servicepricegroupcode text,
   servicepricetype integer,
   servicegrouptype integer,
-  SERVICEPRICECODE text,
+  servicepricecode text,
   bhyt_groupcode text,
   report_groupcode text,
   report_tkcode text,
@@ -958,7 +958,7 @@ File.Exists(this.txtPath.Text)
 
 
 
-
+0976655948
 
 
 

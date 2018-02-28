@@ -46,7 +46,7 @@ namespace MedicalLink.Dashboard
             {
                 List<ClassCommon.classMedicineStore> lstMedicineStoreCurrent = new List<ClassCommon.classMedicineStore>();
 
-                string sql_getmedistore = "SELECT medicinestoreid, departmentgroupid, medicinestoretype,medicinestorecode,medicinestorename FROM medicine_store WHERE  medicinestoretype in (8,9) ORDER BY departmentgroupid, medicinestoretype, medicinestorename;";
+                string sql_getmedistore = "SELECT medicinestoreid, departmentgroupid, medicinestoretype,medicinestorecode,medicinestorename FROM medicine_store WHERE  medicinestoretype in (8,9) ORDER BY medicinestorename, departmentgroupid, medicinestoretype;";
                 DataView dataStore = new DataView(condb.GetDataTable_HIS(sql_getmedistore));
                 List<ClassCommon.classMedicineStore> lstMedicineStore = new List<ClassCommon.classMedicineStore>();
 

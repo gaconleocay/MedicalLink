@@ -309,17 +309,6 @@ Bạn kiểm tra xem có file đó trong đường dẫn không?
 Nếu có thì phải Hoặc thêm @ vào trước chuỗi đường dẫn vd :@"C:\test.exe" 
 hoặc là thêm 1 cái \ nữa vd: "C:\\test.exe" 
  
---------template baos caos: 
-List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>(); 
-ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO(); 
-reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO; 
-reportitem.value = "Từ xxxx đến yyyy"; 
-thongTinThem.Add(reportitem); 
- 
-string fileTemplatePath = "BC_PhauThuatThuThuat_01.xlsx"; 
-Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport(); 
-export.ExportExcelTemplate("", fileTemplatePath,thongTinThem, dataExport); 
- 
 ======================== 
 --Hầu hết các hệ quản trị CSDL đều cho phép chúng ta nối các xâu lại với nhau bằng cách này hay cách khác. 
 Ví dụ: để nối 2 xâu lại với nhau 
@@ -327,9 +316,6 @@ Ví dụ: để nối 2 xâu lại với nhau
 · Oracle sử dụng toán tử || hoặc hàm concat 
 · MySQL sử dụng hàm concat  
 ==========================  
-"C:\Program Files\PostgreSQL\9.3\bin\pg_ctl.exe" runservice -N "postgresql-x64-9.3" -D "E:/Program Files/PostgreSQL/9.3/data" -w 
-"C:\Program Files\PostgreSQL\9.3\bin\pg_ctl.exe" runservice -N "postgresql-x64-9.3" -D "\\Mac\AllFiles\Volumes\My Passport\Program Files\PostgreSQL\9.3\data" -w 
- 
 ---------- 
  
 select pg_backend_pid()	; 
@@ -337,8 +323,6 @@ select pg_backend_pid()	;
 SELECT * FROM pg_stat_activity; 
 DataID; dataname; pid 
 12029;"postgres";2568 
-135173122;"test_viettiep";3856 
-135173122;"test_viettiep";3872 
 --- 
 SELECT * FROM pg_stat_activity where pid=(select pg_backend_pid()); 
 135173122 

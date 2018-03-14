@@ -52,6 +52,7 @@ namespace MedicalLink.Base
         internal static string DA_KHOA_YC_GUI_PTTT = "Đã khóa yêu cầu gửi duyệt PTTT!";
         internal static string BAN_KHONG_CO_QUYEN_CHINH_SUA = "Bạn không có quyền chỉnh sửa!";
         internal static string DICH_VU_CHUA_TRA_KET_QUA = "Dịch vụ chưa trả kết quả!";
+        internal static string XOA_THANH_CONG = "Xóa thành công!";
 
 
 

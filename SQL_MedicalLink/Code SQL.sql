@@ -55,13 +55,13 @@ serviceprice.loaidoituong as loaihinhthanhtoan, ser.loaidoituong in (0,1,3,4,6,8
 -- 7: Hao phi PTTT 
 -- 8: Doi tuong khac 
 -- 9: Hao phi khac 
-
+-- 20: Thanh toán riêng
 	(case ser.loaidoituong
 		when 0 then 'BHYT'
 		when 1 then 'Viện phí'
 		when 2 then 'Đi kèm'
 		when 3 then 'Yêu cầu'
-		when 4 then 'BHYT+YC '
+		when 4 then 'BHYT+YC'
 		when 5 then 'Hao phí giường, CK'
 		when 6 then 'BHYT+phụ thu'
 		when 7 then 'Hao phí PTTT'

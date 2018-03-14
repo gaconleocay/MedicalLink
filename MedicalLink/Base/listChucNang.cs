@@ -273,6 +273,15 @@ namespace MedicalLink.Base
                 TOOL_23.permissionnote = "Cập nhật thuốc phát miễn phí";
                 lstresult.Add(TOOL_23);
 
+                ClassCommon.classPermission TOOL_24 = new ClassCommon.classPermission();
+                TOOL_24.permissioncheck = false;
+                TOOL_24.permissioncode = "TOOL_24";
+                TOOL_24.permissionname = "Cập nhật loại hình thanh toán theo dịch vụ/thuốc";
+                TOOL_24.permissiontype = 2;
+                TOOL_24.permissionnote = "Cập nhật loại hình thanh toán theo dịch vụ/thuốc";
+                lstresult.Add(TOOL_24);
+
+
 
 
 
@@ -657,6 +666,13 @@ namespace MedicalLink.Base
                 lstresult.Add(REPORT_40);
 
 
+                ClassCommon.classPermission REPORT_41 = new ClassCommon.classPermission();
+                REPORT_41.permissioncheck = false;
+                REPORT_41.permissioncode = "REPORT_41";
+                REPORT_41.permissionname = "Báo cáo sử dụng dịch vụ - Đối tượng thanh toán Yêu cầu";
+                REPORT_41.permissiontype = 3;
+                REPORT_41.permissionnote = "Báo cáo sử dụng dịch vụ - Đối tượng thanh toán Yêu cầu";
+                lstresult.Add(REPORT_41);
 
 
 

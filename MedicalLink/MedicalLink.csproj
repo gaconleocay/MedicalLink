@@ -254,6 +254,12 @@
     <Compile Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.Designer.cs">
       <DependentUpon>ucBangKeTongHopHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BC41_DVYeuCau\ucBC41_DVYeuCau.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC41_DVYeuCau\ucBC41_DVYeuCau.Designer.cs">
+      <DependentUpon>ucBC41_DVYeuCau.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -507,6 +513,12 @@
     <Compile Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.Designer.cs">
       <DependentUpon>ucSuaPhieuTamUng.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\TOOL24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\TOOL24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.Designer.cs">
+      <DependentUpon>ucTOOL24_CapNhatLoaiHTT.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -538,12 +550,16 @@
     <Compile Include="ClassCommon\BCHoaDonChungTuThuocSDDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
+    <Compile Include="ClassCommon\BC41_DVYeuCau_DSBNDTO.cs" />
+    <Compile Include="ClassCommon\BC41_DVYeuCau_ChiTietDTO.cs" />
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouDSBNDTO.cs" />
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouCTDTO.cs" />
+    <Compile Include="ClassCommon\BC41_DVYeuCau_TongHopDTO.cs" />
     <Compile Include="ClassCommon\BCTKSuDungDV_UngBuouTHDTO.cs" />
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\ServicepriceIDDTO.cs" />
     <Compile Include="ClassCommon\ServicePriceRef_ChenhBHYT21.cs" />
     <Compile Include="ClassCommon\DepartmentgroupDTO.cs" />
     <Compile Include="ClassCommon\classDanhMuc_TinhHuyenXa.cs" />
@@ -1145,6 +1161,9 @@
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenh.resx">
       <DependentUpon>ucBaoCaoBHYT21_NewChenh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC41_DVYeuCau\ucBC41_DVYeuCau.resx">
+      <DependentUpon>ucBC41_DVYeuCau.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
       <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
     </EmbeddedResource>
@@ -1279,6 +1298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.resx">
       <DependentUpon>ucSuaPhieuTamUng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\TOOL24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.resx">
+      <DependentUpon>ucTOOL24_CapNhatLoaiHTT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\SuaGiaDichVu\frmSuaGiaDV_TH.resx">
       <DependentUpon>frmSuaGiaDV_TH.cs</DependentUpon>
@@ -1785,6 +1807,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_40_BHYT21ChenhLech2018.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_41_ThongKeSuDungDichVuYeuCau_ChiTiet.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_41_ThongKeSuDungDichVuYeuCau_DSBN.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_41_ThongKeSuDungDichVuYeuCau_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\TOOLS_24_CapNhatLoaiHinhThanhToan.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

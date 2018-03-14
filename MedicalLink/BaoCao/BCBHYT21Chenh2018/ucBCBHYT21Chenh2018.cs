@@ -52,6 +52,10 @@ namespace MedicalLink.BaoCao
                 {
                     gridControlDSGanMa.DataSource = _dataDVKT;
                 }
+                else
+                {
+                    gridControlDSGanMa.DataSource = null;
+                }
             }
             catch (Exception ex)
             {
@@ -70,6 +74,8 @@ namespace MedicalLink.BaoCao
                 string _tieuchi_vp = "";
                 string _trangthai_vp = "";
                 string _doituongBN = "";
+                string _loaivienphi = "";
+                string _loaidoituong = "";
                 string _createdate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
 
@@ -113,10 +119,21 @@ namespace MedicalLink.BaoCao
                 if (cbbDoiTuongBN.Text == "BHYT")
                 {
                     _doituongBN = " and doituongbenhnhanid=1 ";
+                    _loaidoituong = "and loaidoituong in (0,4,6,20) ";
                 }
                 else if (cbbDoiTuongBN.Text == "Viện phí")
                 {
                     _doituongBN = " and doituongbenhnhanid<>1 ";
+                    //_loaidoituong = "and loaidoituong not in (0,4,6,20) ";
+                }
+                //Loai benh an
+                if (cbbLoaiBenhAn.Text == "Ngoại trú")
+                {
+                    _loaivienphi = " and loaivienphiid<>0 ";
+                }
+                else if (cbbLoaiBenhAn.Text == "Nội trú")
+                {
+                    _loaivienphi = " and loaivienphiid=0 ";
                 }
 
                 string _sql_timkiem = @"SELECT
@@ -150,7 +167,7 @@ namespace MedicalLink.BaoCao
 						                    else 100 end)
 		                    else 100
 		                    end) as tyle,
-	                    sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien FROM (select * from vienphi where 1 = 1 " + _tieuchi_vp + _doituongBN + _trangthai_vp + ") vp inner join (select * from serviceprice where loaidoituong in (0,4,6,20) and bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') " + _tieuchi_ser + ") ser on ser.vienphiid = vp.vienphiid inner join (select * from servicepriceref where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC')) serf on serf.servicepricecode = ser.servicepricecode GROUP BY vp.loaivienphiid, vp.doituongbenhnhanid, serf.servicepricecodeuser, serf.bhyt_groupcode, serf.servicepricecode, serf.servicepricenamebhyt, ser.servicepricemoney_bhyt, ser.lankhambenh, ser.loaingaygiuong, ser.loaipttt;";
+	                    sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien FROM (select * from vienphi where 1 = 1 " + _tieuchi_vp + _doituongBN + _trangthai_vp + _loaivienphi + ") vp inner join (select * from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') " + _tieuchi_ser + _loaidoituong+") ser on ser.vienphiid = vp.vienphiid inner join (select * from servicepriceref where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC')) serf on serf.servicepricecode = ser.servicepricecode GROUP BY vp.loaivienphiid, vp.doituongbenhnhanid, serf.servicepricecodeuser, serf.bhyt_groupcode, serf.servicepricecode, serf.servicepricenamebhyt, ser.servicepricemoney_bhyt, ser.lankhambenh, ser.loaingaygiuong, ser.loaipttt;";
 
                 //Lay du lieu bao cao + insert vào DB
                 DataTable _dataBHYT21TMP = condb.GetDataTable_HIS(_sql_timkiem);
@@ -191,13 +208,13 @@ namespace MedicalLink.BaoCao
 		                    '0' as isgroup
 	                    FROM tools_datachenh2018tmp chenh
 		                    left join tools_servicerefchenh2018 sef on sef.servicepricecodeuser=chenh.servicepricecodeuser
-	                    WHERE chenh.createdate='" + _createdate + "' and chenh.createusercode='" + Base.SessionLogin.SessionUsercode + "') O; ";   
+	                    WHERE chenh.createdate='" + _createdate + "' and chenh.createusercode='" + Base.SessionLogin.SessionUsercode + "') O WHERE O.soluong>0; ";
                     this.dataBaoCao = condb.GetDataTable_MeL(_sql_dataChenh);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
                     {
                         gridControlDataBaoCao.DataSource = this.dataBaoCao;
                         string _sqldeleteTmp = "DELETE FROM tools_datachenh2018tmp WHERE createdate='" + _createdate + "' and createusercode='" + Base.SessionLogin.SessionUsercode + "';";
-                        //condb.ExecuteNonQuery_MeL(_sqldeleteTmp);
+                        condb.ExecuteNonQuery_MeL(_sqldeleteTmp);
                     }
                     else
                     {
@@ -392,7 +409,7 @@ namespace MedicalLink.BaoCao
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(Base.ThongBaoLable.CO_LOI_XAY_RA);
                 frmthongbao.Show();
                 btnLuuLai.Enabled = false;
             }
@@ -409,10 +426,10 @@ namespace MedicalLink.BaoCao
                     if (this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() != "")
                     {
                         string sql_kt = "SELECT servicerefchenh2018id FROM tools_servicerefchenh2018 WHERE servicepricecodeuser='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "';";
-                        DataView dv_kt = new DataView(condb.GetDataTable_MeL(sql_kt));
-                        if (dv_kt.Count > 0) //update
+                        DataTable _data_KT = condb.GetDataTable_MeL(sql_kt);
+                        if (_data_KT != null && _data_KT.Rows.Count > 0) //update
                         {
-                            string sql_updateDVKT = "UPDATE tools_servicerefchenh2018 SET servicepricecodeuser='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', servicepricecodeuser_old='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', servicepricecodeuser_new='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', servicepricenamebhyt='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', servicepricenamebhyt_old='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', servicepricenamebhyt_new='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', servicepricemoney_bhyt='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString() + "', servicepricemoney_bhyt_tr13='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString() + "', servicepricemoney_bhyt_13='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString() + "', servicepricemoney_bhyt_17='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_17"].ToString() + "', servicepricemoney_vp_new='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_NEW"].ToString() + "', servicepricemoney_vp_old='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_OLD"].ToString() + "', createusercode='" + Base.SessionLogin.SessionUsercode + "', createusername='" + Base.SessionLogin.SessionUsername + "', createdate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE servicepricecode='" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "';";
+                            string sql_updateDVKT = "UPDATE tools_servicerefchenh2018 SET servicepricecode='" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "', servicepricecodeuser_old='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', servicepricecodeuser_new='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', servicepricenamebhyt='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', servicepricenamebhyt_old='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', servicepricenamebhyt_new='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', servicepricemoney_bhyt='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString() + "', servicepricemoney_bhyt_tr13='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString() + "', servicepricemoney_bhyt_13='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString() + "', servicepricemoney_bhyt_17='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_17"].ToString() + "', servicepricemoney_vp_new='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_NEW"].ToString() + "', servicepricemoney_vp_old='" + this.DMDV_Import[i]["SERVICEPRICEMONEY_VP_OLD"].ToString() + "', createusercode='" + Base.SessionLogin.SessionUsercode + "', createusername='" + Base.SessionLogin.SessionUsername + "', createdate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE servicepricecodeuser='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "';";
                             try
                             {
                                 if (condb.ExecuteNonQuery_MeL(sql_updateDVKT))
@@ -450,6 +467,61 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
             SplashScreenManager.CloseForm();
+        }
+        private void gridViewDSGanMa_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            try
+            {
+                if (!btnLuuLai.Enabled)
+                {
+                    if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
+                    {
+                        e.Menu.Items.Clear();
+                        DXMenuItem itemKiemTraDaChon = new DXMenuItem("Xóa dịch vụ đã chọn");
+                        itemKiemTraDaChon.Image = imageCollectionDSBN.Images[0];
+                        itemKiemTraDaChon.Click += new EventHandler(XoaDichVuDaChon_Click);
+                        e.Menu.Items.Add(itemKiemTraDaChon);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void XoaDichVuDaChon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridViewDSGanMa.RowCount > 0)
+                {
+                    string sql_deleteDV = "";
+                    foreach (var item_index in gridViewDSGanMa.GetSelectedRows())
+                    {
+                        string _servicepricecodeuser = gridViewDSGanMa.GetRowCellValue(item_index, "servicepricecodeuser").ToString();
+                        sql_deleteDV += "DELETE FROM tools_servicerefchenh2018 where servicepricecodeuser='" + _servicepricecodeuser + "'; ";
+                    }
+                    condb.ExecuteNonQuery_MeL(sql_deleteDV);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.XOA_THANH_CONG);
+                    frmthongbao.Show();
+                    LoadDanhMucDichVuChenh2018();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadDanhMucDichVuChenh2018();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
         }
 
 

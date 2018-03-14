@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCBHYT21Chenh2018));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
@@ -51,6 +52,8 @@
             this.gridColumn_chenh_17_truoc13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.cbbLoaiBenhAn = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cbbDoiTuongBN = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -95,6 +98,8 @@
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.imageCollectionDSBN = new DevExpress.Utils.ImageCollection(this.components);
+            this.btnLamMoi = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -105,6 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbLoaiBenhAn.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbDoiTuongBN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTrangThaiVienPhi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTieuChi.Properties)).BeginInit();
@@ -119,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionDSBN)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -567,6 +574,8 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.labelControl6);
+            this.groupBoxFile.Controls.Add(this.cbbLoaiBenhAn);
             this.groupBoxFile.Controls.Add(this.labelControl5);
             this.groupBoxFile.Controls.Add(this.cbbDoiTuongBN);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -585,6 +594,34 @@
             this.groupBoxFile.Size = new System.Drawing.Size(1048, 90);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Location = new System.Drawing.Point(479, 62);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(73, 16);
+            this.labelControl6.TabIndex = 95;
+            this.labelControl6.Text = "Loại bệnh án";
+            // 
+            // cbbLoaiBenhAn
+            // 
+            this.cbbLoaiBenhAn.EditValue = "Tất cả";
+            this.cbbLoaiBenhAn.Location = new System.Drawing.Point(558, 59);
+            this.cbbLoaiBenhAn.Name = "cbbLoaiBenhAn";
+            this.cbbLoaiBenhAn.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbLoaiBenhAn.Properties.Appearance.Options.UseFont = true;
+            this.cbbLoaiBenhAn.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbLoaiBenhAn.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cbbLoaiBenhAn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbbLoaiBenhAn.Properties.Items.AddRange(new object[] {
+            "Nội trú",
+            "Ngoại trú",
+            "Tất cả"});
+            this.cbbLoaiBenhAn.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cbbLoaiBenhAn.Size = new System.Drawing.Size(169, 22);
+            this.cbbLoaiBenhAn.TabIndex = 94;
             // 
             // labelControl5
             // 
@@ -841,12 +878,16 @@
             this.gridViewDSGanMa.OptionsFind.AlwaysVisible = true;
             this.gridViewDSGanMa.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
             this.gridViewDSGanMa.OptionsFind.ShowClearButton = false;
+            this.gridViewDSGanMa.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            this.gridViewDSGanMa.OptionsSelection.MultiSelect = true;
+            this.gridViewDSGanMa.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridViewDSGanMa.OptionsView.ColumnAutoWidth = false;
             this.gridViewDSGanMa.OptionsView.ShowGroupPanel = false;
             this.gridViewDSGanMa.OptionsView.ShowIndicator = false;
             this.gridViewDSGanMa.RowHeight = 25;
             this.gridViewDSGanMa.ViewCaptionHeight = 25;
             this.gridViewDSGanMa.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDataBaoCao_RowCellStyle);
+            this.gridViewDSGanMa.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridViewDSGanMa_PopupMenuShowing);
             // 
             // gridColumn18
             // 
@@ -863,7 +904,7 @@
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 0;
+            this.gridColumn18.VisibleIndex = 1;
             this.gridColumn18.Width = 50;
             // 
             // gridColumn34
@@ -881,7 +922,7 @@
             this.gridColumn34.Name = "gridColumn34";
             this.gridColumn34.OptionsColumn.AllowEdit = false;
             this.gridColumn34.Visible = true;
-            this.gridColumn34.VisibleIndex = 1;
+            this.gridColumn34.VisibleIndex = 2;
             this.gridColumn34.Width = 130;
             // 
             // gridColumn19
@@ -900,7 +941,7 @@
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.ToolTip = "Mã DVKT điều chỉnh giá";
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 2;
+            this.gridColumn19.VisibleIndex = 3;
             this.gridColumn19.Width = 130;
             // 
             // gridColumn6
@@ -918,7 +959,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 3;
+            this.gridColumn6.VisibleIndex = 4;
             this.gridColumn6.Width = 130;
             // 
             // gridColumn20
@@ -937,7 +978,7 @@
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.ToolTip = "Tên DVKT điều chỉnh giá";
             this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 4;
+            this.gridColumn20.VisibleIndex = 5;
             this.gridColumn20.Width = 130;
             // 
             // gridColumn10
@@ -955,7 +996,7 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 5;
+            this.gridColumn10.VisibleIndex = 6;
             this.gridColumn10.Width = 300;
             // 
             // gridColumn7
@@ -973,7 +1014,7 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.VisibleIndex = 7;
             this.gridColumn7.Width = 300;
             // 
             // gridColumn21
@@ -992,7 +1033,7 @@
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.ToolTip = "Mã DVKT BHYT điều chỉnh giá";
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 7;
+            this.gridColumn21.VisibleIndex = 8;
             this.gridColumn21.Width = 300;
             // 
             // gridColumn11
@@ -1012,7 +1053,7 @@
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 8;
+            this.gridColumn11.VisibleIndex = 9;
             this.gridColumn11.Width = 160;
             // 
             // gridColumn22
@@ -1032,7 +1073,7 @@
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 9;
+            this.gridColumn22.VisibleIndex = 10;
             this.gridColumn22.Width = 160;
             // 
             // gridColumn23
@@ -1050,7 +1091,7 @@
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
             this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 10;
+            this.gridColumn23.VisibleIndex = 11;
             this.gridColumn23.Width = 160;
             // 
             // gridColumn24
@@ -1068,7 +1109,7 @@
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 11;
+            this.gridColumn24.VisibleIndex = 12;
             this.gridColumn24.Width = 160;
             // 
             // gridColumn9
@@ -1086,7 +1127,7 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 12;
+            this.gridColumn9.VisibleIndex = 13;
             this.gridColumn9.Width = 160;
             // 
             // gridColumn8
@@ -1104,7 +1145,7 @@
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 13;
+            this.gridColumn8.VisibleIndex = 14;
             this.gridColumn8.Width = 160;
             // 
             // gridColumn12
@@ -1122,7 +1163,7 @@
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 14;
+            this.gridColumn12.VisibleIndex = 15;
             this.gridColumn12.Width = 150;
             // 
             // gridColumn13
@@ -1144,11 +1185,12 @@
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.OptionsColumn.AllowEdit = false;
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 15;
+            this.gridColumn13.VisibleIndex = 16;
             this.gridColumn13.Width = 125;
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.btnLamMoi);
             this.panelControl3.Controls.Add(this.btnLuuLai);
             this.panelControl3.Controls.Add(this.txtFilePath);
             this.panelControl3.Controls.Add(this.labelControl7);
@@ -1166,7 +1208,7 @@
             this.btnLuuLai.Appearance.Options.UseFont = true;
             this.btnLuuLai.Appearance.Options.UseForeColor = true;
             this.btnLuuLai.Image = global::MedicalLink.Properties.Resources.save_16;
-            this.btnLuuLai.Location = new System.Drawing.Point(213, 14);
+            this.btnLuuLai.Location = new System.Drawing.Point(481, 14);
             this.btnLuuLai.Name = "btnLuuLai";
             this.btnLuuLai.Size = new System.Drawing.Size(100, 30);
             this.btnLuuLai.TabIndex = 50;
@@ -1198,7 +1240,7 @@
             this.btnThemTuFileExcel.Appearance.Options.UseFont = true;
             this.btnThemTuFileExcel.Appearance.Options.UseForeColor = true;
             this.btnThemTuFileExcel.Image = global::MedicalLink.Properties.Resources.add_file_16;
-            this.btnThemTuFileExcel.Location = new System.Drawing.Point(19, 14);
+            this.btnThemTuFileExcel.Location = new System.Drawing.Point(334, 14);
             this.btnThemTuFileExcel.Name = "btnThemTuFileExcel";
             this.btnThemTuFileExcel.Size = new System.Drawing.Size(100, 30);
             this.btnThemTuFileExcel.TabIndex = 44;
@@ -1235,6 +1277,25 @@
             // 
             this.gridView1.Name = "gridView1";
             // 
+            // imageCollectionDSBN
+            // 
+            this.imageCollectionDSBN.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionDSBN.ImageStream")));
+            this.imageCollectionDSBN.Images.SetKeyName(0, "delete-16.png");
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLamMoi.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnLamMoi.Appearance.Options.UseFont = true;
+            this.btnLamMoi.Appearance.Options.UseForeColor = true;
+            this.btnLamMoi.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
+            this.btnLamMoi.Location = new System.Drawing.Point(63, 14);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(100, 30);
+            this.btnLamMoi.TabIndex = 51;
+            this.btnLamMoi.Text = "Làm mới";
+            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
+            // 
             // ucBCBHYT21Chenh2018
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1254,6 +1315,7 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cbbLoaiBenhAn.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbDoiTuongBN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTrangThaiVienPhi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbTieuChi.Properties)).EndInit();
@@ -1270,6 +1332,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageCollectionDSBN)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1342,5 +1405,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private System.Windows.Forms.OpenFileDialog openFileDialogSelect;
         private DevExpress.XtraEditors.SimpleButton btnLuuLai;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.ComboBoxEdit cbbLoaiBenhAn;
+        private DevExpress.Utils.ImageCollection imageCollectionDSBN;
+        private DevExpress.XtraEditors.SimpleButton btnLamMoi;
     }
 }

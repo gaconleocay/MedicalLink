@@ -808,6 +808,7 @@
             this.bandedGridColumn2.Caption = "Mã bệnh nhân";
             this.bandedGridColumn2.FieldName = "patientid";
             this.bandedGridColumn2.Name = "bandedGridColumn2";
+            this.bandedGridColumn2.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn2.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn2.Visible = true;
             this.bandedGridColumn2.Width = 85;
@@ -827,6 +828,7 @@
             this.bandedGridColumn3.Caption = "Mã viện phí";
             this.bandedGridColumn3.FieldName = "vienphiid";
             this.bandedGridColumn3.Name = "bandedGridColumn3";
+            this.bandedGridColumn3.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn3.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn3.Visible = true;
             this.bandedGridColumn3.Width = 85;
@@ -844,6 +846,7 @@
             this.bandedGridColumn4.Caption = "Tên bệnh nhân";
             this.bandedGridColumn4.FieldName = "patientname";
             this.bandedGridColumn4.Name = "bandedGridColumn4";
+            this.bandedGridColumn4.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn4.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn4.Visible = true;
             this.bandedGridColumn4.Width = 130;
@@ -863,6 +866,7 @@
             this.bandedGridColumn5.Caption = "Số thẻ BHYT";
             this.bandedGridColumn5.FieldName = "bhytcode";
             this.bandedGridColumn5.Name = "bandedGridColumn5";
+            this.bandedGridColumn5.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn5.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn5.Visible = true;
             this.bandedGridColumn5.Width = 130;
@@ -1074,6 +1078,7 @@
             this.bandedGridColumn40.Caption = "Mã phiếu CĐ";
             this.bandedGridColumn40.FieldName = "sophieu";
             this.bandedGridColumn40.Name = "bandedGridColumn40";
+            this.bandedGridColumn40.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn40.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn40.Visible = true;
             this.bandedGridColumn40.Width = 92;
@@ -1091,6 +1096,7 @@
             this.bandedGridColumn10.Caption = "Mã dịch vụ";
             this.bandedGridColumn10.FieldName = "servicepricecode";
             this.bandedGridColumn10.Name = "bandedGridColumn10";
+            this.bandedGridColumn10.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn10.OptionsFilter.FilterPopupMode = DevExpress.XtraGrid.Columns.FilterPopupMode.CheckedList;
             this.bandedGridColumn10.Visible = true;
             this.bandedGridColumn10.Width = 85;

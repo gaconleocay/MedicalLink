@@ -9,6 +9,7 @@ namespace MedicalLink.ClassCommon
     public class BCBHYT21Chenh2018DTO
     {
         public string stt { get; set; }
+        public string ngoaitinh { get;set;}
         public string servicepricecode { get; set; }
         public string bhyt_groupcode { get;set;}
         public string tennhom_bhyt { get; set; }

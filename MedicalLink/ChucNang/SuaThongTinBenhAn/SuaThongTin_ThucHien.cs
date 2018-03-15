@@ -23,7 +23,7 @@ namespace MedicalLink.ChucNang
 
         long vienphiid, patientid, bhytid, hosobenhanid, medicalrecordid;
         string PatientName, NgaySinh, GioiTinh_Code, GioiTinh, SoNha, ThonPho, NoiLamViec, TrangThai;
-        string SoTheBHYT, HanTheTu, HanTheDen, NoiDKKCBBD, NoiChuyenDen;
+        string SoTheBHYT, HanTheTu, HanTheDen, NoiDKKCBBD, NoiChuyenDen, SoTheBHYT_2, HanTheTu_2, HanTheDen_2, NoiDKKCBBD_2;
         string xa_code, huyen_code, tinh_code, xa_name, huyen_name, tinh_name;
         #endregion
 
@@ -56,7 +56,8 @@ namespace MedicalLink.ChucNang
                 {
                     LoadDataTinh_VeMay();
 
-                    var rowHandle = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.FocusedRowHandle;
+                    int rowHandle = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.FocusedRowHandle;
+
                     patientid = Convert.ToInt64(SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "patientid").ToString());
                     vienphiid = Convert.ToInt64(SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "vienphiid").ToString());
                     bhytid = Convert.ToInt64(SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "bhytid").ToString());
@@ -81,6 +82,11 @@ namespace MedicalLink.ChucNang
                     HanTheTu = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "hanthetu").ToString();
                     HanTheDen = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "hantheden").ToString();
                     NoiDKKCBBD = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "noidkkcbbd").ToString();
+                    //
+                    SoTheBHYT_2 = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "theghep_bhytcode").ToString();
+                    HanTheTu_2 = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "theghep_bhytfromdate").ToString();
+                    HanTheDen_2 = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "theghep_bhytutildate").ToString();
+                    NoiDKKCBBD_2 = SuaThongTinBenhAn.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "theghep_macskcbbd").ToString();
 
                     LoadThongTinBenhNhan();
                     LoadXaHuyenTinh();
@@ -156,16 +162,21 @@ namespace MedicalLink.ChucNang
             try
             {
                 txtSoTheBHYT.Text = SoTheBHYT;
-                //DateTime dt_tu = Convert.ToDateTime(NgaySinh);
-                //DateTime dt_den = Convert.ToDateTime(NgaySinh);
                 dtHanTheTu.EditValue = Convert.ToDateTime(HanTheTu);
                 dtHanTheDen.EditValue = Convert.ToDateTime(HanTheDen);
                 txtNoiDKKCBBD.Text = NoiDKKCBBD;
+                //   
+                if (SoTheBHYT_2 != null && SoTheBHYT_2 != "")
+                {
+                    txtSoTheBHYT_2.Text = SoTheBHYT_2;
+                    dtHanTheTu_2.EditValue = Convert.ToDateTime(HanTheTu_2);
+                    dtHanTheDen_2.EditValue = Convert.ToDateTime(HanTheDen_2);
+                    txtNoiDKKCBBD_2.Text = NoiDKKCBBD_2;
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -177,7 +188,6 @@ namespace MedicalLink.ChucNang
                 cboTinh.Properties.DisplayMember = "hc_tinhname";
                 cboTinh.Properties.ValueMember = "hc_tinhcode";
 
-
                 cboNoiChuyenDen.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucSoSoYTe;
                 cboNoiChuyenDen.Properties.DisplayMember = "benhvienname";
                 cboNoiChuyenDen.Properties.ValueMember = "benhvienkcbbd";
@@ -187,9 +197,36 @@ namespace MedicalLink.ChucNang
                 Base.Logging.Warn(ex);
             }
         }
+        private void LoadDataHuyen_VeMay(string tinh_code_tk)
+        {
+            try
+            {
+                cboHuyen.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.Where(s => s.hc_tinhcode == tinh_code_tk).GroupBy(o => o.hc_huyencode).Select(n => n.First()).ToList();
+                cboHuyen.Properties.DisplayMember = "hc_huyenname";
+                cboHuyen.Properties.ValueMember = "hc_huyencode";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
+        }
+        private void LoadDataXa_VeMay(string tinh_code_tk, string huyen_code_tk)
+        {
+            try
+            {
+                cboXa.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.Where(s => s.hc_tinhcode == tinh_code_tk && s.hc_huyencode == huyen_code_tk).GroupBy(o => o.hc_xacode).Select(n => n.First()).ToList();
+                cboXa.Properties.DisplayMember = "hc_xaname";
+                cboXa.Properties.ValueMember = "hc_xacode";
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         #endregion
-        //Cap nhat thong tin hanh chinh
+
+        #region Events
         private void btnSuaThongTinBN_Click(object sender, EventArgs e)
         {
             try
@@ -212,7 +249,7 @@ namespace MedicalLink.ChucNang
                         {
                             noichuyendencode = cboNoiChuyenDen.EditValue.ToString();
                         }
-                        
+
                         //Cap nhat noi chuyen den
                         string update_noichuyenden = "UPDATE medicalrecord SET noigioithieucode='" + noichuyendencode + "' WHERE medicalrecordid=" + this.medicalrecordid + "; ";
                         //Log
@@ -237,27 +274,35 @@ namespace MedicalLink.ChucNang
 
             }
         }
-
-        //Cap nhat the BHYT
         private void btnSuaThongTinBHYT_Click(object sender, EventArgs e)
         {
-            // Lấy thời gian
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            string _updateThe2 = "";
             try
             {
                 string datetungay = DateTime.ParseExact(dtHanTheTu.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00";
                 string datedenngay = DateTime.ParseExact(dtHanTheDen.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00";
-                // Querry thực hiện
+
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa thông tin về thẻ BHYT BN:\n " + PatientName + " - " + patientid + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    string sqlupdate_bhyt = "UPDATE bhyt SET bhytcode = '" + txtSoTheBHYT.Text.Trim() + "', macskcbbd = '" + txtNoiDKKCBBD.Text.Trim() + "', bhytfromdate = '" + datetungay + "', bhytutildate = '" + datedenngay + "' WHERE bhytid = '" + bhytid + "';";
-                    //Log
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin về thẻ BHYT từ: " + SoTheBHYT + "; " + HanTheTu + "; " + HanTheDen + "; " + NoiDKKCBBD + " thành: " + txtSoTheBHYT.Text + "; " + datetungay + "; " + datedenngay + "; " + NoiDKKCBBD + "' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_13');";
-                    condb.ExecuteNonQuery_HIS(sqlupdate_bhyt);
-                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                    MessageBox.Show("Sửa thông tin về thẻ bảo hiểm y tế thành công!", "Thông báo !");
-                    this.Visible = false;
+                    if (txtSoTheBHYT_2.Text != this.SoTheBHYT_2)
+                    {
+                        string datetungay_2 = DateTime.ParseExact(dtHanTheTu_2.Text==""? "01/01/0001": dtHanTheTu_2.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00";
+                        string datedenngay_2 = DateTime.ParseExact(dtHanTheDen_2.Text == "" ? "01/01/0001" : dtHanTheDen_2.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00";
+
+                        _updateThe2 = " UPDATE vienphi SET theghep_bhytcode = '" + txtSoTheBHYT_2.Text.Trim() + "', theghep_macskcbbd = '" + txtNoiDKKCBBD_2.Text.Trim() + "', theghep_bhytfromdate = '" + datetungay_2 + "', theghep_bhytutildate = '" + datedenngay_2 + "' WHERE vienphiid = '" + this.vienphiid + "'; ";
+                    }
+
+                    string sqlupdate_bhyt = "UPDATE bhyt SET bhytcode = '" + txtSoTheBHYT.Text.Trim() + "', macskcbbd = '" + txtNoiDKKCBBD.Text.Trim() + "', bhytfromdate = '" + datetungay + "', bhytutildate = '" + datedenngay + "' WHERE bhytid = '" + bhytid + "'; " + _updateThe2 + " ";
+
+                    if (condb.ExecuteNonQuery_HIS(sqlupdate_bhyt))
+                    {
+                        //Log
+                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thông tin về thẻ BHYT từ: " + SoTheBHYT + "; " + HanTheTu + "; " + HanTheDen + "; " + NoiDKKCBBD + " thành: " + txtSoTheBHYT.Text + "; " + datetungay + "; " + datedenngay + "; " + NoiDKKCBBD + "' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_13');";
+                        condb.ExecuteNonQuery_MeL(sqlinsert_log);
+                        MessageBox.Show("Sửa thông tin về thẻ bảo hiểm y tế thành công!", "Thông báo !");
+                        this.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -270,15 +315,11 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                //string datetungay = DateTime.ParseExact(dtHanTheTu.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd") + " 00:00:00";
-                //string datetungay = DateTime.ParseExact(dtHanTheTu.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
-                //string datedenngay = DateTime.ParseExact(dtHanTheDen.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
-
-                if (txtSoTheBHYT.Text.Trim() != SoTheBHYT || dtHanTheTu.Text != HanTheTu || dtHanTheDen.Text != HanTheDen || txtNoiDKKCBBD.Text.Trim() != NoiDKKCBBD)
+                if (txtSoTheBHYT.Text.Trim() != SoTheBHYT || dtHanTheTu.Text != HanTheTu || dtHanTheDen.Text != HanTheDen || txtNoiDKKCBBD.Text.Trim() != NoiDKKCBBD || txtSoTheBHYT_2.Text.Trim() != SoTheBHYT_2 || dtHanTheTu_2.Text != HanTheTu_2 || dtHanTheDen_2.Text != HanTheDen_2 || txtNoiDKKCBBD_2.Text.Trim() != NoiDKKCBBD_2)
                 {
                     btnSuaThongTinBHYT.Enabled = true;
                 }
-                if (txtSoTheBHYT.Text.Trim() == SoTheBHYT && dtHanTheTu.Text == HanTheTu && dtHanTheDen.Text == HanTheDen && txtNoiDKKCBBD.Text.Trim() == NoiDKKCBBD)
+                if (txtSoTheBHYT.Text.Trim() == SoTheBHYT && dtHanTheTu.Text == HanTheTu && dtHanTheDen.Text == HanTheDen && txtNoiDKKCBBD.Text.Trim() == NoiDKKCBBD && txtSoTheBHYT_2.Text.Trim() == SoTheBHYT_2 && dtHanTheTu_2.Text == HanTheTu_2 && dtHanTheDen_2.Text == HanTheDen_2 && txtNoiDKKCBBD_2.Text.Trim() == NoiDKKCBBD_2)
                 {
                     btnSuaThongTinBHYT.Enabled = false;
                 }
@@ -308,6 +349,8 @@ namespace MedicalLink.ChucNang
                 throw;
             }
         }
+
+        #endregion
 
         #region Su kien Editvalue change
         private void txtSoTheBHYT_EditValueChanged(object sender, EventArgs e)
@@ -406,35 +449,6 @@ namespace MedicalLink.ChucNang
             }
         }
         #endregion
-
-        private void LoadDataHuyen_VeMay(string tinh_code_tk)
-        {
-            try
-            {
-                cboHuyen.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.Where(s => s.hc_tinhcode == tinh_code_tk).GroupBy(o => o.hc_huyencode).Select(n => n.First()).ToList();
-                cboHuyen.Properties.DisplayMember = "hc_huyenname";
-                cboHuyen.Properties.ValueMember = "hc_huyencode";
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }
-
-        private void LoadDataXa_VeMay(string tinh_code_tk, string huyen_code_tk)
-        {
-            try
-            {
-                cboXa.Properties.DataSource = SuaThongTinBenhAn.lstDanhMucTinhHuyenXa.Where(s => s.hc_tinhcode == tinh_code_tk && s.hc_huyencode == huyen_code_tk).GroupBy(o => o.hc_xacode).Select(n => n.First()).ToList();
-                cboXa.Properties.DisplayMember = "hc_xaname";
-                cboXa.Properties.ValueMember = "hc_xacode";
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
         #region KeyDown
         private void txtPatientName_KeyDown(object sender, KeyEventArgs e)
@@ -596,6 +610,8 @@ namespace MedicalLink.ChucNang
         }
         #endregion
 
+        #region Custom
+
         private void cboTinh_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -635,7 +651,7 @@ namespace MedicalLink.ChucNang
             }
         }
 
-
+        #endregion
 
     }
 }

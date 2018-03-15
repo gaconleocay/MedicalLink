@@ -157,7 +157,6 @@ namespace MedicalLink.ChucNang
                 e.Handled = true;
             }
         }
-        #endregion
 
         private void txtBNBKMaBN_KeyDown(object sender, KeyEventArgs e)
         {
@@ -209,45 +208,22 @@ namespace MedicalLink.ChucNang
             }
         }
 
-        // Hiển thị danh sách mã điều trị của BN
-        internal void btnBNBKTimKiem_Click(object sender, EventArgs e)
+        private void gridViewSuaPhoiThanhToan_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
-            string sqlquerry = "";
-            string timkiemtheo = " ";
             try
             {
-                if (txtBNBKMaVP.Text == "Mã viện phí" && txtBNBKMaBN.Text == "Mã bệnh nhân")
+                if (e.Column == stt)
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
-                    frmthongbao.Show();
-                    return;
-                }
-                if (txtBNBKMaVP.Text == "Mã viện phí") // tìm theo mã BN
-                {
-                    timkiemtheo = " vp.patientid='" + txtBNBKMaBN.Text.Trim() + "' ";
-                }
-                else // tìm theo mã VP
-                {
-                    timkiemtheo = " vp.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ";
-                }
-
-                sqlquerry = "SELECT vp.vienphiid as vienphiid, hsba.patientid as patientid, bh.bhytid as bhytid, hsba.hosobenhanid as hosobenhanid, hsba.patientname as patientname, case vp.vienphistatus when 2 then 'Đã duyệt BHYT' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, hsba.gioitinhcode as gioitinhcode, hsba.gioitinhname as gioitinh, vp.vienphidate as thoigianvaovien, vp.vienphidate_ravien as thoigianravien, vp.duyet_ngayduyet_bh as thoigianduyetbhyt, krv.departmentgroupname as khoaravien, prv.departmentname as phongravien, bh.bhytcode as sothebhyt, bh.macskcbbd as noidkkcbbd, bh.bhytfromdate as hanthetu, bh.bhytutildate as hantheden, hsba.noilamviec as noilamviec, hsba.birthday as ngaysinh, hsba.hc_xacode as hc_xacode, hsba.hc_huyencode as hc_huyencode, hsba.hc_tinhcode as hc_tinhcode, hsba.hc_xaname as hc_xaname, hsba.hc_huyenname as hc_huyenname, hsba.hc_tinhname as hc_tinhname, hsba.hc_sonha as hc_sonha, hc_thon as hc_thon FROM vienphi vp inner join hosobenhan hsba on vp.hosobenhanid= hsba.hosobenhanid inner join (select departmentgroupid,departmentgroupname from departmentgroup) krv on vp.departmentgroupid = krv.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (2,3,9)) prv on vp.departmentid=prv.departmentid inner join bhyt bh on vp.bhytid = bh.bhytid WHERE " + timkiemtheo + " ORDER BY vp.vienphiid; ";
-                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
-                if (dv.Count > 0 && dv != null)
-                {
-                    gridControlSuaPhoiThanhToan.DataSource = dv;
-                }
-                else
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
-                    frmthongbao.Show();
+                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.ToString());
+
             }
         }
+
+        #endregion
 
         #region Export data
         private void tbnExport_Click(object sender, EventArgs e)
@@ -310,21 +286,78 @@ namespace MedicalLink.ChucNang
             }
         }
         #endregion
-        private void gridViewSuaPhoiThanhToan_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+
+        #region Events
+        // Hiển thị danh sách mã điều trị của BN
+        internal void btnBNBKTimKiem_Click(object sender, EventArgs e)
         {
+            string sqlquerry = "";
+            string timkiemtheo = " ";
             try
             {
-                if (e.Column == stt)
+                if (txtBNBKMaVP.Text == "Mã viện phí" && txtBNBKMaBN.Text == "Mã bệnh nhân")
                 {
-                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
+                    return;
+                }
+                if (txtBNBKMaVP.Text == "Mã viện phí") // tìm theo mã BN
+                {
+                    timkiemtheo = " vp.patientid='" + txtBNBKMaBN.Text.Trim() + "' ";
+                }
+                else // tìm theo mã VP
+                {
+                    timkiemtheo = " vp.vienphiid='" + txtBNBKMaVP.Text.Trim() + "' ";
+                }
+
+                sqlquerry = @"SELECT vp.vienphiid as vienphiid, 
+                            hsba.patientid as patientid, 
+                            bh.bhytid as bhytid, 
+                            hsba.hosobenhanid as hosobenhanid, 
+                            hsba.patientname as patientname, 
+                            case vp.vienphistatus when 2 then 'Đã duyệt BHYT' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, 
+                            hsba.gioitinhcode as gioitinhcode, 
+                            hsba.gioitinhname as gioitinh, 
+                            vp.vienphidate as thoigianvaovien, 
+                            vp.vienphidate_ravien as thoigianravien, 
+                            vp.duyet_ngayduyet_bh as thoigianduyetbhyt, 
+                            krv.departmentgroupname as khoaravien, 
+                            prv.departmentname as phongravien, 
+                            bh.bhytcode as sothebhyt, 
+                            bh.macskcbbd as noidkkcbbd, 
+                            bh.bhytfromdate as hanthetu, 
+                            bh.bhytutildate as hantheden, 
+                            vp.theghep_bhytcode,
+                            vp.theghep_bhytfromdate,
+                            vp.theghep_bhytutildate,
+                            vp.theghep_macskcbbd,
+                            hsba.noilamviec as noilamviec, 
+                            hsba.birthday as ngaysinh, 
+                            hsba.hc_xacode as hc_xacode, 
+                            hsba.hc_huyencode as hc_huyencode, 
+                            hsba.hc_tinhcode as hc_tinhcode, 
+                            hsba.hc_xaname as hc_xaname, 
+                            hsba.hc_huyenname as hc_huyenname, 
+                            hsba.hc_tinhname as hc_tinhname, 
+                            hsba.hc_sonha as hc_sonha, 
+                            hc_thon as hc_thon 
+                            FROM vienphi vp inner join hosobenhan hsba on vp.hosobenhanid= hsba.hosobenhanid  inner join (select departmentgroupid,departmentgroupname from departmentgroup) krv on vp.departmentgroupid = krv.departmentgroupid  left join (select departmentid,departmentname from department where departmenttype in (2,3,9)) prv on vp.departmentid=prv.departmentid  inner join bhyt bh on vp.bhytid = bh.bhytid  WHERE " + timkiemtheo + " ORDER BY vp.vienphiid; ";
+                DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
+                if (dv.Count > 0 && dv != null)
+                {
+                    gridControlSuaPhoiThanhToan.DataSource = dv;
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    frmthongbao.Show();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
             }
         }
-
         private void repositoryItemButtonEdit_edit_Click(object sender, EventArgs e)
         {
             try
@@ -338,7 +371,7 @@ namespace MedicalLink.ChucNang
             }
         }
 
-        private void gridViewSuaPhoiThanhToan_Click(object sender, EventArgs e)
+        private void gridViewSuaPhoiThanhToan_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -355,7 +388,6 @@ namespace MedicalLink.ChucNang
         }
 
 
-
-
+        #endregion
     }
 }

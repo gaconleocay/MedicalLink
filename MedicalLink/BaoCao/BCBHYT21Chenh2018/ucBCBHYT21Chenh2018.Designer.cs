@@ -37,6 +37,7 @@
             this.gridViewDataBaoCao = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.stt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -90,6 +91,7 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.btnLamMoi = new DevExpress.XtraEditors.SimpleButton();
             this.btnLuuLai = new DevExpress.XtraEditors.SimpleButton();
             this.txtFilePath = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
@@ -99,7 +101,6 @@
             this.openFileDialogSelect = new System.Windows.Forms.OpenFileDialog();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.imageCollectionDSBN = new DevExpress.Utils.ImageCollection(this.components);
-            this.btnLamMoi = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
@@ -205,6 +206,7 @@
             this.gridViewDataBaoCao.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.stt,
             this.gridColumn1,
+            this.gridColumn4,
             this.gridColumn2,
             this.bandedGridColumn10,
             this.bandedGridColumn9,
@@ -219,7 +221,7 @@
             this.gridColumn_chenh_17_13,
             this.gridColumn_chenh_17_truoc13});
             this.gridViewDataBaoCao.GridControl = this.gridControlDataBaoCao;
-            this.gridViewDataBaoCao.GroupCount = 1;
+            this.gridViewDataBaoCao.GroupCount = 2;
             this.gridViewDataBaoCao.GroupRowHeight = 25;
             this.gridViewDataBaoCao.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soluong", this.gridColumn_soluong, "{0:#,##0.0}"),
@@ -243,6 +245,7 @@
             this.gridViewDataBaoCao.OptionsView.ShowIndicator = false;
             this.gridViewDataBaoCao.RowHeight = 25;
             this.gridViewDataBaoCao.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn4, DevExpress.Data.ColumnSortOrder.Ascending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridViewDataBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDataBaoCao_RowCellStyle);
             // 
@@ -283,6 +286,21 @@
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 1;
             this.gridColumn1.Width = 145;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
+            this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn4.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn4.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn4.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn4.Caption = "Nội, ngoại tỉnh";
+            this.gridColumn4.FieldName = "ngoaitinh";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.OptionsColumn.AllowEdit = false;
             // 
             // gridColumn2
             // 
@@ -1201,6 +1219,20 @@
             this.panelControl3.Size = new System.Drawing.Size(1190, 56);
             this.panelControl3.TabIndex = 0;
             // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLamMoi.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnLamMoi.Appearance.Options.UseFont = true;
+            this.btnLamMoi.Appearance.Options.UseForeColor = true;
+            this.btnLamMoi.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
+            this.btnLamMoi.Location = new System.Drawing.Point(63, 14);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(100, 30);
+            this.btnLamMoi.TabIndex = 51;
+            this.btnLamMoi.Text = "Làm mới";
+            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
+            // 
             // btnLuuLai
             // 
             this.btnLuuLai.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1281,20 +1313,6 @@
             // 
             this.imageCollectionDSBN.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionDSBN.ImageStream")));
             this.imageCollectionDSBN.Images.SetKeyName(0, "delete-16.png");
-            // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLamMoi.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnLamMoi.Appearance.Options.UseFont = true;
-            this.btnLamMoi.Appearance.Options.UseForeColor = true;
-            this.btnLamMoi.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnLamMoi.Location = new System.Drawing.Point(63, 14);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(100, 30);
-            this.btnLamMoi.TabIndex = 51;
-            this.btnLamMoi.Text = "Làm mới";
-            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // ucBCBHYT21Chenh2018
             // 
@@ -1409,5 +1427,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cbbLoaiBenhAn;
         private DevExpress.Utils.ImageCollection imageCollectionDSBN;
         private DevExpress.XtraEditors.SimpleButton btnLamMoi;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
     }
 }

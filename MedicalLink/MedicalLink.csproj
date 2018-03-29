@@ -350,14 +350,20 @@
     <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.Designer.cs">
       <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.cs">
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuat.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.Designer.cs">
-      <DependentUpon>BCPhauThuatThuThuat.cs</DependentUpon>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuat.Designer.cs">
+      <DependentUpon>ucBCPhauThuatThuThuat.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuatProcess.cs">
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuatProcess.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BCPhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.Designer.cs">
+      <DependentUpon>frmKhoaGuiYeuCau_PTTT.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BCSuDungThuoc\ucBCSuDungThuoc.cs">
       <SubType>UserControl</SubType>
@@ -559,6 +565,7 @@
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\Departmentgroup_KhoaPTTTDTO.cs" />
     <Compile Include="ClassCommon\ServicepriceIDDTO.cs" />
     <Compile Include="ClassCommon\ServicePriceRef_ChenhBHYT21.cs" />
     <Compile Include="ClassCommon\DepartmentgroupDTO.cs" />
@@ -1209,14 +1216,17 @@
     <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.resx">
       <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat.resx">
-      <DependentUpon>BCPhauThuatThuThuat.cs</DependentUpon>
+    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuat.resx">
+      <DependentUpon>ucBCPhauThuatThuThuat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\frmLayNhomDichVu.resx">
       <DependentUpon>frmLayNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.resx">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.resx">
+      <DependentUpon>frmKhoaGuiYeuCau_PTTT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCSuDungThuoc\ucBCSuDungThuoc.resx">
       <DependentUpon>ucBCSuDungThuoc.cs</DependentUpon>

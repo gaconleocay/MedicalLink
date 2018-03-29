@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MedicalLink.BaoCao
 {
-    public partial class BCPhauThuatThuThuat : UserControl
+    public partial class ucBCPhauThuatThuThuat : UserControl
     {
         #region Lay du lieu
         internal void LayDuLieuBaoCao_ChayMoi()
@@ -488,16 +488,81 @@ namespace MedicalLink.BaoCao
                 Base.Logging.Error(ex);
             }
         }
-        private int KiemTraTrangThaiKhoaGuiPTTT()
+
+        private string GetIdKhoaPhongTheoLoaiBC()
         {
-            int result = 0;
+            string result = " and departmentgroupid in (0) ";
             try
             {
-                string _sqlTrangThai = "SELECT toolsoptionvalue FROM tools_option WHERE toolsoptioncode='REPORT_08_KhoaGuiYeuCau';";
-                DataTable _dataTrangThai = condb.GetDataTable_MeL(_sqlTrangThai);
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_001")//phau thuat khoa Gay me hoi tinh- lay phong mo phien va phong mo cap cuu: ser.departmentid in (285,34)
+                {
+                    result = " and departmentgroupid=21 ";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002")//phau thuat - lay khoa tai mui hong: ser.departmentid in (122); ser.departmengrouptid in (10)
+                {
+                    result = " and departmentgroupid=10 ";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003") //phau thuat - lay khoa rang ham mat: ser.departmentid in (116); ser.departmengrouptid in (9)
+                {
+                    result = " and departmentgroupid=9 ";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004") //phau thuat -Mổ Mắt_B_Điều Trị + phòng khám Mổ mắt+ BDT khoa mắt kkb-khám mắt
+                {
+                    result = " and departmentgroupid=26 ";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005") //phau thuat - khoa khac
+                {
+                    result = " and departmentgroupid in (";
+                    List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
+                    for (int i = 0; i < lstKhoaCheck.Count - 1; i++)
+                    {
+                        result += lstKhoaCheck[i] + ",";
+                    }
+                    result += lstKhoaCheck[lstKhoaCheck.Count - 1] + ") ";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")// thu thuat - khoa mat + phong kham mat ser.departmentid in (80,212)
+                {
+                    result = " and departmentgroupid=26 ";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//Báo cáo Thủ thuật - Các khoa khác (trừ khoa mắt & PK mắt): ser.departmentid not in (80,212)
+                {
+                    result = " and departmentgroupid<>26 ";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//Báo cáo Thủ thuật - khoa khac
+                {
+                    result = " and departmentgroupid in (";
+                    List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
+                    for (int i = 0; i < lstKhoaCheck.Count - 1; i++)
+                    {
+                        result += lstKhoaCheck[i] + ",";
+                    }
+                    result += lstKhoaCheck[lstKhoaCheck.Count - 1] + ") ";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// true:da khoa
+        /// </summary>
+        /// <param name="_lstDepartmentgroupId"></param>
+        /// <returns>true:da khoa</returns>
+        private bool KiemTraTrangThaiKhoaGuiPTTT(string _lstDepartmentgroupId)
+        {
+            bool result = false;
+            try
+            {
+                string _sqlKiemtra = "SELECT departmentgroupid FROM tools_departmentgroup WHERE pttt_khoaguiyc=1 " + _lstDepartmentgroupId + " ; ";
+                DataTable _dataTrangThai = condb.GetDataTable_MeL(_sqlKiemtra);
                 if (_dataTrangThai != null && _dataTrangThai.Rows.Count > 0)
                 {
-                    result = Utilities.Util_TypeConvertParse.ToInt16(_dataTrangThai.Rows[0]["toolsoptionvalue"].ToString());
+                    result = true;
                 }
             }
             catch (Exception ex)

@@ -9,6 +9,8 @@ namespace MedicalLink.ClassCommon
     public class BC41_DVYeuCau_DSBNDTO
     {
         public string stt { get; set; }
+        public string billcode { get; set; }
+        public string billgroupcode { get; set; }
         public string patientid { get; set; }
         public string vienphiid { get; set; }
         public string patientname { get; set; }

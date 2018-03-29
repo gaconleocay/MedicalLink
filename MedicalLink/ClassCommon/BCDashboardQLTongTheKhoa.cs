@@ -25,11 +25,11 @@ namespace MedicalLink.ClassCommon
         public string DoanhThu_value { get; set; }
         public string DoanhThu_unit { get { return RaVienChuaTT_unit; } }
         public long? DoanhThuGM_stt { get { return RaVienChuaTT_stt; } }
-        public string DoanhThuGM_name { get; set; }
+        public string DoanhThuGM_name { get { return RaVienChuaTT_name; } }
         public string DoanhThuGM_value { get; set; }
         public string DoanhThuGM_unit { get { return RaVienChuaTT_unit; } }
         public long? DoanhThuTongGM_stt { get { return RaVienChuaTT_stt; } }
-        public string DoanhThuTongGM_name { get; set; }
+        public string DoanhThuTongGM_name { get { return RaVienChuaTT_name; } }
         public string DoanhThuTongGM_value { get; set; }
         public string DoanhThuTongGM_unit { get { return RaVienChuaTT_unit; } }
 

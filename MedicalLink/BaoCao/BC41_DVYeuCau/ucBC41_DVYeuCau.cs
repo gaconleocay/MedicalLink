@@ -69,13 +69,13 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                    var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
-                    if (lstDSKhoa != null && lstDSKhoa.Count > 0)
-                    {
-                        chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
-                        chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
-                        chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
-                    }
+                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                if (lstDSKhoa != null && lstDSKhoa.Count > 0)
+                {
+                    chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
+                    chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
+                    chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
+                }
                 chkcomboListDSKhoa.CheckAll();
             }
             catch (Exception ex)
@@ -112,7 +112,7 @@ namespace MedicalLink.BaoCao
                 string _tieuchi_bill = "";
                 string _lstPhongChonLayBC = "";
                 string _listuserid = "";
-
+                string _select_bill = "";
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 //tieu chi
@@ -130,7 +130,8 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cbbTieuChi.Text == "Theo ngày thu tiền")
                 {
-                    _tieuchi_bill = " inner join (select vienphiid from bill where billdate between '" + datetungay + "' and '" + datedenngay + "' ) b on b.vienphiid=vp.vienphiid ";
+                    _tieuchi_bill = " inner join (select billid,vienphiid,billgroupcode,billcode from bill where billdate between '" + datetungay + "' and '" + datedenngay + "'  and dahuyphieu=0) b on b.billid=ser.billid_clbh_thutien ";
+                    _select_bill = " b.billgroupcode, b.billcode, ";
                 }
 
                 //NGuoi duyet
@@ -201,8 +202,11 @@ namespace MedicalLink.BaoCao
 	                    sum(ser.soluong) as soluong,
 	                    ser.servicepricemoney,
 	                    sum(ser.servicepricemoney*ser.soluong) as thanhtien,
+	                    ser.servicepricemoney_bhyt,
+	                    sum(ser.servicepricemoney_bhyt*ser.soluong) as thanhtien_bhyt,
+	                    sum((ser.servicepricemoney-ser.servicepricemoney_bhyt)*ser.soluong) as chenhlech,
 	                    '0' as isgroup		
-                    from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode from serviceprice where loaidoituong in (3,4) and departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + ") ser inner join (select vienphiid from vienphi where 1 = 1 " + _tieuchi_vp + _listuserid + ") vp on vp.vienphiid = ser.vienphiid " + _tieuchi_bill + " group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney; ";
+                    from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + ") ser  inner join (select vienphiid from vienphi where 1 = 1 " + _tieuchi_vp + _listuserid + ") vp on vp.vienphiid = ser.vienphiid  " + _tieuchi_bill + " group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney,ser.servicepricemoney_bhyt; ";
 
                     this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -250,7 +254,7 @@ namespace MedicalLink.BaoCao
 	                    ser.departmentgroupid,
 	                    degp.departmentgroupname,
 	                    '0' as isgroup
-                    from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,servicepricedate,maubenhphamid from serviceprice where loaidoituong in (3,4) and  departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + ") ser inner join (select hosobenhanid, patientid, patientname, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname from hosobenhan) hsba on hsba.hosobenhanid = ser.hosobenhanid inner join(select vienphiid, hosobenhanid, bhytid from vienphi where 1 = 1 " + _tieuchi_vp + _listuserid + ") vp on vp.hosobenhanid = hsba.hosobenhanid inner join(select bhytid, bhytcode from bhyt) bh on bh.bhytid = vp.bhytid inner join(select departmentgroupid, departmentgroupname from departmentgroup) degp on degp.departmentgroupid = ser.departmentgroupid left join(select departmentid, departmentname from department) de on de.departmentid = ser.departmentid " + _tieuchi_bill + " inner join (select maubenhphamid,userid from maubenhpham) mbp on mbp.maubenhphamid=ser.maubenhphamid LEFT JOIN(select userhisid, username from nhompersonnel) ncd ON ncd.userhisid = mbp.userid; ";
+                    from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,servicepricedate,maubenhphamid,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and  departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + ") ser inner join (select hosobenhanid, patientid, patientname, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname from hosobenhan) hsba on hsba.hosobenhanid = ser.hosobenhanid inner join(select vienphiid, hosobenhanid, bhytid from vienphi where 1 = 1 " + _tieuchi_vp + _listuserid + ") vp on vp.hosobenhanid = hsba.hosobenhanid inner join(select bhytid, bhytcode from bhyt) bh on bh.bhytid = vp.bhytid inner join(select departmentgroupid, departmentgroupname from departmentgroup) degp on degp.departmentgroupid = ser.departmentgroupid left join(select departmentid, departmentname from department) de on de.departmentid = ser.departmentid " + _tieuchi_bill + " inner join (select maubenhphamid,userid from maubenhpham) mbp on mbp.maubenhphamid=ser.maubenhphamid LEFT JOIN(select userhisid, username from nhompersonnel) ncd ON ncd.userhisid = mbp.userid; ";
 
                     this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -266,21 +270,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (radioXemDSBenhNhan.Checked) //xem danh sach benh nhan
                 {
-                    string _sql_timkiem = @"SELECT row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname) as stt,
-	                    hsba.patientid,
-	                    ser.vienphiid,
-	                    hsba.patientname,
-	                    bh.bhytcode,
-	                    to_char(hsba.birthday,'yyyy') as year,
-	                    ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', 
-	                    ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi,
-	                    sum(ser.servicepricemoney*ser.soluong) as thanhtien,
-	                    ser.departmentid,		
-	                    de.departmentname,
-	                    ser.departmentgroupid,
-	                    degp.departmentgroupname,
-	                    '0' as isgroup 
-                    FROM (select hosobenhanid,vienphiid,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid from serviceprice where loaidoituong in (3,4) and departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + ") ser inner join (select hosobenhanid, patientid, patientname, bhytcode, birthday, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname from hosobenhan) hsba on hsba.hosobenhanid = ser.hosobenhanid inner join(select vienphiid, hosobenhanid, bhytid from vienphi where 1 = 1 " + _tieuchi_vp + _listuserid + ") vp on vp.hosobenhanid = hsba.hosobenhanid " + _tieuchi_bill + " inner join(select bhytid, bhytcode from bhyt) bh on bh.bhytid = vp.bhytid inner join(select departmentgroupid, departmentgroupname from departmentgroup) degp on degp.departmentgroupid = ser.departmentgroupid left join(select departmentid, departmentname from department) de on de.departmentid = ser.departmentid GROUP BY hsba.patientid, ser.vienphiid, hsba.patientname, bh.bhytcode, hsba.birthday, hsba.hc_sonha, hsba.hc_thon, hsba.hc_xacode, hsba.hc_xaname, hsba.hc_huyencode, hsba.hc_huyenname, ser.departmentid, de.departmentname, ser.departmentgroupid, degp.departmentgroupname; ";
+                    string _sql_timkiem = @"SELECT row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname) as stt, " + _select_bill + " hsba.patientid, ser.vienphiid, hsba.patientname, bh.bhytcode, to_char(hsba.birthday,'yyyy') as year, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi, sum(ser.servicepricemoney*ser.soluong) as thanhtien, ser.departmentid, de.departmentname, ser.departmentgroupid, degp.departmentgroupname, '0' as isgroup FROM (select hosobenhanid,vienphiid,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + ") ser inner join (select hosobenhanid,patientid,patientname,bhytcode,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select vienphiid,hosobenhanid,bhytid from vienphi where 1=1 " + _tieuchi_vp + _listuserid + ") vp on vp.hosobenhanid=hsba.hosobenhanid " + _tieuchi_bill + " inner join (select bhytid,bhytcode from bhyt) bh on bh.bhytid=vp.bhytid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department) de on de.departmentid=ser.departmentid GROUP BY hsba.patientid,ser.vienphiid,hsba.patientname,bh.bhytcode,hsba.birthday,hsba.hc_sonha,hsba.hc_thon,hsba.hc_xacode,hsba.hc_xaname,hsba.hc_huyencode,hsba.hc_huyenname,ser.departmentid,de.departmentname,ser.departmentgroupid, " + _select_bill + " degp.departmentgroupname;";
 
                     this.dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -424,17 +414,23 @@ namespace MedicalLink.BaoCao
                     List<ClassCommon.BC41_DVYeuCau_TongHopDTO> lstData_doanhthu = lstDataDoanhThu.Where(o => o.bhyt_groupcode == item_group.bhyt_groupcode).ToList();
                     decimal sum_soluong = 0;
                     decimal sum_thanhtien = 0;
+                    decimal sum_thanhtien_bhyt = 0;
+                    decimal sum_chenhlech = 0;
 
                     foreach (var item_tinhsum in lstData_doanhthu)
                     {
                         sum_soluong += item_tinhsum.soluong;
                         sum_thanhtien += item_tinhsum.thanhtien;
+                        sum_thanhtien_bhyt += item_tinhsum.thanhtien_bhyt;
+                        sum_chenhlech += item_tinhsum.chenhlech;
                     }
 
                     data_groupname.bhyt_groupcode = item_group.bhyt_groupcode;
                     data_groupname.stt = item_group.bhyt_groupcode;
                     data_groupname.soluong = sum_soluong;
                     data_groupname.thanhtien = sum_thanhtien;
+                    data_groupname.thanhtien_bhyt = sum_thanhtien_bhyt;
+                    data_groupname.chenhlech = sum_chenhlech;
                     data_groupname.isgroup = 1;
 
                     lstData_XuatBaoCao.Add(data_groupname);

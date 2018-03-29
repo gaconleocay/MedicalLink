@@ -12,7 +12,7 @@ Chú ý khi dùng SQL postgres: Khi chia lấy double thì phải viết sau d�
 VD: 80.0/100.0 
 NVLS trong orracle 
 coalesce(A.servicepricecode,B.servicepricecode,C.servicepricecode,D.servicepricecode) 
----- 
+----
 ==========================maubenhpham============= 
 KT là đơn thuốc/VT hay phiếu DV: 
 maubenhphamgrouptype in (5,6) 
@@ -289,6 +289,23 @@ datatype=0: thuốc; =1:vật tư
 		when 8 then 'Khác'
 	end) as xutrikhambenh, 
  
+--Nghề nghiệp
+01: Trẻ dưới 6 tuổi đi học, dưới 15 tuổi không đi học
+02: Sinh viên, học sinh
+03: Hưu và trên 60 tuổi
+04: Công nhân
+05: Nông dân
+06: Lực lượng vũ trang
+07: Trí thức
+08: Hành chính, sự nghiệp
+09: Y tế
+10: Dịch vụ
+12: Ngoại kiều
+13: Nhân dân
+15: Giáo viên
+18: Thương binh
+19: Kế toán
+99: Loại khác
  
  
  
@@ -464,7 +481,7 @@ Tóm lại, cấu trúc của lệnh IF rút gọn là:
 
 
 
-
+--trung đội 2
 
 
  

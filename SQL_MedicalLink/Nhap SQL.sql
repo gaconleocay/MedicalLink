@@ -959,6 +959,25 @@ File.Exists(this.txtPath.Text)
 
 
 0976655948
+--------
+xet nghiem
+
+select idmayxn,tenmayxn from service where idmayxn is not null
+group by idmayxn,tenmayxn
+order by tenmayxn
+--
+
+select 
+	serf.servicepricecode,
+	serf.servicepricename,
+	serf.servicepriceunit,
+	se.servicecode,
+	se.servicename,
+	se.serviceunit
+from servicepriceref serf
+	left join serviceref4price map on map.servicepricecode = serf.servicepricecode
+	left join service_ref se on se.servicecode=map.servicecode
+where serf.ServiceGroupType=2
 
 
 

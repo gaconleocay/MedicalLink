@@ -60,12 +60,14 @@
             this.bandedGridColumn7 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn9 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn10 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn17 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn11 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn12 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn21 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn13 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn14 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn15 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn26 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn22 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn23 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn24 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
@@ -187,12 +189,14 @@
             this.bandedGridColumn7,
             this.bandedGridColumn9,
             this.bandedGridColumn10,
+            this.bandedGridColumn17,
             this.bandedGridColumn11,
             this.bandedGridColumn12,
             this.bandedGridColumn21,
             this.bandedGridColumn13,
             this.bandedGridColumn14,
             this.bandedGridColumn15,
+            this.bandedGridColumn26,
             this.bandedGridColumn22,
             this.bandedGridColumn16,
             this.bandedGridColumn19,
@@ -262,7 +266,7 @@
             this.departmentgroupname.Name = "departmentgroupname";
             this.departmentgroupname.OptionsBand.ShowCaption = false;
             this.departmentgroupname.VisibleIndex = 1;
-            this.departmentgroupname.Width = 668;
+            this.departmentgroupname.Width = 290;
             // 
             // bandedGridColumn18
             // 
@@ -308,7 +312,6 @@
             this.bandedGridColumn_patientid.FieldName = "patientid";
             this.bandedGridColumn_patientid.Name = "bandedGridColumn_patientid";
             this.bandedGridColumn_patientid.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn_patientid.Visible = true;
             this.bandedGridColumn_patientid.Width = 110;
             // 
             // bandedGridColumn_vienphiid
@@ -322,8 +325,7 @@
             this.bandedGridColumn_vienphiid.Caption = "Mã viện phí";
             this.bandedGridColumn_vienphiid.FieldName = "vienphiid";
             this.bandedGridColumn_vienphiid.Name = "bandedGridColumn_vienphiid";
-            this.bandedGridColumn_vienphiid.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn_vienphiid.Visible = true;
+            this.bandedGridColumn_vienphiid.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn_vienphiid.Width = 91;
             // 
             // bandedGridColumn_patientname
@@ -338,7 +340,6 @@
             this.bandedGridColumn_patientname.FieldName = "patientname";
             this.bandedGridColumn_patientname.Name = "bandedGridColumn_patientname";
             this.bandedGridColumn_patientname.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn_patientname.Visible = true;
             this.bandedGridColumn_patientname.Width = 177;
             // 
             // gridBand2
@@ -468,12 +469,14 @@
             this.gridBand3.Columns.Add(this.bandedGridColumn7);
             this.gridBand3.Columns.Add(this.bandedGridColumn9);
             this.gridBand3.Columns.Add(this.bandedGridColumn10);
+            this.gridBand3.Columns.Add(this.bandedGridColumn17);
             this.gridBand3.Columns.Add(this.bandedGridColumn11);
             this.gridBand3.Columns.Add(this.bandedGridColumn12);
             this.gridBand3.Columns.Add(this.bandedGridColumn21);
             this.gridBand3.Columns.Add(this.bandedGridColumn13);
             this.gridBand3.Columns.Add(this.bandedGridColumn14);
             this.gridBand3.Columns.Add(this.bandedGridColumn15);
+            this.gridBand3.Columns.Add(this.bandedGridColumn26);
             this.gridBand3.Columns.Add(this.bandedGridColumn22);
             this.gridBand3.Columns.Add(this.bandedGridColumn23);
             this.gridBand3.Columns.Add(this.bandedGridColumn24);
@@ -483,7 +486,7 @@
             this.gridBand3.Columns.Add(this.bandedGridColumn20);
             this.gridBand3.Name = "gridBand3";
             this.gridBand3.VisibleIndex = 4;
-            this.gridBand3.Width = 2090;
+            this.gridBand3.Width = 2330;
             // 
             // bandedGridColumn5
             // 
@@ -598,6 +601,29 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_pttt", "{0:#,##0}")});
             this.bandedGridColumn10.Visible = true;
             this.bandedGridColumn10.Width = 120;
+            // 
+            // bandedGridColumn17
+            // 
+            this.bandedGridColumn17.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.bandedGridColumn17.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn17.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn17.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn17.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.bandedGridColumn17.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn17.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn17.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn17.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn17.Caption = "PTTT yêu cầu";
+            this.bandedGridColumn17.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn17.FieldName = "money_ptttyeucau";
+            this.bandedGridColumn17.Name = "bandedGridColumn17";
+            this.bandedGridColumn17.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn17.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_ptttyeucau", "{0:#,##0}")});
+            this.bandedGridColumn17.Visible = true;
+            this.bandedGridColumn17.Width = 120;
             // 
             // bandedGridColumn11
             // 
@@ -736,6 +762,29 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_vattu", "{0:#,##0}")});
             this.bandedGridColumn15.Visible = true;
             this.bandedGridColumn15.Width = 120;
+            // 
+            // bandedGridColumn26
+            // 
+            this.bandedGridColumn26.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.bandedGridColumn26.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn26.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn26.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.bandedGridColumn26.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn26.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn26.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn26.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn26.Caption = "Vật tư TT riêng";
+            this.bandedGridColumn26.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn26.FieldName = "money_vattu_ttrieng";
+            this.bandedGridColumn26.Name = "bandedGridColumn26";
+            this.bandedGridColumn26.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn26.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_vattu_ttrieng", "{0:#,##0}")});
+            this.bandedGridColumn26.Visible = true;
+            this.bandedGridColumn26.Width = 120;
             // 
             // bandedGridColumn22
             // 
@@ -950,12 +999,14 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn7;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn9;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn10;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn17;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn11;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn12;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn21;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn13;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn14;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn15;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn26;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn22;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn23;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn24;
@@ -963,6 +1014,5 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn16;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn19;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn20;
-
     }
 }

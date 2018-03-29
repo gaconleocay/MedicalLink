@@ -15,9 +15,13 @@ namespace MedicalLink.Dashboard.BCTongHopToanVien
 {
     public partial class BaoCaoTongHopToanVienFullSize : Form
     {
+        #region Khai bao
         DataTable dataBaoCao { get; set; }
         string tungaydenngay { get; set; }
         int kieuxem { get; set; }
+
+        #endregion
+
         public BaoCaoTongHopToanVienFullSize()
         {
             InitializeComponent();

@@ -24,11 +24,13 @@ namespace MedicalLink.ClassCommon
         public decimal money_xetnghiem { get; set; }
         public decimal money_cdhatdcn { get; set; }
         public decimal money_pttt { get; set; }
+        public decimal money_ptttyeucau { get; set; }
         public decimal money_dvktc { get; set; }
         public decimal money_giuongthuong { get; set; }
         public decimal money_giuongyeucau { get; set; }
         public decimal money_khac { get; set; }
         public decimal money_vattu { get; set; }
+        public decimal money_vattu_ttrieng { get; set; }
         public decimal money_mau { get; set; }
         public decimal money_thuoc { get; set; }
         public decimal money_tong { get; set; }

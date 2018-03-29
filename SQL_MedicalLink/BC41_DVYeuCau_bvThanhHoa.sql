@@ -37,7 +37,7 @@ select row_number () over (order by degp.departmentgroupname,de.departmentname,h
 	ser.departmentgroupid,
 	degp.departmentgroupname,
 	'0' as isgroup
-from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,servicepricedate,maubenhphamid from serviceprice where loaidoituong in (3,4) and  departmentid in ("+_lstPhongChonLayBC+") "+_tieuchi_ser+") ser
+from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,servicepricedate,maubenhphamid,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and  departmentid in ("+_lstPhongChonLayBC+") "+_tieuchi_ser+") ser
 	inner join (select hosobenhanid,patientid,patientname,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid
 	inner join (select vienphiid,hosobenhanid,bhytid from vienphi where 1=1 "+_tieuchi_vp+_listuserid+") vp on vp.hosobenhanid=hsba.hosobenhanid
 	inner join (select bhytid,bhytcode from bhyt) bh on bh.bhytid=vp.bhytid
@@ -50,7 +50,7 @@ from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituo
 	
 	
 ----Tổng hợp
---ngay 13/3
+--ngay 29/3
 select row_number () over (order by ser.bhyt_groupcode,ser.servicepricename) as stt,
 	ser.servicepricecode,
 	ser.servicepricename,
@@ -79,16 +79,20 @@ select row_number () over (order by ser.bhyt_groupcode,ser.servicepricename) as 
 	sum(ser.soluong) as soluong,
 	ser.servicepricemoney,
 	sum(ser.servicepricemoney*ser.soluong) as thanhtien,
+	ser.servicepricemoney_bhyt,
+	sum(ser.servicepricemoney_bhyt*ser.soluong) as thanhtien_bhyt,
+	sum((ser.servicepricemoney-ser.servicepricemoney_bhyt)*ser.soluong) as chenhlech,
 	'0' as isgroup		
-from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode from serviceprice where loaidoituong in (3,4) and departmentid in ("+_lstPhongChonLayBC+") "+_tieuchi_ser+") ser
+from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and departmentid in ("+_lstPhongChonLayBC+") "+_tieuchi_ser+") ser
 	inner join (select vienphiid from vienphi where 1=1 "+_tieuchi_vp+_listuserid+") vp on vp.vienphiid=ser.vienphiid
 	"+_tieuchi_bill+"
-group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney;
+group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney,ser.servicepricemoney_bhyt;
 
 
 ---Tong hop theo danh sach benh nhan 
--- ngay 13/3
+-- ngay 29/3
 SELECT row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname) as stt,
+	"+_select_bill+"
 	hsba.patientid,
 	ser.vienphiid,
 	hsba.patientname,
@@ -102,14 +106,14 @@ SELECT row_number () over (order by degp.departmentgroupname,de.departmentname,h
 	ser.departmentgroupid,
 	degp.departmentgroupname,
 	'0' as isgroup 
-FROM (select hosobenhanid,vienphiid,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid from serviceprice where loaidoituong in (3,4) and departmentid in ("+_lstPhongChonLayBC+") "+_tieuchi_ser+") ser 
+FROM (select hosobenhanid,vienphiid,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and departmentid in ("+_lstPhongChonLayBC+") "+_tieuchi_ser+") ser 
 	inner join (select hosobenhanid,patientid,patientname,bhytcode,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid 
-	inner join (select vienphiid,hosobenhanid,bhytid from vienphi where 1=1 and "+_tieuchi_vp+_listuserid+") vp on vp.hosobenhanid=hsba.hosobenhanid 
+	inner join (select vienphiid,hosobenhanid,bhytid from vienphi where 1=1 "+_tieuchi_vp+_listuserid+") vp on vp.hosobenhanid=hsba.hosobenhanid 
 	"+_tieuchi_bill+"
 	inner join (select bhytid,bhytcode from bhyt) bh on bh.bhytid=vp.bhytid 
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid 
 	left join (select departmentid,departmentname from department) de on de.departmentid=ser.departmentid
-GROUP BY hsba.patientid,ser.vienphiid,hsba.patientname,bh.bhytcode,hsba.birthday,hsba.hc_sonha,hsba.hc_thon,hsba.hc_xacode,hsba.hc_xaname,hsba.hc_huyencode,hsba.hc_huyenname,ser.departmentid,de.departmentname,ser.departmentgroupid,degp.departmentgroupname;
+GROUP BY hsba.patientid,ser.vienphiid,hsba.patientname,bh.bhytcode,hsba.birthday,hsba.hc_sonha,hsba.hc_thon,hsba.hc_xacode,hsba.hc_xaname,hsba.hc_huyencode,hsba.hc_huyenname,ser.departmentid,de.departmentname,ser.departmentgroupid, "+_select_bill+" degp.departmentgroupname;
 
 
 

@@ -16,6 +16,9 @@ namespace MedicalLink.ClassCommon
         public decimal soluong { get; set; }
         public decimal servicepricemoney { get; set; }
         public decimal thanhtien { get; set; }
+        public decimal servicepricemoney_bhyt { get; set; }
+        public decimal thanhtien_bhyt { get; set; }
+        public decimal chenhlech { get; set; }
         public int isgroup { get; set; }
     }
 }

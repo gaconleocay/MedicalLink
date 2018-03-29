@@ -1,4 +1,9 @@
 -- Table: ihs_servicespttt
+--ngay 23/3/2018: them cot 
+alter table ihs_servicespttt add money_ptttyeucau_bh double precision DEFAULT 0;
+alter table ihs_servicespttt add money_ptttyeucau_vp double precision DEFAULT 0;
+alter table ihs_servicespttt add money_vattu_ttrieng_bh double precision DEFAULT 0;
+alter table ihs_servicespttt add money_vattu_ttrieng_vp double precision DEFAULT 0;
 
 -- DROP TABLE ihs_servicespttt;
 

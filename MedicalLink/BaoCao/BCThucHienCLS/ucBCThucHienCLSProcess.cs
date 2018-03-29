@@ -110,9 +110,6 @@ namespace MedicalLink.BaoCao
                 mbp_departmentid += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
                 lstdepartmentgroupid += Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.Util_TypeConvertParse.ToInt64(lstPhongCheck[lstPhongCheck.Count - 1].ToString())).FirstOrDefault().departmentgroupid.ToString() + " ";
 
-                //load dât ve nguoi thuc hien
-                LoadDataNguoiThucHien(lstdepartmentgroupid);
-
                 string servicepricegroupcode = "";
                 if (GlobalStore.lstOtherList_Global != null && GlobalStore.lstOtherList_Global.Count > 0)
                 {
@@ -128,11 +125,18 @@ namespace MedicalLink.BaoCao
                     chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) ";
                     serf_nhomdichvu = " and servicepricegroupcode = '" + servicepricegroupcode + "' ";
                     mbp_departmentid = "";
+                    lstdepartmentgroupid = "51";
                 }
                 else
                 {
                     serf_nhomdichvu = " and servicepricegroupcode <> '" + servicepricegroupcode + "' ";
                 }
+
+                //load dât ve nguoi thuc hien
+                LoadDataNguoiThucHien(lstdepartmentgroupid);
+
+              
+                          
                 //Xet nghiem
                 if (cboLoaiBaoCao.EditValue.ToString() == "XN") 
                 {

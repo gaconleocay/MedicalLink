@@ -167,8 +167,11 @@ namespace MedicalLink.BaoCao
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
                 reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
-
                 thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
+                thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "So_PhauThuatThuThuat_CacKhoa.xlsx";
                 if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")

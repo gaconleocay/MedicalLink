@@ -1854,6 +1854,9 @@
     <Content Include="Templates\BC_42_ThongKeTaiNanThuongTich.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\BC_43_SoPhauThuatThuThuat_CLS.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

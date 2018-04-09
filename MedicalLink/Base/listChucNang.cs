@@ -492,9 +492,9 @@ namespace MedicalLink.Base
                 ClassCommon.classPermission REPORT_19 = new ClassCommon.classPermission();
                 REPORT_19.permissioncheck = false;
                 REPORT_19.permissioncode = "REPORT_19";
-                REPORT_19.permissionname = "Sổ thủ thuật";
+                REPORT_19.permissionname = "Sổ thủ thuật  - khoa lâm sàng";
                 REPORT_19.permissiontype = 3;
-                REPORT_19.permissionnote = "Sổ thủ thuật";
+                REPORT_19.permissionnote = "Sổ thủ thuật - khoa lâm sàng";
                 lstresult.Add(REPORT_19);
 
                 ClassCommon.classPermission REPORT_20 = new ClassCommon.classPermission();
@@ -682,7 +682,13 @@ namespace MedicalLink.Base
                 REPORT_42.permissionnote = "Báo cáo thống kê tai nạn thương tích";
                 lstresult.Add(REPORT_42);
 
-
+                ClassCommon.classPermission REPORT_43 = new ClassCommon.classPermission();
+                REPORT_43.permissioncheck = false;
+                REPORT_43.permissioncode = "REPORT_43";
+                REPORT_43.permissionname = "Sổ thủ thuật  - khoa cận lâm sàng";
+                REPORT_43.permissiontype = 3;
+                REPORT_43.permissionnote = "Sổ thủ thuật - khoa cận lâm sàng";
+                lstresult.Add(REPORT_43);
 
 
 

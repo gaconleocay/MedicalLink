@@ -89,10 +89,10 @@ namespace MedicalLink.BaoCao
             {
                 string sql_ngthu = "select userhisid,usercode,username from nhompersonnel where usergnhom='2';";
                 DataTable _dataThuNgan = condb.GetDataTable_HIS(sql_ngthu);
-                chkcomboListNguoiDuyet.Properties.DataSource = _dataThuNgan;
-                chkcomboListNguoiDuyet.Properties.DisplayMember = "username";
-                chkcomboListNguoiDuyet.Properties.ValueMember = "userhisid";
-                chkcomboListNguoiDuyet.CheckAll();
+                chkcboListNguoiThuTien.Properties.DataSource = _dataThuNgan;
+                chkcboListNguoiThuTien.Properties.DisplayMember = "username";
+                chkcboListNguoiThuTien.Properties.ValueMember = "userhisid";
+                chkcboListNguoiThuTien.CheckAll();
             }
             catch (Exception ex)
             {
@@ -112,9 +112,32 @@ namespace MedicalLink.BaoCao
                 string _tieuchi_bill = "";
                 string _lstPhongChonLayBC = "";
                 string _listuserid = "";
+                string _listuserid_thutien = "";
                 string _select_bill = "";
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+
+                //NGuoi thu tien
+                //if (cbbTieuChi.Text == "Theo ngày duyệt VP")
+                //{
+                _listuserid_thutien = " and userid in (";
+                List<Object> lstNhanVienCheck = chkcboListNguoiThuTien.Properties.Items.GetCheckedValues();
+                if (lstNhanVienCheck.Count > 0)
+                {
+                    for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                    {
+                        _listuserid_thutien += "'" + lstNhanVienCheck[i] + "', ";
+                    }
+                    _listuserid_thutien += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "') ";
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    frmthongbao.Show();
+                    return;
+                }
+                //}
+
                 //tieu chi
                 if (cbbTieuChi.Text == "Theo ngày chỉ định")
                 {
@@ -127,33 +150,14 @@ namespace MedicalLink.BaoCao
                 else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
                 {
                     _tieuchi_vp = " and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                    _tieuchi_bill = " inner join (select billid,vienphiid,billgroupcode,billcode from bill where dahuyphieu=0 " + _listuserid_thutien + ") b on b.billid=ser.billid_clbh_thutien ";
                 }
                 else if (cbbTieuChi.Text == "Theo ngày thu tiền")
                 {
-                    _tieuchi_bill = " inner join (select billid,vienphiid,billgroupcode,billcode from bill where billdate between '" + datetungay + "' and '" + datedenngay + "'  and dahuyphieu=0) b on b.billid=ser.billid_clbh_thutien ";
+                    _tieuchi_bill = " inner join (select billid,vienphiid,billgroupcode,billcode from bill where billdate between '" + datetungay + "' and '" + datedenngay + "'  and dahuyphieu=0 " + _listuserid_thutien + ") b on b.billid=ser.billid_clbh_thutien ";
                     _select_bill = " b.billgroupcode, b.billcode, ";
                 }
 
-                //NGuoi duyet
-                if (cbbTieuChi.Text == "Theo ngày duyệt VP")
-                {
-                    _listuserid = " and duyet_nguoiduyet_vp in (";
-                    List<Object> lstNhanVienCheck = chkcomboListNguoiDuyet.Properties.Items.GetCheckedValues();
-                    if (lstNhanVienCheck.Count > 0)
-                    {
-                        for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
-                        {
-                            _listuserid += "'" + lstNhanVienCheck[i] + "', ";
-                        }
-                        _listuserid += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "') ";
-                    }
-                    else
-                    {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
-                        frmthongbao.Show();
-                        return;
-                    }
-                }
                 //phong
                 List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
                 if (lstPhongCheck.Count > 0)
@@ -714,13 +718,13 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (cbbTieuChi.Text == "Theo ngày duyệt VP")
+                if (cbbTieuChi.Text == "Theo ngày duyệt VP" || cbbTieuChi.Text == "Theo ngày thu tiền")
                 {
-                    chkcomboListNguoiDuyet.Enabled = true;
+                    chkcboListNguoiThuTien.Enabled = true;
                 }
                 else
                 {
-                    chkcomboListNguoiDuyet.Enabled = false;
+                    chkcboListNguoiThuTien.Enabled = false;
                 }
             }
             catch (Exception ex)

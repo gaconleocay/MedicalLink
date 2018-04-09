@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCTongHopDoanhThuKhoa));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.cboLoaiThoiGian = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cboDoiTuong = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.cboTrangThai = new DevExpress.XtraEditors.ComboBoxEdit();
             this.bbbb = new DevExpress.XtraEditors.LabelControl();
             this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
             this.radioNam = new System.Windows.Forms.RadioButton();
@@ -117,10 +117,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThoiGian.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuong.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).BeginInit();
             this.panelControlData.SuspendLayout();
@@ -141,12 +141,12 @@
             // groupBoxFile
             // 
             this.groupBoxFile.Controls.Add(this.labelControl5);
-            this.groupBoxFile.Controls.Add(this.cboLoaiThoiGian);
+            this.groupBoxFile.Controls.Add(this.cboTieuChi);
             this.groupBoxFile.Controls.Add(this.groupBox1);
             this.groupBoxFile.Controls.Add(this.labelControl2);
             this.groupBoxFile.Controls.Add(this.cboDoiTuong);
             this.groupBoxFile.Controls.Add(this.labelControl4);
-            this.groupBoxFile.Controls.Add(this.cboTieuChi);
+            this.groupBoxFile.Controls.Add(this.cboTrangThai);
             this.groupBoxFile.Controls.Add(this.bbbb);
             this.groupBoxFile.Controls.Add(this.lblThoiGianLayBaoCao);
             this.groupBoxFile.Controls.Add(this.radioNam);
@@ -170,29 +170,29 @@
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Location = new System.Drawing.Point(407, 94);
+            this.labelControl5.Location = new System.Drawing.Point(412, 94);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(50, 14);
+            this.labelControl5.Size = new System.Drawing.Size(45, 14);
             this.labelControl5.TabIndex = 84;
-            this.labelControl5.Text = "Thời gian";
+            this.labelControl5.Text = "Tiêu chí";
             // 
-            // cboLoaiThoiGian
+            // cboTieuChi
             // 
-            this.cboLoaiThoiGian.EditValue = "Ngày duyệt viện phí";
-            this.cboLoaiThoiGian.Location = new System.Drawing.Point(467, 90);
-            this.cboLoaiThoiGian.Name = "cboLoaiThoiGian";
-            this.cboLoaiThoiGian.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiThoiGian.Properties.Appearance.Options.UseFont = true;
-            this.cboLoaiThoiGian.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiThoiGian.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboLoaiThoiGian.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cboTieuChi.EditValue = "Ngày duyệt viện phí";
+            this.cboTieuChi.Location = new System.Drawing.Point(467, 90);
+            this.cboTieuChi.Name = "cboTieuChi";
+            this.cboTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTieuChi.Properties.Appearance.Options.UseFont = true;
+            this.cboTieuChi.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTieuChi.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLoaiThoiGian.Properties.Items.AddRange(new object[] {
+            this.cboTieuChi.Properties.Items.AddRange(new object[] {
             "Ngày duyệt viện phí",
             "Ngày duyệt BHYT"});
-            this.cboLoaiThoiGian.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboLoaiThoiGian.Size = new System.Drawing.Size(180, 22);
-            this.cboLoaiThoiGian.TabIndex = 83;
+            this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboTieuChi.Size = new System.Drawing.Size(180, 22);
+            this.cboTieuChi.TabIndex = 83;
             // 
             // groupBox1
             // 
@@ -252,31 +252,31 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(412, 61);
+            this.labelControl4.Location = new System.Drawing.Point(401, 61);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(45, 14);
+            this.labelControl4.Size = new System.Drawing.Size(56, 14);
             this.labelControl4.TabIndex = 76;
-            this.labelControl4.Text = "Tiêu chí";
+            this.labelControl4.Text = "Trạng thái";
             // 
-            // cboTieuChi
+            // cboTrangThai
             // 
-            this.cboTieuChi.EditValue = "Đã thanh toán";
-            this.cboTieuChi.Location = new System.Drawing.Point(467, 57);
-            this.cboTieuChi.Name = "cboTieuChi";
-            this.cboTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTieuChi.Properties.Appearance.Options.UseFont = true;
-            this.cboTieuChi.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboTieuChi.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.cboTrangThai.EditValue = "Đã thanh toán";
+            this.cboTrangThai.Location = new System.Drawing.Point(467, 57);
+            this.cboTrangThai.Name = "cboTrangThai";
+            this.cboTrangThai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTrangThai.Properties.Appearance.Options.UseFont = true;
+            this.cboTrangThai.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTrangThai.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboTrangThai.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboTieuChi.Properties.Items.AddRange(new object[] {
+            this.cboTrangThai.Properties.Items.AddRange(new object[] {
             "Đã thanh toán",
             "Ra viện chưa thanh toán",
             "Chưa ra viện"});
-            this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboTieuChi.Size = new System.Drawing.Size(180, 22);
-            this.cboTieuChi.TabIndex = 75;
-            this.cboTieuChi.SelectedIndexChanged += new System.EventHandler(this.cboTieuChi_SelectedIndexChanged);
+            this.cboTrangThai.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboTrangThai.Size = new System.Drawing.Size(180, 22);
+            this.cboTrangThai.TabIndex = 75;
+            this.cboTrangThai.SelectedIndexChanged += new System.EventHandler(this.cboTieuChi_SelectedIndexChanged);
             // 
             // bbbb
             // 
@@ -1753,7 +1753,7 @@
             // 
             this.repositoryItemButton_View.AutoHeight = false;
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
             // 
             // ucBCTongHopDoanhThuKhoa
@@ -1771,10 +1771,10 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThoiGian.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuong.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
@@ -1836,7 +1836,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn32;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn33;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
+        private DevExpress.XtraEditors.ComboBoxEdit cboTrangThai;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn35;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn34;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn37;
@@ -1855,7 +1855,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.SimpleButton btnFullScreen;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.ComboBoxEdit cboLoaiThoiGian;
+        private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand STT;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;

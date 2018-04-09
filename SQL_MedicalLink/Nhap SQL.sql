@@ -980,6 +980,22 @@ from servicepriceref serf
 where serf.ServiceGroupType=2
 
 
+        //public static object SelectTheoCoSo(DateTime? tuNgay, DateTime? denNgay)
+        //{
+        //    return (from p in GlobalSettings.Database.HOCVIENs
+        //            where (p.MaCoSo == GlobalSettings.CoSoId) &&
+        //              (tuNgay == null ? true : p.NgayTiepNhan >= tuNgay) &&
+        //              (denNgay == null ? true : p.NgayTiepNhan <= denNgay)
+        //            select p).AsEnumerable().Select((obj, index) => new
+        //            {
+        //                Stt = index + 1,
+        //                obj.MaHocVien,
+        //                obj.TenHocVien,
+        //                obj.GioiTinhHocVien,
+        //                obj.NgaySinh,
+        //                obj.DiaChi,
+        //            });
+        //}
 
 
 

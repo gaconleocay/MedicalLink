@@ -674,6 +674,18 @@ namespace MedicalLink.Base
                 REPORT_41.permissionnote = "Báo cáo sử dụng dịch vụ - Đối tượng thanh toán Yêu cầu";
                 lstresult.Add(REPORT_41);
 
+                ClassCommon.classPermission REPORT_42 = new ClassCommon.classPermission();
+                REPORT_42.permissioncheck = false;
+                REPORT_42.permissioncode = "REPORT_42";
+                REPORT_42.permissionname = "Báo cáo thống kê tai nạn thương tích";
+                REPORT_42.permissiontype = 3;
+                REPORT_42.permissionnote = "Báo cáo thống kê tai nạn thương tích";
+                lstresult.Add(REPORT_42);
+
+
+
+
+
 
 
 

@@ -260,6 +260,18 @@
     <Compile Include="BaoCao\BC41_DVYeuCau\ucBC41_DVYeuCau.Designer.cs">
       <DependentUpon>ucBC41_DVYeuCau.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BC42_TaiNanThuongTich\ucBC42_TaiNanThuongTich.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC42_TaiNanThuongTich\ucBC42_TaiNanThuongTich.Designer.cs">
+      <DependentUpon>ucBC42_TaiNanThuongTich.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC43_SoThuThuatCLS\ucBC43_SoThuThuatCLS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC43_SoThuThuatCLS\ucBC43_SoThuThuatCLS.Designer.cs">
+      <DependentUpon>ucBC43_SoThuThuatCLS.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -549,6 +561,8 @@
     <Compile Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.Designer.cs">
       <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassCommon\BC42_TaiNanThuongTichDTO.cs" />
+    <Compile Include="ClassCommon\BC42_TaiNanThuongTich_LableDTO.cs" />
     <Compile Include="ClassCommon\BCBHYT21Chenh2018DTO.cs" />
     <Compile Include="ClassCommon\BCDoanhThuTheoLoaiHinhDVDTO.cs" />
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
@@ -1170,6 +1184,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC41_DVYeuCau\ucBC41_DVYeuCau.resx">
       <DependentUpon>ucBC41_DVYeuCau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC42_TaiNanThuongTich\ucBC42_TaiNanThuongTich.resx">
+      <DependentUpon>ucBC42_TaiNanThuongTich.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC43_SoThuThuatCLS\ucBC43_SoThuThuatCLS.resx">
+      <DependentUpon>ucBC43_SoThuThuatCLS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
       <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
@@ -1829,6 +1849,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\TOOLS_24_CapNhatLoaiHinhThanhToan.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_42_ThongKeTaiNanThuongTich.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -281,13 +281,13 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (cboTieuChi.Text == "Đã thanh toán")
+                if (cboTrangThai.Text == "Đã thanh toán")
                 {
                     //dateTuNgay.Enabled = true;
                     //dateDenNgay.Enabled = true;
                     dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                     dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-                    cboLoaiThoiGian.Enabled = true;
+                    cboTieuChi.Enabled = true;
                 }
                 else
                 {
@@ -295,7 +295,7 @@ namespace MedicalLink.Dashboard
                     //dateDenNgay.Enabled = false;
                     dateTuNgay.Value = Convert.ToDateTime(GlobalStore.KhoangThoiGianLayDuLieu);
                     dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-                    cboLoaiThoiGian.Enabled = false;
+                    cboTieuChi.Enabled = false;
                 }
             }
             catch (Exception ex)

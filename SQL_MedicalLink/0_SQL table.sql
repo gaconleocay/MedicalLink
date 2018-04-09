@@ -89,5 +89,21 @@ CREATE INDEX duyet_pttt_khoa_usercode_idx ON tools_duyet_pttt USING btree (khoa_
 
 
 
+---=========Table: tools_bc_tntt
+--drop table tools_bc_tntt
 
+CREATE TABLE tools_bc_tntt
+(
+  bctnttid serial NOT NULL,
+  stt text,
+  noi_dung_code text,
+  noi_dung_name text,
+  isgroup integer,
+  CONSTRAINT tools_bc_tntt_pkey PRIMARY KEY (bctnttid)
+)
+WITH (
+  OIDS=FALSE
+);
+
+CREATE INDEX bc_tntt_noi_dung_code_idx ON tools_bc_tntt USING btree (noi_dung_code);
 

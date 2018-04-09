@@ -4,7 +4,7 @@
 --Tra ket qua tung phan: nguoi tra kq, thoi gian tra kq
 --khong co t.gian tra kq tung phan thi lay t.gian tra kq cuoi cung 14/8
 --ngay 22/1: sua chuc nang duyet PTTT
-
+--ngay 2/4/2018 có sửa tiêu chí vào join: trong code chương trình 
 
 
 ----Su dung cho Khoa Chan doan hinh anh
@@ -192,7 +192,7 @@ FROM (
 		ser.duyetpttt_username,
 		ser.duyetpttt_usercode
 	FROM (select vienphiid,servicepriceid,departmentgroupid,departmentid,servicepricedate,maubenhphamid,servicepricecode,servicepricename,loaidoituong,medicalrecordid,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,duyetpttt_stt,duyetpttt_date,duyetpttt_username,duyetpttt_usercode,bhyt_groupcode from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+tieuchi_date_ser+_trangthaipttt+") ser 
-	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid 
+	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchiencls where 1=1 " + tieuchi_date_thuchien + ") cls on cls.servicepriceid=ser.servicepriceid 
 	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 
 	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid
@@ -400,7 +400,7 @@ FROM (
 		ser.duyetpttt_username,
 		ser.duyetpttt_usercode
 	FROM (select vienphiid,servicepriceid,departmentgroupid,departmentid,servicepricedate,maubenhphamid,servicepricecode,servicepricename,loaidoituong,medicalrecordid,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,duyetpttt_stt,duyetpttt_date,duyetpttt_username,duyetpttt_usercode,bhyt_groupcode from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+tieuchi_date_ser+_trangthaipttt+") ser 
-	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid 
+	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchienclswhere 1=1 " + tieuchi_date_thuchien + ") cls on cls.servicepriceid=ser.servicepriceid 
 	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 
 	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid

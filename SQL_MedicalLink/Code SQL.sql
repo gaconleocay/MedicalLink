@@ -380,10 +380,23 @@ table:
  
 ----- 
 yyyy-MM-dd HH:mm:ss 
- 
+HH:mm dd/MM/yyyy
+
 #,##0.00
 #,##0
 {0:#,##0}
+ 
+
+ 
+textEdit trong devexpress để hiển thị dạng  ###,###,###
+thì đặt thuộc tính: - EditValie=Null,
+- Properties Display = Custom #,##0
+- Properties MaskType=Nummeric; Editmask=n0
+ 
+ 
+ 
+ 
+ 
  
 SELECT TO_CHAR(vienphidate_ravien, 'yyyy-MM-dd HH24:MI:ss') from vienphi vp where vp.vienphiid=800543 
 	 TO_CHAR(vienphidate_ravien, 'HH24:MI dd/MM/yyyy')
@@ -405,8 +418,6 @@ Trong ví dụ này, nếu giá trị value là (none), thì null sẽ được 
 -------------- Concat trong postgres
 string_agg(case when b.dahuyphieu=1 then b.billcode end, '; ') as billcode_huy,
 partition
-alter table tools_otherlist add tools_otherlistnote text;
-alter table tools_othertypelist add tools_othertypelistnote text;
 ------------
  //string lastupdatedate_bhyt = DateTime.ParseExact(datalichsuKCB.lastupdatedate_bhyt.ToString(), "d/M/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 

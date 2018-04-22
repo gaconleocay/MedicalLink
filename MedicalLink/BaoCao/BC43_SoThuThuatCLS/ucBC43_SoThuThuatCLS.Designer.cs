@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBC43_SoThuThuatCLS));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cboLoaiDichVu = new DevExpress.XtraEditors.ComboBoxEdit();
             this.label2 = new System.Windows.Forms.Label();
             this.chkListDSPhongThucHien = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -78,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiDichVu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkListDSPhongThucHien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
@@ -99,6 +102,8 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.labelControl4);
+            this.groupBoxFile.Controls.Add(this.cboLoaiDichVu);
             this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.chkListDSPhongThucHien);
             this.groupBoxFile.Controls.Add(this.labelControl2);
@@ -116,6 +121,34 @@
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Location = new System.Drawing.Point(484, 25);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(67, 16);
+            this.labelControl4.TabIndex = 85;
+            this.labelControl4.Text = "Loại dịch vụ";
+            // 
+            // cboLoaiDichVu
+            // 
+            this.cboLoaiDichVu.EditValue = "Xét nghiệm";
+            this.cboLoaiDichVu.Location = new System.Drawing.Point(554, 22);
+            this.cboLoaiDichVu.Name = "cboLoaiDichVu";
+            this.cboLoaiDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiDichVu.Properties.Appearance.Options.UseFont = true;
+            this.cboLoaiDichVu.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiDichVu.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLoaiDichVu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboLoaiDichVu.Properties.Items.AddRange(new object[] {
+            "Xét nghiệm",
+            "Chẩn đoán hình ảnh"});
+            this.cboLoaiDichVu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboLoaiDichVu.Size = new System.Drawing.Size(155, 22);
+            this.cboLoaiDichVu.TabIndex = 84;
+            this.cboLoaiDichVu.SelectedIndexChanged += new System.EventHandler(this.cboLoaiDichVu_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -861,6 +894,7 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiDichVu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkListDSPhongThucHien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
@@ -920,5 +954,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.ComboBoxEdit cboLoaiDichVu;
     }
 }

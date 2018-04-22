@@ -61,7 +61,7 @@ CREATE INDEX tools_datachenh2018tmp_createusercode_idx ON tools_datachenh2018tmp
 
 
 -----SQL bao cao Tmp
---ngay 26/2/2018 : khong tach ngoai tinh - noi tinh (ap dung cho doi tuong<>Vien phi)
+--ngay 26/2/2018 : khong tach ngoai tinh - noi tinh (ap dung cho doi tuong<>BHYT)
 
 SELECT
 	vp.loaivienphiid, 
@@ -192,6 +192,7 @@ GROUP BY vp.loaivienphiid,
 	
 --Bao cao lay du lieu chenh
 --ngay 14/3/2018: thay doi khoa chinh=servicepricecode; them ngoai tinh
+--ngay 22/4/2018: them cot gia 1/7
 
 SELECT (row_number() OVER (PARTITION BY O.tennhom_bhyt ORDER BY O.ngoaitinh,O.servicepricenamebhyt)) as stt, O.*
 FROM
@@ -215,10 +216,12 @@ FROM
 		(chenh.soluong*sef.servicepricemoney_bhyt_tr13*(chenh.tyle/100.0)) as thanhtien_truoc13,
 		sef.servicepricemoney_bhyt_13 as giabhyt_13,
 		(chenh.soluong*sef.servicepricemoney_bhyt_13*(chenh.tyle/100.0)) as thanhtien_13,
-		chenh.servicepricemoney_bhyt as giabhyt_17,
-		chenh.thanhtien as thanhtien_17,
-		(chenh.thanhtien-(chenh.soluong*coalesce(sef.servicepricemoney_bhyt_13,0)*(chenh.tyle/100.0))) as chenh_17_13,
-		(chenh.thanhtien-(chenh.soluong*coalesce(sef.servicepricemoney_bhyt_tr13,0)*(chenh.tyle/100.0))) as chenh_17_truoc13,
+		chenh.servicepricemoney_bhyt as giabhyt_21,
+		chenh.thanhtien as thanhtien_21,
+		sef.servicepricemoney_bhyt_17 as giabhyt_17,
+		(chenh.soluong*sef.servicepricemoney_bhyt_17*(chenh.tyle/100.0)) as thanhtien_17,
+		((coalesce(sef.servicepricemoney_bhyt_17,0)-coalesce(sef.servicepricemoney_bhyt_13,0))*chenh.soluong*(chenh.tyle/100.0)) as chenh_17_13,
+		((coalesce(sef.servicepricemoney_bhyt_17,0)-coalesce(sef.servicepricemoney_bhyt_tr13,0))*chenh.soluong*(chenh.tyle/100.0)) as chenh_17_truoc13,
 		'0' as isgroup
 	FROM tools_datachenh2018tmp chenh
 		left join tools_servicerefchenh2018 sef on sef.servicepricecode=chenh.servicepricecode

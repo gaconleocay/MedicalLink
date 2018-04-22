@@ -980,22 +980,13 @@ from servicepriceref serf
 where serf.ServiceGroupType=2
 
 
-        //public static object SelectTheoCoSo(DateTime? tuNgay, DateTime? denNgay)
-        //{
-        //    return (from p in GlobalSettings.Database.HOCVIENs
-        //            where (p.MaCoSo == GlobalSettings.CoSoId) &&
-        //              (tuNgay == null ? true : p.NgayTiepNhan >= tuNgay) &&
-        //              (denNgay == null ? true : p.NgayTiepNhan <= denNgay)
-        //            select p).AsEnumerable().Select((obj, index) => new
-        //            {
-        //                Stt = index + 1,
-        //                obj.MaHocVien,
-        //                obj.TenHocVien,
-        //                obj.GioiTinhHocVien,
-        //                obj.NgaySinh,
-        //                obj.DiaChi,
-        //            });
-        //}
+ [4/5/18, 17:07:36] Nguyễn Hoàng Minh: 1 vđề nữa của biểu chênh rp_40
+[4/5/18, 17:07:49] Nguyễn Hoàng Minh: a muốn chỉnh lại trường tỷ lệ tt ở biểu đó
+[4/5/18, 17:11:30] Nguyễn Hoàng Minh: lấy (thành tiền 21)/ (thành tiền 1/7)= tỷ lệ tt
+[4/5/18, 17:11:59] Nguyễn Hoàng Minh: a so lại vs cái tltt của e hiện tại nó k đúng vs thười điểm tt
+[4/5/18, 17:12:16] Nguyễn Hoàng Minh: giống như mấy trường hợp ngày giường nằm ghép htrc ae trao đổi đấy
+[4/5/18, 17:12:38] Nguyễn Hoàng Minh: nếu sửa theo cthức ở trên thì sẽ chuẩn hơn
+[4/5/18, 17:12:49] Nguyễn Hoàng Minh: còn theo trường tltt kia thì bị lệch
 
 
 

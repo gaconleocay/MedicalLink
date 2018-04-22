@@ -1,4 +1,5 @@
-----BC Thống kê tình hình BN ra, vào viện (nội trú) TT 4388 BYT ngay 8/8
+----BC Thống kê tình hình BN ra, vào viện (nội trú) TT 4388 BYT 
+--ngay 17/4
 
 select row_number () over (order by "+orderby+") as stt,
 	vp.patientid,
@@ -14,7 +15,7 @@ select row_number () over (order by "+orderby+") as stt,
 	krv.departmentgroupname as departmentgroupname_ravien,
 	(case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as vienphidate_ravien,
 	(case when cast(to_char(vp.vienphidate_ravien, 'HH24MI') as numeric)>0 and cast(to_char(vp.vienphidate_ravien, 'HH24MI') as numeric)<1201 then 'Buổi sáng'
-			else 'Buổi chiều' end) as buoi_ravien,
+			else (case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then 'Buổi chiều' end) end) as buoi_ravien,
 	(case vp.vienphistatus 
 		when 2 then 'Đã duyệt VP' 
 		when 1 then 

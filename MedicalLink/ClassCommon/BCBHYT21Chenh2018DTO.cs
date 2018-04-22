@@ -23,6 +23,8 @@ namespace MedicalLink.ClassCommon
         public decimal thanhtien_13 { get; set; }
         public decimal giabhyt_17 { get; set; }
         public decimal thanhtien_17 { get; set; }
+        public decimal giabhyt_21 { get; set; }
+        public decimal thanhtien_21 { get; set; }
         public decimal chenh_17_13 { get; set; }
         public decimal chenh_17_truoc13 { get; set; }
         public int isgroup { get; set; }

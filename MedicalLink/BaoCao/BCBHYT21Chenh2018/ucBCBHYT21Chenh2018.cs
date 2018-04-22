@@ -207,10 +207,10 @@ namespace MedicalLink.BaoCao
                     }
 
                     //Lay bao cao chenh --ngay 28/2/2018
-                    string _sql_dataChenh = @"SELECT (row_number() OVER (PARTITION BY O.ngoaitinh,O.tennhom_bhyt ORDER BY O.ngoaitinh,O.servicepricenamebhyt)) as stt, O.*
+                    string _sql_dataChenh = @"SELECT (row_number() OVER (PARTITION BY O.tennhom_bhyt ORDER BY O.ngoaitinh,O.servicepricenamebhyt)) as stt, O.*
                     FROM
-	                    (SELECT distinct chenh.datachenh2018tmpid,	
-                            chenh.ngoaitinh,	   
+	                    (SELECT distinct chenh.datachenh2018tmpid,
+		                    chenh.ngoaitinh,
 		                    chenh.servicepricecode,
 		                    chenh.bhyt_groupcode,
 		                    (case when chenh.bhyt_groupcode='01KB' then 'I - Công khám'
@@ -229,14 +229,16 @@ namespace MedicalLink.BaoCao
 		                    (chenh.soluong*sef.servicepricemoney_bhyt_tr13*(chenh.tyle/100.0)) as thanhtien_truoc13,
 		                    sef.servicepricemoney_bhyt_13 as giabhyt_13,
 		                    (chenh.soluong*sef.servicepricemoney_bhyt_13*(chenh.tyle/100.0)) as thanhtien_13,
-		                    chenh.servicepricemoney_bhyt as giabhyt_17,
-		                    chenh.thanhtien as thanhtien_17,
-		                    (chenh.thanhtien-(chenh.soluong*coalesce(sef.servicepricemoney_bhyt_13,0)*(chenh.tyle/100.0))) as chenh_17_13,
-		                    (chenh.thanhtien-(chenh.soluong*coalesce(sef.servicepricemoney_bhyt_tr13,0)*(chenh.tyle/100.0))) as chenh_17_truoc13,
+		                    chenh.servicepricemoney_bhyt as giabhyt_21,
+		                    chenh.thanhtien as thanhtien_21,
+		                    sef.servicepricemoney_bhyt_17 as giabhyt_17,
+		                    (chenh.soluong*sef.servicepricemoney_bhyt_17*(chenh.tyle/100.0)) as thanhtien_17,
+		                    ((coalesce(sef.servicepricemoney_bhyt_17,0)-coalesce(sef.servicepricemoney_bhyt_13,0))*chenh.soluong*(chenh.tyle/100.0)) as chenh_17_13,
+		                    ((coalesce(sef.servicepricemoney_bhyt_17,0)-coalesce(sef.servicepricemoney_bhyt_tr13,0))*chenh.soluong*(chenh.tyle/100.0)) as chenh_17_truoc13,
 		                    '0' as isgroup
 	                    FROM tools_datachenh2018tmp chenh
 		                    left join tools_servicerefchenh2018 sef on sef.servicepricecode=chenh.servicepricecode
-	                    WHERE chenh.createdate='" + _createdate + "' and chenh.createusercode='" + Base.SessionLogin.SessionUsercode + "') O WHERE O.soluong>0; ";
+	                    WHERE chenh.createdate='" + _createdate + "' and chenh.createusercode='" + Base.SessionLogin.SessionUsercode + "') O WHERE O.soluong > 0; ";
                     this.dataBaoCao = condb.GetDataTable_MeL(_sql_dataChenh);
                     if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
                     {
@@ -339,6 +341,7 @@ namespace MedicalLink.BaoCao
                     decimal NT_sum_thanhtien_tr13 = 0;
                     decimal NT_sum_thanhtien_13 = 0;
                     decimal NT_sum_thanhtien_17 = 0;
+                    decimal NT_sum_thanhtien_21 = 0;
                     decimal NT_sum_chenh1713 = 0;
                     decimal NT_sum_chenh17tr13 = 0;
 
@@ -349,6 +352,7 @@ namespace MedicalLink.BaoCao
                         NT_sum_thanhtien_tr13 += lstData_NgoaiTinh[i].thanhtien_truoc13;
                         NT_sum_thanhtien_13 += lstData_NgoaiTinh[i].thanhtien_13;
                         NT_sum_thanhtien_17 += lstData_NgoaiTinh[i].thanhtien_17;
+                        NT_sum_thanhtien_21 += lstData_NgoaiTinh[i].thanhtien_21;
                         NT_sum_chenh1713 += lstData_NgoaiTinh[i].chenh_17_13;
                         NT_sum_chenh17tr13 += lstData_NgoaiTinh[i].chenh_17_truoc13;
                     }
@@ -358,6 +362,7 @@ namespace MedicalLink.BaoCao
                     data_ngoaitinh.thanhtien_truoc13 = NT_sum_thanhtien_tr13;
                     data_ngoaitinh.thanhtien_13 = NT_sum_thanhtien_13;
                     data_ngoaitinh.thanhtien_17 = NT_sum_thanhtien_17;
+                    data_ngoaitinh.thanhtien_21 = NT_sum_thanhtien_21;
                     data_ngoaitinh.chenh_17_13 = NT_sum_chenh1713;
                     data_ngoaitinh.chenh_17_truoc13 = NT_sum_chenh17tr13;
                     data_ngoaitinh.isgroup = 1;
@@ -373,6 +378,7 @@ namespace MedicalLink.BaoCao
                         decimal sum_thanhtien_tr13 = 0;
                         decimal sum_thanhtien_13 = 0;
                         decimal sum_thanhtien_17 = 0;
+                        decimal sum_thanhtien_21 = 0;
                         decimal sum_chenh1713 = 0;
                         decimal sum_chenh17tr13 = 0;
 
@@ -383,6 +389,7 @@ namespace MedicalLink.BaoCao
                             sum_thanhtien_tr13 += lstData_NhomBHYT[i].thanhtien_truoc13;
                             sum_thanhtien_13 += lstData_NhomBHYT[i].thanhtien_13;
                             sum_thanhtien_17 += lstData_NhomBHYT[i].thanhtien_17;
+                            sum_thanhtien_21 += lstData_NhomBHYT[i].thanhtien_21;
                             sum_chenh1713 += lstData_NhomBHYT[i].chenh_17_13;
                             sum_chenh17tr13 += lstData_NhomBHYT[i].chenh_17_truoc13;
                         }
@@ -393,6 +400,7 @@ namespace MedicalLink.BaoCao
                         data_groupname.thanhtien_truoc13 = sum_thanhtien_tr13;
                         data_groupname.thanhtien_13 = sum_thanhtien_13;
                         data_groupname.thanhtien_17 = sum_thanhtien_17;
+                        data_groupname.thanhtien_21 = sum_thanhtien_21;
                         data_groupname.chenh_17_13 = sum_chenh1713;
                         data_groupname.chenh_17_truoc13 = sum_chenh17tr13;
                         data_groupname.isgroup = 2;

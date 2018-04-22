@@ -17,8 +17,9 @@ namespace MedicalLink.ChucNang
 {
     public partial class ucSuaMaTenGiaDV : UserControl
     {
+        #region Khai bao
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        // internal string string_loctimkiem="";
+        #endregion
         public ucSuaMaTenGiaDV()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace MedicalLink.ChucNang
             this.mmeMaDV.Enter += new System.EventHandler(this.mmeMaDV_Enter);
         }
 
+        #region Load
         // Hiển thị Text Hint Mã dịch vụ
         private void mmeMaDV_Leave(object sender, EventArgs e)
         {
@@ -47,92 +49,104 @@ namespace MedicalLink.ChucNang
                 mmeMaDV.ForeColor = SystemColors.WindowText;
             }
         }
+        private void ucBCDSBNSDdv_Load(object sender, EventArgs e)
+        {
+            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+        }
 
-        //Sự kiện tìm kiếm
+        #endregion
+
+        #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 string[] dsdv_temp;
-                string dsdv = "";
-                string trangthaiVP = "";
-                string loaivienphiid = "";
-                string doituongbenhnhanid = "";
-                string datetungay = "";
-                string datedenngay = "";
+                string _dsdichvu_ser = " and servicepricecode in (";
+                string _trangthaiVP = "";
+                string _loaivienphiid = "";
+                string _doituongbenhnhanid = "";
+                string _tieuchi_ser = "";
+                string _tieuchi_vp = "";
 
-                if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,)") || (cbbTrangThaiVP.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
+                if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,)"))
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
                 else
                 {
-                    gridControlDSDV.DataSource = null;
                     // Lấy dữ liệu danh sách dịch vụ nhập vào
                     dsdv_temp = mmeMaDV.Text.Split(',');
                     for (int i = 0; i < dsdv_temp.Length - 1; i++)
                     {
-                        dsdv += "'" + dsdv_temp[i].ToString() + "',";
+                        _dsdichvu_ser += "'" + dsdv_temp[i].ToString() + "',";
                     }
-                    dsdv += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString() + "'";
+                    _dsdichvu_ser += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString() + "') ";
 
                     // Lấy Tiêu chí trạng thai vien phi: vienphistatus
                     if (cbbTrangThaiVP.Text.Trim() == "Đang điều trị")
                     {
-                        trangthaiVP = "and vp.vienphistatus=0";
+                        _trangthaiVP = " and vienphistatus=0 ";
                     }
                     else if (cbbTrangThaiVP.Text.Trim() == "Đóng BA nhưng chưa duyệt VP")
                     {
-                        trangthaiVP = " and vp.vienphidate_ravien != '0001-01-01 00:00:00' and (vp.vienphistatus_vp IS NULL or vp.vienphistatus_vp=0) and vp.vienphistatus<>2 ";
+                        _trangthaiVP = " and vienphidate_ravien != '0001-01-01 00:00:00' and (vienphistatus_vp IS NULL or vienphistatus_vp=0) and vienphistatus<>2 ";
                     }
                     else if (cbbTrangThaiVP.Text.Trim() == "Đã duyệt viện phí")
                     {
-                        trangthaiVP = " and vp.vienphistatus_vp=1 ";
+                        _trangthaiVP = " and vienphistatus>0 and vienphistatus_vp=1 ";
                     }
-
                     // Lấy loaivienphiid
                     if (cbbLoaiBA.Text == "Ngoại trú")
                     {
-                        loaivienphiid = "and vp.loaivienphiid=1 ";
+                        _loaivienphiid = " and loaivienphiid=1 ";
                     }
                     else if (cbbLoaiBA.Text == "Nội trú")
                     {
-                        loaivienphiid = "and vp.loaivienphiid=0 ";
+                        _loaivienphiid = " and loaivienphiid=0 ";
+                    }
+                    //doi tuong BN
+                    if (cboDoiTuongBN.Text == "BHYT")
+                    {
+                        _doituongbenhnhanid = " and doituongbenhnhanid=1 ";
+                    }
+                    else if (cboDoiTuongBN.Text == "Viện phí")
+                    {
+                        _doituongbenhnhanid = " and doituongbenhnhanid<>1 ";
+                    }
+                    //tieu chi
+                    string _datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    string _datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    if (cboTieuChi.Text == "Theo ngày chỉ định")
+                    {
+                        _tieuchi_ser = " and servicepricedate between '" + _datetungay + "' and '" + _datedenngay + "' ";
+                    }
+                    else if (cboTieuChi.Text == "Theo ngày vào viện")
+                    {
+                        _tieuchi_vp = " and vienphidate between '" + _datetungay + "' and '" + _datedenngay + "' ";
+                    }
+                    else if (cboTieuChi.Text == "Theo ngày ra viện")
+                    {
+                        _tieuchi_vp = " and vienphidate_ravien between '" + _datetungay + "' and '" + _datedenngay + "' ";
+                    }
+                    else if (cboTieuChi.Text == "Theo ngày duyệt VP")
+                    {
+                        _tieuchi_vp = " and duyet_ngayduyet_vp between '" + _datetungay + "' and '" + _datedenngay + "' ";
+                    }
+
+                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepriceid) as stt, ser.servicepriceid, ser.maubenhphamid as maphieu, vp.patientid as mabn, vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoachidinh, de.departmentname as tenphongchidinh, ser.servicepricecode as madv, ser.servicepricename as tendv_yc, ser.servicepricename_bhyt as tendv_bhyt, ser.servicepricename_nhandan as tendv_vp, ser.servicepricename_nuocngoai as tendv_nnn, ser.servicepricemoney as dongia, ser.servicepricemoney_nhandan as dongiavienphi, ser.servicepricemoney_bhyt as dongiabhyt, ser.servicepricemoney_nuocngoai as dongiannn, ser.servicepricedate as thoigianchidinh, ser.soluong as soluong, vp.vienphidate as thoigianvaovien, (case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, (case when vp.vienphistatus=0 then 'Đang điều trị' else (case when vienphistatus_vp=1 then 'Đã thanh toán' else 'Chưa thanh toán' end) end) as trangthai, ser.huongdansudung FROM (select * from serviceprice where 1=1 " + _tieuchi_ser + _dsdichvu_ser + ") ser inner join (select * from vienphi where 1=1 " + _tieuchi_vp + _trangthaiVP + _loaivienphiid + _doituongbenhnhanid + ") vp on ser.vienphiid=vp.vienphiid inner join hosobenhan hsba on vp.hosobenhanid=hsba.hosobenhanid inner join departmentgroup degp on ser.departmentgroupid=degp.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (0,2,3,9)) de on ser.departmentid=de.departmentid;";
+
+                    DataTable _dataBaoCao = condb.GetDataTable_HIS(sqlquerry);
+                    if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
+                    {
+                        gridControlDSDV.DataSource = _dataBaoCao;
                     }
                     else
                     {
-                        loaivienphiid = " ";
-                    }
-
-                    // Lấy trường đối tượng BN: loaidoituong
-                    if (chkBHYT.Checked == true && chkVP.Checked == false)
-                    {
-                        doituongbenhnhanid = "and vp.doituongbenhnhanid=1 ";
-                    }
-                    else if (chkBHYT.Checked == false && chkVP.Checked == true)
-                    {
-                        doituongbenhnhanid = "and vp.doituongbenhnhanid<>1 ";
-                    }
-                    else if (chkBHYT.Checked == true && chkVP.Checked == true)
-                    {
-                        doituongbenhnhanid = " ";
-                    }
-
-                    // Lấy từ ngày, đến ngày
-                    datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                    datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-
-                    string sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepriceid) as stt, ser.servicepriceid as servicepriceid, ser.maubenhphamid as maphieu, vp.patientid as mabn,vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoachidinh, de.departmentname as tenphongchidinh, ser.servicepricecode as madv, ser.servicepricename as tendv_yc, ser.servicepricename_bhyt as tendv_bhyt, ser.servicepricename_nhandan as tendv_vp, ser.servicepricename_nuocngoai as tendv_nnn, ser.servicepricemoney as dongia, ser.servicepricemoney_nhandan as dongiavienphi, ser.servicepricemoney_bhyt as dongiabhyt, ser.servicepricemoney_nuocngoai as dongiannn, ser.servicepricedate as thoigianchidinh, ser.soluong as soluong, vp.vienphidate as thoigianvaovien, (case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as thoigianravien, vp.duyet_ngayduyet_vp as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end as trangthai, ser.huongdansudung FROM serviceprice ser inner join vienphi vp on ser.vienphiid=vp.vienphiid inner join hosobenhan hsba on vp.hosobenhanid=hsba.hosobenhanid inner join departmentgroup degp on ser.departmentgroupid=degp.departmentgroupid inner join department de on ser.departmentid=de.departmentid and de.departmenttype in (0,2,3,9) WHERE ser.servicepricecode in (" + dsdv + ") and ser.servicepricedate >= '" + datetungay + "' and ser.servicepricedate <= '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ;";
-
-                    // string_loctimkiem= "serviceprice.servicepricedate > '" + datetungay + "' and serviceprice.servicepricedate < '" + datedenngay + "' " + trangthaiVP + loaivienphiid + doituongbenhnhanid + " ";
-
-                    DataView dv = new DataView(condb.GetDataTable_HIS(sqlquerry));
-                    gridControlDSDV.DataSource = dv;
-
-                    if (gridViewDSDV.RowCount == 0)
-                    {
+                        gridControlDSDV.DataSource = null;
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                     }
@@ -144,14 +158,9 @@ namespace MedicalLink.ChucNang
             }
             SplashScreenManager.CloseForm();
         }
+        #endregion
 
-        private void ucBCDSBNSDdv_Load(object sender, EventArgs e)
-        {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-        }
-
-        //xuat ra excel
+        #region Events
         private void tbnExport_Click(object sender, EventArgs e)
         {
             if (gridViewDSDV.RowCount > 0)
@@ -207,17 +216,6 @@ namespace MedicalLink.ChucNang
             }
 
         }
-
-        private void gridViewDSDV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
-            }
-        }
-
         private void gridViewDSDV_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
         {
             if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
@@ -251,9 +249,8 @@ namespace MedicalLink.ChucNang
                 e.Menu.Items.Add(itemSuaTenNhieuDV);
             }
         }
-
         //Sửa giá 1 row đang chọn
-        void itemSuaGiaMotDV_Click(object sender, EventArgs e)
+        private void itemSuaGiaMotDV_Click(object sender, EventArgs e)
         {
             try
             {
@@ -294,7 +291,7 @@ namespace MedicalLink.ChucNang
         }
 
         //Sửa giá tất cả dịch vụ có mã đang chọn
-        void itemSuaGiaNhieuDV_Click(object sender, EventArgs e)
+        private void itemSuaGiaNhieuDV_Click(object sender, EventArgs e)
         {
 
             try
@@ -311,7 +308,7 @@ namespace MedicalLink.ChucNang
         }
 
         //Sửa tên 1 row đang chọn
-        void itemSuaTenMotDV_Click(object sender, EventArgs e)
+        private void itemSuaTenMotDV_Click(object sender, EventArgs e)
         {
             try
             {
@@ -336,7 +333,7 @@ namespace MedicalLink.ChucNang
         }
 
         //Sửa tên tất cả dịch vụ có mã đang chọn
-        void itemSuaTenNhieuDV_Click(object sender, EventArgs e)
+        private void itemSuaTenNhieuDV_Click(object sender, EventArgs e)
         {
             try
             {
@@ -360,6 +357,22 @@ namespace MedicalLink.ChucNang
                 Base.Logging.Warn(ex);
             }
         }
+        #endregion
+
+        #region Custom
+        private void gridViewDSDV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.LightGreen;
+                e.Appearance.ForeColor = Color.Black;
+            }
+        }
+
+
+        #endregion
+
 
 
 

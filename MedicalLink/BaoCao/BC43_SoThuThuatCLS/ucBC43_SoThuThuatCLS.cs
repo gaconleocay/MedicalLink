@@ -35,13 +35,27 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 6 || o.departmenttype == 7).OrderBy(p=>p.departmenttype).ToList();
-                if (lstDSKhoa != null && lstDSKhoa.Count > 0)
+                if (cboLoaiDichVu.Text == "Xét nghiệm")
                 {
-                    chkListDSPhongThucHien.Properties.DataSource = lstDSKhoa;
-                    chkListDSPhongThucHien.Properties.DisplayMember = "departmentname";
-                    chkListDSPhongThucHien.Properties.ValueMember = "departmentid";
+                    var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 6).OrderBy(p => p.departmenttype).ToList();
+                    if (lstDSKhoa != null && lstDSKhoa.Count > 0)
+                    {
+                        chkListDSPhongThucHien.Properties.DataSource = lstDSKhoa;
+                        chkListDSPhongThucHien.Properties.DisplayMember = "departmentname";
+                        chkListDSPhongThucHien.Properties.ValueMember = "departmentid";
+                    }
                 }
+                else
+                {
+                    var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(p => p.departmenttype).ToList();
+                    if (lstDSKhoa != null && lstDSKhoa.Count > 0)
+                    {
+                        chkListDSPhongThucHien.Properties.DataSource = lstDSKhoa;
+                        chkListDSPhongThucHien.Properties.DisplayMember = "departmentname";
+                        chkListDSPhongThucHien.Properties.ValueMember = "departmentid";
+                    }
+                }
+
                 chkListDSPhongThucHien.CheckAll();
             }
             catch (Exception ex)
@@ -50,6 +64,8 @@ namespace MedicalLink.BaoCao
             }
         }
         #endregion
+
+        #region TIm kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -59,7 +75,7 @@ namespace MedicalLink.BaoCao
                 string _tieuchi_tgchidinh_mbp = "";
                 string _tieuchi_tgthuchien_mbp = "";
                 string _phongthuchien = "";
-
+                string sql_timkiem = "";
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
@@ -80,7 +96,14 @@ namespace MedicalLink.BaoCao
                 }
                 _phongthuchien += lstKhoaCheck[lstKhoaCheck.Count - 1] + ") ";
 
-                string sql_timkiem = @" SELECT ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt, hsba.patientcode, hsba.patientname, ser.maubenhphamid, (case when hsba.gioitinhcode='01' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nam, (case hsba.gioitinhcode when '02' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nu, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, (case when vp.doituongbenhnhanid=1 then 'x' end) as COBHYT, mbp.chandoan as chandoantruocphauthuat, mbp.chandoan as chandoansauphauthuat, ser.servicepricecode, ser.servicepricename, cls.phuongphappttt, '' as pttt_phuongphapvocam, kchd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, ser.servicepricedate, mbp.maubenhphamfinishdate, (case serf.pttt_loaiid when 1 then 'Phẫu thuật đặc biệt' when 2 then 'Phẫu thuật loại 1' when 3 then 'Phẫu thuật loại 2' when 4 then 'Phẫu thuật loại 3' when 5 then 'Thủ thuật đặc biệt' when 6 then 'Thủ thuật loại 1' when 7 then 'Thủ thuật loại 2' when 8 then 'Thủ thuật loại 3' else '' end) as loaipttt, bspt.username as phauthuatvien, bsgm.username as bacsigayme FROM (select servicepriceid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') " + _tieuchi_tgchidinh_ser + " ) ser inner join (select maubenhphamid,chandoan,maubenhphamfinishdate from maubenhpham where 1=1 " + _tieuchi_tgchidinh_mbp + _tieuchi_tgthuchien_mbp + _phongthuchien+") mbp on mbp.maubenhphamid=ser.maubenhphamid left join (select * from thuchiencls where 1=1) cls on cls.servicepriceid=ser.servicepriceid inner join (select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode inner join (select hosobenhanid,patientcode,patientname,gioitinhcode,birthday,hosobenhandate,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid left join (select departmentgroupid,departmentgroupname from departmentgroup) kchd on kchd.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) pcd on pcd.departmentid=ser.departmentid left join nhompersonnel bspt on bspt.userhisid=cls.phauthuatvien left join nhompersonnel bsgm on bsgm.userhisid=cls.bacsigayme;";
+                if (cboLoaiDichVu.Text == "Xét nghiệm")
+                {
+                    sql_timkiem = @"SELECT ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt, hsba.patientcode, hsba.patientname, ser.maubenhphamid, (case when hsba.gioitinhcode='01' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nam, (case hsba.gioitinhcode when '02' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nu, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, (case when vp.doituongbenhnhanid=1 then 'x' end) as COBHYT, mbp.chandoan as chandoantruocphauthuat, mbp.chandoan as chandoansauphauthuat, ser.servicepricecode, ser.servicepricename, ser.servicepricename as phuongphappttt, '' as pttt_phuongphapvocam, kchd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, ser.servicepricedate, mbp.maubenhphamfinishdate as phauthuatthuthuatdate, (case serf.pttt_loaiid when 1 then 'Phẫu thuật đặc biệt' when 2 then 'Phẫu thuật loại 1' when 3 then 'Phẫu thuật loại 2' when 4 then 'Phẫu thuật loại 3' when 5 then 'Thủ thuật đặc biệt' when 6 then 'Thủ thuật loại 1' when 7 then 'Thủ thuật loại 2' when 8 then 'Thủ thuật loại 3' else '' end) as loaipttt, ntkq_cc.username as phauthuatvien, bsgm.username as bacsigayme FROM (select servicepriceid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('03XN','07KTC') " + _tieuchi_tgchidinh_ser + " ) ser inner join (select maubenhphamid,chandoan,maubenhphamfinishdate,usertrakq from maubenhpham where 1=1 " + _tieuchi_tgchidinh_mbp + _tieuchi_tgthuchien_mbp + _phongthuchien + ") mbp on mbp.maubenhphamid=ser.maubenhphamid left join (select servicepriceid,phuongphappttt,phauthuatvien,bacsigayme,phumo1,phumo3 from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid inner join (select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('03XN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode inner join (select hosobenhanid,patientcode,patientname,gioitinhcode,birthday,hosobenhandate,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid left join (select departmentgroupid,departmentgroupname from departmentgroup) kchd on kchd.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) pcd on pcd.departmentid=ser.departmentid left join nhompersonnel ntkq_cc ON ntkq_cc.userhisid=mbp.usertrakq left join nhompersonnel bsgm on bsgm.userhisid=cls.bacsigayme;";
+                }
+                else
+                {
+                    sql_timkiem = @"SELECT ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt, hsba.patientcode, hsba.patientname, ser.maubenhphamid, (case when hsba.gioitinhcode='01' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nam, (case hsba.gioitinhcode when '02' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nu, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, (case when vp.doituongbenhnhanid=1 then 'x' end) as COBHYT, mbp.chandoan as chandoantruocphauthuat, mbp.chandoan as chandoansauphauthuat, ser.servicepricecode, ser.servicepricename, ser.servicepricename as phuongphappttt, '' as pttt_phuongphapvocam, kchd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, ser.servicepricedate, (case when se.servicetimetrakq<>'0001-01-01 00:00:00' then se.servicetimetrakq else ((case when mbp.maubenhphamfinishdate<>'0001-01-01 00:00:00' then mbp.maubenhphamfinishdate end)) end) as phauthuatthuthuatdate, (case serf.pttt_loaiid when 1 then 'Phẫu thuật đặc biệt' when 2 then 'Phẫu thuật loại 1' when 3 then 'Phẫu thuật loại 2' when 4 then 'Phẫu thuật loại 3' when 5 then 'Thủ thuật đặc biệt' when 6 then 'Thủ thuật loại 1' when 7 then 'Thủ thuật loại 2' when 8 then 'Thủ thuật loại 3' else '' end) as loaipttt, COALESCE(ntkq.username,ntkq_cc.username) as phauthuatvien, bsgm.username as bacsigayme FROM (select servicepriceid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN','07KTC') " + _tieuchi_tgchidinh_ser + " ) ser inner join (select maubenhphamid,chandoan,maubenhphamfinishdate,usertrakq from maubenhpham where 1=1 " + _tieuchi_tgchidinh_mbp + _tieuchi_tgthuchien_mbp + _phongthuchien + ") mbp on mbp.maubenhphamid=ser.maubenhphamid left join (select servicepriceid,phuongphappttt,phauthuatvien,bacsigayme,phumo1,phumo3 from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid inner join (select servicepriceid,servicetimetrakq,serviceusertrakq from service where servicecode not in (select sef.servicegroupcode from service_ref sef group by sef.servicegroupcode)) se on se.servicepriceid=ser.servicepriceid inner join (select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('04CDHA','05TDCN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode inner join (select hosobenhanid,patientcode,patientname,gioitinhcode,birthday,hosobenhandate,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid inner join (select hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid left join (select departmentgroupid,departmentgroupname from departmentgroup) kchd on kchd.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) pcd on pcd.departmentid=ser.departmentid left join nhompersonnel ntkq_cc ON ntkq_cc.userhisid=mbp.usertrakq left join nhompersonnel bsgm on bsgm.userhisid=cls.bacsigayme left join nhompersonnel ntkq ON ntkq.usercode=se.serviceusertrakq;";
+                }
                 this.dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
                 {
@@ -99,6 +122,8 @@ namespace MedicalLink.BaoCao
             }
             SplashScreenManager.CloseForm();
         }
+
+        #endregion
 
         #region In va xuat file
         private void tbnExport_Click(object sender, EventArgs e)
@@ -181,7 +206,19 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
+        private void cboLoaiDichVu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadDanhSachPhongThucHien();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         #endregion
+
+
     }
 }

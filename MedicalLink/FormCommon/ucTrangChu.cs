@@ -24,7 +24,7 @@ namespace MedicalLink.FormCommon
         public string CurrentTabPage { get; set; }
         public int SelectedTabPageIndex { get; set; }
         internal frmMain frmMain;
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        Base.ConnectDatabase condb = new Base.ConnectDatabase();
         private string MaDatabase = String.Empty;
 
         public string serverhost = ConfigurationManager.AppSettings["ServerHost"].ToString();
@@ -57,7 +57,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -76,7 +76,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -85,20 +85,21 @@ namespace MedicalLink.FormCommon
             try
             {
                 //Kiểm tra phân quyền
-                if (SessionLogin.SessionUsercode != MedicalLink.Base.KeyTrongPhanMem.AdminUser_key)
+                if (SessionLogin.SessionUsercode != Base.KeyTrongPhanMem.AdminUser_key)
                 {
                     if (SessionLogin.KiemTraLicenseSuDung)
                     {
-                        if (MedicalLink.Base.CheckPermission.ChkPerModule("SYS_05"))
+                        if (Base.CheckPermission.ChkPerModule("SYS_05"))
                         {
                             xtraTabCaiDat.PageVisible = true;
-                            navBarItemConnectDB.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_01");
-                            navBarItemListNguoiDung.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_02");
-                            navBarItemListNhanVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_03");
-                            navBarItemListOption.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_04");
-                            navBarItemDMDungChung.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_06");
-                            navBarItemDMBenhVien.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_07");
-                            navBarItemDMDichVu.Visible = MedicalLink.Base.CheckPermission.ChkPerModule("SYS_08");
+                            navBarItemConnectDB.Visible = Base.CheckPermission.ChkPerModule("SYS_01");
+                            navBarItemListNguoiDung.Visible = Base.CheckPermission.ChkPerModule("SYS_02");
+                            navBarItemListNhanVien.Visible = Base.CheckPermission.ChkPerModule("SYS_03");
+                            navBarItemListOption.Visible = Base.CheckPermission.ChkPerModule("SYS_04");
+                            navBarItemDMDungChung.Visible = Base.CheckPermission.ChkPerModule("SYS_06");
+                            navBarItemDMBenhVien.Visible = Base.CheckPermission.ChkPerModule("SYS_07");
+                            navBarItemDMDichVu.Visible = Base.CheckPermission.ChkPerModule("SYS_08");
+                            navBarItemHaoPhiMayXN.Visible = Base.CheckPermission.ChkPerModule("SYS_09");
 
                         }
                         else
@@ -116,6 +117,7 @@ namespace MedicalLink.FormCommon
                         navBarItemDMDungChung.Visible = false;
                         navBarItemDMBenhVien.Visible = false;
                         navBarItemDMDichVu.Visible = false;
+                        navBarItemHaoPhiMayXN.Visible = false;
 
                     }
                     navBarItemMaHoaGiaiMa.Visible = false;//luon luon false
@@ -125,7 +127,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -135,21 +137,21 @@ namespace MedicalLink.FormCommon
             {
                 HienThiThongTinVeLicense();
                 //Thong tin ve Database
-                linkLabelTenDatabase.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost"].ToString().Trim(), true) + " [" + MedicalLink.Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString().Trim(), true) + "]";
+                linkLabelTenDatabase.Text = Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost"].ToString().Trim(), true) + " [" + Base.EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString().Trim(), true) + "]";
 
                 //THong tin ve tai khoan dang nhap
-                if (MedicalLink.Base.SessionLogin.SessionUsername == "" || MedicalLink.Base.SessionLogin.SessionUsername == null)
+                if (Base.SessionLogin.SessionUsername == "" || Base.SessionLogin.SessionUsername == null)
                 {
                     linkLabelTenNguoiDung.Text = ".........";
                 }
                 else
                 {
-                    linkLabelTenNguoiDung.Text = MedicalLink.Base.SessionLogin.SessionUsername;
+                    linkLabelTenNguoiDung.Text = Base.SessionLogin.SessionUsername;
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -163,7 +165,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
         private void HienThiThongTinVeLicense()
@@ -185,7 +187,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
         private void LoadLogoThongTin()
@@ -196,7 +198,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
         private void LoadThongTinVeCSYT()
@@ -217,7 +219,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -236,7 +238,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
         #endregion
@@ -250,7 +252,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
 
@@ -276,7 +278,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
         private void xtraTabControlHome_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
@@ -299,7 +301,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
         #endregion
@@ -314,7 +316,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                Base.Logging.Warn(ex);
             }
         }
 

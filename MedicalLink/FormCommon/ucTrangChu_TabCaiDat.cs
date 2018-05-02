@@ -172,5 +172,21 @@ namespace MedicalLink.FormCommon
             }
         }
 
+        private void navBarItemHaoPhiMayXN_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucChiPhiXetNghiem frmResult = new ucChiPhiXetNghiem();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+
     }
 }

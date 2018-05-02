@@ -54,6 +54,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkTatCa = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -64,6 +65,7 @@
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSHoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -78,6 +80,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkTatCa);
             this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.chkcomboListNguoiThu);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -379,7 +382,7 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 3;
+            this.gridColumn4.VisibleIndex = 2;
             this.gridColumn4.Width = 122;
             // 
             // gridColumn5
@@ -399,7 +402,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 4;
+            this.gridColumn5.VisibleIndex = 3;
             this.gridColumn5.Width = 151;
             // 
             // gridColumn6
@@ -417,7 +420,7 @@
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 5;
+            this.gridColumn6.VisibleIndex = 4;
             this.gridColumn6.Width = 550;
             // 
             // gridColumn7
@@ -441,7 +444,7 @@
             this.gridColumn7.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "tongtien_thu", "{0:#,##0}")});
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 6;
+            this.gridColumn7.VisibleIndex = 5;
             this.gridColumn7.Width = 161;
             // 
             // gridColumn8
@@ -465,7 +468,7 @@
             this.gridColumn8.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "miengiam", "{0:#,##0}")});
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
+            this.gridColumn8.VisibleIndex = 6;
             this.gridColumn8.Width = 161;
             // 
             // gridColumn9
@@ -483,8 +486,17 @@
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 8;
+            this.gridColumn9.VisibleIndex = 7;
             this.gridColumn9.Width = 200;
+            // 
+            // chkTatCa
+            // 
+            this.chkTatCa.Location = new System.Drawing.Point(600, 22);
+            this.chkTatCa.Name = "chkTatCa";
+            this.chkTatCa.Properties.Caption = "Tất cả";
+            this.chkTatCa.Size = new System.Drawing.Size(75, 19);
+            this.chkTatCa.TabIndex = 88;
+            this.chkTatCa.CheckedChanged += new System.EventHandler(this.chkTatCa_CheckedChanged);
             // 
             // ucBangKeTongHopHoaDon
             // 
@@ -508,6 +520,7 @@
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSHoaDon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSHoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -540,5 +553,6 @@
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListNguoiThu;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraEditors.CheckEdit chkTatCa;
     }
 }

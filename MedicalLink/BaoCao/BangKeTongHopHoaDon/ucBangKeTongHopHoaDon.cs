@@ -81,15 +81,18 @@ namespace MedicalLink.BaoCao
                     loaiphieuthuid = 2;
                 }
                 List<Object> lstNhanVienCheck = chkcomboListNguoiThu.Properties.Items.GetCheckedValues();
-                if (lstNhanVienCheck.Count > 0)
+                if (lstNhanVienCheck.Count > 0 || chkTatCa.Checked)
                 {
-                    for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                    if (chkTatCa.Checked == false)
                     {
-                        _listuserid += "'" + lstNhanVienCheck[i] + "', ";
+                        _listuserid = " and userid in (";
+                        for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                        {
+                            _listuserid += "'" + lstNhanVienCheck[i] + "', ";
+                        }
+                        _listuserid += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "') ";
                     }
-                    _listuserid += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "'";
-
-                    string sql_getdata = " SELECT ROW_NUMBER () OVER (ORDER BY O.billgroupcode) as stt, O.billgroupcode, '' as billgroupdate, (O.sophieuden-O.sophieutu+1) as sophieusudung, (O.sophieutu || '-' || O.sophieuden) as sophieutu_den, O.billcode_huy, O.tongtien_thu, O.miengiam, O.userid, O.nguoithu FROM (SELECT b.billgroupcode, (select min(cast(billcode as numeric)) from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") and loaiphieuthuid='" + loaiphieuthuid + "' and billgroupcode=b.billgroupcode) as sophieutu, (select max(cast(billcode as numeric)) from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") and loaiphieuthuid='" + loaiphieuthuid + "' and billgroupcode=b.billgroupcode) as sophieuden, string_agg(case when b.dahuyphieu=1 then b.billcode end,'; ') as billcode_huy, sum(case when b.dahuyphieu=0 then (b.datra-b.miengiam) else 0 end) as tongtien_thu, sum(case when b.dahuyphieu=0 then b.miengiam else 0 end) as miengiam, b.userid, ngthu.username as nguoithu FROM (select billgroupcode,dahuyphieu,datra,billcode,(case when miengiam<>'' then cast(replace(miengiam,',','') as numeric) else 0 end) as miengiam,userid from bill where billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ") and loaiphieuthuid='" + loaiphieuthuid + "') b LEFT JOIN nhompersonnel ngthu ON ngthu.userhisid=b.userid group by b.billgroupcode,b.userid,ngthu.username) O ;";
+                    string sql_getdata = " SELECT ROW_NUMBER () OVER (ORDER BY O.billgroupcode) as stt, O.billgroupcode, '' as billgroupdate, (O.sophieuden-O.sophieutu+1) as sophieusudung, (O.sophieutu || '-' || O.sophieuden) as sophieutu_den, O.billcode_huy, O.tongtien_thu, O.miengiam, O.userid, O.nguoithu FROM (SELECT b.billgroupcode, (select min(cast(billcode as numeric)) from bill where billdate between '" + tungay + "' and '" + denngay + "' " + _listuserid + " and loaiphieuthuid='" + loaiphieuthuid + "' and billgroupcode=b.billgroupcode) as sophieutu, (select max(cast(billcode as numeric)) from bill where billdate between '" + tungay + "' and '" + denngay + "' " + _listuserid + " and loaiphieuthuid='" + loaiphieuthuid + "' and billgroupcode=b.billgroupcode) as sophieuden, string_agg(case when b.dahuyphieu=1 then b.billcode end,'; ') as billcode_huy, sum(case when b.dahuyphieu=0 then (b.datra-b.miengiam) else 0 end) as tongtien_thu, sum(case when b.dahuyphieu=0 then b.miengiam else 0 end) as miengiam, b.userid, ngthu.username as nguoithu FROM (select billgroupcode,dahuyphieu,datra,billcode,(case when miengiam<>'' then cast(replace(miengiam,',','') as numeric) else 0 end) as miengiam,userid from bill where billdate between '" + tungay + "' and '" + denngay + "' " + _listuserid + " and loaiphieuthuid='" + loaiphieuthuid + "') b LEFT JOIN nhompersonnel ngthu ON ngthu.userhisid=b.userid group by b.billgroupcode,b.userid,ngthu.username) O ;";
 
                     this.dataDanhSachSo = condb.GetDataTable_HIS(sql_getdata);
 
@@ -221,5 +224,22 @@ namespace MedicalLink.BaoCao
         }
 
         #endregion
+
+        private void chkTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkTatCa.Checked)
+                {
+                    chkcomboListNguoiThu.Enabled = false;
+                }
+                else
+                { chkcomboListNguoiThu.Enabled = true; }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
     }
 }

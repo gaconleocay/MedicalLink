@@ -107,3 +107,72 @@ WITH (
 
 CREATE INDEX bc_tntt_noi_dung_code_idx ON tools_bc_tntt USING btree (noi_dung_code);
 
+
+
+
+
+---=========Table: ml_mayxnkhuvuc
+--drop table ml_mayxnkhuvuc
+
+CREATE TABLE ml_mayxnkhuvuc
+(
+  MAYXNKHUVUCID serial not null,
+  mayxn_ma integer,
+  mayxn_ten text,
+  khuvuc_ma text,
+  khuvuc_ten text,
+  lastuserupdated text,
+  lasttimeupdated timestamp without time zone,
+  CONSTRAINT ml_mayxnkhuvuc_pkey PRIMARY KEY (mayxnkhuvucid)
+)
+WITH (
+  OIDS=FALSE
+);
+
+CREATE INDEX mayxnkhuvuc_mayxn_ma_idx ON ml_mayxnkhuvuc USING btree (mayxn_ma);
+CREATE INDEX mayxnkhuvuc_khuvuc_ma_idx ON ml_mayxnkhuvuc USING btree (khuvuc_ma);
+
+
+
+
+---=========Table: ml_mayxnchiphi
+--drop table ml_mayxnchiphi
+
+CREATE TABLE ml_mayxnchiphi
+(
+  mayxndmxncpid serial NOT NULL,
+  mayxn_ma integer,
+  mayxn_ten text,
+  servicepricecode text,
+  servicepricename text,
+  servicepricenamenhandan text,
+  servicepricenamebhyt text,
+  servicepricenamenuocngoai text,
+  servicepriceunit text,
+  servicepricefee double precision default 0,
+  servicepricefeenhandan double precision default 0,
+  servicepricefeebhyt double precision default 0,
+  servicepricefeenuocngoai double precision default 0,
+  cp_hoachat double precision default 0,
+  cp_haophixn double precision default 0,
+  cp_luong double precision default 0,
+  cp_diennuoc double precision default 0,
+  cp_khmaymoc double precision default 0,
+  cp_khxaydung double precision default 0,
+  lastuserupdated text,
+  lasttimeupdated timestamp without time zone,
+  CONSTRAINT ml_mayxnchiphi_pkey PRIMARY KEY (mayxndmxncpid)
+)
+WITH (
+  OIDS=FALSE
+);
+
+CREATE INDEX mayxnchiphi_mayxn_ma_idx ON ml_mayxnchiphi USING btree (mayxn_ma);
+CREATE INDEX mayxnchiphi_servicepricecode_idx ON ml_mayxnchiphi USING btree (servicepricecode);
+
+
+
+
+
+
+

@@ -88,15 +88,18 @@ namespace MedicalLink.BaoCao
                 }
 
                 List<Object> lstNhanVienCheck = chkcomboListNguoiThu.Properties.Items.GetCheckedValues();
-                if (lstNhanVienCheck.Count > 0)
+                if (lstNhanVienCheck.Count > 0 || chkTatCa.Checked)
                 {
-                    for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                    if (chkTatCa.Checked == false)
                     {
-                        _listuserid += "'" + lstNhanVienCheck[i] + "', ";
+                        _listuserid = " and userid in (";
+                        for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                        {
+                            _listuserid += "'" + lstNhanVienCheck[i] + "', ";
+                        }
+                        _listuserid += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "') ";
                     }
-                    _listuserid += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "'";
-
-                    string sql_getdata = "SELECT row_number () over (order by b.billgroupcode,cast(b.billcode as numeric)) as stt, b.billgroupcode, b.billcode, '' as billgrouptu_den, b.billdate, (b.datra-b.miengiam) as sotien, b.miengiam as miengiam, b.patientid, b.vienphiid, b.patientname, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi, hsba.bhytcode, b.userid, ngthu.username as nguoithu FROM (select hosobenhanid,patientid,vienphiid,patientname,billgroupcode,dahuyphieu,datra,(case when miengiam<>'' then cast(replace(miengiam,',','') as numeric) else 0 end) as miengiam,billcode,billdate,userid from bill where loaiphieuthuid='" + loaiphieuthuid + "' and dahuyphieu=0 and billdate between '" + tungay + "' and '" + denngay + "' and userid in (" + _listuserid + ")) b INNER JOIN (select vienphiid,hosobenhanid from vienphi) vp on vp.vienphiid=b.vienphiid INNER JOIN (select hosobenhanid,patientcode,patientname,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame,bhytcode from hosobenhan) hsba on hsba.hosobenhanid=vp.hosobenhanid LEFT JOIN nhompersonnel ngthu ON ngthu.userhisid=b.userid; ";
+                    string sql_getdata = "SELECT row_number () over (order by b.billgroupcode,cast(b.billcode as numeric)) as stt, b.billgroupcode, b.billcode, '' as billgrouptu_den, b.billdate, (b.datra-b.miengiam) as sotien, b.miengiam as miengiam, b.patientid, b.vienphiid, b.patientname, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname else '' end)) as diachi, hsba.bhytcode, b.userid, ngthu.username as nguoithu FROM (select hosobenhanid,patientid,vienphiid,patientname,billgroupcode,dahuyphieu,datra,(case when miengiam<>'' then cast(replace(miengiam,',','') as numeric) else 0 end) as miengiam,billcode,billdate,userid from bill where loaiphieuthuid='" + loaiphieuthuid + "' and dahuyphieu=0 and billdate between '" + tungay + "' and '" + denngay + "' " + _listuserid + ") b INNER JOIN (select vienphiid,hosobenhanid from vienphi) vp on vp.vienphiid=b.vienphiid INNER JOIN (select hosobenhanid,patientcode,patientname,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame,bhytcode from hosobenhan) hsba on hsba.hosobenhanid=vp.hosobenhanid LEFT JOIN nhompersonnel ngthu ON ngthu.userhisid=b.userid; ";
 
                     DataTable dataDanhSachSo = condb.GetDataTable_HIS(sql_getdata);
                     if (dataDanhSachSo != null && dataDanhSachSo.Rows.Count > 0)
@@ -281,6 +284,24 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void chkTatCa_CheckStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkTatCa.Checked)
+                {
+                    chkcomboListNguoiThu.Enabled = false;
+                }
+                else
+                { chkcomboListNguoiThu.Enabled = true; }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         #endregion
+
+
     }
 }

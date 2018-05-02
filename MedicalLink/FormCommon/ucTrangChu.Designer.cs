@@ -75,6 +75,7 @@
             this.navBarItemQLMayTram = new DevExpress.XtraNavBar.NavBarItem();
             this.panelCaiDatChiTiet = new DevExpress.XtraEditors.PanelControl();
             this.timerThongBao = new System.Windows.Forms.Timer(this.components);
+            this.navBarItemHaoPhiMayXN = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControlHome)).BeginInit();
             this.xtraTabControlHome.SuspendLayout();
             this.xtraTabTTCoBan.SuspendLayout();
@@ -442,7 +443,8 @@
             this.navBarItemQLMayTram,
             this.navBarItemDMDungChung,
             this.navBarItemDMBenhVien,
-            this.navBarItemDMDichVu});
+            this.navBarItemDMDichVu,
+            this.navBarItemHaoPhiMayXN});
             this.navBarControl1.Location = new System.Drawing.Point(0, 0);
             this.navBarControl1.Name = "navBarControl1";
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 159;
@@ -509,7 +511,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemListOption),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDMDungChung),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDMBenhVien),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDMDichVu)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemDMDichVu),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navBarItemHaoPhiMayXN)});
             this.navBarGroup2.Name = "navBarGroup2";
             // 
             // navBarItemListNguoiDung
@@ -681,6 +684,20 @@
             this.timerThongBao.Interval = 2000;
             this.timerThongBao.Tick += new System.EventHandler(this.timerThongBao_Tick);
             // 
+            // navBarItemHaoPhiMayXN
+            // 
+            this.navBarItemHaoPhiMayXN.Appearance.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.navBarItemHaoPhiMayXN.Appearance.Options.UseFont = true;
+            this.navBarItemHaoPhiMayXN.AppearanceDisabled.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarItemHaoPhiMayXN.AppearanceDisabled.Options.UseFont = true;
+            this.navBarItemHaoPhiMayXN.AppearanceHotTracked.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.navBarItemHaoPhiMayXN.AppearanceHotTracked.Options.UseFont = true;
+            this.navBarItemHaoPhiMayXN.AppearancePressed.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.navBarItemHaoPhiMayXN.AppearancePressed.Options.UseFont = true;
+            this.navBarItemHaoPhiMayXN.Caption = "Hao phí máy xét nghiệm";
+            this.navBarItemHaoPhiMayXN.Name = "navBarItemHaoPhiMayXN";
+            this.navBarItemHaoPhiMayXN.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navBarItemHaoPhiMayXN_LinkClicked);
+            // 
             // ucTrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -756,5 +773,6 @@
         private DevExpress.XtraNavBar.NavBarItem navBarItemDMDungChung;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDMBenhVien;
         private DevExpress.XtraNavBar.NavBarItem navBarItemDMDichVu;
+        private DevExpress.XtraNavBar.NavBarItem navBarItemHaoPhiMayXN;
     }
 }

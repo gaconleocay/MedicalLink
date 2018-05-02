@@ -62,38 +62,40 @@ CREATE INDEX tools_datachenh2018tmp_createusercode_idx ON tools_datachenh2018tmp
 
 -----SQL bao cao Tmp
 --ngay 26/2/2018 : khong tach ngoai tinh - noi tinh (ap dung cho doi tuong<>BHYT)
+--ngay 26/4/2018 fix loi nhom bhyt_groupcode
 
 SELECT
+	'' as ngoaitinh,
 	vp.loaivienphiid, 
 	vp.doituongbenhnhanid,
 	serf.servicepricecodeuser,
-	serf.bhyt_groupcode,
+	ser.bhyt_groupcode,
 	serf.servicepricecode,
 	serf.servicepricenamebhyt,
 	ser.servicepricemoney_bhyt,
-	sum((case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as soluong,
-	(case when serf.bhyt_groupcode='01KB' then 
+	sum((case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as soluong,
+	(case when ser.bhyt_groupcode='01KB' then 
 				(case when ser.lankhambenh in (2,3) then 30
 						when coalesce(ser.lankhambenh,0)=0 then 100
 						else 0 end) 
-		when serf.bhyt_groupcode='12NG' then
+		when ser.bhyt_groupcode='12NG' then
 				(case when ser.loaingaygiuong=1 then 50
 						when ser.loaingaygiuong=2 then 30
 						else 100 end)
-		when serf.bhyt_groupcode in ('06PTTT','07KTC') then
+		when ser.bhyt_groupcode in ('06PTTT','07KTC') then
 				(case when ser.loaipttt=2 then 80
 						when ser.loaipttt=1 then 50
 						else 100 end)
 		else 100
 		end) as tyle,
-	sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien
+	sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien
 FROM (select * from vienphi where 1=1 "+_tieuchi_vp+_doituongBN+_trangthai_vp+_loaivienphi+") vp
 	inner join (select * from serviceprice where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') "+_tieuchi_ser+_loaidoituong+") ser on ser.vienphiid=vp.vienphiid
 	inner join (select * from servicepriceref where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC')) serf on serf.servicepricecode=ser.servicepricecode
 GROUP BY vp.loaivienphiid,
 	vp.doituongbenhnhanid,
 	serf.servicepricecodeuser,
-	serf.bhyt_groupcode,
+	ser.bhyt_groupcode,
 	serf.servicepricecode,
 	serf.servicepricenamebhyt,
 	ser.servicepricemoney_bhyt,
@@ -104,32 +106,33 @@ GROUP BY vp.loaivienphiid,
 
 ------==========
 --ngay 14/3/2018 Ap dung cho doi tuong BHYT (tach ngoai tinh, noi tinh)
+--ngay 26/4/2018 fix loi nhom bhyt_groupcode
 
 SELECT
 	'A.Nội tỉnh' as ngoaitinh,
 	vp.loaivienphiid, 
 	vp.doituongbenhnhanid,
 	serf.servicepricecodeuser,
-	serf.bhyt_groupcode,
+	ser.bhyt_groupcode,
 	serf.servicepricecode,
 	serf.servicepricenamebhyt,
 	ser.servicepricemoney_bhyt,
-	sum((case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as soluong,
-	(case when serf.bhyt_groupcode='01KB' then 
+	sum((case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as soluong,
+	(case when ser.bhyt_groupcode='01KB' then 
 				(case when ser.lankhambenh in (2,3) then 30
 						when coalesce(ser.lankhambenh,0)=0 then 100
 						else 0 end) 
-		when serf.bhyt_groupcode='12NG' then
+		when ser.bhyt_groupcode='12NG' then
 				(case when ser.loaingaygiuong=1 then 50
 						when ser.loaingaygiuong=2 then 30
 						else 100 end)
-		when serf.bhyt_groupcode in ('06PTTT','07KTC') then
+		when ser.bhyt_groupcode in ('06PTTT','07KTC') then
 				(case when ser.loaipttt=2 then 80
 						when ser.loaipttt=1 then 50
 						else 100 end)
 		else 100
 		end) as tyle,
-	sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien
+	sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien
 FROM (select * from vienphi where 1=1 "+_tieuchi_vp+_doituongBN+_trangthai_vp+_loaivienphi+") vp
 	inner join (select * from serviceprice where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') "+_tieuchi_ser+_loaidoituong+") ser on ser.vienphiid=vp.vienphiid
 	inner join (select * from servicepriceref where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC')) serf on serf.servicepricecode=ser.servicepricecode
@@ -137,7 +140,7 @@ FROM (select * from vienphi where 1=1 "+_tieuchi_vp+_doituongBN+_trangthai_vp+_l
 GROUP BY vp.loaivienphiid,
 	vp.doituongbenhnhanid,
 	serf.servicepricecodeuser,
-	serf.bhyt_groupcode,
+	ser.bhyt_groupcode,
 	serf.servicepricecode,
 	serf.servicepricenamebhyt,
 	ser.servicepricemoney_bhyt,
@@ -150,26 +153,26 @@ SELECT
 	vp.loaivienphiid, 
 	vp.doituongbenhnhanid,
 	serf.servicepricecodeuser,
-	serf.bhyt_groupcode,
+	ser.bhyt_groupcode,
 	serf.servicepricecode,
 	serf.servicepricenamebhyt,
 	ser.servicepricemoney_bhyt,
-	sum((case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as soluong,
-	(case when serf.bhyt_groupcode='01KB' then 
+	sum((case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as soluong,
+	(case when ser.bhyt_groupcode='01KB' then 
 				(case when ser.lankhambenh in (2,3) then 30
 						when coalesce(ser.lankhambenh,0)=0 then 100
 						else 0 end) 
-		when serf.bhyt_groupcode='12NG' then
+		when ser.bhyt_groupcode='12NG' then
 				(case when ser.loaingaygiuong=1 then 50
 						when ser.loaingaygiuong=2 then 30
 						else 100 end)
-		when serf.bhyt_groupcode in ('06PTTT','07KTC') then
+		when ser.bhyt_groupcode in ('06PTTT','07KTC') then
 				(case when ser.loaipttt=2 then 80
 						when ser.loaipttt=1 then 50
 						else 100 end)
 		else 100
 		end) as tyle,
-	sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and serf.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien
+	sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien
 FROM (select * from vienphi where 1=1 "+_tieuchi_vp+_doituongBN+_trangthai_vp+_loaivienphi+") vp
 	inner join (select * from serviceprice where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') "+_tieuchi_ser+_loaidoituong+") ser on ser.vienphiid=vp.vienphiid
 	inner join (select * from servicepriceref where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC')) serf on serf.servicepricecode=ser.servicepricecode
@@ -177,7 +180,7 @@ FROM (select * from vienphi where 1=1 "+_tieuchi_vp+_doituongBN+_trangthai_vp+_l
 GROUP BY vp.loaivienphiid,
 	vp.doituongbenhnhanid,
 	serf.servicepricecodeuser,
-	serf.bhyt_groupcode,
+	ser.bhyt_groupcode,
 	serf.servicepricecode,
 	serf.servicepricenamebhyt,
 	ser.servicepricemoney_bhyt,

@@ -400,7 +400,7 @@ CREATE TABLE servicepriceref
   bhyt_groupcode text,
   report_groupcode text,
   report_tkcode text,
-  SERVICEPRICENAME text,
+  servicepricename text,
   servicepricenamenhandan text,
   servicepricenamebhyt text,
   servicepricenamenuocngoai text,

@@ -87,6 +87,14 @@ namespace MedicalLink.Base
                 SYS_08.permissionnote = "Danh mục dịch vụ - cấu hình sổ xét nghiệm";
                 lstresult.Add(SYS_08);
 
+                ClassCommon.classPermission SYS_09 = new ClassCommon.classPermission();
+                SYS_09.permissioncheck = false;
+                SYS_09.permissioncode = "SYS_09";
+                SYS_09.permissionname = "Cấu hình hao phí máy xét nghiệm";
+                SYS_09.permissiontype = 1;
+                SYS_09.permissionnote = "Cấu hình hao phí máy xét nghiệm";
+                lstresult.Add(SYS_09);
+
 
                 //Tools
                 ClassCommon.classPermission TOOL_01 = new ClassCommon.classPermission();

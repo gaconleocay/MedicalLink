@@ -51,13 +51,14 @@
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_sotien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn_miengiam = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn_miengiam = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkTatCa = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -68,6 +69,7 @@
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSHoaDon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -82,6 +84,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkTatCa);
             this.groupBoxFile.Controls.Add(this.label1);
             this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.chkcomboListNguoiThu);
@@ -450,6 +453,30 @@
             this.gridColumn_sotien.VisibleIndex = 4;
             this.gridColumn_sotien.Width = 161;
             // 
+            // gridColumn_miengiam
+            // 
+            this.gridColumn_miengiam.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_miengiam.AppearanceCell.Options.UseFont = true;
+            this.gridColumn_miengiam.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn_miengiam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn_miengiam.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_miengiam.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn_miengiam.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn_miengiam.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn_miengiam.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn_miengiam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn_miengiam.Caption = "Số tiền miễn giảm";
+            this.gridColumn_miengiam.DisplayFormat.FormatString = "#,##0";
+            this.gridColumn_miengiam.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn_miengiam.FieldName = "miengiam";
+            this.gridColumn_miengiam.Name = "gridColumn_miengiam";
+            this.gridColumn_miengiam.OptionsColumn.AllowEdit = false;
+            this.gridColumn_miengiam.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "miengiam", "{0:#,##0}")});
+            this.gridColumn_miengiam.Visible = true;
+            this.gridColumn_miengiam.VisibleIndex = 5;
+            this.gridColumn_miengiam.Width = 161;
+            // 
             // gridColumn6
             // 
             this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -564,29 +591,14 @@
             this.gridColumn12.VisibleIndex = 11;
             this.gridColumn12.Width = 180;
             // 
-            // gridColumn_miengiam
+            // chkTatCa
             // 
-            this.gridColumn_miengiam.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn_miengiam.AppearanceCell.Options.UseFont = true;
-            this.gridColumn_miengiam.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn_miengiam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.gridColumn_miengiam.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn_miengiam.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn_miengiam.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn_miengiam.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn_miengiam.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn_miengiam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn_miengiam.Caption = "Số tiền miễn giảm";
-            this.gridColumn_miengiam.DisplayFormat.FormatString = "#,##0";
-            this.gridColumn_miengiam.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.gridColumn_miengiam.FieldName = "miengiam";
-            this.gridColumn_miengiam.Name = "gridColumn_miengiam";
-            this.gridColumn_miengiam.OptionsColumn.AllowEdit = false;
-            this.gridColumn_miengiam.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "miengiam", "{0:#,##0}")});
-            this.gridColumn_miengiam.Visible = true;
-            this.gridColumn_miengiam.VisibleIndex = 5;
-            this.gridColumn_miengiam.Width = 161;
+            this.chkTatCa.Location = new System.Drawing.Point(609, 22);
+            this.chkTatCa.Name = "chkTatCa";
+            this.chkTatCa.Properties.Caption = "Tất cả";
+            this.chkTatCa.Size = new System.Drawing.Size(75, 19);
+            this.chkTatCa.TabIndex = 89;
+            this.chkTatCa.CheckStateChanged += new System.EventHandler(this.chkTatCa_CheckStateChanged);
             // 
             // ucBCHoaDonThanhToanVP
             // 
@@ -610,6 +622,7 @@
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSHoaDon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSHoaDon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -646,5 +659,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn_miengiam;
+        private DevExpress.XtraEditors.CheckEdit chkTatCa;
     }
 }

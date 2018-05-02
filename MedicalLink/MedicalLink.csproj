@@ -580,6 +580,8 @@
     <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\Departmentgroup_KhoaPTTTDTO.cs" />
+    <Compile Include="ClassCommon\DVXetNghiemChiPhiDTO.cs" />
+    <Compile Include="ClassCommon\MayXetNghiemKhuVucDTO.cs" />
     <Compile Include="ClassCommon\ServicepriceIDDTO.cs" />
     <Compile Include="ClassCommon\ServicePriceRef_ChenhBHYT21.cs" />
     <Compile Include="ClassCommon\DepartmentgroupDTO.cs" />
@@ -926,6 +928,12 @@
     <Compile Include="FormCommon\TabCaiDat\ucDanhMucDichVu.Designer.cs">
       <DependentUpon>ucDanhMucDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucChiPhiXetNghiem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucChiPhiXetNghiem.Designer.cs">
+      <DependentUpon>ucChiPhiXetNghiem.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\TabCaiDat\ucDanhSachBenhVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1161,12 +1169,6 @@
     <Compile Include="Utilities\Common.String\Convert.cs" />
     <Compile Include="Utilities\GridControl\Util_GridcontrolConvert.cs" />
     <Compile Include="Utilities\GUIGridView\Util_GUIGridView.cs" />
-    <Compile Include="Utilities\PrintPreview\PrintPreviewDev.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Utilities\PrintPreview\PrintPreviewDev.Designer.cs">
-      <DependentUpon>PrintPreviewDev.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\PrintPreview\PrintPreview_ExcelFileTemplate.cs" />
     <Compile Include="Utilities\Util_FileCheckSum.cs" />
     <Compile Include="Utilities\Util_DataTable.cs" />
@@ -1449,6 +1451,9 @@
     <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhMucDichVu.resx">
       <DependentUpon>ucDanhMucDichVu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucChiPhiXetNghiem.resx">
+      <DependentUpon>ucChiPhiXetNghiem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhSachBenhVien.resx">
       <DependentUpon>ucDanhSachBenhVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -1559,9 +1564,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongBao\WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\PrintPreview\PrintPreviewDev.resx">
-      <DependentUpon>PrintPreviewDev.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -1855,6 +1857,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_43_SoPhauThuatThuThuat_CLS.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\0_ToolsDVKTChiPhi_Export.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\0_ToolsMayXetNghiemKhuVuc_Export.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

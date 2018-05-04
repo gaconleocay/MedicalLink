@@ -698,7 +698,13 @@ namespace MedicalLink.Base
                 REPORT_43.permissionnote = "Sổ thủ thuật - khoa cận lâm sàng";
                 lstresult.Add(REPORT_43);
 
-
+                ClassCommon.classPermission REPORT_44 = new ClassCommon.classPermission();
+                REPORT_44.permissioncheck = false;
+                REPORT_44.permissioncode = "REPORT_44";
+                REPORT_44.permissionname = "Báo cáo sử dụng dịch vụ - Đối tượng thanh toán Yêu cầu (ver 2)";
+                REPORT_44.permissiontype = 3;
+                REPORT_44.permissionnote = "Báo cáo sử dụng dịch vụ - Đối tượng thanh toán Yêu cầu (ver 2)";
+                lstresult.Add(REPORT_44);
 
 
 

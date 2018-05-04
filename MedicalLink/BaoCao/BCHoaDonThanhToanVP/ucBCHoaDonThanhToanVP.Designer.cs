@@ -30,6 +30,7 @@
         {
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.chkTatCa = new DevExpress.XtraEditors.CheckEdit();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.chkcomboListNguoiThu = new DevExpress.XtraEditors.CheckedComboBoxEdit();
@@ -58,10 +59,10 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.chkTatCa = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListNguoiThu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLoaiSo.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -69,7 +70,6 @@
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSHoaDon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -102,6 +102,17 @@
             this.groupBoxFile.TabIndex = 27;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // chkTatCa
+            // 
+            this.chkTatCa.Location = new System.Drawing.Point(601, 22);
+            this.chkTatCa.Name = "chkTatCa";
+            this.chkTatCa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTatCa.Properties.Appearance.Options.UseFont = true;
+            this.chkTatCa.Properties.Caption = "Tất cả";
+            this.chkTatCa.Size = new System.Drawing.Size(75, 20);
+            this.chkTatCa.TabIndex = 89;
+            this.chkTatCa.CheckStateChanged += new System.EventHandler(this.chkTatCa_CheckStateChanged);
             // 
             // label1
             // 
@@ -591,15 +602,6 @@
             this.gridColumn12.VisibleIndex = 11;
             this.gridColumn12.Width = 180;
             // 
-            // chkTatCa
-            // 
-            this.chkTatCa.Location = new System.Drawing.Point(609, 22);
-            this.chkTatCa.Name = "chkTatCa";
-            this.chkTatCa.Properties.Caption = "Tất cả";
-            this.chkTatCa.Size = new System.Drawing.Size(75, 19);
-            this.chkTatCa.TabIndex = 89;
-            this.chkTatCa.CheckStateChanged += new System.EventHandler(this.chkTatCa_CheckStateChanged);
-            // 
             // ucBCHoaDonThanhToanVP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -615,6 +617,7 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListNguoiThu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLoaiSo.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -622,7 +625,6 @@
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDSHoaDon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDSHoaDon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

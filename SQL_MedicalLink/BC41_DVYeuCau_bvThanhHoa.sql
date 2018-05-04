@@ -50,7 +50,7 @@ from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituo
 	
 	
 ----Tổng hợp
---ngay 29/3
+--ngay 4/5: gia BHYT=0 thi chenh lech =0
 select row_number () over (order by ser.bhyt_groupcode,ser.servicepricename) as stt,
 	ser.servicepricecode,
 	ser.servicepricename,
@@ -81,7 +81,7 @@ select row_number () over (order by ser.bhyt_groupcode,ser.servicepricename) as 
 	sum(ser.servicepricemoney*ser.soluong) as thanhtien,
 	ser.servicepricemoney_bhyt,
 	sum(ser.servicepricemoney_bhyt*ser.soluong) as thanhtien_bhyt,
-	sum((ser.servicepricemoney-ser.servicepricemoney_bhyt)*ser.soluong) as chenhlech,
+	sum(case when ser.servicepricemoney_bhyt<>0 then ((ser.servicepricemoney-ser.servicepricemoney_bhyt)*ser.soluong) else 0 end) as chenhlech,
 	'0' as isgroup		
 from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and departmentid in ("+_lstPhongChonLayBC+") "+_tieuchi_ser+") ser
 	inner join (select vienphiid from vienphi where 1=1 "+_tieuchi_vp+_listuserid+") vp on vp.vienphiid=ser.vienphiid
@@ -89,7 +89,7 @@ from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituo
 group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney,ser.servicepricemoney_bhyt;
 
 
----Tong hop theo danh sach benh nhan 
+---theo danh sach benh nhan 
 -- ngay 29/3
 SELECT row_number () over (order by degp.departmentgroupname,de.departmentname,hsba.patientname) as stt,
 	"+_select_bill+"

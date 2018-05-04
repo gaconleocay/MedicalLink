@@ -254,6 +254,12 @@
     <Compile Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.Designer.cs">
       <DependentUpon>ucBangKeTongHopHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BC44_DVYeuCau_2\ucBC44_DVYeuCau_2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC44_DVYeuCau_2\ucBC44_DVYeuCau_2.Designer.cs">
+      <DependentUpon>ucBC44_DVYeuCau_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BC41_DVYeuCau\ucBC41_DVYeuCau.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -563,6 +569,7 @@
     </Compile>
     <Compile Include="ClassCommon\BC42_TaiNanThuongTichDTO.cs" />
     <Compile Include="ClassCommon\BC42_TaiNanThuongTich_LableDTO.cs" />
+    <Compile Include="ClassCommon\BC44DVYeuCau2DTO.cs" />
     <Compile Include="ClassCommon\BCBHYT21Chenh2018DTO.cs" />
     <Compile Include="ClassCommon\BCDoanhThuTheoLoaiHinhDVDTO.cs" />
     <Compile Include="ClassCommon\BCChenhLechNgayGiuongDTO.cs" />
@@ -1183,6 +1190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenh.resx">
       <DependentUpon>ucBaoCaoBHYT21_NewChenh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC44_DVYeuCau_2\ucBC44_DVYeuCau_2.resx">
+      <DependentUpon>ucBC44_DVYeuCau_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC41_DVYeuCau\ucBC41_DVYeuCau.resx">
       <DependentUpon>ucBC41_DVYeuCau.cs</DependentUpon>
@@ -1863,6 +1873,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\0_ToolsMayXetNghiemKhuVuc_Export.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_44_ThongKeSuDungDichVuYeuCau_ChiTiet.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_44_ThongKeSuDungDichVuYeuCau_TongHop.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

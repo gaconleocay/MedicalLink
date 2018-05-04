@@ -95,6 +95,7 @@
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkTatCa = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -109,6 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBaoCao_TH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataDSBN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataDSBN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -123,6 +125,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkTatCa);
             this.groupBoxFile.Controls.Add(this.chkcboListNguoiThuTien);
             this.groupBoxFile.Controls.Add(this.radioXemDSBenhNhan);
             this.groupBoxFile.Controls.Add(this.label1);
@@ -160,7 +163,7 @@
             this.chkcboListNguoiThuTien.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.chkcboListNguoiThuTien.Properties.DropDownRows = 15;
-            this.chkcboListNguoiThuTien.Size = new System.Drawing.Size(225, 22);
+            this.chkcboListNguoiThuTien.Size = new System.Drawing.Size(240, 22);
             this.chkcboListNguoiThuTien.TabIndex = 97;
             // 
             // radioXemDSBenhNhan
@@ -180,7 +183,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(523, 64);
+            this.label1.Location = new System.Drawing.Point(531, 64);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 16);
             this.label1.TabIndex = 95;
@@ -189,7 +192,7 @@
             // chkcomboListDSPhong
             // 
             this.chkcomboListDSPhong.EditValue = "";
-            this.chkcomboListDSPhong.Location = new System.Drawing.Point(572, 60);
+            this.chkcomboListDSPhong.Location = new System.Drawing.Point(580, 60);
             this.chkcomboListDSPhong.Name = "chkcomboListDSPhong";
             this.chkcomboListDSPhong.Properties.AllowMultiSelect = true;
             this.chkcomboListDSPhong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -207,7 +210,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(532, 28);
+            this.label2.Location = new System.Drawing.Point(540, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 16);
             this.label2.TabIndex = 93;
@@ -216,7 +219,7 @@
             // chkcomboListDSKhoa
             // 
             this.chkcomboListDSKhoa.EditValue = "";
-            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(572, 24);
+            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(580, 24);
             this.chkcomboListDSKhoa.Name = "chkcomboListDSKhoa";
             this.chkcomboListDSKhoa.Properties.AllowMultiSelect = true;
             this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -265,7 +268,7 @@
             "Theo ngày duyệt VP",
             "Theo ngày thu tiền"});
             this.cbbTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cbbTieuChi.Size = new System.Drawing.Size(225, 22);
+            this.cbbTieuChi.Size = new System.Drawing.Size(135, 22);
             this.cbbTieuChi.TabIndex = 86;
             this.cbbTieuChi.SelectedIndexChanged += new System.EventHandler(this.cbbTieuChi_SelectedIndexChanged);
             // 
@@ -1036,8 +1039,6 @@
             this.gridColumn18.FieldName = "servicepricemoney_bhyt";
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
-            this.gridColumn18.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "servicepricemoney_bhyt", "{0:#,##0}")});
             this.gridColumn18.Visible = true;
             this.gridColumn18.VisibleIndex = 7;
             this.gridColumn18.Width = 160;
@@ -1401,6 +1402,17 @@
             this.gridColumn22.VisibleIndex = 9;
             this.gridColumn22.Width = 145;
             // 
+            // chkTatCa
+            // 
+            this.chkTatCa.Location = new System.Drawing.Point(425, 25);
+            this.chkTatCa.Name = "chkTatCa";
+            this.chkTatCa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTatCa.Properties.Appearance.Options.UseFont = true;
+            this.chkTatCa.Properties.Caption = "Tất cả ng.thu";
+            this.chkTatCa.Size = new System.Drawing.Size(101, 20);
+            this.chkTatCa.TabIndex = 99;
+            this.chkTatCa.CheckStateChanged += new System.EventHandler(this.chkTatCa_CheckStateChanged);
+            // 
             // ucBC41_DVYeuCau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1429,6 +1441,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBaoCao_TH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataDSBN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataDSBN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1501,5 +1514,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
+        private DevExpress.XtraEditors.CheckEdit chkTatCa;
     }
 }

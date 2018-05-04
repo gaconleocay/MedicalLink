@@ -120,15 +120,18 @@ namespace MedicalLink.BaoCao
                 //NGuoi thu tien
                 //if (cbbTieuChi.Text == "Theo ngày duyệt VP")
                 //{
-                _listuserid_thutien = " and userid in (";
                 List<Object> lstNhanVienCheck = chkcboListNguoiThuTien.Properties.Items.GetCheckedValues();
-                if (lstNhanVienCheck.Count > 0)
+                if (lstNhanVienCheck.Count > 0 || chkTatCa.Checked)
                 {
-                    for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                    if (chkTatCa.Checked == false)
                     {
-                        _listuserid_thutien += "'" + lstNhanVienCheck[i] + "', ";
+                        _listuserid_thutien = " and userid in (";
+                        for (int i = 0; i < lstNhanVienCheck.Count - 1; i++)
+                        {
+                            _listuserid_thutien += "'" + lstNhanVienCheck[i] + "', ";
+                        }
+                        _listuserid_thutien += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "') ";
                     }
-                    _listuserid_thutien += "'" + lstNhanVienCheck[lstNhanVienCheck.Count - 1] + "') ";
                 }
                 else
                 {
@@ -208,7 +211,7 @@ namespace MedicalLink.BaoCao
 	                    sum(ser.servicepricemoney*ser.soluong) as thanhtien,
 	                    ser.servicepricemoney_bhyt,
 	                    sum(ser.servicepricemoney_bhyt*ser.soluong) as thanhtien_bhyt,
-	                    sum((ser.servicepricemoney-ser.servicepricemoney_bhyt)*ser.soluong) as chenhlech,
+	                    sum(case when ser.servicepricemoney_bhyt<>0 then ((ser.servicepricemoney-ser.servicepricemoney_bhyt)*ser.soluong) else 0 end) as chenhlech,
 	                    '0' as isgroup		
                     from (select hosobenhanid,vienphiid,servicepricecode,servicepricename,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,departmentgroupid,departmentid,bhyt_groupcode,billid_clbh_thutien from serviceprice where loaidoituong in (3,4) and departmentid in (" + _lstPhongChonLayBC + ") " + _tieuchi_ser + ") ser  inner join (select vienphiid from vienphi where 1 = 1 " + _tieuchi_vp + _listuserid + ") vp on vp.vienphiid = ser.vienphiid  " + _tieuchi_bill + " group by ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.bhyt_groupcode,ser.servicepricemoney,ser.servicepricemoney_bhyt; ";
 
@@ -708,12 +711,6 @@ namespace MedicalLink.BaoCao
             }
         }
 
-
-
-
-
-        #endregion
-
         private void cbbTieuChi_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -721,10 +718,12 @@ namespace MedicalLink.BaoCao
                 if (cbbTieuChi.Text == "Theo ngày duyệt VP" || cbbTieuChi.Text == "Theo ngày thu tiền")
                 {
                     chkcboListNguoiThuTien.Enabled = true;
+                    chkTatCa.Enabled = true;
                 }
                 else
                 {
                     chkcboListNguoiThuTien.Enabled = false;
+                    chkTatCa.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -732,5 +731,26 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+        private void chkTatCa_CheckStateChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkTatCa.Checked)
+                {
+                    chkcboListNguoiThuTien.Enabled = false;
+                }
+                else
+                { chkcboListNguoiThuTien.Enabled = true; }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+
+        #endregion
+
     }
 }

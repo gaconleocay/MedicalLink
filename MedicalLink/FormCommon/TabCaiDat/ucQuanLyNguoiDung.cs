@@ -18,13 +18,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
 {
     public partial class ucQuanLyNguoiDung : UserControl
     {
+        #region Khai bao
         private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private string currentUserCode;
-        private List<MedicalLink.ClassCommon.classPermission> lstPer { get; set; }
-        private List<MedicalLink.ClassCommon.classUserDepartment> lstUserDepartment { get; set; }
-        private List<MedicalLink.ClassCommon.classPermission> lstPerBaoCao { get; set; }
-        private List<MedicalLink.ClassCommon.classUserMedicineStore> lstUserMedicineStore { get; set; }
-        private List<MedicalLink.ClassCommon.classUserMedicinePhongLuu> lstUserMedicinePhongLuu { get; set; }
+        private List<ClassCommon.classPermission> LstPer_ChucNang { get; set; }
+        private List<ClassCommon.classUserDepartment> lstUserDepartment { get; set; }
+        private List<ClassCommon.classPermission> LstPerBaoCao { get; set; }
+        private List<ClassCommon.classUserMedicineStore> lstUserMedicineStore { get; set; }
+        private List<ClassCommon.classUserMedicinePhongLuu> lstUserMedicinePhongLuu { get; set; }
+        #endregion
 
         public ucQuanLyNguoiDung()
         {
@@ -83,9 +85,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                lstPer = new List<ClassCommon.classPermission>();
-                lstPer = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype != 10).ToList();
-                gridControlChucNang.DataSource = lstPer;
+                this.LstPer_ChucNang = Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 1 || o.permissiontype == 2 || o.permissiontype == 4).OrderBy(or => or.permissioncode).ToList();
+                gridControlChucNang.DataSource = this.LstPer_ChucNang;
             }
             catch (Exception ex)
             {
@@ -123,9 +124,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                lstPerBaoCao = new List<ClassCommon.classPermission>();
-                lstPerBaoCao = MedicalLink.Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 10).ToList();
-                gridControlBaoCao.DataSource = lstPerBaoCao;
+                this.LstPerBaoCao = Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 3 || o.permissiontype == 10).OrderBy(or => or.permissioncode).ToList();
+                gridControlBaoCao.DataSource = this.LstPerBaoCao;
             }
             catch (Exception ex)
             {
@@ -185,7 +185,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-        #endregion
 
         private void EnableAndDisableControl(bool value)
         {
@@ -202,6 +201,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+        #endregion
+
+        #region Events
         private void gridControlDSUser_Click(object sender, EventArgs e)
         {
             var rowHandle = gridViewDSUser.FocusedRowHandle;
@@ -243,23 +246,23 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 gridControlChucNang.DataSource = null;
-                string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "';";
+                string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "';";
                 DataView dv = new DataView(condb.GetDataTable_MeL(sqlquerry_per));
                 //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
                 if (dv != null && dv.Count > 0)
                 {
-                    for (int i = 0; i < lstPer.Count; i++)
+                    for (int i = 0; i < this.LstPer_ChucNang.Count; i++)
                     {
                         for (int j = 0; j < dv.Count; j++)
                         {
-                            if (lstPer[i].permissioncode.ToString() == EncryptAndDecrypt.Decrypt(dv[j]["permissioncode"].ToString(), true))
+                            if (this.LstPer_ChucNang[i].permissioncode.ToString() == EncryptAndDecrypt.Decrypt(dv[j]["permissioncode"].ToString(), true))
                             {
-                                lstPer[i].permissioncheck = Convert.ToBoolean(dv[j]["permissioncheck"]);
+                                this.LstPer_ChucNang[i].permissioncheck = Convert.ToBoolean(dv[j]["permissioncheck"]);
                             }
                         }
                     }
                 }
-                gridControlChucNang.DataSource = lstPer;
+                gridControlChucNang.DataSource = this.LstPer_ChucNang;
             }
             catch (Exception ex)
             {
@@ -298,23 +301,23 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 gridControlBaoCao.DataSource = null;
-                string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "' and userpermissionnote='BAOCAO';";
+                string sqlquerry_per = "SELECT permissioncode, permissionname, permissioncheck FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode, true).ToString() + "' ;";
                 DataView dv = new DataView(condb.GetDataTable_MeL(sqlquerry_per));
                 //Load dữ liệu list phân quyền + tích quyền của use đang chọn lấy trong DB
                 if (dv != null && dv.Count > 0)
                 {
-                    for (int i = 0; i < lstPerBaoCao.Count; i++)
+                    for (int i = 0; i < this.LstPerBaoCao.Count; i++)
                     {
                         for (int j = 0; j < dv.Count; j++)
                         {
-                            if (lstPerBaoCao[i].permissioncode.ToString() == EncryptAndDecrypt.Decrypt(dv[j]["permissioncode"].ToString(), true))
+                            if (this.LstPerBaoCao[i].permissioncode.ToString() == EncryptAndDecrypt.Decrypt(dv[j]["permissioncode"].ToString(), true))
                             {
-                                lstPerBaoCao[i].permissioncheck = Convert.ToBoolean(dv[j]["permissioncheck"]);
+                                this.LstPerBaoCao[i].permissioncheck = Convert.ToBoolean(dv[j]["permissioncheck"]);
                             }
                         }
                     }
                 }
-                gridControlBaoCao.DataSource = lstPerBaoCao;
+                gridControlBaoCao.DataSource = this.LstPerBaoCao;
             }
             catch (Exception ex)
             {
@@ -401,7 +404,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
             LoadDanhSachPhongLuu();
         }
 
-        #region Tạo sự kiện khi kích OK
+        #endregion
+
+        #region Luu lai
         private void btnUserOK_Click(object sender, EventArgs e)
         {
             // Mã hóa tài khoản
@@ -491,12 +496,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqlinsert_per = "";
-                for (int i = 0; i < lstPer.Count; i++)
+                for (int i = 0; i < LstPer_ChucNang.Count; i++)
                 {
                     sqlinsert_per = "";
-                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPer[i].permissioncode.ToString(), true);
-                    string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPer[i].permissionname.ToString(), true);
-                    if (lstPer[i].permissioncheck == true)
+                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPer_ChucNang[i].permissioncode.ToString(), true);
+                    string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPer_ChucNang[i].permissionname.ToString(), true);
+                    if (LstPer_ChucNang[i].permissioncheck == true)
                     {
                         sqlinsert_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', '');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_per);
@@ -533,12 +538,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqlinsert_per = "";
-                for (int i = 0; i < lstPerBaoCao.Count; i++)
+                for (int i = 0; i < LstPerBaoCao.Count; i++)
                 {
                     sqlinsert_per = "";
-                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissioncode.ToString(), true);
-                    string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissionname.ToString(), true);
-                    if (lstPerBaoCao[i].permissioncheck == true)
+                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPerBaoCao[i].permissioncode.ToString(), true);
+                    string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPerBaoCao[i].permissionname.ToString(), true);
+                    if (LstPerBaoCao[i].permissioncheck == true)
                     {
                         sqlinsert_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', 'BAOCAO');";
                         condb.ExecuteNonQuery_MeL(sqlinsert_per);
@@ -616,15 +621,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqlupdate_per = "";
-                for (int i = 0; i < lstPer.Count; i++)
+                for (int i = 0; i < LstPer_ChucNang.Count; i++)
                 {
                     sqlupdate_per = "";
-                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPer[i].permissioncode, true);
+                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPer_ChucNang[i].permissioncode, true);
                     string sqlkiemtratontai = "SELECT * FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
                     DataView dvkt = new DataView(condb.GetDataTable_MeL(sqlkiemtratontai));
                     if (dvkt.Count > 0) //Nếu có quyền đó rồi thì Update
                     {
-                        if (lstPer[i].permissioncheck == false)
+                        if (LstPer_ChucNang[i].permissioncheck == false)
                         {
                             sqlupdate_per = "DELETE FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
                             condb.ExecuteNonQuery_MeL(sqlupdate_per);
@@ -632,9 +637,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else //nếu không có quyền đó thì Insert
                     {
-                        if (lstPer[i].permissioncheck == true)
+                        if (LstPer_ChucNang[i].permissioncheck == true)
                         {
-                            string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPer[i].permissionname.ToString(), true);
+                            string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPer_ChucNang[i].permissionname.ToString(), true);
                             sqlupdate_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', '');";
                             condb.ExecuteNonQuery_MeL(sqlupdate_per);
                         }
@@ -684,15 +689,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
             try
             {
                 string sqlupdate_per = "";
-                for (int i = 0; i < lstPerBaoCao.Count; i++)
+                for (int i = 0; i < LstPerBaoCao.Count; i++)
                 {
                     sqlupdate_per = "";
-                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissioncode, true);
+                    string en_permissioncode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPerBaoCao[i].permissioncode, true);
                     string sqlkiemtratontai = "SELECT * FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
                     DataView dvkt = new DataView(condb.GetDataTable_MeL(sqlkiemtratontai));
                     if (dvkt.Count > 0) //Nếu có quyền đó rồi thì Update
                     {
-                        if (lstPerBaoCao[i].permissioncheck == false)
+                        if (LstPerBaoCao[i].permissioncheck == false)
                         {
                             sqlupdate_per = "DELETE FROM tools_tbluser_permission WHERE usercode='" + en_txtUserID + "' and permissioncode='" + en_permissioncode + "' ;";
                             condb.ExecuteNonQuery_MeL(sqlupdate_per);
@@ -700,9 +705,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else //nếu không có quyền đó thì Insert
                     {
-                        if (lstPerBaoCao[i].permissioncheck == true)
+                        if (LstPerBaoCao[i].permissioncheck == true)
                         {
-                            string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(lstPerBaoCao[i].permissionname.ToString(), true);
+                            string en_permissionname = MedicalLink.Base.EncryptAndDecrypt.Encrypt(LstPerBaoCao[i].permissionname.ToString(), true);
                             sqlupdate_per = "INSERT INTO tools_tbluser_permission(permissioncode, permissionname, usercode, permissioncheck, userpermissionnote) VALUES ('" + en_permissioncode + "', '" + en_permissionname + "', '" + en_txtUserID + "', 'true', 'BAOCAO');";
                             condb.ExecuteNonQuery_MeL(sqlupdate_per);
                         }
@@ -864,8 +869,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
             GridView view = sender as GridView;
             if (e.RowHandle == view.FocusedRowHandle)
             {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
+                e.Appearance.BackColor = Color.DodgerBlue;
+                e.Appearance.ForeColor = Color.White;
             }
         }
         private void gridViewDSUser_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -873,8 +878,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
             GridView view = sender as GridView;
             if (e.RowHandle == view.FocusedRowHandle)
             {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
+                e.Appearance.BackColor = Color.DodgerBlue;
+                e.Appearance.ForeColor = Color.White;
             }
         }
         private void gridViewBaoCao_RowCellStyle(object sender, RowCellStyleEventArgs e)
@@ -882,8 +887,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
             GridView view = sender as GridView;
             if (e.RowHandle == view.FocusedRowHandle)
             {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
+                e.Appearance.BackColor = Color.DodgerBlue;
+                e.Appearance.ForeColor = Color.White;
             }
         }
         private void gridViewKhoThuoc_RowCellStyle(object sender, RowCellStyleEventArgs e)
@@ -891,8 +896,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
             GridView view = sender as GridView;
             if (e.RowHandle == view.FocusedRowHandle)
             {
-                e.Appearance.BackColor = Color.LightGreen;
-                e.Appearance.ForeColor = Color.Black;
+                e.Appearance.BackColor = Color.DodgerBlue;
+                e.Appearance.ForeColor = Color.White;
             }
         }
         private void gridViewChucNang_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)

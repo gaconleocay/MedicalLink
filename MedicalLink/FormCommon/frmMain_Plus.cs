@@ -13,16 +13,28 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                Base.SessionLogin.SessionLstPhanQuyen_ChucNang = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 2).OrderBy(o=>o.permissioncode).ToList();
-                Base.SessionLogin.SessionLstPhanQuyen_Report = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 3).OrderBy(o => o.permissioncode).ToList();
-                Base.SessionLogin.SessionLstPhanQuyen_BaoCao = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 10).OrderBy(o => o.permissioncode).ToList();
-                Base.SessionLogin.SessionLstPhanQuyen_Dashboard = Base.SessionLogin.SessionLstPhanQuyenNguoiDung.Where(o => o.permissiontype == 5).ToList();
+                Base.SessionLogin.LstPhanQuyen_ChucNang = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 2).OrderBy(o => o.permissioncode).ToList();
+                Base.SessionLogin.LstPhanQuyen_BaoCaoKhoa = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 3 && o.tabMenuId == 5).OrderBy(o => o.permissioncode).ToList();
+                Base.SessionLogin.LstPhanQuyen_BaoCaoDoanhThu = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 3 && o.tabMenuId == 6).OrderBy(o => o.permissioncode).ToList();
+                Base.SessionLogin.LstPhanQuyen_BaoCaoIn = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 10).OrderBy(o => o.permissioncode).ToList();
+                Base.SessionLogin.LstPhanQuyen_QLTaiChinh = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 3 && o.tabMenuId == 4).OrderBy(o => o.permissioncode).ToList();
+                Base.SessionLogin.LstPhanQuyen_Dashboard = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 5).ToList();
 
-                if ((SessionLogin.SessionLstPhanQuyen_ChucNang == null || SessionLogin.SessionLstPhanQuyen_ChucNang.Count <= 0) && (SessionLogin.SessionLstPhanQuyen_Report == null || SessionLogin.SessionLstPhanQuyen_Report.Count <= 0))
+
+                //Enable and disable Tab
+                if (SessionLogin.LstPhanQuyen_ChucNang == null || SessionLogin.LstPhanQuyen_ChucNang.Count <= 0)
                 {
                     tabMenuChucNang.PageVisible = false;
                 }
-                if (SessionLogin.SessionLstPhanQuyen_Dashboard == null || SessionLogin.SessionLstPhanQuyen_Dashboard.Count <= 0)
+                if ((SessionLogin.LstPhanQuyen_BaoCaoKhoa == null || SessionLogin.LstPhanQuyen_BaoCaoKhoa.Count <= 0) && (SessionLogin.LstPhanQuyen_BaoCaoDoanhThu == null || SessionLogin.LstPhanQuyen_BaoCaoDoanhThu.Count <= 0))
+                {
+                    tabMenuBaoCao.PageVisible = false;
+                }
+                if (SessionLogin.LstPhanQuyen_QLTaiChinh == null || SessionLogin.LstPhanQuyen_QLTaiChinh.Count <= 0)
+                {
+                    tabMenuQLTaiChinh.PageVisible = false;
+                }
+                if (SessionLogin.LstPhanQuyen_Dashboard == null || SessionLogin.LstPhanQuyen_Dashboard.Count <= 0)
                 {
                     tabMenuDashboard.PageVisible = false;
                 }
@@ -39,6 +51,8 @@ namespace MedicalLink.FormCommon
             try
             {
                 tabMenuChucNang.PageVisible = enabledisable;
+                tabMenuBaoCao.PageVisible = enabledisable;
+                tabMenuQLTaiChinh.PageVisible = enabledisable;
                 tabMenuDashboard.PageVisible = enabledisable;
             }
             catch (Exception ex)

@@ -117,8 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="check-mark-16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\check-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xtraTabDSBaoCao.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAADpSURBVDhPndOxCwFhHMbxS5JuuD/AcIPRZDIYTCaDQQaDJMlkMhkMZJAkGQxmg9EgyWg0mQwy
+        SGYZZD7fX71K15W39+rTW+f9PfW83rO6lhdCxDJ9GL7CQw8WCqigqiEnA28VMGN1cMJN00ECmhggbdSC
+        wRgSsE0DHqrChDWMDobKiDXI9/eW/wxsBlbYaVpIQBZlxE0rZBguwjUNeP38jVJhiTU22AaQ90L2zKXC
+        UwVM1SH2WceQQ/2nLQEuknBMKzQYlmucMg3wX+UjYRcNZ/bspcJdnYF0ly+zhLqGGnvyEiC3LwqjBh84
+        ODW+E4OThQAAAABJRU5ErkJggg==
+</value>
   </data>
 </root>

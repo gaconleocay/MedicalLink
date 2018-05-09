@@ -531,8 +531,8 @@ parentForRootNodes, null);
             {
                 if (e.Node == (sender as TreeList).FocusedNode)
                 {
-                    e.Appearance.BackColor = Color.LightGreen;
-                    e.Appearance.ForeColor = Color.Black;
+                    e.Appearance.BackColor = Color.DodgerBlue;
+                    e.Appearance.ForeColor = Color.White;
                 }
             }
             catch (Exception ex)

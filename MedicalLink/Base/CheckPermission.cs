@@ -24,7 +24,7 @@ namespace MedicalLink.Base
                 }
                 else
                 {
-                    var checkPhanQuyen = SessionLogin.SessionLstPhanQuyenNguoiDung.Where(s => s.permissioncode.Contains(percode)).ToList();
+                    var checkPhanQuyen = SessionLogin.LstPhanQuyenUser.Where(s => s.permissioncode.Contains(percode)).ToList();
                     if (checkPhanQuyen != null && checkPhanQuyen.Count > 0)
                     {
                         result = true;
@@ -39,7 +39,7 @@ namespace MedicalLink.Base
         }
 
         //Lay danh sach phan quyen khi nguoi dung dang nhap
-        public static List<ClassCommon.classPermission> GetListPhanQuyenNguoiDung()
+        public static List<ClassCommon.classPermission> GetListPhanQuyenUser()
         {
             List<ClassCommon.classPermission> lstPhanQuyen = new List<ClassCommon.classPermission>();
             try
@@ -64,9 +64,9 @@ namespace MedicalLink.Base
                             ClassCommon.classPermission itemPer = new ClassCommon.classPermission();
                             //itemPer.permissionid = Convert.ToInt32(dv[i]["permissionid"]);
                             itemPer.permissioncode = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissioncode"].ToString(), true);
-                            itemPer.permissionname = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissionname"].ToString(), true);
-                            itemPer.en_permissioncode = dv[i]["permissioncode"].ToString();
-                            itemPer.en_permissionname = dv[i]["permissionname"].ToString();
+                            //itemPer.permissionname = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissionname"].ToString(), true);
+                            //itemPer.en_permissioncode = dv[i]["permissioncode"].ToString();
+                            //itemPer.en_permissionname = dv[i]["permissionname"].ToString();
                             itemPer.permissioncheck = Convert.ToBoolean(dv[i]["permissioncheck"]);
                             lstPhanQuyen.Add(itemPer);
                         }
@@ -75,7 +75,9 @@ namespace MedicalLink.Base
                             var chucnang = Base.listChucNang.getDanhSachChucNang().Where(o => o.permissioncode == item_chucnang.permissioncode).SingleOrDefault();
                             if (chucnang != null)
                             {
+                                item_chucnang.permissionname = chucnang.permissionname;
                                 item_chucnang.permissiontype = chucnang.permissiontype;
+                                item_chucnang.tabMenuId = chucnang.tabMenuId;
                                 item_chucnang.permissionnote = chucnang.permissionnote;
                             }
                         }

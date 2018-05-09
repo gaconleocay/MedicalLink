@@ -95,7 +95,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 List<ClassCommon.classPermission> lstBaoCaoCLS = new List<classPermission>();
-                List<ClassCommon.classPermission> kiemtra = Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Where(o => o.permissioncode == "BAOCAO_009").ToList(); ;
+                List<ClassCommon.classPermission> kiemtra = Base.SessionLogin.LstPhanQuyen_BaoCaoIn.Where(o => o.permissioncode == "BAOCAO_009").ToList(); ;
                 if (kiemtra != null && kiemtra.Count > 0)
                 {
                     lstBaoCaoCLS.AddRange(kiemtra);
@@ -253,8 +253,8 @@ namespace MedicalLink.BaoCao
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.LightGreen;
-                    e.Appearance.ForeColor = Color.Black;
+                    e.Appearance.BackColor = Color.DodgerBlue;
+                    e.Appearance.ForeColor = Color.White;
                 }
             }
             catch (Exception ex)

@@ -83,13 +83,13 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                List<ClassCommon.classPermission> lstBaoCaoPTTT = Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Where(o => o.permissioncode != "BAOCAO_009").ToList(); ;
+                List<ClassCommon.classPermission> lstBaoCaoPTTT = Base.SessionLogin.LstPhanQuyen_BaoCaoIn.Where(o => o.permissioncode != "BAOCAO_009").ToList(); ;
 
                 cboLoaiBaoCao.Properties.DataSource = lstBaoCaoPTTT;
                 cboLoaiBaoCao.Properties.DisplayMember = "permissionname";
                 cboLoaiBaoCao.Properties.ValueMember = "permissioncode";
 
-                if (Base.SessionLogin.SessionLstPhanQuyen_BaoCao.Count > 0)
+                if (Base.SessionLogin.LstPhanQuyen_BaoCaoIn.Count > 0)
                 {
                     cboLoaiBaoCao.ItemIndex = 0;
                 }
@@ -262,8 +262,8 @@ namespace MedicalLink.BaoCao
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.LightGreen;
-                    e.Appearance.ForeColor = Color.Black;
+                    e.Appearance.BackColor = Color.DodgerBlue;
+                    e.Appearance.ForeColor = Color.White;
                 }
             }
             catch (Exception ex)

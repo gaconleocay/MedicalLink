@@ -20,8 +20,11 @@ namespace MedicalLink.FormCommon
 {
     public partial class frmLogin : Form
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        NpgsqlConnection conn;
+        #region Khai bao
+        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private NpgsqlConnection conn;
+
+        #endregion
         public frmLogin()
         {
             InitializeComponent();
@@ -296,6 +299,8 @@ namespace MedicalLink.FormCommon
 
 
         #endregion
+
+        #region Events
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -315,15 +320,8 @@ namespace MedicalLink.FormCommon
                 {
                     SessionLogin.SessionUsercode = txtUsername.Text.Trim().ToLower();
                     SessionLogin.SessionUsername = "Administrator";
-                    //Load data
-                    SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();
-                    SessionLogin.SessionlstPhanQuyen_KhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoaPhong();
-                    SessionLogin.SessionLstPhanQuyen_KhoThuoc = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoThuoc();
-                    SessionLogin.SessionLstPhanQuyen_PhongLuu = MedicalLink.Base.CheckPermission.GetPhanQuyen_PhongLuu();
-                    frmMain frmm = new frmMain();
-                    frmm.Show();
-                    this.Visible = false;
-                    MedicalLink.Base.Logging.Info("Application open successfull. Time=" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:fff"));
+
+                    LoadDataSauKhiDangNhap();
                 }
                 else
                 {
@@ -338,14 +336,7 @@ namespace MedicalLink.FormCommon
                             SessionLogin.SessionUsercode = txtUsername.Text.Trim().ToLower();
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
                             //Load data
-                            SessionLogin.SessionLstPhanQuyenNguoiDung = MedicalLink.Base.CheckPermission.GetListPhanQuyenNguoiDung();
-                            SessionLogin.SessionlstPhanQuyen_KhoaPhong = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoaPhong();
-                            SessionLogin.SessionLstPhanQuyen_KhoThuoc = MedicalLink.Base.CheckPermission.GetPhanQuyen_KhoThuoc();
-                            SessionLogin.SessionLstPhanQuyen_PhongLuu = MedicalLink.Base.CheckPermission.GetPhanQuyen_PhongLuu();
-                            frmMain frmm = new frmMain();
-                            frmm.Show();
-                            this.Visible = false;
-                            MedicalLink.Base.Logging.Info("Application open successfull. Time=" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:fff"));
+                            LoadDataSauKhiDangNhap();
                         }
                         else
                         {
@@ -383,11 +374,46 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn("Dang nhap " + ex.ToString());
+                MedicalLink.Base.Logging.Error("Dang nhap " + ex.ToString());
             }
         }
 
-        // Khi nhập username và nhấn enter thì forcus vào ô nhập pass
+        private void LoadDataSauKhiDangNhap()
+        {
+            try
+            {
+                //Load data
+                SessionLogin.LstPhanQuyenUser = Base.CheckPermission.GetListPhanQuyenUser();
+                SessionLogin.SessionlstPhanQuyen_KhoaPhong = Base.CheckPermission.GetPhanQuyen_KhoaPhong();
+                SessionLogin.SessionLstPhanQuyen_KhoThuoc = Base.CheckPermission.GetPhanQuyen_KhoThuoc();
+                SessionLogin.SessionLstPhanQuyen_PhongLuu = Base.CheckPermission.GetPhanQuyen_PhongLuu();
+                frmMain frmm = new frmMain();
+                frmm.Show();
+                this.Visible = false;
+                MedicalLink.Base.Logging.Info("Application open successfull. Time=" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:fff"));
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+        private void linkTroGiup_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageBox.Show("Liên hệ với quản trị để được trợ giúp!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+
+        #endregion
+
+        #region Custom
         private void txtUsername_Properties_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -396,7 +422,6 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        // Sau khi nhập password và ấn enter thì đăng nhập luôn
         private void txtPassword_Properties_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -405,7 +430,6 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        // nếu viết vào ô username = "config" thì mở ra bảng để cấu hình DB
         private void txtUsername_EditValueChanged(object sender, EventArgs e)
         {
             if (txtUsername.Text.ToUpper() == "CONFIG")
@@ -429,18 +453,10 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        private void linkTroGiup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                MessageBox.Show("Liên hệ với quản trị để được trợ giúp!", "Thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception)
-            {
+        #endregion
 
-                throw;
-            }
-        }
+
+
 
     }
 }

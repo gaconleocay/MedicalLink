@@ -375,6 +375,13 @@ namespace MedicalLink.FormCommon
                         break;
 
 
+
+                    //Bao cao QL Tai chinh
+                    case "REPORT_101":
+                        ucResult = new BCQLTaiChinh.ucBC101_TKTienKhamYCT7CN();
+                        break;
+
+
                     //Dashboard
                     case "DASHBOARD_01":
                         ucResult = new Dashboard.ucBCQLTongTheKhoa();

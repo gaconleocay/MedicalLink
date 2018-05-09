@@ -46,8 +46,8 @@ namespace MedicalLink.Dashboard.BCBenhNhanNgoaiTru
                 GridView view = sender as GridView;
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
-                    e.Appearance.BackColor = Color.LightGreen;
-                    e.Appearance.ForeColor = Color.Black;
+                    e.Appearance.BackColor = Color.DodgerBlue;
+                    e.Appearance.ForeColor = Color.White;
                 }
             }
             catch (Exception ex)

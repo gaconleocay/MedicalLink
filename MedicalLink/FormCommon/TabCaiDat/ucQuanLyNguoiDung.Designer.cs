@@ -171,13 +171,13 @@
             this.checker.ColumnEdit = this.repositoryItemCheckEdit1;
             this.checker.FieldName = "permissioncheck";
             this.checker.Image = ((System.Drawing.Image)(resources.GetObject("checker.Image")));
-            this.checker.MaxWidth = 30;
+            this.checker.MaxWidth = 45;
             this.checker.Name = "checker";
             this.checker.OptionsColumn.ShowCaption = false;
             this.checker.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             this.checker.Visible = true;
             this.checker.VisibleIndex = 0;
-            this.checker.Width = 30;
+            this.checker.Width = 35;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -198,13 +198,13 @@
             this.gridColumn2.ColumnEdit = this.repositoryItemCheckEdit3;
             this.gridColumn2.FieldName = "departmentcheck";
             this.gridColumn2.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn2.Image")));
-            this.gridColumn2.MaxWidth = 30;
+            this.gridColumn2.MaxWidth = 45;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.ShowCaption = false;
             this.gridColumn2.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
-            this.gridColumn2.Width = 30;
+            this.gridColumn2.Width = 35;
             // 
             // repositoryItemCheckEdit3
             // 
@@ -226,13 +226,13 @@
             this.gridColumn10.ColumnEdit = this.repositoryItemCheckEdit5;
             this.gridColumn10.FieldName = "permissioncheck";
             this.gridColumn10.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn10.Image")));
-            this.gridColumn10.MaxWidth = 30;
+            this.gridColumn10.MaxWidth = 45;
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.ShowCaption = false;
             this.gridColumn10.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 0;
-            this.gridColumn10.Width = 30;
+            this.gridColumn10.Width = 35;
             // 
             // repositoryItemCheckEdit5
             // 
@@ -254,13 +254,13 @@
             this.gridColumn14.ColumnEdit = this.repositoryItemCheckEdit7;
             this.gridColumn14.FieldName = "MedicineStoreCheck";
             this.gridColumn14.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn14.Image")));
-            this.gridColumn14.MaxWidth = 30;
+            this.gridColumn14.MaxWidth = 45;
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.OptionsColumn.ShowCaption = false;
             this.gridColumn14.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 0;
-            this.gridColumn14.Width = 30;
+            this.gridColumn14.Width = 35;
             // 
             // repositoryItemCheckEdit7
             // 
@@ -282,13 +282,13 @@
             this.gridColumn20.ColumnEdit = this.repositoryItemCheckEdit9;
             this.gridColumn20.FieldName = "MedicinePhongLuuCheck";
             this.gridColumn20.Image = ((System.Drawing.Image)(resources.GetObject("gridColumn20.Image")));
-            this.gridColumn20.MaxWidth = 30;
+            this.gridColumn20.MaxWidth = 45;
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.ShowCaption = false;
             this.gridColumn20.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
             this.gridColumn20.Visible = true;
             this.gridColumn20.VisibleIndex = 0;
-            this.gridColumn20.Width = 30;
+            this.gridColumn20.Width = 35;
             // 
             // repositoryItemCheckEdit9
             // 
@@ -681,7 +681,7 @@
             this.chucnangid.OptionsColumn.AllowEdit = false;
             this.chucnangid.Visible = true;
             this.chucnangid.VisibleIndex = 1;
-            this.chucnangid.Width = 137;
+            this.chucnangid.Width = 136;
             // 
             // tenchucnang
             // 
@@ -699,7 +699,7 @@
             this.tenchucnang.OptionsColumn.AllowEdit = false;
             this.tenchucnang.Visible = true;
             this.tenchucnang.VisibleIndex = 2;
-            this.tenchucnang.Width = 460;
+            this.tenchucnang.Width = 461;
             // 
             // repositoryItemCheckEdit2
             // 
@@ -798,7 +798,7 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 95;
+            this.gridColumn3.Width = 94;
             // 
             // gridColumn4
             // 
@@ -816,7 +816,7 @@
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 2;
-            this.gridColumn4.Width = 231;
+            this.gridColumn4.Width = 230;
             // 
             // gridColumn6
             // 
@@ -834,7 +834,7 @@
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
             this.gridColumn6.VisibleIndex = 4;
-            this.gridColumn6.Width = 183;
+            this.gridColumn6.Width = 186;
             // 
             // gridColumn5
             // 
@@ -878,7 +878,7 @@
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
             this.gridColumn8.VisibleIndex = 3;
-            this.gridColumn8.Width = 107;
+            this.gridColumn8.Width = 106;
             // 
             // repositoryItemCheckEdit4
             // 
@@ -961,7 +961,7 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 1;
-            this.gridColumn11.Width = 137;
+            this.gridColumn11.Width = 136;
             // 
             // gridColumn12
             // 
@@ -979,7 +979,7 @@
             this.gridColumn12.OptionsColumn.AllowEdit = false;
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 2;
-            this.gridColumn12.Width = 460;
+            this.gridColumn12.Width = 461;
             // 
             // repositoryItemCheckEdit6
             // 
@@ -1071,7 +1071,7 @@
             this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.Visible = true;
             this.gridColumn15.VisibleIndex = 1;
-            this.gridColumn15.Width = 100;
+            this.gridColumn15.Width = 99;
             // 
             // gridColumn16
             // 
@@ -1089,7 +1089,7 @@
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
             this.gridColumn16.VisibleIndex = 2;
-            this.gridColumn16.Width = 338;
+            this.gridColumn16.Width = 335;
             // 
             // gridColumn18
             // 
@@ -1107,7 +1107,7 @@
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
             this.gridColumn18.VisibleIndex = 3;
-            this.gridColumn18.Width = 164;
+            this.gridColumn18.Width = 163;
             // 
             // repositoryItemCheckEdit8
             // 
@@ -1199,7 +1199,7 @@
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 1;
-            this.gridColumn22.Width = 100;
+            this.gridColumn22.Width = 99;
             // 
             // gridColumn23
             // 
@@ -1217,7 +1217,7 @@
             this.gridColumn23.OptionsColumn.AllowEdit = false;
             this.gridColumn23.Visible = true;
             this.gridColumn23.VisibleIndex = 2;
-            this.gridColumn23.Width = 338;
+            this.gridColumn23.Width = 335;
             // 
             // gridColumn24
             // 
@@ -1235,7 +1235,7 @@
             this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 3;
-            this.gridColumn24.Width = 164;
+            this.gridColumn24.Width = 163;
             // 
             // repositoryItemCheckEdit10
             // 

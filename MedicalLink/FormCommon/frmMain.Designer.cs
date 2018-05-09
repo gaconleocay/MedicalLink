@@ -43,12 +43,14 @@
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.tabPaneMenu = new DevExpress.XtraBars.Navigation.TabPane();
             this.tabMenuTrangChu = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.tabMenuRestart = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tabMenuDashboard = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tabMenuChucNang = new DevExpress.XtraBars.Navigation.TabNavigationPage();
-            this.tabMenuRestart = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.timerClock = new System.Windows.Forms.Timer(this.components);
             this.timerKiemTraLicense = new System.Windows.Forms.Timer(this.components);
             this.timerTblBNDangDT = new System.Windows.Forms.Timer(this.components);
+            this.tabMenuQLTaiChinh = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.tabMenuBaoCao = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabPaneMenu)).BeginInit();
             this.tabPaneMenu.SuspendLayout();
@@ -175,9 +177,11 @@
             // tabPaneMenu
             // 
             this.tabPaneMenu.Controls.Add(this.tabMenuTrangChu);
+            this.tabPaneMenu.Controls.Add(this.tabMenuRestart);
             this.tabPaneMenu.Controls.Add(this.tabMenuDashboard);
             this.tabPaneMenu.Controls.Add(this.tabMenuChucNang);
-            this.tabPaneMenu.Controls.Add(this.tabMenuRestart);
+            this.tabPaneMenu.Controls.Add(this.tabMenuQLTaiChinh);
+            this.tabPaneMenu.Controls.Add(this.tabMenuBaoCao);
             this.tabPaneMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPaneMenu.Location = new System.Drawing.Point(0, 0);
             this.tabPaneMenu.Margin = new System.Windows.Forms.Padding(0);
@@ -185,6 +189,8 @@
             this.tabPaneMenu.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabMenuRestart,
             this.tabMenuDashboard,
+            this.tabMenuQLTaiChinh,
+            this.tabMenuBaoCao,
             this.tabMenuChucNang,
             this.tabMenuTrangChu});
             this.tabPaneMenu.RegularSize = new System.Drawing.Size(1234, 716);
@@ -202,7 +208,19 @@
             this.tabMenuTrangChu.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuTrangChu.Name = "tabMenuTrangChu";
             this.tabMenuTrangChu.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuTrangChu.Size = new System.Drawing.Size(1216, 668);
+            this.tabMenuTrangChu.Size = new System.Drawing.Size(1234, 716);
+            // 
+            // tabMenuRestart
+            // 
+            this.tabMenuRestart.Caption = "tabMenuRestart";
+            this.tabMenuRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabMenuRestart.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuRestart.Image")));
+            this.tabMenuRestart.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.Image;
+            this.tabMenuRestart.Name = "tabMenuRestart";
+            this.tabMenuRestart.PageText = "Khởi động lại";
+            this.tabMenuRestart.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.Image;
+            this.tabMenuRestart.Size = new System.Drawing.Size(1216, 668);
+            this.tabMenuRestart.Tag = "Khởi động lại";
             // 
             // tabMenuDashboard
             // 
@@ -214,7 +232,7 @@
             this.tabMenuDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tabMenuDashboard.Name = "tabMenuDashboard";
             this.tabMenuDashboard.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuDashboard.Size = new System.Drawing.Size(1166, 569);
+            this.tabMenuDashboard.Size = new System.Drawing.Size(1234, 716);
             // 
             // tabMenuChucNang
             // 
@@ -225,19 +243,7 @@
             this.tabMenuChucNang.Margin = new System.Windows.Forms.Padding(0);
             this.tabMenuChucNang.Name = "tabMenuChucNang";
             this.tabMenuChucNang.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuChucNang.Size = new System.Drawing.Size(1116, 569);
-            // 
-            // tabMenuRestart
-            // 
-            this.tabMenuRestart.Caption = "tabMenuRestart";
-            this.tabMenuRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabMenuRestart.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuRestart.Image")));
-            this.tabMenuRestart.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.Image;
-            this.tabMenuRestart.Name = "tabMenuRestart";
-            this.tabMenuRestart.PageText = "Khởi động lại";
-            this.tabMenuRestart.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.Image;
-            this.tabMenuRestart.Size = new System.Drawing.Size(1116, 569);
-            this.tabMenuRestart.Tag = "Khởi động lại";
+            this.tabMenuChucNang.Size = new System.Drawing.Size(1234, 716);
             // 
             // timerClock
             // 
@@ -251,6 +257,30 @@
             // timerTblBNDangDT
             // 
             this.timerTblBNDangDT.Tick += new System.EventHandler(this.timerTblBCNoiTru_Tick);
+            // 
+            // tabMenuQLTaiChinh
+            // 
+            this.tabMenuQLTaiChinh.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.tabMenuQLTaiChinh.Appearance.Options.UseBackColor = true;
+            this.tabMenuQLTaiChinh.Caption = "QL TÀI CHÍNH";
+            this.tabMenuQLTaiChinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabMenuQLTaiChinh.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuQLTaiChinh.Image")));
+            this.tabMenuQLTaiChinh.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuQLTaiChinh.Margin = new System.Windows.Forms.Padding(0);
+            this.tabMenuQLTaiChinh.Name = "tabMenuQLTaiChinh";
+            this.tabMenuQLTaiChinh.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuQLTaiChinh.Size = new System.Drawing.Size(1216, 668);
+            // 
+            // tabMenuBaoCao
+            // 
+            this.tabMenuBaoCao.Caption = "BÁO CÁO";
+            this.tabMenuBaoCao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabMenuBaoCao.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.tabMenuBaoCao.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuBaoCao.Margin = new System.Windows.Forms.Padding(0);
+            this.tabMenuBaoCao.Name = "tabMenuBaoCao";
+            this.tabMenuBaoCao.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuBaoCao.Size = new System.Drawing.Size(1234, 716);
             // 
             // frmMain
             // 
@@ -299,5 +329,7 @@
         internal DevExpress.XtraBars.BarStaticItem lblStatusTenBC;
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuRestart;
         private System.Windows.Forms.Timer timerTblBNDangDT;
+        private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuQLTaiChinh;
+        private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuBaoCao;
     }
 }

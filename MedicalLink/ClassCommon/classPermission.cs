@@ -12,10 +12,11 @@ namespace MedicalLink.ClassCommon
         public bool permissioncheck { get; set; }
         public Int32 permissionid { get; set; }
         public string permissioncode { get; set; }
-		public string en_permissioncode { get; set; }
+        public string en_permissioncode { get; set; }
         public string permissionname { get; set; }
-		public string en_permissionname { get; set; }
+        public string en_permissionname { get; set; }
         public Int32 permissiontype { get; set; } // 1: he thong; 2: chuc nang; 3: bao cao; 4: thao tac
+        public Int32 tabMenuId { get; set; } // 1=Trang chu; 2=chuc nang; 3=Dashboard; 4=BC QL tai chinh
         public string permissionnote { get; set; }
     }
 }

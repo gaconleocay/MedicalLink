@@ -15,12 +15,14 @@ namespace MedicalLink.FormCommon
 {
     public partial class frmMain : Form
     {
-        public string serverhost = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost"].ToString(), true);
-        public string serverdb = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString(), true);
+        #region Khai bao
+        private string serverhost = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost"].ToString(), true);
+        private string serverdb = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString(), true);
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         internal string lblHienThiThongTinChucNang { get; set; }
         DialogResult hoi;
 
+        #endregion
         public frmMain()
         {
             InitializeComponent();
@@ -52,23 +54,36 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+                //trang chu
                 tabMenuTrangChu.Controls.Clear();
-                MedicalLink.FormCommon.ucTrangChu ucTrangChu = new FormCommon.ucTrangChu();
-                ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
-                ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuTrangChu.Controls.Add(ucTrangChu);
-
+                MedicalLink.FormCommon.ucTrangChu _ucTrangChu = new FormCommon.ucTrangChu();
+                _ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
+                _ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuTrangChu.Controls.Add(_ucTrangChu);
+                //chuc nang
                 tabMenuChucNang.Controls.Clear();
-                MedicalLink.FormCommon.ucChucNang ucChucNang = new FormCommon.ucChucNang();
-                ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
-                ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuChucNang.Controls.Add(ucChucNang);
-
+                MedicalLink.FormCommon.ucChucNang _ucChucNang = new FormCommon.ucChucNang();
+                _ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
+                _ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuChucNang.Controls.Add(_ucChucNang);
+                //bao cao
+                tabMenuBaoCao.Controls.Clear();
+                MedicalLink.FormCommon.ucBaoCao _tabMenuBaoCao = new FormCommon.ucBaoCao();
+                _tabMenuBaoCao.MyGetData = new FormCommon.ucBaoCao.GetString(HienThiTenChucNang);
+                _tabMenuBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuBaoCao.Controls.Add(_tabMenuBaoCao);
+                //ql tai chinh
+                tabMenuQLTaiChinh.Controls.Clear();
+                MedicalLink.FormCommon.ucQLTaiChinh _ucQLTaiChinh = new FormCommon.ucQLTaiChinh();
+                _ucQLTaiChinh.MyGetData = new FormCommon.ucQLTaiChinh.GetString(HienThiTenChucNang);
+                _ucQLTaiChinh.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuQLTaiChinh.Controls.Add(_ucQLTaiChinh);
+                //dashboard
                 tabMenuDashboard.Controls.Clear();
-                MedicalLink.FormCommon.ucDashboard ucDashboard = new FormCommon.ucDashboard();
-                ucDashboard.MyGetData = new FormCommon.ucDashboard.GetString(HienThiTenChucNang);
-                ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuDashboard.Controls.Add(ucDashboard);
+                MedicalLink.FormCommon.ucDashboard _ucDashboard = new FormCommon.ucDashboard();
+                _ucDashboard.MyGetData = new FormCommon.ucDashboard.GetString(HienThiTenChucNang);
+                _ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuDashboard.Controls.Add(_ucDashboard);
             }
             catch (Exception ex)
             {
@@ -238,7 +253,6 @@ namespace MedicalLink.FormCommon
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
-                throw;
             }
         }
 

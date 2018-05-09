@@ -495,6 +495,12 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.Designer.cs">
+      <DependentUpon>ucBC101_TKTienKhamYCT7CN.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -978,6 +984,18 @@
     <Compile Include="FormCommon\TabTrangChu\ucSettingLicense.Designer.cs">
       <DependentUpon>ucSettingLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCommon\ucBaoCao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\ucBaoCao.Designer.cs">
+      <DependentUpon>ucBaoCao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCommon\ucQLTaiChinh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\ucQLTaiChinh.Designer.cs">
+      <DependentUpon>ucQLTaiChinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\ucDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1311,6 +1329,9 @@
     <EmbeddedResource Include="BaoCao\ucBCDoanhThuTheoMayXN.resx">
       <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.resx">
+      <DependentUpon>ucBC101_TKTienKhamYCT7CN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.resx">
       <DependentUpon>ucCapNhatThangLuongCoBan.cs</DependentUpon>
     </EmbeddedResource>
@@ -1481,6 +1502,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabTrangChu\ucSettingLicense.resx">
       <DependentUpon>ucSettingLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\ucBaoCao.resx">
+      <DependentUpon>ucBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\ucQLTaiChinh.resx">
+      <DependentUpon>ucQLTaiChinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\ucDashboard.resx">
       <DependentUpon>ucDashboard.cs</DependentUpon>

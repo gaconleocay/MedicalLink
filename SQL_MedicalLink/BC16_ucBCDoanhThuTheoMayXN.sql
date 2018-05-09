@@ -1,8 +1,8 @@
 --bao cao doanh thu theo may xet nghiem  ngay 14/6/2017 
-
+--ucBCDoanhThuTheoMayXN
 
 --su dung tat ca
---ngay 4/5/2018 them chi phi + tach vi sinh
+--ngay 7/5/2018 them chi phi + tach vi sinh
 SELECT ROW_NUMBER() OVER (ORDER BY SERV.ten_xn) as stt,
 		SERV.ma_xn, SERV.ten_xn, 
 		"+_tenmayxn_khacvisinh+"
@@ -57,20 +57,19 @@ FROM
 			 when tkq.usercode like '%-gp' then 'Khoa giải phẫu bệnh'
 			 when tkq.usercode like '%-xndk' then 'Khoa xét nghiệm đa khoa'
 			 else '' end) as khoatra_kq,
-		(select s.idmayxn from service s where s.servicepriceid=ser.servicepriceid 
+		(select s.idmayxn from service s where s.servicepriceid=ser.servicepriceid and s.servicedate>'2017-05-01 00:00:00'
 			order by coalesce(s.idmayxn,0) desc limit 1) as idmayxn,
-		(select s.tenmayxn from service s where s.servicepriceid=ser.servicepriceid 
+		(select s.tenmayxn from service s where s.servicepriceid=ser.servicepriceid and s.servicedate>'2017-05-01 00:00:00'
 			order by coalesce(s.idmayxn,0) desc limit 1) as tenmayxn	
 	from (select servicepriceid,vienphiid,maubenhphamid,servicepricecode,servicepricename,doituongbenhnhanid,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,servicepricemoney_nuocngoai,chiphidauvao,chiphipttt,chiphimaymoc,mayytedbid from serviceprice where bhyt_groupcode='03XN' "+_tieuchi_ser+_doituong_ser+") ser 
 		 INNER JOIN (select maubenhphamid,usertrakq from maubenhpham where maubenhphamgrouptype=0 "+_tieuchi_mbp+_loaibaocao+") MBP ON MBP.maubenhphamid=ser.maubenhphamid
 		 LEFT JOIN nhompersonnel tkq on tkq.userhisid=MBP.usertrakq
 		) SERV
  INNER JOIN (select vienphiid from vienphi where 1=1 "+_tieuchi_vp+_trangthaibenhan+_doituong_vp+") VP ON VP.vienphiid=SERV.vienphiid	
-" + dsmayxn + "
 LEFT JOIN (SELECT *
 					FROM dblink('myconn_mel','select kv.mayxn_ma,kv.mayxn_ten,kv.khuvuc_ma,kv.khuvuc_ten,cp.servicepricecode,cp.cp_hoachat,cp.cp_haophixn,cp.cp_luong,cp.cp_diennuoc,cp.cp_khmaymoc,cp.cp_khxaydung from ml_mayxnkhuvuc kv left join ml_mayxnchiphi cp on cp.mayxn_ma=kv.mayxn_ma')
 					AS ml_mayxn(mayxn_ma integer,mayxn_ten text,khuvuc_ma text,khuvuc_ten text,servicepricecode text,cp_hoachat double precision,cp_haophixn double precision,cp_luong double precision,cp_diennuoc double precision,cp_khmaymoc double precision,cp_khxaydung double precision)) chiphi on chiphi.servicepricecode=SERV.ma_xn "+_dieukien_khacvisinh+"
-					
+" + dsmayxn + "					
 GROUP BY SERV.ma_xn,SERV.ten_xn"+_tenmayxn_khacvisinh_groupby+",SERV.gia_bhyt,SERV.gia_vp,SERV.gia_yc,SERV.gia_nnn,SERV.khoatra_kq,chiphi.khuvuc_ten;
 
 

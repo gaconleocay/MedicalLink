@@ -838,43 +838,6 @@ CREATE TABLE maubenhpham
 
 
 
-Hiện giờ có những nhánh sau:
-
-1. Sử dụng x/y dịch vụ: 
-vd: A, B, C, D thì tìm BN sử dụng 2/4 dv bất kỳ: BN có dv: A, B hoặc B, C hoặc B, D hoặc A, D 
-
-(a & b) || (a & c) || (a & d) || (b & c) || (b & d) || (c & d)
-
-===>
-#2#(a || b || c || d || ...)
-#2#((a & b) || (c & d) || (e & f) || (g & h) || ....)	
-
-
-Là tổ hợp x của y:
-vd 2/4:
-4!			4*3*2*1		24
--------  = --------- = --- = 6
-2!(4-2)!	2*1(2*1)	4
-
-chỉnh hợp: = n(n−1)(n−2)(n−3)...(n−k+1) = 4*3 = 12
-
-
-2. Sử dụng DV chính A và kèm 1 trong những dịch vụ phụ thuộc (B,C,D...)
-===>
-(A & B & ...) & (a || b || c || ...)
-(A & B & ...) & ((a & b) || (c & d) || ....)
-
-3. Sử dụng n dịch vụ chính: BN sử dụng đồng thời n dịch vụ là dịch vụ PTTT chính (theo nhánh tìm kiếm hiện tại)
-====>
-A & B & ...
-
----------
-1. Tổ hợp x/(n dịch vụ)
-
-vd: 2/(a,c,c,d)
-- Tính tổ hợp 2/4 dịch vụ = (a & b) || (a & c) || (a & d) || (b & c) || (b & d) || (c & d)
-
-chuyen vien :BN000582679
 
 -------=--------------
 
@@ -987,6 +950,50 @@ where serf.ServiceGroupType=2
 [4/5/18, 17:12:16] Nguyễn Hoàng Minh: giống như mấy trường hợp ngày giường nằm ghép htrc ae trao đổi đấy
 [4/5/18, 17:12:38] Nguyễn Hoàng Minh: nếu sửa theo cthức ở trên thì sẽ chuẩn hơn
 [4/5/18, 17:12:49] Nguyễn Hoàng Minh: còn theo trường tltt kia thì bị lệch
+
+
+[5/8/18, 07:42:35] Mr Vietz: Nhất HV cái biểu đồ hình cột doanh thu các khoa bị sai e ới
+[5/8/18, 07:43:07] Mr Vietz: thăng tim macchj can thiệp doanh thu nó cao hơn nhiều e ạ
+[5/8/18, 07:45:04] Mr Vietz: Nhất HV cái báo cáo a có mấy cái thay đổi như sau :
+1. bc Tổng hợp doanh thu khoa, báo cáo tổng hợp toàn viện  them cột BH thanh toán
+[5/8/18, 07:46:27] Mr Vietz: 2. 2 báo cáo trên bổ sung tính toán của 2 khoa khám bệnh, và khoa khám bệnh theo iu cầu  theo tiêu chí dv thu đủ tiền
+
+
+
+
+
+
+
+
+accessnumber = maubenhphamid
+
+Resordertab
+
+GRANT SELECT, UPDATE ON TABLE Resordertab TO pacs;
+	  
+GRANT SELECT ON TABLE vienphi TO pacs;	  
+GRANT SELECT ON TABLE maubenhpham TO pacs;	  
+GRANT SELECT ON TABLE bhyt TO pacs;	  
+	  
+
+SELECT
+	vp.vienphiid as ma_lien_ket,
+	bh.bhytcode as ma_the_bhyt
+FROM Resordertab re
+	inner join maubenhpham mbp on mbp.maubenhphamid=cast(re.accessnumber as numeric)-- and mbp.maubenhphamid=17335401
+	inner join vienphi vp on vp.vienphiid=mbp.vienphiid
+	inner join bhyt bh on bh.bhytid=vp.bhytid
+WHERE re.accessnumber='17335401';
+	
+-------
+
+
+
+
+
+
+
+
 
 
 

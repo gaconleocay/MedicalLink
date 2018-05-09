@@ -68,6 +68,57 @@ namespace MedicalLink.Dashboard
         }
         #endregion
 
+        #region Events
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                chartControlBNNoiTru.DataSource = null;
+                LayDuLieuBaoCao_ChayMoi();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+        private void btnFullSize_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataBCTongTheKhoa != null && dataBCTongTheKhoa.Count > 0)
+                {
+                    MedicalLink.Dashboard.DBBenhNhanNoiTru.DashboardBenhNhanNoiTruFullSize fullSize = new DBBenhNhanNoiTru.DashboardBenhNhanNoiTruFullSize(dataBCTongTheKhoa);
+                    fullSize.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnSettingAdvand_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao frmCauHinh = new BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao();
+                frmCauHinh.MyGetData = new BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao.GetString(GetDataCaiDatNangCao);
+                frmCauHinh.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        public void GetDataCaiDatNangCao(string thoigian)
+        {
+            KhoangThoiGianLayDuLieu = thoigian;
+        }
+
+        #endregion
+
+        #region Custom
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -98,7 +149,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void radioQuy_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -121,7 +171,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void radioNam_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -144,20 +193,22 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        private void btnTimKiem_Click(object sender, EventArgs e)
+        private void dateTuNgay_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                chartControlBNNoiTru.DataSource = null;
-                LayDuLieuBaoCao_ChayMoi();
+                if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
+                {
+                    dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
+                    frmthongbao.Show();
+                }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void cboChonNhanh_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -246,7 +297,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void spinThoiGianCapNhat_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -271,7 +321,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void timerTuDongCapNhat_Tick(object sender, EventArgs e)
         {
             try
@@ -296,56 +345,11 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        #endregion
 
-        private void btnFullSize_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dataBCTongTheKhoa != null && dataBCTongTheKhoa.Count > 0)
-                {
-                    MedicalLink.Dashboard.DBBenhNhanNoiTru.DashboardBenhNhanNoiTruFullSize fullSize = new DBBenhNhanNoiTru.DashboardBenhNhanNoiTruFullSize(dataBCTongTheKhoa);
-                    fullSize.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
 
-        private void btnSettingAdvand_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao frmCauHinh = new BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao();
-                frmCauHinh.MyGetData = new BCBenhNhanNoiTru.BCBenhNhanNoiTruTuyChonNangCao.GetString(GetDataCaiDatNangCao);
-                frmCauHinh.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        public void GetDataCaiDatNangCao(string thoigian)
-        {
-            KhoangThoiGianLayDuLieu = thoigian;
-        }
-        private void dateTuNgay_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
-                {
-                    dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
-                    frmthongbao.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
+
+
 
     }
 }

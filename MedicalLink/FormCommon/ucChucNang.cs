@@ -95,7 +95,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                frmMain = new frmMain();
+                //frmMain = new frmMain();
                 this.CurrentTabPage = e.Page.Name;
                 XtraTabControl xtab = new XtraTabControl();
                 xtab = (XtraTabControl)sender;

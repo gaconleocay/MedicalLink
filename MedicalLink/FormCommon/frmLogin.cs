@@ -384,9 +384,9 @@ namespace MedicalLink.FormCommon
             {
                 //Load data
                 SessionLogin.LstPhanQuyenUser = Base.CheckPermission.GetListPhanQuyenUser();
-                SessionLogin.SessionlstPhanQuyen_KhoaPhong = Base.CheckPermission.GetPhanQuyen_KhoaPhong();
-                SessionLogin.SessionLstPhanQuyen_KhoThuoc = Base.CheckPermission.GetPhanQuyen_KhoThuoc();
-                SessionLogin.SessionLstPhanQuyen_PhongLuu = Base.CheckPermission.GetPhanQuyen_PhongLuu();
+                SessionLogin.LstPhanQuyen_KhoaPhong = Base.CheckPermission.GetPhanQuyen_KhoaPhong();
+                SessionLogin.LstPhanQuyen_KhoThuoc = Base.CheckPermission.GetPhanQuyen_KhoThuoc();
+                SessionLogin.LstPhanQuyen_PhongLuu = Base.CheckPermission.GetPhanQuyen_PhongLuu();
                 frmMain frmm = new frmMain();
                 frmm.Show();
                 this.Visible = false;

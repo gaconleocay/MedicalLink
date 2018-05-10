@@ -68,10 +68,10 @@ namespace MedicalLink.FormCommon
                 tabMenuChucNang.Controls.Add(_ucChucNang);
                 //bao cao
                 tabMenuBaoCao.Controls.Clear();
-                MedicalLink.FormCommon.ucBaoCao _tabMenuBaoCao = new FormCommon.ucBaoCao();
-                _tabMenuBaoCao.MyGetData = new FormCommon.ucBaoCao.GetString(HienThiTenChucNang);
-                _tabMenuBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuBaoCao.Controls.Add(_tabMenuBaoCao);
+                MedicalLink.FormCommon.ucBaoCao _ucBaoCao = new FormCommon.ucBaoCao();
+                _ucBaoCao.MyGetData = new FormCommon.ucBaoCao.GetString(HienThiTenChucNang);
+                _ucBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuBaoCao.Controls.Add(_ucBaoCao);
                 //ql tai chinh
                 tabMenuQLTaiChinh.Controls.Clear();
                 MedicalLink.FormCommon.ucQLTaiChinh _ucQLTaiChinh = new FormCommon.ucQLTaiChinh();

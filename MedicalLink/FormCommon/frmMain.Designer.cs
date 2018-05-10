@@ -46,11 +46,11 @@
             this.tabMenuRestart = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tabMenuDashboard = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tabMenuChucNang = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.tabMenuQLTaiChinh = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.tabMenuBaoCao = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.timerClock = new System.Windows.Forms.Timer(this.components);
             this.timerKiemTraLicense = new System.Windows.Forms.Timer(this.components);
             this.timerTblBNDangDT = new System.Windows.Forms.Timer(this.components);
-            this.tabMenuQLTaiChinh = new DevExpress.XtraBars.Navigation.TabNavigationPage();
-            this.tabMenuBaoCao = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabPaneMenu)).BeginInit();
             this.tabPaneMenu.SuspendLayout();
@@ -151,28 +151,28 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1234, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(1084, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 716);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1234, 26);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 636);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1084, 26);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 716);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 636);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1234, 0);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 716);
+            this.barDockControlRight.Location = new System.Drawing.Point(1084, 0);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 636);
             // 
             // tabPaneMenu
             // 
@@ -193,9 +193,9 @@
             this.tabMenuBaoCao,
             this.tabMenuChucNang,
             this.tabMenuTrangChu});
-            this.tabPaneMenu.RegularSize = new System.Drawing.Size(1234, 716);
+            this.tabPaneMenu.RegularSize = new System.Drawing.Size(1084, 636);
             this.tabPaneMenu.SelectedPage = this.tabMenuTrangChu;
-            this.tabPaneMenu.Size = new System.Drawing.Size(1234, 716);
+            this.tabPaneMenu.Size = new System.Drawing.Size(1084, 636);
             this.tabPaneMenu.TabIndex = 5;
             this.tabPaneMenu.Text = "MENU";
             this.tabPaneMenu.SelectedPageChanged += new DevExpress.XtraBars.Navigation.SelectedPageChangedEventHandler(this.tabPaneMenu_SelectedPageChanged);
@@ -243,20 +243,7 @@
             this.tabMenuChucNang.Margin = new System.Windows.Forms.Padding(0);
             this.tabMenuChucNang.Name = "tabMenuChucNang";
             this.tabMenuChucNang.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuChucNang.Size = new System.Drawing.Size(1234, 716);
-            // 
-            // timerClock
-            // 
-            this.timerClock.Tick += new System.EventHandler(this.timerClock_Tick);
-            // 
-            // timerKiemTraLicense
-            // 
-            this.timerKiemTraLicense.Interval = 360000;
-            this.timerKiemTraLicense.Tick += new System.EventHandler(this.timerKiemTraLicense_Tick);
-            // 
-            // timerTblBNDangDT
-            // 
-            this.timerTblBNDangDT.Tick += new System.EventHandler(this.timerTblBCNoiTru_Tick);
+            this.tabMenuChucNang.Size = new System.Drawing.Size(1066, 588);
             // 
             // tabMenuQLTaiChinh
             // 
@@ -282,11 +269,24 @@
             this.tabMenuBaoCao.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuBaoCao.Size = new System.Drawing.Size(1234, 716);
             // 
+            // timerClock
+            // 
+            this.timerClock.Tick += new System.EventHandler(this.timerClock_Tick);
+            // 
+            // timerKiemTraLicense
+            // 
+            this.timerKiemTraLicense.Interval = 360000;
+            this.timerKiemTraLicense.Tick += new System.EventHandler(this.timerKiemTraLicense_Tick);
+            // 
+            // timerTblBNDangDT
+            // 
+            this.timerTblBNDangDT.Tick += new System.EventHandler(this.timerTblBCNoiTru_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1234, 742);
+            this.ClientSize = new System.Drawing.Size(1084, 662);
             this.Controls.Add(this.tabPaneMenu);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);

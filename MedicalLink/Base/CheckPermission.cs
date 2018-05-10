@@ -65,8 +65,8 @@ namespace MedicalLink.Base
                             //itemPer.permissionid = Convert.ToInt32(dv[i]["permissionid"]);
                             itemPer.permissioncode = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissioncode"].ToString(), true);
                             //itemPer.permissionname = Base.EncryptAndDecrypt.Decrypt(dv[i]["permissionname"].ToString(), true);
-                            //itemPer.en_permissioncode = dv[i]["permissioncode"].ToString();
-                            //itemPer.en_permissionname = dv[i]["permissionname"].ToString();
+                            itemPer.en_permissioncode = dv[i]["permissioncode"].ToString();
+                            itemPer.en_permissionname = dv[i]["permissionname"].ToString();
                             itemPer.permissioncheck = Convert.ToBoolean(dv[i]["permissioncheck"]);
                             lstPhanQuyen.Add(itemPer);
                         }

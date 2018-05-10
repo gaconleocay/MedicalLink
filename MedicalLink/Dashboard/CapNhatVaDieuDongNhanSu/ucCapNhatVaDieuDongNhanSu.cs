@@ -45,7 +45,7 @@ namespace MedicalLink.Dashboard
             try
             {
                 //var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11 && o.departmentgroupid != 14).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
-                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
                     chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;

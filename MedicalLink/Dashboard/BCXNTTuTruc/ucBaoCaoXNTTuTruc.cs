@@ -70,7 +70,7 @@ namespace MedicalLink.Dashboard
                 }
                 else
                 {
-                    var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                    var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                     if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                     {
                         lstMedicineStoreCurrent = (from lstKho in lstMedicineStore

@@ -37,7 +37,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                List<ClassCommon.classUserMedicineStore> lstdsphongthuockhoa = Base.SessionLogin.SessionLstPhanQuyen_KhoThuoc.Where(o => o.MedicineStoreType == 4).ToList();
+                List<ClassCommon.classUserMedicineStore> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_KhoThuoc.Where(o => o.MedicineStoreType == 4).ToList();
                 chkcomboListDSKho.Properties.DataSource = lstdsphongthuockhoa;
                 chkcomboListDSKho.Properties.DisplayMember = "MedicineStoreName";
                 chkcomboListDSKho.Properties.ValueMember = "MedicineStoreId";
@@ -170,7 +170,7 @@ namespace MedicalLink.BaoCao
                     List<ClassCommon.classUserMedicinePhongLuu> lstDSPhongLuu = new List<classUserMedicinePhongLuu>();
                     for (int i = 0; i < lstKhoaCheck.Count; i++)
                     {
-                        List<ClassCommon.classUserMedicinePhongLuu> lstdsphongthuockhoa = Base.SessionLogin.SessionLstPhanQuyen_PhongLuu.Where(o => o.MedicineStoreId == Utilities.Util_TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
+                        List<ClassCommon.classUserMedicinePhongLuu> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_PhongLuu.Where(o => o.MedicineStoreId == Utilities.Util_TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
                         lstDSPhongLuu.AddRange(lstdsphongthuockhoa);
                     }
                     if (lstDSPhongLuu != null && lstDSPhongLuu.Count > 0)

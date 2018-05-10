@@ -108,10 +108,10 @@ namespace MedicalLink.BaoCao
                 for (int i = 0; i < lstPhongCheck.Count - 1; i++)
                 {
                     mbp_departmentid += lstPhongCheck[i] + ",";
-                    lstdepartmentgroupid += Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.Util_TypeConvertParse.ToInt64(lstPhongCheck[i].ToString())).FirstOrDefault().departmentgroupid.ToString() + ",";
+                    lstdepartmentgroupid += Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.Util_TypeConvertParse.ToInt64(lstPhongCheck[i].ToString())).FirstOrDefault().departmentgroupid.ToString() + ",";
                 }
                 mbp_departmentid += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
-                lstdepartmentgroupid += Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.Util_TypeConvertParse.ToInt64(lstPhongCheck[lstPhongCheck.Count - 1].ToString())).FirstOrDefault().departmentgroupid.ToString() + " ";
+                lstdepartmentgroupid += Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.Util_TypeConvertParse.ToInt64(lstPhongCheck[lstPhongCheck.Count - 1].ToString())).FirstOrDefault().departmentgroupid.ToString() + " ";
 
                 string servicepricegroupcode = "";
                 if (GlobalStore.lstOtherList_Global != null && GlobalStore.lstOtherList_Global.Count > 0)

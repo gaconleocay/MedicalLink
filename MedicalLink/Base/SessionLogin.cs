@@ -24,13 +24,13 @@ namespace MedicalLink.Base
         public static string SessionMachineName { get; set; }   // Tên máy
         public static string SessionMyIP { get; set; }  // Địa chỉ IP máy
         public static string SessionVersion { get; set; } // Version phần mềm
-        public static bool KiemTraLicenseSuDung { get; set; } //kiem tra license: neu false thi out phan mem, neu true thi cho su dung tiep
+        public static bool KiemTraLicenseSuDung { get; set; } //license:true thi cho su dung tiep
         public static string License_KeyDB { get; set; } //License lay tu DB
         public static string MaDatabase { get; set; }//Lay thong tin database
         public static List<ClassCommon.classPermission> LstPhanQuyenUser { get; set; }
-        public static List<ClassCommon.classUserDepartment> SessionlstPhanQuyen_KhoaPhong { get; set; }
-        public static List<ClassCommon.classUserMedicineStore> SessionLstPhanQuyen_KhoThuoc { get; set; }
-        public static List<ClassCommon.classUserMedicinePhongLuu> SessionLstPhanQuyen_PhongLuu { get; set; }
+        public static List<ClassCommon.classUserDepartment> LstPhanQuyen_KhoaPhong { get; set; }
+        public static List<ClassCommon.classUserMedicineStore> LstPhanQuyen_KhoThuoc { get; set; }
+        public static List<ClassCommon.classUserMedicinePhongLuu> LstPhanQuyen_PhongLuu { get; set; }
 
 
         #region Chuc nang cho Tab menu

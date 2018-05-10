@@ -90,7 +90,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(o => o.departmentname).ToList();
+                var lstDSPhong = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(o => o.departmentname).ToList();
                 if (lstDSPhong != null && lstDSPhong.Count > 0)
                 {
                     cboPhongThucHien.Properties.DataSource = lstDSPhong;

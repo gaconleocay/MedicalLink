@@ -36,7 +36,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                List<ClassCommon.classUserMedicineStore> lstdsphongthuockhoa = Base.SessionLogin.SessionLstPhanQuyen_KhoThuoc.Where(o => o.MedicineStoreType == 4).ToList();
+                List<ClassCommon.classUserMedicineStore> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_KhoThuoc.Where(o => o.MedicineStoreType == 4).ToList();
                 chkcomboListDSKho.Properties.DataSource = lstdsphongthuockhoa;
                 chkcomboListDSKho.Properties.DisplayMember = "MedicineStoreName";
                 chkcomboListDSKho.Properties.ValueMember = "MedicineStoreId";

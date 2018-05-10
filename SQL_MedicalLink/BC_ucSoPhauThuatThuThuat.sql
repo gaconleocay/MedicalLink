@@ -1,6 +1,10 @@
 --Sổ Phẫu thuật thủ thuật.
--- ngay 14/7
+--ucSoPhauThuatThuThuat
 
+
+
+
+--ngay 10/5/2018
 
 SELECT
 		 ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt,
@@ -59,7 +63,7 @@ SELECT
 FROM
 	(select servicepriceid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+tieuchi_thoigianchidinh+ khoachidinh +" ) ser
 left join 
-	(select servicepriceid,chandoantruocphauthuat_code,chandoantruocphauthuat,chandoansauphauthuat_code,chandoansauphauthuat,phauthuatthuthuatdate,phuongphappttt,pttt_phuongphapvocamid,pttt_hangid,phauthuatvien,bacsigayme,phumo1,phumo3,userid_gmhs from phauthuatthuthuat pttt) pttt	on pttt.servicepriceid=ser.servicepriceid
+	(select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,chandoantruocphauthuat_code,chandoantruocphauthuat,chandoansauphauthuat_code,chandoansauphauthuat,phauthuatthuthuatdate,phuongphappttt,pttt_phuongphapvocamid,pttt_hangid,phauthuatvien,bacsigayme,phumo1,phumo3,userid_gmhs from phauthuatthuthuat pttt) pttt on pttt.servicepriceid=ser.servicepriceid
 inner join 
 	(select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid not in (1,2,3,4)) serf on serf.servicepricecode=ser.servicepricecode
 inner join 
@@ -67,12 +71,12 @@ inner join
 inner join (select hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid
 left join (select departmentgroupid,departmentgroupname from departmentgroup) kchd on kchd.departmentgroupid=ser.departmentgroupid 
 left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) pcd on pcd.departmentid=ser.departmentid 
-left join tools_tblnhanvien bspt on bspt.userhisid=pttt.phauthuatvien 
-left join tools_tblnhanvien bsgm on bsgm.userhisid=pttt.bacsigayme
-left join tools_tblnhanvien phu on phu.userhisid=pttt.phumo1
-left join tools_tblnhanvien giupviec on giupviec.userhisid=pttt.phumo3 		
-left join tools_tblnhanvien nnhap on nnhap.userhisid=pttt.userid_gmhs
-"+tieuchi_thoigianthuchien+";
+left join nhompersonnel bspt on bspt.userhisid=pttt.phauthuatvien 
+left join nhompersonnel bsgm on bsgm.userhisid=pttt.bacsigayme
+left join nhompersonnel phu on phu.userhisid=pttt.phumo1
+left join nhompersonnel giupviec on giupviec.userhisid=pttt.phumo3 		
+left join nhompersonnel nnhap on nnhap.userhisid=pttt.userid_gmhs
+WHERE pttt.stt=1 "+tieuchi_thoigianthuchien+";
 	
 	
 	

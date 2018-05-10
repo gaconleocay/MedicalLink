@@ -62,7 +62,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 //linq groupby
-                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
                     chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
@@ -421,7 +421,7 @@ namespace MedicalLink.BaoCao
                     string[] dsKhoa_temp = chkcomboListDSKhoa.EditValue.ToString().Split(',');
                     for (int i = 0; i < dsKhoa_temp.Length; i++)
                     {
-                        lstDSPhong.AddRange(Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(dsKhoa_temp[i])).OrderBy(o => o.departmentname).ToList());
+                        lstDSPhong.AddRange(Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(dsKhoa_temp[i])).OrderBy(o => o.departmentname).ToList());
                     }
 
                     if (lstDSPhong != null && lstDSPhong.Count > 0)

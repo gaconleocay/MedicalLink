@@ -37,7 +37,7 @@ namespace MedicalLink.BaoCao
             {
                 if (cboLoaiDichVu.Text == "Xét nghiệm")
                 {
-                    var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 6).OrderBy(p => p.departmenttype).ToList();
+                    var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 6).OrderBy(p => p.departmenttype).ToList();
                     if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                     {
                         chkListDSPhongThucHien.Properties.DataSource = lstDSKhoa;
@@ -47,7 +47,7 @@ namespace MedicalLink.BaoCao
                 }
                 else
                 {
-                    var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(p => p.departmenttype).ToList();
+                    var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(p => p.departmenttype).ToList();
                     if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                     {
                         chkListDSPhongThucHien.Properties.DataSource = lstDSKhoa;

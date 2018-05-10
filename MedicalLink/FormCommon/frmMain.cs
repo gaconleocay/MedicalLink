@@ -20,7 +20,7 @@ namespace MedicalLink.FormCommon
         private string serverdb = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString(), true);
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         internal string lblHienThiThongTinChucNang { get; set; }
-        DialogResult hoi;
+        private DialogResult HoiKhoiDongLai;
 
         #endregion
         public frmMain()
@@ -165,6 +165,7 @@ namespace MedicalLink.FormCommon
         }
         #endregion
 
+        #region Events
         private void KiemTraLicense_EnableButton()
         {
             try
@@ -194,16 +195,14 @@ namespace MedicalLink.FormCommon
             }
         }
 
-
-        // sự kiện hỏi khi ấn nút X để đóng chương trình
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                if (hoi != DialogResult.Retry)
+                if (this.HoiKhoiDongLai != DialogResult.Retry)
                 {
-                    hoi = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình ?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                    if (hoi == DialogResult.No)
+                    this.HoiKhoiDongLai = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình ?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if (this.HoiKhoiDongLai == DialogResult.No)
                         e.Cancel = true;
                 }
             }
@@ -213,13 +212,66 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        // Thoát chương trình 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        // Hiển thị thời gian ngày tháng
+        private void tabPaneMenu_SelectedPageChanged(object sender, DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs e)
+        {
+            try
+            {
+                //if (tabPaneMenu.SelectedPage == tabMenuRestart)
+                //{
+                //    hoi = DialogResult.Retry;
+                //    Application.Restart();
+                //    Application.ExitThread();
+                //    System.Diagnostics.Process.Start(@"MedicalLinkLauncher.exe");
+                //    Application.Exit();
+                //}
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        private void btnResert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               HoiKhoiDongLai = MessageBox.Show("Bạn có chắc chắn muốn thoát chương trình ?", "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (HoiKhoiDongLai == DialogResult.Yes)
+                {
+                    HoiKhoiDongLai = DialogResult.Retry;
+                    //Application.Restart();
+                    Application.ExitThread();
+                    System.Diagnostics.Process.Start(@"MedicalLinkLauncher.exe");
+                    Application.Exit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        //delegate
+        internal void HienThiTenChucNang(string _message)
+        {
+            try
+            {
+                lblHienThiThongTinChucNang = _message;
+                lblStatusTenBC.Caption = lblHienThiThongTinChucNang;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
+
+        #region Process
         private void timerClock_Tick(object sender, EventArgs e)
         {
             StatusClock.Caption = DateTime.Now.ToString("dddd, HH:mm:ss dd/MM/yyyy");
@@ -252,43 +304,6 @@ namespace MedicalLink.FormCommon
             }
         }
 
-        private void tabPaneMenu_SelectedPageChanged(object sender, DevExpress.XtraBars.Navigation.SelectedPageChangedEventArgs e)
-        {
-            try
-            {
-                if (tabPaneMenu.SelectedPage == tabMenuRestart)
-                {
-                    hoi = DialogResult.Retry;
-                    // Application.Restart();
-                    Application.ExitThread();
-                    System.Diagnostics.Process.Start(@"MedicalLinkLauncher.exe");
-                    Application.Exit();
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-        //delegate
-        internal void HienThiTenChucNang(string _message)
-        {
-            try
-            {
-                lblHienThiThongTinChucNang = _message;
-                lblStatusTenBC.Caption = lblHienThiThongTinChucNang;
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-
-
-
-
-
+        #endregion
     }
 }

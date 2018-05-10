@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Aspose.Cells">
       <HintPath>Library\Aspose.Cells.dll</HintPath>
@@ -64,14 +64,6 @@
     </Reference>
     <Reference Include="AutoMapper">
       <HintPath>Library\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Devart.Data, Version=5.0.1654.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.8.862\lib\Devart.Data.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Devart.Data.PostgreSql, Version=7.8.862.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <HintPath>..\packages\dotConnect.Express.for.PostgreSQL.7.8.862\lib\Devart.Data.PostgreSql.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.BonusSkins.v15.2, Version=15.2.9.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -165,86 +157,88 @@
       <HintPath>Library\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.configuration">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Core">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.Linq">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Management">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Remoting">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Serialization.Formatters.Soap">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Security">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Transactions">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Extensions">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Input.Manipulations">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xaml">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Data">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Deployment">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Drawing">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="UIAutomationClient">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="UIAutomationProvider">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="UIAutomationTypes">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase">
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1906,6 +1900,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_44_ThongKeSuDungDichVuYeuCau_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_101_TKTienKhamYeuCauThu7ChuNhat.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

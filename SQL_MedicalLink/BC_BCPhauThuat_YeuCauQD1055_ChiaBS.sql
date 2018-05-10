@@ -1,4 +1,5 @@
 --Bao cao Phau thuat yeu cau chia tien cho bac si - QD1055
+--BCPhauThuat_YeuCauQD1055
 
 U18851-4427	Phẫu thuật yêu cầu Tán sỏi ngoài cơ thể
 U19154-1951	Phẫu thuật, thủ thuật sử dụng dịch vụ chất lượng cao
@@ -10,6 +11,8 @@ U30001-1207	Phẫu thuật yêu cầu mổ dao siêu âm (Loại 2)
 U30001-2954	Phẫu thuật yêu cầu dao siêu âm (Loại 3)
 
  -----
+ --ngay 10/5/2018
+ 
 SELECT row_number () over (order by A.ngay_thuchien) as stt, 
 A.patientid, 
 A.vienphiid, 
@@ -113,19 +116,19 @@ FROM
 		(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 
 		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
 		pttt.userid as nguoinhapthuchien
-	FROM (select servicepricecode, vienphiid, departmentgroupid, departmentid, servicepricedate, medicalrecordid, servicepricename,servicepricename_bhyt,servicepricename_nhandan, servicepricemoney_bhyt, servicepricemoney, loaipttt, servicepriceid, soluong, chiphidauvao, chiphimaymoc, chiphipttt, mayytedbid, loaidoituong, servicepricemoney_nhandan from serviceprice where servicepricecode in (" + lstPhongCheck + ")) ser 
-		left join (select servicepriceid, phauthuatthuthuatdate, phauthuatvien, bacsigayme, phumo1, phumo2, phume, dungcuvien, phume2, phumo3, dieuduong, phumo4, userid from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
-		inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphistatus_vp, vienphidate_ravien, duyet_ngayduyet_vp from vienphi) vp on vp.vienphiid=ser.vienphiid 
-		inner join (select tinhtoanlaigiadvktc, pttt_loaiid, servicepricecode  from servicepriceref where servicepricecode in (" + lstPhongCheck + ")) serf on serf.servicepricecode=ser.servicepricecode
-	WHERE " + tieuchi_date + ") A 
+	FROM (select servicepricecode, vienphiid, departmentgroupid, departmentid, servicepricedate, medicalrecordid, servicepricename,servicepricename_bhyt,servicepricename_nhandan, servicepricemoney_bhyt, servicepricemoney, loaipttt, servicepriceid, soluong, chiphidauvao, chiphimaymoc, chiphipttt, mayytedbid, loaidoituong, servicepricemoney_nhandan from serviceprice where servicepricecode in (" + lstServicecheck + ") "+_tieuchi_ser+") ser 
+		left join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid, phauthuatthuthuatdate, phauthuatvien, bacsigayme, phumo1, phumo2, phume, dungcuvien, phume2, phumo3, dieuduong, phumo4, userid from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
+		inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphistatus_vp, vienphidate_ravien, duyet_ngayduyet_vp from vienphi where 1=1 "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid 
+		inner join (select tinhtoanlaigiadvktc, pttt_loaiid, servicepricecode from servicepriceref where servicepricecode in (" + lstServicecheck + ")) serf on serf.servicepricecode=ser.servicepricecode
+	WHERE pttt.stt=1 " + _tieuchi_pttt + ") A 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame, bhytcode from hosobenhan) hsba on hsbA.hosobenhanid=A.hosobenhanid 
 LEFT JOIN departmentgroup KCHD ON KCHD.departmentgroupid=A.khoachidinh 
 LEFT JOIN department pcd ON pcd.departmentid=A.phongchidinh 
 LEFT JOIN departmentgroup KCD ON KCD.departmentgroupid=A.khoachuyenden 
 LEFT JOIN departmentgroup krv ON krv.departmentgroupid=A.khoaravien 
-LEFT JOIN tools_tblnhanvien mc ON mc.userhisid=A.mochinh_tenbs 
-LEFT JOIN tools_tblnhanvien gm ON gm.userhisid=A.gayme_tenbs 
-LEFT JOIN tools_tblnhanvien p1 ON p1.userhisid=A.phu1_tenbs 
-LEFT JOIN tools_tblnhanvien nnth ON nnth.userhisid=A.nguoinhapthuchien;
+LEFT JOIN nhompersonnel mc ON mc.userhisid=A.mochinh_tenbs 
+LEFT JOIN nhompersonnel gm ON gm.userhisid=A.gayme_tenbs 
+LEFT JOIN nhompersonnel p1 ON p1.userhisid=A.phu1_tenbs 
+LEFT JOIN nhompersonnel nnth ON nnth.userhisid=A.nguoinhapthuchien;
 
 

@@ -62,7 +62,7 @@ namespace MedicalLink.Dashboard
             try
             {
                 //linq groupby
-                var lstDSKhoa = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 if (lstDSKhoa != null && lstDSKhoa.Count > 0)
                 {
                     cboKhoa.Properties.DataSource = lstDSKhoa;

@@ -314,7 +314,7 @@ namespace MedicalLink.BaoCao
             {
                 if (_loaiBC == "XN")
                 {
-                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 6).OrderBy(o => o.departmentname).ToList();
+                    var lstDSPhong = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 6).OrderBy(o => o.departmentname).ToList();
                     if (lstDSPhong != null && lstDSPhong.Count > 0)
                     {
                         chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
@@ -324,7 +324,7 @@ namespace MedicalLink.BaoCao
                 }
                 else if (_loaiBC == "CDHA")
                 {
-                    var lstDSPhong = Base.SessionLogin.SessionlstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(o => o.departmentname).ToList();
+                    var lstDSPhong = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmenttype == 7).OrderBy(o => o.departmentname).ToList();
                     if (lstDSPhong != null && lstDSPhong.Count > 0)
                     {
                         chkcomboListDSPhong.Properties.DataSource = lstDSPhong;

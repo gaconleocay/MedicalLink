@@ -15,7 +15,7 @@ namespace MedicalLink.Base
         internal static string AdminUser_key = "admin";
         internal static string AdminPass_key = "khongchO123$";
         internal static string SaltEncrypt = "yevvl";
-        internal static int SoLuongTabPageChucNang = 5;
+        internal static int SoLuongTabPageChucNang = 8;
         internal static int SoLuongTabPageDashboard = 10;
         internal static string BanQuyenKhongThoiHan = "BanQuyenKhongThoiHan";
 

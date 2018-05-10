@@ -54,36 +54,39 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+                //MedicalLink.Base.Logging.Warn("Load tab");
                 //trang chu
                 tabMenuTrangChu.Controls.Clear();
                 MedicalLink.FormCommon.ucTrangChu _ucTrangChu = new FormCommon.ucTrangChu();
                 _ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
                 _ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
                 tabMenuTrangChu.Controls.Add(_ucTrangChu);
-                //chuc nang
-                tabMenuChucNang.Controls.Clear();
-                MedicalLink.FormCommon.ucChucNang _ucChucNang = new FormCommon.ucChucNang();
-                _ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
-                _ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuChucNang.Controls.Add(_ucChucNang);
-                //bao cao
-                tabMenuBaoCao.Controls.Clear();
-                MedicalLink.FormCommon.ucBaoCao _ucBaoCao = new FormCommon.ucBaoCao();
-                _ucBaoCao.MyGetData = new FormCommon.ucBaoCao.GetString(HienThiTenChucNang);
-                _ucBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuBaoCao.Controls.Add(_ucBaoCao);
-                //ql tai chinh
-                tabMenuQLTaiChinh.Controls.Clear();
-                MedicalLink.FormCommon.ucQLTaiChinh _ucQLTaiChinh = new FormCommon.ucQLTaiChinh();
-                _ucQLTaiChinh.MyGetData = new FormCommon.ucQLTaiChinh.GetString(HienThiTenChucNang);
-                _ucQLTaiChinh.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuQLTaiChinh.Controls.Add(_ucQLTaiChinh);
+               // //chuc nang
+               // tabMenuChucNang.Controls.Clear();
+               // MedicalLink.FormCommon.ucChucNang _ucChucNang = new FormCommon.ucChucNang();
+               // _ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
+               // //_ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
+               // tabMenuChucNang.Controls.Add(_ucChucNang);
+               // //bao cao
+               // tabMenuBaoCao.Controls.Clear();
+               // MedicalLink.FormCommon.ucBaoCao _ucBaoCao = new FormCommon.ucBaoCao();
+               // _ucBaoCao.MyGetData = new FormCommon.ucBaoCao.GetString(HienThiTenChucNang);
+               //// _ucBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+               // tabMenuBaoCao.Controls.Add(_ucBaoCao);
+               // //ql tai chinh
+               // tabMenuQLTaiChinh.Controls.Clear();
+               // MedicalLink.FormCommon.ucQLTaiChinh _ucQLTaiChinh = new FormCommon.ucQLTaiChinh();
+               // _ucQLTaiChinh.MyGetData = new FormCommon.ucQLTaiChinh.GetString(HienThiTenChucNang);
+               //// _ucQLTaiChinh.Dock = System.Windows.Forms.DockStyle.Fill;
+               // tabMenuQLTaiChinh.Controls.Add(_ucQLTaiChinh);
                 //dashboard
                 tabMenuDashboard.Controls.Clear();
                 MedicalLink.FormCommon.ucDashboard _ucDashboard = new FormCommon.ucDashboard();
                 _ucDashboard.MyGetData = new FormCommon.ucDashboard.GetString(HienThiTenChucNang);
-                _ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+               // _ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
                 tabMenuDashboard.Controls.Add(_ucDashboard);
+
+                EnableAndDisableChucNang(false);
             }
             catch (Exception ex)
             {
@@ -155,6 +158,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
+                //MedicalLink.Base.Logging.Warn("Kiểm tra phân quyền");
                 //Kiểm tra phân quyền
                 if (SessionLogin.SessionUsercode == MedicalLink.Base.KeyTrongPhanMem.AdminUser_key)
                 {

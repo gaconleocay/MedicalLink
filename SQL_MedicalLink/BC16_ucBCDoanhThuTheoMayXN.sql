@@ -2,10 +2,10 @@
 --ucBCDoanhThuTheoMayXN
 
 --su dung tat ca
---ngay 7/5/2018 them chi phi + tach vi sinh
+--ngay 10/5/2018 them chi phi + tach vi sinh
 SELECT ROW_NUMBER() OVER (ORDER BY SERV.ten_xn) as stt,
-		SERV.ma_xn, SERV.ten_xn, 
-		"+_tenmayxn_khacvisinh+"
+		SERV.ma_xn, SERV.ten_xn
+		"+_tenmayxn_khacvisinh_select+",
 		sum(SERV.sl_bhyt) as sl_bhyt, 
 		sum(SERV.sl_vp) as sl_vp, 
 		sum(SERV.sl_yc) as sl_yc, 
@@ -20,20 +20,20 @@ SELECT ROW_NUMBER() OVER (ORDER BY SERV.ten_xn) as stt,
 		sum(coalesce(SERV.sl_yc,0) * coalesce(SERV.gia_yc,0)) as tien_yc,
 		sum(coalesce(SERV.sl_nnn,0) * coalesce(SERV.gia_nnn,0)) as tien_nnn,	
 		sum((coalesce(SERV.sl_bhyt,0) * coalesce(SERV.gia_bhyt,0)) + (coalesce(SERV.sl_vp,0) * coalesce(SERV.gia_vp,0)) + (coalesce(SERV.sl_yc,0) * coalesce(SERV.gia_yc,0)) + (coalesce(SERV.sl_nnn,0) * coalesce(SERV.gia_nnn,0))) as tien_tong,
-		sum(SERV.cp_tructiep) as cp_tructiep, 
-		sum(SERV.cp_pttt) as cp_pttt, 
-		sum(SERV.cp_maymoc) as cp_maymoc, 
-		sum(SERV.cp_ldlk) as cp_ldlk,
-		(sum(coalesce(SERV.cp_tructiep,0) + coalesce(SERV.cp_pttt,0) + coalesce(SERV.cp_maymoc,0) + coalesce(SERV.cp_ldlk,0)) + sum((coalesce(chiphi.cp_hoachat,0)+coalesce(chiphi.cp_haophixn,0)+coalesce(chiphi.cp_luong,0)+coalesce(chiphi.cp_diennuoc,0)+coalesce(chiphi.cp_khmaymoc,0)+coalesce(chiphi.cp_khxaydung,0))*SERV.soluong)) as cp_tong,
-		(sum((coalesce(SERV.sl_bhyt,0) * coalesce(SERV.gia_bhyt,0)) + (coalesce(SERV.sl_vp,0) * coalesce(SERV.gia_vp,0)) + (coalesce(SERV.sl_yc,0) * coalesce(SERV.gia_yc,0)) + (coalesce(SERV.sl_nnn,0) * coalesce(SERV.gia_nnn,0))) - sum(coalesce(SERV.cp_tructiep,0) + coalesce(SERV.cp_pttt,0) + coalesce(SERV.cp_maymoc,0) + coalesce(SERV.cp_ldlk,0)) - sum((coalesce(chiphi.cp_hoachat,0)+coalesce(chiphi.cp_haophixn,0)+coalesce(chiphi.cp_luong,0)+coalesce(chiphi.cp_diennuoc,0)+coalesce(chiphi.cp_khmaymoc,0)+coalesce(chiphi.cp_khxaydung,0))*SERV.soluong)) as lai,
+		coalesce(SERV.cp_tructiep,0) as cp_tructiep, 
+		coalesce(SERV.cp_maymoc,0) as cp_maymoc, 
+		coalesce(SERV.cp_ldlk,0) as cp_ldlk,
+		coalesce(SERV.cp_pttt,0) as cp_pttt, 	
+		coalesce(chiphi.cp_hoachat,0) as cp_hoachat,
+		coalesce(chiphi.cp_haophixn,0) as cp_haophixn,
+		coalesce(chiphi.cp_luong,0) as cp_luong,
+		coalesce(chiphi.cp_diennuoc,0) as cp_diennuoc,
+		coalesce(chiphi.cp_khmaymoc,0) as cp_khmaymoc,
+		coalesce(chiphi.cp_khxaydung,0) as cp_khxaydung,
+		sum(coalesce(SERV.cp_tructiep,0)+coalesce(SERV.cp_maymoc,0)+coalesce(SERV.cp_ldlk,0)+coalesce(SERV.cp_pttt,0)+coalesce(chiphi.cp_hoachat,0)+coalesce(chiphi.cp_haophixn,0)+coalesce(chiphi.cp_luong,0)+coalesce(chiphi.cp_diennuoc,0)+coalesce(chiphi.cp_khmaymoc,0)+coalesce(chiphi.cp_khxaydung,0)) as cp_tong,
+		(sum((coalesce(SERV.sl_bhyt,0)*coalesce(SERV.gia_bhyt,0))+(coalesce(SERV.sl_vp,0)*coalesce(SERV.gia_vp,0))+(coalesce(SERV.sl_yc,0)*coalesce(SERV.gia_yc,0))+(coalesce(SERV.sl_nnn,0)*coalesce(SERV.gia_nnn,0)))-sum(coalesce(SERV.cp_tructiep,0)+coalesce(SERV.cp_pttt,0)+coalesce(SERV.cp_maymoc,0)+coalesce(SERV.cp_ldlk,0))-sum((coalesce(chiphi.cp_hoachat,0)+coalesce(chiphi.cp_haophixn,0)+coalesce(chiphi.cp_luong,0)+coalesce(chiphi.cp_diennuoc,0)+coalesce(chiphi.cp_khmaymoc,0)+coalesce(chiphi.cp_khxaydung,0))*SERV.soluong)) as lai,
 		SERV.khoatra_kq,
-		chiphi.khuvuc_ten,
-		sum(coalesce(chiphi.cp_hoachat,0)*SERV.soluong) as cp_hoachat_tong,
-		sum(coalesce(chiphi.cp_haophixn,0)*SERV.soluong) as cp_haophixn_tong,
-		sum(coalesce(chiphi.cp_luong,0)*SERV.soluong) as cp_luong_tong,
-		sum(coalesce(chiphi.cp_diennuoc,0)*SERV.soluong) as cp_diennuoc_tong,
-		sum(coalesce(chiphi.cp_khmaymoc,0)*SERV.soluong) as cp_khmaymoc_tong,
-		sum(coalesce(chiphi.cp_khxaydung,0)*SERV.soluong) as cp_khxaydung_tong
+		chiphi.khuvuc_ten
 FROM
 	(select ser.vienphiid, ser.servicepriceid, ser.maubenhphamid, 
 		ser.servicepricecode as ma_xn, 
@@ -70,7 +70,7 @@ LEFT JOIN (SELECT *
 					FROM dblink('myconn_mel','select kv.mayxn_ma,kv.mayxn_ten,kv.khuvuc_ma,kv.khuvuc_ten,cp.servicepricecode,cp.cp_hoachat,cp.cp_haophixn,cp.cp_luong,cp.cp_diennuoc,cp.cp_khmaymoc,cp.cp_khxaydung from ml_mayxnkhuvuc kv left join ml_mayxnchiphi cp on cp.mayxn_ma=kv.mayxn_ma')
 					AS ml_mayxn(mayxn_ma integer,mayxn_ten text,khuvuc_ma text,khuvuc_ten text,servicepricecode text,cp_hoachat double precision,cp_haophixn double precision,cp_luong double precision,cp_diennuoc double precision,cp_khmaymoc double precision,cp_khxaydung double precision)) chiphi on chiphi.servicepricecode=SERV.ma_xn "+_dieukien_khacvisinh+"
 " + dsmayxn + "					
-GROUP BY SERV.ma_xn,SERV.ten_xn"+_tenmayxn_khacvisinh_groupby+",SERV.gia_bhyt,SERV.gia_vp,SERV.gia_yc,SERV.gia_nnn,SERV.khoatra_kq,chiphi.khuvuc_ten;
+GROUP BY SERV.ma_xn,SERV.ten_xn"+_tenmayxn_khacvisinh_groupby+",SERV.gia_bhyt,SERV.gia_vp,SERV.gia_yc,SERV.gia_nnn,SERV.khoatra_kq,chiphi.khuvuc_ten,SERV.cp_tructiep,SERV.cp_maymoc,SERV.cp_ldlk,SERV.cp_pttt,chiphi.cp_hoachat,chiphi.cp_haophixn,chiphi.cp_luong,chiphi.cp_diennuoc,chiphi.cp_khmaymoc,chiphi.cp_khxaydung;
 
 
 

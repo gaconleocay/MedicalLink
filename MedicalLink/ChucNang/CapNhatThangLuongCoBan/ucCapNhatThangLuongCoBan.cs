@@ -126,7 +126,7 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
                         //Log
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Cập nhật thành công lương cơ bản từ " + txtLuongCoBan.Text + " sang lương cơ bản " + txtLuongCoBan_Moi.Text + " SL=" + gridViewDSVienPhi.RowCount + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + dateupdate + "', 'TOOLS_20');";
 
-                        if (condb.ExecuteNonQuery_Dblink(sqlbackupdulieu))
+                        if (condb.ExecuteNonQuery_MeLToHIS(sqlbackupdulieu))
                         {
                             if (condb.ExecuteNonQuery_HIS(sqlCapnhatdulieu))
                             {

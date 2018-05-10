@@ -295,7 +295,7 @@ namespace MedicalLink.ChucNang
                     _sqlUpdate = "UPDATE medicalrecord SET thoigianvaovien='" + dateThoiGianVao.Text + "', thoigianravien='" + _dateThoiGianRa + "' WHERE medicalrecordid= '" + _medirecordId + "'; ";
                 }
 
-                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG ra BN VP: " + _mavienphi + " mã ĐT: " + _medirecordId + " từ TG vào: " + _tg_vaovien + " thành TG: " + dateThoiGianVao.Text + "; TG ra từ: " + _tg_ravien + " thành TG: " + _dateThoiGianRa + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_01');";
+                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG ra BN VP: " + _mavienphi + " mã ĐT: " + _medirecordId + " từ TG vào: " + _tg_vaovien + " thành TG: " + dateThoiGianVao.Text + "; TG ra từ: " + _tg_ravien + " thành TG: " + _dateThoiGianRa + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', '"+ _mavienphi + "', 'TOOL_01');";
                 if (condb.ExecuteNonQuery_HIS(_sqlUpdate))
                 {
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);

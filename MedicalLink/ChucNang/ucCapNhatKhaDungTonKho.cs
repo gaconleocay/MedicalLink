@@ -314,7 +314,7 @@ namespace MedicalLink.ChucNang
                             // Luu lai vao DB
                             String dthientai = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                             string sql_insertlog_update = "INSERT INTO tools_tbllog_updatekhadung(tgcapnhat, khothuoc_id, kho_id, kho_ma, kho_ten, thuoc_id, thuoc_ma, thuoc_ten, thuoc_dvt, slkhadung, sltonkho, gianhap, giaban, loguser) SELECT '" + dthientai + "' as tgcapnhat, thuoc.*, '" + SessionLogin.SessionUsercode + "' as loguser FROM dblink('myconn','SELECT msf.medicinestorerefid as khothuoc_id, msf.medicinestoreid as kho_id, ms.medicinestorecode as kho_ma, ms.medicinestorename as kho_ten, msf.medicinerefid as thuoc_id, me.medicinecode as thuoc_ma, me.medicinename as thuoc_ten, me.donvitinh as thuoc_dvt, msf.soluongkhadung as slkhadung, msf.soluongtonkho as sltonkho, me.gianhap as gianhap, me.giaban as giaban FROM medicine_store_ref msf inner join medicine_ref me on me.medicinerefid=msf.medicinerefid inner join medicine_store ms on ms.medicinestoreid=msf.medicinestoreid WHERE msf.soluongkhadung > msf.soluongtonkho') AS thuoc(khothuoc_id integer,kho_id integer,kho_ma text,kho_ten text,thuoc_id integer,thuoc_ma text,thuoc_ten text,thuoc_dvt text,slkhadung double precision,sltonkho double precision,gianhap double precision,giaban double precision); ";
-                            condb.ExecuteNonQuery_Dblink(sql_insertlog_update);
+                            condb.ExecuteNonQuery_MeLToHIS(sql_insertlog_update);
                             // Update KD, TK
                             string sqlupdatekdtk = "UPDATE medicine_store_ref SET soluongkhadung = soluongtonkho WHERE soluongkhadung > soluongtonkho;";
                             condb.ExecuteNonQuery_HIS(sqlupdatekdtk);

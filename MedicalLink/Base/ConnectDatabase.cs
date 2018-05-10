@@ -23,6 +23,7 @@ namespace MedicalLink.Base
         private bool kiemtraketnoi = false;
 
         #endregion
+
         #region Database HIS
         public void Connect()
         {
@@ -215,52 +216,52 @@ namespace MedicalLink.Base
 
         #endregion
 
-        #region Sử dụng DB_LINK để kết nối đến một CSDL khác
-        public DataTable GetDataTable_Dblink(string sql)
+        #region Sử dụng DB_LINK để kết nối MeL sang HIS
+        public DataTable GetDataTable_MeLToHIS(string sql)
         {
             DataTable result = new DataTable();
             try
             {
                 //dblink_connect
-                Execute_Dblink_Connect_HIS();
+                Execute_MeL_Connect_HIS();
                 //Chay SQL thuc thi
                 result = GetDataTable_MeL(sql);
                 //Disconnect
-                Execute_Dblink_Disconnect_HIS();
+                Execute_MeL_Disconnect_HIS();
             }
             catch (Exception ex)
             {
-                Execute_Dblink_Disconnect_HIS();
-                Execute_Dblink_Connect_HIS();
+                Execute_MeL_Disconnect_HIS();
+                Execute_MeL_Connect_HIS();
                 result = GetDataTable_MeL(sql);
-                Execute_Dblink_Disconnect_HIS();
+                Execute_MeL_Disconnect_HIS();
             }
             return result;
         }
-        public bool ExecuteNonQuery_Dblink(string sql)
+        public bool ExecuteNonQuery_MeLToHIS(string sql)
         {
             bool result = false;
             try
             {
                 //dblink_connect
-                Execute_Dblink_Connect_HIS();
+                Execute_MeL_Connect_HIS();
                 //Chay SQL thuc thi
                 result = ExecuteNonQuery_MeL(sql);
                 //Disconnect
-                Execute_Dblink_Disconnect_HIS();
+                Execute_MeL_Disconnect_HIS();
             }
             catch (Exception ex)
             {
                 //Logging.Error("Loi getDataTable Dblink: " + ex.ToString());
-                Execute_Dblink_Disconnect_HIS();
-                Execute_Dblink_Connect_HIS();
+                Execute_MeL_Disconnect_HIS();
+                Execute_MeL_Connect_HIS();
                 result = ExecuteNonQuery_MeL(sql);
-                Execute_Dblink_Disconnect_HIS();
+                Execute_MeL_Disconnect_HIS();
             }
             return result;
         }
 
-        public void Execute_Dblink_Connect_HIS()
+        public void Execute_MeL_Connect_HIS()
         {
             try
             {
@@ -271,7 +272,7 @@ namespace MedicalLink.Base
             {
             }
         }
-        public void Execute_Dblink_Disconnect_HIS()
+        public void Execute_MeL_Disconnect_HIS()
         {
             try
             {
@@ -285,24 +286,24 @@ namespace MedicalLink.Base
         #endregion
 
         #region Sử dụng DB_LINK Kết nối từ DB HIS sang DB MedicalLink
-        public DataTable GetDataTable_Dblink_MeL(string sql)
+        public DataTable GetDataTable_HISToMeL(string sql)
         {
             DataTable result = new DataTable();
             try
             {
                 //dblink_connect
-                Execute_Dblink_Connect_MeL();
+                Execute_HIS_Connect_MeL();
                 //Chay SQL thuc thi
                 result = GetDataTable_HIS(sql);
                 //Disconnect
-                Execute_Dblink_Disconnect_MeL();
+                Execute_HIS_Disconnect_MeL();
             }
             catch (Exception ex)
             {
-                Execute_Dblink_Disconnect_MeL();
-                Execute_Dblink_Connect_MeL();
+                Execute_HIS_Disconnect_MeL();
+                Execute_HIS_Connect_MeL();
                 result = GetDataTable_HIS(sql);
-                Execute_Dblink_Disconnect_MeL();
+                Execute_HIS_Disconnect_MeL();
                Logging.Error("Loi GetDataTable_Dblink_MeL: " + ex.ToString());
             }
             return result;
@@ -329,7 +330,7 @@ namespace MedicalLink.Base
         //    }
         //    return result;
         //}
-        public void Execute_Dblink_Connect_MeL()
+        public void Execute_HIS_Connect_MeL()
         {
             try
             {
@@ -341,7 +342,7 @@ namespace MedicalLink.Base
                 Logging.Error("Loi Execute_Dblink_Connect_MeL: " + ex.ToString());
             }
         }
-        public void Execute_Dblink_Disconnect_MeL()
+        public void Execute_HIS_Disconnect_MeL()
         {
             try
             {

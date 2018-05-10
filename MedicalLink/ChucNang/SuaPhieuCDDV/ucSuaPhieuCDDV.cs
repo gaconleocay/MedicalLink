@@ -615,6 +615,8 @@ namespace MedicalLink.ChucNang
                 string maubenhphamstatus = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamstatus").ToString();
                 string maubenhphamgrouptype = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamgrouptype").ToString();
 
+                string _vienphiid = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "vienphiid").ToString();
+
                 if (dathutienid == 0 && vienphistatus_vp == 0)
                 {
                     if (maubenhphamgrouptype == "Thuốc" || maubenhphamgrouptype == "Vật tư")
@@ -628,7 +630,7 @@ namespace MedicalLink.ChucNang
 
                                 string delete_maubenhpham = "DELETE FROM maubenhpham WHERE maubenhphamid='" + maubenhphamid + "';";
                                 string delete_serviceprice = "DELETE FROM serviceprice WHERE maubenhphamid='" + maubenhphamid + "';";
-                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và thuốc/vật tư mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_12');";
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và thuốc/vật tư mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', '" + _vienphiid + "', 'TOOL_12');";
                                 string update_medicine_store_bill = "UPDATE medicine_store_bill SET isremove=1 WHERE maubenhphamid='" + maubenhphamid + "';";
 
                                 if (maubenhphamphieutypeid == 0) //phieu chi dinh

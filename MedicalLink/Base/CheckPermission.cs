@@ -106,7 +106,7 @@ namespace MedicalLink.Base
                 {
                     string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
                     string sqlper_mel = "SELECT ude.departmentgroupid, degp.departmentgroupcode, degp.departmentgroupname, degp.departmentgrouptype, ude.departmentid, de.departmentcode, de.departmentname, ude.departmenttype, ude.usercode FROM tools_tbluser_departmentgroup ude inner join dblink('myconn','SELECT departmentid, departmentcode, departmentname, departmenttype FROM department') AS de(departmentid integer, departmentcode text, departmentname text, departmenttype integer) on de.departmentid=ude.departmentid inner join dblink('myconn','SELECT departmentgroupid, departmentgroupcode, departmentgroupname, departmentgrouptype FROM departmentgroup') AS degp(departmentgroupid integer, departmentgroupcode text, departmentgroupname text, departmentgrouptype integer) on degp.departmentgroupid=ude.departmentgroupid WHERE usercode = '" + en_usercode + "' ORDER BY degp.departmentgroupname,de.departmentname,ude.departmenttype;";
-                    dataDepartment = new DataView(condb.GetDataTable_Dblink(sqlper_mel));
+                    dataDepartment = new DataView(condb.GetDataTable_MeLToHIS(sqlper_mel));
                 }
                 if (dataDepartment.Count > 0)
                 {
@@ -147,7 +147,7 @@ namespace MedicalLink.Base
                 {
                     string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
                    string sqlper_mel = "SELECT ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename, ms.medicinestoretype, (case ms.medicinestoretype when 1 then 'Kho tổng' when 2 then 'Kho ngoại trú' when 3 then 'Kho nội trú' when 4 then 'Nhà thuốc' when 7 then 'Kho vật tư' end) as medicinestoretypename FROM tools_tbluser_medicinestore ttm inner join dblink('myconn','SELECT medicinestoreid, medicinestorecode, medicinestorename, medicinestoretype FROM medicine_store') AS ms(medicinestoreid integer, medicinestorecode text, medicinestorename text, medicinestoretype integer) on ms.medicinestoreid=ttm.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestoretype,ms.medicinestorename;";
-                    dataKhoThuoc = new DataView(condb.GetDataTable_Dblink(sqlper_mel));
+                    dataKhoThuoc = new DataView(condb.GetDataTable_MeLToHIS(sqlper_mel));
                 }
 
                 if (dataKhoThuoc.Count > 0)
@@ -188,7 +188,7 @@ namespace MedicalLink.Base
                 {
                     string en_usercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(SessionLogin.SessionUsercode, true);
                     string sqlper_mel = "SELECT pl.medicinephongluuid, pl.medicinephongluucode, (ms.medicinestorename || '-' ||pl.medicinephongluuname) as medicinephongluuname, ms.medicinestoreid, ms.medicinestorecode, ms.medicinestorename FROM tools_tbluser_medicinephongluu ttm inner join dblink('myconn','SELECT medicinephongluuid, medicinephongluucode, medicinestoreid, medicinephongluuname FROM medicinephongluu') AS pl(medicinephongluuid integer, medicinephongluucode text, medicinestoreid integer, medicinephongluuname text) on pl.medicinephongluuid=ttm.medicinephongluuid inner join dblink('myconn','SELECT medicinestoreid, medicinestorecode, medicinestorename FROM medicine_store') AS ms(medicinestoreid integer, medicinestorecode text, medicinestorename text) on pl.medicinestoreid=ms.medicinestoreid WHERE ttm.usercode = '" + en_usercode + "' ORDER BY ms.medicinestorename, pl.medicinephongluuname;";
-                    dataPhongluu = new DataView(condb.GetDataTable_Dblink(sqlper_mel));
+                    dataPhongluu = new DataView(condb.GetDataTable_MeLToHIS(sqlper_mel));
                 }
 
                 if (dataPhongluu.Count > 0)

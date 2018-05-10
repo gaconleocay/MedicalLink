@@ -258,7 +258,7 @@ namespace MedicalLink.ChucNang
                                     {
                                         // thực thi câu lệnh update và lưu log
                                         string sqlxecute = "UPDATE medicalrecord SET medicalrecordstatus='0', departmentid='0' WHERE medicalrecordid='" + madt + "';";
-                                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển BN: " + mabn + " mã VP: " + mavp + " mã điều trị: " + madt + " ra phòng hành chính','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_05');";
+                                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển BN: " + mabn + " mã VP: " + mavp + " mã điều trị: " + madt + " ra phòng hành chính','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '"+ mavp + "', 'TOOL_05');";
                                         condb.ExecuteNonQuery_HIS(sqlxecute);
                                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển mã điều trị ra phòng hành chính thành công!");

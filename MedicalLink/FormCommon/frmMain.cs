@@ -54,49 +54,47 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                tabMenuTrangChu.Controls.Clear();
-                MedicalLink.FormCommon.ucTrangChu ucTrangChu = new FormCommon.ucTrangChu();
-                ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
-                ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuTrangChu.Controls.Add(ucTrangChu);
-
-                tabMenuChucNang.Controls.Clear();
-                MedicalLink.FormCommon.ucChucNang ucChucNang = new FormCommon.ucChucNang();
-                ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
-                ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-                tabMenuChucNang.Controls.Add(ucChucNang);
-
-
-                //MedicalLink.Base.Logging.Warn("Load tab");
-                //trang chu
                 //tabMenuTrangChu.Controls.Clear();
-                //MedicalLink.FormCommon.ucTrangChu _ucTrangChu = new FormCommon.ucTrangChu();
-                //_ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
-                //_ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
-                //tabMenuTrangChu.Controls.Add(_ucTrangChu);
-                // //chuc nang
-                // tabMenuChucNang.Controls.Clear();
-                // MedicalLink.FormCommon.ucChucNang _ucChucNang = new FormCommon.ucChucNang();
-                // _ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
-                // //_ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-                // tabMenuChucNang.Controls.Add(_ucChucNang);
-                // //bao cao
-                // tabMenuBaoCao.Controls.Clear();
-                // MedicalLink.FormCommon.ucBaoCao _ucBaoCao = new FormCommon.ucBaoCao();
-                // _ucBaoCao.MyGetData = new FormCommon.ucBaoCao.GetString(HienThiTenChucNang);
-                //// _ucBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
-                // tabMenuBaoCao.Controls.Add(_ucBaoCao);
-                // //ql tai chinh
-                // tabMenuQLTaiChinh.Controls.Clear();
-                // MedicalLink.FormCommon.ucQLTaiChinh _ucQLTaiChinh = new FormCommon.ucQLTaiChinh();
-                // _ucQLTaiChinh.MyGetData = new FormCommon.ucQLTaiChinh.GetString(HienThiTenChucNang);
-                //// _ucQLTaiChinh.Dock = System.Windows.Forms.DockStyle.Fill;
-                // tabMenuQLTaiChinh.Controls.Add(_ucQLTaiChinh);
+                //MedicalLink.FormCommon.ucTrangChu ucTrangChu = new FormCommon.ucTrangChu();
+                //ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
+                //ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
+                //tabMenuTrangChu.Controls.Add(ucTrangChu);
+
+                //tabMenuChucNang.Controls.Clear();
+                //MedicalLink.FormCommon.ucChucNang ucChucNang = new FormCommon.ucChucNang();
+                //ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
+                //ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
+                //tabMenuChucNang.Controls.Add(ucChucNang);
+
+                //trang chu
+                tabMenuTrangChu.Controls.Clear();
+                MedicalLink.FormCommon.ucTrangChu _ucTrangChu = new FormCommon.ucTrangChu();
+                _ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
+                _ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuTrangChu.Controls.Add(_ucTrangChu);
+                //chuc nang
+                tabMenuChucNang.Controls.Clear();
+                MedicalLink.FormCommon.ucChucNang _ucChucNang = new FormCommon.ucChucNang();
+                _ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
+                _ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuChucNang.Controls.Add(_ucChucNang);
+                //bao cao
+                tabMenuBaoCao.Controls.Clear();
+                MedicalLink.FormCommon.ucBaoCao _ucBaoCao = new FormCommon.ucBaoCao();
+                _ucBaoCao.MyGetData = new FormCommon.ucBaoCao.GetString(HienThiTenChucNang);
+                _ucBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuBaoCao.Controls.Add(_ucBaoCao);
+                //ql tai chinh
+                tabMenuQLTaiChinh.Controls.Clear();
+                MedicalLink.FormCommon.ucQLTaiChinh _ucQLTaiChinh = new FormCommon.ucQLTaiChinh();
+                _ucQLTaiChinh.MyGetData = new FormCommon.ucQLTaiChinh.GetString(HienThiTenChucNang);
+                _ucQLTaiChinh.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuQLTaiChinh.Controls.Add(_ucQLTaiChinh);
                 //dashboard
                 tabMenuDashboard.Controls.Clear();
                 MedicalLink.FormCommon.ucDashboard _ucDashboard = new FormCommon.ucDashboard();
                 _ucDashboard.MyGetData = new FormCommon.ucDashboard.GetString(HienThiTenChucNang);
-               // _ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+                _ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
                 tabMenuDashboard.Controls.Add(_ucDashboard);
 
                 EnableAndDisableChucNang(false);
@@ -244,7 +242,7 @@ namespace MedicalLink.FormCommon
                             this.Dispose();
                             frmLogin frm = new frmLogin();
                             frm.Show();
-                        }                      
+                        }
                     }
                 }
             }
@@ -261,7 +259,7 @@ namespace MedicalLink.FormCommon
                 if (tabPaneMenu.SelectedPage == tabMenuRestart)
                 {
                     hoi = DialogResult.Retry;
-                   // Application.Restart();
+                    // Application.Restart();
                     Application.ExitThread();
                     System.Diagnostics.Process.Start(@"MedicalLinkLauncher.exe");
                     Application.Exit();

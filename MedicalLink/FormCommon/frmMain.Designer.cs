@@ -212,6 +212,8 @@
             // 
             // tabMenuRestart
             // 
+            this.tabMenuRestart.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.tabMenuRestart.Appearance.Options.UseBackColor = true;
             this.tabMenuRestart.Caption = "tabMenuRestart";
             this.tabMenuRestart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.tabMenuRestart.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuRestart.Image")));
@@ -224,10 +226,11 @@
             // 
             // tabMenuDashboard
             // 
+            this.tabMenuDashboard.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.tabMenuDashboard.Appearance.Options.UseBackColor = true;
             this.tabMenuDashboard.Caption = "DASHBOARD";
             this.tabMenuDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabMenuDashboard.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuDashboard.Image")));
-            this.tabMenuDashboard.ImageUri.Uri = "AlignJustify";
             this.tabMenuDashboard.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuDashboard.Margin = new System.Windows.Forms.Padding(0);
             this.tabMenuDashboard.Name = "tabMenuDashboard";
@@ -236,6 +239,8 @@
             // 
             // tabMenuChucNang
             // 
+            this.tabMenuChucNang.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.tabMenuChucNang.Appearance.Options.UseBackColor = true;
             this.tabMenuChucNang.Caption = "CHỨC NĂNG";
             this.tabMenuChucNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.tabMenuChucNang.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuChucNang.Image")));
@@ -247,7 +252,7 @@
             // 
             // tabMenuQLTaiChinh
             // 
-            this.tabMenuQLTaiChinh.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(239)))));
+            this.tabMenuQLTaiChinh.Appearance.BackColor = System.Drawing.SystemColors.Control;
             this.tabMenuQLTaiChinh.Appearance.Options.UseBackColor = true;
             this.tabMenuQLTaiChinh.Caption = "QL TÀI CHÍNH";
             this.tabMenuQLTaiChinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
@@ -260,9 +265,11 @@
             // 
             // tabMenuBaoCao
             // 
+            this.tabMenuBaoCao.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.tabMenuBaoCao.Appearance.Options.UseBackColor = true;
             this.tabMenuBaoCao.Caption = "BÁO CÁO";
             this.tabMenuBaoCao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabMenuBaoCao.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.tabMenuBaoCao.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuBaoCao.Image")));
             this.tabMenuBaoCao.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuBaoCao.Margin = new System.Windows.Forms.Padding(0);
             this.tabMenuBaoCao.Name = "tabMenuBaoCao";

@@ -19,7 +19,7 @@ namespace MedicalLink.FormCommon
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         //public string CurrentTabPage { get; set; }
         //public int SelectedTabPageIndex { get; set; }
-        //internal frmMain frmMain;
+        internal frmMain frmMain;
 
         // khai báo 1 hàm delegate
         internal delegate void GetString(string thoigian);
@@ -81,7 +81,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                //frmMain = new frmMain();
+                frmMain = new frmMain();
                 //this.CurrentTabPage = e.Page.Name;
                 XtraTabControl xtab = new XtraTabControl();
                 xtab = (XtraTabControl)sender;

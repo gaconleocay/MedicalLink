@@ -8,7 +8,8 @@ namespace MedicalLink.ClassCommon
 {
     public class DVXetNghiemChiPhiDTO
     {
-       public int? STT { get; set; }
+        public int? STT { get; set; }
+        public int? MAYXNDMXNCPID { get; set; }
         public string MAYXN_MA { get; set; }
         public string MAYXN_TEN { get; set; }
         public string SERVICEPRICECODE { get; set; }

@@ -43,6 +43,9 @@ namespace MedicalLink.Utilities.Common.Excel
                     orderTable.Columns.Add("TENBENHVIEN", typeof(string));
                     newRow["TENBENHVIEN"] = GlobalStore.TenBenhVien_String;
 
+                    orderTable.Columns.Add("CURRENTUSER", typeof(string));
+                    newRow["CURRENTUSER"] = Base.SessionLogin.SessionUsername;
+
                     orderTable.Rows.Add(newRow);
                 }
             }

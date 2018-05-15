@@ -463,6 +463,8 @@
             this.bandedGridViewSoCDHA.Name = "bandedGridViewSoCDHA";
             this.bandedGridViewSoCDHA.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.bandedGridViewSoCDHA.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.bandedGridViewSoCDHA.OptionsFind.AlwaysVisible = true;
+            this.bandedGridViewSoCDHA.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
             this.bandedGridViewSoCDHA.OptionsView.ColumnAutoWidth = false;
             this.bandedGridViewSoCDHA.OptionsView.EnableAppearanceEvenRow = true;
             this.bandedGridViewSoCDHA.OptionsView.ShowFooter = true;
@@ -504,7 +506,7 @@
             this.bandedGridColumn2.Caption = "Mã xét nghiệm";
             this.bandedGridColumn2.FieldName = "ma_xn";
             this.bandedGridColumn2.Name = "bandedGridColumn2";
-            this.bandedGridColumn2.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn2.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn2.Visible = true;
             this.bandedGridColumn2.Width = 139;
             // 
@@ -1174,7 +1176,7 @@
             this.bandedGridColumn34.Caption = "ID máy XN";
             this.bandedGridColumn34.FieldName = "idmay_xn";
             this.bandedGridColumn34.Name = "bandedGridColumn34";
-            this.bandedGridColumn34.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn34.OptionsColumn.ReadOnly = true;
             this.bandedGridColumn34.Visible = true;
             // 
             // gridBand1

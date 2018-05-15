@@ -18,90 +18,172 @@ namespace MedicalLink.FormCommon.TabCaiDat
 {
     public partial class ucDanhSachNhanVien : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        private string curentUsercodeid;
-        private string curentUserHisId;
-        private string worksheetName = "tools_tblnhanvien";
-        //private DataView dmUser_Import;
+        #region Khai bao
+        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private string CurentUserCodeid;
+        private string CurentUserHisId;
+        #endregion
 
         public ucDanhSachNhanVien()
         {
             InitializeComponent();
-            btnNVOK.Enabled = false;
-            txtNVID.Enabled = false;
-            txtNVName.Enabled = false;
-            txtIDHIS.Enabled = false;
-            cboNhomNhanVien.Enabled = false;
         }
 
-        private void btnNVThem_Click(object sender, EventArgs e)
-        {
-            txtNVID.Text = "";
-            txtNVName.Text = "";
-            txtIDHIS.Text = "";
-            btnNVOK.Enabled = true;
-            txtNVID.Enabled = true;
-            txtNVName.Enabled = true;
-            txtIDHIS.Enabled = true;
-            cboNhomNhanVien.Enabled = true;
-            txtNVID.Focus();
-        }
-
-        // Load danh sách nhân viên
+        #region Load
         private void ucDanhSachNhanVien_Load(object sender, EventArgs e)
         {
             try
             {
-                string sqldsnv = "SELECT nhanvienid as stt, usercode as manv, username as tennv, userhisid, usergnhom, usergnhom_name FROM nhompersonnel ORDER BY manv";
-                DataView dv = new DataView(condb.GetDataTable_HIS(sqldsnv));
-                if (dv.Count > 0)
+                btnLuuLai.Enabled = false;
+                txtusercode.Enabled = false;
+                txtusername.Enabled = false;
+                txtuserhisid.Enabled = false;
+                cboNhomNhanVien.Enabled = false;
+                cboNhomBaoCao.Enabled = false;
+
+                //lay danh sach nhan vien
+                LayDanhSachNhanVien();
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+
+        private void LayDanhSachNhanVien()
+        {
+            try
+            {
+                string _sqldsnv = "SELECT row_number () over (order by userhisid) as stt, * FROM nhompersonnel;";
+                DataTable _dataDS = condb.GetDataTable_HIS(_sqldsnv);
+                if (_dataDS != null && _dataDS.Rows.Count > 0)
                 {
-                    gridControlDSNV.DataSource = dv;
+                    gridControlDSNV.DataSource = _dataDS;
+                }
+                else
+                {
+                    gridControlDSNV.DataSource = null;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
             }
         }
+        #endregion
 
+        #region Events
+        private void btnNVThem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtusercode.Text = "";
+                txtusername.Text = "";
+                txtuserhisid.Text = "";
+                btnLuuLai.Enabled = true;
+                txtusercode.Enabled = true;
+                txtusername.Enabled = true;
+                txtuserhisid.Enabled = true;
+                cboNhomNhanVien.Enabled = true;
+                cboNhomBaoCao.Enabled = true;
+                txtusercode.Focus();
+
+                this.CurentUserCodeid = "";
+                this.CurentUserHisId = "";
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
+        private void gridViewDSNV_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                e.Menu.Items.Clear();
+                DXMenuItem itemXoaNguoiDung = new DXMenuItem("Xóa tài khoản");
+                itemXoaNguoiDung.Image = imMenu.Images["Xoa.png"];
+                itemXoaNguoiDung.Click += new EventHandler(itemXoaNguoiDung_Click);
+                e.Menu.Items.Add(itemXoaNguoiDung);
+            }
+        }
+        private void itemXoaNguoiDung_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (gridViewDSNV.RowCount > 0)
+                {
+                    var rowHandle = gridViewDSNV.FocusedRowHandle;
+                    string _usercode = Convert.ToString(gridViewDSNV.GetRowCellValue(rowHandle, "usercode").ToString());
+
+                    DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản: " + _usercode + " không?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+
+                        string sqlxoatk = "DELETE FROM nhompersonnel WHERE usercode='" + _usercode + "';";
+                        if (condb.ExecuteNonQuery_HIS(sqlxoatk))
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.XOA_THANH_CONG);
+                            frmthongbao.Show();
+                            LayDanhSachNhanVien();
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
         private void gridViewDSNV_Click(object sender, EventArgs e)
         {
             try
             {
-                var rowHandle = gridViewDSNV.FocusedRowHandle;
-                curentUsercodeid = gridViewDSNV.GetRowCellValue(rowHandle, "manv").ToString();
-                this.curentUserHisId = gridViewDSNV.GetRowCellValue(rowHandle, "userhisid").ToString();
-                txtNVID.Enabled = true;
-                txtNVName.Enabled = true;
-                btnNVOK.Enabled = true;
-                txtIDHIS.Enabled = true;
-                cboNhomNhanVien.Enabled = true;
-                txtNVID.Text = curentUsercodeid;
-                txtNVName.Text = gridViewDSNV.GetRowCellValue(rowHandle, "tennv").ToString();
-                txtIDHIS.Text = gridViewDSNV.GetRowCellValue(rowHandle, "userhisid").ToString();
-                cboNhomNhanVien.Text = gridViewDSNV.GetRowCellValue(rowHandle, "usergnhom_name").ToString();
+                if (gridViewDSNV.RowCount > 0)
+                {
+                    var rowHandle = gridViewDSNV.FocusedRowHandle;
+                    this.CurentUserCodeid = gridViewDSNV.GetRowCellValue(rowHandle, "usercode").ToString();
+                    this.CurentUserHisId = gridViewDSNV.GetRowCellValue(rowHandle, "userhisid").ToString();
+
+                    txtusercode.Text = this.CurentUserCodeid;
+                    txtusername.Text = gridViewDSNV.GetRowCellValue(rowHandle, "username").ToString();
+                    txtuserhisid.Text = this.CurentUserHisId;
+                    cboNhomNhanVien.Text = gridViewDSNV.GetRowCellValue(rowHandle, "usergnhom_name").ToString();
+
+                    txtusercode.Enabled = true;
+                    txtusername.Enabled = true;
+                    btnLuuLai.Enabled = true;
+                    txtuserhisid.Enabled = true;
+                    cboNhomNhanVien.Enabled = true;
+                    cboNhomBaoCao.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Base.Logging.Error(ex);
             }
-
         }
 
-        // Thêm, sửa danh sách nhân viên
-        private void btnNVOK_Click_1(object sender, EventArgs e)
+        private void btnLuuLai_Click(object sender, EventArgs e)
         {
             try
             {
-                if (txtNVID.Text.Trim() == "")
+                if (txtusercode.Text.Trim() == "")//chua nhap gi
                 {
                     return;
                 }
-                string en_txtNVID = txtNVID.Text.Trim().ToLower();
-                string en_txtNVName = txtNVName.Text.Trim();
-                string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
-                string _usergnhom = "99";
+                string _usercode = txtusercode.Text.Trim().ToLower();
+                string _username = txtusername.Text.Trim();
+                string en_userpassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
+                string _usergnhom = "0";
+                string _nhom_bcid = "0";
+
+                //nhom nhan vien
                 if (cboNhomNhanVien.Text == "Bác sĩ")
                 {
                     _usergnhom = "1";
@@ -118,31 +200,59 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     _usergnhom = "4";
                 }
-
-                if (txtNVID.Text != curentUsercodeid)
+                else if (cboNhomNhanVien.Text == "Khác")
                 {
-                    if (CheckAccTonTai(txtNVID.Text.Trim(), txtIDHIS.Text.Trim()))
+                    _usergnhom = "99";
+                }
+
+                //nhom bao cao
+                if (cboNhomBaoCao.Text == "Nhân viên hợp đồng")
+                {
+                    _nhom_bcid = "1";
+                }
+                else if (cboNhomBaoCao.Text == "Nhân viên bệnh viện")
+                {
+                    _nhom_bcid = "2";
+                }
+                else if (cboNhomBaoCao.Text == "Khác")
+                {
+                    _nhom_bcid = "99";
+                }
+                //
+                if (txtusercode.Text != this.CurentUserCodeid) //them moi
+                {
+                    if (CheckAccTonTai(txtusercode.Text.Trim(), txtuserhisid.Text.Trim()))
                     {
-                        string sql = "INSERT INTO nhompersonnel(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid, usergnhom_name) VALUES ('" + en_txtNVID + "','" + en_txtNVName + "','" + en_pass + "','0','" + _usergnhom + "','', '" + txtIDHIS.Text.Trim() + "', '" + cboNhomNhanVien.Text + "');";
+                        string sql = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten) VALUES('" + _usercode + "','" + _username + "','" + en_userpassword + "','0','','" + txtuserhisid.Text.Trim() + "','" + _usergnhom + "''" + cboNhomNhanVien.Text + "','" + _nhom_bcid + "''" + cboNhomBaoCao.Text + "');";
                         if (condb.ExecuteNonQuery_HIS(sql))
                         {
                             ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                             frmthongbao.Show();
                         }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            frmthongbao.Show();
+                        }
                         gridControlDSNV.DataSource = null;
-                        ucDanhSachNhanVien_Load(null, null);
+                        LayDanhSachNhanVien();
                     }
                 }
                 else
                 {
-                    string sql = "UPDATE nhompersonnel SET usercode='" + en_txtNVID + "', username='" + en_txtNVName + "', userpassword='" + en_pass + "', userstatus='0', usergnhom='" + _usergnhom + "', usernote='' , userhisid = '" + txtIDHIS.Text.Trim() + "', usergnhom_name='" + cboNhomNhanVien.Text + "' WHERE usercode='" + en_txtNVID + "';";
+                    string sql = "UPDATE nhompersonnel SET username='" + _username + "', userpassword='" + en_userpassword + "', userstatus='0', usernote='' , userhisid = '" + txtuserhisid.Text.Trim() + "', usergnhom='" + _usergnhom + "', usergnhom_name='" + cboNhomNhanVien.Text + "', nhom_bcid='" + _nhom_bcid + "',nhom_bcten='" + cboNhomBaoCao.Text + "' WHERE usercode='" + _usercode + "';";
                     if (condb.ExecuteNonQuery_HIS(sql))
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
                         frmthongbao.Show();
                     }
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                        frmthongbao.Show();
+                    }
                     gridControlDSNV.DataSource = null;
-                    ucDanhSachNhanVien_Load(null, null);
+                    LayDanhSachNhanVien();
                 }
             }
             catch (Exception ex)
@@ -151,6 +261,43 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
+        #endregion
+
+        #region Custom
+        private void txtIDHIS_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void gridViewDSNV_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
+        {
+            try
+            {
+                if (e.Column == stt)
+                {
+                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        private void gridViewDSNV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.DodgerBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
+        }
+
+        #endregion
+
+        #region Process
         private bool CheckAccTonTai(string usercode, string userHisid)
         {
             bool result = true;
@@ -182,144 +329,125 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             return result;
         }
-        private void gridViewDSNV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.DodgerBlue;
-                e.Appearance.ForeColor = Color.White;
-            }
-        }
 
-        //Import tu file Excel
+        #endregion
+
+        #region Import and export
         private void btnThemTuExcel_Click(object sender, EventArgs e)
         {
-            try
+            if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
             {
-                if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                try
                 {
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                     Workbook workbook = new Workbook(openFileDialogSelect.FileName);
-                    Worksheet worksheet = workbook.Worksheets[worksheetName];
-                    DataTable dmUser_Import = worksheet.Cells.ExportDataTable(4, 0, worksheet.Cells.MaxDataRow - 3, worksheet.Cells.MaxDataColumn + 1, true);
-                    dmUser_Import.TableName = "DATA";
-                    if (dmUser_Import != null)
+                    Worksheet worksheet = workbook.Worksheets["NhanVien"];
+                    DataTable _dataUser_Import = worksheet.Cells.ExportDataTable(3, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true);
+                    _dataUser_Import.TableName = "DATA";
+                    if (_dataUser_Import != null && _dataUser_Import.Rows.Count > 0)
                     {
+                        List<DanhSachNhanVienDTO> _lstNhanVien = Utilities.Util_DataTable.DataTableToList<DanhSachNhanVienDTO>(_dataUser_Import);
+
                         int dem_update = 0;
                         int dem_insert = 0;
-                        for (int i = 0; i < dmUser_Import.Rows.Count; i++)
+
+                        foreach (var _itemIns in _lstNhanVien)
                         {
-                            if (dmUser_Import.Rows[i]["STT"].ToString() != "")
+                            //string _usercode = _itemIns.USERCODE;
+                            string _username = _itemIns.USERNAME ?? "";
+                            string _userstatus = (_itemIns.USERSTATUS ?? 0).ToString();
+                            string _usergnhom = (_itemIns.USERGNHOM ?? 0).ToString();
+                            string _usernote = _itemIns.USERNOTE ?? "";
+                            string _userhisid = (_itemIns.USERHISID ?? 0).ToString();
+                            string _usergnhom_name = _itemIns.USERGNHOM_NAME ?? "";
+                            string _nhom_bcid = (_itemIns.NHOM_BCID ?? 0).ToString();
+                            string _nhom_bcten = _itemIns.NHOM_BCTEN ?? "";
+
+
+                            if ((_itemIns.STT != null && _itemIns.STT != 0) && _itemIns.USERCODE != null)
                             {
-                                string en_txtNVCode = dmUser_Import.Rows[i]["USERCODE"].ToString().Trim();
-                                string en_txtNVName = dmUser_Import.Rows[i]["USERNAME"].ToString().Trim();
-                                string en_pass = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
-                                if (dmUser_Import.Rows[i]["USERCODE"].ToString() != "")
+                                //kiem tra ton tai
+                                string _sql_kt = "SELECT usercode FROM nhompersonnel WHERE usercode='" + _itemIns.USERCODE + "';";
+                                DataTable _dataKiemTra = condb.GetDataTable_HIS(_sql_kt);
+                                if (_dataKiemTra != null && _dataKiemTra.Rows.Count > 0)
                                 {
-                                    condb.Connect();
-                                    string sql_kt = "SELECT usercode FROM nhompersonnel WHERE usercode='" + en_txtNVCode + "';";
-                                    DataView dv_kt = new DataView(condb.GetDataTable_HIS(sql_kt));
-                                    if (dv_kt.Count > 0) //update
+                                    //update
+                                    string _sqlUpdate = @"UPDATE nhompersonnel SET username='" + _username + "', userstatus='" + _userstatus + "', usernote='" + _usernote + "' , userhisid = '" + _userhisid + "', usergnhom='" + _usergnhom + "', usergnhom_name='" + _usergnhom_name + "', nhom_bcid='" + _nhom_bcid + "', nhom_bcten='" + _nhom_bcten + "' WHERE usercode='" + _itemIns.USERCODE + "';";
+                                    try
                                     {
-                                        string sql_updateUser = "UPDATE nhompersonnel SET username='" + en_txtNVName + "', userhisid='" + dmUser_Import.Rows[i]["USERHISID"] + "', usergnhom='" + dmUser_Import.Rows[i]["USERGNHOM"] + "', usergnhom_name='" + dmUser_Import.Rows[i]["USERGNHOM_NAME"] + "' WHERE usercode='" + en_txtNVCode + "';";
-                                        try
+                                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate))
                                         {
-                                            condb.ExecuteNonQuery_HIS(sql_updateUser);
                                             dem_update += 1;
                                         }
-                                        catch (Exception)
-                                        {
-                                            continue;
-                                        }
                                     }
-                                    else
+                                    catch (Exception ex)
                                     {
-                                        string sql_insertDVKT = "INSERT INTO nhompersonnel(usercode, username, userpassword, userstatus, usergnhom, usernote,userhisid, usergnhom_name) VALUES ('" + en_txtNVCode + "','" + en_txtNVName + "','" + en_pass + "','0','" + dmUser_Import.Rows[i]["USERGNHOM"] + "','', '" + dmUser_Import.Rows[i]["USERHISID"] + "', '" + dmUser_Import.Rows[i]["USERGNHOM_NAME"] + "');";
-                                        try
+                                        continue;
+                                        Base.Logging.Error(ex);
+                                    }
+                                }
+                                else
+                                {
+                                    //Insert
+                                    string _sqlInsert = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten) VALUES('" + _itemIns.USERCODE + "','" + _username + "','" + Base.EncryptAndDecrypt.Encrypt("", true) + "','" + _userstatus + "','" + _usernote + "','" + _userhisid + "','" + _usergnhom + "','" + _usergnhom_name + "','" + _nhom_bcid + "','" + _nhom_bcten + "');";
+                                    try
+                                    {
+                                        if (condb.ExecuteNonQuery_HIS(_sqlInsert))
                                         {
-                                            condb.ExecuteNonQuery_HIS(sql_insertDVKT);
                                             dem_insert += 1;
                                         }
-                                        catch (Exception)
-                                        {
-                                            continue;
-                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        continue;
+                                        Base.Logging.Error(ex);
                                     }
                                 }
                             }
                         }
+
                         MessageBox.Show("Thêm mới [ " + dem_insert + " ] & cập nhật [ " + dem_update + " ] nhân viên thành công.");
                         gridControlDSNV.DataSource = null;
-                        ucDanhSachNhanVien_Load(null, null);
+                        LayDanhSachNhanVien();
                     }
-                    SplashScreenManager.CloseForm();
-                }
-            }
-            catch (Exception ex)
-            {
-                SplashScreenManager.CloseForm();
-                Base.Logging.Error(ex);
-            }
-        }
-
-        private void gridViewDSNV_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            try
-            {
-                if (e.Column == stt)
-                {
-                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        private void gridViewDSNV_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
-        {
-            if (e.MenuType == GridMenuType.Row)
-            {
-                e.Menu.Items.Clear();
-                DXMenuItem itemXoaNguoiDung = new DXMenuItem("Xóa tài khoản");
-                itemXoaNguoiDung.Image = imMenu.Images["Xoa.png"];
-                itemXoaNguoiDung.Click += new EventHandler(itemXoaNguoiDung_Click);
-                e.Menu.Items.Add(itemXoaNguoiDung);
-            }
-        }
-        void itemXoaNguoiDung_Click(object sender, EventArgs e)
-        {
-            var rowHandle = gridViewDSNV.FocusedRowHandle;
-            string usercode = Convert.ToString(gridViewDSNV.GetRowCellValue(rowHandle, "manv").ToString());
-
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản: " + usercode + " không?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (dialogResult == DialogResult.Yes)
-            {
-                try
-                {
-                    string sqlxoatk = "DELETE FROM nhompersonnel WHERE usercode='" + usercode + "';";
-                    condb.ExecuteNonQuery_HIS(sqlxoatk);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + usercode);
-                    frmthongbao.Show();
-                    gridControlDSNV.DataSource = null;
-                    ucDanhSachNhanVien_Load(null, null);
+                    else
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                        frmthongbao.Show();
+                    }
                 }
                 catch (Exception ex)
                 {
-                    Base.Logging.Warn(ex);
+                    Base.Logging.Error(ex);
                 }
+                SplashScreenManager.CloseForm();
             }
         }
 
-        private void txtIDHIS_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            try
             {
-                e.Handled = true;
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                thongTinThem.Add(reportitem);
+
+                string fileTemplatePath = "0_ToolsNhanVien_Export.xlsx";
+                string _sqllayds = "SELECT row_number () over (order by userhisid) as stt, * FROM nhompersonnel;";
+                DataTable _dataBaoCao = condb.GetDataTable_HIS(_sqllayds);
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+
+        #endregion
 
 
     }

@@ -644,7 +644,7 @@ namespace MedicalLink.Base
                 REPORT_28.permissionname = "Báo cáo sử dụng dịch vụ - Chi phí khác";
                 REPORT_28.permissiontype = 3;
                 REPORT_28.tabMenuId = 5;
-                REPORT_28.permissionnote = "Báo cáo sử dụng dịch vụ - Chi phí khác";
+                REPORT_28.permissionnote = "Nhóm dịch vụ cấu hình trong danh mục dùng chung mã:REPORT_28_NHOMDV";
                 lstresult.Add(REPORT_28);
 
                 ClassCommon.classPermission REPORT_29 = new ClassCommon.classPermission();
@@ -653,7 +653,7 @@ namespace MedicalLink.Base
                 REPORT_29.permissionname = "Báo cáo thực hiện Cận lâm sàng - K.Ung bướu (doanh thu chia bác sĩ)";
                 REPORT_29.permissiontype = 3;
                 REPORT_29.tabMenuId = 5;
-                REPORT_29.permissionnote = "Báo cáo thực hiện Cận lâm sàng - K.Ung bướu (doanh thu chia bác sĩ)";
+                REPORT_29.permissionnote = "Danh mục dịch vụ cấu hình trong danh mục dùng chung mã:REPORT_29_NHOMDV";
                 lstresult.Add(REPORT_29);
 
                 ClassCommon.classPermission REPORT_30 = new ClassCommon.classPermission();
@@ -698,7 +698,7 @@ namespace MedicalLink.Base
                 REPORT_34.permissionname = "Báo cáo thống kê sử dụng dịch vụ (Ung bướu)";
                 REPORT_34.permissiontype = 3;
                 REPORT_34.tabMenuId = 5;
-                REPORT_34.permissionnote = "Báo cáo thống kê sử dụng dịch vụ (Ung bướu)";
+                REPORT_34.permissionnote = "Cấu hình danh sách khoa trong danh mục dùng chung mã:REPORT_34_KHOA";
                 lstresult.Add(REPORT_34);
 
                 ClassCommon.classPermission REPORT_35 = new ClassCommon.classPermission();
@@ -707,7 +707,7 @@ namespace MedicalLink.Base
                 REPORT_35.permissionname = "Bảng kê hóa đơn, chứng từ của thuốc, VTYT-HCXN sử dụng";
                 REPORT_35.permissiontype = 3;
                 REPORT_35.tabMenuId = 5;
-                REPORT_35.permissionnote = "Bảng kê hóa đơn, chứng từ của thuốc, VTYT-HCXN sử dụng";
+                REPORT_35.permissionnote = "Cấu hình kho trong danh mục dùng chung mã:REPORT_35_KHO";
                 lstresult.Add(REPORT_35);
 
                 ClassCommon.classPermission REPORT_36 = new ClassCommon.classPermission();
@@ -770,7 +770,7 @@ namespace MedicalLink.Base
                 REPORT_42.permissionname = "Báo cáo thống kê tai nạn thương tích";
                 REPORT_42.permissiontype = 3;
                 REPORT_42.tabMenuId = 5;
-                REPORT_42.permissionnote = "Báo cáo thống kê tai nạn thương tích";
+                REPORT_42.permissionnote = "Lấy theo thời gian tai nạn thương tích";
                 lstresult.Add(REPORT_42);
 
                 ClassCommon.classPermission REPORT_43 = new ClassCommon.classPermission();
@@ -779,7 +779,7 @@ namespace MedicalLink.Base
                 REPORT_43.permissionname = "Sổ thủ thuật  - khoa cận lâm sàng";
                 REPORT_43.permissiontype = 3;
                 REPORT_43.tabMenuId = 5;
-                REPORT_43.permissionnote = "Sổ thủ thuật - khoa cận lâm sàng";
+                REPORT_43.permissionnote = "Lấy dịch vụ được xếp loại PTTT";
                 lstresult.Add(REPORT_43);
 
                 ClassCommon.classPermission REPORT_44 = new ClassCommon.classPermission();
@@ -800,7 +800,7 @@ namespace MedicalLink.Base
                 DASHBOARD_01.permissionname = "Báo cáo quản lý tổng thể khoa";
                 DASHBOARD_01.permissiontype = 3;
                 DASHBOARD_01.tabMenuId = 6;
-                DASHBOARD_01.permissionnote = "BC quản lý tổng thể khoa. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
+                DASHBOARD_01.permissionnote = "Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
                 lstresult.Add(DASHBOARD_01);
 
                 ClassCommon.classPermission DASHBOARD_02 = new ClassCommon.classPermission();
@@ -809,7 +809,7 @@ namespace MedicalLink.Base
                 DASHBOARD_02.permissionname = "Báo cáo bệnh nhân nội trú";
                 DASHBOARD_02.permissiontype = 3;
                 DASHBOARD_02.tabMenuId = 6;
-                DASHBOARD_02.permissionnote = "Báo cáo bệnh nhân nội trú. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
+                DASHBOARD_02.permissionnote = "Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
                 lstresult.Add(DASHBOARD_02);
 
                 ClassCommon.classPermission DASHBOARD_03 = new ClassCommon.classPermission();
@@ -902,10 +902,17 @@ namespace MedicalLink.Base
                 REPORT_101.permissionname = "Báo cáo thống kê tiền khám yêu cầu thứ 7, chủ nhật";
                 REPORT_101.permissiontype = 3;
                 REPORT_101.tabMenuId = 4;
-                REPORT_101.permissionnote = "Báo cáo thống kê tiền khám yêu cầu thứ 7, chủ nhật";
+                REPORT_101.permissionnote = "Cấu hình dịch vụ trong DM dùng chung mã: REPORT_101_DV";
                 lstresult.Add(REPORT_101);
 
-
+                ClassCommon.classPermission REPORT_102 = new ClassCommon.classPermission();
+                REPORT_102.permissioncheck = false;
+                REPORT_102.permissioncode = "REPORT_102";
+                REPORT_102.permissionname = "Báo cáo trích thưởng cho chuyên gia khám bệnh theo yêu cầu";
+                REPORT_102.permissiontype = 3;
+                REPORT_102.tabMenuId = 4;
+                REPORT_102.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_102_DV";
+                lstresult.Add(REPORT_102);
 
 
 

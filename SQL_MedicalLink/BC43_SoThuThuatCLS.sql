@@ -1,9 +1,8 @@
 --Sổ Phẫu thuật thủ thuật CLS
 --ucBC43_SoThuThuatCLS
 
--- ngay 11/4
+--Chan doan hinh anh - ngay 15/5
 
---Chan doan hinh anh - ngay 11/4
 SELECT
 		 ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt,
 		hsba.patientcode,
@@ -41,14 +40,14 @@ SELECT
 		COALESCE(ntkq.username,ntkq_cc.username) as phauthuatvien,
 		bsgm.username as bacsigayme
 FROM
-	(select servicepriceid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') "+_tieuchi_tgchidinh_ser+ " ) ser
+	(select servicepriceid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC','06PTTT') "+_tieuchi_tgchidinh_ser+ " ) ser
 inner join (select maubenhphamid,chandoan,maubenhphamfinishdate,usertrakq from maubenhpham where 1=1 "+_tieuchi_tgchidinh_mbp+_tieuchi_tgthuchien_mbp+_phongthuchien+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 left join 
 	(select servicepriceid,phuongphappttt,phauthuatvien,bacsigayme,phumo1,phumo3 from thuchiencls) cls on cls.servicepriceid=ser.servicepriceid
 inner join 
 	(select servicepriceid,servicetimetrakq,serviceusertrakq from service where servicecode not in (select sef.servicegroupcode from service_ref sef group by sef.servicegroupcode)) se on se.servicepriceid=ser.servicepriceid	
 inner join 
-	(select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode
+	(select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC','06PTTT') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode
 inner join 
 	(select hosobenhanid,patientcode,patientname,gioitinhcode,birthday,hosobenhandate,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid
 inner join (select hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid

@@ -149,11 +149,11 @@
             // 
             // txtThongTinChiTiet
             // 
-            this.txtThongTinChiTiet.Location = new System.Drawing.Point(2, 24);
+            this.txtThongTinChiTiet.Location = new System.Drawing.Point(2, 21);
             this.txtThongTinChiTiet.Name = "txtThongTinChiTiet";
             this.txtThongTinChiTiet.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtThongTinChiTiet.Properties.Appearance.Options.UseFont = true;
-            this.txtThongTinChiTiet.Size = new System.Drawing.Size(1082, 79);
+            this.txtThongTinChiTiet.Size = new System.Drawing.Size(1082, 82);
             this.txtThongTinChiTiet.StyleController = this.layoutControl4;
             this.txtThongTinChiTiet.TabIndex = 4;
             // 
@@ -171,7 +171,7 @@
             // 
             // layoutControlItem6
             // 
-            this.layoutControlItem6.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.layoutControlItem6.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.layoutControlItem6.AppearanceItemCaption.ForeColor = System.Drawing.Color.Blue;
             this.layoutControlItem6.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem6.AppearanceItemCaption.Options.UseForeColor = true;
@@ -179,9 +179,9 @@
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(1086, 105);
-            this.layoutControlItem6.Text = "Thông tin";
+            this.layoutControlItem6.Text = "Ghi chú";
             this.layoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top;
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(78, 19);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(46, 16);
             // 
             // layoutControl3
             // 

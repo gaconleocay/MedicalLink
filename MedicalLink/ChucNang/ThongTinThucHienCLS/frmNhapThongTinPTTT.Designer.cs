@@ -101,11 +101,11 @@
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cboLoaiPTTT = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboGiupViec2.Properties)).BeginInit();
@@ -760,11 +760,11 @@
             // labelControl12
             // 
             this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl12.Location = new System.Drawing.Point(59, 262);
+            this.labelControl12.Location = new System.Drawing.Point(53, 262);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(58, 16);
+            this.labelControl12.Size = new System.Drawing.Size(64, 16);
             this.labelControl12.TabIndex = 87;
-            this.labelControl12.Text = "Loại PTTT";
+            this.labelControl12.Text = "Hạng PTTT";
             // 
             // labelControl11
             // 
@@ -974,6 +974,12 @@
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 0;
             // 
+            // gridColumn23
+            // 
+            this.gridColumn23.Caption = "pttt_phuongphapcode";
+            this.gridColumn23.FieldName = "pttt_phuongphapcode";
+            this.gridColumn23.Name = "gridColumn23";
+            // 
             // cboLoaiPTTT
             // 
             this.cboLoaiPTTT.Location = new System.Drawing.Point(128, 259);
@@ -1019,12 +1025,6 @@
             this.gridColumn4.Caption = "loaiptttid";
             this.gridColumn4.FieldName = "loaiptttid";
             this.gridColumn4.Name = "gridColumn4";
-            // 
-            // gridColumn23
-            // 
-            this.gridColumn23.Caption = "pttt_phuongphapcode";
-            this.gridColumn23.FieldName = "pttt_phuongphapcode";
-            this.gridColumn23.Name = "gridColumn23";
             // 
             // frmNhapThongTinPTTT
             // 

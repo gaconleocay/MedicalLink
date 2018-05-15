@@ -925,9 +925,24 @@ File.Exists(this.txtPath.Text)
 --------
 xet nghiem
 
-select idmayxn,tenmayxn from service where idmayxn is not null
+select idmayxn,tenmayxn from service 
+where idmayxn=0
+	and 
 group by idmayxn,tenmayxn
 order by tenmayxn
+
+
+select mbp.patientid,
+	se.vienphiid,se.maubenhphamid,se.servicepriceid,se.servicepricecode,se.servicecode,se.servicename,se.idmayxn,se.tenmayxn
+
+from service se
+	inner join maubenhpham mbp on mbp.maubenhphamid=se.maubenhphamid
+where se.idmayxn='0' --and tenmayxn<>''
+		and mbp.maubenhphamfinishdate>='2018-05-11:00:00:00'
+	
+
+
+
 --
 
 select 
@@ -941,22 +956,6 @@ from servicepriceref serf
 	left join serviceref4price map on map.servicepricecode = serf.servicepricecode
 	left join service_ref se on se.servicecode=map.servicecode
 where serf.ServiceGroupType=2
-
-
- [4/5/18, 17:07:36] Nguyễn Hoàng Minh: 1 vđề nữa của biểu chênh rp_40
-[4/5/18, 17:07:49] Nguyễn Hoàng Minh: a muốn chỉnh lại trường tỷ lệ tt ở biểu đó
-[4/5/18, 17:11:30] Nguyễn Hoàng Minh: lấy (thành tiền 21)/ (thành tiền 1/7)= tỷ lệ tt
-[4/5/18, 17:11:59] Nguyễn Hoàng Minh: a so lại vs cái tltt của e hiện tại nó k đúng vs thười điểm tt
-[4/5/18, 17:12:16] Nguyễn Hoàng Minh: giống như mấy trường hợp ngày giường nằm ghép htrc ae trao đổi đấy
-[4/5/18, 17:12:38] Nguyễn Hoàng Minh: nếu sửa theo cthức ở trên thì sẽ chuẩn hơn
-[4/5/18, 17:12:49] Nguyễn Hoàng Minh: còn theo trường tltt kia thì bị lệch
-
-
-[5/8/18, 07:42:35] Mr Vietz: Nhất HV cái biểu đồ hình cột doanh thu các khoa bị sai e ới
-[5/8/18, 07:43:07] Mr Vietz: thăng tim macchj can thiệp doanh thu nó cao hơn nhiều e ạ
-[5/8/18, 07:45:04] Mr Vietz: Nhất HV cái báo cáo a có mấy cái thay đổi như sau :
-1. bc Tổng hợp doanh thu khoa, báo cáo tổng hợp toàn viện  them cột BH thanh toán
-[5/8/18, 07:46:27] Mr Vietz: 2. 2 báo cáo trên bổ sung tính toán của 2 khoa khám bệnh, và khoa khám bệnh theo iu cầu  theo tiêu chí dv thu đủ tiền
 
 
 

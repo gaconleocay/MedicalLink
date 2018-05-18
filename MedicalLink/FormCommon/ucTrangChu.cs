@@ -295,7 +295,7 @@ namespace MedicalLink.FormCommon
                     //delegate - thong tin chuc nang
                     if (MyGetData != null)
                     {// tại đây gọi nó
-                        MyGetData(xtab.TabPages[xtab.SelectedTabPageIndex].Tooltip);
+                        MyGetData(xtab.TabPages[xtab.SelectedTabPageIndex].Text);
                     }
                 }
             }

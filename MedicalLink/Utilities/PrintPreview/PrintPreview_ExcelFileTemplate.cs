@@ -29,5 +29,24 @@ namespace MedicalLink.Utilities.PrintPreview
                 Base.Logging.Error(ex);
             }
         }
+
+        public static void ShowPrintPreview_UsingExcelTemplate(string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem)
+        {
+            try
+            {
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                MemoryStream streammemory = export.ExportExcelTemplate_ToStream("", fileNameTemplate, thongTinThem);
+
+                DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControl = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
+                spreadsheetControl.AllowDrop = false;
+                spreadsheetControl.LoadDocument(streammemory, DevExpress.Spreadsheet.DocumentFormat.OpenXml);
+                DevExpress.Spreadsheet.IWorkbook workbook = spreadsheetControl.Document;
+                spreadsheetControl.ShowRibbonPrintPreview();
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
     }
 }

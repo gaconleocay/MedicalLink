@@ -103,7 +103,7 @@ namespace MedicalLink.FormCommon
                     //this.SelectedTabPageIndex = xtab.SelectedTabPageIndex;
                     //delegate - thong tin chuc nang
                     // tại đây gọi nó
-                    MyGetData(xtab.TabPages[xtab.SelectedTabPageIndex].Tooltip);
+                    MyGetData(xtab.TabPages[xtab.SelectedTabPageIndex].Text);
                 }
             }
             catch (Exception ex)

@@ -18,7 +18,7 @@ FROM (select vienphiid,departmentid,TO_CHAR(servicepricedate, 'dd/MM/yyyy') as n
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 		from serviceprice 
 		where departmentid in (209,210,211,354,355,205,409,206,207,208,201,202,212,220,222)
-			and EXTRACT(DOW FROM servicepricedate) in (6,0) "+tieuchi_ser+lstdichvu_ser+") ser
+			and EXTRACT(DOW FROM servicepricedate) in (6,0) and bhyt_groupcode='01KB' "+tieuchi_ser+lstdichvu_ser+") ser
 	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.ngaythangnam,ser.yyyymmdd;
 	

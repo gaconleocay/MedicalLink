@@ -11,50 +11,51 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using System.IO;
 using DevExpress.XtraGrid.Views.Grid;
+using MedicalLink.ClassCommon.BCQLTaiChinh;
 
 namespace MedicalLink.BCQLTaiChinh
 {
-    public partial class ucBC101_TKTienKhamYCT7CN : UserControl
+    public partial class ucBC104_TrichThuongFIBRO : UserControl
     {
         #region Khai bao
         private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private DataTable dataBaoCao { get; set; }
-
+        private string DanhMucDichVu_String { get; set; }
+        //private decimal TongTienChi = 0;
         #endregion
 
-        public ucBC101_TKTienKhamYCT7CN()
+        public ucBC104_TrichThuongFIBRO()
         {
             InitializeComponent();
         }
 
         #region Load
-        private void ucBC101_TKTienKhamYCT7CN_Load(object sender, EventArgs e)
-        {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            LoadDanhSachDichVu();
-        }
-        private void LoadDanhSachDichVu()
+        private void ucBC104_TrichThuongFIBRO_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_101_DV").ToList();
+                dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                //load danh muc dich vu
+                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_104_DV").ToList();
                 if (lstOtherList != null && lstOtherList.Count > 0)
                 {
-                    chkListDSDichVu.Properties.DataSource = lstOtherList;
-                    chkListDSDichVu.Properties.DisplayMember = "tools_otherlistname";
-                    chkListDSDichVu.Properties.ValueMember = "tools_otherlistvalue";
+                    foreach (var item in lstOtherList)
+                    {
+                        this.DanhMucDichVu_String += item.tools_otherlistvalue;
+                    }
                 }
-                chkListDSDichVu.CheckAll();
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                Base.Logging.Warn(ex);
             }
         }
+
+
         #endregion
 
-        #region TIm kiem
+        #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -62,15 +63,18 @@ namespace MedicalLink.BCQLTaiChinh
             {
                 string tieuchi_ser = "";
                 string tieuchi_vp = "";
-                string lstdichvu_ser = "";
+                string lstdichvu_ser = " and servicepricecode in (" + this.DanhMucDichVu_String + ") ";
                 string trangthai_vp = "";
                 string sql_timkiem = "";
+                //string tieuchi_mbp = "";
 
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    //tieuchi_mbp = " and maubenhphamdate between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
@@ -98,25 +102,7 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                //dich vu
-                //if (!chkListDSDichVu.Text.Contains("Tất cả"))
-                //{
-                    lstdichvu_ser = " and servicepricecode in (";
-                    List<Object> lstDVCheck = chkListDSDichVu.Properties.Items.GetCheckedValues();
-                    for (int i = 0; i < lstDVCheck.Count - 1; i++)
-                    {
-                        lstdichvu_ser += "" + lstDVCheck[i] + ",";
-                    }
-                    lstdichvu_ser += "" + lstDVCheck[lstDVCheck.Count - 1] + ") ";
-
-
-                    if (lstdichvu_ser.Contains("TATCA"))
-                    {
-                        lstdichvu_ser = "";
-                    }
-                //}
-
-                sql_timkiem = @" SELECT row_number () over (order by ser.yyyymmdd) as stt, ser.ngaythangnam, sum(case when ser.departmentid in (209,210,211,354,355,205,409,206,207,208) then ser.soluong else 0 end) as kyeucau_sl, sum(case when ser.departmentid in (209,210,211,354,355,205,409,206,207,208) then (ser.soluong*ser.dongia) else 0 end) as kyeucau_thanhtien, sum(case when ser.departmentid in (201,202) then ser.soluong else 0 end) as kdalieu_sl, sum(case when ser.departmentid in (201,202) then (ser.soluong*ser.dongia) else 0 end) as kdalieu_thanhtien, sum(case when ser.departmentid=212 then ser.soluong else 0 end) as kmat_sl, sum(case when ser.departmentid=212 then (ser.soluong*ser.dongia) else 0 end) as kmat_thanhtien, sum(case when ser.departmentid=220 then ser.soluong else 0 end) as krhm_sl, sum(case when ser.departmentid=220 then (ser.soluong*ser.dongia) else 0 end) as krhm_thanhtien, sum(case when ser.departmentid=222 then ser.soluong else 0 end) as ktmh_sl, sum(case when ser.departmentid=222 then (ser.soluong*ser.dongia) else 0 end) as ktmh_thanhtien FROM (select vienphiid,departmentid,TO_CHAR(servicepricedate, 'dd/MM/yyyy') as ngaythangnam,TO_CHAR(servicepricedate, 'yyyymmdd') as yyyymmdd,soluong, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where departmentid in (209,210,211,354,355,205,409,206,207,208,201,202,212,220,222) and EXTRACT(DOW FROM servicepricedate) in (6,0) and bhyt_groupcode='01KB' " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid GROUP BY ser.ngaythangnam,ser.yyyymmdd;";
+                sql_timkiem = @"SELECT row_number () over (order by serf.servicepricename) as stt, serf.servicepricecode, serf.servicepricename, sum(ser.soluong) as soluong, sum(ser.soluong*50000) as tientrich, '' as kynhan FROM (select servicepricecode,servicepricename from servicepriceref where 1=1 " + lstdichvu_ser + ") serf left join (select vienphiid,departmentid,soluong,servicepricecode,servicepricename, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_ser + ") ser on ser.servicepricecode=serf.servicepricecode left join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid GROUP BY serf.servicepricecode,serf.servicepricename;";
 
                 this.dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -137,6 +123,7 @@ namespace MedicalLink.BCQLTaiChinh
             SplashScreenManager.CloseForm();
         }
 
+
         #endregion
 
         #region In va xuat file
@@ -155,11 +142,14 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO item_phong = new ClassCommon.reportExcelDTO();
                 item_phong.name = Base.bienTrongBaoCao.LST_DICHVU;
-                item_phong.value = chkListDSDichVu.Text;
+                item_phong.value = this.DanhMucDichVu_String;
                 thongTinThem.Add(item_phong);
+                ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
+                _item_tien_string.name = "TONGTIENTRICH_STRING";
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(this.dataBaoCao), 0).ToString());
+                thongTinThem.Add(_item_tien_string);
 
-                string fileTemplatePath = "BC_101_TKTienKhamYeuCauThu7ChuNhat.xlsx";
-
+                string fileTemplatePath = "BC_104_TrichThuongFibro.xlsx";
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
@@ -187,10 +177,14 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO item_phong = new ClassCommon.reportExcelDTO();
                 item_phong.name = Base.bienTrongBaoCao.LST_DICHVU;
-                item_phong.value = chkListDSDichVu.Text;
+                item_phong.value = this.DanhMucDichVu_String;
                 thongTinThem.Add(item_phong);
+                ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
+                _item_tien_string.name = "TONGTIENTRICH_STRING";
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(this.dataBaoCao), 0).ToString());
+                thongTinThem.Add(_item_tien_string);
 
-                string fileTemplatePath = "BC_101_TKTienKhamYeuCauThu7ChuNhat.xlsx";
+                string fileTemplatePath = "BC_104_TrichThuongFibro.xlsx";
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
@@ -198,7 +192,6 @@ namespace MedicalLink.BCQLTaiChinh
                 Base.Logging.Warn(ex);
             }
             SplashScreenManager.CloseForm();
-
         }
 
         #endregion
@@ -209,6 +202,7 @@ namespace MedicalLink.BCQLTaiChinh
             try
             {
                 GridView view = sender as GridView;
+
                 if (e.RowHandle == view.FocusedRowHandle)
                 {
                     e.Appearance.BackColor = Color.DodgerBlue;
@@ -220,6 +214,29 @@ namespace MedicalLink.BCQLTaiChinh
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+
+        #endregion
+
+        #region Process
+        private decimal TinhTongTien(DataTable _dataBaoCao)
+        {
+            decimal _result = 0;
+            try
+            {
+                List<TrichThuongDVFibroDTO> _lstTrichThuong = Utilities.Util_DataTable.DataTableToList<TrichThuongDVFibroDTO>(_dataBaoCao);
+                foreach (var item in _lstTrichThuong)
+                {
+                    _result += item.tientrich??0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            return _result;
+        }
+
         #endregion
 
 

@@ -505,6 +505,7 @@
             this.gridViewDSUser.OptionsFind.AlwaysVisible = true;
             this.gridViewDSUser.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
             this.gridViewDSUser.OptionsFind.ShowClearButton = false;
+            this.gridViewDSUser.OptionsView.ColumnAutoWidth = false;
             this.gridViewDSUser.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSUser.OptionsView.ShowGroupPanel = false;
             this.gridViewDSUser.RowHeight = 25;
@@ -528,7 +529,7 @@
             this.usercode.OptionsColumn.AllowEdit = false;
             this.usercode.Visible = true;
             this.usercode.VisibleIndex = 0;
-            this.usercode.Width = 119;
+            this.usercode.Width = 138;
             // 
             // username
             // 
@@ -546,7 +547,7 @@
             this.username.OptionsColumn.AllowEdit = false;
             this.username.Visible = true;
             this.username.VisibleIndex = 1;
-            this.username.Width = 202;
+            this.username.Width = 250;
             // 
             // usergnhom
             // 
@@ -649,6 +650,7 @@
             this.gridViewChucNang.OptionsFind.ShowClearButton = false;
             this.gridViewChucNang.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
             this.gridViewChucNang.OptionsSelection.MultiSelect = true;
+            this.gridViewChucNang.OptionsView.ColumnAutoWidth = false;
             this.gridViewChucNang.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewChucNang.OptionsView.ShowGroupPanel = false;
             this.gridViewChucNang.RowHeight = 25;
@@ -681,7 +683,7 @@
             this.chucnangid.OptionsColumn.AllowEdit = false;
             this.chucnangid.Visible = true;
             this.chucnangid.VisibleIndex = 1;
-            this.chucnangid.Width = 136;
+            this.chucnangid.Width = 150;
             // 
             // tenchucnang
             // 
@@ -929,6 +931,7 @@
             this.gridViewBaoCao.OptionsFind.ShowClearButton = false;
             this.gridViewBaoCao.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
             this.gridViewBaoCao.OptionsSelection.MultiSelect = true;
+            this.gridViewBaoCao.OptionsView.ColumnAutoWidth = false;
             this.gridViewBaoCao.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewBaoCao.OptionsView.ShowGroupPanel = false;
             this.gridViewBaoCao.RowHeight = 25;
@@ -961,7 +964,7 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 1;
-            this.gridColumn11.Width = 136;
+            this.gridColumn11.Width = 150;
             // 
             // gridColumn12
             // 

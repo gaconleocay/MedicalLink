@@ -154,6 +154,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     txtusername.Text = gridViewDSNV.GetRowCellValue(rowHandle, "username").ToString();
                     txtuserhisid.Text = this.CurentUserHisId;
                     cboNhomNhanVien.Text = gridViewDSNV.GetRowCellValue(rowHandle, "usergnhom_name").ToString();
+                    cboNhomBaoCao.Text = gridViewDSNV.GetRowCellValue(rowHandle, "nhom_bcten").ToString();
 
                     txtusercode.Enabled = true;
                     txtusername.Enabled = true;

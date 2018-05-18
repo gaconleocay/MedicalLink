@@ -914,11 +914,41 @@ namespace MedicalLink.Base
                 REPORT_102.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_102_DV";
                 lstresult.Add(REPORT_102);
 
+                //ClassCommon.classPermission REPORT_103 = new ClassCommon.classPermission();
+                //REPORT_103.permissioncheck = false;
+                //REPORT_103.permissioncode = "REPORT_103";
+                //REPORT_103.permissionname = "Báo cáo trích thưởng cho chuyên gia khám bệnh theo yêu cầu";
+                //REPORT_103.permissiontype = 3;
+                //REPORT_103.tabMenuId = 4;
+                //REPORT_103.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_103_DV";
+                //lstresult.Add(REPORT_103);
 
+                ClassCommon.classPermission REPORT_104 = new ClassCommon.classPermission();
+                REPORT_104.permissioncheck = false;
+                REPORT_104.permissioncode = "REPORT_104";
+                REPORT_104.permissionname = "Báo cáo trích thưởng dịch vụ đo mật độ loãng xương, đo độ sơ hóa của gan";
+                REPORT_104.permissiontype = 3;
+                REPORT_104.tabMenuId = 4;
+                REPORT_104.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_104_DV";
+                lstresult.Add(REPORT_104);
 
+                ClassCommon.classPermission REPORT_105 = new ClassCommon.classPermission();
+                REPORT_105.permissioncheck = false;
+                REPORT_105.permissioncode = "REPORT_105";
+                REPORT_105.permissionname = "Báo cáo trích thưởng dịch vụ nước sôi";
+                REPORT_105.permissiontype = 3;
+                REPORT_105.tabMenuId = 4;
+                REPORT_105.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_105_DV";
+                lstresult.Add(REPORT_105);
 
-
-
+                ClassCommon.classPermission REPORT_106 = new ClassCommon.classPermission();
+                REPORT_106.permissioncheck = false;
+                REPORT_106.permissioncode = "REPORT_106";
+                REPORT_106.permissionname = "Báo cáo trích thưởng dịch vụ phẫu thuật theo yêu cầu (sử dụng kính hiển vi)";
+                REPORT_106.permissiontype = 3;
+                REPORT_106.tabMenuId = 4;
+                REPORT_106.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_106_DV";
+                lstresult.Add(REPORT_106);
 
 
 

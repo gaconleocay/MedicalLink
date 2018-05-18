@@ -489,6 +489,42 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="BCQLTaiChinh\frmBC106_NhapTruThue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\frmBC106_NhapTruThue.Designer.cs">
+      <DependentUpon>frmBC106_NhapTruThue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\frmBC105_NhapTongChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\frmBC105_NhapTongChi.Designer.cs">
+      <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.Designer.cs">
+      <DependentUpon>ucBC106_TrichThuongKinhHienVi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC105_TrichThuongDVNuocSoi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC105_TrichThuongDVNuocSoi.Designer.cs">
+      <DependentUpon>ucBC105_TrichThuongDVNuocSoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC104_TrichThuongFIBRO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC104_TrichThuongFIBRO.Designer.cs">
+      <DependentUpon>ucBC104_TrichThuongFIBRO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC103_ChiThuongDichVuVienPhi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC103_ChiThuongDichVuVienPhi.Designer.cs">
+      <DependentUpon>ucBC103_ChiThuongDichVuVienPhi.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -582,7 +618,11 @@
     <Compile Include="ClassCommon\BCDoanhThuDichVuBC08DTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonChungTuThuocSDDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\ChiThuongDichVuVienPhiDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongChuyenGiaYCDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVKinhHienVi.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVNuocSoiDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVFibroDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
     <Compile Include="ClassCommon\BC41_DVYeuCau_DSBNDTO.cs" />
     <Compile Include="ClassCommon\BC41_DVYeuCau_ChiTietDTO.cs" />
@@ -1331,6 +1371,24 @@
     <EmbeddedResource Include="BaoCao\ucBCDoanhThuTheoMayXN.resx">
       <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\frmBC106_NhapTruThue.resx">
+      <DependentUpon>frmBC106_NhapTruThue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\frmBC105_NhapTongChi.resx">
+      <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.resx">
+      <DependentUpon>ucBC106_TrichThuongKinhHienVi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\ucBC105_TrichThuongDVNuocSoi.resx">
+      <DependentUpon>ucBC105_TrichThuongDVNuocSoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\ucBC104_TrichThuongFIBRO.resx">
+      <DependentUpon>ucBC104_TrichThuongFIBRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\ucBC103_ChiThuongDichVuVienPhi.resx">
+      <DependentUpon>ucBC103_ChiThuongDichVuVienPhi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.resx">
       <DependentUpon>ucBC101_TKTienKhamYCT7CN.cs</DependentUpon>
     </EmbeddedResource>
@@ -1920,6 +1978,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_102_TrichThuongChuyenGiaYeuCau.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_103_ChiThuongDichVuVienPhi.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_104_TrichThuongFibro.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_105_TrichThuongDVNuocSoi.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_106_TrichThuongKinhHienVi.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -232,5 +232,44 @@ namespace MedicalLink.Utilities.Common.Excel
             return result;
         }
 
+        public MemoryStream ExportExcelTemplate_ToStream(string pv_sErr, string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem)
+        {
+            MemoryStream result = new MemoryStream();
+            try
+            {
+                DataSet dataExportExcel = new DataSet();
+                dataExportExcel.Tables.Add(InsertOrders(thongTinThem));
+
+                string fileTemplatePath = Environment.CurrentDirectory + "\\Templates\\" + fileNameTemplate;
+                WorkbookDesigner designer;
+
+                if (File.Exists(fileTemplatePath))
+                {
+                    designer = new WorkbookDesigner();
+                    string strRoot = Environment.CurrentDirectory + "\\Library\\";
+                    Aspose.Cells.License l = new Aspose.Cells.License();
+                    string strLicense = strRoot + "Aspose.Cells.lic";
+                    l.SetLicense(strLicense);
+                    designer.Open(fileTemplatePath);
+                    if (dataExportExcel.Tables.Count > 0)
+                    {
+                        dataExportExcel.Tables[0].TableName = "DATA";
+                        for (int i = 1; i < dataExportExcel.Tables.Count; i++)
+                        {
+                            dataExportExcel.Tables[i].TableName = "DATA" + i;
+                        }
+                        designer.SetDataSource(dataExportExcel);
+                        designer.Process();
+                        designer.Workbook.CalculateFormula();
+                        designer.Workbook.Save(result, new XlsSaveOptions(SaveFormat.Xlsx));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+            return result;
+        }
     }
 }

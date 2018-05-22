@@ -1,6 +1,7 @@
 --báo cáo THỐNG KÊ SỐ TIỀN KHÁM YÊU CẦU THỨ 7, CHỦ NHẬT 
 --ucBC101_TKTienKhamYCT7CN
 
+--ngay 18/5/2018
 
 SELECT row_number () over (order by ser.yyyymmdd) as stt,
 	ser.ngaythangnam,
@@ -14,11 +15,12 @@ SELECT row_number () over (order by ser.yyyymmdd) as stt,
 	sum(case when ser.departmentid=220 then (ser.soluong*ser.dongia) else 0 end) as krhm_thanhtien,
 	sum(case when ser.departmentid=222 then ser.soluong else 0 end) as ktmh_sl,
 	sum(case when ser.departmentid=222 then (ser.soluong*ser.dongia) else 0 end) as ktmh_thanhtien
-FROM (select vienphiid,departmentid,TO_CHAR(servicepricedate, 'dd/MM/yyyy') as ngaythangnam,TO_CHAR(servicepricedate, 'yyyymmdd') as yyyymmdd,soluong,
+FROM (select vienphiid,maubenhphamid,departmentid,TO_CHAR(servicepricedate, 'dd/MM/yyyy') as ngaythangnam,TO_CHAR(servicepricedate, 'yyyymmdd') as yyyymmdd,soluong,
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 		from serviceprice 
 		where departmentid in (209,210,211,354,355,205,409,206,207,208,201,202,212,220,222)
 			and EXTRACT(DOW FROM servicepricedate) in (6,0) and bhyt_groupcode='01KB' "+tieuchi_ser+lstdichvu_ser+") ser
+	inner join (select maubenhphamid from maubenhpham where maubenhphamgrouptype=2 and maubenhphamstatus=16) mbp on mbp.maubenhphamid=ser.maubenhphamid		
 	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.ngaythangnam,ser.yyyymmdd;
 	

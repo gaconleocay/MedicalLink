@@ -25,7 +25,7 @@ SELECT
 	0 as thuclinh,
 	'' as kynhan,
 	0 as isgroup
-FROM (select maubenhphamid,userid from maubenhpham where maubenhphamgrouptype=2 "+tieuchi_mbp+") mbp 
+FROM (select maubenhphamid,userid from maubenhpham where maubenhphamgrouptype=2 and maubenhphamstatus=16 "+tieuchi_mbp+") mbp 
 	inner join (select maubenhphamid,vienphiid,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 				from serviceprice where bhyt_groupcode='01KB' "+lstdichvu_ser+tieuchi_ser+") ser on ser.maubenhphamid=mbp.maubenhphamid
 	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
@@ -38,30 +38,6 @@ ORDER BY ncd.username;
 
 
 
---ngay 18/5/2018
-
-SELECT 
-	(row_number() OVER (PARTITION BY ncd.nhom_bcid ORDER BY ncd.username)) as stt,
-	mbp.userid as userhisid,
-	ncd.usercode,
-	ncd.username,
-	ncd.nhom_bcid,
-	ncd.nhom_bcten,
-	sum(ser.soluong) as soluong,
-	sum(ser.soluong*ser.dongia) as thanhtien,
-	50 as tylehuong,
-	sum(ser.soluong*ser.dongia*0.5) as tongtien,
-	0 as tienthue,
-	0 as thuclinh,
-	'' as kynhan,
-	0 as isgroup
-FROM (select * from nhompersonnel where nhom_bcid>0) ncd
-	left join (select maubenhphamid,userid from maubenhpham where maubenhphamgrouptype=2 "+tieuchi_mbp+") mbp on mbp.userid=ncd.userhisid
-	left join (select maubenhphamid,vienphiid,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
-				from serviceprice where bhyt_groupcode='01KB' "+lstdichvu_ser+tieuchi_ser+") ser on ser.maubenhphamid=mbp.maubenhphamid
-	left join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
-GROUP BY mbp.userid,ncd.usercode,ncd.username,ncd.nhom_bcid,ncd.nhom_bcten
-ORDER BY ncd.username;
 
 
 

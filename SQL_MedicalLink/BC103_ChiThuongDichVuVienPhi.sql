@@ -1,119 +1,139 @@
 --Báo cáo CHI THƯỞNG DỊCH VỤ VIỆN PHÍ														
 --ucBC103_ChiThuongDichVuVienPhi
 
-select 
-from (select from serviceprice where bhyt_groupcode='01KB' )
 
+--Kham benh
+SELECT 
+	ser.departmentid as departmentgroupid,
+	(ser.departmentid || 'KB') as keymapping,
+	sum(ser.soluong) as soluong_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then ser.soluong else 0 end) as soluong_th7cn,
+	ser.dongia,
+	sum(ser.soluong*ser.dongia) as thanhtien_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_th7cn
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+		from serviceprice 
+		where bhyt_groupcode='01KB' "+tieuchi_ser+lstdichvu_ser_kb+") ser
+	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+GROUP BY ser.departmentid,ser.dongia
+	
+UNION ALL
+--Sieu am-dien tim
+SELECT 
+	ser.departmentgroupid,
+	(ser.departmentgroupid || 'SADT') as keymapping,
+	sum(ser.soluong) as soluong_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then ser.soluong else 0 end) as soluong_th7cn,
+	0 as dongia,
+	sum(ser.soluong*ser.dongia) as thanhtien_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_th7cn
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+		from serviceprice 
+		where bhyt_groupcode in ('04CDHA','05TDCN') and departmentgroupid=46 "+tieuchi_ser+lstdichvu_ser_sadt+") ser
+	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+GROUP BY ser.departmentgroupid
 
-
-
-CREATE TABLE ml_chithuongdvvp
+UNION ALL
+--Xet nghiem Yeu cau
+SELECT 
+	ser.departmentgroupid,
+	(ser.departmentgroupid || 'XN') as keymapping,
+	sum(ser.soluong) as soluong_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then ser.soluong else 0 end) as soluong_th7cn,
+	0 as dongia,
+	sum(ser.soluong*ser.dongia) as thanhtien_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_th7cn
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+		from serviceprice 
+		where bhyt_groupcode='03XN' and departmentgroupid=46 "+tieuchi_ser+lstdichvu_ser_xn+") ser
+	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+GROUP BY ser.departmentgroupid
+	
+------------------------
+--Bảng cấu hình
+CREATE TABLE ml_chiathuongdvvp
 (
   chithuongdvvpid serial NOT NULL,
-  departmentgroupid integer,
+  stt integer,
+  keymapping text,
   departmentgroupname text,
+  departmentname text,
   quyetdinh_so text,
   quyetdinh_ngay timestamp without time zone,
-  tylehuong integer,
-  chibsth7cn double precision,
-  CONSTRAINT ml_chithuongdvvp_pkey PRIMARY KEY (chithuongdvvpid)
-)
+  tylehuong double precision DEFAULT 0,
+  tienbsi_th7cn double precision DEFAULT 0,
+  CONSTRAINT ml_chiathuongdvvp_pkey PRIMARY KEY (chithuongdvvpid)
+);
+CREATE INDEX ml_chiathuongdvvp_keymapping_idx ON ml_chiathuongdvvp USING btree (keymapping);
 
-CREATE INDEX ml_chithuongdvvp_departmentgroupid_idx ON ml_chithuongdvvp USING btree (departmentgroupid);
-
-
-        public int? stt { get; set; }
-        public int? departmentgroupid { get; set; }
-        public string departmentgroupname { get; set; }
-        public string quyetdinh_so { get; set; }
-        public string quyetdinh_ngay { get; set; }
-        public int? soluong_tong { get; set; }
-        public int? soluong_th7cn { get; set; }
-        public decimal? dongia { get; set; }
-        public decimal? thanhtien { get; set; }
-        public int? tylehuong { get; set; }
-        public decimal? tienhuong { get; set; }
-        public decimal? tongtien { get; set; }
-        public decimal? chiphi { get; set; }
-        public decimal? tienthuong_th7cn { get; set; }
-        public decimal? tienbsi_th7cn { get; set; }
-        public decimal? tonghuong { get; set; }
-        public string kynhan { get; set; }
-
-		
-		
-
-CREATE TABLE serviceprice
+--Bảng tạm - Lưu dữ liệu querry trên vào bảng này
+CREATE TABLE ml_datachithuongdvvp_tmp
 (
-  servicepriceid serial NOT NULL,
-  medicalrecordid integer,
-  vienphiid integer DEFAULT 0,
-  hosobenhanid integer DEFAULT 0,
-  maubenhphamid integer,
-  maubenhphamphieutype integer DEFAULT 0,
-  servicepriceid_master integer DEFAULT 0,
-  thuockhobanle integer DEFAULT 0,
-  doituongbenhnhanid integer DEFAULT 0,
-  loaidoituong_org integer DEFAULT 0,
-  loaidoituong_org_remark text,
-  loaidoituong integer DEFAULT 0,
-  loaiduyetbhyt integer DEFAULT 0,
-  loaidoituong_remark text,
-  loaidoituong_userid integer DEFAULT 0,
-  departmentid integer DEFAULT 0,
-  departmentgroupid integer DEFAULT 0,
-  servicepricecode text,
-  servicepricename text,
-  servicepricename_nhandan text,
-  servicepricename_bhyt text,
-  servicepricename_nuocngoai text,
-  servicepricedate timestamp without time zone,
-  servicepricestatus integer,
-  servicepricedoer text,
-  servicepricecomment text,
-  servicepricemoney double precision,
-  servicepricemoney_nhandan double precision,
-  servicepricemoney_bhyt double precision,
-  servicepricemoney_nuocngoai double precision,
-  servicepricemoney_bhyt_tra double precision,
-  servicepricemoney_miengiam double precision,
-  servicepricemoney_danop double precision,
-  servicepricemoney_miengiam_type integer default 0,
-  billid_thutien integer DEFAULT 0,
-  billid_hoantien integer DEFAULT 0,
-  billid_clbh_thutien integer DEFAULT 0,
-  billid_clbh_hoantien integer DEFAULT 0,
-  billaccountid integer DEFAULT 0,
-  soluong double precision,
-  soluongbacsi double precision,
-  huongdansudung text,
-  version timestamp without time zone,
-  loaipttt integer DEFAULT 0,
-  soluongquyettoan double precision DEFAULT 0,
-  servicepriceid_xuattoan double precision DEFAULT 0,
-  daduyetthuchiencanlamsang integer DEFAULT 0,
-  sync_flag integer,
-  update_flag integer,
-  servicepricemoney_bhyt_danop double precision,
-  servicepricemoney_damiengiam double precision,
-  loaidoituong_xuat integer,
-  servicepricemoney_tranbhyt double precision,
-  servicepricebhytdinhmuc text,
-  servicepricebhytquydoi text,
-  servicepricebhytquydoi_tt text,
-  bhyt_groupcode text,
-  huongdanphathuoc text,
-  servicepriceid_org integer,
-  lankhambenh integer,
-  vitrisinhthiet text,
-  somanhsinhthiet text,
-  stt_theodoithuoc integer,
-  chiphidauvao double precision,
-  chiphimaymoc double precision,
-  chiphipttt double precision,
-  mayytedbid integer,
-  servicepriceid_thanhtoanrieng
-  CONSTRAINT serviceprice_pkey PRIMARY KEY (servicepriceid)
-)		
-		
+  datachithuongtmpid serial NOT NULL,
+  keymapping text,
+  departmentgroupid integer,
+  soluong_tong double precision DEFAULT 0,
+  soluong_th7cn double precision DEFAULT 0,
+  dongia double precision DEFAULT 0,
+  thanhtien_tong double precision DEFAULT 0,
+  thanhtien_th7cn double precision DEFAULT 0,
+  createusercode text,
+  createdate timestamp without time zone,
+  CONSTRAINT ml_datachithuongdvvp_tmp_pkey PRIMARY KEY (datachithuongtmpid)
+);
+CREATE INDEX ml_datachithuongdvvp_tmp_keymapping_idx ON ml_datachithuongdvvp_tmp USING btree (keymapping);
+CREATE INDEX ml_datachithuongdvvp_tmp_createusercode_idx ON ml_datachithuongdvvp_tmp USING btree (createusercode);
+CREATE INDEX ml_datachithuongdvvp_tmp_createdate_idx ON ml_datachithuongdvvp_tmp USING btree (createdate);
+
+---------------------------------------
+--SQL lay data cuoi cung
+
+SELECT row_number () over (order by CT1.stt) as stt,
+	CT1.departmentgroupname,
+	CT1.quyetdinh_so,
+	TO_CHAR(CT1.quyetdinh_ngay,'dd/MM/yyyy') as quyetdinh_ngay,
+	coalesce(TMP1.soluong_tong,0) as soluong_tong,
+	coalesce(TMP1.soluong_th7cn,0) as soluong_th7cn,
+	TMP1.dongia,
+	coalesce(TMP1.thanhtien_tong) as thanhtien_tong,
+	CT1.tylehuong,
+	((TMP1.thanhtien_tong*(CT1.tylehuong/100.0))) as tienhuong,
+	(TMP1.thanhtien_th7cn) as thanhtien_th7cn,
+	0 as chiphi,
+	(TMP1.thanhtien_th7cn*0.15) as tienthuong_th7cn,
+	((TMP1.soluong_th7cn*CT1.tienbsi_th7cn)) as tienbsi_th7cn,
+	((TMP1.thanhtien_tong*(CT1.tylehuong/100.0))+(TMP1.thanhtien_th7cn*0.15)+(TMP1.soluong_th7cn*CT1.tienbsi_th7cn)) as tonghuong,
+	'' as kynhan
+FROM (select stt,departmentgroupname,quyetdinh_so,quyetdinh_ngay,tylehuong,tienbsi_th7cn from ml_chiathuongdvvp group by stt,departmentgroupname,quyetdinh_so,quyetdinh_ngay,tylehuong,tienbsi_th7cn) CT1
+LEFT JOIN
+	(select ct.stt as stt1,
+		sum(tmp.soluong_tong) as soluong_tong,
+		sum(tmp.soluong_th7cn) as soluong_th7cn,
+		tmp.dongia,
+		sum(tmp.thanhtien_tong) as thanhtien_tong,
+		sum((tmp.thanhtien_tong*(ct.tylehuong/100.0))) as tienhuong,
+		sum(tmp.thanhtien_th7cn) as thanhtien_th7cn,
+		sum((tmp.soluong_th7cn*ct.tienbsi_th7cn)) as tienbsi_th7cn
+	from ml_chiathuongdvvp ct 
+		inner join (select * from ml_datachithuongdvvp_tmp where createusercode='"+_createusercode+"' and createdate='"+_createdate+"') tmp on tmp.keymapping=ct.keymapping
+	group by ct.stt,ct.departmentgroupname,ct.quyetdinh_so,ct.quyetdinh_ngay,tmp.dongia,ct.tylehuong
+	--having sum(tmp.soluong_tong)>0;
+	) TMP1 on TMP1.stt1=CT1.stt;
 	
+
+	
+
+
+
+
+
+
+		
+		
+
+		
+		
+		
+		
+		
+		

@@ -20,7 +20,7 @@ namespace MedicalLink.BCQLTaiChinh
         #region Khai bao
         private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private List<TrichThuongChuyenGiaYCDTO> lstBaoCao { get; set; }
-        private string LstDanhMucDichVu { get; set; }
+        private string DanhMucDichVu_String { get; set; }
         private decimal TongTienChi = 0;
         #endregion
 
@@ -40,10 +40,11 @@ namespace MedicalLink.BCQLTaiChinh
                 List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_102_DV").ToList();
                 if (lstOtherList != null && lstOtherList.Count > 0)
                 {
-                    foreach (var item in lstOtherList)
+                    for (int i = 0; i < lstOtherList.Count - 1; i++)
                     {
-                        this.LstDanhMucDichVu += item.tools_otherlistvalue;
+                        this.DanhMucDichVu_String += lstOtherList[i].tools_otherlistvalue + ",";
                     }
+                    this.DanhMucDichVu_String += lstOtherList[lstOtherList.Count - 1].tools_otherlistvalue;
                 }
             }
             catch (Exception ex)
@@ -63,7 +64,7 @@ namespace MedicalLink.BCQLTaiChinh
             {
                 string tieuchi_ser = "";
                 string tieuchi_vp = "";
-                string lstdichvu_ser = " and servicepricecode in (" + this.LstDanhMucDichVu + ") ";
+                string lstdichvu_ser = " and servicepricecode in (" + this.DanhMucDichVu_String + ") ";
                 string trangthai_vp = "";
                 string sql_timkiem = "";
                 string tieuchi_mbp = "";
@@ -102,7 +103,7 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @"SELECT (row_number() OVER (PARTITION BY ncd.nhom_bcid ORDER BY ncd.username)) as stt, mbp.userid as userhisid, ncd.usercode, ncd.username, coalesce(ncd.nhom_bcid,0) as nhom_bcid, ncd.nhom_bcten, sum(ser.soluong) as soluong, sum(ser.soluong*ser.dongia) as thanhtien, 50 as tylehuong, sum(ser.soluong*ser.dongia*0.5) as tongtien, 0 as tienthue, 0 as thuclinh, '' as kynhan, 0 as isgroup FROM (select maubenhphamid,userid from maubenhpham where maubenhphamgrouptype=2 " + tieuchi_mbp + ") mbp inner join (select maubenhphamid,vienphiid,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where bhyt_groupcode='01KB' " + lstdichvu_ser + tieuchi_ser + ") ser on ser.maubenhphamid=mbp.maubenhphamid inner join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select userhisid,usercode,username,nhom_bcid,nhom_bcten from nhompersonnel group by userhisid,usercode,username,nhom_bcid,nhom_bcten) ncd on ncd.userhisid=mbp.userid GROUP BY mbp.userid,ncd.usercode,ncd.username,ncd.nhom_bcid,ncd.nhom_bcten ORDER BY ncd.username;";
+                sql_timkiem = @"SELECT (row_number() OVER (PARTITION BY ncd.nhom_bcid ORDER BY ncd.username)) as stt, mbp.userid as userhisid, ncd.usercode, ncd.username, coalesce(ncd.nhom_bcid,0) as nhom_bcid, ncd.nhom_bcten, sum(ser.soluong) as soluong, sum(ser.soluong*ser.dongia) as thanhtien, 50 as tylehuong, sum(ser.soluong*ser.dongia*0.5) as tongtien, 0 as tienthue, 0 as thuclinh, '' as kynhan, 0 as isgroup FROM (select maubenhphamid,userid from maubenhpham where maubenhphamgrouptype=2 and maubenhphamstatus=16 " + tieuchi_mbp + ") mbp inner join (select maubenhphamid,vienphiid,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where bhyt_groupcode='01KB' " + lstdichvu_ser + tieuchi_ser + ") ser on ser.maubenhphamid=mbp.maubenhphamid inner join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select userhisid,usercode,username,nhom_bcid,nhom_bcten from nhompersonnel group by userhisid,usercode,username,nhom_bcid,nhom_bcten) ncd on ncd.userhisid=mbp.userid GROUP BY mbp.userid,ncd.usercode,ncd.username,ncd.nhom_bcid,ncd.nhom_bcten ORDER BY ncd.username;";
 
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
@@ -248,7 +249,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO item_phong = new ClassCommon.reportExcelDTO();
                 item_phong.name = Base.bienTrongBaoCao.LST_DICHVU;
-                item_phong.value = this.LstDanhMucDichVu;
+                item_phong.value = this.DanhMucDichVu_String;
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTHUCLINH_STRING";
@@ -284,7 +285,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO item_phong = new ClassCommon.reportExcelDTO();
                 item_phong.name = Base.bienTrongBaoCao.LST_DICHVU;
-                item_phong.value = this.LstDanhMucDichVu;
+                item_phong.value = this.DanhMucDichVu_String;
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTHUCLINH_STRING";

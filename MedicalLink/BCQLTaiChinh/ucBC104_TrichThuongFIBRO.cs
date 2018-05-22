@@ -40,10 +40,11 @@ namespace MedicalLink.BCQLTaiChinh
                 List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_104_DV").ToList();
                 if (lstOtherList != null && lstOtherList.Count > 0)
                 {
-                    foreach (var item in lstOtherList)
+                    for (int i = 0; i < lstOtherList.Count - 1; i++)
                     {
-                        this.DanhMucDichVu_String += item.tools_otherlistvalue;
+                        this.DanhMucDichVu_String += lstOtherList[i].tools_otherlistvalue + ",";
                     }
+                    this.DanhMucDichVu_String += lstOtherList[lstOtherList.Count - 1].tools_otherlistvalue;
                 }
             }
             catch (Exception ex)
@@ -102,7 +103,7 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @"SELECT row_number () over (order by serf.servicepricename) as stt, serf.servicepricecode, serf.servicepricename, sum(ser.soluong) as soluong, sum(ser.soluong*50000) as tientrich, '' as kynhan FROM (select servicepricecode,servicepricename from servicepriceref where 1=1 " + lstdichvu_ser + ") serf left join (select vienphiid,departmentid,soluong,servicepricecode,servicepricename, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_ser + ") ser on ser.servicepricecode=serf.servicepricecode left join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid GROUP BY serf.servicepricecode,serf.servicepricename;";
+                sql_timkiem = @"SELECT row_number () over (order by serf.servicepricename) as stt, serf.servicepricecode, serf.servicepricename, sum(ser.soluong) as soluong, sum(ser.soluong*50000) as tientrich, '' as kynhan FROM (select servicepricecode,servicepricename from servicepriceref where 1=1 " + lstdichvu_ser + ") serf inner join (select vienphiid,departmentid,soluong,servicepricecode,servicepricename, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN') " + tieuchi_ser + lstdichvu_ser + ") ser on ser.servicepricecode=serf.servicepricecode inner join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid GROUP BY serf.servicepricecode,serf.servicepricename;";
 
                 this.dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
@@ -227,7 +228,7 @@ namespace MedicalLink.BCQLTaiChinh
                 List<TrichThuongDVFibroDTO> _lstTrichThuong = Utilities.Util_DataTable.DataTableToList<TrichThuongDVFibroDTO>(_dataBaoCao);
                 foreach (var item in _lstTrichThuong)
                 {
-                    _result += item.tientrich??0;
+                    _result += item.tientrich ?? 0;
                 }
             }
             catch (Exception ex)

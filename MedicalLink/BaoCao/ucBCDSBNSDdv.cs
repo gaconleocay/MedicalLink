@@ -58,7 +58,9 @@ namespace MedicalLink.ChucNang
                 string danhsachDichVu = "";
                 string danhsachDichVu_In = "";
                 string danhsachDichVu_Like = "";
-                string tieuchi = "";
+                string tieuchi_ser = "";
+                string tieuchi_vp = "";
+                string tieuchi_hsba = "";
                 string loaivienphiid = "";
                 string doituongbenhnhanid = "";
                 string sqlquerry = "";
@@ -70,6 +72,11 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
+                    // Lấy từ ngày, đến ngày
+                    string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                    string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+
+
                     gridControlDSDV.DataSource = null;
                     // Lấy dữ liệu danh sách dịch vụ nhập vào
                     string danhsachtimkiem = mmeMaDV.Text.Replace("*", "%");
@@ -110,48 +117,48 @@ namespace MedicalLink.ChucNang
                     // Lấy Tiêu chí thời gian: tieuchi
                     if (cbbTieuChi.Text == "Theo ngày chỉ định")
                     {
-                        tieuchi = " ser.servicepricedate";
+                        tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
                     }
                     else if (cbbTieuChi.Text == "Theo ngày vào viện")
                     {
-                        tieuchi = " vp.vienphidate";
+                        tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
+                        tieuchi_hsba = " and hosobenhandate between '" + datetungay + "' and '" + datedenngay + "' ";
                     }
                     else if (cbbTieuChi.Text == "Theo ngày ra viện")
                     {
-                        tieuchi = " vp.vienphidate_ravien";
+                        tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                        tieuchi_hsba = " and hosobenhandate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
                     }
                     else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
                     {
-                        tieuchi = " vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp ";
+                        tieuchi_vp = " and vienphistatus<>0 and vienphistatus_vp=1 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
                     }
                     else if (cbbTieuChi.Text == "Theo ngày duyệt BHYT")//theo ngay duyet BHYT
                     {
-                        tieuchi = " vp.vienphistatus_bh=1 and vp.duyet_ngayduyet ";
+                        tieuchi_vp = " and vienphistatus_bh=1 and duyet_ngayduyet between '" + datetungay + "' and '" + datedenngay + "' ";
                     }
 
                     // Lấy loaivienphiid
                     if (cbbLoaiBA.Text == "Ngoại trú")
                     {
-                        loaivienphiid = " and vp.loaivienphiid=1 ";
+                        loaivienphiid = " and loaivienphiid=1 ";
                     }
                     else if (cbbLoaiBA.Text == "Nội trú")
                     {
-                        loaivienphiid = " and vp.loaivienphiid=0 ";
+                        loaivienphiid = " and loaivienphiid=0 ";
                     }
 
                     // Lấy trường đối tượng BN loaidoituong
                     if (chkBHYT.Checked == true && chkVP.Checked == false)
                     {
-                        doituongbenhnhanid = "and vp.doituongbenhnhanid=1 ";
+                        doituongbenhnhanid = "and doituongbenhnhanid=1 ";
                     }
                     else if (chkBHYT.Checked == false && chkVP.Checked == true)
                     {
-                        doituongbenhnhanid = "and vp.doituongbenhnhanid<>1 ";
+                        doituongbenhnhanid = "and doituongbenhnhanid<>1 ";
                     }
 
-                    // Lấy từ ngày, đến ngày
-                    string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                    string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                 
                     // Thực thi câu lệnh SQL
 
                     if (chkTheoNhomDV.Checked)
@@ -166,7 +173,7 @@ namespace MedicalLink.ChucNang
                         {
                             danhsachDichVu = danhsachDichVu_Like + danhsachDichVu_In;
                         }
-                        sqlquerry = " SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, vp.patientid as mabn, vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoa, de.departmentname as tenphong, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricedate as thoigianchidinh, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, (case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as loaiphieu, vp.vienphidate as thoigianvaovien, (case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as thoigianravien, (case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai, vp.chandoanravien_code as benhchinh_code, vp.chandoanravien as benhchinh_name, vp.chandoanravien_kemtheo_code as benhkemtheo_code, vp.chandoanravien_kemtheo as benhkemtheo_name, bhyt.bhytcode as bhytcode, (case ser.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end) as bhyt_groupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, (case ser.thuockhobanle when 0 then '' else 'Đơn nhà thuốc' end) as thuockhobanle FROM (select vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,servicepricemoney,servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice) ser INNER JOIN (select serff.servicepricecode from (select servicepricecode,servicepricegroupcode,servicepricename from servicepriceref where ServiceGroupType not in (5,6) union all select medicinecode as servicepricecode,medicinegroupcode as servicepricegroupcode,medicinename as servicepricename from medicine_ref) serff where " + danhsachDichVu + ") serf on serf.servicepricecode=ser.servicepricecode INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi) vp ON ser.vienphiid=vp.vienphiid INNER JOIN (select hosobenhanid,patientname from hosobenhan) hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN (select departmentgroupid, departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid INNER JOIN (select departmentgroupid, departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid WHERE " + tieuchi + " between '" + datetungay + "' and '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + " ; ";
+                        sqlquerry = " SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, vp.patientid as mabn, vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoa, de.departmentname as tenphong, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricedate as thoigianchidinh, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, (case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as loaiphieu, vp.vienphidate as thoigianvaovien, (case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as thoigianravien, (case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai, vp.chandoanravien_code as benhchinh_code, vp.chandoanravien as benhchinh_name, vp.chandoanravien_kemtheo_code as benhkemtheo_code, vp.chandoanravien_kemtheo as benhkemtheo_name, bhyt.bhytcode as bhytcode, (case ser.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end) as bhyt_groupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, (case ser.thuockhobanle when 0 then '' else 'Đơn nhà thuốc' end) as thuockhobanle FROM (select vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,servicepricemoney,servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where 1=1 " + tieuchi_ser + ") ser INNER JOIN (select serff.servicepricecode from (select servicepricecode,servicepricegroupcode,servicepricename from servicepriceref where ServiceGroupType not in (5,6) union all select medicinecode as servicepricecode,medicinegroupcode as servicepricegroupcode,medicinename as servicepricename from medicine_ref) serff where " + danhsachDichVu + ") serf on serf.servicepricecode=ser.servicepricecode INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 " + tieuchi_vp + loaivienphiid + doituongbenhnhanid + ") vp ON ser.vienphiid=vp.vienphiid INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 " + tieuchi_hsba + ") hsba ON vp.hosobenhanid=hsba.hosobenhanid LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid; ";
                     }
                     else
                     {
@@ -178,7 +185,7 @@ namespace MedicalLink.ChucNang
                         {
                             danhsachDichVu = danhsachDichVu_Like + danhsachDichVu_In;
                         }
-                        sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, vp.patientid as mabn, vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoa, de.departmentname as tenphong, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricedate as thoigianchidinh, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, (case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as loaiphieu, vp.vienphidate as thoigianvaovien, (case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as thoigianravien, (case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai, vp.chandoanravien_code as benhchinh_code, vp.chandoanravien as benhchinh_name, vp.chandoanravien_kemtheo_code as benhkemtheo_code, vp.chandoanravien_kemtheo as benhkemtheo_name, bhyt.bhytcode as bhytcode, (case ser.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end) as bhyt_groupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, (case ser.thuockhobanle when 0 then '' else 'Đơn nhà thuốc' end) as thuockhobanle FROM (select vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,servicepricemoney,servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where " + danhsachDichVu + ") ser INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi) vp ON ser.vienphiid=vp.vienphiid INNER JOIN (select hosobenhanid,patientname from hosobenhan) hsba ON vp.hosobenhanid=hsba.hosobenhanid INNER JOIN (select departmentgroupid, departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid INNER JOIN (select departmentgroupid, departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid WHERE " + tieuchi + " between '" + datetungay + "' and '" + datedenngay + "' " + loaivienphiid + doituongbenhnhanid + " ;  ";
+                        sqlquerry = "SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, vp.patientid as mabn, vp.vienphiid as mavp, hsba.patientname as tenbn, degp.departmentgroupname as tenkhoa, de.departmentname as tenphong, ser.servicepricecode as madv, ser.servicepricename as tendv, ser.servicepricemoney as dongia, ser.servicepricedate as thoigianchidinh, (case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong, kcd.departmentgroupname as khoachidinh, pcd.departmentname as phongchidinh, (case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as loaiphieu, vp.vienphidate as thoigianvaovien, (case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as thoigianravien, (case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as thoigianduyetvp, vp.duyet_ngayduyet as thoigianduyetbh, (case vp.vienphistatus when 2 then 'Đã duyệt VP' when 1 then case vp.vienphistatus_vp when 1 then 'Đã duyệt VP' else 'Đã đóng BA' end else 'Đang điều trị' end) as trangthai, vp.chandoanravien_code as benhchinh_code, vp.chandoanravien as benhchinh_name, vp.chandoanravien_kemtheo_code as benhkemtheo_code, vp.chandoanravien_kemtheo as benhkemtheo_name, bhyt.bhytcode as bhytcode, (case ser.bhyt_groupcode when '01KB' then 'Khám bệnh' when '03XN' then 'Xét nghiệm' when '04CDHA' then 'CĐHA' when '05TDCN' then 'CĐHA' when '06PTTT' then 'PTTT' when '07KTC' then 'DV KTC' when '12NG' then 'Ngày giường' else '' end) as bhyt_groupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, (case ser.thuockhobanle when 0 then '' else 'Đơn nhà thuốc' end) as thuockhobanle FROM (select vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,servicepricemoney,servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where " + danhsachDichVu + tieuchi_ser + ") ser INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 " + tieuchi_vp + loaivienphiid + doituongbenhnhanid + ") vp ON ser.vienphiid=vp.vienphiid INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 " + tieuchi_hsba + ") hsba ON vp.hosobenhanid=hsba.hosobenhanid LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid; ";
                     }
 
                     this.dataBCBXuatThuoc = condb.GetDataTable_HIS(sqlquerry);

@@ -37,13 +37,14 @@ namespace MedicalLink.BCQLTaiChinh
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 //load danh muc dich vu
-                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_104_DV").ToList();
+                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_105_DV").ToList();
                 if (lstOtherList != null && lstOtherList.Count > 0)
                 {
-                    foreach (var item in lstOtherList)
+                    for (int i = 0; i < lstOtherList.Count - 1; i++)
                     {
-                        this.DanhMucDichVu_String += item.tools_otherlistvalue;
+                        this.DanhMucDichVu_String += lstOtherList[i].tools_otherlistvalue + ",";
                     }
+                    this.DanhMucDichVu_String += lstOtherList[lstOtherList.Count - 1].tools_otherlistvalue;
                 }
             }
             catch (Exception ex)
@@ -102,7 +103,7 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @"SELECT row_number() over() as stt, '' as departmentgroupname, sum(ser.soluong*ser.dongia) as tongthu, 0 as tongchi, 0 as phantramhuong, 0 as thuclinh, '' as kynhan FROM (select vienphiid,departmentid,soluong,servicepricecode,servicepricename, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid;";
+                sql_timkiem = @"SELECT row_number() over() as stt, '' as departmentgroupname, sum(ser.soluong*ser.dongia) as tongthu, 0 as tongchi, 0 as phantramhuong, 0 as thuclinh, '' as kynhan FROM (select vienphiid,departmentid,soluong,servicepricecode,servicepricename, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where bhyt_groupcode='12NG' " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid;";
 
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)

@@ -16,5 +16,5 @@ SELECT row_number() over() as stt,
 FROM (select vienphiid,departmentid,soluong,servicepricecode,servicepricename,
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 		from serviceprice 
-		where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
+		where bhyt_groupcode='12NG' "+tieuchi_ser+lstdichvu_ser+") ser
 	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid;

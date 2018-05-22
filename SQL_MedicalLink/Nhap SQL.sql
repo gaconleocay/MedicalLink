@@ -965,15 +965,32 @@ where serf.ServiceGroupType=2
 
 
 accessnumber = maubenhphamid
+examcode=servicepricecode
+
 
 Resordertab
 
-GRANT SELECT, UPDATE ON TABLE Resordertab TO pacs;
-	  
+--lay phong thuc hien PACS
+
+select 
+	rs.examcode,
+	serf.servicepricename,
+	de.departmentname
+from resordertab rs
+	inner join servicepriceref serf on serf.servicepricecode=rs.examcode
+	inner join department de on cast(de.departmentid as text)=serf.listdepartmentphongthuchien
+where cast(rs.accessnumber as integer)<17756008
+
+
+
+
+
+GRANT SELECT, UPDATE ON TABLE Resordertab TO pacs;	  
 GRANT SELECT ON TABLE vienphi TO pacs;	  
 GRANT SELECT ON TABLE maubenhpham TO pacs;	  
 GRANT SELECT ON TABLE bhyt TO pacs;	  
-	  
+GRANT SELECT ON TABLE servicepriceref TO pacs;	  
+GRANT SELECT ON TABLE department TO pacs;	  	  
 
 SELECT
 	vp.vienphiid as ma_lien_ket,
@@ -986,8 +1003,12 @@ WHERE re.accessnumber='17335401';
 	
 -------
 
-
-
+select * from service 
+where servicedate>='2018-04-01 00:00:00'
+--and idmayxn=0 
+and servicepricecode='HHTT37001'
+and tenmayxn in ('Pentra Es60-M1','Pentra Es60-M4')
+--------
 
 
 

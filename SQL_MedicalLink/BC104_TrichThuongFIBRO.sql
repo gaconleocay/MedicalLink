@@ -13,10 +13,10 @@ SELECT row_number () over (order by ser.servicepricename) as stt,
 	'' as kynhan
 FROM 
 	(select servicepricecode,servicepricename from servicepriceref where 1=1 "+lstdichvu_ser+") serf
-	left join (select vienphiid,departmentid,soluong,servicepricecode,servicepricename,
+	inner join (select vienphiid,departmentid,soluong,servicepricecode,servicepricename,
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 		from serviceprice 
-		where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser on ser.servicepricecode=serf.servicepricecode
-	left join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+		where bhyt_groupcode in ('04CDHA','05TDCN') "+tieuchi_ser+lstdichvu_ser+") ser on ser.servicepricecode=serf.servicepricecode
+	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY serf.servicepricecode,serf.servicepricename;
 

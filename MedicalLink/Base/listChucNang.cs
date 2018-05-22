@@ -914,14 +914,14 @@ namespace MedicalLink.Base
                 REPORT_102.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_102_DV";
                 lstresult.Add(REPORT_102);
 
-                //ClassCommon.classPermission REPORT_103 = new ClassCommon.classPermission();
-                //REPORT_103.permissioncheck = false;
-                //REPORT_103.permissioncode = "REPORT_103";
-                //REPORT_103.permissionname = "Báo cáo trích thưởng cho chuyên gia khám bệnh theo yêu cầu";
-                //REPORT_103.permissiontype = 3;
-                //REPORT_103.tabMenuId = 4;
-                //REPORT_103.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_103_DV";
-                //lstresult.Add(REPORT_103);
+                ClassCommon.classPermission REPORT_103 = new ClassCommon.classPermission();
+                REPORT_103.permissioncheck = false;
+                REPORT_103.permissioncode = "REPORT_103";
+                REPORT_103.permissionname = "Báo cáo chi thưởng dịch vụ viện phí";
+                REPORT_103.permissiontype = 3;
+                REPORT_103.tabMenuId = 4;
+                REPORT_103.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_103_DV_KB;REPORT_103_DV_SADT;REPORT_103_DV_XN";
+                lstresult.Add(REPORT_103);
 
                 ClassCommon.classPermission REPORT_104 = new ClassCommon.classPermission();
                 REPORT_104.permissioncheck = false;

@@ -11,50 +11,39 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using System.IO;
 using DevExpress.XtraGrid.Views.Grid;
+using MedicalLink.ClassCommon.BCQLTaiChinh;
 
 namespace MedicalLink.BCQLTaiChinh
 {
-    public partial class ucBC101_TKTienKhamYCT7CN : UserControl
+    public partial class ucBC107_KhamBenhChiTiet : UserControl
     {
         #region Khai bao
         private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        private DataTable dataBaoCao { get; set; }
-
         #endregion
 
-        public ucBC101_TKTienKhamYCT7CN()
+        public ucBC107_KhamBenhChiTiet()
         {
             InitializeComponent();
         }
 
         #region Load
-        private void ucBC101_TKTienKhamYCT7CN_Load(object sender, EventArgs e)
-        {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            LoadDanhSachDichVu();
-        }
-        private void LoadDanhSachDichVu()
+        private void ucBC107_KhamBenhChiTiet_Load(object sender, EventArgs e)
         {
             try
             {
-                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_101_DV").ToList();
-                if (lstOtherList != null && lstOtherList.Count > 0)
-                {
-                    chkListDSDichVu.Properties.DataSource = lstOtherList;
-                    chkListDSDichVu.Properties.DisplayMember = "tools_otherlistname";
-                    chkListDSDichVu.Properties.ValueMember = "tools_otherlistvalue";
-                }
-                chkListDSDichVu.CheckAll();
+                dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                Base.Logging.Warn(ex);
             }
         }
+
+
         #endregion
 
-        #region TIm kiem
+        #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -62,23 +51,29 @@ namespace MedicalLink.BCQLTaiChinh
             {
                 string tieuchi_ser = "";
                 string tieuchi_vp = "";
-                string lstdichvu_ser = "";
+                string lstdichvu_ser = "";// " and servicepricecode in (" + this.DanhMucDichVu_String + ") ";
                 string trangthai_vp = "";
                 string sql_timkiem = "";
+                string tieuchi_mbp = "";
+                string tieuchi_hsba = "";
 
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_mbp = " and maubenhphamdate between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
                     tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_hsba = " and hosobenhandate between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
                 {
                     tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_hsba = " and hosobenhandate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
@@ -98,30 +93,12 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                //dich vu
-                //if (!chkListDSDichVu.Text.Contains("Tất cả"))
-                //{
-                    lstdichvu_ser = " and servicepricecode in (";
-                    List<Object> lstDVCheck = chkListDSDichVu.Properties.Items.GetCheckedValues();
-                    for (int i = 0; i < lstDVCheck.Count - 1; i++)
-                    {
-                        lstdichvu_ser += "" + lstDVCheck[i] + ",";
-                    }
-                    lstdichvu_ser += "" + lstDVCheck[lstDVCheck.Count - 1] + ") ";
+                sql_timkiem = @"SELECT row_number () over (order by ser.servicepricedate) as stt, ser.servicepriceid, ser.maubenhphamid, ser.servicepricecode, ser.servicepricename, ser.dongia, ser.soluong, (ser.soluong*ser.dongia) as thanhtien, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' when 20 then 'Thanh toán riêng' end) as loaidoituong, ser.servicepricedate, degp.departmentgroupname as khoachidinh, de.departmentname as phongchidinh, mbp.userthuchien as userhisid, ncd.usercode, ncd.username, (case when vp.vienphistatus<>0 then 'Đã khám' else (case when mbp.maubenhphamstatus=16 then 'Đã khám' end) end) as trangthaikham, vp.patientid, vp.vienphiid, hsba.patientname, (case vp.doituongbenhnhanid when 1 then 'BHYT' when 2 then 'Viện phí' when 3 then 'Dịch vụ' when 4 then 'Người nước ngoài' when 5 then 'Miễn phí' when 6 then 'Hợp đồng' end) as doituongbenhnhanid, vp.vienphidate, vp.vienphidate_ravien, vp.duyet_ngayduyet_vp, (case when vp.vienphistatus=0 then 'Đang điều trị' else (case when vienphistatus_vp=1 then 'Đã thanh toán' else 'Chưa thanh toán' end) end) as vienphistatus FROM (select servicepriceid,servicepricecode,servicepricename,maubenhphamid,vienphiid,soluong,loaidoituong,departmentgroupid,departmentid,servicepricedate, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where bhyt_groupcode='01KB' " + lstdichvu_ser + tieuchi_ser + ") ser inner join (select maubenhphamid,userid,maubenhphamstatus,(case when userthuchien=0 then userid else userthuchien end) as userthuchien from maubenhpham where maubenhphamgrouptype=2 " + tieuchi_mbp + ") mbp on mbp.maubenhphamid=ser.maubenhphamid inner join (select vienphiid,hosobenhanid,patientid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,vienphistatus,vienphistatus_vp,doituongbenhnhanid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select hosobenhanid,patientname from hosobenhan where 1=1 " + tieuchi_hsba + ") hsba on hsba.hosobenhanid=vp.hosobenhanid left join (select userhisid,usercode,username from nhompersonnel) ncd on ncd.userhisid=mbp.userthuchien inner join departmentgroup degp on degp.departmentgroupid=ser.departmentgroupid inner join department de on de.departmentid=ser.departmentid;";
 
-
-                    if (lstdichvu_ser.Contains("TATCA"))
-                    {
-                        lstdichvu_ser = "";
-                    }
-                //}
-
-                sql_timkiem = @"SELECT row_number () over (order by ser.yyyymmdd) as stt, ser.ngaythangnam, sum(case when ser.departmentid in (209,210,211,354,355,205,409,206,207,208) then ser.soluong else 0 end) as kyeucau_sl, sum(case when ser.departmentid in (209,210,211,354,355,205,409,206,207,208) then (ser.soluong*ser.dongia) else 0 end) as kyeucau_thanhtien, sum(case when ser.departmentid in (201,202) then ser.soluong else 0 end) as kdalieu_sl, sum(case when ser.departmentid in (201,202) then (ser.soluong*ser.dongia) else 0 end) as kdalieu_thanhtien, sum(case when ser.departmentid=212 then ser.soluong else 0 end) as kmat_sl, sum(case when ser.departmentid=212 then (ser.soluong*ser.dongia) else 0 end) as kmat_thanhtien, sum(case when ser.departmentid=220 then ser.soluong else 0 end) as krhm_sl, sum(case when ser.departmentid=220 then (ser.soluong*ser.dongia) else 0 end) as krhm_thanhtien, sum(case when ser.departmentid=222 then ser.soluong else 0 end) as ktmh_sl, sum(case when ser.departmentid=222 then (ser.soluong*ser.dongia) else 0 end) as ktmh_thanhtien FROM (select vienphiid,maubenhphamid,departmentid,TO_CHAR(servicepricedate, 'dd/MM/yyyy') as ngaythangnam,TO_CHAR(servicepricedate, 'yyyymmdd') as yyyymmdd,soluong, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where departmentid in (209,210,211,354,355,205,409,206,207,208,201,202,212,220,222) and EXTRACT(DOW FROM servicepricedate) in (6,0) and bhyt_groupcode='01KB' " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select maubenhphamid,maubenhphamstatus from maubenhpham where maubenhphamgrouptype=2) mbp on mbp.maubenhphamid=ser.maubenhphamid inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid WHERE mbp.maubenhphamstatus=16 or vp.vienphistatus<>0 GROUP BY ser.ngaythangnam,ser.yyyymmdd;";
-
-                this.dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
-                if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
+                DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
+                if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
-                    gridControlDataBC.DataSource = this.dataBaoCao;
+                    gridControlDataBC.DataSource = _dataBaoCao;
                 }
                 else
                 {
@@ -153,15 +130,12 @@ namespace MedicalLink.BCQLTaiChinh
                 reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 thongTinThem.Add(reportitem);
-                ClassCommon.reportExcelDTO item_phong = new ClassCommon.reportExcelDTO();
-                item_phong.name = Base.bienTrongBaoCao.LST_DICHVU;
-                item_phong.value = chkListDSDichVu.Text;
-                thongTinThem.Add(item_phong);
 
-                string fileTemplatePath = "BC_101_TKTienKhamYeuCauThu7ChuNhat.xlsx";
-
+                //string fileTemplatePath = ".xlsx";
+                DataTable _dataBaocao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, this.dataBaoCao);
+                export.ExportExcelNotTemplate("BÁO CÁO KHÁM BỆNH CHI TIẾT", _dataBaocao);
+               /// export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaocao);
             }
             catch (Exception ex)
             {
@@ -185,13 +159,10 @@ namespace MedicalLink.BCQLTaiChinh
                 reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 thongTinThem.Add(reportitem);
-                ClassCommon.reportExcelDTO item_phong = new ClassCommon.reportExcelDTO();
-                item_phong.name = Base.bienTrongBaoCao.LST_DICHVU;
-                item_phong.value = chkListDSDichVu.Text;
-                thongTinThem.Add(item_phong);
 
-                string fileTemplatePath = "BC_101_TKTienKhamYeuCauThu7ChuNhat.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                string fileTemplatePath = ".xlsx";
+                DataTable _dataBaocao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaocao);
             }
             catch (Exception ex)
             {
@@ -220,8 +191,9 @@ namespace MedicalLink.BCQLTaiChinh
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-        #endregion
 
+
+        #endregion
 
     }
 }

@@ -1,7 +1,7 @@
 --Bao cao Tong hop thanh toan PTTT theo bac si - noi tru 
 --BCPhauThuatThuThuat_TongHop
 
----ngay 10/5/2018
+---ngay 23/5/2018
 
 SELECT O.*,
 	  (O.ptdb_moi+O.ptdb_mc+O.ptdb_phu+O.ptdb_gv) as ptdb_tong,
@@ -61,7 +61,7 @@ FROM
 			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien2>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		where pttt.stt=1
+		where coalesce(pttt.stt,1)=1 
 		group by pttt.phauthuatvien2,serf.pttt_loaiid,ser.departmentgroupid
 		union all
 		select pttt.phauthuatvien as userid,
@@ -73,7 +73,7 @@ FROM
 			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		where pttt.stt=1
+		where coalesce(pttt.stt,1)=1 
 		group by pttt.phauthuatvien,serf.pttt_loaiid,ser.departmentgroupid
 		union all
 		select pttt.phumo1 as userid,
@@ -85,7 +85,7 @@ FROM
 			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo1>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		where pttt.stt=1	
+		where coalesce(pttt.stt,1)=1 	
 		group by pttt.phumo1,serf.pttt_loaiid,ser.departmentgroupid
 		union all
 		select pttt.phumo3 as userid,
@@ -97,7 +97,7 @@ FROM
 			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo3>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
-		where pttt.stt=1	
+		where coalesce(pttt.stt,1)=1 	
 		group by pttt.phumo3,serf.pttt_loaiid,ser.departmentgroupid) U
 	LEFT JOIN nhompersonnel nv ON nv.userhisid=U.userid	
 	INNER JOIN departmentgroup degp on degp.departmentgroupid=U.departmentgroupid

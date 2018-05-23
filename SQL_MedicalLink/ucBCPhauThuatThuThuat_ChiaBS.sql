@@ -29,7 +29,7 @@ CREATE INDEX serviceprice_duyetpttt_user_idx ON serviceprice USING btree (duyetp
 */
 
 
---ngay 10/5: fix loi x2 ket qua
+--ngay 23/5: fix loi x2 ket qua
 
 SELECT row_number () over (order by A.ngay_chidinh) as stt, 
 A.servicepriceid,
@@ -149,7 +149,7 @@ FROM
 	left join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,* from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
 	inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphidate_ravien, vienphistatus_vp, duyet_ngayduyet_vp from vienphi where 1=1 "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid 
 	inner join (select servicepricecode, tinhtoanlaigiadvktc, pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') " + _pttt_loaiid_serf + ") serf on serf.servicepricecode=ser.servicepricecode 
-	WHERE pttt.stt=1 " + _tieuchi_pttt + ") A 
+	WHERE coalesce(pttt.stt,1)=1 " + _tieuchi_pttt + ") A 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsbA.hosobenhanid=A.hosobenhanid 
 INNER JOIN (select maubenhphamid, chandoan from maubenhpham) mbp on mbp.maubenhphamid=A.maubenhphamid 
 LEFT JOIN (select departmentgroupid, departmentgroupname from departmentgroup) KCHD ON KCHD.departmentgroupid=A.khoachidinh 

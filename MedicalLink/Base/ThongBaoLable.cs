@@ -53,7 +53,7 @@ namespace MedicalLink.Base
         internal static string BAN_KHONG_CO_QUYEN_CHINH_SUA = "Bạn không có quyền chỉnh sửa!";
         internal static string DICH_VU_CHUA_TRA_KET_QUA = "Dịch vụ chưa trả kết quả!";
         internal static string XOA_THANH_CONG = "Xóa thành công!";
-
+        internal static string DONG_BENH_AN_THANH_CONG = "Đóng bệnh án và duyệt viện phí thành công!";
 
 
         internal static void HienThiThongBao(System.Windows.Forms.Timer timerThongBao, DevExpress.XtraEditors.LabelControl lblThongBao, string tenThongBao)

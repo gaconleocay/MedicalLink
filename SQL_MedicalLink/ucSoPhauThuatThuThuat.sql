@@ -4,7 +4,7 @@
 
 
 
---ngay 10/5/2018
+--ngay 23/5/2018
 
 SELECT
 		 ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt,
@@ -76,7 +76,7 @@ left join nhompersonnel bsgm on bsgm.userhisid=pttt.bacsigayme
 left join nhompersonnel phu on phu.userhisid=pttt.phumo1
 left join nhompersonnel giupviec on giupviec.userhisid=pttt.phumo3 		
 left join nhompersonnel nnhap on nnhap.userhisid=pttt.userid_gmhs
-WHERE pttt.stt=1 "+tieuchi_thoigianthuchien+";
+WHERE coalesce(pttt.stt,1)=1 "+tieuchi_thoigianthuchien+";
 	
 	
 	

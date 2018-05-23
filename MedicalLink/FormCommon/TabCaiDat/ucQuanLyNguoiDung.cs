@@ -13,6 +13,7 @@ using System.Configuration;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
 using MedicalLink.Base;
+using DevExpress.XtraSplashScreen;
 
 namespace MedicalLink.FormCommon.TabCaiDat
 {
@@ -55,7 +56,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                string sql = "select usercode, username, userpassword, case usergnhom when '0' then 'Admin' when '1' then 'Quản trị hệ thống' when 2 then 'Nhân viên' end as usergnhom from tools_tbluser where usergnhom in (1,2) order by usercode";
+                string sql = "select usercode, username, userpassword, case usergnhom when '0' then 'Admin' when '1' then 'Quản trị hệ thống' when 2 then 'Nhân viên' end as usergnhom,userhisid from tools_tbluser where usergnhom in (1,2) order by usercode";
                 DataView dv = new DataView(condb.GetDataTable_MeL(sql));
 
                 if (dv.Count > 0)
@@ -190,10 +191,11 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                btnUserOK.Enabled = value;
+                btnLuuLai.Enabled = value;
                 txtUserCode.Enabled = value;
                 txtUsername.Enabled = value;
                 txtUserPassword.Enabled = value;
+                txtuserhisid.Enabled = value;
                 cbbUserNhom.Enabled = value;
             }
             catch (Exception ex)
@@ -207,6 +209,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         #region Events
         private void gridControlDSUser_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             var rowHandle = gridViewDSUser.FocusedRowHandle;
             try
             {
@@ -216,6 +219,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 txtUserCode.Text = currentUserCode;
                 txtUsername.Text = gridViewDSUser.GetRowCellValue(rowHandle, "username").ToString(); ;
                 txtUserPassword.Text = MedicalLink.Base.EncryptAndDecrypt.Decrypt(gridViewDSUser.GetRowCellValue(rowHandle, "userpassword").ToString(), true);
+                txtuserhisid.Text = gridViewDSUser.GetRowCellValue(rowHandle, "userhisid").ToString();
                 cbbUserNhom.Text = gridViewDSUser.GetRowCellValue(rowHandle, "usergnhom").ToString();
 
                 gridControlChucNang.DataSource = null;
@@ -240,6 +244,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
         }
         private void LoadPhanQuyenChucNang()
         {
@@ -385,11 +390,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
             txtUserCode.ResetText();
             txtUsername.ResetText();
             txtUserPassword.ResetText();
+            txtuserhisid.ResetText();
             EnableAndDisableControl(true);
             cbbUserNhom.Text = "Nhân viên";
             txtUserCode.ReadOnly = false;
             txtUserCode.Focus();
-            btnUserOK.Enabled = true;
+            btnLuuLai.Enabled = true;
 
             gridControlChucNang.DataSource = null;
             gridControlKhoaPhong.DataSource = null;
@@ -404,22 +410,74 @@ namespace MedicalLink.FormCommon.TabCaiDat
             LoadDanhSachPhongLuu();
         }
 
+        //Tạo Menu chức năng xóa người dùng
+        private void gridViewDSUser_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                e.Menu.Items.Clear();
+                DXMenuItem itemXoaNguoiDung = new DXMenuItem("Xóa tài khoản");
+                itemXoaNguoiDung.Image = imMenu.Images["Xoa.png"];
+                itemXoaNguoiDung.Click += new EventHandler(itemXoaNguoiDung_Click);
+                e.Menu.Items.Add(itemXoaNguoiDung);
+            }
+        }
+
+        private void itemXoaNguoiDung_Click(object sender, EventArgs e)
+        {
+            if (currentUserCode == null)
+            {
+                return;
+            }
+            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản: " + currentUserCode + " không?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
+                    string sqlxoatk = "DELETE FROM tools_tbluser WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
+                    string sqlxoatk_chucnang = "DELETE FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
+                    string sqlxoatk_khoaphong = "DELETE FROM tools_tbluser_departmentgroup WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
+                    string sqlxoatk_khothuoc = "DELETE FROM tools_tbluser_medicinestore WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
+                    string sqlxoatk_phongluu = "DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa tài khoản: " + currentUserCode + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'SYS_02');";
+
+                    condb.ExecuteNonQuery_MeL(sqlxoatk);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_chucnang);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_khoaphong);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_khothuoc);
+                    condb.ExecuteNonQuery_MeL(sqlxoatk_phongluu);
+                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
+
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
+                    frmthongbao.Show();
+                    gridControlDSUser.DataSource = null;
+                    ucQuanLyNguoiDung_Load(null, null);
+                }
+                catch (Exception ex)
+                {
+                    Base.Logging.Warn(ex);
+                }
+            }
+        }
         #endregion
 
         #region Luu lai
-        private void btnUserOK_Click(object sender, EventArgs e)
+        private void btnLuuLai_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             // Mã hóa tài khoản
             string en_txtUsercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserCode.Text.Trim().ToLower(), true);
             string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
             string en_txtUserPassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserPassword.Text.Trim(), true);
+            int _userhisid = Utilities.Util_TypeConvertParse.ToInt32(txtuserhisid.Text);
             try
             {
                 if (currentUserCode == null)//them moi
                 {
                     if (CheckAccTonTai(en_txtUsercode))
                     {
-                        CreateNewUser(en_txtUsercode, en_txtUsername, en_txtUserPassword);
+                        CreateNewUser(en_txtUsercode, en_txtUsername, en_txtUserPassword, _userhisid);
                         CreateNewUserPermission(en_txtUsercode);
                         CreateNewUserDepartment(en_txtUsercode);
                         CreateNewUserBaoCao(en_txtUsercode);
@@ -433,7 +491,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else //Update 
                 {
-                    UpdateUser(en_txtUsercode, en_txtUsername, en_txtUserPassword);
+                    UpdateUser(en_txtUsercode, en_txtUsername, en_txtUserPassword, _userhisid);
                     UpdateUserPermission(en_txtUsercode);
                     UpdateUserDepartment(en_txtUsercode);
                     UpdateUserBaoCao(en_txtUsercode);
@@ -447,6 +505,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
         }
         private bool CheckAccTonTai(string usercode)
         {
@@ -469,7 +528,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             return result;
         }
 
-        private void CreateNewUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword)
+        private void CreateNewUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword, int _userhisid)
         {
             try
             {
@@ -478,11 +537,11 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 // usergnhom=2: User
                 if (cbbUserNhom.Text == "Quản trị hệ thống")
                 {
-                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','1','');";
+                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','1','','"+_userhisid+"');";
                 }
                 else
                 {
-                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','2','Nhân viên');";
+                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','2','Nhân viên','" + _userhisid + "');";
                 }
                 condb.ExecuteNonQuery_MeL(sqlinsert_user);
             }
@@ -596,18 +655,18 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
-        private void UpdateUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword)
+        private void UpdateUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword, int _userhisid)
         {
             try
             {
                 string sqlupdate_user = "";
                 if (cbbUserNhom.Text == "Quản trị hệ thống")
                 {
-                    sqlupdate_user = "UPDATE tools_tbluser SET usercode='" + en_txtUserID + "', username='" + en_txtUsername + "', userpassword='" + en_txtUserPassword + "', userstatus='0', usergnhom='1', usernote='' WHERE usercode='" + en_txtUserID + "';";
+                    sqlupdate_user = "UPDATE tools_tbluser SET usercode='" + en_txtUserID + "', username='" + en_txtUsername + "', userpassword='" + en_txtUserPassword + "', userstatus='0', usergnhom='1', usernote='', userhisid='" + _userhisid + "' WHERE usercode='" + en_txtUserID + "';";
                 }
                 else
                 {
-                    sqlupdate_user = "UPDATE tools_tbluser SET usercode='" + en_txtUserID + "', username='" + en_txtUsername + "', userpassword='" + en_txtUserPassword + "', userstatus='0', usergnhom='2', usernote='Nhân viên' WHERE usercode='" + en_txtUserID + "';";
+                    sqlupdate_user = "UPDATE tools_tbluser SET usercode='" + en_txtUserID + "', username='" + en_txtUsername + "', userpassword='" + en_txtUserPassword + "', userstatus='0', usergnhom='2', usernote='Nhân viên', userhisid='" + _userhisid + "' WHERE usercode='" + en_txtUserID + "';";
                 }
                 condb.ExecuteNonQuery_MeL(sqlupdate_user);
             }
@@ -808,71 +867,18 @@ namespace MedicalLink.FormCommon.TabCaiDat
         private void txtUserPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                btnUserOK.PerformClick();
+                btnLuuLai.PerformClick();
         }
-
+        private void txtuserhisid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
         #endregion
-        //Tạo Menu chức năng xóa người dùng
-        private void gridViewDSUser_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
-        {
-            if (e.MenuType == GridMenuType.Row)
-            {
-                e.Menu.Items.Clear();
-                DXMenuItem itemXoaNguoiDung = new DXMenuItem("Xóa tài khoản");
-                itemXoaNguoiDung.Image = imMenu.Images["Xoa.png"];
-                itemXoaNguoiDung.Click += new EventHandler(itemXoaNguoiDung_Click);
-                e.Menu.Items.Add(itemXoaNguoiDung);
-            }
-        }
-
-        void itemXoaNguoiDung_Click(object sender, EventArgs e)
-        {
-            if (currentUserCode == null)
-            {
-                return;
-            }
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản: " + currentUserCode + " không?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (dialogResult == DialogResult.Yes)
-            {
-                try
-                {
-                    string sqlxoatk = "DELETE FROM tools_tbluser WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_chucnang = "DELETE FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_khoaphong = "DELETE FROM tools_tbluser_departmentgroup WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_khothuoc = "DELETE FROM tools_tbluser_medicinestore WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_phongluu = "DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa tài khoản: " + currentUserCode + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'SYS_02');";
-
-                    condb.ExecuteNonQuery_MeL(sqlxoatk);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_chucnang);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_khoaphong);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_khothuoc);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_phongluu);
-                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
-
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
-                    frmthongbao.Show();
-                    gridControlDSUser.DataSource = null;
-                    ucQuanLyNguoiDung_Load(null, null);
-                }
-                catch (Exception ex)
-                {
-                    Base.Logging.Warn(ex);
-                }
-            }
-        }
 
         #region GridView Design
-        private void gridViewChucNang_RowCellStyle(object sender, RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.DodgerBlue;
-                e.Appearance.ForeColor = Color.White;
-            }
-        }
         private void gridViewDSUser_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
@@ -882,24 +888,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 e.Appearance.ForeColor = Color.White;
             }
         }
-        private void gridViewBaoCao_RowCellStyle(object sender, RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.DodgerBlue;
-                e.Appearance.ForeColor = Color.White;
-            }
-        }
-        private void gridViewKhoThuoc_RowCellStyle(object sender, RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.DodgerBlue;
-                e.Appearance.ForeColor = Color.White;
-            }
-        }
+
         private void gridViewChucNang_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
@@ -927,14 +916,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
         }
 
         #endregion
-
-
-
-
-
-
-
-
 
 
     }

@@ -320,6 +320,7 @@ namespace MedicalLink.FormCommon
                 {
                     SessionLogin.SessionUsercode = txtUsername.Text.Trim().ToLower();
                     SessionLogin.SessionUsername = "Administrator";
+                    SessionLogin.SessionUserHISID = "0";
 
                     LoadDataSauKhiDangNhap();
                 }
@@ -327,7 +328,7 @@ namespace MedicalLink.FormCommon
                 {
                     try
                     {
-                        string command = "SELECT userid, usercode, username, userpassword FROM tools_tbluser WHERE usercode='" + en_txtUsername + "' and userpassword='" + en_txtPassword + "';";
+                        string command = "SELECT userid, usercode, username, userpassword,coalesce(userhisid,0) as userhisid FROM tools_tbluser WHERE usercode='" + en_txtUsername + "' and userpassword='" + en_txtPassword + "';";
                         DataView dv = new DataView(condb.GetDataTable_MeL(command));
                         if (dv != null && dv.Count > 0)
                         {
@@ -335,6 +336,7 @@ namespace MedicalLink.FormCommon
                             SessionLogin.SessionUserID = Utilities.Util_TypeConvertParse.ToInt64(dv[0]["userid"].ToString());
                             SessionLogin.SessionUsercode = txtUsername.Text.Trim().ToLower();
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
+                            SessionLogin.SessionUserHISID = dv[0]["userhisid"].ToString();
                             //Load data
                             LoadDataSauKhiDangNhap();
                         }

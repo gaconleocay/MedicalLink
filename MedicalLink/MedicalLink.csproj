@@ -501,6 +501,12 @@
     <Compile Include="BCQLTaiChinh\frmBC105_NhapTongChi.Designer.cs">
       <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
     </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.Designer.cs">
+      <DependentUpon>ucBC107_KhamBenhChiTiet.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -548,6 +554,12 @@
     </Compile>
     <Compile Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.Designer.cs">
       <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\DongHoSoBenhAn\ucDongHoSoBenhAn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\DongHoSoBenhAn\ucDongHoSoBenhAn.Designer.cs">
+      <DependentUpon>ucDongHoSoBenhAn.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\GopBenhAn\frmChonDotDieuTri.cs">
       <SubType>Form</SubType>
@@ -1377,6 +1389,9 @@
     <EmbeddedResource Include="BCQLTaiChinh\frmBC105_NhapTongChi.resx">
       <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.resx">
+      <DependentUpon>ucBC107_KhamBenhChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.resx">
       <DependentUpon>ucBC106_TrichThuongKinhHienVi.cs</DependentUpon>
     </EmbeddedResource>
@@ -1400,6 +1415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\DichVuThanhToanRieng\ucDichVuThanhToanRieng.resx">
       <DependentUpon>ucDichVuThanhToanRieng.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\DongHoSoBenhAn\ucDongHoSoBenhAn.resx">
+      <DependentUpon>ucDongHoSoBenhAn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\GopBenhAn\frmChonDotDieuTri.resx">
       <DependentUpon>frmChonDotDieuTri.cs</DependentUpon>

@@ -293,6 +293,7 @@
             this.gridViewDataBC.GroupRowHeight = 25;
             this.gridViewDataBC.Name = "gridViewDataBC";
             this.gridViewDataBC.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDataBC.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDataBC.OptionsView.ShowFooter = true;
             this.gridViewDataBC.OptionsView.ShowGroupPanel = false;
             this.gridViewDataBC.OptionsView.ShowIndicator = false;

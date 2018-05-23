@@ -292,6 +292,7 @@
             this.gridViewDataBC.Name = "gridViewDataBC";
             this.gridViewDataBC.OptionsView.AllowCellMerge = true;
             this.gridViewDataBC.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDataBC.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDataBC.OptionsView.ShowFooter = true;
             this.gridViewDataBC.OptionsView.ShowGroupPanel = false;
             this.gridViewDataBC.OptionsView.ShowIndicator = false;

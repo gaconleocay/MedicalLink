@@ -1012,7 +1012,16 @@ and tenmayxn in ('Pentra Es60-M1','Pentra Es60-M4')
 
 
 
-
+bhyt						
+department			
+departmentgroup					
+doituongbenhnhan						
+hosobenhan			
+hospital			
+maubenhpham				
+medicalrecord				
+patient					
+vienphi			
 
 
 

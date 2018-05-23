@@ -324,7 +324,14 @@ namespace MedicalLink.Base
                 TOOL_24.permissionnote = "Cập nhật loại hình thanh toán theo dịch vụ/thuốc";
                 lstresult.Add(TOOL_24);
 
-
+                ClassCommon.classPermission TOOL_25 = new ClassCommon.classPermission();
+                TOOL_25.permissioncheck = false;
+                TOOL_25.permissioncode = "TOOL_25";
+                TOOL_25.permissionname = "Đóng hồ sơ bệnh án và duyệt viện phí";
+                TOOL_25.permissiontype = 2;
+                TOOL_25.tabMenuId = 2;
+                TOOL_25.permissionnote = "Đóng HSBA BN Viện phí ngoại trú";
+                lstresult.Add(TOOL_25);
 
 
 
@@ -917,7 +924,7 @@ namespace MedicalLink.Base
                 ClassCommon.classPermission REPORT_103 = new ClassCommon.classPermission();
                 REPORT_103.permissioncheck = false;
                 REPORT_103.permissioncode = "REPORT_103";
-                REPORT_103.permissionname = "Báo cáo chi thưởng dịch vụ viện phí";
+                REPORT_103.permissionname = "Báo cáo chi thưởng dịch vụ khám yêu cầu viện phí";
                 REPORT_103.permissiontype = 3;
                 REPORT_103.tabMenuId = 4;
                 REPORT_103.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_103_DV_KB;REPORT_103_DV_SADT;REPORT_103_DV_XN";
@@ -949,6 +956,15 @@ namespace MedicalLink.Base
                 REPORT_106.tabMenuId = 4;
                 REPORT_106.permissionnote = "Lấy dịch vụ được cấu hình dịch vụ trong DM dùng chung mã: REPORT_106_DV";
                 lstresult.Add(REPORT_106);
+
+                ClassCommon.classPermission REPORT_107 = new ClassCommon.classPermission();
+                REPORT_107.permissioncheck = false;
+                REPORT_107.permissioncode = "REPORT_107";
+                REPORT_107.permissionname = "Báo cáo chỉ định dịch vụ khám bệnh chi tiết";
+                REPORT_107.permissiontype = 3;
+                REPORT_107.tabMenuId = 4;
+                REPORT_107.permissionnote = "";
+                lstresult.Add(REPORT_107);
 
 
 

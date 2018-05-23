@@ -11,9 +11,11 @@ namespace MedicalLink.ClassCommon.BCQLTaiChinh
         public int? departmentgroupid { get; set; }
         public string keymapping { get; set; }
         public decimal? soluong_tong { get; set; }
+        public decimal? soluong_ngaythuong { get; set; }
         public decimal? soluong_th7cn { get; set; }
         public decimal? dongia { get; set; }
         public decimal? thanhtien_tong { get; set; }
+        public decimal? thanhtien_ngaythuong { get; set; }
         public decimal? thanhtien_th7cn { get; set; }
     }
 
@@ -24,12 +26,14 @@ namespace MedicalLink.ClassCommon.BCQLTaiChinh
         public string quyetdinh_so { get; set; }
         public string quyetdinh_ngay { get; set; }
         public decimal? soluong_tong { get; set; }
+        public decimal? soluong_ngaythuong { get; set; }
         public decimal? soluong_th7cn { get; set; }
         public decimal? dongia { get; set; }
         public decimal? thanhtien_tong { get; set; }
+        public decimal? thanhtien_ngaythuong { get; set; }
+        public decimal? thanhtien_th7cn { get; set; }
         public decimal? tylehuong { get; set; }
         public decimal? tienhuong { get; set; }
-        public decimal? thanhtien_th7cn { get; set; }
         public decimal? chiphi { get; set; }
         public decimal? tienthuong_th7cn { get; set; }
         public decimal? tienbsi_th7cn { get; set; }

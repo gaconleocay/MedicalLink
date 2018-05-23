@@ -9,7 +9,7 @@ U11623-4610	Phẫu thuật yêu cầu chọn bác sĩ, chọn thời gian (PT lo
 
  
  
---ngay 10/5/2018: fix loi x2 ket qua PTTT
+--ngay 23/5/2018: fix loi x2 ket qua PTTT
 
  
 SELECT row_number () over (order by A.ngay_thuchien) as stt, 
@@ -206,7 +206,7 @@ FROM
 		left join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid, phauthuatthuthuatdate, phauthuatvien, bacsigayme, phumo1, phumo2, phume, dungcuvien, phume2, phumo3, dieuduong, phumo4, userid from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
 		inner join (select patientid, vienphiid, hosobenhanid, bhytid, vienphistatus, departmentgroupid, vienphidate, vienphistatus_vp, vienphidate_ravien, duyet_ngayduyet_vp from vienphi where 1=1 "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid 
 		inner join (select tinhtoanlaigiadvktc, pttt_loaiid, servicepricecode  from servicepriceref where servicepricecode in (" + lstServicecheck + ")) serf on serf.servicepricecode=ser.servicepricecode
-	WHERE pttt.stt=1 " + _tieuchi_pttt + ") A 
+	WHERE coalesce(pttt.stt,1)=1 " + _tieuchi_pttt + ") A 
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame, bhytcode from hosobenhan) hsba on hsbA.hosobenhanid=A.hosobenhanid 
 LEFT JOIN departmentgroup KCHD ON KCHD.departmentgroupid=A.khoachidinh 
 LEFT JOIN department pcd ON pcd.departmentid=A.phongchidinh 

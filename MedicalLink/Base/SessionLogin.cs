@@ -21,6 +21,7 @@ namespace MedicalLink.Base
         public static long SessionUserID { get; set; }  // ID user
         public static string SessionUsercode { get; set; }  //  user code
         public static string SessionUsername { get; set; }  // Tên user
+        public static string SessionUserHISID { get; set; }  // Tên user
         public static string SessionMachineName { get; set; }   // Tên máy
         public static string SessionMyIP { get; set; }  // Địa chỉ IP máy
         public static string SessionVersion { get; set; } // Version phần mềm

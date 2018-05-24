@@ -63,7 +63,68 @@ FROM (select servicepriceid,servicepricecode,servicepricename,maubenhphamid,vien
 	inner join departmentgroup degp on degp.departmentgroupid=ser.departmentgroupid
 	inner join department de on de.departmentid=ser.departmentid;
 
-------======
+--========== UPDATE HSBA + Duyet VP
+--ngay 24/5/2018
+
+UPDATE vienphi SET
+	vienphistatus=1,
+	vienphidate_ravien='"+_dongHSTime_EndDay+"',
+	chandoanravien='NONE',
+	chandoanravien_code='NONE',
+	vienphistatus_bh=1,
+	duyet_ngayduyet_bh='"+_dongHSTime_EndDay+"',
+	duyet_nguoiduyet_bh='"+Base.SessionLogin.SessionUserHISID+"',
+	duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='"+Base.SessionLogin.SessionUserHISID+"' and TO_CHAR(sothutudate,'yyyyMMdd')='"+_dongHSTime_long+"'),
+	vienphistatus_vp=1,
+	duyet_ngayduyet_vp='"+_dongHSTime_EndDay+"',
+	duyet_nguoiduyet_vp='"+Base.SessionLogin.SessionUserHISID+"',
+	duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='"+ Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='"+_dongHSTime_long+"'),
+	medicalrecordid_end=(select medicalrecordid from medicalrecord where vienphiid='"+_vienphiid+"' order by medicalrecordid desc limit 1),
+	vienphidate_ravien_update='"+_dongHSTime+"'
+WHERE vienphiid='"+_vienphiid+"';
+
+UPDATE hosobenhan SET
+	isdownloaded=1,
+	hosobenhanstatus=1,
+	xutrikhambenhid=7,
+	hosobenhandate_ravien='"+_dongHSTime_EndDay+"',
+	chandoanravien_code='NONE',
+	chandoanravien='NONE'
+WHERE hosobenhanid='"+_hosobenhanid+"';
+
+UPDATE medicalrecord SET
+	medicalrecordstatus=99,
+	thoigianravien='"+_dongHSTime_EndDay+"',
+	chandoanravien='NONE',
+	chandoanravien_code='NONE',
+	xutrikhambenhid=7,
+	medicalrecordremark='Đóng bệnh án tự động'
+WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='"+_vienphiid+"' order by medicalrecordid desc limit 1);
+
+UPDATE sothutuphongkham SET 
+sothutustatus=4 
+WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='"+_vienphiid+"' order by medicalrecordid desc limit 1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------====== TEST
 select * from vienphi where vienphiid=1162969;
 select * from hosobenhan where hosobenhanid=1157063;
 select * from medicalrecord where vienphiid=1162969;
@@ -72,45 +133,6 @@ select * from medicalrecord where vienphiid=1162969;
 - BN Viện phí Ngoại trú lấy tiêu chí = đã duyệt VP hoặc chưa duyệt thì chỉ lấy dv đã thu tiền
 
 -----
---========== UPDATE HSBA + Duyet VP
---ngay 24/5/2018
-
-UPDATE vienphi SET
-vienphistatus=1,
-vienphidate_ravien='"+_dongHSTime+"',
-chandoanravien='NONE',
-chandoanravien_code='NONE',
-vienphistatus_bh=1,
-duyet_ngayduyet_bh='"+_duyetVPTime+"',
-duyet_nguoiduyet_bh='"+Base.SessionLogin.SessionUserHISID+"',
-duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='"+Base.SessionLogin.SessionUserHISID+"' and TO_CHAR(sothutudate,'yyyyMMdd')='"+_dongHSTime_long+"'),
-vienphistatus_vp=1,
-duyet_ngayduyet_vp='"+_duyetVPTime+"',
-duyet_nguoiduyet_vp='"+Base.SessionLogin.SessionUserHISID+"',
-duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='"+ Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='"+_dongHSTime_long+"'),
-medicalrecordid_end=(select medicalrecordid from medicalrecord where vienphiid='"+_vienphiid+"' order by medicalrecordid desc limit 1) 
-WHERE vienphiid='"+_vienphiid+"';
-
-UPDATE hosobenhan SET
-hosobenhanstatus=1,
-xutrikhambenhid=7,
-hosobenhandate_ravien='"+_dongHSTime+"',
-chandoanravien_code='NONE',
-chandoanravien='NONE'
-WHERE hosobenhanid='"+_hosobenhanid+"';
-
-UPDATE medicalrecord SET
-medicalrecordstatus=99,
-thoigianravien='"+_dongHSTime+"',
-chandoanravien='NONE',
-chandoanravien_code='NONE',
-xutrikhambenhid=7,
-medicalrecordremark='Đóng bệnh án tự động'
-WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='"+_vienphiid+"' order by medicalrecordid desc limit 1);
-
-
-
-
 
 
 

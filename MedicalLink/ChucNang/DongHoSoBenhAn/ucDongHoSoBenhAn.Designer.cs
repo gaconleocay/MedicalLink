@@ -47,6 +47,8 @@
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBoxAction = new System.Windows.Forms.GroupBox();
+            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gridControlDichVuChiTiet = new DevExpress.XtraGrid.GridControl();
@@ -80,8 +82,6 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageCollectionMBA = new DevExpress.Utils.ImageCollection(this.components);
-            this.groupBoxAction = new System.Windows.Forms.GroupBox();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThaiVP.Properties)).BeginInit();
@@ -89,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBenhAn.Properties)).BeginInit();
+            this.groupBoxAction.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDichVuChiTiet)).BeginInit();
@@ -97,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHSBA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHSBA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionMBA)).BeginInit();
-            this.groupBoxAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -324,6 +324,32 @@
             this.btnTimKiem.TabIndex = 8;
             this.btnTimKiem.Text = "Tìm Kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // groupBoxAction
+            // 
+            this.groupBoxAction.Controls.Add(this.tbnExport);
+            this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBoxAction.Location = new System.Drawing.Point(987, 0);
+            this.groupBoxAction.Name = "groupBoxAction";
+            this.groupBoxAction.Size = new System.Drawing.Size(113, 94);
+            this.groupBoxAction.TabIndex = 93;
+            this.groupBoxAction.TabStop = false;
+            // 
+            // tbnExport
+            // 
+            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbnExport.Appearance.Options.UseFont = true;
+            this.tbnExport.Appearance.Options.UseForeColor = true;
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.tbnExport.Location = new System.Drawing.Point(6, 31);
+            this.tbnExport.Name = "tbnExport";
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
+            this.tbnExport.TabIndex = 12;
+            this.tbnExport.Text = "Xuất DSHS";
+            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // panel2
             // 
@@ -795,7 +821,7 @@
             this.gridColumn2.OptionsColumn.ReadOnly = true;
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 86;
+            this.gridColumn2.Width = 85;
             // 
             // gridColumn11
             // 
@@ -815,7 +841,7 @@
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
             this.gridColumn11.VisibleIndex = 6;
-            this.gridColumn11.Width = 109;
+            this.gridColumn11.Width = 85;
             // 
             // gridColumn1
             // 
@@ -835,7 +861,7 @@
             this.gridColumn1.OptionsColumn.ReadOnly = true;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 3;
-            this.gridColumn1.Width = 89;
+            this.gridColumn1.Width = 91;
             // 
             // gridColumn8
             // 
@@ -858,7 +884,7 @@
             // gridColumn3
             // 
             this.gridColumn3.AppearanceCell.BackColor = System.Drawing.Color.White;
-            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn3.AppearanceCell.Options.UseFont = true;
             this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -876,7 +902,7 @@
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 5;
-            this.gridColumn3.Width = 110;
+            this.gridColumn3.Width = 100;
             // 
             // gridColumnt23
             // 
@@ -898,7 +924,7 @@
             this.gridColumnt23.OptionsColumn.AllowEdit = false;
             this.gridColumnt23.Visible = true;
             this.gridColumnt23.VisibleIndex = 7;
-            this.gridColumnt23.Width = 140;
+            this.gridColumnt23.Width = 125;
             // 
             // gridColumn5
             // 
@@ -941,32 +967,6 @@
             this.imageCollectionMBA.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionMBA.ImageStream")));
             this.imageCollectionMBA.Images.SetKeyName(0, "check-mark-16.png");
             // 
-            // groupBoxAction
-            // 
-            this.groupBoxAction.Controls.Add(this.tbnExport);
-            this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxAction.Location = new System.Drawing.Point(987, 0);
-            this.groupBoxAction.Name = "groupBoxAction";
-            this.groupBoxAction.Size = new System.Drawing.Size(113, 94);
-            this.groupBoxAction.TabIndex = 93;
-            this.groupBoxAction.TabStop = false;
-            // 
-            // tbnExport
-            // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(6, 31);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 30);
-            this.tbnExport.TabIndex = 12;
-            this.tbnExport.Text = "Xuất DSHS";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
-            // 
             // ucDongHoSoBenhAn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -984,6 +984,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboBenhAn.Properties)).EndInit();
+            this.groupBoxAction.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDichVuChiTiet)).EndInit();
@@ -992,7 +993,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlHSBA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewHSBA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollectionMBA)).EndInit();
-            this.groupBoxAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

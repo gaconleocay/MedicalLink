@@ -166,30 +166,43 @@ namespace MedicalLink.ChucNang
         //process dong benh an
         private void DongBenhAnVaDuyetVP_Click(object sender, EventArgs e)
         {
+            if (Base.SessionLogin.SessionUserHISID == null || Base.SessionLogin.SessionUserHISID == "0")
+            {
+                MessageBox.Show("Tài khoản chưa được thiết lập HIS ID, vui lòng kiểm tra lại tài khoản để bổ sung", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (gridViewHSBA.GetSelectedRows().Count() > 0)
             {
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn đóng bệnh án của BN đã chọn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    int _demupdate = 0;
                     SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
                     try
                     {
-                        int _demupdate = 0;
                         if (gridViewHSBA.GetSelectedRows().Count() > 0)
-                        {
-                            DateTime _datetime = DateTime.Now;
-                            string _dongHSTime = _datetime.ToString("yyyy-MM-dd HH:mm:ss");
-                            string _dongHSTime_long = _datetime.ToString("yyyMMdd");
-                            string _duyetVPTime = _datetime.AddMinutes(1).ToString("yyyy-MM-dd HH:mm:ss");
-
-
+                        {                   
                             foreach (var item_index in gridViewHSBA.GetSelectedRows())
                             {
                                 string _vienphiid = gridViewHSBA.GetRowCellValue(item_index, "vienphiid").ToString();
                                 string _hosobenhanid = gridViewHSBA.GetRowCellValue(item_index, "hosobenhanid").ToString();
 
+                                //Lay ngay chi dinh cuoi cung cua Ho so benh an
+                                string _dongHSTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                string _dongHSTime_EndDay = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
+                                string _dongHSTime_long = DateTime.Now.ToString("yyyyMMdd");
+
+                                string _sqlChiDinhCuoi = "SELECT (TO_CHAR(maubenhphamdate,'yyyy-MM-dd') || ' 23:59:59') as donghstime_endday,TO_CHAR(maubenhphamdate,'yyyyMMdd') as donghstime_long FROM maubenhpham WHERE vienphiid='"+ _vienphiid + "' ORDER BY maubenhphamdate desc limit 1;";
+                                DataTable _dataChiDinhCuoi = condb.GetDataTable_HIS(_sqlChiDinhCuoi);
+                                if (_dataChiDinhCuoi.Rows.Count > 0)
+                                {
+                                    _dongHSTime_EndDay = _dataChiDinhCuoi.Rows[0]["donghstime_endday"].ToString();
+                                        _dongHSTime_long = _dataChiDinhCuoi.Rows[0]["donghstime_long"].ToString();
+                                }
+
                                 //update HSBA
-                                string _sqlDongHSBA = @" UPDATE vienphi SET vienphistatus=1, vienphidate_ravien='" + _dongHSTime + "', chandoanravien='NONE', chandoanravien_code='NONE', vienphistatus_bh=1, duyet_ngayduyet_bh='" + _duyetVPTime + "', duyet_nguoiduyet_bh='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), vienphistatus_vp=1, duyet_ngayduyet_vp='" + _duyetVPTime + "', duyet_nguoiduyet_vp='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), medicalrecordid_end=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1) WHERE vienphiid='" + _vienphiid + "'; UPDATE hosobenhan SET hosobenhanstatus=1, xutrikhambenhid=7, hosobenhandate_ravien='" + _dongHSTime + "', chandoanravien_code='NONE', chandoanravien='NONE' WHERE hosobenhanid='" + _hosobenhanid + "'; UPDATE medicalrecord SET medicalrecordstatus=99, thoigianravien='" + _dongHSTime + "', chandoanravien='NONE', chandoanravien_code='NONE', xutrikhambenhid=7, medicalrecordremark='Đóng bệnh án tự động' WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1); ";
+                                string _sqlDongHSBA = @" UPDATE vienphi SET vienphistatus=1, vienphidate_ravien='" + _dongHSTime_EndDay + "', chandoanravien='NONE', chandoanravien_code='NONE', vienphistatus_bh=1, duyet_ngayduyet_bh='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_bh='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), vienphistatus_vp=1, duyet_ngayduyet_vp='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_vp='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), medicalrecordid_end=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1), vienphidate_ravien_update='" + _dongHSTime + "' WHERE vienphiid='" + _vienphiid + "'; UPDATE hosobenhan SET isdownloaded=1, hosobenhanstatus=1, xutrikhambenhid=7, hosobenhandate_ravien='" + _dongHSTime_EndDay + "', chandoanravien_code='NONE', chandoanravien='NONE' WHERE hosobenhanid='" + _hosobenhanid + "'; UPDATE medicalrecord SET medicalrecordstatus=99, thoigianravien='" + _dongHSTime_EndDay + "', chandoanravien='NONE', chandoanravien_code='NONE', xutrikhambenhid=7, medicalrecordremark='Đóng bệnh án tự động' WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1); UPDATE sothutuphongkham SET sothutustatus=4 WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1);";
                                 if (condb.ExecuteNonQuery_HIS(_sqlDongHSBA))
                                 {
                                     _demupdate += 1;
@@ -198,8 +211,6 @@ namespace MedicalLink.ChucNang
                                     condb.ExecuteNonQuery_MeL(_sqlluulog);
                                 }
                             }
-                            MessageBox.Show("Đóng bệnh án và duyệt viện phí thành công SL=" + _demupdate, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            btnTimKiem_Click(null,null);
                         }
                     }
                     catch (Exception ex)
@@ -207,6 +218,16 @@ namespace MedicalLink.ChucNang
                         MedicalLink.Base.Logging.Error(ex);
                     }
                     SplashScreenManager.CloseForm();
+
+                    if (_demupdate > 0)
+                    {
+                        MessageBox.Show("Đóng bệnh án và duyệt viện phí thành công SL=" + _demupdate, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnTimKiem_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đóng bệnh án và duyệt viện phí thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
         }
@@ -244,6 +265,7 @@ namespace MedicalLink.ChucNang
 
         private void gridViewHSBA_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 if (gridViewHSBA.RowCount > 0)
@@ -267,6 +289,7 @@ namespace MedicalLink.ChucNang
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+            SplashScreenManager.CloseForm();
         }
         #endregion
 
@@ -289,24 +312,13 @@ namespace MedicalLink.ChucNang
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         #endregion
 
         #region Process
 
         #endregion
 
+        #region Export
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -331,5 +343,10 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+        #endregion
+
+
+
     }
 }

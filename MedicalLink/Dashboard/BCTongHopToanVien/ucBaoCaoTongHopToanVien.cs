@@ -65,6 +65,56 @@ namespace MedicalLink.Dashboard
 
         #endregion
 
+        #region Tim kiem
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //laytheo =0: theo khoa ra vien; =1: theo khoa chi dinh
+                //Kieu xem =0: xem tong hop; =1: xem chi tiet theo khoa; = 2 xem chi tiet theo benh nhan
+                int laytheo = 0;
+                int kieuxem = 0;
+                if (cboLayTheo.Text == "Theo khoa chỉ định")
+                {
+                    laytheo = 1;
+                }
+
+                if (cboKieuXem.Text == "Xem chi tiết theo khoa")
+                {
+                    kieuxem = 1;
+                }
+                else if (cboKieuXem.Text == "Xem chi tiết bệnh nhân")
+                {
+                    kieuxem = 2;
+                }
+
+                gridControlDataBNNT.DataSource = null;
+                long thoiGianTu = Convert.ToInt64(DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd"));
+                long thoiGianDen = Convert.ToInt64(DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd"));
+
+                if (thoiGianTu > 20161231 && thoiGianDen > 20161231)
+                {
+                    LayDuLieuBaoCao_ChayMoi(laytheo, kieuxem);
+                }
+                else if (thoiGianTu < 20161231 && thoiGianDen <= 20161231)
+                {
+                    LayDuLieuBaoCao_Old(laytheo, kieuxem);
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chia làm 2 khoảng từ trước ngày 31/12/2016 và sau ngày 01/01/2017", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+
+        #endregion
+
+        #region events
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -139,51 +189,6 @@ namespace MedicalLink.Dashboard
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
-        private void btnTimKiem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //laytheo =0: theo khoa ra vien; =1: theo khoa chi dinh
-                //Kieu xem =0: xem tong hop; =1: xem chi tiet theo khoa; = 2 xem chi tiet theo benh nhan
-                int laytheo = 0;
-                int kieuxem = 0;
-                if (cboLayTheo.Text == "Theo khoa chỉ định")
-                {
-                    laytheo = 1;
-                }
-
-                if (cboKieuXem.Text == "Xem chi tiết theo khoa")
-                {
-                    kieuxem = 1;
-                }
-                else if (cboKieuXem.Text == "Xem chi tiết bệnh nhân")
-                {
-                    kieuxem = 2;
-                }
-
-                gridControlDataBNNT.DataSource = null;
-                long thoiGianTu = Convert.ToInt64(DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd"));
-                long thoiGianDen = Convert.ToInt64(DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyyMMdd"));
-
-                if (thoiGianTu > 20161231 && thoiGianDen > 20161231)
-                {
-                    LayDuLieuBaoCao_ChayMoi(laytheo, kieuxem);
-                }
-                else if (thoiGianTu < 20161231 && thoiGianDen <= 20161231)
-                {
-                    LayDuLieuBaoCao_Old(laytheo, kieuxem);
-                }
-                else
-                {
-                    MessageBox.Show("Vui lòng chia làm 2 khoảng từ trước ngày 31/12/2016 và sau ngày 01/01/2017", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
             }
         }
 
@@ -302,29 +307,6 @@ namespace MedicalLink.Dashboard
             }
         }
 
-        private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
-        private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            try
-            {
-                GridView view = sender as GridView;
-                if (e.RowHandle == view.FocusedRowHandle)
-                {
-                    e.Appearance.BackColor = Color.DodgerBlue;
-                    e.Appearance.ForeColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-
         private void btnFullSize_Click(object sender, EventArgs e)
         {
             try
@@ -376,5 +358,33 @@ namespace MedicalLink.Dashboard
             }
         }
 
+
+        #endregion
+
+        #region Cusstom
+        private void bandedGridViewDataBNNT_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+
+        private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.DodgerBlue;
+                    e.Appearance.ForeColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
     }
 }

@@ -825,7 +825,7 @@ namespace MedicalLink.Base
                 DASHBOARD_03.permissionname = "Báo cáo bệnh nhân ngoại trú";
                 DASHBOARD_03.permissiontype = 3;
                 DASHBOARD_03.tabMenuId = 6;
-                DASHBOARD_03.permissionnote = "Báo cáo bệnh nhân ngoại trú. \n Lấy theo tiêu chí thời gian bệnh nhân đến khám; doanh thu chia theo khoa/phòng chỉ định";
+                DASHBOARD_03.permissionnote = "Lấy theo tiêu chí thời gian bệnh nhân đến khám; doanh thu chia theo khoa/phòng chỉ định";
                 lstresult.Add(DASHBOARD_03);
 
                 ClassCommon.classPermission DASHBOARD_04 = new ClassCommon.classPermission();
@@ -834,7 +834,7 @@ namespace MedicalLink.Base
                 DASHBOARD_04.permissionname = "Báo cáo tổng hợp toàn viện";
                 DASHBOARD_04.permissiontype = 3;
                 DASHBOARD_04.tabMenuId = 6;
-                DASHBOARD_04.permissionnote = "Báo cáo tổng hợp toàn viện. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện";
+                DASHBOARD_04.permissionnote = "Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng bệnh nhân ra viện; BN Viện phí ngoại trú chỉ lấy dịch vụ đã thu tiền";
                 lstresult.Add(DASHBOARD_04);
 
                 ClassCommon.classPermission DASHBOARD_05 = new ClassCommon.classPermission();
@@ -843,7 +843,7 @@ namespace MedicalLink.Base
                 DASHBOARD_05.permissionname = "Báo cáo doanh thu cận lâm sàng";
                 DASHBOARD_05.permissiontype = 3;
                 DASHBOARD_05.tabMenuId = 6;
-                DASHBOARD_05.permissionnote = "Báo cáo doanh thu cận lâm sàng. \n Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng chỉ định";
+                DASHBOARD_05.permissionnote = "Lấy theo tiêu chí thời gian duyệt viện phí; doanh thu chia theo khoa/phòng chỉ định";
                 lstresult.Add(DASHBOARD_05);
 
                 ClassCommon.classPermission DASHBOARD_06 = new ClassCommon.classPermission();
@@ -870,7 +870,7 @@ namespace MedicalLink.Base
                 DASHBOARD_10.permissionname = "Báo cáo tổng hợp doanh thu khoa - toàn viện";
                 DASHBOARD_10.permissiontype = 3;
                 DASHBOARD_10.tabMenuId = 6;
-                DASHBOARD_10.permissionnote = "Báo cáo tổng hợp doanh thu khoa - toàn viện. Doanh thu chia theo khoa/phòng chỉ định";
+                DASHBOARD_10.permissionnote = "Doanh thu chia theo khoa/phòng chỉ định; BN Viện phí ngoại trú chỉ lấy dịch vụ đã thu tiền";
                 lstresult.Add(DASHBOARD_10);
 
                 ClassCommon.classPermission DASHBOARD_11 = new ClassCommon.classPermission();

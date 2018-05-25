@@ -250,7 +250,7 @@ namespace MedicalLink.BaoCao
 
         //            thongTinThem.Add(reportitem);
 
-        //            string fileTemplatePath = "BC_BenhNhanSuDungDichVu.xlsx";
+        //            string fileTemplatePath = ".xlsx";
         //            Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
         //            export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataDSBenhNhan);
         //        }

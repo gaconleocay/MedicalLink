@@ -58,7 +58,7 @@ FROM
 			   serf.pttt_loaiid,
 			   ser.departmentgroupid
 		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+_tieuchi_ser+lstKhoacheck+_trangthaipttt+" ) ser
-			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien2>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien2>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
 		where coalesce(pttt.stt,1)=1 
@@ -70,7 +70,7 @@ FROM
 			   serf.pttt_loaiid,
 			   ser.departmentgroupid
 		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+_tieuchi_ser+lstKhoacheck+_trangthaipttt+" ) ser
-			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phauthuatvien>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
 		where coalesce(pttt.stt,1)=1 
@@ -82,7 +82,7 @@ FROM
 			   serf.pttt_loaiid,
 			   ser.departmentgroupid
 		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+_tieuchi_ser+lstKhoacheck+_trangthaipttt+" ) ser
-			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo1>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo1>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi  "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
 		where coalesce(pttt.stt,1)=1 	
@@ -94,7 +94,7 @@ FROM
 			   serf.pttt_loaiid,
 			   ser.departmentgroupid
 		from (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+_tieuchi_ser+lstKhoacheck+_trangthaipttt+" ) ser
-			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo3>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
+			inner join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,servicepriceid,phauthuatvien2,phauthuatvien,phumo1,phumo3 from phauthuatthuthuat where phumo3>0 "+_tieuchi_pttt+") pttt on pttt.servicepriceid=ser.servicepriceid
 			inner join (select vienphiid from vienphi "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid
 			inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') and pttt_loaiid>0) serf on serf.servicepricecode=ser.servicepricecode 
 		where coalesce(pttt.stt,1)=1 	

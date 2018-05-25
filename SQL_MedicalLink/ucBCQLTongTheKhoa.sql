@@ -25,7 +25,7 @@ WHERE vpm.vienphistatus=0 and vpm.vienphidate>='" + this.KhoangThoiGianLayDuLieu
 
 ----BC Quan ly tong the khoa - DOANH THU KHOA + GÂY MÊ
 -- string sqlDoanhThu
---ngay 25/3/2018
+--ngay 25/5/2018
 --
 SELECT sum(A.doanhthu_slbn) as doanhthu_slbn, 
 	round(cast(sum(COALESCE(A.doanhthu_tienkb,0)) as numeric),0) as doanhthu_tienkb, 
@@ -91,7 +91,7 @@ FROM
 			sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc 
 	from ihs_servicespttt spt 
 	where spt.vienphistatus_vp=1 
-		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstdepartmentid_tt + " 
+		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstdepartmentid_tt + _thutienstatus+" 
 	group by spt.departmentgroupid) A 
 LEFT JOIN 	
 	(select 
@@ -113,11 +113,11 @@ LEFT JOIN
 	from ihs_servicespttt spt 
 	where spt.vienphistatus_vp=1 
 		and spt.departmentid in (34,335,269,285)
-		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "'
+		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' "+_thutienstatus+"
 	group by spt.departmentgroup_huong) B ON A.departmentgroupid=B.departmentgroup_huong
 ; 
 	
--------RA VIEN DA THANH TOAN ngay 25/3/2018
+-------RA VIEN DA THANH TOAN ngay 25/5/2018
 --string sqlBaoCao_RaVienDaTT =
 
 SELECT count(A.*) as raviendatt_slbn, 
@@ -153,7 +153,7 @@ FROM
 			sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as raviendatt_tienthuoc 
 	from ihs_servicespttt spt 
 	where spt.vienphistatus_vp=1 	
-		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstphongravien + " 
+		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstphongravien + _thutienstatus+" 
 	group by spt.vienphiid) A;
 
 
@@ -163,7 +163,7 @@ FROM
 
 ---====== BN ra vien nhung chua thanh toan 
 --string sqlBaoCao_RaVienChuaTT 
---ngay 25/3/2018
+--ngay 25/5/2018
 
 SELECT count(A.*) as ravienchuatt_slbn,  
 COALESCE(round(cast(sum(COALESCE(A.ravienchuatt_tienkb,0)) as numeric),0),0) as ravienchuatt_tienkb,  
@@ -195,7 +195,8 @@ FROM (select spt.vienphiid,
 		sum(spt.money_mau_bh + spt.money_mau_vp) as ravienchuatt_tienmau,  
 		sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as ravienchuatt_tienthuoc 
 		from ihs_servicespttt spt 
-		where COALESCE(spt.vienphistatus_vp,0)=0 and spt.vienphistatus<>0 and spt.vienphidate_ravien >='" + this.KhoangThoiGianLayDuLieu + "' " + lstphongravien + " group by spt.vienphiid) A ;
+		where COALESCE(spt.vienphistatus_vp,0)=0 and spt.vienphistatus<>0 and spt.vienphidate_ravien between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstphongravien + _thutienstatus+" group by spt.vienphiid) A ;
+		-->='" + this.KhoangThoiGianLayDuLieu + "' 
 
 
 ---====== BN dang dieu tri

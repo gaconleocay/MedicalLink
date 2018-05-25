@@ -36,12 +36,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblThoiGianConLai = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.spinThoiGianCapNhat = new DevExpress.XtraEditors.SpinEdit();
             this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSettingAdvand = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.bbbb = new DevExpress.XtraEditors.LabelControl();
             this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
@@ -99,7 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinThoiGianCapNhat.Properties)).BeginInit();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).BeginInit();
@@ -111,8 +105,8 @@
             // 
             // panelControlThongTinDV
             // 
-            this.panelControlThongTinDV.Controls.Add(this.groupBox1);
             this.panelControlThongTinDV.Controls.Add(this.groupBoxFile);
+            this.panelControlThongTinDV.Controls.Add(this.groupBox1);
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
@@ -121,70 +115,14 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblThoiGianConLai);
-            this.groupBox1.Controls.Add(this.labelControl4);
-            this.groupBox1.Controls.Add(this.labelControl2);
-            this.groupBox1.Controls.Add(this.spinThoiGianCapNhat);
             this.groupBox1.Controls.Add(this.btnFullScreen);
-            this.groupBox1.Controls.Add(this.btnSettingAdvand);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(633, 2);
+            this.groupBox1.Location = new System.Drawing.Point(794, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 116);
+            this.groupBox1.Size = new System.Drawing.Size(115, 116);
             this.groupBox1.TabIndex = 26;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thiết lập";
-            // 
-            // lblThoiGianConLai
-            // 
-            this.lblThoiGianConLai.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThoiGianConLai.Appearance.ForeColor = System.Drawing.Color.Black;
-            this.lblThoiGianConLai.Location = new System.Drawing.Point(17, 57);
-            this.lblThoiGianConLai.Name = "lblThoiGianConLai";
-            this.lblThoiGianConLai.Size = new System.Drawing.Size(136, 14);
-            this.lblThoiGianConLai.TabIndex = 31;
-            this.lblThoiGianConLai.Text = "Không tự động cập nhật";
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(233, 25);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(26, 14);
-            this.labelControl4.TabIndex = 30;
-            this.labelControl4.Text = "phút";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(17, 25);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(122, 14);
-            this.labelControl2.TabIndex = 29;
-            this.labelControl2.Text = "Tự động cập nhật sau";
-            // 
-            // spinThoiGianCapNhat
-            // 
-            this.spinThoiGianCapNhat.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinThoiGianCapNhat.Location = new System.Drawing.Point(145, 22);
-            this.spinThoiGianCapNhat.Name = "spinThoiGianCapNhat";
-            this.spinThoiGianCapNhat.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spinThoiGianCapNhat.Properties.Appearance.Options.UseFont = true;
-            this.spinThoiGianCapNhat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinThoiGianCapNhat.Properties.MaxValue = new decimal(new int[] {
-            -727379969,
-            232,
-            0,
-            0});
-            this.spinThoiGianCapNhat.Size = new System.Drawing.Size(83, 22);
-            this.spinThoiGianCapNhat.TabIndex = 28;
-            this.spinThoiGianCapNhat.EditValueChanged += new System.EventHandler(this.spinThoiGianCapNhat_EditValueChanged);
             // 
             // btnFullScreen
             // 
@@ -193,27 +131,12 @@
             this.btnFullScreen.Appearance.Options.UseFont = true;
             this.btnFullScreen.Appearance.Options.UseForeColor = true;
             this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(159, 82);
+            this.btnFullScreen.Location = new System.Drawing.Point(8, 41);
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Size = new System.Drawing.Size(100, 25);
             this.btnFullScreen.TabIndex = 27;
             this.btnFullScreen.Text = "Full screen";
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullSize_Click);
-            // 
-            // btnSettingAdvand
-            // 
-            this.btnSettingAdvand.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettingAdvand.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnSettingAdvand.Appearance.Options.UseFont = true;
-            this.btnSettingAdvand.Appearance.Options.UseForeColor = true;
-            this.btnSettingAdvand.Enabled = false;
-            this.btnSettingAdvand.Image = ((System.Drawing.Image)(resources.GetObject("btnSettingAdvand.Image")));
-            this.btnSettingAdvand.Location = new System.Drawing.Point(17, 82);
-            this.btnSettingAdvand.Name = "btnSettingAdvand";
-            this.btnSettingAdvand.Size = new System.Drawing.Size(100, 25);
-            this.btnSettingAdvand.TabIndex = 26;
-            this.btnSettingAdvand.Text = "Nâng cao";
-            this.btnSettingAdvand.Click += new System.EventHandler(this.btnSettingAdvand_Click);
             // 
             // groupBoxFile
             // 
@@ -232,7 +155,7 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(907, 116);
+            this.groupBoxFile.Size = new System.Drawing.Size(792, 116);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -373,7 +296,6 @@
             // timerTuDongCapNhat
             // 
             this.timerTuDongCapNhat.Interval = 1000;
-            this.timerTuDongCapNhat.Tick += new System.EventHandler(this.timerTuDongCapNhat_Tick);
             // 
             // panelControlData
             // 
@@ -1350,8 +1272,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spinThoiGianCapNhat.Properties)).EndInit();
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
@@ -1393,7 +1313,6 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButton_View;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.SimpleButton btnFullScreen;
-        private DevExpress.XtraEditors.SimpleButton btnSettingAdvand;
         private DevExpress.XtraEditors.LabelControl bbbb;
         private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
         private System.Windows.Forms.RadioButton radioNam;
@@ -1405,10 +1324,6 @@
         private System.Windows.Forms.DateTimePicker dateTuNgay;
         private DevExpress.XtraEditors.ComboBoxEdit cboChonNhanh;
         private DevExpress.XtraEditors.SimpleButton btnTimKiem;
-        private DevExpress.XtraEditors.LabelControl lblThoiGianConLai;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SpinEdit spinThoiGianCapNhat;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn19;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn20;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn22;

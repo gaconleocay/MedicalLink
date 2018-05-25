@@ -567,12 +567,13 @@
             // 
             // btnExport_Khoa
             // 
+            this.btnExport_Khoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport_Khoa.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport_Khoa.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnExport_Khoa.Appearance.Options.UseFont = true;
             this.btnExport_Khoa.Appearance.Options.UseForeColor = true;
             this.btnExport_Khoa.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.btnExport_Khoa.Location = new System.Drawing.Point(845, 27);
+            this.btnExport_Khoa.Location = new System.Drawing.Point(870, 27);
             this.btnExport_Khoa.Name = "btnExport_Khoa";
             this.btnExport_Khoa.Size = new System.Drawing.Size(100, 40);
             this.btnExport_Khoa.TabIndex = 83;
@@ -1953,12 +1954,13 @@
             // 
             // btnExport_TongHop
             // 
+            this.btnExport_TongHop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport_TongHop.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport_TongHop.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnExport_TongHop.Appearance.Options.UseFont = true;
             this.btnExport_TongHop.Appearance.Options.UseForeColor = true;
             this.btnExport_TongHop.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.btnExport_TongHop.Location = new System.Drawing.Point(845, 27);
+            this.btnExport_TongHop.Location = new System.Drawing.Point(870, 27);
             this.btnExport_TongHop.Name = "btnExport_TongHop";
             this.btnExport_TongHop.Size = new System.Drawing.Size(100, 40);
             this.btnExport_TongHop.TabIndex = 83;

@@ -1,7 +1,7 @@
 --Bao cao chi tiet su dung dich vu Kham benh
 --ucBC107_KhamBenhChiTiet
 
---ngay 23/5/2018: sua trang thai kham
+--ngay 25/5/2018: sua trang thai kham
 
 SELECT
 	row_number () over (order by ser.servicepricedate) as stt,
@@ -34,6 +34,7 @@ SELECT
 	(case when vp.vienphistatus<>0 then 'Đã khám' 
 			else (case when mbp.maubenhphamstatus=16 then 'Đã khám' end) 
 	end) as trangthaikham,
+	(case when ser.billid_thutien>0 or ser.billid_clbh_thutien>0 then 'Đã thu tiền' end) trangthaithutien,
 	vp.patientid,
 	vp.vienphiid,
 	hsba.patientname,
@@ -52,9 +53,12 @@ SELECT
 		  else (case when vienphistatus_vp=1 then 'Đã thanh toán'
 					else 'Chưa thanh toán' end) end) as vienphistatus
 	
-FROM (select servicepriceid,servicepricecode,servicepricename,maubenhphamid,vienphiid,soluong,loaidoituong,departmentgroupid,departmentid,servicepricedate,
-		(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai 
-			else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end)
+FROM (select servicepriceid,servicepricecode,servicepricename,maubenhphamid,vienphiid,soluong,loaidoituong,departmentgroupid,departmentid,servicepricedate,billid_thutien,billid_clbh_thutien,
+		(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
+			else (case when loaidoituong=0 then servicepricemoney_bhyt
+						  when loaidoituong=1 then servicepricemoney_nhandan
+						  else servicepricemoney
+				  end)
 		end) as dongia 
 		from serviceprice where bhyt_groupcode='01KB' "+lstdichvu_ser+tieuchi_ser+") ser
 	inner join (select maubenhphamid,userid,maubenhphamstatus,(case when userthuchien=0 then userid else userthuchien end) as  userthuchien from maubenhpham where maubenhphamgrouptype=2 "+tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
@@ -64,7 +68,6 @@ FROM (select servicepriceid,servicepricecode,servicepricename,maubenhphamid,vien
 	inner join departmentgroup degp on degp.departmentgroupid=ser.departmentgroupid
 	inner join department de on de.departmentid=ser.departmentid;
 
-	
 	
 	
 	

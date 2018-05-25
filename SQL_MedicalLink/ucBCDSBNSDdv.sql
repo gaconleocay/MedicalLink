@@ -1,7 +1,7 @@
 --ucBCDSBNSDdv
 
 1. Theo tung dich vu 
----ngay 23/5
+---ngay 25/5
 
 SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, 
 	vp.patientid as mabn, 
@@ -15,6 +15,7 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 	ser.servicepricedate as thoigianchidinh, 
 	(case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong, 
 	((case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end)*ser.dongia) as thanhtien,
+	(case when ser.billid_thutien>0 or ser.billid_clbh_thutien>0 then 'Đã thu tiền' end) trangthaithutien,
 	kcd.departmentgroupname as khoachidinh, 
 	pcd.departmentname as phongchidinh, 
 	(case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as loaiphieu, 
@@ -33,14 +34,14 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 	CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, 
 	(case ser.thuockhobanle when 0 then '' else 'Đơn nhà thuốc' end) as thuockhobanle 
 FROM 
-	(select vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,
+	(select vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,
 		(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
 			else (case when loaidoituong=0 then servicepricemoney_bhyt
 						  when loaidoituong=1 then servicepricemoney_nhandan
 						  else servicepricemoney
 				  end)
 		end) as dongia,
-		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where " + danhsachDichVu + tieuchi_ser+") ser 
+		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where " + this.DanhSachDichVu + tieuchi_ser+_bhyt_groupcode+") ser 
 	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 "+tieuchi_vp+loaivienphiid+doituongbenhnhanid+") vp ON ser.vienphiid=vp.vienphiid 
 	INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 "+tieuchi_hsba+") hsba ON vp.hosobenhanid=hsba.hosobenhanid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid 
@@ -50,7 +51,18 @@ FROM
 	INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid;
 
 
--------Theo nhom dich vu
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+-------Theo nhom dich vu - bo
 --ngay 23/5
 
 

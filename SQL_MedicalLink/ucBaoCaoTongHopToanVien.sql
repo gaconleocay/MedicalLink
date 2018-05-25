@@ -1,9 +1,10 @@
 --ucBaoCaoTongHopToanVien
 
 
---theo khoa ra vien + xem tong hop
 --ngay 23/3/2018: tach nhom PTTT yeu cau, VTTT rieng
+--ngay 25/5/2018: them tieu chi dv da thu tien
 
+--theo khoa ra vien + xem tong hop
 SELECT ROW_NUMBER () OVER (ORDER BY O.loaivienphi) as stt, 
 	O.* 
 FROM 
@@ -68,7 +69,7 @@ LEFT JOIN (SELECT spt.loaivienphiid,
 				sum(spt.money_khac_bh + spt.money_khac_vp) as money_khac, 
 				sum(spt.money_pttt_bh + spt.money_ptttyeucau_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh +  + spt.money_vattu_ttrieng_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh + spt.money_pttt_vp + spt.money_ptttyeucau_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_vattu_ttrieng_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong 
 		FROM ihs_servicespttt spt 
-		WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp>='" + dateTu + "' and spt.duyet_ngayduyet_vp<='" + dateDen + "' 
+		WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp>='" + dateTu + "' and spt.duyet_ngayduyet_vp<='" + dateDen + "' "+_thutienstatus+"
 		GROUP BY spt.loaivienphiid) B ON A.loaivienphiid=B.loaivienphiid 
 ) O;
 
@@ -140,7 +141,7 @@ LEFT JOIN (SELECT spt.khoaravien,
 				sum(spt.money_khac_bh + spt.money_khac_vp) as money_khac, 
 				sum(spt.money_pttt_bh + spt.money_ptttyeucau_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh +  + spt.money_vattu_ttrieng_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh + spt.money_pttt_vp + spt.money_ptttyeucau_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_vattu_ttrieng_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong 
 			FROM ihs_servicespttt spt 
-			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp>='" + dateTu + "' and spt.duyet_ngayduyet_vp<='" + dateDen + "' 
+			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp>='" + dateTu + "' and spt.duyet_ngayduyet_vp<='" + dateDen + "' "+_thutienstatus+" 
 			GROUP BY spt.khoaravien) B ON B.khoaravien=depg.departmentgroupid 
 WHERE depg.departmentgrouptype in (1,4,11,10,100)) O; 
 
@@ -214,7 +215,7 @@ LEFT JOIN (SELECT spt.vienphiid,
 				sum(spt.money_khac_bh + spt.money_khac_vp) as money_khac, 
 				sum(spt.money_pttt_bh + spt.money_ptttyeucau_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh +  + spt.money_vattu_ttrieng_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh + spt.money_pttt_vp + spt.money_ptttyeucau_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_vattu_ttrieng_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong 
 			FROM ihs_servicespttt spt 
-			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp>='" + dateTu + "' and spt.duyet_ngayduyet_vp<='" + dateDen + "' 
+			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp>='" + dateTu + "' and spt.duyet_ngayduyet_vp<='" + dateDen + "' "+_thutienstatus+"
 			GROUP BY spt.vienphiid) B ON A.vienphiid=B.vienphiid 
 INNER JOIN hosobenhan hsba on hsba.hosobenhanid=A.hosobenhanid ) O; 
 
@@ -284,7 +285,7 @@ LEFT JOIN (SELECT spt.departmentid,
 				sum(spt.money_khac_bh + spt.money_khac_vp) as money_khac, 
 				sum(spt.money_pttt_bh + spt.money_ptttyeucau_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh +  + spt.money_vattu_ttrieng_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh + spt.money_pttt_vp + spt.money_ptttyeucau_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_vattu_ttrieng_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong 
 			FROM ihs_servicespttt spt 
-			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + dateTu + "' and '" + dateDen + "' 
+			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + dateTu + "' and '" + dateDen + "' "+_thutienstatus+"
 			GROUP BY spt.departmentid) B ON B.departmentid=de.departmentid 
 WHERE de.departmenttype in (2,3,9) 
 GROUP BY departmenttype) O; 
@@ -357,7 +358,7 @@ LEFT JOIN (SELECT spt.departmentgroupid,
 				sum(spt.money_khac_bh + spt.money_khac_vp) as money_khac, 
 				sum(spt.money_pttt_bh + spt.money_ptttyeucau_bh + spt.money_dvktc_bh + spt.money_thuoc_bh + spt.money_vattu_bh + spt.money_vtthaythe_bh + spt.money_xetnghiem_bh + spt.money_cdha_bh + spt.money_tdcn_bh + spt.money_khambenh_bh + spt.money_mau_bh + spt.money_giuongthuong_bh + spt.money_giuongyeucau_bh + spt.money_phuthu_bh + spt.money_vanchuyen_bh + spt.money_khac_bh + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_vattu_bh +  + spt.money_vattu_ttrieng_bh + spt.money_nuocsoi_bh + spt.money_xuatan_bh + spt.money_diennuoc_bh + spt.money_pttt_vp + spt.money_ptttyeucau_vp + spt.money_dvktc_vp + spt.money_thuoc_vp + spt.money_vattu_vp + spt.money_vtthaythe_vp + spt.money_xetnghiem_vp + spt.money_cdha_vp + spt.money_tdcn_vp + spt.money_khambenh_vp + spt.money_mau_vp + spt.money_giuongthuong_vp + spt.money_giuongyeucau_vp + spt.money_phuthu_vp + spt.money_vanchuyen_vp + spt.money_khac_vp + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_vp + spt.money_vattu_ttrieng_vp + spt.money_nuocsoi_vp + spt.money_xuatan_vp + spt.money_diennuoc_vp) as money_tong 
 			FROM ihs_servicespttt spt 
-			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + dateTu + "' and '" + dateDen + "' 
+			WHERE spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + dateTu + "' and '" + dateDen + "' "+_thutienstatus+"
 			GROUP BY spt.departmentgroupid) B ON B.departmentgroupid=depg.departmentgroupid 
 WHERE depg.departmentgrouptype in (1,4,11,10,100)) O; 
 

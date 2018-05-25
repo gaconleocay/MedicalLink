@@ -649,6 +649,7 @@
     <Compile Include="ClassCommon\Departmentgroup_KhoaPTTTDTO.cs" />
     <Compile Include="ClassCommon\DVXetNghiemChiPhiDTO.cs" />
     <Compile Include="ClassCommon\MayXetNghiemKhuVucDTO.cs" />
+    <Compile Include="ClassCommon\ServicepriceDTO.cs" />
     <Compile Include="ClassCommon\ServicepriceIDDTO.cs" />
     <Compile Include="ClassCommon\ServicePriceRef_ChenhBHYT21.cs" />
     <Compile Include="ClassCommon\DepartmentgroupDTO.cs" />
@@ -1788,9 +1789,6 @@
     <Content Include="Templates\BC_ThuTienNhaThuocHangNgay.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\BC_BenhNhanSuDungDichVu.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Templates\BC_BenhNhanSuDungDichVuPTTTTheoNhom.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2008,6 +2006,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_106_TrichThuongKinhHienVi.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_01_BenhNhanSuDungDichVu.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

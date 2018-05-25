@@ -4,6 +4,7 @@
  --bo sung them thuoc/vat tu hao phi khong tinh tien trong goi PTTT
  -- hao phi gay me - va hao phi khoa con lai
  --ngay 23/3/2018: tach nhom PTTT yeu cau; VTTT riêng
+ --ngay 25/5/2018: them da thu tien
  
  --Sử dụng cho BN đã thanh toans
 SELECT ROW_NUMBER () OVER (ORDER BY O.departmentgroupname) as stt, 

@@ -1,10 +1,10 @@
 --Báo cáo CHI THƯỞNG DỊCH VỤ VIỆN PHÍ														
 --ucBC103_ChiThuongDichVuVienPhi
 
---ngay 23/5/2018: sua ng at dau + sua SA,DT,XN
+--ngay 25/5/2018: sua ng at dau + sua SA,DT,XN
 
 
---Kham benh
+--Kham benh - khoa khac
 SELECT 
 	ser.departmentid as departmentgroupid,
 	(ser.departmentid || 'KB') as keymapping,
@@ -15,12 +15,90 @@ SELECT
 	sum(ser.soluong*ser.dongia) as thanhtien_tong,
 	sum(case when EXTRACT(DOW FROM ser.servicepricedate) not in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_ngaythuong,
 	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_th7cn
-FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,billid_thutien,billid_clbh_thutien,
+			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
+					else (case when loaidoituong=0 then servicepricemoney_bhyt
+								  when loaidoituong=1 then servicepricemoney_nhandan
+								  else servicepricemoney
+						  end)
+				end) as dongia
 		from serviceprice 
-		where bhyt_groupcode='01KB' "+tieuchi_ser+lstdichvu_ser_kb+") ser
-	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+		where bhyt_groupcode='01KB' and departmentid not in (398,205,206,207,208,209,211) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kb+") ser
+	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.departmentid,ser.dongia
-	
+
+UNION ALL
+--Kham benh - khoa dieu tri Yeu cau
+SELECT 
+	ser.departmentid as departmentgroupid,
+	(ser.departmentid || 'KB') as keymapping,
+	sum(ser.soluong) as soluong_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) not in (6,0) then ser.soluong else 0 end) as soluong_ngaythuong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then ser.soluong else 0 end) as soluong_th7cn,
+	ser.dongia,
+	sum(ser.soluong*ser.dongia) as thanhtien_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) not in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_ngaythuong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_th7cn
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,billid_thutien,billid_clbh_thutien,
+			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
+					else (case when loaidoituong=0 then servicepricemoney_bhyt
+								  when loaidoituong=1 then servicepricemoney_nhandan
+								  else servicepricemoney
+						  end)
+				end) as dongia
+		from serviceprice 
+		where bhyt_groupcode='01KB' and departmentid=398 and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kbdtyc+") ser
+	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+GROUP BY ser.departmentid,ser.dongia
+
+UNION ALL
+--Kham benh - khoa kham benh Yeu cau-thuong
+SELECT 
+	ser.departmentid as departmentgroupid,
+	(ser.departmentid || 'KB') as keymapping,
+	sum(ser.soluong) as soluong_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) not in (6,0) then ser.soluong else 0 end) as soluong_ngaythuong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then ser.soluong else 0 end) as soluong_th7cn,
+	ser.dongia,
+	sum(ser.soluong*ser.dongia) as thanhtien_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) not in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_ngaythuong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_th7cn
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,billid_thutien,billid_clbh_thutien,
+				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
+					else (case when loaidoituong=0 then servicepricemoney_bhyt
+								  when loaidoituong=1 then servicepricemoney_nhandan
+								  else servicepricemoney
+						  end)
+				end) as dongia
+		from serviceprice 
+		where bhyt_groupcode='01KB' and departmentid in (205,206,207,208,209,211) and EXTRACT(DOW FROM servicepricedate) not in (6,0) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kbyc+") ser
+	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid	
+GROUP BY ser.departmentid,ser.dongia
+
+UNION ALL
+--Kham benh - khoa kham benh Yeu cau-th7,cn
+SELECT 
+	ser.departmentid as departmentgroupid,
+	(ser.departmentid || 'KBTH7CN') as keymapping,
+	sum(ser.soluong) as soluong_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) not in (6,0) then ser.soluong else 0 end) as soluong_ngaythuong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then ser.soluong else 0 end) as soluong_th7cn,
+	ser.dongia,
+	sum(ser.soluong*ser.dongia) as thanhtien_tong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) not in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_ngaythuong,
+	sum(case when EXTRACT(DOW FROM ser.servicepricedate) in (6,0) then (ser.soluong*ser.dongia) else 0 end) as thanhtien_th7cn
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,billid_thutien,billid_clbh_thutien,
+			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
+					else (case when loaidoituong=0 then servicepricemoney_bhyt
+								  when loaidoituong=1 then servicepricemoney_nhandan
+								  else servicepricemoney
+						  end)
+				end) as dongia
+		from serviceprice 
+		where bhyt_groupcode='01KB' and departmentid in (205,206,207,208,209,211) and EXTRACT(DOW FROM servicepricedate) in (6,0) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kbycth7cn+") ser
+	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid	
+GROUP BY ser.departmentid,ser.dongia
+		
 UNION ALL
 --Sieu am-dien tim
 SELECT 
@@ -33,10 +111,16 @@ SELECT
 	0 as thanhtien_tong,
 	sum(ser.soluong*ser.dongia) as thanhtien_ngaythuong,	
 	0 as thanhtien_th7cn
-FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,billid_thutien,billid_clbh_thutien,
+			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
+					else (case when loaidoituong=0 then servicepricemoney_bhyt
+								  when loaidoituong=1 then servicepricemoney_nhandan
+								  else servicepricemoney
+						  end)
+				end) as dongia
 		from serviceprice 
-		where bhyt_groupcode in ('04CDHA','05TDCN') and departmentgroupid=46 "+tieuchi_ser+lstdichvu_ser_sadt+") ser
-	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+		where bhyt_groupcode in ('04CDHA','05TDCN') and departmentgroupid=46 and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_sadt+") ser
+	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.departmentgroupid
 
 UNION ALL
@@ -51,11 +135,20 @@ SELECT
 	0 as thanhtien_tong,
 	sum(ser.soluong*ser.dongia) as thanhtien_ngaythuong,	
 	0 as thanhtien_th7cn
-FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,servicepricename,servicepricedate,billid_thutien,billid_clbh_thutien,
+			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
+					else (case when loaidoituong=0 then servicepricemoney_bhyt
+								  when loaidoituong=1 then servicepricemoney_nhandan
+								  else servicepricemoney
+						  end)
+				end) as dongia
 		from serviceprice 
-		where bhyt_groupcode='03XN' and departmentgroupid=46 "+tieuchi_ser+lstdichvu_ser_xn+") ser
-	inner join (select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+		where bhyt_groupcode='03XN' and departmentgroupid=46 and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_xn+") ser
+	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.departmentgroupid;
+	
+	
+	
 	
 	
 	

@@ -103,7 +103,7 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @"SELECT row_number() over() as stt, '' as departmentgroupname, sum(ser.soluong*ser.dongia) as tongthu, 0 as tongchi, 0 as phantramhuong, 0 as thuclinh, '' as kynhan FROM (select vienphiid,departmentid,soluong,servicepricecode,servicepricename, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where bhyt_groupcode='12NG' " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid;";
+                sql_timkiem = @"SELECT row_number() over() as stt, '' as departmentgroupname, sum(ser.soluong*ser.dongia) as tongthu, 0 as tongchi, 0 as phantramhuong, 0 as thuclinh, '' as kynhan FROM (select vienphiid,departmentid,soluong,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where bhyt_groupcode='12NG' and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid";
 
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)

@@ -70,6 +70,7 @@
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
@@ -313,6 +314,7 @@
             this.gridColumn23,
             this.gridColumn13,
             this.gridColumn14,
+            this.gridColumn25,
             this.gridColumn15,
             this.gridColumn16,
             this.gridColumn17,
@@ -642,7 +644,7 @@
             this.gridColumn14.OptionsColumn.AllowEdit = false;
             this.gridColumn14.Visible = true;
             this.gridColumn14.VisibleIndex = 13;
-            this.gridColumn14.Width = 109;
+            this.gridColumn14.Width = 110;
             // 
             // gridColumn15
             // 
@@ -661,7 +663,7 @@
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.ReadOnly = true;
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 14;
+            this.gridColumn15.VisibleIndex = 15;
             this.gridColumn15.Width = 120;
             // 
             // gridColumn16
@@ -681,7 +683,7 @@
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.ReadOnly = true;
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 15;
+            this.gridColumn16.VisibleIndex = 16;
             this.gridColumn16.Width = 120;
             // 
             // gridColumn17
@@ -699,7 +701,7 @@
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 16;
+            this.gridColumn17.VisibleIndex = 17;
             this.gridColumn17.Width = 180;
             // 
             // gridColumn18
@@ -717,7 +719,7 @@
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 17;
+            this.gridColumn18.VisibleIndex = 18;
             this.gridColumn18.Width = 104;
             // 
             // gridColumn19
@@ -739,7 +741,7 @@
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 18;
+            this.gridColumn19.VisibleIndex = 19;
             this.gridColumn19.Width = 125;
             // 
             // gridColumn20
@@ -761,7 +763,7 @@
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.Visible = true;
-            this.gridColumn20.VisibleIndex = 19;
+            this.gridColumn20.VisibleIndex = 20;
             this.gridColumn20.Width = 125;
             // 
             // gridColumn21
@@ -783,7 +785,7 @@
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 20;
+            this.gridColumn21.VisibleIndex = 21;
             this.gridColumn21.Width = 125;
             // 
             // gridColumn22
@@ -801,8 +803,26 @@
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
             this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 21;
+            this.gridColumn22.VisibleIndex = 22;
             this.gridColumn22.Width = 130;
+            // 
+            // gridColumn25
+            // 
+            this.gridColumn25.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn25.AppearanceCell.Options.UseFont = true;
+            this.gridColumn25.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn25.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn25.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn25.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn25.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn25.Caption = "Trạng thái thu tiền";
+            this.gridColumn25.FieldName = "trangthaithutien";
+            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.OptionsColumn.AllowEdit = false;
+            this.gridColumn25.Visible = true;
+            this.gridColumn25.VisibleIndex = 14;
+            this.gridColumn25.Width = 116;
             // 
             // ucBC107_KhamBenhChiTiet
             // 
@@ -869,5 +889,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn22;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
     }
 }

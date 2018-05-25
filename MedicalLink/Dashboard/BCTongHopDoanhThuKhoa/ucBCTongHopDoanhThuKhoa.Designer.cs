@@ -37,8 +37,6 @@
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cboDoiTuong = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -54,6 +52,8 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.cboChonNhanh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnFullScreen = new DevExpress.XtraEditors.SimpleButton();
             this.panelControlData = new DevExpress.XtraEditors.PanelControl();
             this.gridControlTTDTKhoa = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewTTDTKhoa = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
@@ -114,14 +114,15 @@
             this.bandedGridColumn27 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn28 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.chkThuTienStatus = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).BeginInit();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).BeginInit();
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlTTDTKhoa)).BeginInit();
@@ -132,6 +133,7 @@
             // panelControlThongTinDV
             // 
             this.panelControlThongTinDV.Controls.Add(this.groupBoxFile);
+            this.panelControlThongTinDV.Controls.Add(this.groupBox1);
             this.panelControlThongTinDV.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControlThongTinDV.Location = new System.Drawing.Point(0, 0);
             this.panelControlThongTinDV.Name = "panelControlThongTinDV";
@@ -140,9 +142,9 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkThuTienStatus);
             this.groupBoxFile.Controls.Add(this.labelControl5);
             this.groupBoxFile.Controls.Add(this.cboTieuChi);
-            this.groupBoxFile.Controls.Add(this.groupBox1);
             this.groupBoxFile.Controls.Add(this.labelControl2);
             this.groupBoxFile.Controls.Add(this.cboDoiTuong);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -162,7 +164,7 @@
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxFile.Location = new System.Drawing.Point(2, 2);
             this.groupBoxFile.Name = "groupBoxFile";
-            this.groupBoxFile.Size = new System.Drawing.Size(996, 120);
+            this.groupBoxFile.Size = new System.Drawing.Size(881, 120);
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
@@ -170,7 +172,7 @@
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Location = new System.Drawing.Point(412, 94);
+            this.labelControl5.Location = new System.Drawing.Point(381, 94);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(45, 14);
             this.labelControl5.TabIndex = 84;
@@ -179,7 +181,7 @@
             // cboTieuChi
             // 
             this.cboTieuChi.EditValue = "Ngày duyệt viện phí";
-            this.cboTieuChi.Location = new System.Drawing.Point(467, 90);
+            this.cboTieuChi.Location = new System.Drawing.Point(436, 90);
             this.cboTieuChi.Name = "cboTieuChi";
             this.cboTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTieuChi.Properties.Appearance.Options.UseFont = true;
@@ -194,36 +196,10 @@
             this.cboTieuChi.Size = new System.Drawing.Size(180, 22);
             this.cboTieuChi.TabIndex = 83;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnFullScreen);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(867, 17);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(126, 100);
-            this.groupBox1.TabIndex = 82;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thêm";
-            // 
-            // btnFullScreen
-            // 
-            this.btnFullScreen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFullScreen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnFullScreen.Appearance.Options.UseFont = true;
-            this.btnFullScreen.Appearance.Options.UseForeColor = true;
-            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(13, 24);
-            this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(100, 40);
-            this.btnFullScreen.TabIndex = 27;
-            this.btnFullScreen.Text = "Full screen";
-            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
-            // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(402, 27);
+            this.labelControl2.Location = new System.Drawing.Point(371, 27);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(55, 14);
             this.labelControl2.TabIndex = 81;
@@ -232,7 +208,7 @@
             // cboDoiTuong
             // 
             this.cboDoiTuong.EditValue = "Tất cả đối tượng";
-            this.cboDoiTuong.Location = new System.Drawing.Point(467, 22);
+            this.cboDoiTuong.Location = new System.Drawing.Point(436, 22);
             this.cboDoiTuong.Name = "cboDoiTuong";
             this.cboDoiTuong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDoiTuong.Properties.Appearance.Options.UseFont = true;
@@ -252,7 +228,7 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(401, 61);
+            this.labelControl4.Location = new System.Drawing.Point(370, 61);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(56, 14);
             this.labelControl4.TabIndex = 76;
@@ -261,7 +237,7 @@
             // cboTrangThai
             // 
             this.cboTrangThai.EditValue = "Đã thanh toán";
-            this.cboTrangThai.Location = new System.Drawing.Point(467, 57);
+            this.cboTrangThai.Location = new System.Drawing.Point(436, 57);
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTrangThai.Properties.Appearance.Options.UseFont = true;
@@ -292,7 +268,7 @@
             // 
             this.lblThoiGianLayBaoCao.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThoiGianLayBaoCao.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(194, 94);
+            this.lblThoiGianLayBaoCao.Location = new System.Drawing.Point(183, 94);
             this.lblThoiGianLayBaoCao.Name = "lblThoiGianLayBaoCao";
             this.lblThoiGianLayBaoCao.Size = new System.Drawing.Size(120, 14);
             this.lblThoiGianLayBaoCao.TabIndex = 73;
@@ -302,7 +278,7 @@
             // 
             this.radioNam.AutoSize = true;
             this.radioNam.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioNam.Location = new System.Drawing.Point(333, 24);
+            this.radioNam.Location = new System.Drawing.Point(316, 24);
             this.radioNam.Name = "radioNam";
             this.radioNam.Size = new System.Drawing.Size(49, 18);
             this.radioNam.TabIndex = 24;
@@ -315,7 +291,7 @@
             // 
             this.radioQuy.AutoSize = true;
             this.radioQuy.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioQuy.Location = new System.Drawing.Point(282, 24);
+            this.radioQuy.Location = new System.Drawing.Point(265, 24);
             this.radioQuy.Name = "radioQuy";
             this.radioQuy.Size = new System.Drawing.Size(47, 18);
             this.radioQuy.TabIndex = 23;
@@ -328,7 +304,7 @@
             // 
             this.radioThang.AutoSize = true;
             this.radioThang.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioThang.Location = new System.Drawing.Point(224, 24);
+            this.radioThang.Location = new System.Drawing.Point(207, 24);
             this.radioThang.Name = "radioThang";
             this.radioThang.Size = new System.Drawing.Size(60, 18);
             this.radioThang.TabIndex = 22;
@@ -383,7 +359,7 @@
             // 
             // cboChonNhanh
             // 
-            this.cboChonNhanh.Location = new System.Drawing.Point(224, 57);
+            this.cboChonNhanh.Location = new System.Drawing.Point(207, 57);
             this.cboChonNhanh.Name = "cboChonNhanh";
             this.cboChonNhanh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChonNhanh.Properties.Appearance.Options.UseFont = true;
@@ -403,12 +379,37 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnTimKiem.Location = new System.Drawing.Point(737, 41);
+            this.btnTimKiem.Location = new System.Drawing.Point(718, 39);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
             this.btnTimKiem.Text = "Refresh";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnFullScreen);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBox1.Location = new System.Drawing.Point(883, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(115, 120);
+            this.groupBox1.TabIndex = 82;
+            this.groupBox1.TabStop = false;
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFullScreen.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnFullScreen.Appearance.Options.UseFont = true;
+            this.btnFullScreen.Appearance.Options.UseForeColor = true;
+            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
+            this.btnFullScreen.Location = new System.Drawing.Point(9, 46);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(100, 25);
+            this.btnFullScreen.TabIndex = 27;
+            this.btnFullScreen.Text = "Full screen";
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
             // panelControlData
             // 
@@ -1756,6 +1757,16 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
             // 
+            // chkThuTienStatus
+            // 
+            this.chkThuTienStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThuTienStatus.Location = new System.Drawing.Point(626, 23);
+            this.chkThuTienStatus.Name = "chkThuTienStatus";
+            this.chkThuTienStatus.Size = new System.Drawing.Size(66, 89);
+            this.chkThuTienStatus.TabIndex = 85;
+            this.chkThuTienStatus.Text = "DV đã thu tiền";
+            this.chkThuTienStatus.UseVisualStyleBackColor = true;
+            // 
             // ucBCTongHopDoanhThuKhoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1772,10 +1783,10 @@
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlData)).EndInit();
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlTTDTKhoa)).EndInit();
@@ -1868,5 +1879,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
+        private System.Windows.Forms.CheckBox chkThuTienStatus;
     }
 }

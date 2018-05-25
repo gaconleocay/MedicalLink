@@ -117,7 +117,7 @@ FROM
 		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
 		pttt.userid as nguoinhapthuchien
 	FROM (select servicepricecode,vienphiid,departmentgroupid,departmentid,servicepricedate,medicalrecordid,servicepricename,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney,loaipttt,servicepriceid,soluong, chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,loaidoituong,servicepricemoney_nhandan from serviceprice where servicepricecode in (" + lstServicecheck + ") "+_tieuchi_ser+") ser 
-		left join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid desc)) as stt,servicepriceid, phauthuatthuthuatdate,phauthuatvien,bacsigayme,phumo1,phumo2,phume,dungcuvien,phume2,phumo3,dieuduong,phumo4,userid from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
+		left join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,servicepriceid, phauthuatthuthuatdate,phauthuatvien,bacsigayme,phumo1,phumo2,phume,dungcuvien,phume2,phumo3,dieuduong,phumo4,userid from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
 		inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp, vienphidate_ravien,duyet_ngayduyet_vp from vienphi where 1=1 "+_tieuchi_vp+") vp on vp.vienphiid=ser.vienphiid 
 		inner join (select tinhtoanlaigiadvktc,pttt_loaiid,servicepricecode from servicepriceref where servicepricecode in (" + lstServicecheck + ")) serf on serf.servicepricecode=ser.servicepricecode
 	WHERE coalesce(pttt.stt,1)=1 " + _tieuchi_pttt + ") A 

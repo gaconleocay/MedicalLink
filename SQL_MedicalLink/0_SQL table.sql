@@ -173,6 +173,60 @@ CREATE INDEX mayxnchiphi_servicepricecode_idx ON ml_mayxnchiphi USING btree (ser
 
 
 
+---=========Table: ml_thuchienttt
+--drop table ml_thuchienttt
 
+CREATE TABLE ml_thuchienttt
+(
+  thuchientttid serial NOT NULL,
+  servicepriceid integer,
+  vienphiid integer,
+  patientid integer,
+  patientname text,
+  medicalrecordid integer,
+  hosobenhanid integer,
+  maubenhphamid integer,
+  bhytid integer,
+  bhytcode text,
+  servicepricecode text,
+  servicepricename text,
+  servicepricedate timestamp without time zone,
+  dongia double precision default 0,
+  soluong double precision default 0,
+  pttt_loaiid integer,
+  departmentgroupid integer DEFAULT 0,
+  departmentid integer DEFAULT 0,
+  mochinhid integer,
+  moimochinhid integer,
+  bacsigaymeid integer,
+  moigaymeid integer,
+  phu1 integer,
+  phu2 integer,
+  ktvphumeid integer,
+  ddhanhchinhid integer,
+  ddhoitinhid integer,
+  holyid integer,
+  ktvhoitinhid integer,
+  dungcuvienid integer,
+  thuchienttdate timestamp without time zone,
+  nguoinhapid integer,
+  mota text,
+  lastuserupdatedid integer,
+  lasttimeupdated timestamp without time zone,
+  CONSTRAINT ml_thuchienttt_pkey PRIMARY KEY (mayxndmxncpid)
+)
+WITH (
+  OIDS=FALSE
+);
 
+CREATE INDEX thuchienttt_servicepriceid_idx ON ml_thuchienttt USING btree (servicepriceid);
+CREATE INDEX thuchienttt_vienphiid_idx ON ml_thuchienttt USING btree (vienphiid);
+CREATE INDEX thuchienttt_medicalrecordid_idx ON ml_thuchienttt USING btree (medicalrecordid);
+CREATE INDEX thuchienttt_hosobenhanid_idx ON ml_thuchienttt USING btree (hosobenhanid);
+CREATE INDEX thuchienttt_maubenhphamid_idx ON ml_thuchienttt USING btree (maubenhphamid);
+CREATE INDEX thuchienttt_servicepricecode_idx ON ml_thuchienttt USING btree (servicepricecode);
+CREATE INDEX thuchienttt_pttt_loaiid_idx ON ml_thuchienttt USING btree (pttt_loaiid);
+CREATE INDEX thuchienttt_departmentgroupid_idx ON ml_thuchienttt USING btree (departmentgroupid);
+CREATE INDEX thuchienttt_departmentid_idx ON ml_thuchienttt USING btree (departmentid);
+CREATE INDEX thuchienttt_patientid_idx ON ml_thuchienttt USING btree (patientid);
 

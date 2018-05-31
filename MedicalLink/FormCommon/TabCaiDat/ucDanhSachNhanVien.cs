@@ -224,7 +224,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     if (CheckAccTonTai(txtusercode.Text.Trim(), txtuserhisid.Text.Trim()))
                     {
-                        string sql = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten) VALUES('" + _usercode + "','" + _username + "','" + en_userpassword + "','0','','" + txtuserhisid.Text.Trim() + "','" + _usergnhom + "''" + cboNhomNhanVien.Text + "','" + _nhom_bcid + "''" + cboNhomBaoCao.Text + "');";
+                        string sql = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten) VALUES('" + _usercode + "','" + _username + "','" + en_userpassword + "','0','','" + txtuserhisid.Text.Trim() + "','" + _usergnhom + "','" + cboNhomNhanVien.Text + "','" + _nhom_bcid + "','" + cboNhomBaoCao.Text + "');";
                         if (condb.ExecuteNonQuery_HIS(sql))
                         {
                             ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);

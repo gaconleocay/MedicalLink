@@ -194,7 +194,8 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                pictureLogo.Image = Image.FromFile(@"Picture\logo_user.jpg");
+                pictureLogoBenhVien.Image = Image.FromFile(@"Picture\Logo_benhvien.jpg");
+                pictureAnhBenhVien.Image = Image.FromFile(@"Picture\logo_user.jpg");
             }
             catch (Exception ex)
             {
@@ -243,6 +244,8 @@ namespace MedicalLink.FormCommon
         }
         #endregion
 
+        #region Events
+
         private void linkLabelTenNguoiDung_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -261,6 +264,21 @@ namespace MedicalLink.FormCommon
             timerThongBao.Stop();
             lblThongBao.Visible = false;
         }
+        private void linkLabelTenNguoiDung_MouseHover(object sender, EventArgs e)
+        {
+            try
+            {
+                timerThongBao.Start();
+                lblThongBao.Visible = true;
+                lblThongBao.Text = "Click vào đây để thay đổi mật khẩu";
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
 
         #region Tabcontrol function
         //Dong tab
@@ -306,19 +324,6 @@ namespace MedicalLink.FormCommon
         }
         #endregion
 
-        private void linkLabelTenNguoiDung_MouseHover(object sender, EventArgs e)
-        {
-            try
-            {
-                timerThongBao.Start();
-                lblThongBao.Visible = true;
-                lblThongBao.Text = "Click vào đây để thay đổi mật khẩu";
-            }
-            catch (Exception ex)
-            {
-                Base.Logging.Warn(ex);
-            }
-        }
 
 
     }

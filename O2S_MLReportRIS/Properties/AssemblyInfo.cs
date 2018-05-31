@@ -5,15 +5,16 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MedicalLink")]
-[assembly: AssemblyDescription("Phần mềm hỗ trợ quản lý tổng thể bệnh viện")]
+[assembly: AssemblyTitle("O2S_MLReportRIS")]
+[assembly: AssemblyDescription("Báo cáo Sổ chuẩn đoán hình ảnh")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("OneOne solution co.")]
-[assembly: AssemblyProduct("MedicalLink")]
+[assembly: AssemblyProduct("O2S_MLReportRIS")]
 [assembly: AssemblyCopyright("Copyright © 2016 OneOne solution co.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -21,7 +22,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5717f474-8978-4ab7-9563-23ba5ec23740")]
+[assembly: Guid("3df24647-2ae6-4f0c-8d8e-003c2e48ea2f")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,5 +34,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.3.6.28")]
-[assembly: AssemblyFileVersion("2.3.6.28")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]

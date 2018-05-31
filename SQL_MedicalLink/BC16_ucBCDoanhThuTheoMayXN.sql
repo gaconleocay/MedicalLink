@@ -91,7 +91,7 @@ GROUP BY SERV.ma_xn,SERV.ten_xn"+_tenmayxn_khacvisinh_groupby+",SERV.gia_bhyt,SE
 
 
 
-
+/*
 
 -- ngay 14/6 bo sung them cot acc tra ket qua va khoa tra kq (ap dung XN đã có KQ)
 --ngay 5/4/2018: them tieu chi: trang thai; doi tuong BN
@@ -165,21 +165,6 @@ group by idmayxn,tenmayxn
 order by tenmayxn
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---===theo ngay chi dinh va ngay tra ket qua  ngay 15/6/2017
 --fix nhan doi so luong do group by
 SELECT ROW_NUMBER() OVER (ORDER BY SERV.ten_xn) as stt,
@@ -240,7 +225,7 @@ FROM
 GROUP BY SERV.ma_xn, SERV.ten_xn, SERV.idmayxn, SERV.tenmayxn, SERV.gia_bhyt, SERV.gia_vp, SERV.gia_yc, SERV.gia_nnn, SERV.khoatra_kq
 
 
-
+*/
 
 
 

@@ -501,6 +501,12 @@
     <Compile Include="BCQLTaiChinh\frmBC105_NhapTongChi.Designer.cs">
       <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
     </Compile>
+    <Compile Include="BCQLTaiChinh\NhapThongTinPTTT\ucNhapThucHienPTTT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\NhapThongTinPTTT\ucNhapThucHienPTTT.Designer.cs">
+      <DependentUpon>ucNhapThucHienPTTT.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1389,6 +1395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\frmBC105_NhapTongChi.resx">
       <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\NhapThongTinPTTT\ucNhapThucHienPTTT.resx">
+      <DependentUpon>ucNhapThucHienPTTT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.resx">
       <DependentUpon>ucBC107_KhamBenhChiTiet.cs</DependentUpon>

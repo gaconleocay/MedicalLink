@@ -1,33 +1,15 @@
-----------------===========QL tong the khoa - DANG DIEU TRI
-/*SELECT count(vpm.*) as dangdt_slbn, 
-COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_khambenh_vp) as numeric),0),0) as dangdt_tienkb, 
-COALESCE(round(cast(sum(vpm.money_xetnghiem_bh + vpm.money_xetnghiem_vp) as numeric),0),0) as dangdt_tienxn, 
-COALESCE(round(cast(sum(vpm.money_cdha_bh + vpm.money_cdha_vp + vpm.money_tdcn_bh + vpm.money_tdcn_vp) as numeric),0),0) as dangdt_tiencdhatdcn, 
-COALESCE(round(cast(sum(vpm.money_pttt_bh + vpm.money_pttt_vp) as numeric),0),0) as dangdt_tienpttt, 
-COALESCE(round(cast(sum(vpm.money_dvktc_bh + vpm.money_dvktc_vp) as numeric),0),0) as dangdt_tiendvktc, 
-COALESCE(round(cast(sum(vpm.money_giuongthuong_bh + vpm.money_giuongthuong_vp) as numeric),0),0) as dangdt_tiengiuongthuong, 
-COALESCE(round(cast(sum(vpm.money_giuongyeucau_bh + vpm.money_giuongyeucau_vp) as numeric),0),0) as dangdt_tiengiuongyeucau, 
-COALESCE(round(cast(sum(vpm.money_khac_bh + vpm.money_khac_vp + vpm.money_phuthu_bh + vpm.money_phuthu_vp + vpm.money_vanchuyen_bh + vpm.money_vanchuyen_vp) as numeric),0),0) as dangdt_tienkhac, 
-COALESCE(round(cast(sum(vpm.money_vattu_bh + vpm.money_vattu_vp) as numeric),0),0) as dangdt_tienvattu, 
-COALESCE(round(cast(sum(vpm.money_mau_bh + vpm.money_mau_vp) as numeric),0),0) as dangdt_tienmau, 
-COALESCE(round(cast(sum(vpm.money_thuoc_bh + vpm.money_thuoc_vp) as numeric),0),0) as dangdt_tienthuoc, 
-COALESCE(round(cast(sum(vpm.money_khambenh_bh + vpm.money_xetnghiem_bh + vpm.money_cdha_bh + vpm.money_tdcn_bh + vpm.money_pttt_bh + vpm.money_dvktc_bh + vpm.money_giuongthuong_bh + vpm.money_giuongyeucau_bh + vpm.money_khac_bh + vpm.money_phuthu_bh + vpm.money_vanchuyen_bh + vpm.money_thuoc_bh + vpm.money_mau_bh + vpm.money_vattu_bh + vpm.money_khambenh_vp + vpm.money_xetnghiem_vp + vpm.money_cdha_vp + vpm.money_tdcn_vp + vpm.money_pttt_vp + vpm.money_dvktc_vp + vpm.money_giuongthuong_vp + vpm.money_giuongyeucau_vp + vpm.money_khac_vp + vpm.money_phuthu_vp + vpm.money_vanchuyen_vp + vpm.money_thuoc_vp + vpm.money_mau_vp + vpm.money_vattu_vp) as numeric),0),0) as dangdt_tongtien, 
-COALESCE(round(cast(sum(vpm.tam_ung) as numeric),0),0) as dangdt_tamung 
-FROM 
-	(select hosobenhanid, departmentid from medicalrecord where medicalrecordstatus in (0,2) 
-		and thoigianvaovien>='" + this.KhoangThoiGianLayDuLieu + "' " + lstdepartmentid_mrd + " group by hosobenhanid, departmentid) med
-	left join vienphi_money vpm on vpm.hosobenhanid=med.hosobenhanid
-WHERE vpm.vienphistatus=0 and vpm.vienphidate>='" + this.KhoangThoiGianLayDuLieu + "'
-*/
-
-
-
 
 ----BC Quan ly tong the khoa - DOANH THU KHOA + GÂY MÊ
 -- string sqlDoanhThu
---ngay 25/5/2018
---
+--ngay 29/5/2018: them hao phi XN, CDHA, khoa phong
 SELECT sum(A.doanhthu_slbn) as doanhthu_slbn, 
+	sum(B.doanhthuGM_slbn) as doanhthuGM_slbn, 
+	(select count(sl.*)
+		from (select vienphiid from ihs_servicespttt spt where spt.vienphistatus_vp=1 
+					and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + _thutienstatus+" 
+					and (spt.departmentid in ("+this.lstPhongChonLayBC+") or (spt.departmentid in (34,335,269,285) 
+					and spt.departmentgroup_huong in ("+this.lstKhoaChonLayBC+")))
+			group by spt.vienphiid) sl) as doanhthuTongGM_slbn,
 	round(cast(sum(COALESCE(A.doanhthu_tienkb,0)) as numeric),0) as doanhthu_tienkb, 
 	round(cast(sum(COALESCE(A.doanhthu_tienxn,0)) as numeric),0) as doanhthu_tienxn, 
 	round(cast(sum(COALESCE(A.doanhthu_tiencdhatdcn,0)) as numeric),0) as doanhthu_tiencdhatdcn, 
@@ -42,7 +24,6 @@ SELECT sum(A.doanhthu_slbn) as doanhthu_slbn,
 	round(cast(sum(COALESCE(A.doanhthu_tienmau,0)) as numeric),0) as doanhthu_tienmau, 
 	round(cast(sum(COALESCE(A.doanhthu_tienthuoc,0)) as numeric),0) as doanhthu_tienthuoc, 
 	round(cast(sum(COALESCE(A.doanhthu_tienkb,0) + COALESCE(A.doanhthu_tienxn,0) + COALESCE(A.doanhthu_tiencdhatdcn,0) + COALESCE(A.doanhthu_tienpttt,0) + COALESCE(A.doanhthu_tienptttyeucau,0) + COALESCE(A.doanhthu_tiendvktc,0) + COALESCE(A.doanhthu_tiengiuongthuong,0) + COALESCE(A.doanhthu_tiengiuongyeucau,0) + COALESCE(A.doanhthu_tienkhac,0) + COALESCE(A.doanhthu_tienvattu,0) + COALESCE(A.doanhthu_tienvattu_ttrieng,0) + COALESCE(A.doanhthu_tienmau,0) + COALESCE(A.doanhthu_tienthuoc,0)) as numeric),0) as doanhthu_tongtien,
-	sum(B.doanhthuGM_slbn) as doanhthuGM_slbn, 
 	round(cast(sum(COALESCE(B.doanhthu_tienkb,0)) as numeric),0) as doanhthuGM_tienkb, 
 	round(cast(sum(COALESCE(B.doanhthu_tienxn,0)) as numeric),0) as doanhthuGM_tienxn, 
 	round(cast(sum(COALESCE(B.doanhthu_tiencdhatdcn,0)) as numeric),0) as doanhthuGM_tiencdhatdcn, 
@@ -57,7 +38,6 @@ SELECT sum(A.doanhthu_slbn) as doanhthu_slbn,
 	round(cast(sum(COALESCE(B.doanhthu_tienmau,0)) as numeric),0) as doanhthuGM_tienmau, 
 	round(cast(sum(COALESCE(B.doanhthu_tienthuoc,0)) as numeric),0) as doanhthuGM_tienthuoc, 
 	round(cast(sum(COALESCE(B.doanhthu_tienkb,0) + COALESCE(B.doanhthu_tienxn,0) + COALESCE(B.doanhthu_tiencdhatdcn,0) + COALESCE(B.doanhthu_tienpttt,0) + COALESCE(B.doanhthu_tienptttyeucau,0) + COALESCE(B.doanhthu_tiendvktc,0) + COALESCE(B.doanhthu_tiengiuongthuong,0) + COALESCE(B.doanhthu_tiengiuongyeucau,0) + COALESCE(B.doanhthu_tienkhac,0) + COALESCE(B.doanhthu_tienvattu,0) + COALESCE(B.doanhthu_tienvattu_ttrieng,0) + COALESCE(B.doanhthu_tienmau,0) + COALESCE(B.doanhthu_tienthuoc ,0)) as numeric),0) as doanhthuGM_tongtien,
-	sum(COALESCE(A.doanhthu_slbn,0) + COALESCE(B.doanhthuGM_slbn,0)) as doanhthuTongGM_slbn, 
 	round(cast(sum(COALESCE(A.doanhthu_tienkb,0) + COALESCE(B.doanhthu_tienkb,0)) as numeric),0) as doanhthuTongGM_tienkb, 
 	round(cast(sum(COALESCE(A.doanhthu_tienxn,0) + COALESCE(B.doanhthu_tienxn,0)) as numeric),0) as doanhthuTongGM_tienxn, 
 	round(cast(sum(COALESCE(A.doanhthu_tiencdhatdcn,0) + COALESCE(B.doanhthu_tiencdhatdcn,0)) as numeric),0) as doanhthuTongGM_tiencdhatdcn, 
@@ -71,56 +51,172 @@ SELECT sum(A.doanhthu_slbn) as doanhthu_slbn,
 	round(cast(sum(COALESCE(A.doanhthu_tienvattu_ttrieng,0) + COALESCE(B.doanhthu_tienvattu_ttrieng,0)) as numeric),0) as doanhthuTongGM_tienvattu_ttrieng,
 	round(cast(sum(COALESCE(A.doanhthu_tienmau,0) + COALESCE(B.doanhthu_tienmau,0)) as numeric),0) as doanhthuTongGM_tienmau, 
 	round(cast(sum(COALESCE(A.doanhthu_tienthuoc,0) + COALESCE(B.doanhthu_tienthuoc,0)) as numeric),0) as doanhthuTongGM_tienthuoc, 
-	round(cast(sum(COALESCE(A.doanhthu_tienkb,0) + COALESCE(A.doanhthu_tienxn,0) + COALESCE(A.doanhthu_tiencdhatdcn,0) + COALESCE(A.doanhthu_tienpttt,0) + COALESCE(A.doanhthu_tienptttyeucau,0) + COALESCE(A.doanhthu_tiendvktc,0) + COALESCE(A.doanhthu_tiengiuongthuong,0) + COALESCE(A.doanhthu_tiengiuongyeucau,0) + COALESCE(A.doanhthu_tienkhac,0) + COALESCE(A.doanhthu_tienvattu,0) + COALESCE(A.doanhthu_tienmau,0) + COALESCE(A.doanhthu_tienthuoc,0) + COALESCE(B.doanhthu_tienkb,0) + COALESCE(B.doanhthu_tienxn,0) + COALESCE(B.doanhthu_tiencdhatdcn,0) + COALESCE(B.doanhthu_tienpttt,0) + COALESCE(B.doanhthu_tienptttyeucau,0) + COALESCE(B.doanhthu_tiendvktc,0) + COALESCE(B.doanhthu_tiengiuongthuong,0) + COALESCE(B.doanhthu_tiengiuongyeucau,0) + COALESCE(B.doanhthu_tienkhac,0) + COALESCE(B.doanhthu_tienvattu,0) + COALESCE(B.doanhthu_tienmau,0) + COALESCE(B.doanhthu_tienthuoc,0) + COALESCE(A.doanhthu_tienvattu_ttrieng,0) + COALESCE(B.doanhthu_tienvattu_ttrieng,0)) as numeric),0) as doanhthuTongGM_tongtien
+	round(cast(sum(COALESCE(A.doanhthu_tienkb,0) + COALESCE(A.doanhthu_tienxn,0) + COALESCE(A.doanhthu_tiencdhatdcn,0) + COALESCE(A.doanhthu_tienpttt,0) + COALESCE(A.doanhthu_tienptttyeucau,0) + COALESCE(A.doanhthu_tiendvktc,0) + COALESCE(A.doanhthu_tiengiuongthuong,0) + COALESCE(A.doanhthu_tiengiuongyeucau,0) + COALESCE(A.doanhthu_tienkhac,0) + COALESCE(A.doanhthu_tienvattu,0) + COALESCE(A.doanhthu_tienmau,0) + COALESCE(A.doanhthu_tienthuoc,0) + COALESCE(B.doanhthu_tienkb,0) + COALESCE(B.doanhthu_tienxn,0) + COALESCE(B.doanhthu_tiencdhatdcn,0) + COALESCE(B.doanhthu_tienpttt,0) + COALESCE(B.doanhthu_tienptttyeucau,0) + COALESCE(B.doanhthu_tiendvktc,0) + COALESCE(B.doanhthu_tiengiuongthuong,0) + COALESCE(B.doanhthu_tiengiuongyeucau,0) + COALESCE(B.doanhthu_tienkhac,0) + COALESCE(B.doanhthu_tienvattu,0) + COALESCE(B.doanhthu_tienmau,0) + COALESCE(B.doanhthu_tienthuoc,0) + COALESCE(A.doanhthu_tienvattu_ttrieng,0) + COALESCE(B.doanhthu_tienvattu_ttrieng,0)) as numeric),0) as doanhthuTongGM_tongtien,
+	round(cast(sum(COALESCE(CP_XN.chiphixn,0)) as numeric),0) as doanhthu_chiphixn, 
+	round(cast(sum(COALESCE(CP_CDHA.chiphicdha,0)) as numeric),0) as doanhthu_chiphicdha, 
+	round(cast(sum(COALESCE(CP_KHOA.chiphikhoa,0)) as numeric),0) as doanhthu_chiphikhoa
 FROM 
 	(select 
-			spt.departmentgroupid,
-			count(spt.*) as doanhthu_slbn,
-			sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as doanhthu_tienkb, 
-			sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as doanhthu_tienxn, 
-			sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as doanhthu_tiencdhatdcn, 
-			sum(spt.money_pttt_bh + spt.money_pttt_vp) as doanhthu_tienpttt,
-			sum(spt.money_ptttyeucau_bh + spt.money_ptttyeucau_vp) as doanhthu_tienptttyeucau, 
-			sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as doanhthu_tiendvktc, 
-			sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as doanhthu_tiengiuongthuong, 
-			sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as doanhthu_tiengiuongyeucau, 
-			sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as doanhthu_tienkhac, 
-			sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as doanhthu_tienvattu, 
-			sum(spt.money_vattu_ttrieng_bh + spt.money_vattu_ttrieng_vp) as doanhthu_tienvattu_ttrieng,
-			sum(spt.money_mau_bh + spt.money_mau_vp) as doanhthu_tienmau, 
-			sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc 
-	from ihs_servicespttt spt 
-	where spt.vienphistatus_vp=1 
-		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstdepartmentid_tt + _thutienstatus+" 
-	group by spt.departmentgroupid) A 
+			spt1.departmentgroupid,
+			count(spt1.*) as doanhthu_slbn,
+			sum(spt1.doanhthu_tienkb) as doanhthu_tienkb, 
+			sum(spt1.doanhthu_tienxn) as doanhthu_tienxn, 
+			sum(spt1.doanhthu_tiencdhatdcn) as doanhthu_tiencdhatdcn,
+			sum(spt1.doanhthu_tienpttt) as doanhthu_tienpttt,
+			sum(spt1.doanhthu_tienptttyeucau) as doanhthu_tienptttyeucau, 
+			sum(spt1.doanhthu_tiendvktc) as doanhthu_tiendvktc, 
+			sum(spt1.doanhthu_tiengiuongthuong) as doanhthu_tiengiuongthuong, 
+			sum(spt1.doanhthu_tiengiuongyeucau) as doanhthu_tiengiuongyeucau, 
+			sum(spt1.doanhthu_tienkhac) as doanhthu_tienkhac, 
+			sum(spt1.doanhthu_tienvattu) as doanhthu_tienvattu, 
+			sum(spt1.doanhthu_tienvattu_ttrieng) as doanhthu_tienvattu_ttrieng,
+			sum(spt1.doanhthu_tienmau) as doanhthu_tienmau, 
+			sum(spt1.doanhthu_tienthuoc) as doanhthu_tienthuoc 
+	from (select 
+				spt.departmentgroupid,spt.vienphiid,
+				sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as doanhthu_tienkb, 
+				sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as doanhthu_tienxn, 
+				sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as doanhthu_tiencdhatdcn, 
+				sum(spt.money_pttt_bh + spt.money_pttt_vp) as doanhthu_tienpttt,
+				sum(spt.money_ptttyeucau_bh + spt.money_ptttyeucau_vp) as doanhthu_tienptttyeucau, 
+				sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as doanhthu_tiendvktc, 
+				sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as doanhthu_tiengiuongthuong, 
+				sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as doanhthu_tiengiuongyeucau, 
+				sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as doanhthu_tienkhac, 
+				sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as doanhthu_tienvattu, 
+				sum(spt.money_vattu_ttrieng_bh + spt.money_vattu_ttrieng_vp) as doanhthu_tienvattu_ttrieng,
+				sum(spt.money_mau_bh + spt.money_mau_vp) as doanhthu_tienmau, 
+				sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc 
+			from ihs_servicespttt spt 
+			where spt.vienphistatus_vp=1 
+				and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstdepartmentid_tt + _thutienstatus+" 
+			group by spt.departmentgroupid,spt.vienphiid) spt1
+	group by spt1.departmentgroupid) A 
 LEFT JOIN 	
-	(select 
-			spt.departmentgroup_huong,
-			count(spt.*) as doanhthuGM_slbn,
-			sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as doanhthu_tienkb, 
-			sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as doanhthu_tienxn, 
-			sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as doanhthu_tiencdhatdcn, 
-			sum(spt.money_pttt_bh + spt.money_pttt_vp) as doanhthu_tienpttt, 
-			sum(spt.money_ptttyeucau_bh + spt.money_ptttyeucau_vp) as doanhthu_tienptttyeucau,
-			sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as doanhthu_tiendvktc, 
-			sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as doanhthu_tiengiuongthuong, 
-			sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as doanhthu_tiengiuongyeucau, 
-			sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as doanhthu_tienkhac, 
-			sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as doanhthu_tienvattu, 
-			sum(spt.money_vattu_ttrieng_bh + spt.money_vattu_ttrieng_vp) as doanhthu_tienvattu_ttrieng,
-			sum(spt.money_mau_bh + spt.money_mau_vp) as doanhthu_tienmau, 
-			sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc 
-	from ihs_servicespttt spt 
-	where spt.vienphistatus_vp=1 
-		and spt.departmentid in (34,335,269,285)
-		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' "+_thutienstatus+"
-	group by spt.departmentgroup_huong) B ON A.departmentgroupid=B.departmentgroup_huong
-; 
+	(select spt1.departmentgroup_huong,
+			count(spt1.*) as doanhthuGM_slbn,
+			sum(spt1.doanhthu_tienkb) as doanhthu_tienkb, 
+			sum(spt1.doanhthu_tienxn) as doanhthu_tienxn, 
+			sum(spt1.doanhthu_tiencdhatdcn) as doanhthu_tiencdhatdcn, 
+			sum(spt1.doanhthu_tienpttt) as doanhthu_tienpttt, 
+			sum(spt1.doanhthu_tienptttyeucau) as doanhthu_tienptttyeucau,
+			sum(spt1.doanhthu_tiendvktc) as doanhthu_tiendvktc, 
+			sum(spt1.doanhthu_tiengiuongthuong) as doanhthu_tiengiuongthuong, 
+			sum(spt1.doanhthu_tiengiuongyeucau) as doanhthu_tiengiuongyeucau, 
+			sum(spt1.doanhthu_tienkhac) as doanhthu_tienkhac, 
+			sum(spt1.doanhthu_tienvattu) as doanhthu_tienvattu, 
+			sum(spt1.doanhthu_tienvattu_ttrieng) as doanhthu_tienvattu_ttrieng,
+			sum(spt1.doanhthu_tienmau) as doanhthu_tienmau, 
+			sum(spt1.doanhthu_tienthuoc) as doanhthu_tienthuoc
+	from (select 
+					spt.departmentgroup_huong,
+					1 as doanhthuGM_slbn,
+					sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as doanhthu_tienkb, 
+					sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as doanhthu_tienxn, 
+					sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as doanhthu_tiencdhatdcn, 
+					sum(spt.money_pttt_bh + spt.money_pttt_vp) as doanhthu_tienpttt, 
+					sum(spt.money_ptttyeucau_bh + spt.money_ptttyeucau_vp) as doanhthu_tienptttyeucau,
+					sum(spt.money_dvktc_bh + spt.money_dvktc_vp) as doanhthu_tiendvktc, 
+					sum(spt.money_giuongthuong_bh + spt.money_giuongthuong_vp) as doanhthu_tiengiuongthuong, 
+					sum(spt.money_giuongyeucau_bh + spt.money_giuongyeucau_vp) as doanhthu_tiengiuongyeucau, 
+					sum(spt.money_nuocsoi_bh + spt.money_nuocsoi_vp + spt.money_xuatan_bh + spt.money_xuatan_vp + spt.money_diennuoc_bh + spt.money_diennuoc_vp + spt.money_vanchuyen_bh + spt.money_vanchuyen_vp + spt.money_khac_bh + spt.money_khac_vp + spt.money_phuthu_bh + spt.money_phuthu_vp) as doanhthu_tienkhac, 
+					sum(spt.money_vattu_bh + spt.money_vattu_vp + spt.money_vtthaythe_bh + spt.money_vtthaythe_vp) as doanhthu_tienvattu, 
+					sum(spt.money_vattu_ttrieng_bh + spt.money_vattu_ttrieng_vp) as doanhthu_tienvattu_ttrieng,
+					sum(spt.money_mau_bh + spt.money_mau_vp) as doanhthu_tienmau, 
+					sum(spt.money_thuoc_bh + spt.money_thuoc_vp + spt.money_dkpttt_thuoc_bh + spt.money_dkpttt_thuoc_vp + spt.money_dkpttt_vattu_bh + spt.money_dkpttt_vattu_vp) as doanhthu_tienthuoc 
+			from ihs_servicespttt spt 
+			where spt.vienphistatus_vp=1 
+				and spt.departmentid in (34,335,269,285)
+				and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' "+_thutienstatus+"
+			group by spt.departmentgroup_huong,spt.vienphiid) spt1	
+	group by spt1.departmentgroup_huong) B ON A.departmentgroupid=B.departmentgroup_huong
+--chi phi Xet nghiem
+	LEFT JOIN	
+		(SELECT XN.departmentgroupid,
+			sum(XN.chiphixn) as chiphixn
+		FROM 
+				(SELECT 
+					SERV.departmentgroupid,
+					sum(SERV.soluong*chiphi.chiphixn) as chiphixn
+				FROM
+					(select  
+						ser.servicepriceid,
+						ser.servicepricecode, 
+						ser.soluong,		
+						se.idmayxn,
+						ser.departmentgroupid
+					from (select vp.vienphiid from vienphi vp where vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "') vp
+						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode='03XN' and departmentid in (" + this.lstPhongChonLayBC + ")) ser on ser.vienphiid=vp.vienphiid
+						left join (select s.idmayxn,servicepriceid from service s where coalesce(s.idmayxn,0)>0 and s.servicedate>'2017-05-01 00:00:00') se on se.servicepriceid=ser.servicepriceid
+					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,se.idmayxn,ser.departmentgroupid) SERV
+				LEFT JOIN (SELECT *
+							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
+							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
+				GROUP BY SERV.departmentgroupid
+		UNION ALL
+		SELECT 
+					SERV.departmentgroupid,
+					sum(SERV.soluong*chiphi.chiphixn) as chiphixn
+				FROM
+				(select  
+						ser.servicepriceid,
+						ser.servicepricecode, 
+						ser.soluong,		
+						ser.departmentgroupid
+					from (select vp.vienphiid from vienphi vp where vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "') vp
+						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid,maubenhphamid from serviceprice where bhyt_groupcode='03XN' and departmentid in (" + this.lstPhongChonLayBC + ")) ser on ser.vienphiid=vp.vienphiid
+						inner join (select maubenhphamid from maubenhpham where maubenhphamgrouptype=0 and departmentid_des=253 and maubenhphamdate>'2018-01-01 00:00:00' and departmentid in (" + this.lstPhongChonLayBC + ")) mbp on mbp.maubenhphamid=ser.maubenhphamid
+					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,ser.departmentgroupid) SERV
+				LEFT JOIN (SELECT *
+							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
+							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode
+				GROUP BY SERV.departmentgroupid) XN
+		GROUP BY XN.departmentgroupid) CP_XN on CP_XN.departmentgroupid=A.departmentgroupid
+--Chi phi CDHA 
+	LEFT JOIN
+		(SELECT A.departmentgroupid,
+				sum(coalesce(A.thuoc_tronggoi,0)+coalesce(A.vattu_tronggoi,0)+coalesce(A.chiphikhac,0)+(A.chiphibs * (A.tyle/100))) as chiphicdha
+		FROM 
+			(SELECT ser.departmentgroupid,vp.vienphiid,ser.servicepriceid,
+				(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle,
+				(select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan*ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong=2 and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) as thuoc_tronggoi, 
+				(select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan*ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong=2 and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) as vattu_tronggoi, 
+				(((ser.chiphidauvao + ser.chiphimaymoc + ser.chiphipttt) + COALESCE((case when ser.mayytedbid<>0 then (select myt.chiphiliendoanh from mayyte myt where myt.mayytedbid=ser.mayytedbid) else 0 end),0))* ser.soluong) as chiphikhac,
+				((case serf.pttt_loaiid 
+								when 1 then 1201000 
+								when 2 then 572000 
+								when 3 then 243000 
+								when 4 then 149000 
+								when 5 then 185000 
+								when 6 then 70500 
+								when 7 then 35500 
+								when 8 then 27500 
+								else 0 end) * ser.soluong) as chiphibs
+			FROM (select vp.vienphiid from vienphi vp where vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "') vp		
+				inner join (select vienphiid,departmentgroupid,servicepriceid,servicepricecode,loaidoituong,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN') and departmentid in (" + this.lstPhongChonLayBC + ")) ser on ser.vienphiid=vp.vienphiid
+				inner join (select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('04CDHA','05TDCN')) serf on serf.servicepricecode=ser.servicepricecode) A
+		GROUP BY A.departmentgroupid) CP_CDHA on CP_CDHA.departmentgroupid=A.departmentgroupid
+--Chi phi khoa/phong
+LEFT JOIN 
+	(select departmentgroupid,sum(medicinestorebilltotalmoney) as chiphikhoa
+		from medicine_store_bill
+		where medicinestorebilltype=202 and medicinestorebillstatus=2 and isremove=0 and bill_mode=4
+		and ngaysudungthuoc between '" + thoiGianTu + "' and '" + thoiGianDen + "' and departmentid in (" + this.lstPhongChonLayBC + ")
+		group by departmentgroupid
+		) CP_KHOA on CP_KHOA.departmentgroupid=A.departmentgroupid;
+	
+	
+	
+	
+	
 	
 -------RA VIEN DA THANH TOAN ngay 25/5/2018
 --string sqlBaoCao_RaVienDaTT =
+--ngay 30/5/2018: them hao phi XN, CDHA, khoa
 
-SELECT count(A.*) as raviendatt_slbn, 
+
+SELECT 
+	(select count(vp.*) from vienphi vp where vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "' and departmentid in (" + this.lstPhongChonLayBC + ")) as raviendatt_slbn,
 	round(cast(sum(COALESCE(A.raviendatt_tienkb,0)) as numeric),0) as raviendatt_tienkb, 
 	round(cast(sum(COALESCE(A.raviendatt_tienxn,0)) as numeric),0) as raviendatt_tienxn, 
 	round(cast(sum(COALESCE(A.raviendatt_tiencdhatdcn,0)) as numeric),0) as raviendatt_tiencdhatdcn, 
@@ -134,10 +230,13 @@ SELECT count(A.*) as raviendatt_slbn,
 	round(cast(sum(COALESCE(A.raviendatt_tienvattu_ttrieng,0)) as numeric),0) as raviendatt_tienvattu_ttrieng, 
 	round(cast(sum(COALESCE(A.raviendatt_tienmau,0)) as numeric),0) as raviendatt_tienmau, 
 	round(cast(sum(COALESCE(A.raviendatt_tienthuoc,0)) as numeric),0) as raviendatt_tienthuoc, 
-	round(cast(sum(COALESCE(A.raviendatt_tienkb,0) + COALESCE(A.raviendatt_tienxn,0) + COALESCE(A.raviendatt_tiencdhatdcn,0) + COALESCE(A.raviendatt_tienpttt,0) + COALESCE(A.raviendatt_tiendvktc,0) + COALESCE(A.raviendatt_tiengiuongthuong,0) + COALESCE(A.raviendatt_tiengiuongyeucau,0) + COALESCE(A.raviendatt_tienkhac,0) + COALESCE(A.raviendatt_tienvattu,0) + COALESCE(A.raviendatt_tienmau,0) + COALESCE(A.raviendatt_tienthuoc,0) + COALESCE(A.raviendatt_tienptttyeucau,0) + COALESCE(A.raviendatt_tienvattu_ttrieng,0)) as numeric),0) as raviendatt_tongtien
+	round(cast(sum(COALESCE(A.raviendatt_tienkb,0) + COALESCE(A.raviendatt_tienxn,0) + COALESCE(A.raviendatt_tiencdhatdcn,0) + COALESCE(A.raviendatt_tienpttt,0) + COALESCE(A.raviendatt_tiendvktc,0) + COALESCE(A.raviendatt_tiengiuongthuong,0) + COALESCE(A.raviendatt_tiengiuongyeucau,0) + COALESCE(A.raviendatt_tienkhac,0) + COALESCE(A.raviendatt_tienvattu,0) + COALESCE(A.raviendatt_tienmau,0) + COALESCE(A.raviendatt_tienthuoc,0) + COALESCE(A.raviendatt_tienptttyeucau,0) + COALESCE(A.raviendatt_tienvattu_ttrieng,0)) as numeric),0) as raviendatt_tongtien,
+	round(cast(sum(COALESCE(CP_XN.chiphixn,0)) as numeric),0) as raviendatt_chiphixn, 
+	round(cast(sum(COALESCE(CP_CDHA.chiphicdha,0)) as numeric),0) as raviendatt_chiphicdha, 
+	round(cast(sum(COALESCE(CP_KHOA.chiphikhoa,0)) as numeric),0) as raviendatt_chiphikhoa
 FROM 	
 	(select 
-			spt.vienphiid,
+			spt.khoaravien,
 			sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as raviendatt_tienkb, 
 			sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as raviendatt_tienxn, 
 			sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as raviendatt_tiencdhatdcn, 
@@ -154,7 +253,83 @@ FROM
 	from ihs_servicespttt spt 
 	where spt.vienphistatus_vp=1 	
 		and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + lstphongravien + _thutienstatus+" 
-	group by spt.vienphiid) A;
+	group by spt.khoaravien) A
+--chi phi Xet nghiem
+	LEFT JOIN	
+		(SELECT XN.departmentgroupid,
+			sum(XN.chiphixn) as chiphixn
+		FROM 
+				(SELECT 
+					SERV.departmentgroupid,
+					sum(SERV.soluong*chiphi.chiphixn) as chiphixn
+				FROM
+					(select  
+						ser.servicepriceid,
+						ser.servicepricecode, 
+						ser.soluong,		
+						se.idmayxn,
+						vp.departmentgroupid
+					from (select vp.vienphiid,vp.departmentgroupid from vienphi vp where vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' and departmentid in (" + this.lstPhongChonLayBC + ")) vp
+						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode='03XN') ser on ser.vienphiid=vp.vienphiid
+						left join (select s.idmayxn,servicepriceid from service s where coalesce(s.idmayxn,0)>0 and s.servicedate>'2017-05-01 00:00:00') se on se.servicepriceid=ser.servicepriceid
+					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,se.idmayxn,vp.departmentgroupid) SERV
+				LEFT JOIN (SELECT *
+							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
+							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
+				GROUP BY SERV.departmentgroupid
+		UNION ALL
+		SELECT 
+					SERV.departmentgroupid,
+					sum(SERV.soluong*chiphi.chiphixn) as chiphixn
+				FROM
+				(select  
+						ser.servicepriceid,
+						ser.servicepricecode, 
+						ser.soluong,		
+						vp.departmentgroupid
+					from (select vp.vienphiid,vp.departmentgroupid from vienphi vp where vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "' and departmentid in (" + this.lstPhongChonLayBC + ")) vp
+						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid,maubenhphamid from serviceprice where bhyt_groupcode='03XN') ser on ser.vienphiid=vp.vienphiid
+						inner join (select maubenhphamid from maubenhpham where maubenhphamgrouptype=0 and departmentid_des=253 and maubenhphamdate>'2018-01-01 00:00:00') mbp on mbp.maubenhphamid=ser.maubenhphamid
+					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,vp.departmentgroupid) SERV
+				LEFT JOIN (SELECT *
+							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
+							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode
+				GROUP BY SERV.departmentgroupid) XN
+		GROUP BY XN.departmentgroupid) CP_XN on CP_XN.departmentgroupid=A.khoaravien
+--Chi phi CDHA 
+	LEFT JOIN
+		(SELECT A.departmentgroupid,
+				sum(coalesce(A.thuoc_tronggoi,0)+coalesce(A.vattu_tronggoi,0)+coalesce(A.chiphikhac,0)+(A.chiphibs * (A.tyle/100))) as chiphicdha
+		FROM 
+			(SELECT vp.departmentgroupid,vp.vienphiid,ser.servicepriceid,
+				(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle,
+				(select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan*ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong=2 and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) as thuoc_tronggoi, 
+				(select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan*ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong=2 and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) as vattu_tronggoi, 
+				(((ser.chiphidauvao + ser.chiphimaymoc + ser.chiphipttt) + COALESCE((case when ser.mayytedbid<>0 then (select myt.chiphiliendoanh from mayyte myt where myt.mayytedbid=ser.mayytedbid) else 0 end),0))* ser.soluong) as chiphikhac,
+				((case serf.pttt_loaiid 
+								when 1 then 1201000 
+								when 2 then 572000 
+								when 3 then 243000 
+								when 4 then 149000 
+								when 5 then 185000 
+								when 6 then 70500 
+								when 7 then 35500 
+								when 8 then 27500 
+								else 0 end) * ser.soluong) as chiphibs
+			FROM (select vp.vienphiid,vp.departmentgroupid from vienphi vp where vp.vienphistatus_vp=1 and vp.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "' and departmentid in (" + this.lstPhongChonLayBC + ")) vp		
+				inner join (select vienphiid,departmentgroupid,servicepriceid,servicepricecode,loaidoituong,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN')) ser on ser.vienphiid=vp.vienphiid
+				inner join (select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('04CDHA','05TDCN')) serf on serf.servicepricecode=ser.servicepricecode) A
+		GROUP BY A.departmentgroupid) CP_CDHA on CP_CDHA.departmentgroupid=A.khoaravien
+--Chi phi khoa/phong
+LEFT JOIN 
+	(select departmentgroupid,sum(medicinestorebilltotalmoney) as chiphikhoa
+		from medicine_store_bill
+		where medicinestorebilltype=202 and medicinestorebillstatus=2 and isremove=0 and bill_mode=4
+		and ngaysudungthuoc between '" + thoiGianTu + "' and '" + thoiGianDen + "' and departmentid in (" + this.lstPhongChonLayBC + ")
+	group by departmentgroupid
+		) CP_KHOA on CP_KHOA.departmentgroupid=A.khoaravien;
+
+
 
 
 

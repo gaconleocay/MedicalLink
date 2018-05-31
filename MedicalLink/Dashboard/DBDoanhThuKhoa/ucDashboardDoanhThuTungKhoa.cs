@@ -89,11 +89,8 @@ namespace MedicalLink.Dashboard
                 dataRow_1.BNDangDT_stt = 1;
                 dataRow_1.BNDangDT_name = "SL bệnh nhân hiện diện";
                 dataRow_1.BNDangDT_value = "0";
-                dataRow_1.BNDangDT_unit = "";
-                dataRow_1.RaVienChuaTT_stt = 1;
                 dataRow_1.RaVienChuaTT_name = "Số lượng";
                 dataRow_1.RaVienChuaTT_value = "0";
-                dataRow_1.RaVienChuaTT_unit = "";
                 dataRow_1.DaTT_value = "0";
                 dataRow_1.DoanhThu_value = "0";
 
@@ -101,11 +98,8 @@ namespace MedicalLink.Dashboard
                 dataRow_2.BNDangDT_stt = 2;
                 dataRow_2.BNDangDT_name = "SL bệnh nhân chuyển đi";
                 dataRow_2.BNDangDT_value = "0";
-                dataRow_2.BNDangDT_unit = "";
-                dataRow_2.RaVienChuaTT_stt = 2;
                 dataRow_2.RaVienChuaTT_name = "Tổng doanh thu";
                 dataRow_2.RaVienChuaTT_value = "0";
-                dataRow_2.RaVienChuaTT_unit = "";
                 dataRow_2.DaTT_value = "0";
                 dataRow_2.DoanhThu_value = "0";
 
@@ -113,11 +107,8 @@ namespace MedicalLink.Dashboard
                 dataRow_3.BNDangDT_stt = 3;
                 dataRow_3.BNDangDT_name = "SL bệnh nhân chuyển đến";
                 dataRow_3.BNDangDT_value = "0";
-                dataRow_3.BNDangDT_unit = "";
-                dataRow_3.RaVienChuaTT_stt = 3;
                 dataRow_3.RaVienChuaTT_name = "Khám bệnh";
                 dataRow_3.RaVienChuaTT_value = "0";
-                dataRow_3.RaVienChuaTT_unit = "";
                 dataRow_3.DaTT_value = "0";
                 dataRow_3.DoanhThu_value = "0";
 
@@ -125,11 +116,8 @@ namespace MedicalLink.Dashboard
                 dataRow_4.BNDangDT_stt = 4;
                 dataRow_4.BNDangDT_name = "SL bệnh nhân ra viện";
                 dataRow_4.BNDangDT_value = "0";
-                dataRow_4.BNDangDT_unit = "";
-                dataRow_4.RaVienChuaTT_stt = 4;
                 dataRow_4.RaVienChuaTT_name = "Xét nghiệm";
                 dataRow_4.RaVienChuaTT_value = "0";
-                dataRow_4.RaVienChuaTT_unit = "";
                 dataRow_4.DaTT_value = "0";
                 dataRow_4.DoanhThu_value = "0";
 
@@ -137,11 +125,8 @@ namespace MedicalLink.Dashboard
                 dataRow_5.BNDangDT_stt = 5;
                 dataRow_5.BNDangDT_name = "Tổng tiền";
                 dataRow_5.BNDangDT_value = "0";
-                dataRow_5.BNDangDT_unit = "";
-                dataRow_5.RaVienChuaTT_stt = 5;
                 dataRow_5.RaVienChuaTT_name = "CĐHA-TDCN";
                 dataRow_5.RaVienChuaTT_value = "0";
-                dataRow_5.RaVienChuaTT_unit = "";
                 dataRow_5.DaTT_value = "0";
                 dataRow_5.DoanhThu_value = "0";
 
@@ -149,11 +134,8 @@ namespace MedicalLink.Dashboard
                 dataRow_6.BNDangDT_stt = 6;
                 dataRow_6.BNDangDT_name = "Khám bệnh";
                 dataRow_6.BNDangDT_value = "0";
-                dataRow_6.BNDangDT_unit = "";
-                dataRow_6.RaVienChuaTT_stt = 6;
                 dataRow_6.RaVienChuaTT_name = "PTTT";
                 dataRow_6.RaVienChuaTT_value = "0";
-                dataRow_6.RaVienChuaTT_unit = "";
                 dataRow_6.DaTT_value = "0";
                 dataRow_6.DoanhThu_value = "0";
 
@@ -161,11 +143,8 @@ namespace MedicalLink.Dashboard
                 dataRow_7.BNDangDT_stt = 7;
                 dataRow_7.BNDangDT_name = "Xét nghiệm";
                 dataRow_7.BNDangDT_value = "0";
-                dataRow_7.BNDangDT_unit = "";
-                dataRow_7.RaVienChuaTT_stt = 7;
                 dataRow_7.RaVienChuaTT_name = "DV KTC";
                 dataRow_7.RaVienChuaTT_value = "0";
-                dataRow_7.RaVienChuaTT_unit = "";
                 dataRow_7.DaTT_value = "0";
                 dataRow_7.DoanhThu_value = "0";
 
@@ -173,11 +152,8 @@ namespace MedicalLink.Dashboard
                 dataRow_8.BNDangDT_stt = 8;
                 dataRow_8.BNDangDT_name = "CĐHA-TDCN";
                 dataRow_8.BNDangDT_value = "0";
-                dataRow_8.BNDangDT_unit = "";
-                dataRow_8.RaVienChuaTT_stt = 8;
                 dataRow_8.RaVienChuaTT_name = "Giường thường";
                 dataRow_8.RaVienChuaTT_value = "0";
-                dataRow_8.RaVienChuaTT_unit = "";
                 dataRow_8.DaTT_value = "0";
                 dataRow_8.DoanhThu_value = "0";
 
@@ -185,11 +161,8 @@ namespace MedicalLink.Dashboard
                 dataRow_9.BNDangDT_stt = 9;
                 dataRow_9.BNDangDT_name = "PTTT";
                 dataRow_9.BNDangDT_value = "0";
-                dataRow_9.BNDangDT_unit = "";
-                dataRow_9.RaVienChuaTT_stt = 9;
                 dataRow_9.RaVienChuaTT_name = "Giường yêu cầu";
                 dataRow_9.RaVienChuaTT_value = "0";
-                dataRow_9.RaVienChuaTT_unit = "";
                 dataRow_9.DaTT_value = "0";
                 dataRow_9.DoanhThu_value = "0";
 
@@ -197,11 +170,8 @@ namespace MedicalLink.Dashboard
                 dataRow_10.BNDangDT_stt = 10;
                 dataRow_10.BNDangDT_name = "DV KTC";
                 dataRow_10.BNDangDT_value = "0";
-                dataRow_10.BNDangDT_unit = "";
-                dataRow_10.RaVienChuaTT_stt = 10;
                 dataRow_10.RaVienChuaTT_name = "DV khác";
                 dataRow_10.RaVienChuaTT_value = "0";
-                dataRow_10.RaVienChuaTT_unit = "";
                 dataRow_10.DaTT_value = "0";
                 dataRow_10.DoanhThu_value = "0";
 
@@ -209,11 +179,8 @@ namespace MedicalLink.Dashboard
                 dataRow_11.BNDangDT_stt = 11;
                 dataRow_11.BNDangDT_name = "Giường thường";
                 dataRow_11.BNDangDT_value = "0";
-                dataRow_11.BNDangDT_unit = "";
-                dataRow_11.RaVienChuaTT_stt = 11;
                 dataRow_11.RaVienChuaTT_name = "Máu, chế phẩm";
                 dataRow_11.RaVienChuaTT_value = "0";
-                dataRow_11.RaVienChuaTT_unit = "";
                 dataRow_11.DaTT_value = "0";
                 dataRow_11.DoanhThu_value = "0";
 
@@ -221,11 +188,8 @@ namespace MedicalLink.Dashboard
                 dataRow_12.BNDangDT_stt = 12;
                 dataRow_12.BNDangDT_name = "Giường yêu cầu";
                 dataRow_12.BNDangDT_value = "0";
-                dataRow_12.BNDangDT_unit = "";
-                dataRow_12.RaVienChuaTT_stt = 12;
                 dataRow_12.RaVienChuaTT_name = "Vật tư";
                 dataRow_12.RaVienChuaTT_value = "0";
-                dataRow_12.RaVienChuaTT_unit = "";
                 dataRow_12.DaTT_value = "0";
                 dataRow_12.DoanhThu_value = "0";
 
@@ -233,11 +197,8 @@ namespace MedicalLink.Dashboard
                 dataRow_13.BNDangDT_stt = 13;
                 dataRow_13.BNDangDT_name = "DV khác";
                 dataRow_13.BNDangDT_value = "0";
-                dataRow_13.BNDangDT_unit = "";
-                dataRow_13.RaVienChuaTT_stt = 13;
                 dataRow_13.RaVienChuaTT_name = "Thuốc";
                 dataRow_13.RaVienChuaTT_value = "0";
-                dataRow_13.RaVienChuaTT_unit = "";
                 dataRow_13.DaTT_value = "0";
                 dataRow_13.DoanhThu_value = "0";
 
@@ -245,11 +206,8 @@ namespace MedicalLink.Dashboard
                 dataRow_14.BNDangDT_stt = 14;
                 dataRow_14.BNDangDT_name = "Máu, chế phẩm";
                 dataRow_14.BNDangDT_value = "0";
-                dataRow_14.BNDangDT_unit = "";
-                dataRow_14.RaVienChuaTT_stt = 14;
                 dataRow_14.RaVienChuaTT_name = "Tỷ lệ thuốc";
                 dataRow_14.RaVienChuaTT_value = "0";
-                dataRow_14.RaVienChuaTT_unit = "";
                 dataRow_14.DaTT_value = "0";
                 dataRow_14.DoanhThu_value = "0";
 
@@ -257,25 +215,21 @@ namespace MedicalLink.Dashboard
                 dataRow_15.BNDangDT_stt = 15;
                 dataRow_15.BNDangDT_name = "Vật tư";
                 dataRow_15.BNDangDT_value = "0";
-                dataRow_15.BNDangDT_unit = "";
 
                 BCDashboardQLTongTheKhoa dataRow_16 = new BCDashboardQLTongTheKhoa();
                 dataRow_16.BNDangDT_stt = 16;
                 dataRow_16.BNDangDT_name = "Thuốc";
                 dataRow_16.BNDangDT_value = "0";
-                dataRow_16.BNDangDT_unit = "";
 
                 BCDashboardQLTongTheKhoa dataRow_17 = new BCDashboardQLTongTheKhoa();
                 dataRow_17.BNDangDT_stt = 17;
                 dataRow_17.BNDangDT_name = "Tỷ lệ thuốc";
                 dataRow_17.BNDangDT_value = "0";
-                dataRow_17.BNDangDT_unit = "";
 
                 BCDashboardQLTongTheKhoa dataRow_18 = new BCDashboardQLTongTheKhoa();
                 dataRow_18.BNDangDT_stt = 18;
                 dataRow_18.BNDangDT_name = "Tạm ứng";
                 dataRow_18.BNDangDT_value = "0";
-                dataRow_18.BNDangDT_unit = "";
 
                 dataBCSDO.Add(dataRow_1);
                 dataBCSDO.Add(dataRow_2);

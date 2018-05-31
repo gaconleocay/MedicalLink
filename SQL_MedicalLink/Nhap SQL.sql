@@ -1022,6 +1022,47 @@ maubenhpham
 medicalrecord				
 patient					
 vienphi			
+--------===== SQL PACS
+SELECT
+	vp.vienphiid as ma_lien_ket,
+	bh.bhytcode as ma_the_bhyt,
+	(case when vp.loaivienphiid=0 then 1 
+			else (case when mbp.dacodichvuthutien=1 or mbp.dacodichvuduyetcanlamsang=1 then 1 
+						else 0 end)
+			end) as duocthuchiencls
+FROM Resordertab re
+	inner join maubenhpham mbp on mbp.maubenhphamid=cast(re.accessnumber as numeric) and mbp.maubenhphamid=17835251
+	inner join vienphi vp on vp.vienphiid=mbp.vienphiid
+	inner join bhyt bh on bh.bhytid=vp.bhytid
+WHERE re.accessnumber='17835251';
+
+
+-------=========
+select ser.*
+from (select * from vienphi where duyet_ngayduyet_vp >'2018-05-01 00:00:00') vp
+	inner join (select * from serviceprice where departmentgroupid=27 ) ser on ser.vienphiid=vp.vienphiid
+where vp.vienphistatus_vp=1 and vp.doituongbenhnhanid>1 and vp.loaivienphiid=1 and ser.billid_thutien=0 and ser.billid_clbh_thutien=0 
+
+
+
+
+
+resresulttab_resresulttabid_seq
+
+
+
+select count(*) from vienphi 
+where vienphistatus>0 and vienphidate_ravien>'2018-01-01 00:00:00' 
+and COALESCE(vienphistatus_vp,0)=0 and departmentid in (59)
+
+
+
+
+
+
+
+
+
 
 
 

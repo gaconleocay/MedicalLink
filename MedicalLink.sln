@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalLink", "MedicalLink\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalLinkLauncher", "MedicalLinkLauncher\MedicalLinkLauncher.csproj", "{C8925424-7516-456D-AAE3-D23F504E4055}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "O2S_MLReportRIS", "O2S_MLReportRIS\O2S_MLReportRIS.csproj", "{3DF24647-2AE6-4F0C-8D8E-003C2E48EA2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C8925424-7516-456D-AAE3-D23F504E4055}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8925424-7516-456D-AAE3-D23F504E4055}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8925424-7516-456D-AAE3-D23F504E4055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DF24647-2AE6-4F0C-8D8E-003C2E48EA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DF24647-2AE6-4F0C-8D8E-003C2E48EA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DF24647-2AE6-4F0C-8D8E-003C2E48EA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DF24647-2AE6-4F0C-8D8E-003C2E48EA2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

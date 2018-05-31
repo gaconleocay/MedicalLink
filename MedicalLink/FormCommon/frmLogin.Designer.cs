@@ -115,7 +115,7 @@
             // 
             this.picture_Logobenhvien.CausesValidation = false;
             this.picture_Logobenhvien.Cursor = System.Windows.Forms.Cursors.Default;
-            this.picture_Logobenhvien.Location = new System.Drawing.Point(2, 9);
+            this.picture_Logobenhvien.Location = new System.Drawing.Point(8, 9);
             this.picture_Logobenhvien.Name = "picture_Logobenhvien";
             this.picture_Logobenhvien.Properties.AllowFocused = false;
             this.picture_Logobenhvien.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
@@ -125,7 +125,7 @@
             this.picture_Logobenhvien.Properties.ShowMenu = false;
             this.picture_Logobenhvien.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze;
             this.picture_Logobenhvien.Properties.ZoomPercent = 12D;
-            this.picture_Logobenhvien.Size = new System.Drawing.Size(146, 125);
+            this.picture_Logobenhvien.Size = new System.Drawing.Size(125, 125);
             this.picture_Logobenhvien.TabIndex = 9;
             // 
             // btnLogin

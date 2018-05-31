@@ -93,301 +93,322 @@ namespace MedicalLink.Dashboard
             try
             {
                 List<BCDashboardQLTongTheKhoa> dataBCSDO = new List<BCDashboardQLTongTheKhoa>();
+
                 BCDashboardQLTongTheKhoa dataRow_1 = new BCDashboardQLTongTheKhoa();
                 dataRow_1.BNDangDT_stt = 1;
                 dataRow_1.BNDangDT_name = "SL bệnh nhân hiện diện";
                 dataRow_1.BNDangDT_value = "0";
-                dataRow_1.BNDangDT_unit = "";
-                dataRow_1.RaVienChuaTT_stt = 1;
-                dataRow_1.RaVienChuaTT_name = "Số lượng";
-                dataRow_1.RaVienChuaTT_value = "0";
-                dataRow_1.RaVienChuaTT_unit = "";
-                dataRow_1.DaTT_value = "0";
-                dataRow_1.DoanhThu_name = "Số lượt";
-                dataRow_1.DoanhThu_value = "0";
-                //dataRow_1.DoanhThuGM_name = "Số lượt";
-                dataRow_1.DoanhThuGM_value = "0";
-                //dataRow_1.DoanhThuTongGM_name = "Số lượt";
-                dataRow_1.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_2 = new BCDashboardQLTongTheKhoa();
                 dataRow_2.BNDangDT_stt = 2;
                 dataRow_2.BNDangDT_name = "SL bệnh nhân chuyển đi";
                 dataRow_2.BNDangDT_value = "0";
-                dataRow_2.BNDangDT_unit = "";
-                dataRow_2.RaVienChuaTT_stt = 2;
-                dataRow_2.RaVienChuaTT_name = "Tổng doanh thu";
-                dataRow_2.RaVienChuaTT_value = "0";
-                dataRow_2.RaVienChuaTT_unit = "";
-                dataRow_2.DaTT_value = "0";
-                dataRow_2.DoanhThu_name = "Tổng doanh thu";
-                dataRow_2.DoanhThu_value = "0";
-                //dataRow_2.DoanhThuGM_name = "Tổng doanh thu";
-                dataRow_2.DoanhThuGM_value = "0";
-                //dataRow_2.DoanhThuTongGM_name = "Tổng doanh thu";
-                dataRow_2.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_3 = new BCDashboardQLTongTheKhoa();
                 dataRow_3.BNDangDT_stt = 3;
                 dataRow_3.BNDangDT_name = "SL bệnh nhân chuyển đến";
                 dataRow_3.BNDangDT_value = "0";
-                dataRow_3.BNDangDT_unit = "";
-                dataRow_3.RaVienChuaTT_stt = 3;
-                dataRow_3.RaVienChuaTT_name = "Khám bệnh";
-                dataRow_3.RaVienChuaTT_value = "0";
-                dataRow_3.RaVienChuaTT_unit = "";
-                dataRow_3.DaTT_value = "0";
-                dataRow_3.DoanhThu_name = "Khám bệnh";
-                dataRow_3.DoanhThu_value = "0";
-                //dataRow_3.DoanhThuGM_name = "Khám bệnh";
-                dataRow_3.DoanhThuGM_value = "0";
-                //dataRow_3.DoanhThuTongGM_name = "Khám bệnh";
-                dataRow_3.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_4 = new BCDashboardQLTongTheKhoa();
                 dataRow_4.BNDangDT_stt = 4;
                 dataRow_4.BNDangDT_name = "SL bệnh nhân ra viện";
                 dataRow_4.BNDangDT_value = "0";
-                dataRow_4.BNDangDT_unit = "";
-                dataRow_4.RaVienChuaTT_stt = 4;
-                dataRow_4.RaVienChuaTT_name = "Xét nghiệm";
+                dataRow_4.RaVienChuaTT_name = "Số lượng";
                 dataRow_4.RaVienChuaTT_value = "0";
-                dataRow_4.RaVienChuaTT_unit = "";
+                dataRow_4.DaTT_name = "Số lượng";
                 dataRow_4.DaTT_value = "0";
-                dataRow_4.DoanhThu_name = "Xét nghiệm";
+                dataRow_4.DoanhThu_name = "Số lượng";
                 dataRow_4.DoanhThu_value = "0";
-                //dataRow_4.DoanhThuGM_name = "Xét nghiệm";
+                dataRow_4.DoanhThuGM_name = "Số lượng";
                 dataRow_4.DoanhThuGM_value = "0";
-                //dataRow_4.DoanhThuTongGM_name = "Xét nghiệm";
+                dataRow_4.DoanhThuTongGM_name = "Số lượng";
                 dataRow_4.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_5 = new BCDashboardQLTongTheKhoa();
                 dataRow_5.BNDangDT_stt = 5;
                 dataRow_5.BNDangDT_name = "Tổng tiền";
                 dataRow_5.BNDangDT_value = "0";
-                dataRow_5.BNDangDT_unit = "";
-                dataRow_5.RaVienChuaTT_stt = 5;
-                dataRow_5.RaVienChuaTT_name = "CĐHA-TDCN";
+                dataRow_5.RaVienChuaTT_name = "Tổng tiền";
                 dataRow_5.RaVienChuaTT_value = "0";
-                dataRow_5.RaVienChuaTT_unit = "";
+                dataRow_5.DaTT_name = "Tổng tiền";
                 dataRow_5.DaTT_value = "0";
-                dataRow_5.DoanhThu_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThu_name = "Tổng tiền";
                 dataRow_5.DoanhThu_value = "0";
-                //dataRow_5.DoanhThuGM_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThuGM_name = "Tổng tiền";
                 dataRow_5.DoanhThuGM_value = "0";
-                //dataRow_5.DoanhThuTongGM_name = "CĐHA-TDCN";
+                dataRow_5.DoanhThuTongGM_name = "Tổng tiền";
                 dataRow_5.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_6 = new BCDashboardQLTongTheKhoa();
                 dataRow_6.BNDangDT_stt = 6;
                 dataRow_6.BNDangDT_name = "Khám bệnh";
                 dataRow_6.BNDangDT_value = "0";
-                dataRow_6.BNDangDT_unit = "";
-                dataRow_6.RaVienChuaTT_stt = 6;
-                dataRow_6.RaVienChuaTT_name = "PTTT";
+                dataRow_6.RaVienChuaTT_name = "Khám bệnh";
                 dataRow_6.RaVienChuaTT_value = "0";
-                dataRow_6.RaVienChuaTT_unit = "";
+                dataRow_6.DaTT_name = "Khám bệnh";
                 dataRow_6.DaTT_value = "0";
-                dataRow_6.DoanhThu_name = "PTTT";
+                dataRow_6.DoanhThu_name = "Khám bệnh";
                 dataRow_6.DoanhThu_value = "0";
-                //dataRow_6.DoanhThuGM_name = "PTTT";
+                dataRow_6.DoanhThuGM_name = "Khám bệnh";
                 dataRow_6.DoanhThuGM_value = "0";
-                //dataRow_6.DoanhThuTongGM_name = "PTTT";
+                dataRow_6.DoanhThuTongGM_name = "Khám bệnh";
                 dataRow_6.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_7 = new BCDashboardQLTongTheKhoa();
                 dataRow_7.BNDangDT_stt = 7;
                 dataRow_7.BNDangDT_name = "Xét nghiệm";
                 dataRow_7.BNDangDT_value = "0";
-                dataRow_7.BNDangDT_unit = "";
-                dataRow_7.RaVienChuaTT_stt = 7;
-                dataRow_7.RaVienChuaTT_name = "DV KTC";
+                dataRow_7.RaVienChuaTT_name = "Xét nghiệm";
                 dataRow_7.RaVienChuaTT_value = "0";
-                dataRow_7.RaVienChuaTT_unit = "";
+                dataRow_7.DaTT_name = "Xét nghiệm";
                 dataRow_7.DaTT_value = "0";
-                dataRow_7.DoanhThu_name = "DV KTC";
+                dataRow_7.DoanhThu_name = "Xét nghiệm";
                 dataRow_7.DoanhThu_value = "0";
-                //dataRow_7.DoanhThuGM_name = "DV KTC";
+                dataRow_7.DoanhThuGM_name = "Xét nghiệm";
                 dataRow_7.DoanhThuGM_value = "0";
-                //dataRow_7.DoanhThuTongGM_name = "DV KTC";
+                dataRow_7.DoanhThuTongGM_name = "Xét nghiệm";
                 dataRow_7.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_8 = new BCDashboardQLTongTheKhoa();
                 dataRow_8.BNDangDT_stt = 8;
                 dataRow_8.BNDangDT_name = "CĐHA-TDCN";
                 dataRow_8.BNDangDT_value = "0";
-                dataRow_8.BNDangDT_unit = "";
-                dataRow_8.RaVienChuaTT_stt = 8;
-                dataRow_8.RaVienChuaTT_name = "Giường thường";
+                dataRow_8.RaVienChuaTT_name = "CĐHA-TDCN";
                 dataRow_8.RaVienChuaTT_value = "0";
-                dataRow_8.RaVienChuaTT_unit = "";
+                dataRow_8.DaTT_name = "CĐHA-TDCN";
                 dataRow_8.DaTT_value = "0";
-                dataRow_8.DoanhThu_name = "Giường thường";
+                dataRow_8.DoanhThu_name = "CĐHA-TDCN";
                 dataRow_8.DoanhThu_value = "0";
-                //dataRow_8.DoanhThuGM_name = "Giường thường";
+                dataRow_8.DoanhThuGM_name = "CĐHA-TDCN";
                 dataRow_8.DoanhThuGM_value = "0";
-                //dataRow_8.DoanhThuTongGM_name = "Giường thường";
+                dataRow_8.DoanhThuTongGM_name = "CĐHA-TDCN";
                 dataRow_8.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_9 = new BCDashboardQLTongTheKhoa();
                 dataRow_9.BNDangDT_stt = 9;
                 dataRow_9.BNDangDT_name = "PTTT";
                 dataRow_9.BNDangDT_value = "0";
-                dataRow_9.BNDangDT_unit = "";
-                dataRow_9.RaVienChuaTT_stt = 9;
-                dataRow_9.RaVienChuaTT_name = "Giường yêu cầu";
+                dataRow_9.RaVienChuaTT_name = "PTTT";
                 dataRow_9.RaVienChuaTT_value = "0";
-                dataRow_9.RaVienChuaTT_unit = "";
+                dataRow_9.DaTT_name = "PTTT";
                 dataRow_9.DaTT_value = "0";
-                dataRow_9.DoanhThu_name = "Giường yêu cầu";
+                dataRow_9.DoanhThu_name = "PTTT";
                 dataRow_9.DoanhThu_value = "0";
-                //dataRow_9.DoanhThuGM_name = "Giường yêu cầu";
+                dataRow_9.DoanhThuGM_name = "PTTT";
                 dataRow_9.DoanhThuGM_value = "0";
-                //dataRow_9.DoanhThuTongGM_name = "Giường yêu cầu";
+                dataRow_9.DoanhThuTongGM_name = "PTTT";
                 dataRow_9.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_10 = new BCDashboardQLTongTheKhoa();
                 dataRow_10.BNDangDT_stt = 10;
                 dataRow_10.BNDangDT_name = "DV KTC";
                 dataRow_10.BNDangDT_value = "0";
-                dataRow_10.BNDangDT_unit = "";
-                dataRow_10.RaVienChuaTT_stt = 10;
-                dataRow_10.RaVienChuaTT_name = "DV khác";
+                dataRow_10.RaVienChuaTT_name = "DV KTC";
                 dataRow_10.RaVienChuaTT_value = "0";
-                dataRow_10.RaVienChuaTT_unit = "";
+                dataRow_10.DaTT_name = "DV KTC";
                 dataRow_10.DaTT_value = "0";
-                dataRow_10.DoanhThu_name = "DV khác";
+                dataRow_10.DoanhThu_name = "DV KTC";
                 dataRow_10.DoanhThu_value = "0";
-                //dataRow_10.DoanhThuGM_name = "DV khác";
+                dataRow_10.DoanhThuGM_name = "DV KTC";
                 dataRow_10.DoanhThuGM_value = "0";
-                //dataRow_10.DoanhThuTongGM_name = "DV khác";
+                dataRow_10.DoanhThuTongGM_name = "DV KTC";
                 dataRow_10.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_11 = new BCDashboardQLTongTheKhoa();
                 dataRow_11.BNDangDT_stt = 11;
                 dataRow_11.BNDangDT_name = "Giường thường";
                 dataRow_11.BNDangDT_value = "0";
-                dataRow_11.BNDangDT_unit = "";
-                dataRow_11.RaVienChuaTT_stt = 11;
-                dataRow_11.RaVienChuaTT_name = "Máu, chế phẩm";
+                dataRow_11.RaVienChuaTT_name = "Giường thường";
                 dataRow_11.RaVienChuaTT_value = "0";
-                dataRow_11.RaVienChuaTT_unit = "";
+                dataRow_11.DaTT_name = "Giường thường";
                 dataRow_11.DaTT_value = "0";
-                dataRow_11.DoanhThu_name = "Máu, chế phẩm";
+                dataRow_11.DoanhThu_name = "Giường thường";
                 dataRow_11.DoanhThu_value = "0";
-                //dataRow_11.DoanhThuGM_name = "Máu, chế phẩm";
+                dataRow_11.DoanhThuGM_name = "Giường thường";
                 dataRow_11.DoanhThuGM_value = "0";
-                //dataRow_11.DoanhThuTongGM_name = "Máu, chế phẩm";
+                dataRow_11.DoanhThuTongGM_name = "Giường thường";
                 dataRow_11.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_12 = new BCDashboardQLTongTheKhoa();
                 dataRow_12.BNDangDT_stt = 12;
                 dataRow_12.BNDangDT_name = "Giường yêu cầu";
                 dataRow_12.BNDangDT_value = "0";
-                dataRow_12.BNDangDT_unit = "";
-                dataRow_12.RaVienChuaTT_stt = 12;
-                dataRow_12.RaVienChuaTT_name = "Vật tư";
+                dataRow_12.RaVienChuaTT_name = "Giường yêu cầu";
                 dataRow_12.RaVienChuaTT_value = "0";
-                dataRow_12.RaVienChuaTT_unit = "";
+                dataRow_12.DaTT_name = "Giường yêu cầu";
                 dataRow_12.DaTT_value = "0";
-                dataRow_12.DoanhThu_name = "Vật tư";
+                dataRow_12.DoanhThu_name = "Giường yêu cầu";
                 dataRow_12.DoanhThu_value = "0";
-                //dataRow_12.DoanhThuGM_name = "Vật tư";
+                dataRow_12.DoanhThuGM_name = "Giường yêu cầu";
                 dataRow_12.DoanhThuGM_value = "0";
-                //dataRow_12.DoanhThuTongGM_name = "Vật tư";
+                dataRow_12.DoanhThuTongGM_name = "Giường yêu cầu";
                 dataRow_12.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_13 = new BCDashboardQLTongTheKhoa();
                 dataRow_13.BNDangDT_stt = 13;
                 dataRow_13.BNDangDT_name = "DV khác";
                 dataRow_13.BNDangDT_value = "0";
-                dataRow_13.BNDangDT_unit = "";
-                dataRow_13.RaVienChuaTT_stt = 13;
-                dataRow_13.RaVienChuaTT_name = "Thuốc";
+                dataRow_13.RaVienChuaTT_name = "DV khác";
                 dataRow_13.RaVienChuaTT_value = "0";
-                dataRow_13.RaVienChuaTT_unit = "";
+                dataRow_13.DaTT_name = "DV khác";
                 dataRow_13.DaTT_value = "0";
-                dataRow_13.DoanhThu_name = "Thuốc";
+                dataRow_13.DoanhThu_name = "DV khác";
                 dataRow_13.DoanhThu_value = "0";
-                //dataRow_13.DoanhThuGM_name = "Thuốc";
+                dataRow_13.DoanhThuGM_name = "DV khác";
                 dataRow_13.DoanhThuGM_value = "0";
-                //dataRow_13.DoanhThuTongGM_name = "Thuốc";
+                dataRow_13.DoanhThuTongGM_name = "DV khác";
                 dataRow_13.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_14 = new BCDashboardQLTongTheKhoa();
                 dataRow_14.BNDangDT_stt = 14;
                 dataRow_14.BNDangDT_name = "Máu, chế phẩm";
                 dataRow_14.BNDangDT_value = "0";
-                dataRow_14.BNDangDT_unit = "";
-                dataRow_14.RaVienChuaTT_stt = 14;
-                dataRow_14.RaVienChuaTT_name = "Tỷ lệ thuốc";
+                dataRow_14.RaVienChuaTT_name = "Máu, chế phẩm";
                 dataRow_14.RaVienChuaTT_value = "0";
-                dataRow_14.RaVienChuaTT_unit = "";
+                dataRow_14.DaTT_name = "Máu, chế phẩm";
                 dataRow_14.DaTT_value = "0";
-                dataRow_14.DoanhThu_name = "Tỷ lệ thuốc";
+                dataRow_14.DoanhThu_name = "Máu, chế phẩm";
                 dataRow_14.DoanhThu_value = "0";
-                //dataRow_14.DoanhThuGM_name = "Tỷ lệ thuốc";
+                dataRow_14.DoanhThuGM_name = "Máu, chế phẩm";
                 dataRow_14.DoanhThuGM_value = "0";
-                //dataRow_14.DoanhThuTongGM_name = "Tỷ lệ thuốc";
+                dataRow_14.DoanhThuTongGM_name = "Máu, chế phẩm";
                 dataRow_14.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_15 = new BCDashboardQLTongTheKhoa();
                 dataRow_15.BNDangDT_stt = 15;
                 dataRow_15.BNDangDT_name = "Vật tư";
                 dataRow_15.BNDangDT_value = "0";
-                dataRow_15.BNDangDT_unit = "";
-                dataRow_15.RaVienChuaTT_stt = 14;
-                dataRow_15.RaVienChuaTT_name = "PTTT yêu cầu";
+                dataRow_15.RaVienChuaTT_name = "Vật tư";
                 dataRow_15.RaVienChuaTT_value = "0";
-                dataRow_15.RaVienChuaTT_unit = "";
+                dataRow_15.DaTT_name = "Vật tư";
                 dataRow_15.DaTT_value = "0";
-                dataRow_15.DoanhThu_name = "PTTT yêu cầu";
+                dataRow_15.DoanhThu_name = "Vật tư";
                 dataRow_15.DoanhThu_value = "0";
-                //dataRow_15.DoanhThuGM_name = "PTTT yêu cầu";
+                dataRow_15.DoanhThuGM_name = "Vật tư";
                 dataRow_15.DoanhThuGM_value = "0";
-                //dataRow_15.DoanhThuTongGM_name = "PTTT yêu cầu";
+                dataRow_15.DoanhThuTongGM_name = "Vật tư";
                 dataRow_15.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_16 = new BCDashboardQLTongTheKhoa();
                 dataRow_16.BNDangDT_stt = 16;
                 dataRow_16.BNDangDT_name = "Thuốc";
                 dataRow_16.BNDangDT_value = "0";
-                dataRow_16.BNDangDT_unit = "";
-                dataRow_16.RaVienChuaTT_stt = 16;
-                dataRow_16.RaVienChuaTT_name = "VT TT riêng";
+                dataRow_16.RaVienChuaTT_name = "Thuốc";
                 dataRow_16.RaVienChuaTT_value = "0";
-                dataRow_16.RaVienChuaTT_unit = "";
+                dataRow_16.DaTT_name = "Thuốc";
                 dataRow_16.DaTT_value = "0";
-                dataRow_16.DoanhThu_name = "VT TT riêng";
+                dataRow_16.DoanhThu_name = "Thuốc";
                 dataRow_16.DoanhThu_value = "0";
-                //dataRow_16.DoanhThuGM_name = "VT TT riêng";
+                dataRow_16.DoanhThuGM_name = "Thuốc";
                 dataRow_16.DoanhThuGM_value = "0";
-                //dataRow_16.DoanhThuTongGM_name = "VT TT riêng";
+                dataRow_16.DoanhThuTongGM_name = "Thuốc";
                 dataRow_16.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_17 = new BCDashboardQLTongTheKhoa();
                 dataRow_17.BNDangDT_stt = 17;
                 dataRow_17.BNDangDT_name = "Tỷ lệ thuốc";
                 dataRow_17.BNDangDT_value = "0";
-                dataRow_17.BNDangDT_unit = "";
+                dataRow_17.RaVienChuaTT_name = "Tỷ lệ thuốc";
+                dataRow_17.RaVienChuaTT_value = "0";
+                dataRow_17.DaTT_name = "Tỷ lệ thuốc";
+                dataRow_17.DaTT_value = "0";
+                dataRow_17.DoanhThu_name = "Tỷ lệ thuốc";
+                dataRow_17.DoanhThu_value = "0";
+                dataRow_17.DoanhThuGM_name = "Tỷ lệ thuốc";
+                dataRow_17.DoanhThuGM_value = "0";
+                dataRow_17.DoanhThuTongGM_name = "Tỷ lệ thuốc";
+                dataRow_17.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_18 = new BCDashboardQLTongTheKhoa();
                 dataRow_18.BNDangDT_stt = 18;
                 dataRow_18.BNDangDT_name = "Tạm ứng";
                 dataRow_18.BNDangDT_value = "0";
-                dataRow_18.BNDangDT_unit = "";
+                dataRow_18.RaVienChuaTT_name = "Tạm ứng";
+                dataRow_18.RaVienChuaTT_value = "0";
+                dataRow_18.DaTT_name = "Tạm ứng";
+                dataRow_18.DaTT_value = "0";
+                dataRow_18.DoanhThu_name = "Tạm ứng";
+                dataRow_18.DoanhThu_value = "0";
+                dataRow_18.DoanhThuGM_name = "Tạm ứng";
+                dataRow_18.DoanhThuGM_value = "0";
+                dataRow_18.DoanhThuTongGM_name = "Tạm ứng";
+                dataRow_18.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_19 = new BCDashboardQLTongTheKhoa();
                 dataRow_19.BNDangDT_stt = 19;
                 dataRow_19.BNDangDT_name = "PTTT yêu cầu";
                 dataRow_19.BNDangDT_value = "0";
-                dataRow_19.BNDangDT_unit = "";
+                dataRow_19.RaVienChuaTT_name = "PTTT yêu cầu";
+                dataRow_19.RaVienChuaTT_value = "0";
+                dataRow_19.DaTT_name = "PTTT yêu cầu";
+                dataRow_19.DaTT_value = "0";
+                dataRow_19.DoanhThu_name = "PTTT yêu cầu";
+                dataRow_19.DoanhThu_value = "0";
+                dataRow_19.DoanhThuGM_name = "PTTT yêu cầu";
+                dataRow_19.DoanhThuGM_value = "0";
+                dataRow_19.DoanhThuTongGM_name = "PTTT yêu cầu";
+                dataRow_19.DoanhThuTongGM_value = "0";
 
                 BCDashboardQLTongTheKhoa dataRow_20 = new BCDashboardQLTongTheKhoa();
                 dataRow_20.BNDangDT_stt = 20;
                 dataRow_20.BNDangDT_name = "VT TT riêng";
                 dataRow_20.BNDangDT_value = "0";
-                dataRow_20.BNDangDT_unit = "";
+                dataRow_20.RaVienChuaTT_name = "VT TT riêng";
+                dataRow_20.RaVienChuaTT_value = "0";
+                dataRow_20.DaTT_name = "VT TT riêng";
+                dataRow_20.DaTT_value = "0";
+                dataRow_20.DoanhThu_name = "VT TT riêng";
+                dataRow_20.DoanhThu_value = "0";
+                dataRow_20.DoanhThuGM_name = "VT TT riêng";
+                dataRow_20.DoanhThuGM_value = "0";
+                dataRow_20.DoanhThuTongGM_name = "VT TT riêng";
+                dataRow_20.DoanhThuTongGM_value = "0";
+
+                BCDashboardQLTongTheKhoa dataRow_21 = new BCDashboardQLTongTheKhoa();
+                dataRow_21.BNDangDT_stt = 21;
+                dataRow_21.BNDangDT_name = "Chi phí Xét nghiệm";
+                dataRow_21.BNDangDT_value = "0";
+                dataRow_21.RaVienChuaTT_name = "Chi phí Xét nghiệm";
+                dataRow_21.RaVienChuaTT_value = "0";
+                dataRow_21.DaTT_name = "Chi phí Xét nghiệm";
+                dataRow_21.DaTT_value = "0";
+                dataRow_21.DoanhThu_name = "Chi phí Xét nghiệm";
+                dataRow_21.DoanhThu_value = "0";
+                dataRow_21.DoanhThuGM_name = "Chi phí Xét nghiệm";
+                dataRow_21.DoanhThuGM_value = "0";
+                dataRow_21.DoanhThuTongGM_name = "Chi phí Xét nghiệm";
+                dataRow_21.DoanhThuTongGM_value = "0";
+
+                BCDashboardQLTongTheKhoa dataRow_22 = new BCDashboardQLTongTheKhoa();
+                dataRow_22.BNDangDT_stt = 22;
+                dataRow_22.BNDangDT_name = "Chi phí CĐHA";
+                dataRow_22.BNDangDT_value = "0";
+                dataRow_22.RaVienChuaTT_name = "Chi phí CĐHA";
+                dataRow_22.RaVienChuaTT_value = "0";
+                dataRow_22.DaTT_name = "Chi phí CĐHA";
+                dataRow_22.DaTT_value = "0";
+                dataRow_22.DoanhThu_name = "Chi phí CĐHA";
+                dataRow_22.DoanhThu_value = "0";
+                dataRow_22.DoanhThuGM_name = "Chi phí CĐHA";
+                dataRow_22.DoanhThuGM_value = "0";
+                dataRow_22.DoanhThuTongGM_name = "Chi phí CĐHA";
+                dataRow_22.DoanhThuTongGM_value = "0";
+
+                BCDashboardQLTongTheKhoa dataRow_23 = new BCDashboardQLTongTheKhoa();
+                dataRow_23.BNDangDT_stt = 23;
+                dataRow_23.BNDangDT_name = "Chi phí khoa/phòng";
+                dataRow_23.BNDangDT_value = "0";
+                dataRow_23.RaVienChuaTT_name = "Chi phí khoa/phòng";
+                dataRow_23.RaVienChuaTT_value = "0";
+                dataRow_23.DaTT_name = "Chi phí khoa/phòng";
+                dataRow_23.DaTT_value = "0";
+                dataRow_23.DoanhThu_name = "Chi phí khoa/phòng";
+                dataRow_23.DoanhThu_value = "0";
+                dataRow_23.DoanhThuGM_name = "Chi phí khoa/phòng";
+                dataRow_23.DoanhThuGM_value = "0";
+                dataRow_23.DoanhThuTongGM_name = "Chi phí khoa/phòng";
+                dataRow_23.DoanhThuTongGM_value = "0";
+
 
                 dataBCSDO.Add(dataRow_1);
                 dataBCSDO.Add(dataRow_2);
@@ -407,6 +428,8 @@ namespace MedicalLink.Dashboard
                 dataBCSDO.Add(dataRow_16);
                 dataBCSDO.Add(dataRow_17);
                 dataBCSDO.Add(dataRow_18);
+                dataBCSDO.Add(dataRow_19);
+                dataBCSDO.Add(dataRow_20);
 
                 gridControlDataQLTTKhoa.DataSource = dataBCSDO;
             }
@@ -706,27 +729,27 @@ namespace MedicalLink.Dashboard
                     typeID = 4;
                 }
                 //SL Bn ra vien chua thanh toan
-                else if (rowHandle == 0 && columeFieldName == "RaVienChuaTT_value")
+                else if (rowHandle == 3 && columeFieldName == "RaVienChuaTT_value")
                 {
                     typeID = 5;
                 }
                 //SL BN ra vien da thanh toan
-                else if (rowHandle == 0 && columeFieldName == "DaTT_value")
+                else if (rowHandle == 3 && columeFieldName == "DaTT_value")
                 {
                     typeID = 6;
                 }
                 //Doanh thu slbn
-                else if (rowHandle == 0 && columeFieldName == "DoanhThu_value")
+                else if (rowHandle == 3 && columeFieldName == "DoanhThu_value")
                 {
                     typeID = 7;
                 }
                 //Daonh thu GMHT
-                else if (rowHandle == 0 && columeFieldName == "DoanhThuGM_value")
+                else if (rowHandle == 3 && columeFieldName == "DoanhThuGM_value")
                 {
                     typeID = 8;
                 }
                 //Doanh thu tong 
-                else if (rowHandle == 0 && columeFieldName == "DoanhThuTongGM_value")
+                else if (rowHandle == 3 && columeFieldName == "DoanhThuTongGM_value")
                 {
                     typeID = 9;
                 }

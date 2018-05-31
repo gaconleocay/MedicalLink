@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCTongHopDoanhThuKhoa));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.chkThuTienStatus = new System.Windows.Forms.CheckBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -113,8 +114,11 @@
             this.bandedGridColumn33 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn27 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn28 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn49 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn50 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn51 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn52 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.chkThuTienStatus = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -168,6 +172,16 @@
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // chkThuTienStatus
+            // 
+            this.chkThuTienStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThuTienStatus.Location = new System.Drawing.Point(626, 23);
+            this.chkThuTienStatus.Name = "chkThuTienStatus";
+            this.chkThuTienStatus.Size = new System.Drawing.Size(66, 89);
+            this.chkThuTienStatus.TabIndex = 85;
+            this.chkThuTienStatus.Text = "DV đã thu tiền";
+            this.chkThuTienStatus.UseVisualStyleBackColor = true;
             // 
             // labelControl5
             // 
@@ -509,6 +523,10 @@
             this.bandedGridColumn42,
             this.bandedGridColumn33,
             this.bandedGridColumn28,
+            this.bandedGridColumn49,
+            this.bandedGridColumn50,
+            this.bandedGridColumn51,
+            this.bandedGridColumn52,
             this.bandedGridColumn29,
             this.bandedGridColumn30});
             this.bandedGridViewTTDTKhoa.GridControl = this.gridControlTTDTKhoa;
@@ -1564,9 +1582,12 @@
             this.gridBand7.Columns.Add(this.bandedGridColumn33);
             this.gridBand7.Columns.Add(this.bandedGridColumn27);
             this.gridBand7.Columns.Add(this.bandedGridColumn28);
+            this.gridBand7.Columns.Add(this.bandedGridColumn49);
+            this.gridBand7.Columns.Add(this.bandedGridColumn50);
+            this.gridBand7.Columns.Add(this.bandedGridColumn51);
             this.gridBand7.Name = "gridBand7";
             this.gridBand7.VisibleIndex = 6;
-            this.gridBand7.Width = 1040;
+            this.gridBand7.Width = 1430;
             // 
             // bandedGridColumn20
             // 
@@ -1750,22 +1771,104 @@
             this.bandedGridColumn28.Visible = true;
             this.bandedGridColumn28.Width = 130;
             // 
+            // bandedGridColumn49
+            // 
+            this.bandedGridColumn49.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn49.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn49.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn49.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn49.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn49.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn49.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn49.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn49.Caption = "Chi phí xét nghiệm";
+            this.bandedGridColumn49.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn49.FieldName = "chiphixn";
+            this.bandedGridColumn49.Name = "bandedGridColumn49";
+            this.bandedGridColumn49.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn49.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "chiphixn", "{0:#,##0}")});
+            this.bandedGridColumn49.Visible = true;
+            this.bandedGridColumn49.Width = 130;
+            // 
+            // bandedGridColumn50
+            // 
+            this.bandedGridColumn50.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn50.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn50.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn50.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn50.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn50.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn50.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn50.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn50.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn50.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn50.Caption = "Chi phí CĐHA";
+            this.bandedGridColumn50.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn50.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn50.FieldName = "chiphicdha";
+            this.bandedGridColumn50.Name = "bandedGridColumn50";
+            this.bandedGridColumn50.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn50.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "chiphicdha", "{0:#,##0}")});
+            this.bandedGridColumn50.Visible = true;
+            this.bandedGridColumn50.Width = 130;
+            // 
+            // bandedGridColumn51
+            // 
+            this.bandedGridColumn51.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn51.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn51.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn51.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn51.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn51.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn51.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn51.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn51.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn51.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn51.Caption = "Chi phí khoa";
+            this.bandedGridColumn51.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn51.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn51.FieldName = "chiphikhoa";
+            this.bandedGridColumn51.Name = "bandedGridColumn51";
+            this.bandedGridColumn51.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn51.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "chiphikhoa", "{0:#,##0}")});
+            this.bandedGridColumn51.Visible = true;
+            this.bandedGridColumn51.Width = 130;
+            // 
+            // bandedGridColumn52
+            // 
+            this.bandedGridColumn52.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn52.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn52.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn52.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn52.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn52.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn52.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn52.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn52.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn52.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn52.Caption = "Lãi";
+            this.bandedGridColumn52.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn52.FieldName = "lai";
+            this.bandedGridColumn52.Name = "bandedGridColumn52";
+            this.bandedGridColumn52.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn52.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "lai", "{0:#,##0}")});
+            this.bandedGridColumn52.Visible = true;
+            this.bandedGridColumn52.Width = 130;
+            // 
             // repositoryItemButton_View
             // 
             this.repositoryItemButton_View.AutoHeight = false;
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Xem", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
-            // 
-            // chkThuTienStatus
-            // 
-            this.chkThuTienStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkThuTienStatus.Location = new System.Drawing.Point(626, 23);
-            this.chkThuTienStatus.Name = "chkThuTienStatus";
-            this.chkThuTienStatus.Size = new System.Drawing.Size(66, 89);
-            this.chkThuTienStatus.TabIndex = 85;
-            this.chkThuTienStatus.Text = "DV đã thu tiền";
-            this.chkThuTienStatus.UseVisualStyleBackColor = true;
             // 
             // ucBCTongHopDoanhThuKhoa
             // 
@@ -1867,18 +1970,22 @@
         private DevExpress.XtraEditors.SimpleButton btnFullScreen;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn45;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn46;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn48;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn47;
+        private System.Windows.Forms.CheckBox chkThuTienStatus;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn49;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn50;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn51;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn52;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand STT;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand1;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn45;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn46;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn48;
-        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn47;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
-        private System.Windows.Forms.CheckBox chkThuTienStatus;
     }
 }

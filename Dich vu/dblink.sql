@@ -39,7 +39,7 @@ FROM dblink('myconn','SELECT degp.departmentgroupid as departmentgroupid, degp.d
 
 
 --lay DS nhanvien ben HIS-Medilink
-SELECT dblink_connect('myconn', 'dbname=bvhaiphong port=5432 host=179.84.31.5 user=postgres password=haiphong1234');
+SELECT dblink_connect('myconn', 'dbname= port=5432 host=179.84.31.5 user=postgres password=');
 
 INSERT INTO tools_tblnhanvien(nhanvienid,usercode,username,userpassword,userhisid) 
 SELECT tbluser.*

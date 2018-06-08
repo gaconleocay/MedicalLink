@@ -241,6 +241,10 @@ namespace MedicalLink.FormCommon
                     case "TOOL_25":
                         ucResult = new ChucNang.ucDongHoSoBenhAn();
                         break;
+                    case "TOOL_26":
+                        ucResult = new ChucNang.ucSuaHanSuDungThuocVatTu();
+                        break;
+
 
                     //Bao cao
                     case "REPORT_01":
@@ -380,25 +384,34 @@ namespace MedicalLink.FormCommon
 
                     //Bao cao QL Tai chinh
                     case "REPORT_101":
-                        ucResult = new BCQLTaiChinh.ucBC101_TKTienKhamYCT7CN();
+                        ucResult = new BCQLTaiChinh.BC101_TKTienKhamYCT7CN();
                         break;
                     case "REPORT_102":
-                        ucResult = new BCQLTaiChinh.ucBC102_TrichThuongChuyenGiaYC();
+                        ucResult = new BCQLTaiChinh.BC102_TrichThuongChuyenGiaYC();
                         break;
                     case "REPORT_103":
-                        ucResult = new BCQLTaiChinh.ucBC103_ChiThuongDichVuVienPhi();
+                        ucResult = new BCQLTaiChinh.BC103_ChiThuongDichVuVienPhi();
                         break;
                     case "REPORT_104":
-                        ucResult = new BCQLTaiChinh.ucBC104_TrichThuongFIBRO();
+                        ucResult = new BCQLTaiChinh.BC104_TrichThuongFIBRO();
                         break;
                     case "REPORT_105":
-                        ucResult = new BCQLTaiChinh.ucBC105_TrichThuongDVNuocSoi();
+                        ucResult = new BCQLTaiChinh.BC105_TrichThuongDVNuocSoi();
                         break;
                     case "REPORT_106":
-                        ucResult = new BCQLTaiChinh.ucBC106_TrichThuongKinhHienVi();
+                        ucResult = new BCQLTaiChinh.BC106_TrichThuongKinhHienVi();
                         break;
                     case "REPORT_107":
-                        ucResult = new BCQLTaiChinh.ucBC107_KhamBenhChiTiet();
+                        ucResult = new BCQLTaiChinh.BC107_KhamBenhChiTiet();
+                        break;
+                    case "REPORT_108":
+                        ucResult = new BCQLTaiChinh.BC108_ChiThuongDVThuVienPhi();
+                        break;
+                    case "REPORT_109":
+                        ucResult = new BCQLTaiChinh.BC109_DSCacKhoaDuocHuongK3();
+                        break;
+                    case "REPORT_110":
+                        ucResult = new BCQLTaiChinh.BC110_TrichThuongGiuongYCCK();
                         break;
 
                     //Dashboard

@@ -507,47 +507,77 @@
     <Compile Include="BCQLTaiChinh\NhapThongTinPTTT\ucNhapThucHienPTTT.Designer.cs">
       <DependentUpon>ucNhapThucHienPTTT.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.cs">
+    <Compile Include="BCQLTaiChinh\BC111_ChiThuongGiuongNgoaiKieuVP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.Designer.cs">
-      <DependentUpon>ucBC107_KhamBenhChiTiet.cs</DependentUpon>
+    <Compile Include="BCQLTaiChinh\BC111_ChiThuongGiuongNgoaiKieuVP.Designer.cs">
+      <DependentUpon>BC111_ChiThuongGiuongNgoaiKieuVP.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.cs">
+    <Compile Include="BCQLTaiChinh\BC110_TrichThuongGiuongYCCK.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.Designer.cs">
-      <DependentUpon>ucBC106_TrichThuongKinhHienVi.cs</DependentUpon>
+    <Compile Include="BCQLTaiChinh\BC110_TrichThuongGiuongYCCK.Designer.cs">
+      <DependentUpon>BC110_TrichThuongGiuongYCCK.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC105_TrichThuongDVNuocSoi.cs">
+    <Compile Include="BCQLTaiChinh\BC109_DSCacKhoaDuocHuongK3.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC105_TrichThuongDVNuocSoi.Designer.cs">
-      <DependentUpon>ucBC105_TrichThuongDVNuocSoi.cs</DependentUpon>
+    <Compile Include="BCQLTaiChinh\BC109_DSCacKhoaDuocHuongK3.Designer.cs">
+      <DependentUpon>BC109_DSCacKhoaDuocHuongK3.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC104_TrichThuongFIBRO.cs">
+    <Compile Include="BCQLTaiChinh\BC108_ChiThuongDVThuVienPhi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC104_TrichThuongFIBRO.Designer.cs">
-      <DependentUpon>ucBC104_TrichThuongFIBRO.cs</DependentUpon>
+    <Compile Include="BCQLTaiChinh\BC108_ChiThuongDVThuVienPhi.Designer.cs">
+      <DependentUpon>BC108_ChiThuongDVThuVienPhi.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC103_ChiThuongDichVuVienPhi.cs">
+    <Compile Include="BCQLTaiChinh\BC107_KhamBenhChiTiet.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC103_ChiThuongDichVuVienPhi.Designer.cs">
-      <DependentUpon>ucBC103_ChiThuongDichVuVienPhi.cs</DependentUpon>
+    <Compile Include="BCQLTaiChinh\BC107_KhamBenhChiTiet.Designer.cs">
+      <DependentUpon>BC107_KhamBenhChiTiet.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.cs">
+    <Compile Include="BCQLTaiChinh\BC106_TrichThuongKinhHienVi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.Designer.cs">
-      <DependentUpon>ucBC101_TKTienKhamYCT7CN.cs</DependentUpon>
+    <Compile Include="BCQLTaiChinh\BC106_TrichThuongKinhHienVi.Designer.cs">
+      <DependentUpon>BC106_TrichThuongKinhHienVi.cs</DependentUpon>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC102_TrichThuongChuyenGiaYC.cs">
+    <Compile Include="BCQLTaiChinh\BC105_TrichThuongDVNuocSoi.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BCQLTaiChinh\ucBC102_TrichThuongChuyenGiaYC.Designer.cs">
-      <DependentUpon>ucBC102_TrichThuongChuyenGiaYC.cs</DependentUpon>
+    <Compile Include="BCQLTaiChinh\BC105_TrichThuongDVNuocSoi.Designer.cs">
+      <DependentUpon>BC105_TrichThuongDVNuocSoi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC104_TrichThuongFIBRO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC104_TrichThuongFIBRO.Designer.cs">
+      <DependentUpon>BC104_TrichThuongFIBRO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC103_ChiThuongDichVuVienPhi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC103_ChiThuongDichVuVienPhi.Designer.cs">
+      <DependentUpon>BC103_ChiThuongDichVuVienPhi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC101_TKTienKhamYCT7CN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC101_TKTienKhamYCT7CN.Designer.cs">
+      <DependentUpon>BC101_TKTienKhamYCT7CN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC102_TrichThuongChuyenGiaYC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC102_TrichThuongChuyenGiaYC.Designer.cs">
+      <DependentUpon>BC102_TrichThuongChuyenGiaYC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.Designer.cs">
+      <DependentUpon>ucSuaHanSuDungThuocVatTu.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.cs">
       <SubType>UserControl</SubType>
@@ -637,6 +667,7 @@
     <Compile Include="ClassCommon\BCHoaDonChungTuThuocSDDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\ChiThuongDichVuVienPhiDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\DSCacKhoaDuocHuongK3DTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongChuyenGiaYCDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVKinhHienVi.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVNuocSoiDTO.cs" />
@@ -651,6 +682,7 @@
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\DanhMucThuocVatTuDTO.cs" />
     <Compile Include="ClassCommon\DanhSachNhanVienDTO.cs" />
     <Compile Include="ClassCommon\Departmentgroup_KhoaPTTTDTO.cs" />
     <Compile Include="ClassCommon\DVXetNghiemChiPhiDTO.cs" />
@@ -1399,26 +1431,41 @@
     <EmbeddedResource Include="BCQLTaiChinh\NhapThongTinPTTT\ucNhapThucHienPTTT.resx">
       <DependentUpon>ucNhapThucHienPTTT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCQLTaiChinh\ucBC107_KhamBenhChiTiet.resx">
-      <DependentUpon>ucBC107_KhamBenhChiTiet.cs</DependentUpon>
+    <EmbeddedResource Include="BCQLTaiChinh\BC111_ChiThuongGiuongNgoaiKieuVP.resx">
+      <DependentUpon>BC111_ChiThuongGiuongNgoaiKieuVP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCQLTaiChinh\ucBC106_TrichThuongKinhHienVi.resx">
-      <DependentUpon>ucBC106_TrichThuongKinhHienVi.cs</DependentUpon>
+    <EmbeddedResource Include="BCQLTaiChinh\BC110_TrichThuongGiuongYCCK.resx">
+      <DependentUpon>BC110_TrichThuongGiuongYCCK.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCQLTaiChinh\ucBC105_TrichThuongDVNuocSoi.resx">
-      <DependentUpon>ucBC105_TrichThuongDVNuocSoi.cs</DependentUpon>
+    <EmbeddedResource Include="BCQLTaiChinh\BC109_DSCacKhoaDuocHuongK3.resx">
+      <DependentUpon>BC109_DSCacKhoaDuocHuongK3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCQLTaiChinh\ucBC104_TrichThuongFIBRO.resx">
-      <DependentUpon>ucBC104_TrichThuongFIBRO.cs</DependentUpon>
+    <EmbeddedResource Include="BCQLTaiChinh\BC108_ChiThuongDVThuVienPhi.resx">
+      <DependentUpon>BC108_ChiThuongDVThuVienPhi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCQLTaiChinh\ucBC103_ChiThuongDichVuVienPhi.resx">
-      <DependentUpon>ucBC103_ChiThuongDichVuVienPhi.cs</DependentUpon>
+    <EmbeddedResource Include="BCQLTaiChinh\BC107_KhamBenhChiTiet.resx">
+      <DependentUpon>BC107_KhamBenhChiTiet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCQLTaiChinh\ucBC101_TKTienKhamYCT7CN.resx">
-      <DependentUpon>ucBC101_TKTienKhamYCT7CN.cs</DependentUpon>
+    <EmbeddedResource Include="BCQLTaiChinh\BC106_TrichThuongKinhHienVi.resx">
+      <DependentUpon>BC106_TrichThuongKinhHienVi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BCQLTaiChinh\ucBC102_TrichThuongChuyenGiaYC.resx">
-      <DependentUpon>ucBC102_TrichThuongChuyenGiaYC.cs</DependentUpon>
+    <EmbeddedResource Include="BCQLTaiChinh\BC105_TrichThuongDVNuocSoi.resx">
+      <DependentUpon>BC105_TrichThuongDVNuocSoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC104_TrichThuongFIBRO.resx">
+      <DependentUpon>BC104_TrichThuongFIBRO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC103_ChiThuongDichVuVienPhi.resx">
+      <DependentUpon>BC103_ChiThuongDichVuVienPhi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC101_TKTienKhamYCT7CN.resx">
+      <DependentUpon>BC101_TKTienKhamYCT7CN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC102_TrichThuongChuyenGiaYC.resx">
+      <DependentUpon>BC102_TrichThuongChuyenGiaYC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.resx">
+      <DependentUpon>ucSuaHanSuDungThuocVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.resx">
       <DependentUpon>ucCapNhatThangLuongCoBan.cs</DependentUpon>
@@ -2018,6 +2065,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_01_BenhNhanSuDungDichVu.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\0_ToolsCapNhatHanSuDungThuocVatTu_Export.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_108_ChiThuongDVThuVienPhi.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_109_DSCacKhoaDuocHuongK3.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_110_TrichThuongGiuongYCCK.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

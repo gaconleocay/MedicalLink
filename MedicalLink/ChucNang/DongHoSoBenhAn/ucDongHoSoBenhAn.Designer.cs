@@ -82,6 +82,7 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageCollectionMBA = new DevExpress.Utils.ImageCollection(this.components);
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThaiVP.Properties)).BeginInit();
@@ -157,7 +158,8 @@
             this.cboTrangThaiVP.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboTrangThaiVP.Properties.Items.AddRange(new object[] {
-            "Đang điều trị"});
+            "Đang điều trị",
+            "Ra viện chưa thanh toán"});
             this.cboTrangThaiVP.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTrangThaiVP.Size = new System.Drawing.Size(103, 22);
             this.cboTrangThaiVP.TabIndex = 5;
@@ -763,6 +765,7 @@
             this.gridColumn8,
             this.gridColumn3,
             this.gridColumnt23,
+            this.gridColumn6,
             this.gridColumn5,
             this.gridColumn7});
             this.gridViewHSBA.GridControl = this.gridControlHSBA;
@@ -840,7 +843,7 @@
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.OptionsColumn.AllowEdit = false;
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 6;
+            this.gridColumn11.VisibleIndex = 8;
             this.gridColumn11.Width = 85;
             // 
             // gridColumn1
@@ -923,7 +926,7 @@
             this.gridColumnt23.Name = "gridColumnt23";
             this.gridColumnt23.OptionsColumn.AllowEdit = false;
             this.gridColumnt23.Visible = true;
-            this.gridColumnt23.VisibleIndex = 7;
+            this.gridColumnt23.VisibleIndex = 6;
             this.gridColumnt23.Width = 125;
             // 
             // gridColumn5
@@ -941,7 +944,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 8;
+            this.gridColumn5.VisibleIndex = 9;
             this.gridColumn5.Width = 190;
             // 
             // gridColumn7
@@ -959,13 +962,35 @@
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 9;
+            this.gridColumn7.VisibleIndex = 10;
             this.gridColumn7.Width = 200;
             // 
             // imageCollectionMBA
             // 
             this.imageCollectionMBA.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionMBA.ImageStream")));
             this.imageCollectionMBA.Images.SetKeyName(0, "check-mark-16.png");
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn6.AppearanceCell.Options.UseFont = true;
+            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn6.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn6.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.Caption = "Thời gian ra viện";
+            this.gridColumn6.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
+            this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn6.FieldName = "vienphidate_ravien";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 7;
+            this.gridColumn6.Width = 125;
             // 
             // ucDongHoSoBenhAn
             // 
@@ -1051,5 +1076,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cboTrangThaiVP;
         private System.Windows.Forms.GroupBox groupBoxAction;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
     }
 }

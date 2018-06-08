@@ -75,12 +75,12 @@ namespace MedicalLink.ChucNang
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
-                string _tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
-                string _tieuchi_hsba = " and hosobenhandate between '" + datetungay + "' and '" + datedenngay + "' ";
-                string _doituongbenhnhanid = " and doituongbenhnhanid in (2,3) ";
-                string _loaivienphiid = " and loaivienphiid=1 ";
+                string _tieuchi_vp = "";
+                string _tieuchi_hsba = "";
+                string _doituongbenhnhanid = "";
+                string _loaivienphiid = "";
                 string _lstPhongcheck = "";
-                string _vienphistatus = " and vienphistatus=0 ";
+                string _vienphistatus = "";
                 //Loai benh an
                 if (cboBenhAn.Text == "Ngoại trú")
                 {
@@ -89,12 +89,20 @@ namespace MedicalLink.ChucNang
                 //doi tuong BN
                 if (cboDoiTuongBN.Text == "Viện phí")
                 {
-                    _doituongbenhnhanid = " and doituongbenhnhanid in (2,3) ";
+                    _doituongbenhnhanid = " and doituongbenhnhanid<>1 ";
                 }
                 //trang thai vp
                 if (cboTrangThaiVP.Text == "Đang điều trị")
                 {
                     _vienphistatus = " and vienphistatus=0 ";
+                    _tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    _tieuchi_hsba = " and hosobenhandate between '" + datetungay + "' and '" + datedenngay + "' ";
+                }
+                else if (cboTrangThaiVP.Text == "Ra viện chưa thanh toán")
+                {
+                    _vienphistatus = " and vienphistatus<>0 and COALESCE(vienphistatus_vp,0)=0 ";
+                    _tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                    _tieuchi_hsba = " and hosobenhandate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 _lstPhongcheck = " and departmentid in (";
                 List<Object> _lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
@@ -102,7 +110,7 @@ namespace MedicalLink.ChucNang
                 {
                     for (int i = 0; i < _lstPhongCheck.Count - 1; i++)
                     {
-                        _lstPhongcheck += _lstPhongCheck[i] + ", ";
+                        _lstPhongcheck += _lstPhongCheck[i] + ",";
                     }
                     _lstPhongcheck += _lstPhongCheck[_lstPhongCheck.Count - 1] + ")";
 
@@ -114,9 +122,10 @@ namespace MedicalLink.ChucNang
 	        hsba.patientname,
 	        TO_CHAR(hsba.birthday,'dd/MM/yyyy') as birthday,
 	        vp.vienphidate,
+             (case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as vienphidate_ravien,
 	        degp.departmentgroupname,
 	        de.departmentname
-        FROM (select vienphiid,patientid,hosobenhanid,departmentgroupid,departmentid,vienphidate,vienphistatus from vienphi where 1=1 " + _tieuchi_vp + _loaivienphiid + _doituongbenhnhanid + _lstPhongcheck + _vienphistatus + ") vp inner join (select hosobenhanid,patientname,birthday from hosobenhan where 1=1 " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid = vp.hosobenhanid inner join departmentgroup degp on degp.departmentgroupid = vp.departmentgroupid inner join department de on de.departmentid = vp.departmentid; ";
+        FROM (select vienphiid,patientid,hosobenhanid,departmentgroupid,departmentid,vienphidate,vienphidate_ravien,vienphistatus from vienphi where 1=1 " + _tieuchi_vp + _loaivienphiid + _doituongbenhnhanid + _lstPhongcheck + _vienphistatus + ") vp inner join (select hosobenhanid,patientname,birthday from hosobenhan where 1=1 " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid = vp.hosobenhanid inner join departmentgroup degp on degp.departmentgroupid = vp.departmentgroupid inner join department de on de.departmentid = vp.departmentid; ";
 
                     DataTable _dataHSBA = condb.GetDataTable_HIS(_sql_timkiem);
                     if (_dataHSBA != null && _dataHSBA.Rows.Count > 0)
@@ -151,10 +160,20 @@ namespace MedicalLink.ChucNang
                 {
                     //GridView view = sender as GridView;
                     e.Menu.Items.Clear();
-                    DXMenuItem itemMoBenhAn = new DXMenuItem("Đóng bệnh án và duyệt viện phí HS đã chọn");
-                    itemMoBenhAn.Image = imageCollectionMBA.Images[0];
-                    itemMoBenhAn.Click += new EventHandler(DongBenhAnVaDuyetVP_Click);
-                    e.Menu.Items.Add(itemMoBenhAn);
+                    if (cboTrangThaiVP.Text == "Đang điều trị")
+                    {
+                        DXMenuItem itemMoBenhAn = new DXMenuItem("Đóng bệnh án và duyệt viện phí HS đã chọn");
+                        itemMoBenhAn.Image = imageCollectionMBA.Images[0];
+                        itemMoBenhAn.Click += new EventHandler(DongBenhAnVaDuyetVP_Click);
+                        e.Menu.Items.Add(itemMoBenhAn);
+                    }
+                    else if (cboTrangThaiVP.Text == "Ra viện chưa thanh toán")
+                    {
+                        DXMenuItem _itemDuyetVP = new DXMenuItem("Duyệt viện phí HS đã chọn");
+                        _itemDuyetVP.Image = imageCollectionMBA.Images[0];
+                        _itemDuyetVP.Click += new EventHandler(DuyetVP_Click);
+                        e.Menu.Items.Add(_itemDuyetVP);
+                    }
                 }
             }
             catch (Exception ex)
@@ -162,77 +181,6 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        //process dong benh an
-        private void DongBenhAnVaDuyetVP_Click(object sender, EventArgs e)
-        {
-            if (Base.SessionLogin.SessionUserHISID == null || Base.SessionLogin.SessionUserHISID == "0")
-            {
-                MessageBox.Show("Tài khoản chưa được thiết lập HIS ID, vui lòng kiểm tra lại tài khoản để bổ sung", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-
-            if (gridViewHSBA.GetSelectedRows().Count() > 0)
-            {
-                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn đóng bệnh án của BN đã chọn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    int _demupdate = 0;
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-                    try
-                    {
-                        if (gridViewHSBA.GetSelectedRows().Count() > 0)
-                        {                   
-                            foreach (var item_index in gridViewHSBA.GetSelectedRows())
-                            {
-                                string _vienphiid = gridViewHSBA.GetRowCellValue(item_index, "vienphiid").ToString();
-                                string _hosobenhanid = gridViewHSBA.GetRowCellValue(item_index, "hosobenhanid").ToString();
-
-                                //Lay ngay chi dinh cuoi cung cua Ho so benh an
-                                string _dongHSTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                                string _dongHSTime_EndDay = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
-                                string _dongHSTime_long = DateTime.Now.ToString("yyyyMMdd");
-
-                                string _sqlChiDinhCuoi = "SELECT (TO_CHAR(maubenhphamdate,'yyyy-MM-dd') || ' 23:59:59') as donghstime_endday,TO_CHAR(maubenhphamdate,'yyyyMMdd') as donghstime_long FROM maubenhpham WHERE vienphiid='"+ _vienphiid + "' ORDER BY maubenhphamdate desc limit 1;";
-                                DataTable _dataChiDinhCuoi = condb.GetDataTable_HIS(_sqlChiDinhCuoi);
-                                if (_dataChiDinhCuoi.Rows.Count > 0)
-                                {
-                                    _dongHSTime_EndDay = _dataChiDinhCuoi.Rows[0]["donghstime_endday"].ToString();
-                                        _dongHSTime_long = _dataChiDinhCuoi.Rows[0]["donghstime_long"].ToString();
-                                }
-
-                                //update HSBA
-                                string _sqlDongHSBA = @" UPDATE vienphi SET vienphistatus=1, vienphidate_ravien='" + _dongHSTime_EndDay + "', chandoanravien='NONE', chandoanravien_code='NONE', vienphistatus_bh=1, duyet_ngayduyet_bh='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_bh='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), vienphistatus_vp=1, duyet_ngayduyet_vp='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_vp='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), medicalrecordid_end=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1), vienphidate_ravien_update='" + _dongHSTime + "' WHERE vienphiid='" + _vienphiid + "'; UPDATE hosobenhan SET isdownloaded=1, hosobenhanstatus=1, xutrikhambenhid=7, hosobenhandate_ravien='" + _dongHSTime_EndDay + "', chandoanravien_code='NONE', chandoanravien='NONE' WHERE hosobenhanid='" + _hosobenhanid + "'; UPDATE medicalrecord SET medicalrecordstatus=99, thoigianravien='" + _dongHSTime_EndDay + "', chandoanravien='NONE', chandoanravien_code='NONE', xutrikhambenhid=7, medicalrecordremark='Đóng bệnh án tự động' WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1); UPDATE sothutuphongkham SET sothutustatus=4 WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1);";
-                                if (condb.ExecuteNonQuery_HIS(_sqlDongHSBA))
-                                {
-                                    _demupdate += 1;
-                                    //Log vào DB
-                                    string _sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + Base.SessionLogin.SessionUsercode + "', 'Đóng và duyệt VP tự động VP=" + _vienphiid + "' ,'" + Base.SessionLogin.SessionMyIP + "', '" + Base.SessionLogin.SessionMachineName + "', '" + Base.SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + _vienphiid + "', 'TOOL_25');";
-                                    condb.ExecuteNonQuery_MeL(_sqlluulog);
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MedicalLink.Base.Logging.Error(ex);
-                    }
-                    SplashScreenManager.CloseForm();
-
-                    if (_demupdate > 0)
-                    {
-                        MessageBox.Show("Đóng bệnh án và duyệt viện phí thành công SL=" + _demupdate, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        btnTimKiem_Click(null, null);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Đóng bệnh án và duyệt viện phí thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-        }
-
-
         private void chkcomboListDSKhoa_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -315,6 +263,131 @@ namespace MedicalLink.ChucNang
         #endregion
 
         #region Process
+        private void DongBenhAnVaDuyetVP_Click(object sender, EventArgs e)
+        {
+            if (Base.SessionLogin.SessionUserHISID == null || Base.SessionLogin.SessionUserHISID == "0")
+            {
+                MessageBox.Show("Tài khoản chưa được thiết lập HIS ID, vui lòng kiểm tra lại tài khoản để bổ sung", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (gridViewHSBA.GetSelectedRows().Count() > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn đóng bệnh án và duyệt viện phí của BN đã chọn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int _demupdate = 0;
+                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    try
+                    {
+                        if (gridViewHSBA.GetSelectedRows().Count() > 0)
+                        {
+                            foreach (var item_index in gridViewHSBA.GetSelectedRows())
+                            {
+                                string _vienphiid = gridViewHSBA.GetRowCellValue(item_index, "vienphiid").ToString();
+                                string _hosobenhanid = gridViewHSBA.GetRowCellValue(item_index, "hosobenhanid").ToString();
+
+                                //Lay ngay chi dinh cuoi cung cua Ho so benh an
+                                string _dongHSTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                string _dongHSTime_EndDay = DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59";
+                                string _dongHSTime_long = DateTime.Now.ToString("yyyyMMdd");
+
+                                string _sqlChiDinhCuoi = "SELECT (TO_CHAR(maubenhphamdate,'yyyy-MM-dd') || ' 23:59:59') as donghstime_endday,TO_CHAR(maubenhphamdate,'yyyyMMdd') as donghstime_long FROM maubenhpham WHERE vienphiid='" + _vienphiid + "' ORDER BY maubenhphamdate desc limit 1;";
+                                DataTable _dataChiDinhCuoi = condb.GetDataTable_HIS(_sqlChiDinhCuoi);
+                                if (_dataChiDinhCuoi.Rows.Count > 0)
+                                {
+                                    _dongHSTime_EndDay = _dataChiDinhCuoi.Rows[0]["donghstime_endday"].ToString();
+                                    _dongHSTime_long = _dataChiDinhCuoi.Rows[0]["donghstime_long"].ToString();
+                                }
+
+                                //update HSBA
+                                string _sqlDongHSBA = @" UPDATE vienphi SET vienphistatus=1, vienphidate_ravien='" + _dongHSTime_EndDay + "', chandoanravien='NONE', chandoanravien_code='NONE', vienphistatus_bh=1, duyet_ngayduyet_bh='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_bh='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), vienphistatus_vp=1, duyet_ngayduyet_vp='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_vp='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), medicalrecordid_end=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1), vienphidate_ravien_update='" + _dongHSTime + "' WHERE vienphiid='" + _vienphiid + "'; UPDATE hosobenhan SET isdownloaded=1, hosobenhanstatus=1, xutrikhambenhid=7, hosobenhandate_ravien='" + _dongHSTime_EndDay + "', chandoanravien_code='NONE', chandoanravien='NONE' WHERE hosobenhanid='" + _hosobenhanid + "'; UPDATE medicalrecord SET medicalrecordstatus=99, thoigianravien='" + _dongHSTime_EndDay + "', chandoanravien='NONE', chandoanravien_code='NONE', xutrikhambenhid=7, medicalrecordremark='Đóng bệnh án tự động' WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1); UPDATE sothutuphongkham SET sothutustatus=4 WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid='" + _vienphiid + "' order by medicalrecordid desc limit 1);";
+                                if (condb.ExecuteNonQuery_HIS(_sqlDongHSBA))
+                                {
+                                    _demupdate += 1;
+                                    //Log vào DB
+                                    string _sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + Base.SessionLogin.SessionUsercode + "', 'Đóng và duyệt VP tự động VP=" + _vienphiid + "' ,'" + Base.SessionLogin.SessionMyIP + "', '" + Base.SessionLogin.SessionMachineName + "', '" + Base.SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + _vienphiid + "', 'TOOL_25');";
+                                    condb.ExecuteNonQuery_MeL(_sqlluulog);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MedicalLink.Base.Logging.Error(ex);
+                    }
+                    SplashScreenManager.CloseForm();
+
+                    if (_demupdate > 0)
+                    {
+                        MessageBox.Show("Đóng bệnh án và duyệt viện phí thành công SL=" + _demupdate, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnTimKiem_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đóng bệnh án và duyệt viện phí thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+        }
+        private void DuyetVP_Click(object sender, EventArgs e)
+        {
+            if (Base.SessionLogin.SessionUserHISID == null || Base.SessionLogin.SessionUserHISID == "0")
+            {
+                MessageBox.Show("Tài khoản chưa được thiết lập HIS ID, vui lòng kiểm tra lại tài khoản để bổ sung", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (gridViewHSBA.GetSelectedRows().Count() > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn duyệt viện phí của BN đã chọn?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    int _demupdate = 0;
+                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    try
+                    {
+                        if (gridViewHSBA.GetSelectedRows().Count() > 0)
+                        {
+                            foreach (var item_index in gridViewHSBA.GetSelectedRows())
+                            {
+                                string _vienphiid = gridViewHSBA.GetRowCellValue(item_index, "vienphiid").ToString();
+
+                                //lay ngay ra vien
+                                DateTime _vienphidate_ravien = Utilities.Util_TypeConvertParse.ToDateTime(gridViewHSBA.GetRowCellValue(item_index, "vienphidate_ravien").ToString());
+                                string _dongHSTime_EndDay = _vienphidate_ravien.ToString("yyyy-MM-dd") + " 23:59:59";
+                                string _dongHSTime_long = _vienphidate_ravien.ToString("yyyyMMdd");
+
+                                //update HSBA
+                                string _sqlDongHSBA = @"UPDATE vienphi SET vienphistatus=1, vienphistatus_bh=1, duyet_ngayduyet_bh='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_bh='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "'), vienphistatus_vp=1, duyet_ngayduyet_vp='" + _dongHSTime_EndDay + "', duyet_nguoiduyet_vp='" + Base.SessionLogin.SessionUserHISID + "', duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='" + Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='" + _dongHSTime_long + "') WHERE vienphiid='" + _vienphiid + "';";
+                                if (condb.ExecuteNonQuery_HIS(_sqlDongHSBA))
+                                {
+                                    _demupdate += 1;
+                                    //Log vào DB
+                                    string _sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + Base.SessionLogin.SessionUsercode + "', 'Duyệt VP tự động VP=" + _vienphiid + "' ,'" + Base.SessionLogin.SessionMyIP + "', '" + Base.SessionLogin.SessionMachineName + "', '" + Base.SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + _vienphiid + "', 'TOOL_25');";
+                                    condb.ExecuteNonQuery_MeL(_sqlluulog);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MedicalLink.Base.Logging.Error(ex);
+                    }
+                    SplashScreenManager.CloseForm();
+
+                    if (_demupdate > 0)
+                    {
+                        MessageBox.Show("Duyệt viện phí thành công SL=" + _demupdate, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnTimKiem_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Duyệt viện phí thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+        }
 
         #endregion
 

@@ -333,6 +333,15 @@ namespace MedicalLink.Base
                 TOOL_25.permissionnote = "Đóng HSBA BN Viện phí ngoại trú";
                 lstresult.Add(TOOL_25);
 
+                ClassCommon.classPermission TOOL_26 = new ClassCommon.classPermission();
+                TOOL_26.permissioncheck = false;
+                TOOL_26.permissioncode = "TOOL_26";
+                TOOL_26.permissionname = "Cập nhật hạn sử dụng thuốc/vật tư";
+                TOOL_26.permissiontype = 2;
+                TOOL_26.tabMenuId = 2;
+                TOOL_26.permissionnote = "Cập nhật hạn sử dụng thuốc/vật tư";
+                lstresult.Add(TOOL_26);
+
 
 
                 // Phan quyen thao tac + chuc nang
@@ -965,6 +974,33 @@ namespace MedicalLink.Base
                 REPORT_107.tabMenuId = 4;
                 REPORT_107.permissionnote = "";
                 lstresult.Add(REPORT_107);
+
+                ClassCommon.classPermission REPORT_108 = new ClassCommon.classPermission();
+                REPORT_108.permissioncheck = false;
+                REPORT_108.permissioncode = "REPORT_108";
+                REPORT_108.permissionname = "Báo cáo chi thưởng dịch vụ viện phí";
+                REPORT_108.permissiontype = 3;
+                REPORT_108.tabMenuId = 4;
+                REPORT_108.permissionnote = "";
+                lstresult.Add(REPORT_108);
+
+                ClassCommon.classPermission REPORT_109 = new ClassCommon.classPermission();
+                REPORT_109.permissioncheck = false;
+                REPORT_109.permissioncode = "REPORT_109";
+                REPORT_109.permissionname = "Danh sách các khoa được hưởng K3";
+                REPORT_109.permissiontype = 3;
+                REPORT_109.tabMenuId = 4;
+                REPORT_109.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_109_DV; REPORT_109_KHOA";
+                lstresult.Add(REPORT_109);
+
+                ClassCommon.classPermission REPORT_110 = new ClassCommon.classPermission();
+                REPORT_110.permissioncheck = false;
+                REPORT_110.permissioncode = "REPORT_110";
+                REPORT_110.permissionname = "Trích tiền thưởng dịch vụ giường yêu cầu chuyển khoản";
+                REPORT_110.permissiontype = 3;
+                REPORT_110.tabMenuId = 4;
+                REPORT_110.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_110_DV; REPORT_110_KHOA";
+                lstresult.Add(REPORT_110);
 
 
 

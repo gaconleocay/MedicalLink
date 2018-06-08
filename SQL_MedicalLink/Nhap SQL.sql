@@ -1057,6 +1057,17 @@ and COALESCE(vienphistatus_vp,0)=0 and departmentid in (59)
 
 
 
+-- Pass không mã hóa,
+--Thêm user chưa bắt user trùng nhau
+- Sắp xếp theo cột trên lưới
+- Tìm kiếm dữ liệu trên lưới
+- Phân trang trên lưới
+- View và In báo cáo
+- Xóa ng khỏi nhóm: lỗi http://localhost:27304/WebLib/RemoveFromGroup?userID=25&returnUrl=%2FWebLib%2FListGroup
+
+tripod-TCP/IP -> server
+Tag thẻ, gửi dữ liệu: ID tripod+ID thẻ+thời gian check->Server
+Server: trừ tiền ID thẻ - dịch vụ theo ID tripod + lưu thời gian
 
 
 

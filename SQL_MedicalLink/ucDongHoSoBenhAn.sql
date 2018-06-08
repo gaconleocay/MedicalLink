@@ -3,7 +3,7 @@
 
 alter table tools_tbluser add userhisid integer;
 
---ngay 23/5/2018
+--ngay 31/5/2018
 
 SELECT row_number () over (order by vp.vienphidate) as stt,
 	vp.vienphiid,
@@ -12,9 +12,10 @@ SELECT row_number () over (order by vp.vienphidate) as stt,
 	hsba.patientname,
 	TO_CHAR(hsba.birthday,'dd/MM/yyyy') as birthday,
 	vp.vienphidate,
+	(case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as vienphidate_ravien,
 	degp.departmentgroupname,
 	de.departmentname
-FROM (select vienphiid,patientid,hosobenhanid,departmentgroupid,departmentid,vienphidate,vienphistatus from vienphi where 1=1 "+_tieuchi_vp+_loaivienphiid+_doituongbenhnhanid+_lstPhongcheck+_vienphistatus+") vp
+FROM (select vienphiid,patientid,hosobenhanid,departmentgroupid,departmentid,vienphidate,vienphidate_ravien,vienphistatus from vienphi where 1=1 "+_tieuchi_vp+_loaivienphiid+_doituongbenhnhanid+_lstPhongcheck+_vienphistatus+") vp
 	inner join (select hosobenhanid,patientname,birthday from hosobenhan where 1=1 "+_tieuchi_hsba+") hsba on hsba.hosobenhanid=vp.hosobenhanid
 	inner join departmentgroup degp on degp.departmentgroupid=vp.departmentgroupid
 	inner join department de on de.departmentid=vp.departmentid;
@@ -107,8 +108,20 @@ WHERE medicalrecordid=(select medicalrecordid from medicalrecord where vienphiid
 
 
 
+--==========Duyet VP
+--ngay 31/5/2018
 
-
+UPDATE vienphi SET
+	vienphistatus=1,
+	vienphistatus_bh=1,
+	duyet_ngayduyet_bh='"+_dongHSTime_EndDay+"',
+	duyet_nguoiduyet_bh='"+Base.SessionLogin.SessionUserHISID+"',
+	duyet_sothutuduyet_bh=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='"+Base.SessionLogin.SessionUserHISID+"' and TO_CHAR(sothutudate,'yyyyMMdd')='"+_dongHSTime_long+"'),
+	vienphistatus_vp=1,
+	duyet_ngayduyet_vp='"+_dongHSTime_EndDay+"',
+	duyet_nguoiduyet_vp='"+Base.SessionLogin.SessionUserHISID+"',
+	duyet_sothutuduyet_vp=(select coalesce(max(sothutunumber),1) as stt_duyetvp from sothutuduyetvienphi where userid='"+ Base.SessionLogin.SessionUserHISID + "' and TO_CHAR(sothutudate,'yyyyMMdd')='"+_dongHSTime_long+"')
+WHERE vienphiid='"+_vienphiid+"';
 
 
 

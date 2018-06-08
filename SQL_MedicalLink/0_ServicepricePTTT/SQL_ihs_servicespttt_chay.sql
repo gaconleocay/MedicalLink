@@ -477,7 +477,10 @@ from (select * from vienphi where vienphidate_ravien >= '2018-01-01 00:00:00'
 			and COALESCE(vienphistatus_vp,0)=0
 			and vienphiid not in (select vienphiid from ihs_servicespttt where vienphidate_ravien >= '2018-01-01 00:00:00' and COALESCE(vienphistatus_vp,0)=0)) vp
 --	inner join serviceprice ser on ser.vienphiid=vp.vienphiid	
-*/			
+
+
+
+*/	
 --kiem tra BN chay thừa lệnh SQL	
 /*		
 --da thanh toan

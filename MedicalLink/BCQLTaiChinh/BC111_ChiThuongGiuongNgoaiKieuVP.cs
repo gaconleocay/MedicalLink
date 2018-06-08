@@ -60,6 +60,7 @@ namespace MedicalLink.BCQLTaiChinh
             try
             {
                 string tieuchi_ser = "";
+                string lstdichvu_ser = " and servicepricecode in (" + this.DanhMucDichVu_String + ") ";
                 string tieuchi_vp = "";
                 string tieuchi_mbp = "";
                 string trangthai_vp = "";
@@ -99,7 +100,7 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @"";
+                sql_timkiem = @"SELECT 1 as stt, 'Ngoại kiều' as departmentgroupname, '' as quyetdinh_so, '' as quyetdinh_ngaythang, sum(ser.soluong) as soluong, ser.dongia, sum(ser.soluong*ser.dongia) as tongtienthu, 10 as tyle, sum(ser.soluong*ser.dongia*0.1) as thuong, '' as kynhan, '' as ghichu FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid GROUP BY ser.dongia;";
 
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
@@ -144,7 +145,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
 
-                string fileTemplatePath = "BC_108_ChiThuongDVThuVienPhi.xlsx";
+                string fileTemplatePath = "BC_111_ChiThuongGiuongNgoaiKieuVP.xlsx";
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
             }
@@ -177,7 +178,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
 
-                string fileTemplatePath = "BC_108_ChiThuongDVThuVienPhi.xlsx";
+                string fileTemplatePath = "BC_111_ChiThuongGiuongNgoaiKieuVP.xlsx";
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaoCao);
             }
             catch (Exception ex)

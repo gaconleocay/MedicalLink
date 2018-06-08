@@ -17,4 +17,16 @@ namespace MedicalLink.ClassCommon
         public string pttt_lastuserupdated { get; set; }
         public DateTime? pttt_lasttimeupdated { get; set; }
     }
+
+    public class Department_KhoaCLSDTO
+    {
+        public long stt { get; set; }
+        public long departmentid { get; set; }
+        public string departmentcode { get; set; }
+        public string departmentname { get; set; }
+        public bool cls_khoaguiyc { get; set; }
+        public string cls_khoaguiyc_name { get; set; }
+        public string cls_lastuserupdated { get; set; }
+        public DateTime? cls_lasttimeupdated { get; set; }
+    }
 }

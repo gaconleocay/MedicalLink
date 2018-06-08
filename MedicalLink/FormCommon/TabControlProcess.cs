@@ -413,6 +413,9 @@ namespace MedicalLink.FormCommon
                     case "REPORT_110":
                         ucResult = new BCQLTaiChinh.BC110_TrichThuongGiuongYCCK();
                         break;
+                    case "REPORT_111":
+                        ucResult = new BCQLTaiChinh.BC111_ChiThuongGiuongNgoaiKieuVP();
+                        break;
 
                     //Dashboard
                     case "DASHBOARD_01":

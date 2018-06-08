@@ -17,6 +17,7 @@ using DevExpress.Utils.Menu;
 using MedicalLink.Utilities.GridControl;
 using MedicalLink.Utilities.GUIGridView;
 using MedicalLink.Utilities.BandGridView;
+using MedicalLink.BaoCao.BCThucHienCLS;
 
 namespace MedicalLink.BaoCao
 {
@@ -157,14 +158,14 @@ namespace MedicalLink.BaoCao
                 btnPTTT_Duyet.Visible = _enable;
                 btnPTTT_HuyDuyet.Visible = _enable;
                 btnPTTT_KhoaMoKhoa.Visible = _enable;
-                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
-                {
-                    btnPTTT_KhoaMoKhoa.Text = "Mở khóa gửi YC";
-                }
-                else
-                {
-                    btnPTTT_KhoaMoKhoa.Text = "Khóa gửi YC";
-                }
+                //if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                //{
+                //    btnPTTT_KhoaMoKhoa.Text = "Mở khóa gửi YC";
+                //}
+                //else
+                //{
+                //    btnPTTT_KhoaMoKhoa.Text = "Khóa gửi YC";
+                //}
             }
             catch (Exception ex)
             {
@@ -178,7 +179,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (chkcomboListDSPhong.Properties.Items.GetCheckedValues().Count == 0)
+                if (cboLoaiBaoCao.EditValue.ToString() != "BAOCAO_009" && chkcomboListDSPhong.Properties.Items.GetCheckedValues().Count == 0)
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_THUC_HIEN);
                     frmthongbao.Show();
@@ -691,7 +692,8 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                // Kiem tra trang thai 
+                if (KiemTraTrangThaiKhoaGuiPTTT(GetIdKhoaPhongTheoLoaiBC()))
                 {
                     MessageBox.Show(Base.ThongBaoLable.DA_KHOA_YC_GUI_PTTT, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
@@ -736,7 +738,8 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                if (KiemTraTrangThaiKhoaGuiPTTT() == 1)
+                // Kiem tra trang thai 
+                if (KiemTraTrangThaiKhoaGuiPTTT(GetIdKhoaPhongTheoLoaiBC()))
                 {
                     MessageBox.Show(Base.ThongBaoLable.DA_KHOA_YC_GUI_PTTT, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
@@ -942,24 +945,26 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                string _toolsoptionvalue = "1";
-                string _btnPTTT_KhoaMoKhoaText = "Mở khóa gửi YC";
-                if (btnPTTT_KhoaMoKhoa.Text == "Mở khóa gửi YC")
-                {
-                    _toolsoptionvalue = "0";
-                    _btnPTTT_KhoaMoKhoaText = "Khóa gửi YC";
-                }
-                string _updateKhoa = "UPDATE tools_option SET toolsoptionvalue='" + _toolsoptionvalue + "' WHERE toolsoptioncode='REPORT_12_KhoaGuiYeuCau';";
-                if (condb.ExecuteNonQuery_MeL(_updateKhoa))
-                {
-                    MessageBox.Show(btnPTTT_KhoaMoKhoa.Text + " PTTT thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btnPTTT_KhoaMoKhoa.Text = _btnPTTT_KhoaMoKhoaText;
-                }
-                else
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
-                    frmthongbao.Show();
-                }
+                frmKhoaGuiYeuCau_CLS _frm = new frmKhoaGuiYeuCau_CLS();
+                _frm.ShowDialog();
+                //string _toolsoptionvalue = "1";
+                //string _btnPTTT_KhoaMoKhoaText = "Mở khóa gửi YC";
+                //if (btnPTTT_KhoaMoKhoa.Text == "Mở khóa gửi YC")
+                //{
+                //    _toolsoptionvalue = "0";
+                //    _btnPTTT_KhoaMoKhoaText = "Khóa gửi YC";
+                //}
+                //string _updateKhoa = "UPDATE tools_option SET toolsoptionvalue='" + _toolsoptionvalue + "' WHERE toolsoptioncode='REPORT_12_KhoaGuiYeuCau';";
+                //if (condb.ExecuteNonQuery_MeL(_updateKhoa))
+                //{
+                //    MessageBox.Show(btnPTTT_KhoaMoKhoa.Text + " PTTT thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    btnPTTT_KhoaMoKhoa.Text = _btnPTTT_KhoaMoKhoaText;
+                //}
+                //else
+                //{
+                //    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                //    frmthongbao.Show();
+                //}
             }
             catch (Exception ex)
             {

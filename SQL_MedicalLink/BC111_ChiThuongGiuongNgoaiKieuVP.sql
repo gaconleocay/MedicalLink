@@ -1,6 +1,7 @@
 --Bao cao chi thuong giuong ngoai kieu vien phi
 --BC111_ChiThuongGiuongNgoaiKieuVP
 
+
 --ngay 7/6/2018
 
 SELECT 1 as stt,
@@ -17,7 +18,7 @@ SELECT 1 as stt,
 FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien,
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 		from serviceprice 
-		where 1=1 "+tieuchi_ser+lstdichvu_ser") ser
+		where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
 	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.dongia
 

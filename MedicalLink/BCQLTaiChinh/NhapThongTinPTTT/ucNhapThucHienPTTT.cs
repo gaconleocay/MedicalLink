@@ -11,6 +11,8 @@ using MedicalLink.ClassCommon;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using System.Globalization;
+using MedicalLink.Utilities.GUIGridView;
+using MedicalLink.ClassCommon.BCQLTaiChinh;
 
 namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
 {
@@ -18,7 +20,8 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
     {
         #region Khai bao
         private Base.ConnectDatabase condb = new Base.ConnectDatabase();
-
+        private DataTable DataNguoiThucHien { get; set; }
+        private List<NhapThucHienPTTTDTO> lstBaoCao { get; set; }
 
         #endregion
         public ucNhapThucHienPTTT()
@@ -33,6 +36,7 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
             {
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                LoadDanhMucKhoa();
                 LoadDataNguoiThucHien();
             }
             catch (Exception ex)
@@ -40,6 +44,93 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void LoadDanhMucKhoa()
+        {
+            try
+            {
+                //linq groupby
+                var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                if (lstDSKhoa != null && lstDSKhoa.Count > 0)
+                {
+                    chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
+                    chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
+                    chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
+                }
+                if (lstDSKhoa.Count == 1)
+                {
+                    chkcomboListDSKhoa.CheckAll();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void LoadDataNguoiThucHien()
+        {
+            try
+            {
+                if (this.DataNguoiThucHien == null || this.DataNguoiThucHien.Rows.Count <= 0)
+                {
+                    string getnguoithuchien = "select 0 as userhisid, '' as usercode, '' as username, '' as usercodename union all select nv.userhisid, nv.usercode, nv.username, (nv.usercode || ' - ' || nv.username) as usercodename from nhompersonnel nv;";
+                    this.DataNguoiThucHien = condb.GetDataTable_HIS(getnguoithuchien);
+                }
+
+                repositoryItemGridLookUp_MoChinh.DataSource = DataNguoiThucHien;
+                repositoryItemGridLookUp_MoChinh.DisplayMember = "usercodename";
+                repositoryItemGridLookUp_MoChinh.ValueMember = "userhisid";
+
+                //repositoryItemGridLookUp_MoiMoChinh.DataSource = DataNguoiThucHien;
+                //repositoryItemGridLookUp_MoiMoChinh.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_MoiMoChinh.ValueMember = "userhisid";
+
+                //repositoryItemGridLookUp_BSGayMe.DataSource = DataNguoiThucHien;
+                //repositoryItemGridLookUp_BSGayMe.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_BSGayMe.ValueMember = "userhisid";
+
+                //repositoryItemGridLookUp_MoiGayMe.DataSource = DataNguoiThucHien;
+                //repositoryItemGridLookUp_MoiGayMe.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_MoiGayMe.ValueMember = "userhisid";
+
+                //repositoryItemGridLookUp_KTVPhuMe.DataSource = DataNguoiThucHien;
+                //repositoryItemGridLookUp_KTVPhuMe.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_KTVPhuMe.ValueMember = "userhisid";
+
+                //repositoryItemGridLookUp_Phu1.DataSource = this.DataNguoiThucHien;
+                //repositoryItemGridLookUp_Phu1.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_Phu1.ValueMember = "usercode";
+
+                //repositoryItemGridLookUp_Phu2.DataSource = this.DataNguoiThucHien;
+                //repositoryItemGridLookUp_Phu2.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_Phu2.ValueMember = "usercode";
+
+                //repositoryItemGridLookUp_KTVHoiTinh.DataSource = this.DataNguoiThucHien;
+                //repositoryItemGridLookUp_KTVHoiTinh.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_KTVHoiTinh.ValueMember = "usercode";
+
+                //repositoryItemGridLookUp_DDHoiTinh.DataSource = this.DataNguoiThucHien;
+                //repositoryItemGridLookUp_DDHoiTinh.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_DDHoiTinh.ValueMember = "usercode";
+
+                //repositoryItemGridLookUp_DDHanhChinh.DataSource = this.DataNguoiThucHien;
+                //repositoryItemGridLookUp_DDHanhChinh.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_DDHanhChinh.ValueMember = "usercode";
+
+                //repositoryItemGridLookUp_HoLy.DataSource = this.DataNguoiThucHien;
+                //repositoryItemGridLookUp_HoLy.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_HoLy.ValueMember = "usercode";
+
+                //repositoryItemGridLookUp_DungCuVien.DataSource = this.DataNguoiThucHien;
+                //repositoryItemGridLookUp_DungCuVien.DisplayMember = "usercodename";
+                //repositoryItemGridLookUp_DungCuVien.ValueMember = "usercode";
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
         #endregion
 
         #region Events
@@ -50,14 +141,21 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
             {
                 string _tieuchi_ser = "";
                 string _tieuchi_vp = "";
-                string _tieuchi_bill = "";
+                string _tieuchi_mbp = "";
+                string _tieuchi_bhyt = "";
+                string _trangthainhappttt = "";
+                string _trangthaivp = "";
+                string _doituongbenhnhanid = "";
+                //string _loaivienphiid = "";
+                string _tieuchi_hsba = "";
                 string _lstPhongChonLayBC = "";
                 string _listuserid = "";
+
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
 
-                //phong
+                //Lay phong
                 List<Object> lstPhongCheck = chkcomboListDSPhong.Properties.Items.GetCheckedValues();
                 if (lstPhongCheck.Count > 0)
                 {
@@ -66,27 +164,30 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
                         _lstPhongChonLayBC += lstPhongCheck[i] + ",";
                     }
                     _lstPhongChonLayBC += lstPhongCheck[lstPhongCheck.Count - 1];
+                    //
+
+                    this.lstBaoCao = new List<NhapThucHienPTTTDTO>();
+                    NhapThucHienPTTTDTO _item1 = new NhapThucHienPTTTDTO();
+                    lstBaoCao.Add(_item1);
+                    gridControlDataDV.DataSource = lstBaoCao;
+
+                    string _sqlLayData = @"";
+                    DataTable _dataBaoCao = condb.GetDataTable_HIS(_sqlLayData);
+                    if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
+                    {
+                        gridControlDataDV.DataSource = lstBaoCao;
+                    }
+                    else
+                    {
+                        //gridControlDataDV.DataSource = null;
+                        //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        //frmthongbao.Show();
+                    }
+
                 }
                 else
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
-                    frmthongbao.Show();
-                    return;
-                }
-
-
-
-
-                string _sqlLayData = @"";
-                DataTable _dataBaoCao = condb.GetDataTable_HIS(_sqlLayData);
-                if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
-                {
-                    gridControlDataDV.DataSource = _dataBaoCao;
-                }
-                else
-                {
-                    gridControlDataDV.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
@@ -99,7 +200,14 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
 
         private void gridViewDataDV_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
         }
 
         private void chkcomboListDSKhoa_EditValueChanged(object sender, EventArgs e)
@@ -152,49 +260,29 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        #endregion
-
-        #region Process
-        private void LoadDataNguoiThucHien()
+        private void gridViewDataDV_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
             try
             {
-                //if (this.dataNguoiThucHien == null || this.dataNguoiThucHien.Rows.Count <= 0)
-                //{
-                //    string getnguoithuchien = "select 0 as userhisid, '' as usercode, '' as username, '' as usercodename union all select A.userhisid, A.usercode, A.username, A.usercodename from (select nv.userhisid, nv.usercode, nv.username, (nv.usercode || ' - ' || nv.username) as usercodename from nhompersonnel nv inner join (select usercode, departmentid from tbldepartment) ude on ude.usercode=nv.usercode inner join (select departmentid from department where departmentgroupid in (" + lstdepartmentgroupid + ")) de on de.departmentid=ude.departmentid group by nv.userhisid, nv.usercode, nv.username order by nv.username) A; ";
-                //    this.dataNguoiThucHien = condb.GetDataTable_HIS(getnguoithuchien);
-                //}
-
-                ////repositoryItemGridLookUp_MoChinh.DataSource = this.dataNguoiThucHien;
-                ////repositoryItemGridLookUp_MoChinh.DisplayMember = "usercodename";
-                ////repositoryItemGridLookUp_MoChinh.ValueMember = "usercode";
-
-                //repositoryItemGridLookUp_GayMe.DataSource = dataNguoiThucHien;
-                //repositoryItemGridLookUp_GayMe.DisplayMember = "usercodename";
-                //repositoryItemGridLookUp_GayMe.ValueMember = "userhisid";
-
-                //repositoryItemGridLookUp_Phu1.DataSource = dataNguoiThucHien;
-                //repositoryItemGridLookUp_Phu1.DisplayMember = "usercodename";
-                //repositoryItemGridLookUp_Phu1.ValueMember = "userhisid";
-
-                //repositoryItemGridLookUp_Phu2.DataSource = dataNguoiThucHien;
-                //repositoryItemGridLookUp_Phu2.DisplayMember = "usercodename";
-                //repositoryItemGridLookUp_Phu2.ValueMember = "userhisid";
-
-                //repositoryItemGridLookUp_GiupViec1.DataSource = dataNguoiThucHien;
-                //repositoryItemGridLookUp_GiupViec1.DisplayMember = "usercodename";
-                //repositoryItemGridLookUp_GiupViec1.ValueMember = "userhisid";
-
-                //repositoryItemGridLookUp_GiupViec2.DataSource = dataNguoiThucHien;
-                //repositoryItemGridLookUp_GiupViec2.DisplayMember = "usercodename";
-                //repositoryItemGridLookUp_GiupViec2.ValueMember = "userhisid";
+                if (e.Column.FieldName == "img_nhapptttstt")
+                {
+                    string val = gridViewDataDV.GetRowCellValue(e.RowHandle, "thuchienptttid").ToString();
+                    if (val != "0")
+                    {
+                        e.Handled = true;
+                        Point pos = Util_GUIGridView.CalcPosition(e, imMenu.Images[4]);
+                        e.Graphics.DrawImage(imMenu.Images[4], pos);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                Base.Logging.Warn(ex);
             }
         }
+        #endregion
+
+        #region Process
 
         #endregion
 
@@ -227,7 +315,11 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
             }
         }
 
+
+
+
         #endregion
+
 
 
 

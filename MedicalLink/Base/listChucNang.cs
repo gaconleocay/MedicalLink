@@ -1011,6 +1011,58 @@ namespace MedicalLink.Base
                 REPORT_111.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_111_DV";
                 lstresult.Add(REPORT_111);
 
+                ClassCommon.classPermission REPORT_112 = new ClassCommon.classPermission();
+                REPORT_112.permissioncheck = false;
+                REPORT_112.permissioncode = "REPORT_112";
+                REPORT_112.permissionname = "Chi thưởng giường yêu cầu cho các khoa phòng chuyển khoản";
+                REPORT_112.permissiontype = 3;
+                REPORT_112.tabMenuId = 4;
+                REPORT_112.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_110_DV; REPORT_110_KHOA; REPORT_111_DV";
+                lstresult.Add(REPORT_112);
+
+                ClassCommon.classPermission REPORT_113 = new ClassCommon.classPermission();
+                REPORT_113.permissioncheck = false;
+                REPORT_113.permissioncode = "REPORT_113";
+                REPORT_113.permissionname = "Danh sách Khoa hưởng tiền dịch vụ yêu cầu chất lượng cao";
+                REPORT_113.permissiontype = 3;
+                REPORT_113.tabMenuId = 4;
+                REPORT_113.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_113_DV";
+                lstresult.Add(REPORT_113);
+
+                ClassCommon.classPermission REPORT_114 = new ClassCommon.classPermission();
+                REPORT_114.permissioncheck = false;
+                REPORT_114.permissioncode = "REPORT_114";
+                REPORT_114.permissionname = "Báo cáo hậu cần và quản lý mổ yêu cầu";
+                REPORT_114.permissiontype = 3;
+                REPORT_114.tabMenuId = 4;
+                REPORT_114.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_114_DV";
+                lstresult.Add(REPORT_114);
+
+                ClassCommon.classPermission REPORT_115 = new ClassCommon.classPermission();
+                REPORT_115.permissioncheck = false;
+                REPORT_115.permissioncode = "REPORT_115";
+                REPORT_115.permissionname = "Báo cáo khoa chuẩn bị bệnh nhân";
+                REPORT_115.permissiontype = 3;
+                REPORT_115.tabMenuId = 4;
+                REPORT_115.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_115_DV";
+                lstresult.Add(REPORT_115);
+
+                ClassCommon.classPermission REPORT_116 = new ClassCommon.classPermission();
+                REPORT_116.permissioncheck = false;
+                REPORT_116.permissioncode = "REPORT_116";
+                REPORT_116.permissionname = "Nhập thực hiện phẫu thuật thủ thuật";
+                REPORT_116.permissiontype = 3;
+                REPORT_116.tabMenuId = 4;
+                REPORT_116.permissionnote = "Sử dụng dữ liệu cho các báo cáo: REPORT_117; REPORT_118; REPORT_119";
+                lstresult.Add(REPORT_116);
+
+
+
+
+
+
+
+
 
 
 

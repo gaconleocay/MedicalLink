@@ -20,6 +20,8 @@ FROM (select vienphiid,patientid,hosobenhanid,departmentgroupid,departmentid,vie
 	inner join departmentgroup degp on degp.departmentgroupid=vp.departmentgroupid
 	inner join department de on de.departmentid=vp.departmentid;
 	
+
+
 	
 	
 ---Chi tiet

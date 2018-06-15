@@ -495,6 +495,30 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="BCQLTaiChinh\BC115_KhoaChuanBiBNQD151.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC115_KhoaChuanBiBNQD151.Designer.cs">
+      <DependentUpon>BC115_KhoaChuanBiBNQD151.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC114_HauCanVaQuanLyMoYeuCau.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC114_HauCanVaQuanLyMoYeuCau.Designer.cs">
+      <DependentUpon>BC114_HauCanVaQuanLyMoYeuCau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC113_DSKhoaHuongTienDVYCCLC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC113_DSKhoaHuongTienDVYCCLC.Designer.cs">
+      <DependentUpon>BC113_DSKhoaHuongTienDVYCCLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC112_ChiTienGiuongYCChoCacKhoaCK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC112_ChiTienGiuongYCChoCacKhoaCK.Designer.cs">
+      <DependentUpon>BC112_ChiTienGiuongYCChoCacKhoaCK.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCQLTaiChinh\frmBC106_NhapTruThue.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -674,8 +698,13 @@
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\ChiThuongDichVuVienPhiDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\DSCacKhoaDuocHuongK3DTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\KhoaChuanBiBNQD151DTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\HauCanVaQuanLyMoYeuCauDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\NhapThucHienPTTTDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongChuyenGiaYCDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\DSKhoaHuongTienDVYCCLCDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVKinhHienVi.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\ChiTienGiuongYCChoCacKhoaCKDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVNuocSoiDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\TrichThuongDVFibroDTO.cs" />
     <Compile Include="ClassCommon\BCSoChiTietBenhNhan.cs" />
@@ -1431,6 +1460,18 @@
     <EmbeddedResource Include="BaoCao\ucBCDoanhThuTheoMayXN.resx">
       <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC115_KhoaChuanBiBNQD151.resx">
+      <DependentUpon>BC115_KhoaChuanBiBNQD151.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC114_HauCanVaQuanLyMoYeuCau.resx">
+      <DependentUpon>BC114_HauCanVaQuanLyMoYeuCau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC113_DSKhoaHuongTienDVYCCLC.resx">
+      <DependentUpon>BC113_DSKhoaHuongTienDVYCCLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC112_ChiTienGiuongYCChoCacKhoaCK.resx">
+      <DependentUpon>BC112_ChiTienGiuongYCChoCacKhoaCK.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\frmBC106_NhapTruThue.resx">
       <DependentUpon>frmBC106_NhapTruThue.cs</DependentUpon>
     </EmbeddedResource>
@@ -2089,6 +2130,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_111_ChiThuongGiuongNgoaiKieuVP.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_112_ChiTienGiuongYCChoCacKhoaCK.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_113_DSKhoaHuongTienDVYCCLC.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_114_HauCanVaQuanLyMoYeuCau.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_115_KhoaChuanBiBNQD151.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

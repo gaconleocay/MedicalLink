@@ -1,7 +1,7 @@
 --báo cáo THỐNG KÊ SỐ TIỀN KHÁM YÊU CẦU THỨ 7, CHỦ NHẬT 
 --ucBC101_TKTienKhamYCT7CN
 
---ngay 23/5/2018
+--ngay 12/6/2018
 
 SELECT row_number () over (order by ser.yyyymmdd) as stt,
 	ser.ngaythangnam,
@@ -19,7 +19,7 @@ FROM (select vienphiid,maubenhphamid,departmentid,TO_CHAR(servicepricedate, 'dd/
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 		from serviceprice 
 		where departmentid in (209,210,211,354,355,205,409,206,207,208,201,202,212,220,222)
-			and EXTRACT(DOW FROM servicepricedate) in (6,0) and bhyt_groupcode='01KB' "+tieuchi_ser+lstdichvu_ser+") ser
+			and EXTRACT(DOW FROM servicepricedate) in (6,0) and bhyt_groupcode='01KB' and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser+") ser
 	inner join (select maubenhphamid,maubenhphamstatus from maubenhpham where maubenhphamgrouptype=2) mbp on mbp.maubenhphamid=ser.maubenhphamid		
 	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 WHERE mbp.maubenhphamstatus=16 or vp.vienphistatus<>0

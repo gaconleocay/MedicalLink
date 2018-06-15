@@ -17,6 +17,7 @@ vp.departmentgroupid,
 vp.vienphidate, 
 vp.vienphidate_ravien, 
 -1 as songay,
+-1 as songaythanhtoan,
 vp.duyet_ngayduyet_vp, 
 case when VPP.money_tong<>0 then round(cast((VPP.money_thuoc/VPP.money_tong) * 100 as numeric) ,2) else 0 end as ty_le_thuoc 
 FROM (	
@@ -259,6 +260,7 @@ FROM
 		TO_CHAR(vpm.vienphidate_ravien, 
 		'yyyy-MM-dd HH:mm:ss') as vienphidate_ravien, 
 		-1 as songay, 
+		-1 as songaythanhtoan,
 		TO_CHAR(vpm.duyet_ngayduyet_vp, 
 		'yyyy-MM-dd HH:mm:ss') as duyet_ngayduyet_vp, 
 		round(cast((vpm.money_khambenh_bh + vpm.money_khambenh_vp) as numeric),0) as money_khambenh, 
@@ -306,6 +308,7 @@ FROM
 		'yyyy-MM-dd HH:mm:ss') as vienphidate_ravien, 
 		"+_tieuchi_songay+"
 		---1 as songay, 
+		---1 as songaythanhtoan,
 		TO_CHAR(spt.duyet_ngayduyet_vp, 
 		'yyyy-MM-dd HH:mm:ss') as duyet_ngayduyet_vp, 
 		round(cast(sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as numeric),0) as money_khambenh, 
@@ -361,10 +364,10 @@ LEFT JOIN (select sum(b.datra) as tam_ung,vp.vienphiid
 
 
 
+----BO
 
 
-
-
+/*
 --Chi tiet khoa 
 SELECT ROW_NUMBER() OVER (ORDER BY A.duyet_ngayduyet_vp) as stt, 
 A.*, 
@@ -614,7 +617,7 @@ LEFT JOIN (select sum(b.datra) as tam_ung, vp.vienphiid
 ORDER BY A.duyet_ngayduyet_vp ;
 
 
-
+*/
 
 
 

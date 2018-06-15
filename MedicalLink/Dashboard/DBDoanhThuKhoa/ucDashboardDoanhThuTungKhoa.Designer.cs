@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel1 = new DevExpress.XtraCharts.PieSeriesLabel();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel2 = new DevExpress.XtraCharts.PieSeriesLabel();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView2 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.ChartTitle chartTitle1 = new DevExpress.XtraCharts.ChartTitle();
+            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel5 = new DevExpress.XtraCharts.PieSeriesLabel();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView5 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.PieSeriesLabel pieSeriesLabel6 = new DevExpress.XtraCharts.PieSeriesLabel();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView6 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle3 = new DevExpress.XtraCharts.ChartTitle();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,31 +42,30 @@
             this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.bbbb = new DevExpress.XtraEditors.LabelControl();
             this.lblThoiGianLayBaoCao = new DevExpress.XtraEditors.LabelControl();
-            this.radioNam = new System.Windows.Forms.RadioButton();
-            this.radioQuy = new System.Windows.Forms.RadioButton();
-            this.radioThang = new System.Windows.Forms.RadioButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.dateDenNgay = new System.Windows.Forms.DateTimePicker();
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
-            this.cboChonNhanh = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.chartControlDTKhoa = new DevExpress.XtraCharts.ChartControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.cboDoiTuong = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.chkThuTienStatus = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuong.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -80,20 +79,19 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkThuTienStatus);
+            this.groupBoxFile.Controls.Add(this.labelControl2);
+            this.groupBoxFile.Controls.Add(this.cboDoiTuong);
             this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSPhong);
             this.groupBoxFile.Controls.Add(this.lblTenKhoaLayBaoCao);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSKhoa);
             this.groupBoxFile.Controls.Add(this.bbbb);
             this.groupBoxFile.Controls.Add(this.lblThoiGianLayBaoCao);
-            this.groupBoxFile.Controls.Add(this.radioNam);
-            this.groupBoxFile.Controls.Add(this.radioQuy);
-            this.groupBoxFile.Controls.Add(this.radioThang);
             this.groupBoxFile.Controls.Add(this.labelControl1);
             this.groupBoxFile.Controls.Add(this.labelControl3);
             this.groupBoxFile.Controls.Add(this.dateDenNgay);
             this.groupBoxFile.Controls.Add(this.dateTuNgay);
-            this.groupBoxFile.Controls.Add(this.cboChonNhanh);
             this.groupBoxFile.Controls.Add(this.btnTimKiem);
             this.groupBoxFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -177,45 +175,6 @@
             this.lblThoiGianLayBaoCao.TabIndex = 73;
             this.lblThoiGianLayBaoCao.Text = "00:00:00 01/01/0001";
             // 
-            // radioNam
-            // 
-            this.radioNam.AutoSize = true;
-            this.radioNam.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioNam.Location = new System.Drawing.Point(390, 26);
-            this.radioNam.Name = "radioNam";
-            this.radioNam.Size = new System.Drawing.Size(49, 18);
-            this.radioNam.TabIndex = 24;
-            this.radioNam.TabStop = true;
-            this.radioNam.Text = "Năm";
-            this.radioNam.UseVisualStyleBackColor = true;
-            this.radioNam.CheckedChanged += new System.EventHandler(this.radioNam_CheckedChanged);
-            // 
-            // radioQuy
-            // 
-            this.radioQuy.AutoSize = true;
-            this.radioQuy.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioQuy.Location = new System.Drawing.Point(339, 26);
-            this.radioQuy.Name = "radioQuy";
-            this.radioQuy.Size = new System.Drawing.Size(47, 18);
-            this.radioQuy.TabIndex = 23;
-            this.radioQuy.TabStop = true;
-            this.radioQuy.Text = "Quý";
-            this.radioQuy.UseVisualStyleBackColor = true;
-            this.radioQuy.CheckedChanged += new System.EventHandler(this.radioQuy_CheckedChanged);
-            // 
-            // radioThang
-            // 
-            this.radioThang.AutoSize = true;
-            this.radioThang.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioThang.Location = new System.Drawing.Point(281, 26);
-            this.radioThang.Name = "radioThang";
-            this.radioThang.Size = new System.Drawing.Size(60, 18);
-            this.radioThang.TabIndex = 22;
-            this.radioThang.TabStop = true;
-            this.radioThang.Text = "Tháng";
-            this.radioThang.UseVisualStyleBackColor = true;
-            this.radioThang.CheckedChanged += new System.EventHandler(this.radioThang_CheckedChanged);
-            // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -261,21 +220,6 @@
             this.dateTuNgay.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.ValueChanged += new System.EventHandler(this.dateTuNgay_ValueChanged);
             // 
-            // cboChonNhanh
-            // 
-            this.cboChonNhanh.Location = new System.Drawing.Point(445, 23);
-            this.cboChonNhanh.Name = "cboChonNhanh";
-            this.cboChonNhanh.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboChonNhanh.Properties.Appearance.Options.UseFont = true;
-            this.cboChonNhanh.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboChonNhanh.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboChonNhanh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboChonNhanh.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboChonNhanh.Size = new System.Drawing.Size(155, 22);
-            this.cboChonNhanh.TabIndex = 9;
-            this.cboChonNhanh.SelectedValueChanged += new System.EventHandler(this.cboChonNhanh_SelectedValueChanged);
-            // 
             // btnTimKiem
             // 
             this.btnTimKiem.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -308,24 +252,63 @@
             this.chartControlDTKhoa.Location = new System.Drawing.Point(2, 2);
             this.chartControlDTKhoa.Name = "chartControlDTKhoa";
             this.chartControlDTKhoa.PaletteName = "Metro";
-            series1.CheckableInLegend = false;
-            pieSeriesLabel1.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
-            series1.Label = pieSeriesLabel1;
-            series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            series1.Name = "Khoa";
-            series1.ToolTipPointPattern = "{A}: {V:#,##0}";
-            series1.View = pieSeriesView1;
+            series3.CheckableInLegend = false;
+            pieSeriesLabel5.TextPattern = "{A}: {V:#,##0} ( {VP:0.0%})";
+            series3.Label = pieSeriesLabel5;
+            series3.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            series3.Name = "Khoa";
+            series3.ToolTipPointPattern = "{A}: {V:#,##0}";
+            series3.View = pieSeriesView5;
             this.chartControlDTKhoa.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
-            pieSeriesLabel2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chartControlDTKhoa.SeriesTemplate.Label = pieSeriesLabel2;
-            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView2;
+        series3};
+            pieSeriesLabel6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartControlDTKhoa.SeriesTemplate.Label = pieSeriesLabel6;
+            this.chartControlDTKhoa.SeriesTemplate.View = pieSeriesView6;
             this.chartControlDTKhoa.Size = new System.Drawing.Size(996, 464);
             this.chartControlDTKhoa.TabIndex = 0;
-            chartTitle1.Text = "Doanh thu khoa BN đã thanh toán";
+            chartTitle3.Text = "Doanh thu khoa BN đã thanh toán";
             this.chartControlDTKhoa.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
-            chartTitle1});
+            chartTitle3});
             this.chartControlDTKhoa.ToolTipEnabled = DevExpress.Utils.DefaultBoolean.True;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl2.Location = new System.Drawing.Point(212, 28);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(55, 14);
+            this.labelControl2.TabIndex = 89;
+            this.labelControl2.Text = "Đối tượng";
+            // 
+            // cboDoiTuong
+            // 
+            this.cboDoiTuong.EditValue = "Tất cả đối tượng";
+            this.cboDoiTuong.Location = new System.Drawing.Point(277, 23);
+            this.cboDoiTuong.Name = "cboDoiTuong";
+            this.cboDoiTuong.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDoiTuong.Properties.Appearance.Options.UseFont = true;
+            this.cboDoiTuong.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDoiTuong.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboDoiTuong.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboDoiTuong.Properties.Items.AddRange(new object[] {
+            "Đối tượng BHYT",
+            "Đối tượng Viện phí",
+            "Tất cả đối tượng",
+            "ĐT BHYT + DV BHYT"});
+            this.cboDoiTuong.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboDoiTuong.Size = new System.Drawing.Size(180, 22);
+            this.cboDoiTuong.TabIndex = 88;
+            // 
+            // chkThuTienStatus
+            // 
+            this.chkThuTienStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThuTienStatus.Location = new System.Drawing.Point(482, 23);
+            this.chkThuTienStatus.Name = "chkThuTienStatus";
+            this.chkThuTienStatus.Size = new System.Drawing.Size(118, 27);
+            this.chkThuTienStatus.TabIndex = 90;
+            this.chkThuTienStatus.Text = "DV đã thu tiền";
+            this.chkThuTienStatus.UseVisualStyleBackColor = true;
             // 
             // ucDashboardDoanhThuTungKhoa
             // 
@@ -342,15 +325,15 @@
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSPhong.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboChonNhanh.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControlDTKhoa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuong.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -362,19 +345,18 @@
         private System.Windows.Forms.GroupBox groupBoxFile;
         private DevExpress.XtraEditors.LabelControl bbbb;
         private DevExpress.XtraEditors.LabelControl lblThoiGianLayBaoCao;
-        private System.Windows.Forms.RadioButton radioNam;
-        private System.Windows.Forms.RadioButton radioQuy;
-        private System.Windows.Forms.RadioButton radioThang;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.DateTimePicker dateDenNgay;
         private System.Windows.Forms.DateTimePicker dateTuNgay;
-        private DevExpress.XtraEditors.ComboBoxEdit cboChonNhanh;
         private DevExpress.XtraEditors.SimpleButton btnTimKiem;
         private DevExpress.XtraCharts.ChartControl chartControlDTKhoa;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSPhong;
         private System.Windows.Forms.Label lblTenKhoaLayBaoCao;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSKhoa;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.ComboBoxEdit cboDoiTuong;
+        private System.Windows.Forms.CheckBox chkThuTienStatus;
     }
 }

@@ -34,7 +34,7 @@ INNER JOIN
 			where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
 		inner join (select backdepartmentid,medicalrecordid,medicalrecordid_next from medicalrecord where 1=1 "+tieuchi_mrd+") mrd on mrd.medicalrecordid=ser.medicalrecordid
 		inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
-	group by mrd.backdepartmentid) SER on SER.departmentgroupid=degp.departmentgroupid;
+	group by mrd.backdepartmentid) SER on SER.backdepartmentid=degp.departmentgroupid;
 
 
 

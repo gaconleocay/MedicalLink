@@ -61,6 +61,7 @@ LEFT JOIN
 			where 1=1 "+tieuchi_ser+lstdichvu_serBC110+lstkhoa_serBC110+") ser
 		inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid) T on T.code=degp.code
 GROUP BY degp.stt,degp.departmentgroupname,degp.tylehuong
+ORDER BY degp.stt;
 
 
 

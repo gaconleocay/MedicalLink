@@ -128,7 +128,7 @@
             this.tbnExport.Location = new System.Drawing.Point(9, 37);
             this.tbnExport.Name = "tbnExport";
             this.tbnExport.Size = new System.Drawing.Size(100, 40);
-            this.tbnExport.TabIndex = 7;
+            this.tbnExport.TabIndex = 13;
             this.tbnExport.Text = "Xuất file";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
@@ -184,7 +184,7 @@
             "Tất cả"});
             this.cboNhomDichVu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboNhomDichVu.Size = new System.Drawing.Size(155, 22);
-            this.cboNhomDichVu.TabIndex = 147;
+            this.cboNhomDichVu.TabIndex = 11;
             // 
             // labelControl5
             // 
@@ -212,7 +212,7 @@
             "Tất cả"});
             this.cboDoiTuongBN.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboDoiTuongBN.Size = new System.Drawing.Size(155, 22);
-            this.cboDoiTuongBN.TabIndex = 145;
+            this.cboDoiTuongBN.TabIndex = 10;
             // 
             // chkTheoNhomDV
             // 
@@ -319,7 +319,7 @@
             this.btnTimKiem.Location = new System.Drawing.Point(948, 37);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
-            this.btnTimKiem.TabIndex = 14;
+            this.btnTimKiem.TabIndex = 12;
             this.btnTimKiem.Text = "Tìm Kiếm";
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 

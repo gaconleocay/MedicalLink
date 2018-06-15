@@ -19,6 +19,7 @@ namespace MedicalLink.ClassCommon
         public DateTime vienphidate { get; set; }
         public string vienphidate_ravien { get; set; }
         public int songay { get; set; }
+        public int songaythanhtoan { get; set; }
         public string duyet_ngayduyet_vp { get; set; }
         public decimal money_khambenh { get; set; }
         public decimal money_xetnghiem { get; set; }

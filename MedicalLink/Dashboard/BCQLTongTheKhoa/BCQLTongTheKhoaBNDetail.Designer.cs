@@ -43,12 +43,14 @@
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn22 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn14 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -61,12 +63,10 @@
             this.lblTenThongTinChiTiet = new System.Windows.Forms.Label();
             this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnRVChuaTT_7 = new System.Windows.Forms.Label();
+            this.btnRVChuaTT_1_6 = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -122,7 +122,8 @@
             this.gridColumn10,
             this.gridColumn11,
             this.gridColumn21,
-            this.gridColumn24});
+            this.gridColumn24,
+            this.gridColumn27});
             this.gridViewBNDetail.GridControl = this.gridControlBNDetail;
             this.gridViewBNDetail.Name = "gridViewBNDetail";
             this.gridViewBNDetail.OptionsFind.AlwaysVisible = true;
@@ -133,7 +134,6 @@
             this.gridViewBNDetail.OptionsView.ShowFooter = true;
             this.gridViewBNDetail.OptionsView.ShowGroupPanel = false;
             this.gridViewBNDetail.RowHeight = 25;
-            this.gridViewBNDetail.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewBNDetail_CustomDrawCell);
             this.gridViewBNDetail.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewBNDetail_RowCellStyle);
             this.gridViewBNDetail.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.gridViewBNDetail_RowStyle);
             // 
@@ -384,6 +384,30 @@
             this.gridColumn17.VisibleIndex = 11;
             this.gridColumn17.Width = 90;
             // 
+            // gridColumn25
+            // 
+            this.gridColumn25.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn25.AppearanceCell.Options.UseFont = true;
+            this.gridColumn25.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn25.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn25.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn25.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn25.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn25.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn25.Caption = "PTTT yêu cầu";
+            this.gridColumn25.DisplayFormat.FormatString = "#,##0";
+            this.gridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn25.FieldName = "money_ptttyeucau";
+            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.OptionsColumn.AllowEdit = false;
+            this.gridColumn25.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_ptttyeucau", "{0:#,##0}")});
+            this.gridColumn25.Visible = true;
+            this.gridColumn25.VisibleIndex = 12;
+            this.gridColumn25.Width = 90;
+            // 
             // gridColumn16
             // 
             this.gridColumn16.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -528,6 +552,30 @@
             this.gridColumn12.VisibleIndex = 18;
             this.gridColumn12.Width = 90;
             // 
+            // gridColumn26
+            // 
+            this.gridColumn26.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn26.AppearanceCell.Options.UseFont = true;
+            this.gridColumn26.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn26.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn26.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn26.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn26.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn26.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn26.Caption = "Vật tư TT riêng";
+            this.gridColumn26.DisplayFormat.FormatString = "#,##0";
+            this.gridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn26.FieldName = "money_vattu_ttrieng";
+            this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.OptionsColumn.AllowEdit = false;
+            this.gridColumn26.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_vattu_ttrieng", "{0:#,##0}")});
+            this.gridColumn26.Visible = true;
+            this.gridColumn26.VisibleIndex = 19;
+            this.gridColumn26.Width = 90;
+            // 
             // gridColumn5
             // 
             this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -667,7 +715,7 @@
             this.gridColumn24.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn24.AppearanceCell.Options.UseFont = true;
             this.gridColumn24.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.gridColumn24.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn24.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.gridColumn24.AppearanceHeader.Options.UseFont = true;
@@ -729,9 +777,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnRVChuaTT_7);
+            this.groupBox1.Controls.Add(this.btnRVChuaTT_1_6);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBox1.Location = new System.Drawing.Point(778, 2);
@@ -741,41 +788,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chú thích";
             // 
-            // label3
+            // btnRVChuaTT_7
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Red;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(321, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 16);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "BN ra viện >10 ngày";
+            this.btnRVChuaTT_7.AutoSize = true;
+            this.btnRVChuaTT_7.BackColor = System.Drawing.Color.Salmon;
+            this.btnRVChuaTT_7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRVChuaTT_7.ForeColor = System.Drawing.Color.Black;
+            this.btnRVChuaTT_7.Location = new System.Drawing.Point(163, 21);
+            this.btnRVChuaTT_7.Name = "btnRVChuaTT_7";
+            this.btnRVChuaTT_7.Size = new System.Drawing.Size(126, 16);
+            this.btnRVChuaTT_7.TabIndex = 14;
+            this.btnRVChuaTT_7.Text = "BN ra viện >=7 ngày";
             // 
-            // label2
+            // btnRVChuaTT_1_6
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Salmon;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(163, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 16);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "BN ra viện từ 6-10 ngày";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.PeachPuff;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 16);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "BN ra viện từ 1-5 ngày";
+            this.btnRVChuaTT_1_6.AutoSize = true;
+            this.btnRVChuaTT_1_6.BackColor = System.Drawing.Color.PeachPuff;
+            this.btnRVChuaTT_1_6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRVChuaTT_1_6.ForeColor = System.Drawing.Color.Black;
+            this.btnRVChuaTT_1_6.Location = new System.Drawing.Point(12, 21);
+            this.btnRVChuaTT_1_6.Name = "btnRVChuaTT_1_6";
+            this.btnRVChuaTT_1_6.Size = new System.Drawing.Size(136, 16);
+            this.btnRVChuaTT_1_6.TabIndex = 13;
+            this.btnRVChuaTT_1_6.Text = "BN ra viện từ 1-6 ngày";
             // 
             // panelControl2
             // 
@@ -786,53 +821,24 @@
             this.panelControl2.Size = new System.Drawing.Size(1234, 609);
             this.panelControl2.TabIndex = 2;
             // 
-            // gridColumn25
+            // gridColumn27
             // 
-            this.gridColumn25.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn25.AppearanceCell.Options.UseFont = true;
-            this.gridColumn25.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.gridColumn25.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn25.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn25.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn25.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn25.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn25.Caption = "PTTT yêu cầu";
-            this.gridColumn25.DisplayFormat.FormatString = "#,##0";
-            this.gridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.gridColumn25.FieldName = "money_ptttyeucau";
-            this.gridColumn25.Name = "gridColumn25";
-            this.gridColumn25.OptionsColumn.AllowEdit = false;
-            this.gridColumn25.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_ptttyeucau", "{0:#,##0}")});
-            this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 12;
-            this.gridColumn25.Width = 90;
-            // 
-            // gridColumn26
-            // 
-            this.gridColumn26.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn26.AppearanceCell.Options.UseFont = true;
-            this.gridColumn26.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.gridColumn26.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn26.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn26.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn26.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn26.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn26.Caption = "Vật tư TT riêng";
-            this.gridColumn26.DisplayFormat.FormatString = "#,##0";
-            this.gridColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.gridColumn26.FieldName = "money_vattu_ttrieng";
-            this.gridColumn26.Name = "gridColumn26";
-            this.gridColumn26.OptionsColumn.AllowEdit = false;
-            this.gridColumn26.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "money_vattu_ttrieng", "{0:#,##0}")});
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 19;
-            this.gridColumn26.Width = 90;
+            this.gridColumn27.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn27.AppearanceCell.Options.UseFont = true;
+            this.gridColumn27.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn27.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.gridColumn27.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn27.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn27.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn27.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn27.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn27.Caption = "Số ngày thanh toán";
+            this.gridColumn27.FieldName = "songaythanhtoan";
+            this.gridColumn27.Name = "gridColumn27";
+            this.gridColumn27.OptionsColumn.AllowEdit = false;
+            this.gridColumn27.Visible = true;
+            this.gridColumn27.VisibleIndex = 27;
             // 
             // BCQLTongTheKhoaBNDetail
             // 
@@ -892,13 +898,13 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label btnRVChuaTT_7;
+        private System.Windows.Forms.Label btnRVChuaTT_1_6;
         private System.Windows.Forms.GroupBox groupBoxAction;
         private System.Windows.Forms.Label lblTenThongTinChiTiet;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
     }
 }

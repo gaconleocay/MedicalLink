@@ -551,8 +551,8 @@ namespace MedicalLink.FormCommon
                 DataTable dataOtherTypeList = condb.GetDataTable_MeL(sql_dataOtherTypeList);
                 DataTable dataOtherList = condb.GetDataTable_MeL(sql_dataOtherList);
 
-                List<ClassCommon.ToolsOtherListDTO> lstOtherTypeList = Utilities.Util_DataTable.DataTableToList<ClassCommon.ToolsOtherListDTO>(dataOtherTypeList);
-                List<ClassCommon.ToolsOtherListDTO> lstOtherList = Utilities.Util_DataTable.DataTableToList<ClassCommon.ToolsOtherListDTO>(dataOtherList);
+                List<ClassCommon.ToolsOtherListDTO> lstOtherTypeList = Utilities.DataTables.DataTableToList<ClassCommon.ToolsOtherListDTO>(dataOtherTypeList);
+                List<ClassCommon.ToolsOtherListDTO> lstOtherList = Utilities.DataTables.DataTableToList<ClassCommon.ToolsOtherListDTO>(dataOtherList);
 
 
 

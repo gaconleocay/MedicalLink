@@ -27,15 +27,15 @@ namespace MedicalLink.Dashboard.DBBenhNhanNoiTru
             chartControlBNNoiTru.Series[2].Points.Clear();
             for (int i = 0; i < dataBC.Count; i++)
             {
-                chartControlBNNoiTru.Series[0].Points.Add(new SeriesPoint(dataBC[i]["departmentgroupname"].ToString(), Utilities.Util_TypeConvertParse.ToDouble(dataBC[i]["money_tong_bhyt"].ToString())));
+                chartControlBNNoiTru.Series[0].Points.Add(new SeriesPoint(dataBC[i]["departmentgroupname"].ToString(), Utilities.TypeConvertParse.ToDouble(dataBC[i]["money_tong_bhyt"].ToString())));
             }
             for (int i = 0; i < dataBC.Count; i++)
             {
-                chartControlBNNoiTru.Series[1].Points.Add(new SeriesPoint(dataBC[i]["departmentgroupname"].ToString(), Utilities.Util_TypeConvertParse.ToDouble(dataBC[i]["money_tong_nhandan"].ToString())));
+                chartControlBNNoiTru.Series[1].Points.Add(new SeriesPoint(dataBC[i]["departmentgroupname"].ToString(), Utilities.TypeConvertParse.ToDouble(dataBC[i]["money_tong_nhandan"].ToString())));
             }
             for (int i = 0; i < dataBC.Count; i++)
             {
-                chartControlBNNoiTru.Series[2].Points.Add(new SeriesPoint(dataBC[i]["departmentgroupname"].ToString(), Utilities.Util_TypeConvertParse.ToDouble(dataBC[i]["tam_ung"].ToString())));
+                chartControlBNNoiTru.Series[2].Points.Add(new SeriesPoint(dataBC[i]["departmentgroupname"].ToString(), Utilities.TypeConvertParse.ToDouble(dataBC[i]["tam_ung"].ToString())));
             }
         }
     }

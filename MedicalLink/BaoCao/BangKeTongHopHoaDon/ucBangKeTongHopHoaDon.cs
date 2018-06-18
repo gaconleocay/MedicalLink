@@ -139,7 +139,7 @@ namespace MedicalLink.BaoCao
 
                     ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
                     reportitem_tientong.name = "TONGTIEN_THU_STRING";
-                    reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucThu(), 0).ToString());
+                    reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucThu(), 0).ToString());
                     thongTinThem.Add(reportitem_tientong);
 
                     string fileTemplatePath = "BC_BangKeTongHopHoaDon.xlsx";
@@ -170,7 +170,7 @@ namespace MedicalLink.BaoCao
 
                 ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
                 reportitem_tientong.name = "TONGTIEN_THU_STRING";
-                reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucThu(), 0).ToString());
+                reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucThu(), 0).ToString());
                 thongTinThem.Add(reportitem_tientong);
 
                 string fileTemplatePath = "BC_BangKeTongHopHoaDon.xlsx";
@@ -193,7 +193,7 @@ namespace MedicalLink.BaoCao
                 {
                     for (int i = 0; i < this.dataDanhSachSo.Rows.Count; i++)
                     {
-                        result += Utilities.Util_TypeConvertParse.ToDecimal(this.dataDanhSachSo.Rows[i]["tongtien_thu"].ToString());
+                        result += Utilities.TypeConvertParse.ToDecimal(this.dataDanhSachSo.Rows[i]["tongtien_thu"].ToString());
                     }
                 }
             }

@@ -30,7 +30,7 @@ namespace MedicalLink.FormCommon
             {
                 if (MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
                 {
-                    timerTblBNDangDT.Interval = Utilities.Util_TypeConvertParse.ToInt32((GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp * 60 * 1000).ToString());
+                    timerTblBNDangDT.Interval = Utilities.TypeConvertParse.ToInt32((GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp * 60 * 1000).ToString());
                     timerTblBNDangDT.Start();
                 }
             }

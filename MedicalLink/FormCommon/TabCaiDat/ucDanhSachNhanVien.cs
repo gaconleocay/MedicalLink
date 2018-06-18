@@ -347,7 +347,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     _dataUser_Import.TableName = "DATA";
                     if (_dataUser_Import != null && _dataUser_Import.Rows.Count > 0)
                     {
-                        List<DanhSachNhanVienDTO> _lstNhanVien = Utilities.Util_DataTable.DataTableToList<DanhSachNhanVienDTO>(_dataUser_Import);
+                        List<DanhSachNhanVienDTO> _lstNhanVien = Utilities.DataTables.DataTableToList<DanhSachNhanVienDTO>(_dataUser_Import);
 
                         int dem_update = 0;
                         int dem_insert = 0;

@@ -68,7 +68,7 @@ namespace MedicalLink.ChucNang
 
                 if (txtMBAMaBenhNhan.Text.Trim() != "")
                 {
-                    long _mabenhnhan = Utilities.Util_TypeConvertParse.ToInt64(txtMBAMaBenhNhan.Text.ToUpper().Replace("BN", ""));
+                    long _mabenhnhan = Utilities.TypeConvertParse.ToInt64(txtMBAMaBenhNhan.Text.ToUpper().Replace("BN", ""));
                     _tukhoatimkiem = " and vp.patientid='" + _mabenhnhan + "' ";
                 }
                 else if (txtMBAMaBenhNhan.Text.Trim() == "" && txtSoTheBHYT.Text.Trim().Length == 15)
@@ -83,7 +83,7 @@ namespace MedicalLink.ChucNang
                 {
                     if (txtMBAMaBenhNhan.Text.Trim() == "" && txtSoTheBHYT.Text.Trim() == "" && txtTenBenhNhan.Text.Trim() != "")
                     {
-                        List<MoBenhAnTimKiemDTO> lstHoSoBenhAn = Utilities.Util_DataTable.DataTableToList<MoBenhAnTimKiemDTO>(_dataTimKiem);
+                        List<MoBenhAnTimKiemDTO> lstHoSoBenhAn = Utilities.DataTables.DataTableToList<MoBenhAnTimKiemDTO>(_dataTimKiem);
                         if (lstHoSoBenhAn != null && lstHoSoBenhAn.Count > 0)
                         {
                             foreach (var item_HSBA in lstHoSoBenhAn)

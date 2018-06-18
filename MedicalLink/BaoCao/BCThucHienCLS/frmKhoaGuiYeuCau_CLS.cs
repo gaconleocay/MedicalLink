@@ -32,7 +32,7 @@ namespace MedicalLink.BaoCao.BCThucHienCLS
                 DataTable _dataKhoa = condb.GetDataTable_MeL(_sqlDSKhoa);
                 if (_dataKhoa != null && _dataKhoa.Rows.Count > 0)
                 {
-                    _lstDepartmetGroup = Utilities.Util_DataTable.DataTableToList<Department_KhoaCLSDTO>(_dataKhoa);
+                    _lstDepartmetGroup = Utilities.DataTables.DataTableToList<Department_KhoaCLSDTO>(_dataKhoa);
                 }
                 gridControlKhoaPhong.DataSource = _lstDepartmetGroup;
             }
@@ -66,8 +66,8 @@ namespace MedicalLink.BaoCao.BCThucHienCLS
             try
             {
                 var rowHandle = gridViewKhoaPhong.FocusedRowHandle;
-                long _departmentid = Utilities.Util_TypeConvertParse.ToInt64(gridViewKhoaPhong.GetRowCellValue(rowHandle, "departmentid").ToString());
-                bool _cls_khoaguiyc = Utilities.Util_TypeConvertParse.ToBoolean(gridViewKhoaPhong.GetRowCellValue(rowHandle, "cls_khoaguiyc").ToString());
+                long _departmentid = Utilities.TypeConvertParse.ToInt64(gridViewKhoaPhong.GetRowCellValue(rowHandle, "departmentid").ToString());
+                bool _cls_khoaguiyc = Utilities.TypeConvertParse.ToBoolean(gridViewKhoaPhong.GetRowCellValue(rowHandle, "cls_khoaguiyc").ToString());
 
                 string _khoagui = "0";
                 if (_cls_khoaguiyc)

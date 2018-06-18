@@ -147,7 +147,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTIENTRICH_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(this.dataBaoCao), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTien(this.dataBaoCao), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 string fileTemplatePath = "BC_104_TrichThuongFibro.xlsx";
@@ -182,7 +182,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTIENTRICH_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(this.dataBaoCao), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTien(this.dataBaoCao), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 string fileTemplatePath = "BC_104_TrichThuongFibro.xlsx";
@@ -225,7 +225,7 @@ namespace MedicalLink.BCQLTaiChinh
             decimal _result = 0;
             try
             {
-                List<TrichThuongDVFibroDTO> _lstTrichThuong = Utilities.Util_DataTable.DataTableToList<TrichThuongDVFibroDTO>(_dataBaoCao);
+                List<TrichThuongDVFibroDTO> _lstTrichThuong = Utilities.DataTables.DataTableToList<TrichThuongDVFibroDTO>(_dataBaoCao);
                 foreach (var item in _lstTrichThuong)
                 {
                     _result += item.tientrich ?? 0;

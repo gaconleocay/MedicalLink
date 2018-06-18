@@ -251,46 +251,46 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                     for (int i = 0; i < DataBaoCao.Count; i++)
                     {
                         ClassCommon.classBCQLTongTheKhoaBNDetail databaocao = new ClassCommon.classBCQLTongTheKhoaBNDetail();
-                        databaocao.stt = Utilities.Util_TypeConvertParse.ToInt64(DataBaoCao[i]["stt"].ToString());
-                        databaocao.vienphiid = Utilities.Util_TypeConvertParse.ToInt64(DataBaoCao[i]["vienphiid"].ToString());
-                        databaocao.patientid = Utilities.Util_TypeConvertParse.ToInt64(DataBaoCao[i]["patientid"].ToString());
+                        databaocao.stt = Utilities.TypeConvertParse.ToInt64(DataBaoCao[i]["stt"].ToString());
+                        databaocao.vienphiid = Utilities.TypeConvertParse.ToInt64(DataBaoCao[i]["vienphiid"].ToString());
+                        databaocao.patientid = Utilities.TypeConvertParse.ToInt64(DataBaoCao[i]["patientid"].ToString());
                         databaocao.patientname = DataBaoCao[i]["patientname"].ToString();
                         databaocao.bhytcode = DataBaoCao[i]["bhytcode"].ToString();
-                        databaocao.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt64(DataBaoCao[i]["departmentgroupid"].ToString());
+                        databaocao.departmentgroupid = Utilities.TypeConvertParse.ToInt64(DataBaoCao[i]["departmentgroupid"].ToString());
                         databaocao.departmentname = DataBaoCao[i]["departmentname"].ToString();
-                        databaocao.vienphidate = Utilities.Util_TypeConvertParse.ToDateTime(DataBaoCao[i]["vienphidate"].ToString());
+                        databaocao.vienphidate = Utilities.TypeConvertParse.ToDateTime(DataBaoCao[i]["vienphidate"].ToString());
                         if (DataBaoCao[i]["vienphidate_ravien"].ToString() != null && DataBaoCao[i]["vienphidate_ravien"].ToString() != "" && DataBaoCao[i]["vienphidate_ravien"].ToString() != "0001-01-01 12:01:00")
                         {
                             databaocao.vienphidate_ravien = DataBaoCao[i]["vienphidate_ravien"].ToString();
                         }
-                        databaocao.songay = Utilities.Util_TypeConvertParse.ToInt32(DataBaoCao[i]["songay"].ToString());
-                        databaocao.songaythanhtoan = Utilities.Util_TypeConvertParse.ToInt32(DataBaoCao[i]["songaythanhtoan"].ToString());
+                        databaocao.songay = Utilities.TypeConvertParse.ToInt32(DataBaoCao[i]["songay"].ToString());
+                        databaocao.songaythanhtoan = Utilities.TypeConvertParse.ToInt32(DataBaoCao[i]["songaythanhtoan"].ToString());
                         if (DataBaoCao[i]["duyet_ngayduyet_vp"].ToString() != null && DataBaoCao[i]["duyet_ngayduyet_vp"].ToString() != "" && DataBaoCao[i]["duyet_ngayduyet_vp"].ToString() != "0001-01-01 12:01:00")
                         {
                             databaocao.duyet_ngayduyet_vp = DataBaoCao[i]["duyet_ngayduyet_vp"].ToString();
                         }
 
-                        databaocao.money_khambenh = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_khambenh"].ToString());
-                        databaocao.money_xetnghiem = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_xetnghiem"].ToString());
-                        databaocao.money_cdhatdcn = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_cdhatdcn"].ToString());
-                        databaocao.money_pttt = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_pttt"].ToString());
-                        databaocao.money_ptttyeucau = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_ptttyeucau"].ToString());
-                        databaocao.money_dvktc = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_dvktc"].ToString());
-                        databaocao.money_giuongthuong = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_giuongthuong"].ToString());
-                        databaocao.money_giuongyeucau = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_giuongyeucau"].ToString());
-                        databaocao.money_khac = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_khac"].ToString());
-                        databaocao.money_vattu = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_vattu"].ToString());
-                        databaocao.money_vattu_ttrieng = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_vattu_ttrieng"].ToString());
-                        databaocao.money_mau = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_mau"].ToString());
-                        databaocao.money_thuoc = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_thuoc"].ToString());
-                        databaocao.money_tong = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["money_tong"].ToString());
-                        databaocao.tam_ung = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["tam_ung"].ToString());
-                        databaocao.ty_le_thuoc = Utilities.Util_TypeConvertParse.ToDecimal(DataBaoCao[i]["ty_le_thuoc"].ToString());
+                        databaocao.money_khambenh = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_khambenh"].ToString());
+                        databaocao.money_xetnghiem = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_xetnghiem"].ToString());
+                        databaocao.money_cdhatdcn = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_cdhatdcn"].ToString());
+                        databaocao.money_pttt = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_pttt"].ToString());
+                        databaocao.money_ptttyeucau = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_ptttyeucau"].ToString());
+                        databaocao.money_dvktc = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_dvktc"].ToString());
+                        databaocao.money_giuongthuong = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_giuongthuong"].ToString());
+                        databaocao.money_giuongyeucau = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_giuongyeucau"].ToString());
+                        databaocao.money_khac = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_khac"].ToString());
+                        databaocao.money_vattu = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_vattu"].ToString());
+                        databaocao.money_vattu_ttrieng = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_vattu_ttrieng"].ToString());
+                        databaocao.money_mau = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_mau"].ToString());
+                        databaocao.money_thuoc = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_thuoc"].ToString());
+                        databaocao.money_tong = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["money_tong"].ToString());
+                        databaocao.tam_ung = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["tam_ung"].ToString());
+                        databaocao.ty_le_thuoc = Utilities.TypeConvertParse.ToDecimal(DataBaoCao[i]["ty_le_thuoc"].ToString());
 
-                        databaocao.bhyt_loaiid = Utilities.Util_TypeConvertParse.ToInt16(DataBaoCao[i]["bhyt_loaiid"].ToString());
-                        databaocao.loaivienphiid = Utilities.Util_TypeConvertParse.ToInt16(DataBaoCao[i]["loaivienphiid"].ToString());
-                        databaocao.du5nam6thangluongcoban = Utilities.Util_TypeConvertParse.ToInt16(DataBaoCao[i]["du5nam6thangluongcoban"].ToString());
-                        databaocao.bhyt_tuyenbenhvien = Utilities.Util_TypeConvertParse.ToInt16(DataBaoCao[i]["bhyt_tuyenbenhvien"].ToString());
+                        databaocao.bhyt_loaiid = Utilities.TypeConvertParse.ToInt16(DataBaoCao[i]["bhyt_loaiid"].ToString());
+                        databaocao.loaivienphiid = Utilities.TypeConvertParse.ToInt16(DataBaoCao[i]["loaivienphiid"].ToString());
+                        databaocao.du5nam6thangluongcoban = Utilities.TypeConvertParse.ToInt16(DataBaoCao[i]["du5nam6thangluongcoban"].ToString());
+                        databaocao.bhyt_tuyenbenhvien = Utilities.TypeConvertParse.ToInt16(DataBaoCao[i]["bhyt_tuyenbenhvien"].ToString());
 
                         ClassCommon.TinhBHYTThanhToanDTO tinhBHYT = new ClassCommon.TinhBHYTThanhToanDTO();
                         tinhBHYT.bhytcode = databaocao.bhytcode;
@@ -331,7 +331,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                 GridView View = sender as GridView;
                 if (e.RowHandle >= 0)
                 {
-                    int tongsongay = Utilities.Util_TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songay"]));
+                    int tongsongay = Utilities.TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songay"]));
                     if (tongsongay >= 1 && tongsongay <= 6)
                     {
                         e.Appearance.BackColor = Color.PeachPuff;
@@ -352,7 +352,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                     //}
 
 
-                    int tongsongaythanhtoan = Utilities.Util_TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songaythanhtoan"]));
+                    int tongsongaythanhtoan = Utilities.TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songaythanhtoan"]));
                     if (tongsongaythanhtoan >= 7)
                     {
                         e.Appearance.BackColor = Color.Salmon;

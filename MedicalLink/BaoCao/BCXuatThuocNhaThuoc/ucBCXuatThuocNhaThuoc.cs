@@ -133,7 +133,7 @@ namespace MedicalLink.BaoCao
             {
                 // lấy giá trị tại dòng click chuột
                 var rowHandle = gridViewDonThuoc.FocusedRowHandle;
-                long medicinestorebillid = Utilities.Util_TypeConvertParse.ToInt64(gridViewDonThuoc.GetRowCellValue(rowHandle, "medicinestorebillid").ToString());
+                long medicinestorebillid = Utilities.TypeConvertParse.ToInt64(gridViewDonThuoc.GetRowCellValue(rowHandle, "medicinestorebillid").ToString());
                 if (medicinestorebillid != 0)
                 {
                     BCXuatThuocNhaThuoc.BCXuatThuocNhaThuocDetail frmDetail = new BCXuatThuocNhaThuoc.BCXuatThuocNhaThuocDetail(medicinestorebillid);

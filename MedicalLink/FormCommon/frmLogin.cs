@@ -158,10 +158,10 @@ namespace MedicalLink.FormCommon
             {
                 //Set default
                 MedicalLink.GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = 0;
-                MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = DateTime.Now.Year - 1 + "-01-01 00:00:00";
+                MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = System.DateTime.Now.Year - 1 + "-01-01 00:00:00";
                 if (GlobalStore.lstOption != null && GlobalStore.lstOption.Count > 0)
                 {
-                    GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = Util_TypeConvertParse.ToInt64(GlobalStore.lstOption.Where(o => o.toolsoptioncode == "ThoiGianCapNhatTbl_tools_bndangdt_tmp").FirstOrDefault().toolsoptionvalue);
+                    GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = TypeConvertParse.ToInt64(GlobalStore.lstOption.Where(o => o.toolsoptioncode == "ThoiGianCapNhatTbl_tools_bndangdt_tmp").FirstOrDefault().toolsoptionvalue);
                     GlobalStore.KhoangThoiGianLayDuLieu = GlobalStore.lstOption.Where(o => o.toolsoptioncode == "KhoangThoiGianLayDuLieu").FirstOrDefault().toolsoptionvalue;
                 }
             }
@@ -184,12 +184,12 @@ namespace MedicalLink.FormCommon
                     for (int i = 0; i < dataLoaiBaoCao.Rows.Count; i++)
                     {
                         ClassCommon.ToolsOtherListDTO otherList = new ToolsOtherListDTO();
-                        otherList.tools_othertypelistid = Utilities.Util_TypeConvertParse.ToInt64(dataLoaiBaoCao.Rows[i]["tools_othertypelistid"].ToString());
+                        otherList.tools_othertypelistid = Utilities.TypeConvertParse.ToInt64(dataLoaiBaoCao.Rows[i]["tools_othertypelistid"].ToString());
                         otherList.tools_othertypelistcode = dataLoaiBaoCao.Rows[i]["tools_othertypelistcode"].ToString();
                         otherList.tools_othertypelistcode = dataLoaiBaoCao.Rows[i]["tools_othertypelistcode"].ToString();
                         //otherList.tools_othertypeliststatus = dataLoaiBaoCao.Rows[i]["tools_othertypeliststatus"].ToString();
                         otherList.tools_othertypelistnote = dataLoaiBaoCao.Rows[i]["tools_othertypelistnote"].ToString();
-                        otherList.tools_otherlistid = Utilities.Util_TypeConvertParse.ToInt64(dataLoaiBaoCao.Rows[i]["tools_otherlistid"].ToString());
+                        otherList.tools_otherlistid = Utilities.TypeConvertParse.ToInt64(dataLoaiBaoCao.Rows[i]["tools_otherlistid"].ToString());
                         otherList.tools_otherlistcode = dataLoaiBaoCao.Rows[i]["tools_otherlistcode"].ToString();
                         otherList.tools_otherlistname = dataLoaiBaoCao.Rows[i]["tools_otherlistname"].ToString();
                         otherList.tools_otherlistvalue = dataLoaiBaoCao.Rows[i]["tools_otherlistvalue"].ToString();
@@ -204,7 +204,7 @@ namespace MedicalLink.FormCommon
                 DataTable dataOption = condb.GetDataTable_MeL(sqlDSOption);
                 if (dataOption != null && dataOption.Rows.Count > 0)
                 {
-                    GlobalStore.lstOption = Utilities.Util_DataTable.DataTableToList<ToolsOptionDTO>(dataOption);
+                    GlobalStore.lstOption = Utilities.DataTables.DataTableToList<ToolsOptionDTO>(dataOption);
                 }
             }
             catch (Exception ex)
@@ -224,14 +224,14 @@ namespace MedicalLink.FormCommon
                     for (int i = 0; i < dataKhoaBV.Rows.Count; i++)
                     {
                         ClassCommon.DepartmentDTO otherList = new DepartmentDTO();
-                        otherList.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentgroupid"].ToString());
+                        otherList.departmentgroupid = Utilities.TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentgroupid"].ToString());
                         otherList.departmentgroupcode = dataKhoaBV.Rows[i]["departmentgroupcode"].ToString();
                         otherList.departmentgroupname = dataKhoaBV.Rows[i]["departmentgroupname"].ToString();
-                        otherList.departmentgrouptype = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentgrouptype"].ToString());
-                        otherList.departmentid = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentid"].ToString());
+                        otherList.departmentgrouptype = Utilities.TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentgrouptype"].ToString());
+                        otherList.departmentid = Utilities.TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmentid"].ToString());
                         otherList.departmentcode = dataKhoaBV.Rows[i]["departmentcode"].ToString();
                         otherList.departmentname = dataKhoaBV.Rows[i]["departmentname"].ToString();
-                        otherList.departmenttype = Utilities.Util_TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmenttype"].ToString());
+                        otherList.departmenttype = Utilities.TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmenttype"].ToString());
                         GlobalStore.lstDepartmentBV.Add(otherList);
                     }
                 }
@@ -273,7 +273,7 @@ namespace MedicalLink.FormCommon
                     if (name.Contains("MedicalLinkLauncher"))
                     {
                         //Check file
-                        if (Util_FileCheckSum.GetMD5HashFromFile(file) != Util_FileCheckSum.GetMD5HashFromFile(dest))
+                        if (FileCheckSum.GetMD5HashFromFile(file) != FileCheckSum.GetMD5HashFromFile(dest))
                         {
                             File.Copy(file, dest, true);
                         }
@@ -333,7 +333,7 @@ namespace MedicalLink.FormCommon
                         if (dv != null && dv.Count > 0)
                         {
                             MedicalLink.FormCommon.DangKyBanQuyen.KiemTraLicense.KiemTraLicenseHopLe();
-                            SessionLogin.SessionUserID = Utilities.Util_TypeConvertParse.ToInt64(dv[0]["userid"].ToString());
+                            SessionLogin.SessionUserID = Utilities.TypeConvertParse.ToInt64(dv[0]["userid"].ToString());
                             SessionLogin.SessionUsercode = txtUsername.Text.Trim().ToLower();
                             SessionLogin.SessionUsername = MedicalLink.Base.EncryptAndDecrypt.Decrypt(dv[0]["username"].ToString(), true);
                             SessionLogin.SessionUserHISID = dv[0]["userhisid"].ToString();
@@ -392,7 +392,7 @@ namespace MedicalLink.FormCommon
                 frmMain frmm = new frmMain();
                 frmm.Show();
                 this.Visible = false;
-                MedicalLink.Base.Logging.Info("Application open successfull. Time=" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:fff"));
+                MedicalLink.Base.Logging.Info("Application open successfull. Time=" + System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:fff"));
             }
             catch (Exception ex)
             {

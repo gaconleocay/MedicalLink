@@ -214,15 +214,12 @@ CREATE TABLE ml_thuchienpttt
   holyid integer, 
   dungcuvienid integer,
   mota text,
+  nguoinhap text,
   thuchienttdate timestamp without time zone,
-  nguoinhapid integer,
-  lastuserupdatedid integer,
+  lastuserupdated text,
   lasttimeupdated timestamp without time zone,
   CONSTRAINT ml_thuchienpttt_pkey PRIMARY KEY (thuchienptttid)
 )
-WITH (
-  OIDS=FALSE
-);
 
 CREATE INDEX thuchienpttt_servicepriceid_idx ON ml_thuchienpttt USING btree (servicepriceid);
 CREATE INDEX thuchienpttt_vienphiid_idx ON ml_thuchienpttt USING btree (vienphiid);

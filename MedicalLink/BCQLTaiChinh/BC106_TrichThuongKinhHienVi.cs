@@ -107,7 +107,7 @@ namespace MedicalLink.BCQLTaiChinh
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
-                    this.lstBaoCao = Utilities.Util_DataTable.DataTableToList<TrichThuongDVKinhHienVi>(_dataBaoCao);
+                    this.lstBaoCao = Utilities.DataTables.DataTableToList<TrichThuongDVKinhHienVi>(_dataBaoCao);
                     gridControlDataBC.DataSource = this.lstBaoCao;
                 }
                 else
@@ -147,7 +147,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTIEN_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
@@ -184,7 +184,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTIEN_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
@@ -231,7 +231,7 @@ namespace MedicalLink.BCQLTaiChinh
             {
                 for (int i = 0; i < gridViewDataBC.RowCount; i++)
                 {
-                    _result += Utilities.Util_TypeConvertParse.ToDecimal(gridViewDataBC.GetRowCellValue(i, "tongtien").ToString());
+                    _result += Utilities.TypeConvertParse.ToDecimal(gridViewDataBC.GetRowCellValue(i, "tongtien").ToString());
                 }
             }
             catch (Exception ex)
@@ -266,7 +266,7 @@ namespace MedicalLink.BCQLTaiChinh
             try
             {
                 var rowHandle = gridViewDataBC.FocusedRowHandle;
-                int _stt = Utilities.Util_TypeConvertParse.ToInt32(gridViewDataBC.GetRowCellValue(rowHandle, "stt").ToString());
+                int _stt = Utilities.TypeConvertParse.ToInt32(gridViewDataBC.GetRowCellValue(rowHandle, "stt").ToString());
 
                 foreach (var item in this.lstBaoCao)
                 {

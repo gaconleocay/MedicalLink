@@ -113,14 +113,14 @@ namespace MedicalLink.Base
                     for (int i = 0; i < dataDepartment.Count; i++)
                     {
                         ClassCommon.classUserDepartment itemUdepart = new ClassCommon.classUserDepartment();
-                        itemUdepart.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmentgroupid"].ToString());
+                        itemUdepart.departmentgroupid = Utilities.TypeConvertParse.ToInt32(dataDepartment[i]["departmentgroupid"].ToString());
                         itemUdepart.departmentgroupcode = dataDepartment[i]["departmentgroupcode"].ToString();
                         itemUdepart.departmentgroupname = dataDepartment[i]["departmentgroupname"].ToString();
-                        itemUdepart.departmentgrouptype = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmentgrouptype"].ToString());
-                        itemUdepart.departmentid = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmentid"].ToString());
+                        itemUdepart.departmentgrouptype = Utilities.TypeConvertParse.ToInt32(dataDepartment[i]["departmentgrouptype"].ToString());
+                        itemUdepart.departmentid = Utilities.TypeConvertParse.ToInt32(dataDepartment[i]["departmentid"].ToString());
                         itemUdepart.departmentcode = dataDepartment[i]["departmentcode"].ToString();
                         itemUdepart.departmentname = dataDepartment[i]["departmentname"].ToString();
-                        itemUdepart.departmenttype = Utilities.Util_TypeConvertParse.ToInt32(dataDepartment[i]["departmenttype"].ToString());
+                        itemUdepart.departmenttype = Utilities.TypeConvertParse.ToInt32(dataDepartment[i]["departmenttype"].ToString());
                         lstPhanQuyenKhoaPhong.Add(itemUdepart);
                     }
                 }
@@ -156,10 +156,10 @@ namespace MedicalLink.Base
                     {
                         ClassCommon.classUserMedicineStore userMedicineStore = new ClassCommon.classUserMedicineStore();
                         userMedicineStore.MedicineStoreCheck = false;
-                        userMedicineStore.MedicineStoreId = Utilities.Util_TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoreid"].ToString());
+                        userMedicineStore.MedicineStoreId = Utilities.TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoreid"].ToString());
                         userMedicineStore.MedicineStoreCode = dataKhoThuoc[i]["medicinestorecode"].ToString();
                         userMedicineStore.MedicineStoreName = dataKhoThuoc[i]["medicinestorename"].ToString();
-                        userMedicineStore.MedicineStoreType = Utilities.Util_TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoretype"].ToString());
+                        userMedicineStore.MedicineStoreType = Utilities.TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoretype"].ToString());
                         userMedicineStore.MedicineStoreTypeName = dataKhoThuoc[i]["medicinestoretypename"].ToString();
 
                         lstPhanQuyen_KhoThuoc.Add(userMedicineStore);
@@ -197,10 +197,10 @@ namespace MedicalLink.Base
                     {
                         ClassCommon.classUserMedicinePhongLuu userMedicineStore = new ClassCommon.classUserMedicinePhongLuu();
                         userMedicineStore.MedicinePhongLuuCheck = false;
-                        userMedicineStore.MedicinePhongLuuId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongluu[i]["medicinephongluuid"].ToString());
+                        userMedicineStore.MedicinePhongLuuId = Utilities.TypeConvertParse.ToInt32(dataPhongluu[i]["medicinephongluuid"].ToString());
                         userMedicineStore.MedicinePhongLuuCode = dataPhongluu[i]["medicinephongluucode"].ToString();
                         userMedicineStore.MedicinePhongLuuName = dataPhongluu[i]["medicinephongluuname"].ToString();
-                        userMedicineStore.MedicineStoreId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongluu[i]["medicinestoreid"].ToString());
+                        userMedicineStore.MedicineStoreId = Utilities.TypeConvertParse.ToInt32(dataPhongluu[i]["medicinestoreid"].ToString());
                         userMedicineStore.MedicineStoreCode = dataPhongluu[i]["medicinestorecode"].ToString();
                         userMedicineStore.MedicineStoreName = dataPhongluu[i]["medicinestorename"].ToString();
 

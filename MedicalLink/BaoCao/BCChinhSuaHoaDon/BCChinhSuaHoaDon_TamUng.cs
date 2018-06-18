@@ -31,8 +31,8 @@ namespace MedicalLink.BaoCao
         #region Load
         private void BCChinhSuaHoaDon_TamUng_Load(object sender, EventArgs e)
         {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+            dateTuNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
         }
         #endregion
 
@@ -42,9 +42,9 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                this.dataBaoCao = new DataTable();
-                string _datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string _datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                this.dataBaoCao = new System.Data.DataTable();
+                string _datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string _datedenngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 string _sql_timkiem = "SELECT row_number () over (order by createdate) as stt, 0 as isgroup, '-1' as vienphistatus_vp, TO_CHAR(billdate, 'yyyy-MM-dd HH24:MI:ss') as billdate, * FROM tools_billedit WHERE createdate between '" + _datetungay + "' and '" + _datedenngay + "' ; ";
 
@@ -74,8 +74,8 @@ namespace MedicalLink.BaoCao
             try
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
@@ -85,7 +85,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
 
                 string fileTemplatePath = "BC_39_ChinhSuaHoaDonTamUng.xlsx";
-                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
@@ -101,8 +101,8 @@ namespace MedicalLink.BaoCao
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
 
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
@@ -113,7 +113,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
 
                 string fileTemplatePath = "BC_39_ChinhSuaHoaDonTamUng.xlsx";
-                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
@@ -126,12 +126,12 @@ namespace MedicalLink.BaoCao
         //Xuat excel co group nhom
         private DataTable ExportExcel_GroupColume()
         {
-            DataTable result = new DataTable();
+            System.Data.DataTable result = new System.Data.DataTable();
             try
             {
                 List<ClassCommon.SuaPhieuTamUng_BCDTO> lstData_XuatBaoCao = new List<ClassCommon.SuaPhieuTamUng_BCDTO>();
 
-                List<ClassCommon.SuaPhieuTamUng_BCDTO> lstDataDoanhThu = Util_DataTable.DataTableToList<ClassCommon.SuaPhieuTamUng_BCDTO>(this.dataBaoCao);
+                List<ClassCommon.SuaPhieuTamUng_BCDTO> lstDataDoanhThu = DataTables.DataTableToList<ClassCommon.SuaPhieuTamUng_BCDTO>(this.dataBaoCao);
 
                 List<ClassCommon.SuaPhieuTamUng_BCDTO> lstData_CumKhoa = lstDataDoanhThu.GroupBy(o => o.cumthutien).Select(n => n.First()).ToList();
                 foreach (var item_group in lstData_CumKhoa)
@@ -158,7 +158,7 @@ namespace MedicalLink.BaoCao
                     lstData_XuatBaoCao.Add(data_groupname);
                     lstData_XuatBaoCao.AddRange(lstData_doanhthu);
                 }
-                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+                result = Utilities.DataTables.ListToDataTable(lstData_XuatBaoCao);
             }
             catch (Exception ex)
             {

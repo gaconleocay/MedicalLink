@@ -77,7 +77,7 @@ namespace MedicalLink.BaoCao
                 if (dataMedicine != null && dataMedicine.Rows.Count > 0)
                 {
                     lstMedicine = new List<classMedicineRef>();
-                    //lstMedicine = Utilities.Util_DataTable.DataTableToList<classMedicineRef>(dataMedicine); 
+                    //lstMedicine = Utilities.Util_DataTables.DataTableToList<classMedicineRef>(dataMedicine); 
                     for (int i = 0; i < dataMedicine.Rows.Count; i++)
                     {
                         classMedicineRef medicine = new classMedicineRef();

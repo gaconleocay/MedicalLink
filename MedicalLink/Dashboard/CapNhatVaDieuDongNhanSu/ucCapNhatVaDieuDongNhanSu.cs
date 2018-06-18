@@ -168,26 +168,26 @@ namespace MedicalLink.Dashboard
             try
             {
                 var rowHandle = advBandedGridViewData.FocusedRowHandle;
-                long _updatenhansuid = Utilities.Util_TypeConvertParse.ToInt64(advBandedGridViewData.GetRowCellValue(rowHandle, "updatenhansuid").ToString());
+                long _updatenhansuid = Utilities.TypeConvertParse.ToInt64(advBandedGridViewData.GetRowCellValue(rowHandle, "updatenhansuid").ToString());
 
-                int giuongthucke = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "giuongthucke").ToString());
-                int nb_hientai = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "nb_hientai").ToString());
-                int ns_bienche = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_bienche").ToString());
-                int ns_hopdong = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_hopdong").ToString());
-                int ns_hocviec = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_hocviec").ToString());
-                int ns_hienco = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_hienco").ToString());
-                int ns_vang = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_vang").ToString());
-                int lydo_om = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_om").ToString());
-                int lydo_phep = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_phep").ToString());
-                int lydo_de = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_de").ToString());
-                int lydo_khac = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_khac").ToString());
-                int hvsv_hocvien = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "hvsv_hocvien").ToString());
-                int hvsv_sinhvien = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "hvsv_sinhvien").ToString());
-                int ddktv_soluong = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_soluong").ToString());
+                int giuongthucke = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "giuongthucke").ToString());
+                int nb_hientai = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "nb_hientai").ToString());
+                int ns_bienche = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_bienche").ToString());
+                int ns_hopdong = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_hopdong").ToString());
+                int ns_hocviec = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_hocviec").ToString());
+                int ns_hienco = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_hienco").ToString());
+                int ns_vang = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ns_vang").ToString());
+                int lydo_om = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_om").ToString());
+                int lydo_phep = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_phep").ToString());
+                int lydo_de = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_de").ToString());
+                int lydo_khac = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "lydo_khac").ToString());
+                int hvsv_hocvien = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "hvsv_hocvien").ToString());
+                int hvsv_sinhvien = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "hvsv_sinhvien").ToString());
+                int ddktv_soluong = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_soluong").ToString());
                 //int ddktv_khoadenid = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_khoadenid").ToString());
                 int ddktv_khoadenid = 0;
                 string ddktv_khoadenname = advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_khoadenname").ToString();
-                int ddktv_songay = Utilities.Util_TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_songay").ToString());
+                int ddktv_songay = Utilities.TypeConvertParse.ToInt32(advBandedGridViewData.GetRowCellValue(rowHandle, "ddktv_songay").ToString());
                 string ghichu_khoa = advBandedGridViewData.GetRowCellValue(rowHandle, "ghichu_khoa").ToString();
                 string ghichu_dieuduong = advBandedGridViewData.GetRowCellValue(rowHandle, "ghichu_dieuduong").ToString();
 
@@ -292,7 +292,7 @@ namespace MedicalLink.Dashboard
                 List<ClassCommon.CapNhatVaDieuDongNhanSuDTO> lstData_XuatBaoCao = new List<ClassCommon.CapNhatVaDieuDongNhanSuDTO>();
                 List<ClassCommon.CapNhatVaDieuDongNhanSuDTO> lstData_Khoi = new List<ClassCommon.CapNhatVaDieuDongNhanSuDTO>();
 
-                lstData_Khoi = Utilities.Util_DataTable.DataTableToList<ClassCommon.CapNhatVaDieuDongNhanSuDTO>(Util_GridcontrolConvert.ConvertGridControlToDataTable(advBandedGridViewData));
+                lstData_Khoi = Utilities.DataTables.DataTableToList<ClassCommon.CapNhatVaDieuDongNhanSuDTO>(Util_GridcontrolConvert.ConvertGridControlToDataTable(advBandedGridViewData));
 
                 List<ClassCommon.CapNhatVaDieuDongNhanSuDTO> lstData_Group = lstData_Khoi.GroupBy(o => o.loaikhoiid).Select(n => n.First()).ToList();
                 foreach (var item_group in lstData_Group)
@@ -307,7 +307,7 @@ namespace MedicalLink.Dashboard
                     lstData_XuatBaoCao.Add(data_groupname);
                     lstData_XuatBaoCao.AddRange(lstData_doanhthu);
                 }
-                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+                result = Utilities.DataTables.ListToDataTable(lstData_XuatBaoCao);
             }
             catch (Exception ex)
             {

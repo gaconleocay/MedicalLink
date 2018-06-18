@@ -21,8 +21,8 @@ namespace MedicalLink.Dashboard
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                string thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string thoiGianTu = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string thoiGianDen = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 int datatype = 0;
                 string bhyt_groupcode = "'09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle'";
                 if (radioVatTu.Checked)
@@ -105,8 +105,8 @@ namespace MedicalLink.Dashboard
             try
             {
                 var rowHandle = bandedGridViewDataQLTTKhoa.FocusedRowHandle;
-                string thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string thoiGianTu = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string thoiGianDen = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 // int datatype = 0;
                 string bhyt_groupcode = "'09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle'";
                 if (radioVatTu.Checked)
@@ -114,9 +114,9 @@ namespace MedicalLink.Dashboard
                     // datatype = 1;
                     bhyt_groupcode = "'10VT', '101VTtrongDM', '101VTtrongDMTT', '102VTngoaiDM','103VTtyle'";
                 }
-                long departmentgroupid = Utilities.Util_TypeConvertParse.ToInt64(cboKhoa.EditValue.ToString());
-                long medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataQLTTKhoa.GetRowCellValue(rowHandle, "medicinerefid_org").ToString());
-                decimal giaban = Utilities.Util_TypeConvertParse.ToDecimal(bandedGridViewDataQLTTKhoa.GetRowCellValue(rowHandle, "giaban").ToString());
+                long departmentgroupid = Utilities.TypeConvertParse.ToInt64(cboKhoa.EditValue.ToString());
+                long medicinerefid_org = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataQLTTKhoa.GetRowCellValue(rowHandle, "medicinerefid_org").ToString());
+                decimal giaban = Utilities.TypeConvertParse.ToDecimal(bandedGridViewDataQLTTKhoa.GetRowCellValue(rowHandle, "giaban").ToString());
 
                 List<ClassCommon.classMedicineRef> lstMedicine_org = lstMedicineStore.Where(o => o.medicinerefid_org == medicinerefid_org && o.giaban == giaban).ToList();
 

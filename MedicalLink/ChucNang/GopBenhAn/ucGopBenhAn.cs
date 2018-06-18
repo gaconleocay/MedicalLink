@@ -113,7 +113,7 @@ namespace MedicalLink.ChucNang
                 DataTable _dataHSBA = condb.GetDataTable_HIS(_sqlHSBA);
                 if (_dataHSBA != null && _dataHSBA.Rows.Count > 0)
                 {
-                    this.lstHSBA_A = Utilities.Util_DataTable.DataTableToList<MedicalrecordGopBADTO>(_dataHSBA);
+                    this.lstHSBA_A = Utilities.DataTables.DataTableToList<MedicalrecordGopBADTO>(_dataHSBA);
                     gridControlHSDT_A.DataSource = this.lstHSBA_A;
                     gridControlPhieuDichVu_A.DataSource = null;
                 }
@@ -147,7 +147,7 @@ namespace MedicalLink.ChucNang
                 DataTable _dataHSBA = condb.GetDataTable_HIS(_sqlHSBA);
                 if (_dataHSBA != null && _dataHSBA.Rows.Count > 0)
                 {
-                    this.lstHSBA_B = Utilities.Util_DataTable.DataTableToList<MedicalrecordGopBADTO>(_dataHSBA);
+                    this.lstHSBA_B = Utilities.DataTables.DataTableToList<MedicalrecordGopBADTO>(_dataHSBA);
                     gridControlHSDT_B.DataSource = this.lstHSBA_B;
                 }
                 else
@@ -327,7 +327,7 @@ namespace MedicalLink.ChucNang
                     try
                     {
                         var rowHandle = gridViewHSDT_B.FocusedRowHandle;
-                        long _medicalrecordid_B = Utilities.Util_TypeConvertParse.ToInt64(gridViewHSDT_B.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
+                        long _medicalrecordid_B = Utilities.TypeConvertParse.ToInt64(gridViewHSDT_B.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
                         long _departmentid_B = this.lstHSBA_B.Where(o => o.medicalrecordid == _medicalrecordid_B).FirstOrDefault().departmentid;
 
                         string _sqlBHYT_B = "SELECT bhytcode, macskcbbd, to_char(bhytfromdate,'yyyy-MM-dd HH24:MI:ss') as bhytfromdate, to_char(bhytutildate,'yyyy-MM-dd HH24:MI:ss') as bhytutildate, coalesce(du5nam6thangluongcoban,0) as du5nam6thangluongcoban, coalesce(dtcbh_luyke6thang,0) as dtcbh_luyke6thang, noisinhsong FROM bhyt WHERE bhytid='" + this.lstHSBA_B[0].bhytid + "';";

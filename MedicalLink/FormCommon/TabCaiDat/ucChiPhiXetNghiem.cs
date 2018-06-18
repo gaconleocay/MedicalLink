@@ -53,7 +53,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 DataTable dataDMXNMay = condb.GetDataTable_MeL(_getDMXNMay);
                 if (dataDMXNMay != null && dataDMXNMay.Rows.Count > 0)
                 {
-                    this.lstMayXNKhuVuc = Utilities.Util_DataTable.DataTableToList<ClassCommon.MayXetNghiemKhuVucDTO>(dataDMXNMay);
+                    this.lstMayXNKhuVuc = Utilities.DataTables.DataTableToList<ClassCommon.MayXetNghiemKhuVucDTO>(dataDMXNMay);
                 }
                 gridControlXNMay.DataSource = this.lstMayXNKhuVuc;
             }
@@ -71,7 +71,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 DataTable dataXNChiPhi = condb.GetDataTable_MeL(_getXNChiPhi);
                 if (dataXNChiPhi != null && dataXNChiPhi.Rows.Count > 0)
                 {
-                    this.lstDVXetNghiemChiPhi = Utilities.Util_DataTable.DataTableToList<ClassCommon.DVXetNghiemChiPhiDTO>(dataXNChiPhi);
+                    this.lstDVXetNghiemChiPhi = Utilities.DataTables.DataTableToList<ClassCommon.DVXetNghiemChiPhiDTO>(dataXNChiPhi);
                 }
                 gridControlDVXNChiPhi.DataSource = this.lstDVXetNghiemChiPhi;
             }
@@ -112,7 +112,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     data_Excel.TableName = "DATA";
                     if (data_Excel != null)
                     {
-                        this.lstMayXNKhuVuc = Utilities.Util_DataTable.DataTableToList<ClassCommon.MayXetNghiemKhuVucDTO>(data_Excel);
+                        this.lstMayXNKhuVuc = Utilities.DataTables.DataTableToList<ClassCommon.MayXetNghiemKhuVucDTO>(data_Excel);
                         gridControlXNMay.DataSource = this.lstMayXNKhuVuc;
                         btnXNKV_Luu.Enabled = true;
                     }
@@ -237,7 +237,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     thongTinThem.Add(reportitem);
                     string fileTemplatePath = "0_ToolsMayXetNghiemKhuVuc_Export.xlsx";
-                    DataTable _dataBaoCao = Utilities.Util_DataTable.ListToDataTable(this.lstMayXNKhuVuc);
+                    DataTable _dataBaoCao = Utilities.DataTables.ListToDataTable(this.lstMayXNKhuVuc);
                     Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                     export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
                 }
@@ -264,7 +264,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     data_Excel.TableName = "DATA";
                     if (data_Excel != null)
                     {
-                        this.lstDVXetNghiemChiPhi = Utilities.Util_DataTable.DataTableToList<ClassCommon.DVXetNghiemChiPhiDTO>(data_Excel);
+                        this.lstDVXetNghiemChiPhi = Utilities.DataTables.DataTableToList<ClassCommon.DVXetNghiemChiPhiDTO>(data_Excel);
                         gridControlDVXNChiPhi.DataSource = this.lstDVXetNghiemChiPhi;
                         btnDVXNCP_Luu.Enabled = true;
                     }
@@ -399,7 +399,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     thongTinThem.Add(reportitem);
                     string fileTemplatePath = "0_ToolsDVKTChiPhi_Export.xlsx";
-                    DataTable _dataBaoCao = Utilities.Util_DataTable.ListToDataTable(this.lstDVXetNghiemChiPhi);
+                    DataTable _dataBaoCao = Utilities.DataTables.ListToDataTable(this.lstDVXetNghiemChiPhi);
                     Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                     export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
                 }

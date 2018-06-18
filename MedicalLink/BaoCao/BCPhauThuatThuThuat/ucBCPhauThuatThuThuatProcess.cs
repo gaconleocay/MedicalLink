@@ -29,8 +29,8 @@ namespace MedicalLink.BaoCao
                 this.helper.ClearSelection();
                 string sql_laydulieu = "";
 
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
               //  string tieuchi_date = "";
                 string _tieuchi_pttt = "";
                 string _tieuchi_ser = "";
@@ -233,7 +233,7 @@ namespace MedicalLink.BaoCao
                     List<ServicepriceDuyetPTTTDTO> _lstDuyetPTTT_User = lstServicepriceids.Where(o => o.duyetpttt_stt == 0).ToList();
                     if (_lstDuyetPTTT_User != null && _lstDuyetPTTT_User.Count > 0)
                     {
-                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=1, duyetpttt_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', duyetpttt_usercode='" + Base.SessionLogin.SessionUsercode + "', duyetpttt_username='" + Base.SessionLogin.SessionUsername + "' WHERE servicepriceid in (" + ConvertListObjToListString(_lstDuyetPTTT_User) + ");";
+                        string _sqlUpdate_Duyet = "UPDATE serviceprice SET duyetpttt_stt=1, duyetpttt_date='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', duyetpttt_usercode='" + Base.SessionLogin.SessionUsercode + "', duyetpttt_username='" + Base.SessionLogin.SessionUsername + "' WHERE servicepriceid in (" + ConvertListObjToListString(_lstDuyetPTTT_User) + ");";
                         if (condb.ExecuteNonQuery_HIS(_sqlUpdate_Duyet))
                         {
                             MessageBox.Show("Duyệt PTTT thành công SL=" + _lstDuyetPTTT_User.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -272,7 +272,7 @@ namespace MedicalLink.BaoCao
                     List<ServicepriceDuyetPTTTDTO> _lstGoDuyetPTTT_User = lstServicepriceids.Where(o => o.duyetpttt_stt == 1 && o.duyetpttt_usercode == Base.SessionLogin.SessionUsercode).ToList();
                     if (_lstGoDuyetPTTT_User != null && _lstGoDuyetPTTT_User.Count > 0)
                     {
-                        string _sqlUpdate_GoDuyet = "UPDATE serviceprice SET duyetpttt_stt=0, duyetpttt_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', duyetpttt_usercode='" + Base.SessionLogin.SessionUsercode + "', duyetpttt_username='" + Base.SessionLogin.SessionUsername + "' WHERE servicepriceid in (" + ConvertListObjToListString(_lstGoDuyetPTTT_User) + ");";
+                        string _sqlUpdate_GoDuyet = "UPDATE serviceprice SET duyetpttt_stt=0, duyetpttt_date='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', duyetpttt_usercode='" + Base.SessionLogin.SessionUsercode + "', duyetpttt_username='" + Base.SessionLogin.SessionUsername + "' WHERE servicepriceid in (" + ConvertListObjToListString(_lstGoDuyetPTTT_User) + ");";
                         if (condb.ExecuteNonQuery_HIS(_sqlUpdate_GoDuyet))
                         {
                             MessageBox.Show("Gỡ duyệt PTTT thành công SL=" + _lstGoDuyetPTTT_User.Count + "/" + lstServicepriceids.Count, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -311,9 +311,9 @@ namespace MedicalLink.BaoCao
             {
                 ServicepriceDuyetPTTTDTO _serviceID = new ServicepriceDuyetPTTTDTO();
                 _serviceID.servicepriceid = (helper.GetSelectedRow(i) as DataRowView)["servicepriceid"].ToString();
-                _serviceID.duyetpttt_stt = Utilities.Util_TypeConvertParse.ToInt16((helper.GetSelectedRow(i) as DataRowView)["duyetpttt_stt"].ToString());
-                _serviceID.vienphiid = Utilities.Util_TypeConvertParse.ToInt64((helper.GetSelectedRow(i) as DataRowView)["vienphiid"].ToString());
-                _serviceID.maubenhphamid = Utilities.Util_TypeConvertParse.ToInt64((helper.GetSelectedRow(i) as DataRowView)["maubenhphamid"].ToString());
+                _serviceID.duyetpttt_stt = Utilities.TypeConvertParse.ToInt16((helper.GetSelectedRow(i) as DataRowView)["duyetpttt_stt"].ToString());
+                _serviceID.vienphiid = Utilities.TypeConvertParse.ToInt64((helper.GetSelectedRow(i) as DataRowView)["vienphiid"].ToString());
+                _serviceID.maubenhphamid = Utilities.TypeConvertParse.ToInt64((helper.GetSelectedRow(i) as DataRowView)["maubenhphamid"].ToString());
                 _serviceID.bhyt_groupcode = (helper.GetSelectedRow(i) as DataRowView)["bhyt_groupcode"].ToString();
                 IDs.Add(_serviceID);
             }
@@ -431,17 +431,17 @@ namespace MedicalLink.BaoCao
                         {
                             case 1:
                                 {
-                                    _update_user = " , gui_usercode='" + Base.SessionLogin.SessionUsercode + "', gui_username='" + Base.SessionLogin.SessionUsername + "', gui_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
+                                    _update_user = " , gui_usercode='" + Base.SessionLogin.SessionUsercode + "', gui_username='" + Base.SessionLogin.SessionUsername + "', gui_date='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
                                     break;
                                 }
                             case 2:
                                 {
-                                    _update_user = " , tiepnhan_usercode='" + Base.SessionLogin.SessionUsercode + "', tiepnhan_username='" + Base.SessionLogin.SessionUsername + "', tiepnhan_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
+                                    _update_user = " , tiepnhan_usercode='" + Base.SessionLogin.SessionUsercode + "', tiepnhan_username='" + Base.SessionLogin.SessionUsername + "', tiepnhan_date='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
                                     break;
                                 }
                             case 3:
                                 {
-                                    _update_user = " , duyet_usercode='" + Base.SessionLogin.SessionUsercode + "', duyet_username='" + Base.SessionLogin.SessionUsername + "', duyet_date='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
+                                    _update_user = " , duyet_usercode='" + Base.SessionLogin.SessionUsercode + "', duyet_username='" + Base.SessionLogin.SessionUsername + "', duyet_date='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' ";
                                     break;
                                 }
                             //case 99:
@@ -460,17 +460,17 @@ namespace MedicalLink.BaoCao
                         {
                             case 1:
                                 {
-                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,gui_usercode,gui_username,gui_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
+                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,gui_usercode,gui_username,gui_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
                                     break;
                                 }
                             case 2:
                                 {
-                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,tiepnhan_usercode,tiepnhan_username,tiepnhan_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
+                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,tiepnhan_usercode,tiepnhan_username,tiepnhan_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + ", '" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
                                     break;
                                 }
                             case 3:
                                 {
-                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,duyet_usercode,duyet_username,duyet_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "''" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
+                                    _sqlCapNhatToolsDuyet += " INSERT INTO tools_duyet_pttt(servicepriceid,vienphiid,maubenhphamid,bhyt_groupcode,duyetpttt_stt,duyet_usercode,duyet_username,duyet_date) VALUES('" + item_ser.servicepriceid + "', '" + item_ser.vienphiid + "', '" + item_ser.maubenhphamid + "', '" + item_ser.bhyt_groupcode + "', '" + _duyetpttt_stt + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "''" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
                                     break;
                                 }
                             //case 99:

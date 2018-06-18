@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.Utilities
 {
-    public static class Util_DataTable
+    public static class DataTables
     {
         //Function chuyển đổi List to Datatable C#
         public static DataTable ListToDataTable<T>(this IList<T> data)

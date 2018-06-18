@@ -354,7 +354,7 @@ namespace MedicalLink.ChucNang
                                 string _vienphiid = gridViewHSBA.GetRowCellValue(item_index, "vienphiid").ToString();
 
                                 //lay ngay ra vien
-                                DateTime _vienphidate_ravien = Utilities.Util_TypeConvertParse.ToDateTime(gridViewHSBA.GetRowCellValue(item_index, "vienphidate_ravien").ToString());
+                                DateTime _vienphidate_ravien = Utilities.TypeConvertParse.ToDateTime(gridViewHSBA.GetRowCellValue(item_index, "vienphidate_ravien").ToString());
                                 string _dongHSTime_EndDay = _vienphidate_ravien.ToString("yyyy-MM-dd") + " 23:59:59";
                                 string _dongHSTime_long = _vienphidate_ravien.ToString("yyyyMMdd");
 

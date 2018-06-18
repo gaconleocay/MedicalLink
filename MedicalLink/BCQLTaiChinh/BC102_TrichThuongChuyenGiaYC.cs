@@ -130,7 +130,7 @@ namespace MedicalLink.BCQLTaiChinh
             try
             {
                 this.lstBaoCao = new List<TrichThuongChuyenGiaYCDTO>();
-                List<TrichThuongChuyenGiaYCDTO> _lstBaoCao = Utilities.Util_DataTable.DataTableToList<TrichThuongChuyenGiaYCDTO>(_dataBaocao);
+                List<TrichThuongChuyenGiaYCDTO> _lstBaoCao = Utilities.DataTables.DataTableToList<TrichThuongChuyenGiaYCDTO>(_dataBaocao);
 
                 //NV hop dong
                 List<TrichThuongChuyenGiaYCDTO> _lst_HopDong = _lstBaoCao.Where(o => o.nhom_bcid == 1).ToList();
@@ -254,11 +254,11 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTHUCLINH_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(this.TongTienChi, 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(this.TongTienChi, 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 string fileTemplatePath = "BC_102_TrichThuongChuyenGiaYeuCau.xlsx";
-                DataTable _dataBaocao = Utilities.Util_DataTable.ListToDataTable(this.lstBaoCao);
+                DataTable _dataBaocao = Utilities.DataTables.ListToDataTable(this.lstBaoCao);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaocao);
             }
@@ -290,11 +290,11 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTHUCLINH_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(this.TongTienChi, 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(this.TongTienChi, 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 string fileTemplatePath = "BC_102_TrichThuongChuyenGiaYeuCau.xlsx";
-                DataTable _dataBaocao = Utilities.Util_DataTable.ListToDataTable(this.lstBaoCao);
+                DataTable _dataBaocao = Utilities.DataTables.ListToDataTable(this.lstBaoCao);
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaocao);
             }
             catch (Exception ex)

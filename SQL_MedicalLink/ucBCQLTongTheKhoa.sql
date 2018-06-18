@@ -386,7 +386,7 @@ SELECT sum(A.doanhthu_slbn) as doanhthu_slbn,
 		from (select vienphiid from ihs_servicespttt spt where spt.vienphistatus_vp=1 
 					and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + _thutienstatus+" 
 					and (spt.departmentid in ("+this.lstPhongChonLayBC+") or (spt.departmentid in (34,335,269,285) 
-					and spt.departmentgroup_huong in ("+this.lstKhoaChonLayBC+")) "+_doituongbenhnhanid_spt+")
+					and spt.departmentgroup_huong in ("+this.lstKhoaChonLayBC+"))) "+_doituongbenhnhanid_spt+"
 			group by spt.vienphiid) sl) as doanhthuTongGM_slbn,
 	round(cast(sum(COALESCE(A.doanhthu_tienkb,0)) as numeric),0) as doanhthu_tienkb, 
 	round(cast(sum(COALESCE(A.doanhthu_tienxn,0)) as numeric),0) as doanhthu_tienxn, 
@@ -867,7 +867,7 @@ SELECT sum(A.doanhthu_slbn) as doanhthu_slbn,
 		from (select vienphiid from ihs_servicespttt spt where spt.vienphistatus_vp=1 
 					and spt.duyet_ngayduyet_vp between '" + this.thoiGianTu + "' and '" + this.thoiGianDen + "' " + _thutienstatus+" 
 					and (spt.departmentid in ("+this.lstPhongChonLayBC+") or (spt.departmentid in (34,335,269,285) 
-					and spt.departmentgroup_huong in ("+this.lstKhoaChonLayBC+")) "+_doituongbenhnhanid_spt+")
+					and spt.departmentgroup_huong in ("+this.lstKhoaChonLayBC+"))) "+_doituongbenhnhanid_spt+"
 			group by spt.vienphiid) sl) as doanhthuTongGM_slbn,
 	round(cast(sum(COALESCE(A.doanhthu_tienkb,0)) as numeric),0) as doanhthu_tienkb, 
 	round(cast(sum(COALESCE(A.doanhthu_tienxn,0)) as numeric),0) as doanhthu_tienxn, 

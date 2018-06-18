@@ -105,12 +105,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     ClassCommon.classUserDepartment userDepartment = new ClassCommon.classUserDepartment();
                     userDepartment.departmentcheck = false;
-                    userDepartment.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dataPhong[i]["departmentgroupid"].ToString());
+                    userDepartment.departmentgroupid = Utilities.TypeConvertParse.ToInt32(dataPhong[i]["departmentgroupid"].ToString());
                     userDepartment.departmentgroupname = dataPhong[i]["departmentgroupname"].ToString();
-                    userDepartment.departmentid = Utilities.Util_TypeConvertParse.ToInt32(dataPhong[i]["departmentid"].ToString());
+                    userDepartment.departmentid = Utilities.TypeConvertParse.ToInt32(dataPhong[i]["departmentid"].ToString());
                     userDepartment.departmentcode = dataPhong[i]["departmentcode"].ToString();
                     userDepartment.departmentname = dataPhong[i]["departmentname"].ToString();
-                    userDepartment.departmenttype = Utilities.Util_TypeConvertParse.ToInt32(dataPhong[i]["departmenttype"].ToString());
+                    userDepartment.departmenttype = Utilities.TypeConvertParse.ToInt32(dataPhong[i]["departmenttype"].ToString());
                     userDepartment.departmenttypename = dataPhong[i]["departmenttypename"].ToString();
                     lstUserDepartment.Add(userDepartment);
                 }
@@ -144,10 +144,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     ClassCommon.classUserMedicineStore userMedicineStore = new ClassCommon.classUserMedicineStore();
                     userMedicineStore.MedicineStoreCheck = false;
-                    userMedicineStore.MedicineStoreId = Utilities.Util_TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoreid"].ToString());
+                    userMedicineStore.MedicineStoreId = Utilities.TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoreid"].ToString());
                     userMedicineStore.MedicineStoreCode = dataKhoThuoc[i]["medicinestorecode"].ToString();
                     userMedicineStore.MedicineStoreName = dataKhoThuoc[i]["medicinestorename"].ToString();
-                    userMedicineStore.MedicineStoreType = Utilities.Util_TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoretype"].ToString());
+                    userMedicineStore.MedicineStoreType = Utilities.TypeConvertParse.ToInt32(dataKhoThuoc[i]["medicinestoretype"].ToString());
                     userMedicineStore.MedicineStoreTypeName = dataKhoThuoc[i]["medicinestoretypename"].ToString();
 
                     lstUserMedicineStore.Add(userMedicineStore);
@@ -170,10 +170,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     ClassCommon.classUserMedicinePhongLuu userMedicinePhongLuu = new ClassCommon.classUserMedicinePhongLuu();
                     userMedicinePhongLuu.MedicinePhongLuuCheck = false;
-                    userMedicinePhongLuu.MedicinePhongLuuId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongLuu[i]["medicinephongluuid"].ToString());
+                    userMedicinePhongLuu.MedicinePhongLuuId = Utilities.TypeConvertParse.ToInt32(dataPhongLuu[i]["medicinephongluuid"].ToString());
                     userMedicinePhongLuu.MedicinePhongLuuCode = dataPhongLuu[i]["medicinephongluucode"].ToString();
                     userMedicinePhongLuu.MedicinePhongLuuName = dataPhongLuu[i]["medicinephongluuname"].ToString();
-                    userMedicinePhongLuu.MedicineStoreId = Utilities.Util_TypeConvertParse.ToInt32(dataPhongLuu[i]["medicinestoreid"].ToString());
+                    userMedicinePhongLuu.MedicineStoreId = Utilities.TypeConvertParse.ToInt32(dataPhongLuu[i]["medicinestoreid"].ToString());
                     userMedicinePhongLuu.MedicineStoreCode = dataPhongLuu[i]["medicinestorecode"].ToString();
                     userMedicinePhongLuu.MedicineStoreName = dataPhongLuu[i]["medicinestorename"].ToString();
 
@@ -470,7 +470,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             string en_txtUsercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserCode.Text.Trim().ToLower(), true);
             string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
             string en_txtUserPassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserPassword.Text.Trim(), true);
-            int _userhisid = Utilities.Util_TypeConvertParse.ToInt32(txtuserhisid.Text);
+            int _userhisid = Utilities.TypeConvertParse.ToInt32(txtuserhisid.Text);
             try
             {
                 if (currentUserCode == null)//them moi

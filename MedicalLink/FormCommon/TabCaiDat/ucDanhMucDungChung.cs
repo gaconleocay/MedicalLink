@@ -191,7 +191,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     var rowHandle = gridViewLoaiDM.FocusedRowHandle;
 
-                    this.selecttools_othertypelistid = Utilities.Util_TypeConvertParse.ToInt64(gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistid").ToString());
+                    this.selecttools_othertypelistid = Utilities.TypeConvertParse.ToInt64(gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistid").ToString());
                     txtLoaiDM_Ma.Text = gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistcode").ToString();
                     txtLoaiDM_Ten.Text = gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistname").ToString();
                     txtLoaiDM_GhiChu.Text = gridViewLoaiDM.GetRowCellValue(rowHandle, "tools_othertypelistnote").ToString();
@@ -287,7 +287,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             frmthongbao.Show();
                         }
                     }
-                    LoadDS_DanhMuc(Utilities.Util_TypeConvertParse.ToInt64(cboDM_LoaiDMTen.EditValue.ToString()));
+                    LoadDS_DanhMuc(Utilities.TypeConvertParse.ToInt64(cboDM_LoaiDMTen.EditValue.ToString()));
                 }
                 else
                 {
@@ -308,7 +308,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     var rowHandle = gridViewDM.FocusedRowHandle;
 
-                    this.selecttools_otherlistid = Utilities.Util_TypeConvertParse.ToInt64(gridViewDM.GetRowCellValue(rowHandle, "tools_otherlistid").ToString());
+                    this.selecttools_otherlistid = Utilities.TypeConvertParse.ToInt64(gridViewDM.GetRowCellValue(rowHandle, "tools_otherlistid").ToString());
                     txtDM_Ma.Text = gridViewDM.GetRowCellValue(rowHandle, "tools_otherlistcode").ToString();
                     txtDM_Ten.Text = gridViewDM.GetRowCellValue(rowHandle, "tools_otherlistname").ToString();
                     cboDM_LoaiDMTen.EditValue = gridViewDM.GetRowCellValue(rowHandle, "tools_othertypelistid");

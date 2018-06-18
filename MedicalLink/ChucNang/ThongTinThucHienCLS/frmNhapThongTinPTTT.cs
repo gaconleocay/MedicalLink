@@ -195,8 +195,8 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 DataTable dataThucHIenCLS = condb.GetDataTable_HIS(kiemtrathuchien);
                 if (dataThucHIenCLS != null && dataThucHIenCLS.Rows.Count > 0)
                 {
-                    this.currentthuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(dataThucHIenCLS.Rows[0]["thuchienclsid"].ToString());
-                    dtTGThucHien.DateTime = Utilities.Util_TypeConvertParse.ToDateTime(dataThucHIenCLS.Rows[0]["thuchienclsdate"].ToString());
+                    this.currentthuchienclsid = Utilities.TypeConvertParse.ToInt64(dataThucHIenCLS.Rows[0]["thuchienclsid"].ToString());
+                    dtTGThucHien.DateTime = Utilities.TypeConvertParse.ToDateTime(dataThucHIenCLS.Rows[0]["thuchienclsdate"].ToString());
                     cboLoaiPTTT.EditValue = dataThucHIenCLS.Rows[0]["pttt_hangid"];
                     cboPhuongPhapPTTT.EditValue = dataThucHIenCLS.Rows[0]["phuongphappttt_code"];
 

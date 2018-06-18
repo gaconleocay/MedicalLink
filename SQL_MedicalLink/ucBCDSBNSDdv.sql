@@ -1,7 +1,7 @@
 --ucBCDSBNSDdv
 
 1. Theo tung dich vu 
----ngay 25/5
+---ngay 17/6
 
 SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, 
 	vp.patientid as mabn, 
@@ -11,7 +11,17 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 	de.departmentname as tenphong, 
 	ser.servicepricecode as madv, 
 	ser.servicepricename as tendv, 
-	ser.dongia, 
+	ser.dongia,
+	(case serf.pttt_loaiid 
+				when 1 then 'Phẫu thuật đặc biệt' 
+				when 2 then 'Phẫu thuật loại 1' 
+				when 3 then 'Phẫu thuật loại 2' 
+				when 4 then 'Phẫu thuật loại 3' 
+				when 5 then 'Thủ thuật đặc biệt' 
+				when 6 then 'Thủ thuật loại 1' 
+				when 7 then 'Thủ thuật loại 2' 
+				when 8 then 'Thủ thuật loại 3' 
+				else '' end) as loaipttt, 	
 	ser.servicepricedate as thoigianchidinh, 
 	(case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end) as soluong, 
 	((case when ser.maubenhphamphieutype=0 then ser.soluong else 0-ser.soluong end)*ser.dongia) as thanhtien,
@@ -42,6 +52,7 @@ FROM
 				  end)
 		end) as dongia,
 		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where " + this.DanhSachDichVu + tieuchi_ser+_bhyt_groupcode+") ser 
+	inner join (select servicepricecode,pttt_loaiid from servicepriceref where " + this.DanhSachDichVu+") serf on serf.servicepricecode=ser.servicepricecode	
 	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 "+tieuchi_vp+loaivienphiid+doituongbenhnhanid+") vp ON ser.vienphiid=vp.vienphiid 
 	INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 "+tieuchi_hsba+") hsba ON vp.hosobenhanid=hsba.hosobenhanid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid 
@@ -64,7 +75,7 @@ FROM
 	
 -------Theo nhom dich vu - bo
 --ngay 23/5
-
+/*
 
 SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, 
 	vp.patientid as mabn, 
@@ -112,7 +123,7 @@ FROM
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid 
 	INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid;
 
-
+*/
 
 
 

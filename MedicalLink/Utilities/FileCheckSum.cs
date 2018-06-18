@@ -8,7 +8,7 @@ using System.IO;
 
 namespace MedicalLink.Utilities
 {
-    public static class Util_FileCheckSum
+    public static class FileCheckSum
     {
         public static string GetMD5HashFromFile(string fileName)
         {

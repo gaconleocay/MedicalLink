@@ -25,7 +25,7 @@ namespace MedicalLink.DatabaseProcess
                 int maquyenloithe = 0;
                 if (tinhBHYT.bhytcode != "" && tinhBHYT.bhytcode.Length == 15)
                 {
-                    maquyenloithe = Utilities.Util_TypeConvertParse.ToInt16(tinhBHYT.bhytcode.Substring(2, 1));
+                    maquyenloithe = Utilities.TypeConvertParse.ToInt16(tinhBHYT.bhytcode.Substring(2, 1));
                 }
                 switch (maquyenloithe)
                 {
@@ -174,7 +174,7 @@ namespace MedicalLink.DatabaseProcess
 
                 if (thongtinthanhtoan.bhytcode != "" && thongtinthanhtoan.bhytcode.Length == 15)
                 {
-                    thongtinthanhtoan.maquyenloithe = Utilities.Util_TypeConvertParse.ToInt16(thongtinthanhtoan.bhytcode.Substring(2, 1));
+                    thongtinthanhtoan.maquyenloithe = Utilities.TypeConvertParse.ToInt16(thongtinthanhtoan.bhytcode.Substring(2, 1));
                 }
 
                 if (thongtinthanhtoan.chiphi_trongpvql <= thongtinthanhtoan._15thanhluongcoban)
@@ -468,7 +468,7 @@ namespace MedicalLink.DatabaseProcess
 
                 if (thongtinthanhtoan.bhytcode != "" && thongtinthanhtoan.bhytcode.Length == 15)
                 {
-                    thongtinthanhtoan.maquyenloithe = Utilities.Util_TypeConvertParse.ToInt16(thongtinthanhtoan.bhytcode.Substring(2, 1));
+                    thongtinthanhtoan.maquyenloithe = Utilities.TypeConvertParse.ToInt16(thongtinthanhtoan.bhytcode.Substring(2, 1));
                 }
 
                 if (thongtinthanhtoan.chiphi_trongpvql <= thongtinthanhtoan._15thanhluongcoban)
@@ -763,7 +763,7 @@ namespace MedicalLink.DatabaseProcess
                 */
                 if (_filter.bhytcode != "" && _filter.bhytcode.Length == 15)
                 {
-                    _filter.maquyenloithe = Utilities.Util_TypeConvertParse.ToInt16(_filter.bhytcode.Substring(2, 1));
+                    _filter.maquyenloithe = Utilities.TypeConvertParse.ToInt16(_filter.bhytcode.Substring(2, 1));
                 }
 
 

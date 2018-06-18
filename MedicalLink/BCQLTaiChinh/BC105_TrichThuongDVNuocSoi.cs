@@ -129,7 +129,7 @@ namespace MedicalLink.BCQLTaiChinh
             {
                 this.lstDataBaoCao = new List<TrichThuongDVNuocSoiDTO>();
 
-                List<TrichThuongDVNuocSoiDTO> _lstBaoCao = Utilities.Util_DataTable.DataTableToList<TrichThuongDVNuocSoiDTO>(_dataBaocao);
+                List<TrichThuongDVNuocSoiDTO> _lstBaoCao = Utilities.DataTables.DataTableToList<TrichThuongDVNuocSoiDTO>(_dataBaocao);
 
 
                 TrichThuongDVNuocSoiDTO _item_KhoaDD = new TrichThuongDVNuocSoiDTO();
@@ -183,7 +183,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTHUCLINH_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucLinh(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucLinh(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 ClassCommon.reportExcelDTO _item_TONGTHU = new ClassCommon.reportExcelDTO();
@@ -228,7 +228,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(item_phong);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTHUCLINH_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucLinh(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTienThucLinh(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 ClassCommon.reportExcelDTO _item_TONGTHU = new ClassCommon.reportExcelDTO();

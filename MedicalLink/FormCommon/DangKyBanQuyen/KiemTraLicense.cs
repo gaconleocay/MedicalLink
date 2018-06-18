@@ -43,7 +43,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                         DataView dtdatetime = new DataView(condb.GetDataTable_HIS(sql_dateDB));
                         if (dtdatetime != null && dtdatetime.Count > 0)
                         {
-                            datetimenow = Utilities.Util_TypeConvertParse.ToInt64(dtdatetime[0]["sysdatedb"].ToString());
+                            datetimenow = Utilities.TypeConvertParse.ToInt64(dtdatetime[0]["sysdatedb"].ToString());
                         }
                     }
                     catch (Exception ex)

@@ -15,29 +15,29 @@ using MedicalLink.ClassCommon.BCQLTaiChinh;
 
 namespace MedicalLink.BCQLTaiChinh
 {
-    public partial class BC114_HauCanVaQuanLyMoYeuCau : UserControl
+    public partial class BC115_KhoaChuanBiBNQD151 : UserControl
     {
         #region Khai bao
         private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        private List<HauCanVaQuanLyMoYeuCauDTO> lstBaoCao { get; set; }
+        private List<KhoaChuanBiBNQD151DTO> lstBaoCao { get; set; }
         private string DanhMucDichVu_String { get; set; }
 
         #endregion
 
-        public BC114_HauCanVaQuanLyMoYeuCau()
+        public BC115_KhoaChuanBiBNQD151()
         {
             InitializeComponent();
         }
 
         #region Load
-        private void ucBC114_HauCanVaQuanLyMoYeuCau_Load(object sender, EventArgs e)
+        private void ucBC115_KhoaChuanBiBNQD151_Load(object sender, EventArgs e)
         {
             try
             {
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 //load danh muc dich vu
-                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_114_DV").ToList();
+                List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_115_DV").ToList();
                 if (lstOtherList != null && lstOtherList.Count > 0)
                 {
                     for (int i = 0; i < lstOtherList.Count - 1; i++)
@@ -58,13 +58,14 @@ namespace MedicalLink.BCQLTaiChinh
         #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            this.lstBaoCao = new List<HauCanVaQuanLyMoYeuCauDTO>();
+            this.lstBaoCao = new List<KhoaChuanBiBNQD151DTO>();
 
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
                 string tieuchi_ser = "";
                 string tieuchi_vp = "";
+                string tieuchi_mrd = "";
                 string lstdichvu_ser = " and servicepricecode in (" + this.DanhMucDichVu_String + ") ";
                 string trangthai_vp = "";
                 string sql_timkiem = "";
@@ -75,21 +76,25 @@ namespace MedicalLink.BCQLTaiChinh
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_mrd = " and thoigianvaovien>'2017-01-01 00:00:00' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
                     tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
                     tieuchi_ser = " and servicepricedate >= '" + datetungay + "' ";
+                    tieuchi_mrd = " and thoigianvaovien>'" + datetungay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
                 {
                     tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
                     tieuchi_ser = " and servicepricedate >= '2017-01-01 00:00:00' ";
+                    tieuchi_mrd = " and thoigianvaovien>'2017-01-01 00:00:00' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
                     tieuchi_vp = " and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
                     tieuchi_ser = " and servicepricedate >= '2017-01-01 00:00:00' ";
+                    tieuchi_mrd = " and thoigianvaovien>'2017-01-01 00:00:00' ";
                 }
                 //trang thai
                 if (cboTrangThai.Text == "Đang điều trị")
@@ -105,12 +110,12 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @"select 0 as stt, '' as departmentgroupname, sum(case when ser.servicepricecode='U11620-4506' then ser.soluong else 0 end) as soluong_tt, 0 as thanhtien_tt, sum(case when ser.servicepricecode='U11621-4524' then ser.soluong else 0 end) as soluong_db, 0 as thanhtien_db, sum(case when ser.servicepricecode='U11622-4536' then ser.soluong else 0 end) as soluong_l2, 0 as thanhtien_l2, sum(case when ser.servicepricecode='U11623-4610' then ser.soluong else 0 end) as soluong_l3, 0 as thanhtien_l3, 0 as thanhtien_tong, '' as kynhan, '' as ghichu from (select vienphiid,soluong,departmentgroupid,servicepricecode, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid;";
+                sql_timkiem = @"select row_number () over (order by degp.departmentgroupname) as stt, mrd.backdepartmentid, degp.departmentgroupname, sum(case when ser.servicepricecode='U11620-4506' then ser.soluong else 0 end) as soluong_tt, sum(case when ser.servicepricecode='U11620-4506' then ser.soluong*450000 else 0 end) as thanhtien_tt, sum(case when ser.servicepricecode='U11621-4524' then ser.soluong else 0 end) as soluong_db, sum(case when ser.servicepricecode='U11621-4524' then ser.soluong*400000 else 0 end) as thanhtien_db, sum(case when ser.servicepricecode='U11622-4536' then ser.soluong else 0 end) as soluong_l2, sum(case when ser.servicepricecode='U11622-4536' then ser.soluong*300000 else 0 end) as thanhtien_l2, sum(case when ser.servicepricecode='U11623-4610' then ser.soluong else 0 end) as soluong_l3, sum(case when ser.servicepricecode='U11623-4610' then ser.soluong*200000 else 0 end) as thanhtien_l3, 0 as thanhtien_tong, '' as kynhan, '' as ghichu from (select vienphiid,soluong,medicalrecordid,servicepricecode, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_ser + ") ser inner join (select backdepartmentid,medicalrecordid,medicalrecordid_next from medicalrecord where 1=1 " + tieuchi_mrd + ") mrd on mrd.medicalrecordid=ser.medicalrecordid inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=mrd.backdepartmentid group by mrd.backdepartmentid,degp.departmentgroupname; ";
 
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
-                    List<HauCanVaQuanLyMoYeuCauDTO> _lstBaoCao = Utilities.DataTables.DataTableToList<HauCanVaQuanLyMoYeuCauDTO>(_dataBaoCao);
+                    List<KhoaChuanBiBNQD151DTO> _lstBaoCao = Utilities.DataTables.DataTableToList<KhoaChuanBiBNQD151DTO>(_dataBaoCao);
                     XuLyVaHienThiBaoCao(_lstBaoCao);
                     //gridControlDataBC.DataSource = _dataBaoCao;
                 }
@@ -152,7 +157,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
 
-                string fileTemplatePath = "BC_114_HauCanVaQuanLyMoYeuCau.xlsx";
+                string fileTemplatePath = "BC_115_KhoaChuanBiBNQD151.xlsx";
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
             }
@@ -184,7 +189,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
 
-                string fileTemplatePath = "BC_114_HauCanVaQuanLyMoYeuCau.xlsx";
+                string fileTemplatePath = "BC_115_KhoaChuanBiBNQD151.xlsx";
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaoCao);
             }
             catch (Exception ex)
@@ -219,80 +224,15 @@ namespace MedicalLink.BCQLTaiChinh
         #endregion
 
         #region Process
-        private void XuLyVaHienThiBaoCao(List<HauCanVaQuanLyMoYeuCauDTO> _lstBaoCao)
+        private void XuLyVaHienThiBaoCao(List<KhoaChuanBiBNQD151DTO> _lstBaoCao)
         {
             try
             {
-                HauCanVaQuanLyMoYeuCauDTO _item1 = new HauCanVaQuanLyMoYeuCauDTO();
-                _item1.stt = 1;
-                _item1.departmentgroupname = "Điều hành quản lý";
-                _item1.soluong_tt = _lstBaoCao[0].soluong_tt;
-                _item1.thanhtien_tt = _lstBaoCao[0].soluong_tt * 220000;
-                _item1.soluong_db = _lstBaoCao[0].soluong_db;
-                _item1.thanhtien_db = _lstBaoCao[0].soluong_db * 130000;
-                _item1.soluong_l2 = _lstBaoCao[0].soluong_l2;
-                _item1.thanhtien_l2 = _lstBaoCao[0].soluong_l2 * 130000;
-                _item1.soluong_l3 = _lstBaoCao[0].soluong_l3;
-                _item1.thanhtien_l3 = _lstBaoCao[0].soluong_l3 * 80000;
-                _item1.thanhtien_tong = _item1.thanhtien_tt + _item1.thanhtien_db + _item1.thanhtien_l2 + _item1.thanhtien_l3;
-
-                HauCanVaQuanLyMoYeuCauDTO _item2 = new HauCanVaQuanLyMoYeuCauDTO();
-                _item2.stt = 2;
-                _item2.departmentgroupname = "Khoa KSNK";
-                _item2.soluong_tt = _lstBaoCao[0].soluong_tt;
-                _item2.thanhtien_tt = _lstBaoCao[0].soluong_tt * 90000;
-                _item2.soluong_db = _lstBaoCao[0].soluong_db;
-                _item2.thanhtien_db = _lstBaoCao[0].soluong_db * 90000;
-                _item2.soluong_l2 = _lstBaoCao[0].soluong_l2;
-                _item2.thanhtien_l2 = _lstBaoCao[0].soluong_l2 * 90000;
-                _item2.soluong_l3 = _lstBaoCao[0].soluong_l3;
-                _item2.thanhtien_l3 = _lstBaoCao[0].soluong_l3 * 40000;
-                _item2.thanhtien_tong = _item2.thanhtien_tt + _item2.thanhtien_db + _item2.thanhtien_l2 + _item2.thanhtien_l3;
-
-                HauCanVaQuanLyMoYeuCauDTO _item3 = new HauCanVaQuanLyMoYeuCauDTO();
-                _item3.stt = 3;
-                _item3.departmentgroupname = "Phòng KHTH";
-                _item3.soluong_tt = _lstBaoCao[0].soluong_tt;
-                _item3.thanhtien_tt = _lstBaoCao[0].soluong_tt * 60000;
-                _item3.soluong_db = _lstBaoCao[0].soluong_db;
-                _item3.thanhtien_db = _lstBaoCao[0].soluong_db * 50000;
-                _item3.soluong_l2 = _lstBaoCao[0].soluong_l2;
-                _item3.thanhtien_l2 = _lstBaoCao[0].soluong_l2 * 50000;
-                _item3.soluong_l3 = _lstBaoCao[0].soluong_l3;
-                _item3.thanhtien_l3 = _lstBaoCao[0].soluong_l3 * 20000;
-                _item3.thanhtien_tong = _item3.thanhtien_tt + _item3.thanhtien_db + _item3.thanhtien_l2 + _item3.thanhtien_l3;
-
-                HauCanVaQuanLyMoYeuCauDTO _item4 = new HauCanVaQuanLyMoYeuCauDTO();
-                _item4.stt = 4;
-                _item4.departmentgroupname = "Phòng TCKT";
-                _item4.soluong_tt = _lstBaoCao[0].soluong_tt;
-                _item4.thanhtien_tt = _lstBaoCao[0].soluong_tt * 90000;
-                _item4.soluong_db = _lstBaoCao[0].soluong_db;
-                _item4.thanhtien_db = _lstBaoCao[0].soluong_db * 90000;
-                _item4.soluong_l2 = _lstBaoCao[0].soluong_l2;
-                _item4.thanhtien_l2 = _lstBaoCao[0].soluong_l2 * 90000;
-                _item4.soluong_l3 = _lstBaoCao[0].soluong_l3;
-                _item4.thanhtien_l3 = _lstBaoCao[0].soluong_l3 * 40000;
-                _item4.thanhtien_tong = _item4.thanhtien_tt + _item4.thanhtien_db + _item4.thanhtien_l2 + _item4.thanhtien_l3;
-
-                HauCanVaQuanLyMoYeuCauDTO _item5 = new HauCanVaQuanLyMoYeuCauDTO();
-                _item5.stt = 5;
-                _item5.departmentgroupname = "Phòng CNTT";
-                _item5.soluong_tt = _lstBaoCao[0].soluong_tt;
-                _item5.thanhtien_tt = _lstBaoCao[0].soluong_tt * 40000;
-                _item5.soluong_db = _lstBaoCao[0].soluong_db;
-                _item5.thanhtien_db = _lstBaoCao[0].soluong_db * 40000;
-                _item5.soluong_l2 = _lstBaoCao[0].soluong_l2;
-                _item5.thanhtien_l2 = _lstBaoCao[0].soluong_l2 * 40000;
-                _item5.soluong_l3 = _lstBaoCao[0].soluong_l3;
-                _item5.thanhtien_l3 = _lstBaoCao[0].soluong_l3 * 20000;
-                _item5.thanhtien_tong = _item5.thanhtien_tt + _item5.thanhtien_db + _item5.thanhtien_l2 + _item5.thanhtien_l3;
-
-                this.lstBaoCao.Add(_item1);
-                this.lstBaoCao.Add(_item2);
-                this.lstBaoCao.Add(_item3);
-                this.lstBaoCao.Add(_item4);
-                this.lstBaoCao.Add(_item5);
+                foreach (var item in _lstBaoCao)
+                {
+                    item.thanhtien_tong = item.thanhtien_tt + item.thanhtien_db + item.thanhtien_l2 + item.thanhtien_l3;
+                }
+                this.lstBaoCao = _lstBaoCao;
                 gridControlDataBC.DataSource = this.lstBaoCao;
             }
             catch (Exception ex)

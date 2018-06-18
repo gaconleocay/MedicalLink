@@ -1,7 +1,7 @@
 --Báo cáo CHI THƯỞNG DỊCH VỤ VIỆN PHÍ														
 --ucBC103_ChiThuongDichVuVienPhi
 
---ngay 25/5/2018: sua ng at dau + sua SA,DT,XN
+--ngay 17/6/2018: sua filter XN = bỏ các dv có phân loại PTTT đi
 
 
 --Kham benh - khoa khac
@@ -143,7 +143,8 @@ FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,s
 						  end)
 				end) as dongia
 		from serviceprice 
-		where bhyt_groupcode='03XN' and departmentgroupid=46 and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_xn+") ser
+		where bhyt_groupcode in ('03XN','07KTC') and departmentgroupid=46 and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_xn+") ser
+	inner join (select servicepricecode from servicepriceref where servicegrouptype=2 and pttt_loaiid=0) serf on serf.servicepricecode=ser.servicepricecode	
 	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.departmentgroupid;
 	

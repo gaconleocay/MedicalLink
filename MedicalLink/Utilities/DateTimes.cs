@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.Utilities
 {
-  public static  class Util_DateTime
+  public static  class DateTimes
     {
         /// <summary>
         /// Lấy ra ngày đầu tiên trong tháng có chứa 
@@ -14,9 +14,9 @@ namespace MedicalLink.Utilities
         /// </summary>
         /// <param name="dtDate">Ngày nhập vào</param>
         /// <returns>Ngày đầu tiên trong tháng</returns>
-        public static DateTime GetFirstDayOfMonth(DateTime dtInput)
+        public static DateTime GetFirstDayOfMonth(System.DateTime dtInput)
         {
-            DateTime dtResult = dtInput;
+            System.DateTime dtResult = dtInput;
             dtResult = dtResult.AddDays((-dtResult.Day) + 1);
             return dtResult;
         }
@@ -28,7 +28,7 @@ namespace MedicalLink.Utilities
         /// <returns>Ngày đầu tiên trong tháng</returns>
         public static DateTime GetFirstDayOfMonth(int iMonth)
         {
-            DateTime dtResult = new DateTime(DateTime.Now.Year, iMonth, 1);
+            System.DateTime dtResult = new System.DateTime(System.DateTime.Now.Year, iMonth, 1);
             dtResult = dtResult.AddDays((-dtResult.Day) + 1);
             return dtResult;
         }
@@ -39,9 +39,9 @@ namespace MedicalLink.Utilities
         /// </summary>
         /// <param name="dtInput">Ngày nhập vào</param>
         /// <returns>Ngày cuối cùng trong tháng</returns>
-        public static DateTime GetLastDayOfMonth(DateTime dtInput)
+        public static DateTime GetLastDayOfMonth(System.DateTime dtInput)
         {
-            DateTime dtResult = dtInput;
+            System.DateTime dtResult = dtInput;
             dtResult = dtResult.AddMonths(1);
             dtResult = dtResult.AddDays(-(dtResult.Day));
             return dtResult;
@@ -54,7 +54,7 @@ namespace MedicalLink.Utilities
         /// <returns></returns>
         public static DateTime GetLastDayOfMonth(int iMonth)
         {
-            DateTime dtResult = new DateTime(DateTime.Now.Year, iMonth, 1);
+            System.DateTime dtResult = new System.DateTime(System.DateTime.Now.Year, iMonth, 1);
             dtResult = dtResult.AddMonths(1);
             dtResult = dtResult.AddDays(-(dtResult.Day));
             return dtResult;

@@ -278,9 +278,9 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
+                if (dateTuNgay.Value < Utilities.TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
                 {
-                    dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
+                    dateTuNgay.Value = Utilities.TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
                     frmthongbao.Show();
                 }
@@ -303,7 +303,7 @@ namespace MedicalLink.Dashboard
                     List<ClassCommon.classUserDepartment> lstDSPhong = new List<classUserDepartment>();
                     for (int i = 0; i < lstKhoaCheck.Count; i++)
                     {
-                        List<ClassCommon.classUserDepartment> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
+                        List<ClassCommon.classUserDepartment> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
                         lstDSPhong.AddRange(lstdsphongthuockhoa);
                     }
                     if (lstDSPhong != null && lstDSPhong.Count > 0)

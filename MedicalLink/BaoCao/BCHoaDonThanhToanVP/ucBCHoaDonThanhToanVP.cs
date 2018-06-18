@@ -139,8 +139,8 @@ namespace MedicalLink.BaoCao
                     _dataBC.billgroupcode = _dataBaoCao.Rows[i]["billgroupcode"].ToString();
                     _dataBC.billcode = _dataBaoCao.Rows[i]["billcode"].ToString();
                     _dataBC.billdate = _dataBaoCao.Rows[i]["billdate"];
-                    _dataBC.sotien = Utilities.Util_TypeConvertParse.ToDecimal(_dataBaoCao.Rows[i]["sotien"].ToString());
-                    _dataBC.miengiam = Utilities.Util_TypeConvertParse.ToDecimal(_dataBaoCao.Rows[i]["miengiam"].ToString());
+                    _dataBC.sotien = Utilities.TypeConvertParse.ToDecimal(_dataBaoCao.Rows[i]["sotien"].ToString());
+                    _dataBC.miengiam = Utilities.TypeConvertParse.ToDecimal(_dataBaoCao.Rows[i]["miengiam"].ToString());
                     _dataBC.patientid = _dataBaoCao.Rows[i]["patientid"].ToString();
                     _dataBC.vienphiid = _dataBaoCao.Rows[i]["vienphiid"].ToString();
                     _dataBC.patientname = _dataBaoCao.Rows[i]["patientname"].ToString();
@@ -204,7 +204,7 @@ namespace MedicalLink.BaoCao
                     thongTinThem.Add(reportitem);
                     ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
                     reportitem_tientong.name = "SOTIEN_TONG_STRING";
-                    reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(this.tongTienBaoCao,0).ToString());
+                    reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(this.tongTienBaoCao,0).ToString());
                     thongTinThem.Add(reportitem_tientong);
 
                     string fileTemplatePath = "BC_HoaDonThanhToanVienPhi.xlsx";
@@ -235,7 +235,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
                 reportitem_tientong.name = "SOTIEN_TONG_STRING";
-                reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(this.tongTienBaoCao, 0).ToString());
+                reportitem_tientong.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(this.tongTienBaoCao, 0).ToString());
                 thongTinThem.Add(reportitem_tientong);
 
                 string fileTemplatePath = "BC_HoaDonThanhToanVienPhi.xlsx";
@@ -254,7 +254,7 @@ namespace MedicalLink.BaoCao
             DataTable result = new DataTable();
             try
             {
-                result = Utilities.Util_DataTable.ListToDataTable(this.lstDataHoaDonThanhToan);
+                result = Utilities.DataTables.ListToDataTable(this.lstDataHoaDonThanhToan);
             }
             catch (Exception ex)
             {

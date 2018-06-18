@@ -170,7 +170,7 @@ namespace MedicalLink.BaoCao
                     List<ClassCommon.classUserMedicinePhongLuu> lstDSPhongLuu = new List<classUserMedicinePhongLuu>();
                     for (int i = 0; i < lstKhoaCheck.Count; i++)
                     {
-                        List<ClassCommon.classUserMedicinePhongLuu> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_PhongLuu.Where(o => o.MedicineStoreId == Utilities.Util_TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
+                        List<ClassCommon.classUserMedicinePhongLuu> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_PhongLuu.Where(o => o.MedicineStoreId == Utilities.TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
                         lstDSPhongLuu.AddRange(lstdsphongthuockhoa);
                     }
                     if (lstDSPhongLuu != null && lstDSPhongLuu.Count > 0)

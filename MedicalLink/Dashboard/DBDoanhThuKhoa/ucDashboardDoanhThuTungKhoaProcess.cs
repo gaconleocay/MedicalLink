@@ -27,8 +27,8 @@ namespace MedicalLink.Dashboard
                 string _doituongbenhnhanid_spt = "";
                 string sqlBaoCao_RaVienDaTT = "";
 
-                string thoiGianTu = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string thoiGianDen = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string thoiGianTu = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string thoiGianDen = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 //Doi tuong TT
                 if (cboDoiTuong.Text == "Đối tượng BHYT")
                 {
@@ -49,7 +49,7 @@ namespace MedicalLink.Dashboard
                     _thutienstatus = " and spt.thutienstatus=1 ";
                 }
 
-                lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+                lblThoiGianLayBaoCao.Text = System.DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
 
                 if (cboDoiTuong.Text == "ĐT BHYT + DV BHYT")
                 {
@@ -107,19 +107,19 @@ namespace MedicalLink.Dashboard
             try
             {
                 chartControlDTKhoa.Series[0].Points.Clear();
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Khám bệnh", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienkb"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Xét nghiệm", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienxn"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("CĐHA-TDCN", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiencdhatdcn"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("PTTT", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienpttt"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("PTTT YC", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienptttyeucau"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("DC KTC", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiendvktc"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Giường thường", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiengiuongthuong"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Giường yêu cầu", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiengiuongyeucau"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Thuốc", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienthuoc"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Vật tư", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienvattu"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Vật tư TT riêng", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienvattu_ttrieng"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Máu", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienmau"].ToString())));
-                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Khác", Utilities.Util_TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienkhac"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Khám bệnh", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienkb"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Xét nghiệm", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienxn"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("CĐHA-TDCN", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiencdhatdcn"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("PTTT", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienpttt"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("PTTT YC", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienptttyeucau"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("DC KTC", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiendvktc"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Giường thường", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiengiuongthuong"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Giường yêu cầu", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tiengiuongyeucau"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Thuốc", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienthuoc"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Vật tư", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienvattu"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Vật tư TT riêng", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienvattu_ttrieng"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Máu", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienmau"].ToString())));
+                chartControlDTKhoa.Series[0].Points.Add(new SeriesPoint("Khác", Utilities.TypeConvertParse.ToDouble(dataBCTongTheKhoa_RaVienDaTT[0]["raviendatt_tienkhac"].ToString())));
             }
             catch (Exception ex)
             {

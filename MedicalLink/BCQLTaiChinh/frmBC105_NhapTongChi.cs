@@ -28,7 +28,7 @@ namespace MedicalLink.BCQLTaiChinh
         {
             try
             {
-                MyGetData(Utilities.Util_TypeConvertParse.ToDecimal(txttongchi.Text));
+                MyGetData(Utilities.TypeConvertParse.ToDecimal(txttongchi.Text));
                 this.Close();
             }
             catch (Exception ex)

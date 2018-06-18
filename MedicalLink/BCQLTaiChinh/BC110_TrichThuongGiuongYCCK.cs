@@ -235,9 +235,9 @@ namespace MedicalLink.BCQLTaiChinh
                 decimal _trichthuong5pt = 0;
                 for (int i = 0; i < _dataBaoCao.Rows.Count; i++)
                 {
-                    _trichthuong5pt += Utilities.Util_TypeConvertParse.ToDecimal(_dataBaoCao.Rows[i]["tongthusauthue"].ToString());
+                    _trichthuong5pt += Utilities.TypeConvertParse.ToDecimal(_dataBaoCao.Rows[i]["tongthusauthue"].ToString());
                 }
-                lblTrichPhanTram.Text = Utilities.Util_NumberConvert.NumberToString(_trichthuong5pt * (decimal)0.05, 0);
+                lblTrichPhanTram.Text = Utilities.NumberConvert.NumberToString(_trichthuong5pt * (decimal)0.05, 0);
             }
             catch (Exception ex)
             {

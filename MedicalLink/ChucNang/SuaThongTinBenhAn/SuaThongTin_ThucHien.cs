@@ -135,7 +135,7 @@ namespace MedicalLink.ChucNang
                     this.NoiChuyenDen = dataNCD.Rows[0]["noigioithieucode"].ToString();
                     txtNoiChuyenDen.Text = this.NoiChuyenDen;
                     cboNoiChuyenDen.EditValue = this.NoiChuyenDen;
-                    this.medicalrecordid = Utilities.Util_TypeConvertParse.ToInt64(dataNCD.Rows[0]["medicalrecordid"].ToString());
+                    this.medicalrecordid = Utilities.TypeConvertParse.ToInt64(dataNCD.Rows[0]["medicalrecordid"].ToString());
                 }
             }
             catch (Exception ex)

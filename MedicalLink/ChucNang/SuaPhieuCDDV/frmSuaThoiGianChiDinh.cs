@@ -44,8 +44,14 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
                     dateTGTraKetQua.Value = this.SuaPhieuCDDV.maubenhphamfinishdate;
                 }
                 dateTGChiDinh.Focus();
-                LoadPhieuDieuTri();
                 LoadMaDieuTri();
+
+                if (this.SuaPhieuCDDV.maubenhphamgrouptypeid != 3)
+                {
+                    LoadPhieuDieuTri();
+                }
+                else
+                { EnableAndDisable(); }
             }
             catch (Exception ex)
             {
@@ -101,6 +107,22 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void EnableAndDisable()
+        {
+            try
+            {
+                lblTGTraKQCaPhieu.Visible = false;
+                dateTGTraKetQua.Visible = false;
+                lblPhieuDieuTri.Visible = false;
+                cboPhieuDieuTri.Visible = false;
+                //cboDotDieuTri.Visible = false;
+                //cboDotDieuTri.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         #endregion
 
         #region Events
@@ -114,25 +136,31 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
 
                 string _phieudieutriid = "";
                 string _medicalrecordid = "";
+                string _maubenhphamfinishdate = "";
                 if (cboPhieuDieuTri.EditValue != null)
                 {
-                    if (this.SuaPhieuCDDV.phieudieutriid != Utilities.Util_TypeConvertParse.ToInt64(cboPhieuDieuTri.EditValue.ToString()))
+                    if (this.SuaPhieuCDDV.phieudieutriid != Utilities.TypeConvertParse.ToInt64(cboPhieuDieuTri.EditValue.ToString()))
                     {
                         _phieudieutriid = ", phieudieutriid='" + cboPhieuDieuTri.EditValue.ToString() + "' ";
                     }
                 }
                 if (cboDotDieuTri.EditValue != null)
                 {
-                    if (this.SuaPhieuCDDV.medicalrecordid != Utilities.Util_TypeConvertParse.ToInt64(cboDotDieuTri.EditValue.ToString()))
+                    if (this.SuaPhieuCDDV.medicalrecordid != Utilities.TypeConvertParse.ToInt64(cboDotDieuTri.EditValue.ToString()))
                     {
                         _medicalrecordid = ", medicalrecordid='" + cboDotDieuTri.EditValue.ToString() + "' ";
                     }
                 }
 
-                string sqlupdate_TG = "UPDATE serviceprice SET servicepricedate='" + _tg_chidinh + "' "+ _medicalrecordid + " WHERE maubenhphamid='" + this.SuaPhieuCDDV.maubenhphamid + "' ; UPDATE maubenhpham SET maubenhphamdate='" + _tg_chidinh + "', maubenhphamdate_sudung='" + _tg_sudung + "', maubenhphamfinishdate='" + _tg_traketqua + "' " + _phieudieutriid + _medicalrecordid + " WHERE maubenhphamid='" + this.SuaPhieuCDDV.maubenhphamid + "' ;";
+                if (this.SuaPhieuCDDV.maubenhphamgrouptypeid != 3)
+                {
+                    _maubenhphamfinishdate = ", maubenhphamfinishdate='" + _tg_traketqua + "' ";
+                }
+
+                string sqlupdate_TG = "UPDATE serviceprice SET servicepricedate='" + _tg_chidinh + "' " + _medicalrecordid + " WHERE maubenhphamid='" + this.SuaPhieuCDDV.maubenhphamid + "' ; UPDATE maubenhpham SET maubenhphamdate='" + _tg_chidinh + "', maubenhphamdate_sudung='" + _tg_sudung + "' " + _maubenhphamfinishdate + _phieudieutriid + _medicalrecordid + " WHERE maubenhphamid='" + this.SuaPhieuCDDV.maubenhphamid + "' ;";
 
                 //Log
-                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thời gian chỉ định Mã Viện phí=" + this.SuaPhieuCDDV.vienphiid + " - Mã phiếu chỉ định=" + this.SuaPhieuCDDV.maubenhphamid + ". từ: " + this.SuaPhieuCDDV.thoigianchidinh.ToString("yyyy-MM-dd HH:mm:ss") + "=> " + _tg_chidinh + " ; thời gian sử dụng từ: " + this.SuaPhieuCDDV.thoigiansudung.ToString("yyyy-MM-dd HH:mm:ss") + " => " + _tg_sudung + "; thời gian trả KQ từ: " + this.SuaPhieuCDDV.maubenhphamfinishdate.ToString("yyyy-MM-dd HH:mm:ss") + " => " + _tg_traketqua + "; ID phiếu điều trị từ: " + this.SuaPhieuCDDV.phieudieutriid + "=> " + cboPhieuDieuTri.EditValue.ToString() + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_12', '" + this.SuaPhieuCDDV.vienphiid + "');";
+                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa thời gian chỉ định Mã Viện phí=" + this.SuaPhieuCDDV.vienphiid + " - Mã phiếu chỉ định=" + this.SuaPhieuCDDV.maubenhphamid + ". từ: " + this.SuaPhieuCDDV.thoigianchidinh.ToString("yyyy-MM-dd HH:mm:ss") + "=> " + _tg_chidinh + " ; thời gian sử dụng từ: " + this.SuaPhieuCDDV.thoigiansudung.ToString("yyyy-MM-dd HH:mm:ss") + " => " + _tg_sudung + "; thời gian trả KQ từ: " + this.SuaPhieuCDDV.maubenhphamfinishdate.ToString("yyyy-MM-dd HH:mm:ss") + " => " + _tg_traketqua + "; ID phiếu điều trị từ: " + this.SuaPhieuCDDV.phieudieutriid + "=> " + _phieudieutriid + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_12', '" + this.SuaPhieuCDDV.vienphiid + "');";
                 if (condb.ExecuteNonQuery_HIS(sqlupdate_TG))
                 {
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
@@ -174,7 +202,10 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             try
             {
                 //Load danh sach Phieu dieu tri
-                LoadPhieuDieuTri();
+                if (this.SuaPhieuCDDV.maubenhphamgrouptypeid != 3)
+                {
+                    LoadPhieuDieuTri();
+                }
                 LoadMaDieuTri();
                 if (dateTGSuDung.Value != this.SuaPhieuCDDV.thoigiansudung)
                 {

@@ -55,7 +55,7 @@ namespace MedicalLink.ChucNang.GopBenhAn
             {           
                 if (cboMaDieuTri.EditValue != null && cboMaDieuTri.EditValue.ToString() != "")
                 {
-                    MyGetData(Utilities.Util_TypeConvertParse.ToInt64(cboMaDieuTri.EditValue.ToString()));
+                    MyGetData(Utilities.TypeConvertParse.ToInt64(cboMaDieuTri.EditValue.ToString()));
                     this.Close();
                     //    MedicalrecordGopBADTO _maDieuTri = this.lst_Phong.Where(o => o.medicalrecordid == Utilities.Util_TypeConvertParse.ToInt64(cboMaDieuTri.EditValue.ToString())).FirstOrDefault();
 

@@ -174,7 +174,7 @@ namespace MedicalLink.Dashboard
                             break;
                         case "Tháng 2":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 2, 1, 0, 0, 0);
-                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.Util_DateTime.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
+                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.DateTimes.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
                             break;
                         case "Tháng 3":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 3, 1, 0, 0, 0);
@@ -370,9 +370,9 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                if (dateTuNgay.Value < Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
+                if (dateTuNgay.Value < Utilities.TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
                 {
-                    dateTuNgay.Value = Utilities.Util_TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
+                    dateTuNgay.Value = Utilities.TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
                     frmthongbao.Show();
                 }

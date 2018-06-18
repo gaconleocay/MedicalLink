@@ -79,6 +79,7 @@
             this.benhchinh_name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -406,7 +407,8 @@
             this.benhchinh_code,
             this.benhchinh_name,
             this.benhkemtheo_code,
-            this.benhkemtheo_name});
+            this.benhkemtheo_name,
+            this.gridColumn8});
             this.gridViewDSDV.GridControl = this.gridControlDSDV;
             this.gridViewDSDV.Name = "gridViewDSDV";
             this.gridViewDSDV.OptionsFind.AlwaysVisible = true;
@@ -790,7 +792,7 @@
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 19;
+            this.gridColumn5.VisibleIndex = 20;
             this.gridColumn5.Width = 137;
             // 
             // thoigianvaovien
@@ -810,7 +812,7 @@
             this.thoigianvaovien.Name = "thoigianvaovien";
             this.thoigianvaovien.OptionsColumn.AllowEdit = false;
             this.thoigianvaovien.Visible = true;
-            this.thoigianvaovien.VisibleIndex = 20;
+            this.thoigianvaovien.VisibleIndex = 21;
             this.thoigianvaovien.Width = 120;
             // 
             // thoigianravien
@@ -830,7 +832,7 @@
             this.thoigianravien.Name = "thoigianravien";
             this.thoigianravien.OptionsColumn.AllowEdit = false;
             this.thoigianravien.Visible = true;
-            this.thoigianravien.VisibleIndex = 21;
+            this.thoigianravien.VisibleIndex = 22;
             this.thoigianravien.Width = 120;
             // 
             // thoigianduyetvp
@@ -850,7 +852,7 @@
             this.thoigianduyetvp.Name = "thoigianduyetvp";
             this.thoigianduyetvp.OptionsColumn.AllowEdit = false;
             this.thoigianduyetvp.Visible = true;
-            this.thoigianduyetvp.VisibleIndex = 22;
+            this.thoigianduyetvp.VisibleIndex = 23;
             this.thoigianduyetvp.Width = 120;
             // 
             // trangthai
@@ -868,7 +870,7 @@
             this.trangthai.Name = "trangthai";
             this.trangthai.OptionsColumn.AllowEdit = false;
             this.trangthai.Visible = true;
-            this.trangthai.VisibleIndex = 23;
+            this.trangthai.VisibleIndex = 24;
             this.trangthai.Width = 80;
             // 
             // benhchinh_code
@@ -886,7 +888,7 @@
             this.benhchinh_code.Name = "benhchinh_code";
             this.benhchinh_code.OptionsColumn.AllowEdit = false;
             this.benhchinh_code.Visible = true;
-            this.benhchinh_code.VisibleIndex = 24;
+            this.benhchinh_code.VisibleIndex = 25;
             this.benhchinh_code.Width = 96;
             // 
             // benhchinh_name
@@ -904,7 +906,7 @@
             this.benhchinh_name.Name = "benhchinh_name";
             this.benhchinh_name.OptionsColumn.AllowEdit = false;
             this.benhchinh_name.Visible = true;
-            this.benhchinh_name.VisibleIndex = 25;
+            this.benhchinh_name.VisibleIndex = 26;
             this.benhchinh_name.Width = 265;
             // 
             // benhkemtheo_code
@@ -922,7 +924,7 @@
             this.benhkemtheo_code.Name = "benhkemtheo_code";
             this.benhkemtheo_code.OptionsColumn.AllowEdit = false;
             this.benhkemtheo_code.Visible = true;
-            this.benhkemtheo_code.VisibleIndex = 26;
+            this.benhkemtheo_code.VisibleIndex = 27;
             this.benhkemtheo_code.Width = 96;
             // 
             // benhkemtheo_name
@@ -940,8 +942,26 @@
             this.benhkemtheo_name.Name = "benhkemtheo_name";
             this.benhkemtheo_name.OptionsColumn.AllowEdit = false;
             this.benhkemtheo_name.Visible = true;
-            this.benhkemtheo_name.VisibleIndex = 27;
+            this.benhkemtheo_name.VisibleIndex = 28;
             this.benhkemtheo_name.Width = 145;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn8.AppearanceCell.Options.UseFont = true;
+            this.gridColumn8.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn8.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn8.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn8.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn8.Caption = "Loại PTTT";
+            this.gridColumn8.FieldName = "loaipttt";
+            this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.OptionsColumn.AllowEdit = false;
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 19;
+            this.gridColumn8.Width = 177;
             // 
             // ucBCDSBNSDdv
             // 
@@ -1023,5 +1043,6 @@
         private DevExpress.XtraEditors.ComboBoxEdit cboNhomDichVu;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.ComboBoxEdit cboDoiTuongBN;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
     }
 }

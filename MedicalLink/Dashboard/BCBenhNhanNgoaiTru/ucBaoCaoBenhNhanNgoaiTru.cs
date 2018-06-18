@@ -77,7 +77,7 @@ namespace MedicalLink.Dashboard
                     for (int i = 0; i < dsPhongKham.Count; i++)
                     {
                         BCDashboardBenhNhanNgoaiTru phongkham = new BCDashboardBenhNhanNgoaiTru();
-                        phongkham.departmentid = Utilities.Util_TypeConvertParse.ToInt64(dsPhongKham[i]["departmentid"].ToString());
+                        phongkham.departmentid = Utilities.TypeConvertParse.ToInt64(dsPhongKham[i]["departmentid"].ToString());
                         phongkham.departmentcode = dsPhongKham[i]["departmentcode"].ToString();
                         phongkham.departmentname = dsPhongKham[i]["departmentname"].ToString();
                         dataDSPhongKham.Add(phongkham);
@@ -201,7 +201,7 @@ namespace MedicalLink.Dashboard
                             break;
                         case "Tháng 2":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 2, 1, 0, 0, 0);
-                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.Util_DateTime.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
+                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.DateTimes.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
                             break;
                         case "Tháng 3":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 3, 1, 0, 0, 0);

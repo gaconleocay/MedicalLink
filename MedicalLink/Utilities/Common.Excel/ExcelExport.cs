@@ -32,10 +32,10 @@ namespace MedicalLink.Utilities.Common.Excel
                     }
 
                     orderTable.Columns.Add("CURRENTDATETIME", typeof(string));
-                    newRow["CURRENTDATETIME"] = DateTime.Now.Hour + ":" + DateTime.Now.Minute + " ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+                    newRow["CURRENTDATETIME"] = System.DateTime.Now.Hour + ":" + System.DateTime.Now.Minute + " ngày " + System.DateTime.Now.Day + " tháng " + System.DateTime.Now.Month + " năm " + System.DateTime.Now.Year;
 
                     orderTable.Columns.Add("CURRENTDATE", typeof(string));
-                    newRow["CURRENTDATE"] = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+                    newRow["CURRENTDATE"] = "Ngày " + System.DateTime.Now.Day + " tháng " + System.DateTime.Now.Month + " năm " + System.DateTime.Now.Year;
 
                     orderTable.Columns.Add("SOYTE", typeof(string));
                     newRow["SOYTE"] = GlobalStore.SoYTe_String;
@@ -451,7 +451,7 @@ namespace MedicalLink.Utilities.Common.Excel
             try
             {
                 ExportExcelNoTemplate_SetStyle(style, StyleType.Body);
-                if (type == typeof(DateTime) || type == typeof(DateTime?))
+                if (type == typeof(System.DateTime) || type == typeof(System.DateTime?))
                 {
                     TimeSpan test = new TimeSpan(0, 0, 0);
                     if (value != DBNull.Value && System.Convert.ToDateTime(value).TimeOfDay != test)

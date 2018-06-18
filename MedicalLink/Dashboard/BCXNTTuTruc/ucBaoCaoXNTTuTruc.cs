@@ -55,9 +55,9 @@ namespace MedicalLink.Dashboard
                     for (int i = 0; i < dataStore.Count; i++)
                     {
                         ClassCommon.classMedicineStore medicinestore = new ClassCommon.classMedicineStore();
-                        medicinestore.medicinestoreid = Utilities.Util_TypeConvertParse.ToInt32(dataStore[i]["medicinestoreid"].ToString());
-                        medicinestore.departmentgroupid = Utilities.Util_TypeConvertParse.ToInt32(dataStore[i]["departmentgroupid"].ToString());
-                        medicinestore.medicinestoretype = Utilities.Util_TypeConvertParse.ToInt32(dataStore[i]["medicinestoretype"].ToString());
+                        medicinestore.medicinestoreid = Utilities.TypeConvertParse.ToInt32(dataStore[i]["medicinestoreid"].ToString());
+                        medicinestore.departmentgroupid = Utilities.TypeConvertParse.ToInt32(dataStore[i]["departmentgroupid"].ToString());
+                        medicinestore.medicinestoretype = Utilities.TypeConvertParse.ToInt32(dataStore[i]["medicinestoretype"].ToString());
                         medicinestore.medicinestorecode = dataStore[i]["medicinestorecode"].ToString();
                         medicinestore.medicinestorename = dataStore[i]["medicinestorename"].ToString();
                         lstMedicineStore.Add(medicinestore);
@@ -113,8 +113,8 @@ namespace MedicalLink.Dashboard
                     for (int i = 0; i < dataStore.Count; i++)
                     {
                         ClassCommon.classMedicineRef medicinestore = new ClassCommon.classMedicineRef();
-                        medicinestore.medicinerefid = Utilities.Util_TypeConvertParse.ToInt64(dataStore[i]["medicinerefid"].ToString());
-                        medicinestore.medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(dataStore[i]["medicinerefid_org"].ToString());
+                        medicinestore.medicinerefid = Utilities.TypeConvertParse.ToInt64(dataStore[i]["medicinerefid"].ToString());
+                        medicinestore.medicinerefid_org = Utilities.TypeConvertParse.ToInt64(dataStore[i]["medicinerefid_org"].ToString());
                         medicinestore.medicinecode = dataStore[i]["medicinecode"].ToString();
                         medicinestore.medicinename = dataStore[i]["medicinename"].ToString();
                         lstMedicineStore.Add(medicinestore);
@@ -159,11 +159,11 @@ namespace MedicalLink.Dashboard
                 string sql_getThuoc = "";
                 string sql_getkiemke = "select COALESCE(max(medicinekiemkeid),0) as medicinekiemkeid from medicinekiemke where medicinestoreid=" + cboTuTruc.EditValue + " and medicinekiemkestatus=0;";
                 DataView dataKiemKe = new DataView(condb.GetDataTable_HIS(sql_getkiemke));
-                if (dataKiemKe != null && dataKiemKe.Count > 0 && Utilities.Util_TypeConvertParse.ToInt64(dataKiemKe[0]["medicinekiemkeid"].ToString()) > 0)
+                if (dataKiemKe != null && dataKiemKe.Count > 0 && Utilities.TypeConvertParse.ToInt64(dataKiemKe[0]["medicinekiemkeid"].ToString()) > 0)
                 {
                     medicinekiemkeid = " and medicinekiemkeid=" + dataKiemKe[0]["medicinekiemkeid"] + " ";
                 }
-                lblThoiGianLayBaoCao.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+                lblThoiGianLayBaoCao.Text = System.DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
                 if (chkXemChiTiet.Checked) // xem chi tiet
                 {
                     sql_getThuoc = "SELECT '' as stt, me.medicinerefid_org, me.medicinegroupcode, me.medicinecode, me.medicinename, me.donvitinh, msref.soluongtonkho as soluongtonkho, msref.soluongkhadung as soluongkhadung, msref.soluongtutruc, me.hansudung, DATE_PART('day', me.hansudung - now()) as songay, me.solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,donvitinh,hansudung,solo from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid order by me.medicinegroupcode,me.medicinename,me.medicinecode;";
@@ -172,29 +172,29 @@ namespace MedicalLink.Dashboard
                 {
                     sql_getThuoc = "SELECT row_number() OVER () as stt, me.medicinerefid_org, me.medicinegroupcode, (select medi.medicinecode from medicine_ref medi where medi.medicinerefid=me.medicinerefid_org) as medicinecode, me.medicinename, me.donvitinh, sum(msref.soluongtonkho) as soluongtonkho, sum(msref.soluongkhadung) as soluongkhadung, msref.soluongtutruc,'' as hansudung, 100 as songay, '' as solo FROM (select medicinerefid,medicinerefid_org,medicinegroupcode,medicinename,donvitinh from medicine_ref) me inner join (select medicinerefid,soluongtonkho,soluongkhadung,soluongtutruc from medicine_store_ref where medicinestoreid=" + cboTuTruc.EditValue + " and (soluongtutruc>0 or soluongtonkho>0 or soluongkhadung>0) and medicineperiodid=(select max(medicineperiodid) from medicine_period) " + medicinekiemkeid + ") msref on me.medicinerefid=msref.medicinerefid GROUP BY me.medicinerefid_org,me.medicinegroupcode,me.medicinename,me.donvitinh,msref.soluongtutruc ORDER BY me.medicinegroupcode,me.medicinename; ";
                 }
-                DataTable dataDanhMucThuoc = condb.GetDataTable_HIS(sql_getThuoc);
+                System.Data.DataTable dataDanhMucThuoc = condb.GetDataTable_HIS(sql_getThuoc);
 
                 List<ClassCommon.classMedicineRef> lstMedicine_ThuocHienThi = new List<ClassCommon.classMedicineRef>();
 
                 if (dataDanhMucThuoc != null && dataDanhMucThuoc.Rows.Count > 0)
                 {
 
-                    // List<ClassCommon.classMedicineRef> lstMedicine_Thuoc = Util_DataTable.DataTableToList<ClassCommon.classMedicineRef>(dataDanhMucThuoc);
+                    // List<ClassCommon.classMedicineRef> lstMedicine_Thuoc = Util_DataTables.DataTableToList<ClassCommon.classMedicineRef>(dataDanhMucThuoc);
                     this.lstMedicine_ThuocCurrent = new List<ClassCommon.classMedicineRef>();
                     for (int i = 0; i < dataDanhMucThuoc.Rows.Count; i++)
                     {
                         ClassCommon.classMedicineRef _datathuoc = new ClassCommon.classMedicineRef();
                         _datathuoc.stt = dataDanhMucThuoc.Rows[i]["stt"];
-                        _datathuoc.medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(dataDanhMucThuoc.Rows[i]["medicinerefid_org"].ToString());
+                        _datathuoc.medicinerefid_org = Utilities.TypeConvertParse.ToInt64(dataDanhMucThuoc.Rows[i]["medicinerefid_org"].ToString());
                         _datathuoc.medicinecode = dataDanhMucThuoc.Rows[i]["medicinecode"].ToString();
                         _datathuoc.medicinename = dataDanhMucThuoc.Rows[i]["medicinename"].ToString();
                         _datathuoc.medicinegroupcode = dataDanhMucThuoc.Rows[i]["medicinegroupcode"].ToString();
                         _datathuoc.donvitinh = dataDanhMucThuoc.Rows[i]["donvitinh"].ToString();
-                        _datathuoc.soluongtonkho = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongtonkho"].ToString());
-                        _datathuoc.soluongkhadung = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongkhadung"].ToString());
-                        _datathuoc.soluongtutruc = Util_TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongtutruc"].ToString());
+                        _datathuoc.soluongtonkho = TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongtonkho"].ToString());
+                        _datathuoc.soluongkhadung = TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongkhadung"].ToString());
+                        _datathuoc.soluongtutruc = TypeConvertParse.ToDecimal(dataDanhMucThuoc.Rows[i]["soluongtutruc"].ToString());
                         _datathuoc.hansudung = dataDanhMucThuoc.Rows[i]["hansudung"];
-                        _datathuoc.songay= Utilities.Util_TypeConvertParse.ToInt64(dataDanhMucThuoc.Rows[i]["songay"].ToString());
+                        _datathuoc.songay= Utilities.TypeConvertParse.ToInt64(dataDanhMucThuoc.Rows[i]["songay"].ToString());
                         _datathuoc.solo = dataDanhMucThuoc.Rows[i]["solo"].ToString();
                         this.lstMedicine_ThuocCurrent.Add(_datathuoc);
                     }
@@ -341,10 +341,10 @@ namespace MedicalLink.Dashboard
             {
                 // lấy giá trị tại dòng click chuột
                 var rowHandle = gridViewThuocTuTruc.FocusedRowHandle;
-                long medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(gridViewThuocTuTruc.GetRowCellValue(rowHandle, "medicinerefid_org").ToString());
+                long medicinerefid_org = Utilities.TypeConvertParse.ToInt64(gridViewThuocTuTruc.GetRowCellValue(rowHandle, "medicinerefid_org").ToString());
                 if (medicinerefid_org != 0)
                 {
-                    BCXNTTuTruc.BCXNTTuTrucLichSu frmLichSu = new BCXNTTuTruc.BCXNTTuTrucLichSu(Utilities.Util_TypeConvertParse.ToInt64(cboTuTruc.EditValue.ToString()), medicinerefid_org, lstMedicineStore);
+                    BCXNTTuTruc.BCXNTTuTrucLichSu frmLichSu = new BCXNTTuTruc.BCXNTTuTrucLichSu(Utilities.TypeConvertParse.ToInt64(cboTuTruc.EditValue.ToString()), medicinerefid_org, lstMedicineStore);
                     frmLichSu.ShowDialog();
                 }
             }
@@ -374,7 +374,7 @@ namespace MedicalLink.Dashboard
                     thongTinThem.Add(reportitem_khoa);
 
                     string fileTemplatePath = "BC_XuatNhapTonTuTruc.xlsx";
-                    DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                    System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                     Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                     export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
                 }
@@ -408,7 +408,7 @@ namespace MedicalLink.Dashboard
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "BC_XuatNhapTonTuTruc.xlsx";
-                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
@@ -419,12 +419,12 @@ namespace MedicalLink.Dashboard
         }
         private DataTable ExportExcel_GroupColume()
         {
-            DataTable result = new DataTable();
+            System.Data.DataTable result = new System.Data.DataTable();
             try
             {
                 List<ClassCommon.BCXuatNhapTonTuTruc> lstData_XuatBaoCao = new List<ClassCommon.BCXuatNhapTonTuTruc>();
                 List<ClassCommon.BCXuatNhapTonTuTruc> lstDataDoanhThu = new List<ClassCommon.BCXuatNhapTonTuTruc>();
-                lstDataDoanhThu = Util_DataTable.DataTableToList<ClassCommon.BCXuatNhapTonTuTruc>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewThuocTuTruc));
+                lstDataDoanhThu = DataTables.DataTableToList<ClassCommon.BCXuatNhapTonTuTruc>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewThuocTuTruc));
 
                 List<ClassCommon.BCXuatNhapTonTuTruc> lstData_Group = lstDataDoanhThu.GroupBy(o => o.medicinegroupcode).Select(n => n.First()).ToList();
                 foreach (var item_group in lstData_Group)
@@ -438,7 +438,7 @@ namespace MedicalLink.Dashboard
                     lstData_XuatBaoCao.Add(data_groupname);
                     lstData_XuatBaoCao.AddRange(lstData_doanhthu);
                 }
-                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+                result = Utilities.DataTables.ListToDataTable(lstData_XuatBaoCao);
             }
             catch (Exception ex)
             {
@@ -482,7 +482,7 @@ namespace MedicalLink.Dashboard
                 GridView View = sender as GridView;
                 if (e.RowHandle >= 0)
                 {
-                    int tongsongay = Utilities.Util_TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songay"]));
+                    int tongsongay = Utilities.TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songay"]));
                     if (tongsongay >= 1 && tongsongay <= 30)
                     {
                         e.Appearance.BackColor = Color.LightSalmon;

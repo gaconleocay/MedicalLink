@@ -61,8 +61,8 @@ namespace MedicalLink.ChucNang
                             if (row["STT"].ToString() != "")
                             {
                                 classServicePriceRef servicePriceRef = new classServicePriceRef();
-                                servicePriceRef.stt = Utilities.Util_TypeConvertParse.ToInt64(row["STT"].ToString());
-                                servicePriceRef.servicegrouptype = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICEGROUPTYPE"].ToString());
+                                servicePriceRef.stt = Utilities.TypeConvertParse.ToInt64(row["STT"].ToString());
+                                servicePriceRef.servicegrouptype = Utilities.TypeConvertParse.ToInt64(row["SERVICEGROUPTYPE"].ToString());
                                 servicePriceRef.servicegrouptype_name = row["SERVICEGROUPTYPE_NAME"].ToString();
                                 servicePriceRef.servicepricecode = row["SERVICEPRICECODE"].ToString().Trim();
                                 servicePriceRef.servicepricegroupcode = row["SERVICEPRICEGROUPCODE"].ToString();
@@ -71,23 +71,23 @@ namespace MedicalLink.ChucNang
                                 servicePriceRef.servicepricename = row["SERVICEPRICENAME"].ToString();
                                 servicePriceRef.servicepricenamebhyt = row["SERVICEPRICENAMEBHYT"].ToString();
                                 servicePriceRef.servicepriceunit = row["SERVICEPRICEUNIT"].ToString();
-                                servicePriceRef.servicepricefeebhyt = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEEBHYT"].ToString());
-                                servicePriceRef.servicepricefeenhandan = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEENHANDAN"].ToString());
-                                servicePriceRef.servicepricefee = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEE"].ToString());
-                                servicePriceRef.servicepricefeenuocngoai = Utilities.Util_TypeConvertParse.ToDecimal(row["SERVICEPRICEFEENUOCNGOAI"].ToString());
+                                servicePriceRef.servicepricefeebhyt = Utilities.TypeConvertParse.ToDecimal(row["SERVICEPRICEFEEBHYT"].ToString());
+                                servicePriceRef.servicepricefeenhandan = Utilities.TypeConvertParse.ToDecimal(row["SERVICEPRICEFEENHANDAN"].ToString());
+                                servicePriceRef.servicepricefee = Utilities.TypeConvertParse.ToDecimal(row["SERVICEPRICEFEE"].ToString());
+                                servicePriceRef.servicepricefeenuocngoai = Utilities.TypeConvertParse.ToDecimal(row["SERVICEPRICEFEENUOCNGOAI"].ToString());
                                 servicePriceRef.servicepricefee_old_date = row["SERVICEPRICEFEE_OLD_DATE"].ToString();
-                                servicePriceRef.servicepricefee_old_type = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICEPRICEFEE_OLD_TYPE"].ToString());
+                                servicePriceRef.servicepricefee_old_type = Utilities.TypeConvertParse.ToInt64(row["SERVICEPRICEFEE_OLD_TYPE"].ToString());
                                 servicePriceRef.servicepricefee_old_type_name = row["SERVICEPRICEFEE_OLD_TYPE_NAME"].ToString();
-                                servicePriceRef.pttt_hangid = Utilities.Util_TypeConvertParse.ToInt64(row["PTTT_HANGID"].ToString());
+                                servicePriceRef.pttt_hangid = Utilities.TypeConvertParse.ToInt64(row["PTTT_HANGID"].ToString());
                                 servicePriceRef.pttt_hangid_name = row["PTTT_HANGID_NAME"].ToString();
-                                servicePriceRef.pttt_loaiid = Utilities.Util_TypeConvertParse.ToInt64(row["PTTT_LOAIID"].ToString());
+                                servicePriceRef.pttt_loaiid = Utilities.TypeConvertParse.ToInt64(row["PTTT_LOAIID"].ToString());
                                 servicePriceRef.pttt_loaiid_name = row["PTTT_LOAIID_NAME"].ToString();
-                                servicePriceRef.servicelock = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICELOCK"].ToString());
+                                servicePriceRef.servicelock = Utilities.TypeConvertParse.ToInt64(row["SERVICELOCK"].ToString());
                                 servicePriceRef.bhyt_groupcode = row["BHYT_GROUPCODE"].ToString();
                                 servicePriceRef.bhyt_groupcode_name = row["BHYT_GROUPCODE_NAME"].ToString();
                                 servicePriceRef.report_groupcode = row["REPORT_GROUPCODE"].ToString();
                                 servicePriceRef.report_tkcode = row["REPORT_TKCODE"].ToString();
-                                servicePriceRef.servicepricetype = Utilities.Util_TypeConvertParse.ToInt64(row["SERVICEPRICETYPE"].ToString());
+                                servicePriceRef.servicepricetype = Utilities.TypeConvertParse.ToInt64(row["SERVICEPRICETYPE"].ToString());
                                 servicePriceRef.servicecode = row["SERVICECODE"].ToString();
                                 lstServicePriceRef.Add(servicePriceRef);
                             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.Utilities
 {
-    public class Util_TypeConvertParse
+    public class TypeConvertParse
     {
         /// <summary>
         /// Function to convert an string type to Boolean.
@@ -195,13 +195,13 @@ namespace MedicalLink.Utilities
         /// Function to convert an string type to DateTime.
         /// </summary>
         /// <param groupCode="inputValue">string type, indicate value to be parsed.</param>
-        /// <returns>a <see cref="DateTime"/> value, if fail return MinValue of DateTime class</returns>
+        /// <returns>a <see cref="System.DateTime"/> value, if fail return MinValue of DateTime class</returns>
         public static DateTime ToDateTime(string inputValue)
         {
-            DateTime dtmReturnValue = DateTime.Now;
+            System.DateTime dtmReturnValue = System.DateTime.Now;
             if (!string.IsNullOrEmpty(inputValue))
             {
-                DateTime.TryParse(inputValue, out dtmReturnValue);
+                System.DateTime.TryParse(inputValue, out dtmReturnValue);
             }
             return dtmReturnValue;
         }

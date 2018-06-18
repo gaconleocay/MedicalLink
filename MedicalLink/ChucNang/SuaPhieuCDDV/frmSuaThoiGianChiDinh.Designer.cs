@@ -36,12 +36,12 @@
             this.btnSuaThoiGian = new DevExpress.XtraEditors.SimpleButton();
             this.lblMaPhieuChiDinh = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lblPhieuDieuTri = new DevExpress.XtraEditors.LabelControl();
             this.cboPhieuDieuTri = new DevExpress.XtraEditors.LookUpEdit();
             this.cboDotDieuTri = new DevExpress.XtraEditors.LookUpEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.lblDotDieuTri = new DevExpress.XtraEditors.LabelControl();
             this.dateTGTraKetQua = new System.Windows.Forms.DateTimePicker();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.lblTGTraKQCaPhieu = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhieuDieuTri.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDotDieuTri.Properties)).BeginInit();
             this.SuspendLayout();
@@ -130,15 +130,15 @@
             this.labelControl5.TabIndex = 35;
             this.labelControl5.Text = "Mã phiếu";
             // 
-            // labelControl3
+            // lblPhieuDieuTri
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl3.Location = new System.Drawing.Point(68, 201);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(96, 16);
-            this.labelControl3.TabIndex = 37;
-            this.labelControl3.Text = "Mã phiếu điều trị";
+            this.lblPhieuDieuTri.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhieuDieuTri.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblPhieuDieuTri.Location = new System.Drawing.Point(68, 201);
+            this.lblPhieuDieuTri.Name = "lblPhieuDieuTri";
+            this.lblPhieuDieuTri.Size = new System.Drawing.Size(96, 16);
+            this.lblPhieuDieuTri.TabIndex = 37;
+            this.lblPhieuDieuTri.Text = "Mã phiếu điều trị";
             // 
             // cboPhieuDieuTri
             // 
@@ -179,15 +179,15 @@
             this.cboDotDieuTri.Size = new System.Drawing.Size(374, 26);
             this.cboDotDieuTri.TabIndex = 6;
             // 
-            // labelControl4
+            // lblDotDieuTri
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl4.Location = new System.Drawing.Point(99, 233);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(64, 16);
-            this.labelControl4.TabIndex = 81;
-            this.labelControl4.Text = "Đợt điều trị";
+            this.lblDotDieuTri.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDotDieuTri.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblDotDieuTri.Location = new System.Drawing.Point(99, 233);
+            this.lblDotDieuTri.Name = "lblDotDieuTri";
+            this.lblDotDieuTri.Size = new System.Drawing.Size(64, 16);
+            this.lblDotDieuTri.TabIndex = 81;
+            this.lblDotDieuTri.Text = "Đợt điều trị";
             // 
             // dateTGTraKetQua
             // 
@@ -203,15 +203,15 @@
             this.dateTGTraKetQua.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTGTraKetQua.ValueChanged += new System.EventHandler(this.dateTGTraKetQua_ValueChanged);
             // 
-            // labelControl7
+            // lblTGTraKQCaPhieu
             // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl7.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl7.Location = new System.Drawing.Point(20, 124);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(144, 16);
-            this.labelControl7.TabIndex = 86;
-            this.labelControl7.Text = "TG trả kết quả (cả phiếu)";
+            this.lblTGTraKQCaPhieu.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTGTraKQCaPhieu.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblTGTraKQCaPhieu.Location = new System.Drawing.Point(20, 124);
+            this.lblTGTraKQCaPhieu.Name = "lblTGTraKQCaPhieu";
+            this.lblTGTraKQCaPhieu.Size = new System.Drawing.Size(144, 16);
+            this.lblTGTraKQCaPhieu.TabIndex = 86;
+            this.lblTGTraKQCaPhieu.Text = "TG trả kết quả (cả phiếu)";
             // 
             // frmSuaThoiGianChiDinh
             // 
@@ -219,11 +219,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 352);
             this.Controls.Add(this.dateTGTraKetQua);
-            this.Controls.Add(this.labelControl7);
+            this.Controls.Add(this.lblTGTraKQCaPhieu);
             this.Controls.Add(this.cboDotDieuTri);
-            this.Controls.Add(this.labelControl4);
+            this.Controls.Add(this.lblDotDieuTri);
             this.Controls.Add(this.cboPhieuDieuTri);
-            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.lblPhieuDieuTri);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.lblMaPhieuChiDinh);
             this.Controls.Add(this.btnSuaThoiGian);
@@ -256,11 +256,11 @@
         private DevExpress.XtraEditors.SimpleButton btnSuaThoiGian;
         private DevExpress.XtraEditors.LabelControl lblMaPhieuChiDinh;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.LabelControl lblPhieuDieuTri;
         private DevExpress.XtraEditors.LookUpEdit cboPhieuDieuTri;
         private DevExpress.XtraEditors.LookUpEdit cboDotDieuTri;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LabelControl lblDotDieuTri;
         internal System.Windows.Forms.DateTimePicker dateTGTraKetQua;
-        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.LabelControl lblTGTraKQCaPhieu;
     }
 }

@@ -175,18 +175,18 @@ namespace MedicalLink.Dashboard.BCXNTTuTruc
                     {
                         ClassCommon.classLichSuNhapXuatThuoc medicinestore = new ClassCommon.classLichSuNhapXuatThuoc();
                         medicinestore.stt = i + 1;
-                        medicinestore.medicinerefid = Utilities.Util_TypeConvertParse.ToInt64(dataResults[i]["medicinerefid"].ToString());
+                        medicinestore.medicinerefid = Utilities.TypeConvertParse.ToInt64(dataResults[i]["medicinerefid"].ToString());
                         medicinestore.medicinecode = this.lstMedicineCurrent.Where(o => o.medicinerefid == medicinestore.medicinerefid).FirstOrDefault().medicinecode;
                         medicinestore.medicinename = this.lstMedicineCurrent.Where(o => o.medicinerefid == medicinestore.medicinerefid).FirstOrDefault().medicinename;
-                        medicinestore.medicinedate = Utilities.Util_TypeConvertParse.ToDateTime(dataResults[i]["medicinedate"].ToString());
+                        medicinestore.medicinedate = Utilities.TypeConvertParse.ToDateTime(dataResults[i]["medicinedate"].ToString());
                         medicinestore.medicinestorebillcode = dataResults[i]["medicinestorebillcode"].ToString();
                         medicinestore.medicinestorebilltype = dataResults[i]["medicinestorebilltype"].ToString();
-                        medicinestore.accept_soluong = Utilities.Util_TypeConvertParse.ToDecimal(dataResults[i]["accept_soluong"].ToString());
-                        medicinestore.accept_money = Utilities.Util_TypeConvertParse.ToDecimal(dataResults[i]["accept_money"].ToString());
+                        medicinestore.accept_soluong = Utilities.TypeConvertParse.ToDecimal(dataResults[i]["accept_soluong"].ToString());
+                        medicinestore.accept_money = Utilities.TypeConvertParse.ToDecimal(dataResults[i]["accept_money"].ToString());
                         medicinestore.medicinestorebillremark = dataResults[i]["medicinestorebillremark"].ToString();
                         medicinestore.solo = dataResults[i]["solo"].ToString();
                         medicinestore.sodangky = dataResults[i]["sodangky"].ToString();
-                        medicinestore.medicinekiemkeid = Utilities.Util_TypeConvertParse.ToInt64(dataResults[i]["medicinekiemkeid"].ToString());
+                        medicinestore.medicinekiemkeid = Utilities.TypeConvertParse.ToInt64(dataResults[i]["medicinekiemkeid"].ToString());
                         medicinestore.departmentgroupname = dataResults[i]["departmentgroupname"].ToString();
                         medicinestore.departmentname = dataResults[i]["departmentname"].ToString();
 

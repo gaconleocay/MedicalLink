@@ -150,10 +150,10 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
 
                     var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
                     string maubenhphamid = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString();
-                    this.patientid = Utilities.Util_TypeConvertParse.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "patientid").ToString());
+                    this.patientid = Utilities.TypeConvertParse.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "patientid").ToString());
                     this.departmentname = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "departmentname").ToString();
                     this.chandoancls_name= gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "chandoan").ToString();
-                    this.hosobenhanid = Utilities.Util_TypeConvertParse.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "hosobenhanid").ToString());
+                    this.hosobenhanid = Utilities.TypeConvertParse.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "hosobenhanid").ToString());
                     string sqlGetDichVuChiTiet = "select servicepriceid, medicalrecordid, servicestatus, maubenhphamid, servicepricecode, servicename, servicevalue, serviceremark1, serviceremark2 from service se inner join (select servicecode from service_ref where servicetype=0) sef on sef.servicecode=se.servicecode where se.maubenhphamid=" + maubenhphamid + "; ";
                     DataTable dataDVChiTiet = condb.GetDataTable_HIS(sqlGetDichVuChiTiet);
                     gridControlChiTiet.DataSource = dataDVChiTiet;
@@ -194,9 +194,9 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
 
                 thongtinPTTT.hosobenhanid = this.hosobenhanid;
                 thongtinPTTT.departmentgroupid = this.departmentgroupid;
-                thongtinPTTT.medicalrecordid = Utilities.Util_TypeConvertParse.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
-                thongtinPTTT.maubenhphamid = Utilities.Util_TypeConvertParse.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
-                thongtinPTTT.servicepriceid = Utilities.Util_TypeConvertParse.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "servicepriceid").ToString());
+                thongtinPTTT.medicalrecordid = Utilities.TypeConvertParse.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
+                thongtinPTTT.maubenhphamid = Utilities.TypeConvertParse.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                thongtinPTTT.servicepriceid = Utilities.TypeConvertParse.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "servicepriceid").ToString());
                 thongtinPTTT.patientid = this.patientid;
                 thongtinPTTT.departmentname = this.departmentname;
                 thongtinPTTT.chandoancls_name = this.chandoancls_name;

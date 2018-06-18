@@ -127,7 +127,7 @@ namespace MedicalLink.BCQLTaiChinh
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
-                    this.lstBaoCao = Utilities.Util_DataTable.DataTableToList<DSKhoaHuongTienDVYCCLCDTO>(_dataBaoCao);
+                    this.lstBaoCao = Utilities.DataTables.DataTableToList<DSKhoaHuongTienDVYCCLCDTO>(_dataBaoCao);
                     XuLyVaHienThiBaoCao(this.lstBaoCao);
                     //gridControlDataBC.DataSource = _dataBaoCao;
                 }

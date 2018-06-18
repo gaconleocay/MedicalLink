@@ -82,7 +82,7 @@ namespace MedicalLink.ChucNang
                     string sql_getThuoc = "";
                     string sql_getkiemke = "select COALESCE(max(medicinekiemkeid),0) as medicinekiemkeid from medicinekiemke where medicinestoreid=" + cboKhoThuocVT.EditValue + " and medicinekiemkestatus=0;";
                     DataView dataKiemKe = new DataView(condb.GetDataTable_HIS(sql_getkiemke));
-                    if (dataKiemKe != null && dataKiemKe.Count > 0 && Utilities.Util_TypeConvertParse.ToInt64(dataKiemKe[0]["medicinekiemkeid"].ToString()) > 0)
+                    if (dataKiemKe != null && dataKiemKe.Count > 0 && Utilities.TypeConvertParse.ToInt64(dataKiemKe[0]["medicinekiemkeid"].ToString()) > 0)
                     {
                         medicinekiemkeid = " and medicinekiemkeid=" + dataKiemKe[0]["medicinekiemkeid"] + " ";
                     }
@@ -127,7 +127,7 @@ namespace MedicalLink.ChucNang
                             if (condb.ExecuteNonQuery_HIS(_sqlupdate))
                             {
                                 _update_count += 1;
-                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update Hạn sử dụng thuốc/vật tư mã " + item_dv.medicinecode + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_26');";
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update Hạn sử dụng thuốc/vật tư mã " + item_dv.medicinecode + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_26');";
                                 condb.ExecuteNonQuery_MeL(sqlinsert_log);
                             }
                         }
@@ -162,7 +162,7 @@ namespace MedicalLink.ChucNang
                     data_Excel.TableName = "DATA";
                     if (data_Excel != null)
                     {
-                        this.lstDanhMucThuocVatTu = Utilities.Util_DataTable.DataTableToList<ClassCommon.DanhMucThuocVatTuDTO>(data_Excel);
+                        this.lstDanhMucThuocVatTu = Utilities.DataTables.DataTableToList<ClassCommon.DanhMucThuocVatTuDTO>(data_Excel);
                         gridControlThuocTuTruc.DataSource = this.lstDanhMucThuocVatTu;
                         btnLuuLai.Enabled = true;
                     }
@@ -192,7 +192,7 @@ namespace MedicalLink.ChucNang
                     List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                     ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
                     reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
-                    reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    reportitem.value = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     thongTinThem.Add(reportitem);
                     string fileTemplatePath = "0_ToolsCapNhatHanSuDungThuocVatTu_Export.xlsx";
                     Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();

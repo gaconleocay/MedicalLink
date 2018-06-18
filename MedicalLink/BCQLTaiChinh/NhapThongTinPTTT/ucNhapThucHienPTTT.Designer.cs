@@ -407,7 +407,7 @@
             "Theo ngày thực hiện",
             "Theo ngày vào viện",
             "Theo ngày ra viện",
-            "Theo ngày thanh toán"});
+            "Theo ngày duyệt VP"});
             this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTieuChi.Size = new System.Drawing.Size(159, 22);
             this.cboTieuChi.TabIndex = 97;
@@ -586,6 +586,7 @@
             this.gridViewDataDV.RowHeight = 25;
             this.gridViewDataDV.CustomDrawCell += new DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventHandler(this.gridViewDataDV_CustomDrawCell);
             this.gridViewDataDV.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDataDV_RowCellStyle);
+            this.gridViewDataDV.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewDataDV_RowUpdated);
             // 
             // gridColumn73
             // 

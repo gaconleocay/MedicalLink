@@ -37,8 +37,8 @@ namespace MedicalLink.BaoCao
         #region Load
         private void ucBCBHYT21Chenh2018_Load(object sender, EventArgs e)
         {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+            dateTuNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             LoadDanhMucDichVuChenh2018();
             LoadMaTinhThanhPho();
             btnLuuLai.Enabled = false;
@@ -49,7 +49,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 string _sqlGetDVKT = "select row_number () over (order by servicepricenamebhyt) as stt, * from tools_servicerefchenh2018 ORDER BY servicepricenamebhyt;";
-                DataTable _dataDVKT = condb.GetDataTable_MeL(_sqlGetDVKT);
+                System.Data.DataTable _dataDVKT = condb.GetDataTable_MeL(_sqlGetDVKT);
                 if (_dataDVKT != null && _dataDVKT.Rows.Count > 0)
                 {
                     gridControlDSGanMa.DataSource = _dataDVKT;
@@ -69,7 +69,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 string _sqltinh = "select substring(mayte,1,2) as ma_tinh from hospital;";
-                DataTable _dataMaTinh = condb.GetDataTable_HIS(_sqltinh);
+                System.Data.DataTable _dataMaTinh = condb.GetDataTable_HIS(_sqltinh);
                 if (_dataMaTinh != null && _dataMaTinh.Rows.Count > 0)
                 {
                     this.maTinhThanh = _dataMaTinh.Rows[0]["ma_tinh"].ToString();
@@ -94,11 +94,11 @@ namespace MedicalLink.BaoCao
                 string _doituongBN = "";
                 string _loaivienphi = "";
                 string _loaidoituong = "";
-                string _createdate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                string _createdate = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 string _sql_timkiem = "";
 
-                string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datedenngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 if (cbbTieuChi.Text == "Theo ngày chỉ định")
                 {
@@ -165,7 +165,7 @@ namespace MedicalLink.BaoCao
                     _sql_timkiem = @"SELECT '' as ngoaitinh, vp.loaivienphiid, vp.doituongbenhnhanid, serf.servicepricecodeuser, ser.bhyt_groupcode, serf.servicepricecode, serf.servicepricenamebhyt, ser.servicepricemoney_bhyt, sum((case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as soluong, (case when ser.bhyt_groupcode='01KB' then (case when ser.lankhambenh in (2,3) then 30 when coalesce(ser.lankhambenh,0)=0 then 100 else 0 end) when ser.bhyt_groupcode='12NG' then (case when ser.loaingaygiuong=1 then 50 when ser.loaingaygiuong=2 then 30 else 100 end) when ser.bhyt_groupcode in ('06PTTT','07KTC') then (case when ser.loaipttt=2 then 80 when ser.loaipttt=1 then 50 else 100 end) else 100 end) as tyle, sum(ser.servicepricemoney_bhyt*(case when vp.loaivienphiid=0 and ser.bhyt_groupcode='01KB' and ser.lankhambenh>0 then 0 else ser.soluong end)) as thanhtien FROM (select * from vienphi where 1=1 " + _tieuchi_vp + _doituongBN + _trangthai_vp + _loaivienphi + ") vp inner join (select * from serviceprice where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') " + _tieuchi_ser + _loaidoituong + ") ser on ser.vienphiid=vp.vienphiid inner join (select * from servicepriceref where bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC')) serf on serf.servicepricecode=ser.servicepricecode GROUP BY vp.loaivienphiid, vp.doituongbenhnhanid, serf.servicepricecodeuser, ser.bhyt_groupcode, serf.servicepricecode, serf.servicepricenamebhyt, ser.servicepricemoney_bhyt, ser.lankhambenh, ser.loaingaygiuong, ser.loaipttt;";
                 }
                 //Lay du lieu bao cao + insert vào DB
-                DataTable _dataBHYT21TMP = condb.GetDataTable_HIS(_sql_timkiem);
+                System.Data.DataTable _dataBHYT21TMP = condb.GetDataTable_HIS(_sql_timkiem);
                 if (_dataBHYT21TMP != null && _dataBHYT21TMP.Rows.Count > 0)
                 {
                     for (int i = 0; i < _dataBHYT21TMP.Rows.Count; i++)
@@ -243,8 +243,8 @@ namespace MedicalLink.BaoCao
             try
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
@@ -254,7 +254,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
 
                 string fileTemplatePath = "BC_40_BHYT21ChenhLech2018.xlsx";
-                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
@@ -270,8 +270,8 @@ namespace MedicalLink.BaoCao
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
 
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
@@ -282,7 +282,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
 
                 string fileTemplatePath = "BC_40_BHYT21ChenhLech2018.xlsx";
-                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
@@ -295,11 +295,11 @@ namespace MedicalLink.BaoCao
 
         private DataTable ExportExcel_GroupColume()
         {
-            DataTable result = new DataTable();
+            System.Data.DataTable result = new System.Data.DataTable();
             try
             {
                 List<ClassCommon.BCBHYT21Chenh2018DTO> lstData_XuatBaoCao = new List<ClassCommon.BCBHYT21Chenh2018DTO>();
-                List<ClassCommon.BCBHYT21Chenh2018DTO> lstDataTimKiem = Util_DataTable.DataTableToList<ClassCommon.BCBHYT21Chenh2018DTO>(this.dataBaoCao);
+                List<ClassCommon.BCBHYT21Chenh2018DTO> lstDataTimKiem = DataTables.DataTableToList<ClassCommon.BCBHYT21Chenh2018DTO>(this.dataBaoCao);
 
                 List<ClassCommon.BCBHYT21Chenh2018DTO> lstGroup_NgoaiTinh = lstDataTimKiem.GroupBy(o => o.ngoaitinh).Select(n => n.First()).ToList();
                 foreach (var item_ngoaitinh in lstGroup_NgoaiTinh)
@@ -377,7 +377,7 @@ namespace MedicalLink.BaoCao
                         lstData_XuatBaoCao.AddRange(lstData_NhomBHYT);
                     }
                 }
-                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+                result = Utilities.DataTables.ListToDataTable(lstData_XuatBaoCao);
             }
             catch (Exception ex)
             {
@@ -425,7 +425,7 @@ namespace MedicalLink.BaoCao
                     Workbook workbook = new Workbook(openFileDialogSelect.FileName);
                     Worksheet worksheet = workbook.Worksheets[0];
                     //row chay tu 0
-                    DataTable data_Excel = worksheet.Cells.ExportDataTable(3, 0, worksheet.Cells.MaxDataRow, worksheet.Cells.MaxDataColumn + 1, true);
+                    System.Data.DataTable data_Excel = worksheet.Cells.ExportDataTable(3, 0, worksheet.Cells.MaxDataRow, worksheet.Cells.MaxDataColumn + 1, true);
                     data_Excel.TableName = "DATA";
                     if (data_Excel != null)
                     {
@@ -461,7 +461,7 @@ namespace MedicalLink.BaoCao
                     if (this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() != "")
                     {
                         string sql_kt = "SELECT servicerefchenh2018id FROM tools_servicerefchenh2018 WHERE servicepricecode='" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "';";
-                        DataTable _data_KT = condb.GetDataTable_MeL(sql_kt);
+                        System.Data.DataTable _data_KT = condb.GetDataTable_MeL(sql_kt);
                         string _servicepricemoney_bhyt = this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString() == "" ? "0" : this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT"].ToString().Replace(",",".");
                         string _servicepricemoney_bhyt_tr13 = this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString() == "" ? "0" : this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_TR13"].ToString().Replace(",",".");
                         string _servicepricemoney_bhyt_13 = this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString() == "" ? "0" : this.DMDV_Import[i]["SERVICEPRICEMONEY_BHYT_13"].ToString().Replace(",",".");
@@ -471,7 +471,7 @@ namespace MedicalLink.BaoCao
 
                         if (_data_KT != null && _data_KT.Rows.Count > 0) //update
                         {
-                            string sql_updateDVKT = "UPDATE tools_servicerefchenh2018 SET servicepricecodeuser='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', servicepricecodeuser_old='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', servicepricecodeuser_new='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', servicepricenamebhyt='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', servicepricenamebhyt_old='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', servicepricenamebhyt_new='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', servicepricemoney_bhyt='" + _servicepricemoney_bhyt + "', servicepricemoney_bhyt_tr13='" + _servicepricemoney_bhyt_tr13 + "', servicepricemoney_bhyt_13='" + _servicepricemoney_bhyt_13 + "', servicepricemoney_bhyt_17='" + _servicepricemoney_bhyt_17 + "', servicepricemoney_vp_new='" + _servicepricemoney_vp_new + "', servicepricemoney_vp_old='" + _servicepricemoney_vp_old + "', createusercode='" + Base.SessionLogin.SessionUsercode + "', createusername='" + Base.SessionLogin.SessionUsername + "', createdate='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE servicepricecode='" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "';";
+                            string sql_updateDVKT = "UPDATE tools_servicerefchenh2018 SET servicepricecodeuser='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', servicepricecodeuser_old='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', servicepricecodeuser_new='" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', servicepricenamebhyt='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', servicepricenamebhyt_old='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', servicepricenamebhyt_new='" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', servicepricemoney_bhyt='" + _servicepricemoney_bhyt + "', servicepricemoney_bhyt_tr13='" + _servicepricemoney_bhyt_tr13 + "', servicepricemoney_bhyt_13='" + _servicepricemoney_bhyt_13 + "', servicepricemoney_bhyt_17='" + _servicepricemoney_bhyt_17 + "', servicepricemoney_vp_new='" + _servicepricemoney_vp_new + "', servicepricemoney_vp_old='" + _servicepricemoney_vp_old + "', createusercode='" + Base.SessionLogin.SessionUsercode + "', createusername='" + Base.SessionLogin.SessionUsername + "', createdate='" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE servicepricecode='" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "';";
                             try
                             {
                                 if (condb.ExecuteNonQuery_MeL(sql_updateDVKT))
@@ -486,7 +486,7 @@ namespace MedicalLink.BaoCao
                         }
                         else
                         {
-                            string sql_insertDVKT = @"INSERT INTO tools_servicerefchenh2018(servicepricecode, servicepricecodeuser, servicepricecodeuser_old, servicepricecodeuser_new, servicepricenamebhyt, servicepricenamebhyt_old, servicepricenamebhyt_new, servicepricemoney_bhyt, servicepricemoney_bhyt_tr13, servicepricemoney_bhyt_13, servicepricemoney_bhyt_17, servicepricemoney_vp_new, servicepricemoney_vp_old, createusercode, createusername, createdate) VALUES('" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', '" + _servicepricemoney_bhyt + "', '" + _servicepricemoney_bhyt_tr13 + "', '" + _servicepricemoney_bhyt_13 + "', '" + _servicepricemoney_bhyt_17 + "', '" + _servicepricemoney_vp_new + "', '" + _servicepricemoney_vp_old + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
+                            string sql_insertDVKT = @"INSERT INTO tools_servicerefchenh2018(servicepricecode, servicepricecodeuser, servicepricecodeuser_old, servicepricecodeuser_new, servicepricenamebhyt, servicepricenamebhyt_old, servicepricenamebhyt_new, servicepricemoney_bhyt, servicepricemoney_bhyt_tr13, servicepricemoney_bhyt_13, servicepricemoney_bhyt_17, servicepricemoney_vp_new, servicepricemoney_vp_old, createusercode, createusername, createdate) VALUES('" + this.DMDV_Import[i]["SERVICEPRICECODE"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_OLD"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICECODEUSER_NEW"].ToString() + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT"].ToString().Replace("'", "''") + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_OLD"].ToString().Replace("'", "''") + "', '" + this.DMDV_Import[i]["SERVICEPRICENAMEBHYT_NEW"].ToString().Replace("'", "''") + "', '" + _servicepricemoney_bhyt + "', '" + _servicepricemoney_bhyt_tr13 + "', '" + _servicepricemoney_bhyt_13 + "', '" + _servicepricemoney_bhyt_17 + "', '" + _servicepricemoney_vp_new + "', '" + _servicepricemoney_vp_old + "', '" + Base.SessionLogin.SessionUsercode + "', '" + Base.SessionLogin.SessionUsername + "', '" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
                             try
                             {
                                 if (condb.ExecuteNonQuery_MeL(sql_insertDVKT))

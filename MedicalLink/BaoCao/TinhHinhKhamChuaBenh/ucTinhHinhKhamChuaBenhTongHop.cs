@@ -28,8 +28,8 @@ namespace MedicalLink.BaoCao
         #region Load
         private void ucTinhHinhKhamChuaBenhTongHop_Load(object sender, EventArgs e)
         {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+            dateTuNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             LayMaNgoaiTinh();
         }
         private void LayMaNgoaiTinh()
@@ -54,8 +54,8 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                string _datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string _datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string _datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string _datedenngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 string _sql_timkiem = "SELECT vp.thang, sum(case when vp.loaivienphiid<>0 then 1 else 0 end) as kb_tong, sum(case when vp.loaivienphiid<>0 and hsba.gioitinhcode='02' then 1 else 0 end) as kb_nu, sum(case when vp.loaivienphiid<>0 and vp.doituongbenhnhanid=1 then 1 else 0 end) as kb_bhyt, sum(case when vp.loaivienphiid<>0 and vp.doituongbenhnhanid<>1 then 1 else 0 end) as kb_vp, sum(case when vp.loaivienphiid<>0 and hsba.tuoi>=60 then 1 else 0 end) as kb_60, sum(case when vp.loaivienphiid<>0 and hsba.tuoi<15 then 1 else 0 end) as kb_15, sum(case when vp.loaivienphiid<>0 and hsba.tuoi<5 then 1 else 0 end) as kb_5, sum(case when vp.loaivienphiid<>0 and hsba.hc_tinhcode<>'" + _ngoaitinhId + "' then 1 else 0 end) as kb_ngtinh, sum(case when vp.loaivienphiid=0 then 1 else 0 end) as nt_tong, sum(case when vp.loaivienphiid=0 and hsba.gioitinhcode='02' then 1 else 0 end) as nt_nu, sum(case when vp.loaivienphiid=0 and vp.doituongbenhnhanid=1 then 1 else 0 end) as nt_bhyt, sum(case when vp.loaivienphiid=0 and vp.doituongbenhnhanid<>1 then 1 else 0 end) as nt_vp, sum(case when vp.loaivienphiid=0 and hsba.tuoi>=60 then 1 else 0 end) as nt_60, sum(case when vp.loaivienphiid=0 and hsba.tuoi<15 then 1 else 0 end) as nt_15, sum(case when vp.loaivienphiid=0 and hsba.tuoi<5 then 1 else 0 end) as nt_5, sum(case when vp.loaivienphiid=0 and hsba.hc_tinhcode<>'" + _ngoaitinhId + "' then 1 else 0 end) as nt_ngtinh FROM (select loaivienphiid,doituongbenhnhanid,hosobenhanid, to_char(vienphidate,'MM') as thang from vienphi where vienphidate between '" + _datetungay + "' and '" + _datedenngay + "') vp inner join (select hosobenhanid,hc_tinhcode,gioitinhcode,(cast(to_char(now(),'yyyy') as numeric)-cast(to_char(birthday,'yyyy') as numeric)) as tuoi from hosobenhan where hosobenhandate between '" + _datetungay + "' and '" + _datedenngay + "') hsba on hsba.hosobenhanid=vp.hosobenhanid inner join (select hosobenhanid from medicalrecord where hinhthucvaovienid=0 and medicalrecordstatus<>0 and thoigianvaovien between '" + _datetungay + "' and '" + _datedenngay + "') mrd on mrd.hosobenhanid=vp.hosobenhanid GROUP BY vp.thang;";
 
@@ -85,7 +85,7 @@ namespace MedicalLink.BaoCao
                     lstDataBaoCao[14].noidung = " - BN < 5 tuổi";
                     lstDataBaoCao[15].noidung = " - BN ngoại tỉnh";
 
-                    List<ClassCommon.TinhHinhKCBDTO> lstData = Utilities.Util_DataTable.DataTableToList<ClassCommon.TinhHinhKCBDTO>(dataBaoCao);
+                    List<ClassCommon.TinhHinhKCBDTO> lstData = Utilities.DataTables.DataTableToList<ClassCommon.TinhHinhKCBDTO>(dataBaoCao);
                     foreach (var item_thang in lstData)
                     {
                         if (item_thang.thang == "01")
@@ -340,8 +340,8 @@ namespace MedicalLink.BaoCao
             try
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
@@ -367,8 +367,8 @@ namespace MedicalLink.BaoCao
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
 
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 

@@ -201,19 +201,19 @@ namespace MedicalLink.BaoCao
                 {
                     kiemtrasuadulieu = true;
                     var rowHandle = bandedGridViewDataBCPTTT.FocusedRowHandle;
-                    long thuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "thuchienclsid").ToString());
-                    long medicalrecordid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
-                    long maubenhphamid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
-                    long patientid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "patientid").ToString());
-                    long servicepriceid = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "servicepriceid").ToString());
-                    string thuchienclsdate = Utilities.Util_TypeConvertParse.ToDateTime(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "ngay_thuchien").ToString()).ToString("yyyy-MM-dd HH:mm:ss");
+                    long thuchienclsid = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "thuchienclsid").ToString());
+                    long medicalrecordid = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
+                    long maubenhphamid = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                    long patientid = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "patientid").ToString());
+                    long servicepriceid = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "servicepriceid").ToString());
+                    string thuchienclsdate = Utilities.TypeConvertParse.ToDateTime(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "ngay_thuchien").ToString()).ToString("yyyy-MM-dd HH:mm:ss");
 
-                    long mochinh_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "mochinh_idbs").ToString());
-                    long gayme_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "gayme_idbs").ToString());
-                    long phu1_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu1_idbs").ToString());
-                    long phu2_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu2_idbs").ToString());
-                    long giupviec1_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec1_idbs").ToString());
-                    long giupviec2_idbs = Utilities.Util_TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec2_idbs").ToString());
+                    long mochinh_idbs = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "mochinh_idbs").ToString());
+                    long gayme_idbs = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "gayme_idbs").ToString());
+                    long phu1_idbs = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu1_idbs").ToString());
+                    long phu2_idbs = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "phu2_idbs").ToString());
+                    long giupviec1_idbs = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec1_idbs").ToString());
+                    long giupviec2_idbs = Utilities.TypeConvertParse.ToInt64(bandedGridViewDataBCPTTT.GetRowCellValue(rowHandle, "giupviec2_idbs").ToString());
 
                     if (thuchienclsid == 0) //kiemtra xem co ban ghi nao hay ko?
                     {
@@ -221,7 +221,7 @@ namespace MedicalLink.BaoCao
                         DataTable dataKiemTra = condb.GetDataTable_HIS(sqlkiemtra);
                         if (dataKiemTra != null && dataKiemTra.Rows.Count > 0)
                         {
-                            thuchienclsid = Utilities.Util_TypeConvertParse.ToInt64(dataKiemTra.Rows[0]["thuchienclsid"].ToString());
+                            thuchienclsid = Utilities.TypeConvertParse.ToInt64(dataKiemTra.Rows[0]["thuchienclsid"].ToString());
                         }
                     }
 

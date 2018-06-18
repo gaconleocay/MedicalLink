@@ -1323,11 +1323,11 @@
     <Compile Include="Utilities\GridControl\Util_GridcontrolConvert.cs" />
     <Compile Include="Utilities\GUIGridView\Util_GUIGridView.cs" />
     <Compile Include="Utilities\PrintPreview\PrintPreview_ExcelFileTemplate.cs" />
-    <Compile Include="Utilities\Util_FileCheckSum.cs" />
-    <Compile Include="Utilities\Util_DataTable.cs" />
-    <Compile Include="Utilities\Util_DateTime.cs" />
-    <Compile Include="Utilities\Util_NumberConvert.cs" />
-    <Compile Include="Utilities\Util_TypeConvertParse.cs" />
+    <Compile Include="Utilities\FileCheckSum.cs" />
+    <Compile Include="Utilities\DataTables.cs" />
+    <Compile Include="Utilities\DateTimes.cs" />
+    <Compile Include="Utilities\NumberConvert.cs" />
+    <Compile Include="Utilities\TypeConvertParse.cs" />
     <EmbeddedResource Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.resx">
       <DependentUpon>ucBangKeTongHopHoaDon.cs</DependentUpon>
     </EmbeddedResource>

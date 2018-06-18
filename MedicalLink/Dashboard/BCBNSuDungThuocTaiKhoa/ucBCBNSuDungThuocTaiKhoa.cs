@@ -92,11 +92,11 @@ namespace MedicalLink.Dashboard
                     for (int i = 0; i < dataStore.Count; i++)
                     {
                         ClassCommon.classMedicineRef medicinestore = new ClassCommon.classMedicineRef();
-                        medicinestore.medicinerefid = Utilities.Util_TypeConvertParse.ToInt64(dataStore[i]["medicinerefid"].ToString());
-                        medicinestore.medicinerefid_org = Utilities.Util_TypeConvertParse.ToInt64(dataStore[i]["medicinerefid_org"].ToString());
+                        medicinestore.medicinerefid = Utilities.TypeConvertParse.ToInt64(dataStore[i]["medicinerefid"].ToString());
+                        medicinestore.medicinerefid_org = Utilities.TypeConvertParse.ToInt64(dataStore[i]["medicinerefid_org"].ToString());
                         medicinestore.medicinecode = dataStore[i]["medicinecode"].ToString();
                         medicinestore.medicinename = dataStore[i]["medicinename"].ToString();
-                        medicinestore.giaban = Utilities.Util_TypeConvertParse.ToDecimal(dataStore[i]["giaban"].ToString());
+                        medicinestore.giaban = Utilities.TypeConvertParse.ToDecimal(dataStore[i]["giaban"].ToString());
                         lstMedicineStore.Add(medicinestore);
                     }
                 }
@@ -226,7 +226,7 @@ namespace MedicalLink.Dashboard
                             break;
                         case "Tháng 2":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 2, 1, 0, 0, 0);
-                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.Util_DateTime.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
+                            dateDenNgay.Value = Convert.ToDateTime(MedicalLink.Utilities.DateTimes.GetLastDayOfMonth(2).ToString("yyyy-MM-dd") + " 23:59:59");
                             break;
                         case "Tháng 3":
                             dateTuNgay.Value = new DateTime(DateTime.Now.Year, 3, 1, 0, 0, 0);

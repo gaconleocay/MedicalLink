@@ -109,7 +109,7 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
 
                         string tieuchi = "";
                         string tieuchi_dlink = "";
-                        decimal _15phantram_tlcb = (Utilities.Util_TypeConvertParse.ToDecimal(txtLuongCoBan_Moi.Text.Trim()) / 100) * 15;
+                        decimal _15phantram_tlcb = (Utilities.TypeConvertParse.ToDecimal(txtLuongCoBan_Moi.Text.Trim()) / 100) * 15;
 
                         if (cboTieuChi.Text == "Theo ngày vào viện")
                         {

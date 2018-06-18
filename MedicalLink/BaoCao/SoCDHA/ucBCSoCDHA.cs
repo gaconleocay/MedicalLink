@@ -199,7 +199,7 @@ namespace MedicalLink.BaoCao
             try
             {
                 //phong Sieu am va phong X-quang can thiep.
-                if (Utilities.Util_TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 247 || Utilities.Util_TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 422)
+                if (Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 247 || Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 422)
                 {
                     gridBandCoPhim.Visible = false;
                 }
@@ -208,7 +208,7 @@ namespace MedicalLink.BaoCao
                     gridBandCoPhim.Visible = true;
                 }
                 //hien thi THuoc/vat tu di kem: phong XQ, CT, MRI
-                if (Utilities.Util_TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 244 || Utilities.Util_TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 245 || Utilities.Util_TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 246)
+                if (Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 244 || Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 245 || Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 246)
                 {
                     gridBandThuocVTDiKem.Visible = true;
                 }

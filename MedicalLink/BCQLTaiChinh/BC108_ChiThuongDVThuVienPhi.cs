@@ -140,7 +140,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTIEN_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
@@ -173,7 +173,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TONGTIEN_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTien(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
@@ -220,7 +220,7 @@ namespace MedicalLink.BCQLTaiChinh
             {
                 for (int i = 0; i < gridViewDataBC.RowCount; i++)
                 {
-                    _result += Utilities.Util_TypeConvertParse.ToDecimal(gridViewDataBC.GetRowCellValue(i, "thuong").ToString());
+                    _result += Utilities.TypeConvertParse.ToDecimal(gridViewDataBC.GetRowCellValue(i, "thuong").ToString());
                 }
             }
             catch (Exception ex)

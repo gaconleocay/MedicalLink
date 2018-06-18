@@ -119,7 +119,7 @@ namespace MedicalLink.BCQLTaiChinh
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
-                    this.lstBaoCao = Utilities.Util_DataTable.DataTableToList<DSCacKhoaDuocHuongK3DTO>(_dataBaoCao);
+                    this.lstBaoCao = Utilities.DataTables.DataTableToList<DSCacKhoaDuocHuongK3DTO>(_dataBaoCao);
                     gridControlDataBC.DataSource = this.lstBaoCao;
                     TinhTrichThuong(this.lstBaoCao);
                 }
@@ -238,7 +238,7 @@ namespace MedicalLink.BCQLTaiChinh
                 {
                     _trichthuong5pt += item.tienhuong??0;
                 }
-                lblTrichPhanTram.Text = Utilities.Util_NumberConvert.NumberToString(_trichthuong5pt*(decimal)0.05, 0);
+                lblTrichPhanTram.Text = Utilities.NumberConvert.NumberToString(_trichthuong5pt*(decimal)0.05, 0);
             }
             catch (Exception ex)
             {
@@ -251,13 +251,13 @@ namespace MedicalLink.BCQLTaiChinh
             try
             {
                 var rowHandle = gridViewDataBC.FocusedRowHandle;
-                int _stt = Utilities.Util_TypeConvertParse.ToInt32(gridViewDataBC.GetRowCellValue(rowHandle, "stt").ToString());
+                int _stt = Utilities.TypeConvertParse.ToInt32(gridViewDataBC.GetRowCellValue(rowHandle, "stt").ToString());
 
                 foreach (var item in this.lstBaoCao)
                 {
                     if (item.stt == _stt)
                     {
-                        item.truhoan = Utilities.Util_TypeConvertParse.ToDecimal(gridViewDataBC.GetRowCellValue(rowHandle, "truhoan").ToString());
+                        item.truhoan = Utilities.TypeConvertParse.ToDecimal(gridViewDataBC.GetRowCellValue(rowHandle, "truhoan").ToString());
                         item.tienhuong = item.tienhuong - item.truhoan;
                     }
                 }

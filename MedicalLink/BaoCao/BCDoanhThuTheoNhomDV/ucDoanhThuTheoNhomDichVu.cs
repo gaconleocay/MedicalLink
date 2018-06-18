@@ -28,8 +28,8 @@ namespace MedicalLink.BaoCao
         #region Load
         private void ucDoanhThuTheoNhomDichVu_Load(object sender, EventArgs e)
         {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+            dateTuNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             gridControlDataBaoCao.DataSource = null;
             LoadDanhSachNhomDichVu();
             LoadDanhSachKhoa();
@@ -49,7 +49,7 @@ namespace MedicalLink.BaoCao
                 else
                 {
                     string sqlNhomDV = "select o.tools_otherlistcode, o.tools_otherlistname,o.tools_otherlistvalue from tools_othertypelist ot inner join tools_otherlist o on o.tools_othertypelistid=ot.tools_othertypelistid where ot.tools_othertypelistcode='REPORT_23_NHOM_DV'; ";
-                    DataTable dataNhomDichVu = condb.GetDataTable_MeL(sqlNhomDV);
+                    System.Data.DataTable dataNhomDichVu = condb.GetDataTable_MeL(sqlNhomDV);
                     cboNhomDichVu.Properties.DataSource = dataNhomDichVu;
                     cboNhomDichVu.Properties.DisplayMember = "tools_otherlistname";
                     cboNhomDichVu.Properties.ValueMember = "tools_otherlistvalue";
@@ -90,8 +90,8 @@ namespace MedicalLink.BaoCao
                 string sql_timkiem = "";
 
 
-                string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datedenngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 if (chkcomboListDSKhoa.EditValue != null)
                 {
@@ -175,8 +175,8 @@ namespace MedicalLink.BaoCao
             try
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
@@ -194,7 +194,7 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
                 }
-                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
@@ -208,12 +208,12 @@ namespace MedicalLink.BaoCao
         //Xuat excel co group nhom
         private DataTable ExportExcel_GroupColume()
         {
-            DataTable result = new DataTable();
+            System.Data.DataTable result = new System.Data.DataTable();
             try
             {
                 List<ClassCommon.DoanhThuTheoNhomDichVuDTO> lstData_XuatBaoCao = new List<ClassCommon.DoanhThuTheoNhomDichVuDTO>();
                 List<ClassCommon.DoanhThuTheoNhomDichVuDTO> lstDataDoanhThu = new List<ClassCommon.DoanhThuTheoNhomDichVuDTO>();
-                lstDataDoanhThu = Util_DataTable.DataTableToList<ClassCommon.DoanhThuTheoNhomDichVuDTO>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao));
+                lstDataDoanhThu = DataTables.DataTableToList<ClassCommon.DoanhThuTheoNhomDichVuDTO>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao));
 
                 List<ClassCommon.DoanhThuTheoNhomDichVuDTO> lstData_Group = lstDataDoanhThu.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 foreach (var item_group in lstData_Group)
@@ -237,7 +237,7 @@ namespace MedicalLink.BaoCao
                     lstData_XuatBaoCao.Add(data_groupname);
                     lstData_XuatBaoCao.AddRange(lstData_doanhthu);
                 }
-                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+                result = Utilities.DataTables.ListToDataTable(lstData_XuatBaoCao);
             }
             catch (Exception ex)
             {
@@ -271,8 +271,8 @@ namespace MedicalLink.BaoCao
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
 
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
@@ -291,7 +291,7 @@ namespace MedicalLink.BaoCao
                 {
                     fileTemplatePath = "BC_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
                 }
-                DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)

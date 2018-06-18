@@ -134,7 +134,7 @@ namespace MedicalLink.BCQLTaiChinh
                 DataTable _dataBaoCao = condb.GetDataTable_HISToMeL(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
-                this.lstDataBaoCao = Utilities.Util_DataTable.DataTableToList<ChiTienGiuongYCChoCacKhoaCK>(_dataBaoCao);
+                this.lstDataBaoCao = Utilities.DataTables.DataTableToList<ChiTienGiuongYCChoCacKhoaCK>(_dataBaoCao);
                     gridControlDataBC.DataSource = this.lstDataBaoCao;
                 }
                 else
@@ -170,7 +170,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TIENTHUONG_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThuong(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTienThuong(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 ClassCommon.reportExcelDTO _item_THANHTIEN = new ClassCommon.reportExcelDTO();
@@ -207,7 +207,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 ClassCommon.reportExcelDTO _item_tien_string = new ClassCommon.reportExcelDTO();
                 _item_tien_string.name = "TIENTHUONG_STRING";
-                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.Util_NumberConvert.NumberToNumberRoundAuto(TinhTongTienThuong(), 0).ToString());
+                _item_tien_string.value = Utilities.Common.String.Convert.CurrencyToVneseString(Utilities.NumberConvert.NumberToNumberRoundAuto(TinhTongTienThuong(), 0).ToString());
                 thongTinThem.Add(_item_tien_string);
 
                 ClassCommon.reportExcelDTO _item_THANHTIEN = new ClassCommon.reportExcelDTO();

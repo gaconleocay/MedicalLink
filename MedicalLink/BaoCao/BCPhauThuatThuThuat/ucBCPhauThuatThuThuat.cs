@@ -421,7 +421,7 @@ namespace MedicalLink.BaoCao
                     string[] dsKhoa_temp = chkcomboListDSKhoa.EditValue.ToString().Split(',');
                     for (int i = 0; i < dsKhoa_temp.Length; i++)
                     {
-                        lstDSPhong.AddRange(Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.Util_TypeConvertParse.ToInt64(dsKhoa_temp[i])).OrderBy(o => o.departmentname).ToList());
+                        lstDSPhong.AddRange(Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.TypeConvertParse.ToInt64(dsKhoa_temp[i])).OrderBy(o => o.departmentname).ToList());
                     }
 
                     if (lstDSPhong != null && lstDSPhong.Count > 0)

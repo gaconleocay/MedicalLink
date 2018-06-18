@@ -29,8 +29,8 @@ namespace MedicalLink.BaoCao
         #region Load
         private void ucBCTienBNPhaiThanhToan_Load(object sender, EventArgs e)
         {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+            dateTuNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            dateDenNgay.Value = Convert.ToDateTime(System.DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             gridControlDataBaoCao.DataSource = null;
         }
         #endregion
@@ -43,8 +43,8 @@ namespace MedicalLink.BaoCao
                 string doituongbenhnhan_vp = " duyet_ngayduyet_vp ";
                 string sql_timkiem = "";
 
-                string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+                string datedenngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
 
                  if (cbbTieuChi.Text == "Theo ngày vào viện")
@@ -96,7 +96,7 @@ namespace MedicalLink.BaoCao
                 {
                     this.lstDataBaoCaoCurrent = new List<ClassCommon.TienBNPhaiThanhToanDTO>();
                     //Chạy chậm nên thay đổi hàm xử lý
-                    //this.lstDataBaoCaoCurrent = Util_DataTable.DataTableToList<ClassCommon.TienBNPhaiThanhToanDTO>(dataBaoCao);
+                    //this.lstDataBaoCaoCurrent = Util_DataTables.DataTableToList<ClassCommon.TienBNPhaiThanhToanDTO>(dataBaoCao);
                     for (int i = 0; i < dataBaoCao.Rows.Count; i++)
                     {
                         ClassCommon.TienBNPhaiThanhToanDTO bnphaithanhtoan = new ClassCommon.TienBNPhaiThanhToanDTO();
@@ -108,46 +108,46 @@ namespace MedicalLink.BaoCao
                         bnphaithanhtoan.namsinh = dataBaoCao.Rows[i]["namsinh"].ToString();
                         bnphaithanhtoan.gioitinh = dataBaoCao.Rows[i]["gioitinh"].ToString();
                         bnphaithanhtoan.bhytcode = dataBaoCao.Rows[i]["bhytcode"].ToString();
-                        bnphaithanhtoan.bhyt_loaiid = Utilities.Util_TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["bhyt_loaiid"].ToString());
-                        bnphaithanhtoan.du5nam6thangluongcoban = Utilities.Util_TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["du5nam6thangluongcoban"].ToString());
+                        bnphaithanhtoan.bhyt_loaiid = Utilities.TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["bhyt_loaiid"].ToString());
+                        bnphaithanhtoan.du5nam6thangluongcoban = Utilities.TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["du5nam6thangluongcoban"].ToString());
                         bnphaithanhtoan.vienphidate = dataBaoCao.Rows[i]["vienphidate"];
                         bnphaithanhtoan.vienphidate_ravien = dataBaoCao.Rows[i]["vienphidate_ravien"];
                         bnphaithanhtoan.duyet_ngayduyet_vp = dataBaoCao.Rows[i]["duyet_ngayduyet_vp"];
                         bnphaithanhtoan.duyet_ngayduyet = dataBaoCao.Rows[i]["duyet_ngayduyet"];
-                        bnphaithanhtoan.bhyt_tuyenbenhvien = Utilities.Util_TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["bhyt_tuyenbenhvien"].ToString());
-                        bnphaithanhtoan.doituongbenhnhanid = Utilities.Util_TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["doituongbenhnhanid"].ToString());
-                        bnphaithanhtoan.bhyt_thangluongtoithieu = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["bhyt_thangluongtoithieu"].ToString());
-                        bnphaithanhtoan.departmentgroupid = Util_TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["departmentgroupid"].ToString());
+                        bnphaithanhtoan.bhyt_tuyenbenhvien = Utilities.TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["bhyt_tuyenbenhvien"].ToString());
+                        bnphaithanhtoan.doituongbenhnhanid = Utilities.TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["doituongbenhnhanid"].ToString());
+                        bnphaithanhtoan.bhyt_thangluongtoithieu = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["bhyt_thangluongtoithieu"].ToString());
+                        bnphaithanhtoan.departmentgroupid = TypeConvertParse.ToInt16(dataBaoCao.Rows[i]["departmentgroupid"].ToString());
                         bnphaithanhtoan.departmentgroupname = dataBaoCao.Rows[i]["departmentgroupname"].ToString();
                         bnphaithanhtoan.departmentname = dataBaoCao.Rows[i]["departmentname"].ToString();
-                        bnphaithanhtoan.money_khambenh_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khambenh_bh"].ToString());
-                        bnphaithanhtoan.money_khambenh_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khambenh_vp"].ToString());
-                        bnphaithanhtoan.money_xetnghiem_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_xetnghiem_bh"].ToString());
-                        bnphaithanhtoan.money_xetnghiem_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_xetnghiem_vp"].ToString());
-                        bnphaithanhtoan.money_cdhatdcn_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_cdhatdcn_bh"].ToString());
-                        bnphaithanhtoan.money_cdhatdcn_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_cdhatdcn_vp"].ToString());
-                        bnphaithanhtoan.money_pttt_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_pttt_bh"].ToString());
-                        bnphaithanhtoan.money_pttt_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_pttt_vp"].ToString());
-                        bnphaithanhtoan.money_dvktc_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_dvktc_bh"].ToString());
-                        bnphaithanhtoan.money_dvktc_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_dvktc_vp"].ToString());
-                        bnphaithanhtoan.money_mau_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_mau_bh"].ToString());
-                        bnphaithanhtoan.money_mau_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_mau_vp"].ToString());
-                        bnphaithanhtoan.money_giuong_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_giuong_bh"].ToString());
-                        bnphaithanhtoan.money_giuong_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_giuong_vp"].ToString());
-                        bnphaithanhtoan.money_thuoc_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_thuoc_bh"].ToString());
-                        bnphaithanhtoan.money_thuoc_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_thuoc_vp"].ToString());
-                        bnphaithanhtoan.money_vattu_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vattu_bh"].ToString());
-                        bnphaithanhtoan.money_vattu_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vattu_vp"].ToString());
-                        bnphaithanhtoan.money_phuthu_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_phuthu_bh"].ToString());
-                        bnphaithanhtoan.money_phuthu_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_phuthu_vp"].ToString());
-                        bnphaithanhtoan.money_vtthaythe_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vtthaythe_bh"].ToString());
-                        bnphaithanhtoan.money_vtthaythe_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vtthaythe_vp"].ToString());
-                        bnphaithanhtoan.money_vanchuyen_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vanchuyen_bh"].ToString());
-                        bnphaithanhtoan.money_vanchuyen_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vanchuyen_vp"].ToString());
-                        bnphaithanhtoan.money_khac_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khac_bh"].ToString());
-                        bnphaithanhtoan.money_khac_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khac_vp"].ToString());
-                        bnphaithanhtoan.money_tong_bh = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_tong_bh"].ToString());
-                        bnphaithanhtoan.money_tong_vp = Util_TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_tong_vp"].ToString());
+                        bnphaithanhtoan.money_khambenh_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khambenh_bh"].ToString());
+                        bnphaithanhtoan.money_khambenh_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khambenh_vp"].ToString());
+                        bnphaithanhtoan.money_xetnghiem_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_xetnghiem_bh"].ToString());
+                        bnphaithanhtoan.money_xetnghiem_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_xetnghiem_vp"].ToString());
+                        bnphaithanhtoan.money_cdhatdcn_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_cdhatdcn_bh"].ToString());
+                        bnphaithanhtoan.money_cdhatdcn_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_cdhatdcn_vp"].ToString());
+                        bnphaithanhtoan.money_pttt_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_pttt_bh"].ToString());
+                        bnphaithanhtoan.money_pttt_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_pttt_vp"].ToString());
+                        bnphaithanhtoan.money_dvktc_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_dvktc_bh"].ToString());
+                        bnphaithanhtoan.money_dvktc_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_dvktc_vp"].ToString());
+                        bnphaithanhtoan.money_mau_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_mau_bh"].ToString());
+                        bnphaithanhtoan.money_mau_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_mau_vp"].ToString());
+                        bnphaithanhtoan.money_giuong_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_giuong_bh"].ToString());
+                        bnphaithanhtoan.money_giuong_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_giuong_vp"].ToString());
+                        bnphaithanhtoan.money_thuoc_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_thuoc_bh"].ToString());
+                        bnphaithanhtoan.money_thuoc_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_thuoc_vp"].ToString());
+                        bnphaithanhtoan.money_vattu_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vattu_bh"].ToString());
+                        bnphaithanhtoan.money_vattu_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vattu_vp"].ToString());
+                        bnphaithanhtoan.money_phuthu_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_phuthu_bh"].ToString());
+                        bnphaithanhtoan.money_phuthu_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_phuthu_vp"].ToString());
+                        bnphaithanhtoan.money_vtthaythe_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vtthaythe_bh"].ToString());
+                        bnphaithanhtoan.money_vtthaythe_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vtthaythe_vp"].ToString());
+                        bnphaithanhtoan.money_vanchuyen_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vanchuyen_bh"].ToString());
+                        bnphaithanhtoan.money_vanchuyen_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_vanchuyen_vp"].ToString());
+                        bnphaithanhtoan.money_khac_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khac_bh"].ToString());
+                        bnphaithanhtoan.money_khac_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_khac_vp"].ToString());
+                        bnphaithanhtoan.money_tong_bh = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_tong_bh"].ToString());
+                        bnphaithanhtoan.money_tong_vp = TypeConvertParse.ToDecimal(dataBaoCao.Rows[i]["money_tong_vp"].ToString());
                         bnphaithanhtoan.money_tong = bnphaithanhtoan.money_tong_bh + bnphaithanhtoan.money_tong_vp;
                         this.lstDataBaoCaoCurrent.Add(bnphaithanhtoan);
                     }
@@ -204,8 +204,8 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
@@ -230,8 +230,8 @@ namespace MedicalLink.BaoCao
             {
                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
 
-                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
-                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
                 string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
@@ -321,7 +321,7 @@ namespace MedicalLink.BaoCao
                     lstData_XuatBaoCao.Add(data_groupname);
                     lstData_XuatBaoCao.AddRange(lstData_doanhthu);
                 }
-                result = Utilities.Util_DataTable.ListToDataTable(lstData_XuatBaoCao);
+                result = Utilities.DataTables.ListToDataTable(lstData_XuatBaoCao);
             }
             catch (Exception ex)
             {

@@ -55,7 +55,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
                 DataTable _DSKhoa = condb.GetDataTable_HIS(_getDSKhoa);
                 if (_DSKhoa != null && _DSKhoa.Rows.Count > 0)
                 {
-                    this.lstDepartGroup = Utilities.Util_DataTable.DataTableToList<DepartmentgroupDTO>(_DSKhoa);
+                    this.lstDepartGroup = Utilities.DataTables.DataTableToList<DepartmentgroupDTO>(_DSKhoa);
                     cboKhoa.Properties.DataSource = this.lstDepartGroup;
                     cboKhoa.Properties.DisplayMember = "departmentgroupname";
                     cboKhoa.Properties.ValueMember = "departmentgroupid";

@@ -70,7 +70,7 @@ namespace MedicalLink.ChucNang
                 DataTable _dataTimKiem = condb.GetDataTable_HIS(sqlquerry);
                 if (_dataTimKiem != null && _dataTimKiem.Rows.Count > 0)
                 {
-                    this.lstTamUng = Utilities.Util_DataTable.DataTableToList<SuaPhieuTamUngDTO>(_dataTimKiem);
+                    this.lstTamUng = Utilities.DataTables.DataTableToList<SuaPhieuTamUngDTO>(_dataTimKiem);
                     gridControlChuyenTien.DataSource = this.lstTamUng;
                 }
                 else
@@ -124,7 +124,7 @@ namespace MedicalLink.ChucNang
                     }
                     else
                     {
-                        long _billid =Utilities.Util_TypeConvertParse.ToInt64(gridViewChuyenTien.GetRowCellValue(rowHandle, "billid").ToString());
+                        long _billid =Utilities.TypeConvertParse.ToInt64(gridViewChuyenTien.GetRowCellValue(rowHandle, "billid").ToString());
                         //string _departmentgroupid = gridViewChuyenTien.GetRowCellValue(rowHandle, "departmentgroupid").ToString();
                         //string _departmentid = gridViewChuyenTien.GetRowCellValue(rowHandle, "departmentid").ToString();
                         //string _userid = gridViewChuyenTien.GetRowCellValue(rowHandle, "userid").ToString();

@@ -27,7 +27,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
         {
             try
             {
-                dtTGLayDLTu.Value = Utilities.Util_TypeConvertParse.ToDateTime(GlobalStore.KhoangThoiGianLayDuLieu);
+                dtTGLayDLTu.Value = Utilities.TypeConvertParse.ToDateTime(GlobalStore.KhoangThoiGianLayDuLieu);
             }
             catch (Exception ex)
             {

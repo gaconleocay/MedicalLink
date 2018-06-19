@@ -160,9 +160,9 @@ namespace MedicalLink.BaoCao
                         break;
                 }
                 thongTinThem.Add(reportitem_tenbc);
-
+                DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewSoCDHA);
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBaoCao);
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
 
                 //Utilities.PrintPreview.PrintPreviewDev frmPrint = new Utilities.PrintPreview.PrintPreviewDev();
                 //MedicalLink.BaoCao.BCSoCDHA.SoCDHA_XQuang rpSoCDHA = new BCSoCDHA.SoCDHA_XQuang();

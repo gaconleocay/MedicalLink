@@ -15,28 +15,29 @@ using MedicalLink.ClassCommon.BCQLTaiChinh;
 
 namespace MedicalLink.BCQLTaiChinh
 {
-    public partial class BC108_ChiThuongDVThuVienPhi : UserControl
+    public partial class BC117_MoYCBangPPKinhHienVi : UserControl
     {
         #region Khai bao
         private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        //private List<TrichThuongDVKinhHienVi> lstBaoCao { get; set; }
-       // private string DanhMucDichVu_String { get; set; }
+        private DataTable dataBaoCao { get; set; }
+        //private string DanhMucDichVu_String { get; set; }
+
         #endregion
 
-        public BC108_ChiThuongDVThuVienPhi()
+        public BC117_MoYCBangPPKinhHienVi()
         {
             InitializeComponent();
         }
 
         #region Load
-        private void ucBC108_ChiThuongDVThuVienPhi_Load(object sender, EventArgs e)
+        private void ucBC117_MoYCBangPPKinhHienVi_Load(object sender, EventArgs e)
         {
             try
             {
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-                ////load danh muc dich vu
-                //List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_106_DV").ToList();
+                //load danh muc dich vu
+                //List<ClassCommon.ToolsOtherListDTO> lstOtherList = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_115_DV").ToList();
                 //if (lstOtherList != null && lstOtherList.Count > 0)
                 //{
                 //    for (int i = 0; i < lstOtherList.Count - 1; i++)
@@ -62,29 +63,32 @@ namespace MedicalLink.BCQLTaiChinh
             {
                 string tieuchi_ser = "";
                 string tieuchi_vp = "";
-                string tieuchi_mbp = "";
+                //string tieuchi_mrd = "";
+                //string lstdichvu_ser = " and servicepricecode in (" + this.DanhMucDichVu_String + ") ";
                 string trangthai_vp = "";
                 string sql_timkiem = "";
-             
+
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
 
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
-                    tieuchi_mbp = " and maubenhphamdate between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
                     tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_ser = " and servicepricedate >= '" + datetungay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
                 {
                     tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_ser = " and servicepricedate >= '2017-01-01 00:00:00' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
                     tieuchi_vp = " and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_ser = " and servicepricedate >= '2017-01-01 00:00:00' ";
                 }
                 //trang thai
                 if (cboTrangThai.Text == "Đang điều trị")
@@ -100,12 +104,12 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @" SELECT 1 as stt, 'Thần kinh (ĐNĐ) 03/18' as departmentgroupname, '' as quyetdinh_so, '21/6/2012' as quyetdinh_ngaythang, sum(ser.soluong) as soluong, ser.dongia, sum(ser.soluong*ser.dongia) as tongtienthu, 30 as tyle, sum(ser.soluong*ser.dongia*0.3) as thuong, '' as kynhan, '' as ghichu FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where servicepricecode in ('TD37018','TD37019') " + tieuchi_ser + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid GROUP BY ser.dongia UNION ALL SELECT 2 as stt, 'Thận Nhân Tạo' as departmentgroupname, '' as quyetdinh_so, '' as quyetdinh_ngaythang, sum(ser.soluong) as soluong, ser.dongia, sum(ser.soluong*ser.dongia) as tongtienthu, 39.6 as tyle, sum(ser.soluong*ser.dongia*0.396) as thuong, '' as kynhan, '' as ghichu FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where servicepricecode='PT11437030' and departmentgroupid=14 " + tieuchi_ser + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid GROUP BY ser.dongia UNION ALL SELECT 3 as stt, 'Nội soi TMH (KBYC)' as departmentgroupname, '1557' as quyetdinh_so, '26/9/2016' as quyetdinh_ngaythang, sum(ser.soluong) as soluong, ser.dongia, sum(ser.soluong*ser.dongia) as tongtienthu, 0 as tyle, sum(ser.soluong*18000) as thuong, '' as kynhan, '' as ghichu FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien,maubenhphamid, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where servicepricecode='U30001-3222' " + tieuchi_ser + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select maubenhphamid from maubenhpham where userthuchien in (504,508) and departmentid_des=279 " + tieuchi_mbp + ") mbp on mbp.maubenhphamid=ser.maubenhphamid GROUP BY ser.dongia UNION ALL SELECT 4 as stt, 'Nội soi TMH khoa TMH' as departmentgroupname, '' as quyetdinh_so, '' as quyetdinh_ngaythang, sum(ser.soluong) as soluong, ser.dongia, sum(ser.soluong*ser.dongia) as tongtienthu, 0 as tyle, sum(ser.soluong*10000) as thuong, '' as kynhan, '' as ghichu FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien,maubenhphamid, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia from serviceprice where servicepricecode='U30001-3222' " + tieuchi_ser + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid inner join (select maubenhphamid from maubenhpham where userthuchien not in (504,508) and departmentid_des=279 " + tieuchi_mbp + ") mbp on mbp.maubenhphamid=ser.maubenhphamid GROUP BY ser.dongia; ";
+                sql_timkiem = @" SELECT row_number () over (order by nv.username) as stt, (nv.usercode || '-' || nv.username) as username, '' as departmentgroupname, sum(case when PT.user_loai='mochinhid' then PT.soluong else 0 end) as sl_mochinh, sum(case when PT.user_loai='mochinhid' then PT.soluong*800000 else 0 end) as tien_mochinh, sum(case when PT.user_loai='phuid' then PT.soluong else 0 end) as sl_phu, sum(case when PT.user_loai='phuid' then PT.soluong*500000 else 0 end) as tien_phu, sum(case when PT.user_loai='bacsigaymeid' then PT.soluong else 0 end) as sl_bacsigayme, sum(case when PT.user_loai='bacsigaymeid' then PT.soluong*350000 else 0 end) as tien_bacsigayme, sum(case when PT.user_loai='ktvphumeid' then PT.soluong else 0 end) as sl_ktvphume, sum(case when PT.user_loai='ktvphumeid' then PT.soluong*175000 else 0 end) as tien_ktvphume, sum(case when PT.user_loai='dungcuvienid' then PT.soluong else 0 end) as sl_dungcuvien, sum(case when PT.user_loai='dungcuvienid' then PT.soluong*175000 else 0 end) as tien_dungcuvien, sum(case PT.user_loai when 'mochinhid' then PT.soluong*800000 when 'phuid' then PT.soluong*500000 when 'bacsigaymeid' then PT.soluong*350000 when 'ktvphumeid' then PT.soluong*175000 when 'dungcuvienid' then PT.soluong*175000 else 0 end) as thuclinh, '' as kynhan, '' as ghichu FROM (select pttt.mochinhid as userid, 'mochinhid' as user_loai, sum(pttt.soluong) as soluong from (select vienphiid,soluong,mochinhid from ml_thuchienpttt where servicepricecode='U11970-3701' and mochinhid>0 " + tieuchi_ser + ") pttt inner join (select * from dblink('myconn_mel','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=ser.vienphiid group by pttt.mochinhid union all select pttt.phu1id as userid, 'phuid' as user_loai, sum(pttt.soluong) as soluong from (select vienphiid,soluong,phu1id from ml_thuchienpttt where servicepricecode='U11970-3701' and phu1id>0 " + tieuchi_ser + ") pttt inner join (select * from dblink('myconn_mel','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=ser.vienphiid group by pttt.phu1id union all select pttt.phu2id as userid, 'phuid' as user_loai, sum(pttt.soluong) as soluong from (select vienphiid,soluong,phu2id from ml_thuchienpttt where servicepricecode='U11970-3701' and phu2id>0 " + tieuchi_ser + ") pttt inner join (select * from dblink('myconn_mel','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=ser.vienphiid group by pttt.phu2id union all select pttt.bacsigaymeid as userid, 'bacsigaymeid' as user_loai, sum(pttt.soluong) as soluong from (select vienphiid,soluong,bacsigaymeid from ml_thuchienpttt where servicepricecode='U11970-3701' and bacsigaymeid>0 " + tieuchi_ser + ") pttt inner join (select * from dblink('myconn_mel','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=ser.vienphiid group by pttt.bacsigaymeid union all select pttt.ktvphumeid as userid, 'ktvphumeid' as user_loai, sum(pttt.soluong) as soluong from (select vienphiid,soluong,ktvphumeid from ml_thuchienpttt where servicepricecode='U11970-3701' and ktvphumeid>0 " + tieuchi_ser + ") pttt inner join (select * from dblink('myconn_mel','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=ser.vienphiid group by pttt.ktvphumeid union all select pttt.dungcuvienid as userid, 'dungcuvienid' as user_loai, sum(pttt.soluong) as soluong from (select vienphiid,soluong,dungcuvienid from ml_thuchienpttt where servicepricecode='U11970-3701' and dungcuvienid>0 " + tieuchi_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=ser.vienphiid group by pttt.dungcuvienid) PT INNER JOIN ml_nhanvien nv ON nv.userhisid=PT.userid GROUP BY nv.usercode,nv.username;";
 
-                DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
-                if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
+                this.dataBaoCao = condb.GetDataTable_MeLToHIS(sql_timkiem);
+                if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
                 {
-                    gridControlDataBC.DataSource = _dataBaoCao;
+                    gridControlDataBC.DataSource = this.dataBaoCao;
                 }
                 else
                 {
@@ -145,7 +149,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
 
-                string fileTemplatePath = "BC_108_ChiThuongDVThuVienPhi.xlsx";
+                string fileTemplatePath = "BC_117_MoYCBangPPKinhHienVi.xlsx";
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
             }
@@ -157,10 +161,9 @@ namespace MedicalLink.BCQLTaiChinh
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
@@ -178,7 +181,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 DataTable _dataBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
 
-                string fileTemplatePath = "BC_108_ChiThuongDVThuVienPhi.xlsx";
+                string fileTemplatePath = "BC_117_MoYCBangPPKinhHienVi.xlsx";
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaoCao);
             }
             catch (Exception ex)
@@ -218,9 +221,10 @@ namespace MedicalLink.BCQLTaiChinh
             decimal _result = 0;
             try
             {
-                for (int i = 0; i < gridViewDataBC.RowCount; i++)
+                for (int i = 0; i < this.dataBaoCao.Rows.Count; i++)
                 {
-                    _result += Utilities.TypeConvertParse.ToDecimal(gridViewDataBC.GetRowCellValue(i, "thuong").ToString());
+                    decimal _thuclinh = Utilities.TypeConvertParse.ToDecimal(this.dataBaoCao.Rows[i]["thuclinh"].ToString());
+                    _result += _thuclinh;
                 }
             }
             catch (Exception ex)
@@ -232,6 +236,6 @@ namespace MedicalLink.BCQLTaiChinh
 
         #endregion
 
-      
+
     }
 }

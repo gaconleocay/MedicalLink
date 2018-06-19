@@ -495,6 +495,24 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="BCQLTaiChinh\BC119_DSHuongTienDVMoYC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC119_DSHuongTienDVMoYC.Designer.cs">
+      <DependentUpon>BC119_DSHuongTienDVMoYC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC118_DSHuongTienDVYCCLC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC118_DSHuongTienDVYCCLC.Designer.cs">
+      <DependentUpon>BC118_DSHuongTienDVYCCLC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC117_MoYCBangPPKinhHienVi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC117_MoYCBangPPKinhHienVi.Designer.cs">
+      <DependentUpon>BC117_MoYCBangPPKinhHienVi.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCQLTaiChinh\BC115_KhoaChuanBiBNQD151.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1460,6 +1478,15 @@
     <EmbeddedResource Include="BaoCao\ucBCDoanhThuTheoMayXN.resx">
       <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC119_DSHuongTienDVMoYC.resx">
+      <DependentUpon>BC119_DSHuongTienDVMoYC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC118_DSHuongTienDVYCCLC.resx">
+      <DependentUpon>BC118_DSHuongTienDVYCCLC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC117_MoYCBangPPKinhHienVi.resx">
+      <DependentUpon>BC117_MoYCBangPPKinhHienVi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\BC115_KhoaChuanBiBNQD151.resx">
       <DependentUpon>BC115_KhoaChuanBiBNQD151.cs</DependentUpon>
     </EmbeddedResource>
@@ -2142,6 +2169,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_115_KhoaChuanBiBNQD151.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_117_MoYCBangPPKinhHienVi.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_118_DSHuongTienDVYCCLC.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_119_DSHuongTienDVMoYC.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -30,7 +30,7 @@ namespace MedicalLink.ClassCommon.BCQLTaiChinh
         public decimal? soluong { get; set; }
         public int? pttt_loaiid { get; set; }
         public string pttt_loaiten { get; set; }
-        public int? departmentgroupid { get; set; }
+        public int departmentgroupid { get; set; }
         public string departmentgroupname { get; set; }
         public int? departmentid { get; set; }
         public string departmentname { get; set; }
@@ -50,9 +50,8 @@ namespace MedicalLink.ClassCommon.BCQLTaiChinh
         public int? dungcuvienid { get; set; }
         public string mota { get; set; }
         public DateTime? thuchienttdate { get; set; }
-        public int? nguoinhapid { get; set; }
-        public string nguoinhapname { get; set; }
-        public int? lastuserupdatedid { get; set; }
+        public string nguoinhap { get; set; }
+        public string lastuserupdated { get; set; }
         public DateTime? lasttimeupdated { get; set; }
     }
 }

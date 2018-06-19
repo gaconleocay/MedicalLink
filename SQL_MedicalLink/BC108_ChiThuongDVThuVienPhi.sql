@@ -2,7 +2,7 @@
 --BC108_ChiThuongDVThuVienPhi
 
 
---ngay 7/6/2018
+--ngay 20/6/2018
 
 SELECT 1 as stt,
 	'Thần kinh (ĐNĐ) 03/18' as departmentgroupname,
@@ -18,7 +18,7 @@ SELECT 1 as stt,
 FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien,
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
 		from serviceprice 
-		where servicepricecode in ('TD37018','TD37019') and departmentgroupid=11 "+tieuchi_ser+") ser
+		where servicepricecode in ('TD37018','TD37019') "+tieuchi_ser+") ser
 	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.dongia
 	

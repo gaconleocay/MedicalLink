@@ -1056,9 +1056,32 @@ namespace MedicalLink.Base
                 REPORT_116.permissionnote = "Sử dụng dữ liệu cho các báo cáo: REPORT_117; REPORT_118; REPORT_119";
                 lstresult.Add(REPORT_116);
 
+                ClassCommon.classPermission REPORT_117 = new ClassCommon.classPermission();
+                REPORT_117.permissioncheck = false;
+                REPORT_117.permissioncode = "REPORT_117";
+                REPORT_117.permissionname = "Danh sách mổ Yêu cầu bằng phương pháp kính hiển vi";
+                REPORT_117.permissiontype = 3;
+                REPORT_117.tabMenuId = 4;
+                REPORT_117.permissionnote = "";
+                lstresult.Add(REPORT_117);
 
+                ClassCommon.classPermission REPORT_118 = new ClassCommon.classPermission();
+                REPORT_118.permissioncheck = false;
+                REPORT_118.permissioncode = "REPORT_118";
+                REPORT_118.permissionname = "Danh sách hưởng tiền dịch vụ yêu cầu chất lượng cao";
+                REPORT_118.permissiontype = 3;
+                REPORT_118.tabMenuId = 4;
+                REPORT_118.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_118_DV";
+                lstresult.Add(REPORT_118);
 
-
+                ClassCommon.classPermission REPORT_119 = new ClassCommon.classPermission();
+                REPORT_119.permissioncheck = false;
+                REPORT_119.permissioncode = "REPORT_119";
+                REPORT_119.permissionname = "Danh sách hưởng tiền dịch vụ mổ yêu cầu";
+                REPORT_119.permissiontype = 3;
+                REPORT_119.tabMenuId = 4;
+                REPORT_119.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_119_DV";
+                lstresult.Add(REPORT_119);
 
 
 

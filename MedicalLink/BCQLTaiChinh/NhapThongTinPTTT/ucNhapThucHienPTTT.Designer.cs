@@ -96,6 +96,7 @@
             this.gridColumn53 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn54 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn55 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn74 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemGridLookUp_MoiMoChinh = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemGridLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -568,7 +569,8 @@
             this.gridColumn52,
             this.gridColumn53,
             this.gridColumn54,
-            this.gridColumn55});
+            this.gridColumn55,
+            this.gridColumn74});
             this.gridViewDataDV.GridControl = this.gridControlDataDV;
             this.gridViewDataDV.IndicatorWidth = 30;
             this.gridViewDataDV.Name = "gridViewDataDV";
@@ -590,12 +592,24 @@
             // 
             // gridColumn73
             // 
+            this.gridColumn73.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn73.AppearanceCell.Options.UseFont = true;
+            this.gridColumn73.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn73.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn73.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn73.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn73.Caption = "thuchienptttid";
             this.gridColumn73.FieldName = "thuchienptttid";
             this.gridColumn73.Name = "gridColumn73";
             // 
             // gridColumn72
             // 
+            this.gridColumn72.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn72.AppearanceCell.Options.UseFont = true;
+            this.gridColumn72.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn72.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn72.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn72.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn72.Caption = "Trangthai";
             this.gridColumn72.FieldName = "img_nhapptttstt";
             this.gridColumn72.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
@@ -603,6 +617,7 @@
             this.gridColumn72.OptionsColumn.AllowEdit = false;
             this.gridColumn72.OptionsColumn.FixedWidth = true;
             this.gridColumn72.OptionsColumn.ShowCaption = false;
+            this.gridColumn72.ToolTip = "Trạng thái nhập PTTT";
             this.gridColumn72.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.gridColumn72.Visible = true;
             this.gridColumn72.VisibleIndex = 0;
@@ -610,7 +625,7 @@
             // 
             // gridColumn19
             // 
-            this.gridColumn19.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn19.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn19.AppearanceCell.Options.UseFont = true;
             this.gridColumn19.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn19.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -630,7 +645,7 @@
             // 
             // gridColumn20
             // 
-            this.gridColumn20.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn20.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn20.AppearanceCell.Options.UseFont = true;
             this.gridColumn20.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -650,7 +665,7 @@
             // 
             // gridColumn21
             // 
-            this.gridColumn21.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn21.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn21.AppearanceCell.Options.UseFont = true;
             this.gridColumn21.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -666,11 +681,11 @@
             this.gridColumn21.OptionsColumn.ReadOnly = true;
             this.gridColumn21.Visible = true;
             this.gridColumn21.VisibleIndex = 3;
-            this.gridColumn21.Width = 100;
+            this.gridColumn21.Width = 90;
             // 
             // gridColumn22
             // 
-            this.gridColumn22.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn22.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn22.AppearanceCell.Options.UseFont = true;
             this.gridColumn22.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn22.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -686,11 +701,11 @@
             this.gridColumn22.OptionsColumn.ReadOnly = true;
             this.gridColumn22.Visible = true;
             this.gridColumn22.VisibleIndex = 4;
-            this.gridColumn22.Width = 100;
+            this.gridColumn22.Width = 90;
             // 
             // gridColumn28
             // 
-            this.gridColumn28.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn28.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn28.AppearanceCell.Options.UseFont = true;
             this.gridColumn28.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn28.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -708,7 +723,7 @@
             // 
             // gridColumn23
             // 
-            this.gridColumn23.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn23.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn23.AppearanceCell.Options.UseFont = true;
             this.gridColumn23.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn23.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -728,7 +743,7 @@
             // 
             // gridColumn24
             // 
-            this.gridColumn24.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn24.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn24.AppearanceCell.Options.UseFont = true;
             this.gridColumn24.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -744,11 +759,11 @@
             this.gridColumn24.OptionsColumn.AllowEdit = false;
             this.gridColumn24.Visible = true;
             this.gridColumn24.VisibleIndex = 7;
-            this.gridColumn24.Width = 100;
+            this.gridColumn24.Width = 90;
             // 
             // gridColumn25
             // 
-            this.gridColumn25.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn25.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn25.AppearanceCell.Options.UseFont = true;
             this.gridColumn25.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn25.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -768,7 +783,7 @@
             // 
             // gridColumn27
             // 
-            this.gridColumn27.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn27.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn27.AppearanceCell.Options.UseFont = true;
             this.gridColumn27.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn27.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -784,11 +799,11 @@
             this.gridColumn27.OptionsColumn.AllowEdit = false;
             this.gridColumn27.Visible = true;
             this.gridColumn27.VisibleIndex = 9;
-            this.gridColumn27.Width = 200;
+            this.gridColumn27.Width = 150;
             // 
             // gridColumn29
             // 
-            this.gridColumn29.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn29.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn29.AppearanceCell.Options.UseFont = true;
             this.gridColumn29.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn29.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -806,7 +821,7 @@
             // 
             // gridColumn30
             // 
-            this.gridColumn30.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn30.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn30.AppearanceCell.Options.UseFont = true;
             this.gridColumn30.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn30.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -824,7 +839,7 @@
             // 
             // gridColumn31
             // 
-            this.gridColumn31.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn31.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn31.AppearanceCell.Options.UseFont = true;
             this.gridColumn31.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -835,6 +850,8 @@
             this.gridColumn31.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn31.Caption = "Ngày chỉ định";
+            this.gridColumn31.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
+            this.gridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn31.FieldName = "servicepricedate";
             this.gridColumn31.Name = "gridColumn31";
             this.gridColumn31.OptionsColumn.AllowEdit = false;
@@ -844,7 +861,7 @@
             // 
             // gridColumn32
             // 
-            this.gridColumn32.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn32.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn32.AppearanceCell.Options.UseFont = true;
             this.gridColumn32.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn32.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -864,7 +881,7 @@
             // 
             // gridColumn33
             // 
-            this.gridColumn33.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn33.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn33.AppearanceCell.Options.UseFont = true;
             this.gridColumn33.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn33.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -880,11 +897,11 @@
             this.gridColumn33.OptionsColumn.AllowEdit = false;
             this.gridColumn33.Visible = true;
             this.gridColumn33.VisibleIndex = 14;
-            this.gridColumn33.Width = 125;
+            this.gridColumn33.Width = 110;
             // 
             // gridColumn34
             // 
-            this.gridColumn34.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn34.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn34.AppearanceCell.Options.UseFont = true;
             this.gridColumn34.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -904,7 +921,7 @@
             // 
             // gridColumn35
             // 
-            this.gridColumn35.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn35.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn35.AppearanceCell.Options.UseFont = true;
             this.gridColumn35.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn35.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -922,7 +939,7 @@
             // 
             // gridColumn37
             // 
-            this.gridColumn37.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn37.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn37.AppearanceCell.Options.UseFont = true;
             this.gridColumn37.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn37.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -940,7 +957,7 @@
             // 
             // gridColumn38
             // 
-            this.gridColumn38.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn38.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn38.AppearanceCell.Options.UseFont = true;
             this.gridColumn38.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn38.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -958,7 +975,7 @@
             // 
             // gridColumn39
             // 
-            this.gridColumn39.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn39.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn39.AppearanceCell.Options.UseFont = true;
             this.gridColumn39.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn39.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -976,7 +993,7 @@
             // 
             // gridColumn40
             // 
-            this.gridColumn40.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn40.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn40.AppearanceCell.Options.UseFont = true;
             this.gridColumn40.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn40.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1046,7 +1063,7 @@
             // 
             // gridColumn41
             // 
-            this.gridColumn41.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn41.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn41.AppearanceCell.Options.UseFont = true;
             this.gridColumn41.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn41.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1064,7 +1081,7 @@
             // 
             // gridColumn42
             // 
-            this.gridColumn42.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn42.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn42.AppearanceCell.Options.UseFont = true;
             this.gridColumn42.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn42.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1082,7 +1099,7 @@
             // 
             // gridColumn43
             // 
-            this.gridColumn43.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn43.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn43.AppearanceCell.Options.UseFont = true;
             this.gridColumn43.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn43.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1100,7 +1117,7 @@
             // 
             // gridColumn44
             // 
-            this.gridColumn44.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn44.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn44.AppearanceCell.Options.UseFont = true;
             this.gridColumn44.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn44.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1118,7 +1135,7 @@
             // 
             // gridColumn45
             // 
-            this.gridColumn45.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn45.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn45.AppearanceCell.Options.UseFont = true;
             this.gridColumn45.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn45.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1136,7 +1153,7 @@
             // 
             // gridColumn46
             // 
-            this.gridColumn46.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn46.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn46.AppearanceCell.Options.UseFont = true;
             this.gridColumn46.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn46.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1154,7 +1171,7 @@
             // 
             // gridColumn47
             // 
-            this.gridColumn47.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn47.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn47.AppearanceCell.Options.UseFont = true;
             this.gridColumn47.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn47.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1172,7 +1189,7 @@
             // 
             // gridColumn48
             // 
-            this.gridColumn48.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn48.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn48.AppearanceCell.Options.UseFont = true;
             this.gridColumn48.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn48.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1190,7 +1207,7 @@
             // 
             // gridColumn49
             // 
-            this.gridColumn49.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn49.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn49.AppearanceCell.Options.UseFont = true;
             this.gridColumn49.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn49.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1208,7 +1225,7 @@
             // 
             // gridColumn50
             // 
-            this.gridColumn50.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn50.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn50.AppearanceCell.Options.UseFont = true;
             this.gridColumn50.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn50.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1226,7 +1243,7 @@
             // 
             // gridColumn51
             // 
-            this.gridColumn51.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn51.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn51.AppearanceCell.Options.UseFont = true;
             this.gridColumn51.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn51.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1244,7 +1261,7 @@
             // 
             // gridColumn52
             // 
-            this.gridColumn52.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn52.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn52.AppearanceCell.Options.UseFont = true;
             this.gridColumn52.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn52.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1261,7 +1278,7 @@
             // 
             // gridColumn53
             // 
-            this.gridColumn53.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn53.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn53.AppearanceCell.Options.UseFont = true;
             this.gridColumn53.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn53.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1270,16 +1287,16 @@
             this.gridColumn53.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn53.Caption = "Người nhập thực hiện";
-            this.gridColumn53.FieldName = "nguoinhapname";
+            this.gridColumn53.FieldName = "nguoinhap";
             this.gridColumn53.Name = "gridColumn53";
             this.gridColumn53.OptionsColumn.AllowEdit = false;
             this.gridColumn53.Visible = true;
-            this.gridColumn53.VisibleIndex = 33;
+            this.gridColumn53.VisibleIndex = 34;
             this.gridColumn53.Width = 150;
             // 
             // gridColumn54
             // 
-            this.gridColumn54.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn54.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn54.AppearanceCell.Options.UseFont = true;
             this.gridColumn54.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn54.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -1290,16 +1307,18 @@
             this.gridColumn54.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn54.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn54.Caption = "Ngày nhập thực hiện";
+            this.gridColumn54.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
+            this.gridColumn54.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn54.FieldName = "thuchienttdate";
             this.gridColumn54.Name = "gridColumn54";
             this.gridColumn54.OptionsColumn.AllowEdit = false;
             this.gridColumn54.Visible = true;
-            this.gridColumn54.VisibleIndex = 34;
+            this.gridColumn54.VisibleIndex = 33;
             this.gridColumn54.Width = 125;
             // 
             // gridColumn55
             // 
-            this.gridColumn55.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn55.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn55.AppearanceCell.Options.UseFont = true;
             this.gridColumn55.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.gridColumn55.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -1307,10 +1326,29 @@
             this.gridColumn55.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn55.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn55.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn55.Caption = "gridColumn55";
+            this.gridColumn55.Caption = "Người cập nhật";
+            this.gridColumn55.FieldName = "lastuserupdated";
             this.gridColumn55.Name = "gridColumn55";
-            this.gridColumn55.Visible = true;
-            this.gridColumn55.VisibleIndex = 35;
+            this.gridColumn55.OptionsColumn.AllowEdit = false;
+            // 
+            // gridColumn74
+            // 
+            this.gridColumn74.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn74.AppearanceCell.Options.UseFont = true;
+            this.gridColumn74.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn74.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn74.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn74.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn74.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn74.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn74.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn74.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn74.Caption = "Ngày cập nhật";
+            this.gridColumn74.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
+            this.gridColumn74.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn74.FieldName = "lasttimeupdated";
+            this.gridColumn74.Name = "gridColumn74";
+            this.gridColumn74.OptionsColumn.AllowEdit = false;
             // 
             // repositoryItemGridLookUp_MoiMoChinh
             // 
@@ -2087,5 +2125,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn72;
         private DevExpress.Utils.ImageCollection imMenu;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn73;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn74;
     }
 }

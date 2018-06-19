@@ -13,6 +13,7 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using MedicalLink.Utilities.GUIGridView;
 using MedicalLink.ClassCommon.BCQLTaiChinh;
+using MedicalLink.Base;
 
 namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
 {
@@ -144,13 +145,14 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
                 string _tieuchi_mbp = "";
                 string _tieuchi_bhyt = "";
                 string _trangthainhappttt = "";
+                string _trangthainhappttt_2 = "";
                 string _trangthai_vp = "";
                 string _doituongbenhnhanid = "";
                 //string _loaivienphiid = "";
                 string _tieuchi_hsba = "";
                 string _tieuchi_thuchienpttt = "";
                 string _lstPhongChonLayBC = " and departmentid in (";
-                string _listuserid = "";
+                //string _listuserid = "";
 
                 string _datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string _datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -164,11 +166,12 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
                         _lstPhongChonLayBC += lstPhongCheck[i] + ",";
                     }
                     _lstPhongChonLayBC += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
+
                     if (cboTieuChi.Text == "Theo ngày chỉ định")
                     {
                         _tieuchi_ser = " and servicepricedate between '" + _datetungay + "' and '" + _datedenngay + "' ";
                         _tieuchi_mbp = " and maubenhphamdate between '" + _datetungay + "' and '" + _datedenngay + "' ";
-                        _tieuchi_thuchienpttt= " and servicepricedate between '" + _datetungay + "' and '" + _datedenngay + "' ";
+                        _tieuchi_thuchienpttt = " and servicepricedate between ''" + _datetungay + "'' and ''" + _datedenngay + "'' ";
                     }
                     else if (cboTieuChi.Text == "Theo ngày thực hiện")
                     {
@@ -216,29 +219,22 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
                     //Trang thai nhap PTTT
                     if (cboTrangThaiNhapPTTT.Text == "Chưa nhập PTTT")
                     {
-                        _trangthainhappttt = "";
+                        _trangthainhappttt = " LEFT JOIN ";
+                        _trangthainhappttt_2 = " WHERE thuchien.thuchienptttid is null ";
                     }
                     else if (cboTrangThaiNhapPTTT.Text == "Đã nhập PTTT")
                     {
-                        _trangthainhappttt = "";
+                        _trangthainhappttt = " INNER JOIN ";
                     }
-                    else if (cboTrangThaiNhapPTTT.Text == "Tất cả")
+                    else //if (cboTrangThaiNhapPTTT.Text == "Tất cả")
                     {
-                        _trangthainhappttt = "";
+                        _trangthainhappttt = " LEFT JOIN ";
                     }
-
-
-
-
-
 
                     this.lstBaoCao = new List<NhapThucHienPTTTDTO>();
-                    NhapThucHienPTTTDTO _item1 = new NhapThucHienPTTTDTO();
-                    lstBaoCao.Add(_item1);
-                    gridControlDataDV.DataSource = lstBaoCao;
 
-                    string _sqlLayData = @" select row_number () over (order by ser.servicepricedate) as stt, coalesce(thuchien.thuchienptttid,0) as thuchienptttid, ser.servicepriceid, vp.vienphiid, vp.patientid, hsba.patientname, ser.medicalrecordid, vp.hosobenhanid, vp.doituongbenhnhanid, vp.loaivienphiid, vp.vienphistatus, mbp.maubenhphamid, bh.bhytid, bh.bhytcode, ser.servicepricecode, ser.servicepricename, ser.servicepricedate, ser.loaidoituong, ser.dongia, ser.soluong, serf.pttt_loaiid, (case serf.pttt_loaiid when 1 then 'Phẫu thuật đặc biệt' when 2 then 'Phẫu thuật loại 1' when 3 then 'Phẫu thuật loại 2' when 4 then 'Phẫu thuật loại 3' when 5 then 'Thủ thuật đặc biệt' when 6 then 'Thủ thuật loại 1' when 7 then 'Thủ thuật loại 2' when 8 then 'Thủ thuật loại 3' else '' end) as pttt_loaiten, ser.departmentgroupid, degp.departmentgroupname, ser.departmentid, de.departmentname, mbp.userid as ngchidinhid, ngcd.username as ngchidinhname, thuchien.mochinhid, thuchien.moimochinhid, thuchien.bacsigaymeid, thuchien.moigaymeid, thuchien.ktvphumeid, thuchien.phu1id, thuchien.phu2id, thuchien.ktvhoitinhid, thuchien.ddhoitinhid, thuchien.ddhanhchinhid, thuchien.holyid, thuchien.dungcuvienid, thuchien.mota, thuchien.thuchienttdate, thuchien.nguoinhap, thuchien.nguoinhapname, thuchien.lastuserupdated, thuchien.lasttimeupdated from (select servicepriceid,vienphiid,medicalrecordid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,loaidoituong,soluong,departmentgroupid,departmentid, from serviceprice where 1=1 and bhyt_groupcode in ('06PTTT','07KTC') " + _tieuchi_ser + _lstPhongChonLayBC + ") ser inner join (select maubenhphamid,userid from maubenhpham where maubenhphamgrouptype=4 " + _tieuchi_mbp + ") mbp on mbp.maubenhphamid=ser.maubenhphamid inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4) serf on serf.servicepricecode=ser.servicepricecode inner join (select vienphiid,patientid,hosobenhanid,doituongbenhnhanid,loaivienphiid,vienphistatus,bhytid,vienphidate,vienphidate_ravien from vienphi where 1=1 " + _tieuchi_vp + _trangthai_vp + _doituongbenhnhanid + ") vp on vp.vienphiid=ser.vienphiid inner join (select hosobenhanid,patientname from hosobenhan where 1=1 " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=vp.hosobenhanid inner join (select bhytid,bhytcode from bhyt where 1=1 " + _tieuchi_bhyt + ") bhyt on bhyt.bhytid=vp.bhytid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid inner join (select departmentid,departmentname from department where departmenttype in(2,3,9) " + _lstPhongChonLayBC + ") de on de.departmentid=ser.departmentid left join nhompersonnel ngcd on ngcd.userhisid=mbp.userid LEFT JOIN (select * from dblink('myconn_mel','select thuchienptttid,servicepriceid,mochinhid,moimochinhid,bacsigaymeid,moigaymeid,ktvphumeid,phu1id,phu2id,ktvhoitinhid,ddhoitinhid,ddhanhchinhid,holyid,dungcuvienid,mota,nguoinhap,thuchienttdate,lastuserupdated,lasttimeupdated from ml_thuchienpttt where 1=1 " + _tieuchi_thuchienpttt + "') as thuchien(thuchienptttid integer,servicepriceid integer,mochinhid integer,moimochinhid integer,bacsigaymeid integer,moigaymeid integer,ktvphumeid integer,phu1id integer,phu2id integer,ktvhoitinhid integer,ddhoitinhid integer,ddhanhchinhid integer,holyid integer,dungcuvienid integer,mota text,nguoinhap text,thuchienttdate timestamp without time zone,lastuserupdated text,lasttimeupdated timestamp without time zone)) thuchien on thuchien.servicepriceid=ser.servicepriceid;";
-                    DataTable _dataBaoCao = condb.GetDataTable_HIS(_sqlLayData);
+                    string _sqlLayData = @" select row_number () over (order by ser.servicepricedate) as stt, coalesce(thuchien.thuchienptttid,0) as thuchienptttid, ser.servicepriceid, vp.vienphiid, vp.patientid, hsba.patientname, ser.medicalrecordid, vp.hosobenhanid, vp.doituongbenhnhanid, vp.loaivienphiid, vp.vienphistatus, mbp.maubenhphamid, bh.bhytid, bh.bhytcode, ser.servicepricecode, ser.servicepricename, ser.servicepricedate, ser.loaidoituong, ser.dongia, ser.soluong, serf.pttt_loaiid, (case serf.pttt_loaiid when 1 then 'Phẫu thuật đặc biệt' when 2 then 'Phẫu thuật loại 1' when 3 then 'Phẫu thuật loại 2' when 4 then 'Phẫu thuật loại 3' when 5 then 'Thủ thuật đặc biệt' when 6 then 'Thủ thuật loại 1' when 7 then 'Thủ thuật loại 2' when 8 then 'Thủ thuật loại 3' else '' end) as pttt_loaiten, ser.departmentgroupid, degp.departmentgroupname, ser.departmentid, de.departmentname, mbp.userid as ngchidinhid, ngcd.username as ngchidinhname, thuchien.mochinhid, thuchien.moimochinhid, thuchien.bacsigaymeid, thuchien.moigaymeid, thuchien.ktvphumeid, thuchien.phu1id, thuchien.phu2id, thuchien.ktvhoitinhid, thuchien.ddhoitinhid, thuchien.ddhanhchinhid, thuchien.holyid, thuchien.dungcuvienid, thuchien.mota, thuchien.thuchienttdate, thuchien.nguoinhap, thuchien.lastuserupdated, thuchien.lasttimeupdated from (select servicepriceid,vienphiid,medicalrecordid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,loaidoituong,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia,departmentgroupid,departmentid from serviceprice where 1=1 and bhyt_groupcode in ('06PTTT','07KTC') " + _tieuchi_ser + _lstPhongChonLayBC + ") ser inner join (select maubenhphamid,userid from maubenhpham where maubenhphamgrouptype=4 " + _tieuchi_mbp + ") mbp on mbp.maubenhphamid=ser.maubenhphamid inner join (select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4) serf on serf.servicepricecode=ser.servicepricecode inner join (select vienphiid,patientid,hosobenhanid,doituongbenhnhanid,loaivienphiid,vienphistatus,bhytid,vienphidate,vienphidate_ravien from vienphi where 1=1 " + _tieuchi_vp + _trangthai_vp + _doituongbenhnhanid + ") vp on vp.vienphiid=ser.vienphiid inner join (select hosobenhanid,patientname from hosobenhan where 1=1 " + _tieuchi_hsba + ") hsba on hsba.hosobenhanid=vp.hosobenhanid inner join (select bhytid,bhytcode from bhyt where 1=1 " + _tieuchi_bhyt + ") bh on bh.bhytid=vp.bhytid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid inner join (select departmentid,departmentname from department where departmenttype in(2,3,9) " + _lstPhongChonLayBC + ") de on de.departmentid=ser.departmentid left join nhompersonnel ngcd on ngcd.userhisid=mbp.userid " + _trangthainhappttt + " (select * from dblink('myconn_mel','select thuchienptttid,servicepriceid,mochinhid,moimochinhid,bacsigaymeid,moigaymeid,ktvphumeid,phu1id,phu2id,ktvhoitinhid,ddhoitinhid,ddhanhchinhid,holyid,dungcuvienid,mota,nguoinhap,thuchienttdate,lastuserupdated,lasttimeupdated from ml_thuchienpttt where 1=1 " + _tieuchi_thuchienpttt + "') as thuchien(thuchienptttid integer,servicepriceid integer,mochinhid integer,moimochinhid integer,bacsigaymeid integer,moigaymeid integer,ktvphumeid integer,phu1id integer,phu2id integer,ktvhoitinhid integer,ddhoitinhid integer,ddhanhchinhid integer,holyid integer,dungcuvienid integer,mota text,nguoinhap text,thuchienttdate timestamp without time zone,lastuserupdated text,lasttimeupdated timestamp without time zone)) thuchien on thuchien.servicepriceid=ser.servicepriceid "+ _trangthainhappttt_2 + ";";
+                    DataTable _dataBaoCao = condb.GetDataTable_HISToMeL(_sqlLayData);
                     if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                     {
                         this.lstBaoCao = Utilities.DataTables.DataTableToList<NhapThucHienPTTTDTO>(_dataBaoCao);
@@ -269,24 +265,53 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
         {
             try
             {
+                string _sqlexcute = "";
                 var rowHandle = gridViewDataDV.FocusedRowHandle;
-                long _servicepriceid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "servicepriceid").ToString());
+                NhapThucHienPTTTDTO _ptttDTO = gridViewDataDV.GetRow(rowHandle) as NhapThucHienPTTTDTO;
 
-                long _mochinhid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "mochinhid").ToString());
-                long _moimochinhid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "moimochinhid").ToString());
-                long _bacsigaymeid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "bacsigaymeid").ToString());
-                long _moigaymeid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "moigaymeid").ToString());
-                long _ktvphumeid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "ktvphumeid").ToString());
-                long _phu1id = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "phu1id").ToString());
-                long _phu2id = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "phu2id").ToString());
-                long _ktvhoitinhid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "ktvhoitinhid").ToString());
-                long _ddhoitinhid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "ddhoitinhid").ToString());
-                long _ddhanhchinhid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "ddhanhchinhid").ToString());
-                long _holyid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "holyid").ToString());
-                long _dungcuvienid = Utilities.TypeConvertParse.ToInt64(gridViewDataDV.GetRowCellValue(rowHandle, "dungcuvienid").ToString());
+                string _mochinhid = _ptttDTO.mochinhid != null ? _ptttDTO.mochinhid.ToString() : "0";
+                string _moimochinhid = _ptttDTO.moimochinhid != null ? _ptttDTO.moimochinhid.ToString() : "0";
+                string _bacsigaymeid = _ptttDTO.bacsigaymeid != null ? _ptttDTO.bacsigaymeid.ToString() : "0";
+                string _moigaymeid = _ptttDTO.moigaymeid != null ? _ptttDTO.moigaymeid.ToString() : "0";
+                string _ktvphumeid = _ptttDTO.ktvphumeid != null ? _ptttDTO.ktvphumeid.ToString() : "0";
+                string _phu1id = _ptttDTO.phu1id != null ? _ptttDTO.phu1id.ToString() : "0";
+                string _phu2id = _ptttDTO.phu2id != null ? _ptttDTO.phu2id.ToString() : "0";
+                string _ktvhoitinhid = _ptttDTO.ktvhoitinhid != null ? _ptttDTO.ktvhoitinhid.ToString() : "0";
+                string _ddhoitinhid = _ptttDTO.ddhoitinhid != null ? _ptttDTO.ddhoitinhid.ToString() : "0";
+                string _ddhanhchinhid = _ptttDTO.ddhanhchinhid != null ? _ptttDTO.ddhanhchinhid.ToString() : "0";
+                string _holyid = _ptttDTO.holyid != null ? _ptttDTO.holyid.ToString() : "0";
+                string _dungcuvienid = _ptttDTO.dungcuvienid != null ? _ptttDTO.dungcuvienid.ToString() : "0";
 
+                if (_mochinhid != "0" || _moimochinhid != "0" || _bacsigaymeid != "0" || _moigaymeid != "0" || _ktvphumeid != "0" || _phu1id != "0" || _phu2id != "0" || _ktvhoitinhid != "0" || _ddhoitinhid != "0" || _ddhanhchinhid != "0" || _holyid != "0" || _dungcuvienid != "0")
+                {
+                    if (_ptttDTO.thuchienptttid != 0) //update
+                    {
+                        _sqlexcute = @"UPDATE ml_thuchienpttt SET vienphiid='" + _ptttDTO.vienphiid + "',patientid='" + _ptttDTO.patientid + "',patientname = '" + _ptttDTO.patientname + "', medicalrecordid='" + _ptttDTO.medicalrecordid + "', hosobenhanid='" + _ptttDTO.hosobenhanid + "', maubenhphamid='" + _ptttDTO.maubenhphamid + "', bhytid='" + _ptttDTO.bhytid + "', bhytcode='" + _ptttDTO.bhytcode + "', servicepricecode='" + _ptttDTO.servicepricecode + "', servicepricename='" + _ptttDTO.servicepricename + "', servicepricedate='" + _ptttDTO.servicepricedate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', loaidoituong='" + _ptttDTO.loaidoituong + "', dongia='" + _ptttDTO.dongia + "', soluong='" + _ptttDTO.soluong + "', pttt_loaiid='" + _ptttDTO.pttt_loaiid + "', departmentgroupid='" + _ptttDTO.departmentgroupid + "', departmentid='" + _ptttDTO.departmentid + "', ngchidinhid='" + _ptttDTO.ngchidinhid + "', mochinhid='" + _mochinhid + "', moimochinhid='" + _moimochinhid + "', bacsigaymeid='" + _bacsigaymeid + "', moigaymeid='" + _moigaymeid + "', ktvphumeid='" + _ktvphumeid + "', phu1id='" + _phu1id + "', phu2id='" + _phu2id + "', ktvhoitinhid='" + _ktvhoitinhid + "', ddhoitinhid='" + _ddhoitinhid + "', ddhanhchinhid='" + _ddhanhchinhid + "', holyid='" + _holyid + "', dungcuvienid='" + _dungcuvienid + "', mota='" + _ptttDTO.mota + "', lastuserupdated='" + SessionLogin.SessionUsercode + " - " + SessionLogin.SessionUsername + "', lasttimeupdated='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE servicepriceid='" + _ptttDTO.servicepriceid + "';";
+                    }
+                    else//insert
+                    {
+                        _sqlexcute = @"INSERT INTO ml_thuchienpttt(servicepriceid,vienphiid,patientid,patientname,medicalrecordid,hosobenhanid,maubenhphamid,bhytid,bhytcode, servicepricecode,servicepricename,servicepricedate,loaidoituong,dongia,soluong,pttt_loaiid,departmentgroupid,departmentid,ngchidinhid,mochinhid,moimochinhid,bacsigaymeid,moigaymeid,ktvphumeid,phu1id,phu2id,ktvhoitinhid,ddhoitinhid,ddhanhchinhid,holyid,dungcuvienid,mota,nguoinhap,thuchienttdate) 
+VALUES ('" + _ptttDTO.servicepriceid + "','" + _ptttDTO.vienphiid + "','" + _ptttDTO.patientid + "','" + _ptttDTO.patientname + "','" + _ptttDTO.medicalrecordid + "','" + _ptttDTO.hosobenhanid + "','" + _ptttDTO.maubenhphamid + "','" + _ptttDTO.bhytid + "','" + _ptttDTO.bhytcode + "','" + _ptttDTO.servicepricecode + "','" + _ptttDTO.servicepricename + "','" + _ptttDTO.servicepricedate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "','" + _ptttDTO.loaidoituong + "','" + _ptttDTO.dongia + "','" + _ptttDTO.soluong + "','" + _ptttDTO.pttt_loaiid + "','" + _ptttDTO.departmentgroupid + "','" + _ptttDTO.departmentid + "','" + _ptttDTO.ngchidinhid + "','" + _mochinhid + "','" + _moimochinhid + "','" + _bacsigaymeid + "','" + _moigaymeid + "','" + _ktvphumeid + "','" + _phu1id + "','" + _phu2id + "','" + _ktvhoitinhid + "','" + _ddhoitinhid + "','" + _ddhanhchinhid + "','" + _holyid + "','" + _dungcuvienid + "','" + _ptttDTO.mota + "','" + SessionLogin.SessionUsercode + " - " + SessionLogin.SessionUsername + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "');";
+                    }
+                }
+                else//delete
+                {
+                    if (_ptttDTO.thuchienptttid != 0)
+                    {
+                        _sqlexcute = "delete from ml_thuchienpttt where thuchienptttid='" + _ptttDTO.thuchienptttid + "';";
+                    }
+                }
 
-
+                if (condb.ExecuteNonQuery_MeL(_sqlexcute))
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                    frmthongbao.Show();
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THAT_BAI);
+                    frmthongbao.Show();
+                }
             }
             catch (Exception ex)
             {

@@ -14,17 +14,17 @@ using DevExpress.XtraGrid.Views.Grid;
 
 namespace MedicalLink.BaoCao
 {
-    public partial class ucSoPhauThuatThuThuat : UserControl
+    public partial class ucSoThuThuatLamSang : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private DataTable dataBaoCao { get; set; }
-        public ucSoPhauThuatThuThuat()
+        public ucSoThuThuatLamSang()
         {
             InitializeComponent();
         }
 
         #region Load
-        private void ucSoPhauThuatThuThuat_Load(object sender, EventArgs e)
+        private void ucSoThuThuatLamSang_Load(object sender, EventArgs e)
         {
             dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
@@ -138,10 +138,10 @@ namespace MedicalLink.BaoCao
                 reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
-                string fileTemplatePath = "So_PhauThuatThuThuat_CacKhoa.xlsx";
+                string fileTemplatePath = "So_ThuThuatLamSang_CacKhoa.xlsx";
                 if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
                 {
-                    fileTemplatePath = "So_PhauThuatThuThuat_ThanNhanTao.xlsx";
+                    fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
                 }
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBaoCao);
@@ -173,10 +173,10 @@ namespace MedicalLink.BaoCao
                 reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
-                string fileTemplatePath = "So_PhauThuatThuThuat_CacKhoa.xlsx";
+                string fileTemplatePath = "So_ThuThuatLamSang_CacKhoa.xlsx";
                 if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
                 {
-                    fileTemplatePath = "So_PhauThuatThuThuat_ThanNhanTao.xlsx";
+                    fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
                 }
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }

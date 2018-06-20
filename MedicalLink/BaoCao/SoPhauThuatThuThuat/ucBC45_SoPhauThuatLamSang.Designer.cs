@@ -1,6 +1,6 @@
 ﻿namespace MedicalLink.BaoCao
 {
-    partial class ucSoPhauThuatThuThuat
+    partial class ucBC45_SoPhauThuatLamSang
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucSoPhauThuatThuThuat));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBC45_SoPhauThuatLamSang));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.cboLoaiSoThuThuat = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -43,6 +41,8 @@
             this.dateTuNgay = new System.Windows.Forms.DateTimePicker();
             this.btnTimKiem = new DevExpress.XtraEditors.SimpleButton();
             this.groupBoxAction = new System.Windows.Forms.GroupBox();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
+            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlSoCDHA = new DevExpress.XtraGrid.GridControl();
             this.bandedGridViewSoCDHA = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridView();
             this.gridBand1 = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
@@ -75,13 +75,10 @@
             this.bandedGridColumn_GiupViec = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn11 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiSoThuThuat.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSoCDHA)).BeginInit();
@@ -104,8 +101,6 @@
             // 
             this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSKhoa);
-            this.groupBoxFile.Controls.Add(this.cboLoaiSoThuThuat);
-            this.groupBoxFile.Controls.Add(this.labelControl4);
             this.groupBoxFile.Controls.Add(this.labelControl2);
             this.groupBoxFile.Controls.Add(this.cboTieuChi);
             this.groupBoxFile.Controls.Add(this.labelControl1);
@@ -148,34 +143,6 @@
             this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
             this.chkcomboListDSKhoa.Size = new System.Drawing.Size(386, 22);
             this.chkcomboListDSKhoa.TabIndex = 82;
-            // 
-            // cboLoaiSoThuThuat
-            // 
-            this.cboLoaiSoThuThuat.EditValue = "Thủ thuật các khoa";
-            this.cboLoaiSoThuThuat.Location = new System.Drawing.Point(554, 22);
-            this.cboLoaiSoThuThuat.Name = "cboLoaiSoThuThuat";
-            this.cboLoaiSoThuThuat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiSoThuThuat.Properties.Appearance.Options.UseFont = true;
-            this.cboLoaiSoThuThuat.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiSoThuThuat.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboLoaiSoThuThuat.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLoaiSoThuThuat.Properties.Items.AddRange(new object[] {
-            "Thủ thuật các khoa",
-            "Thủ thuật Thận nhân tạo"});
-            this.cboLoaiSoThuThuat.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboLoaiSoThuThuat.Size = new System.Drawing.Size(155, 22);
-            this.cboLoaiSoThuThuat.TabIndex = 25;
-            this.cboLoaiSoThuThuat.SelectedValueChanged += new System.EventHandler(this.cboLoaiSoThuThuat_SelectedValueChanged);
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(503, 25);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(45, 16);
-            this.labelControl4.TabIndex = 24;
-            this.labelControl4.Text = "Loại sổ";
             // 
             // labelControl2
             // 
@@ -273,6 +240,36 @@
             this.groupBoxAction.Size = new System.Drawing.Size(125, 90);
             this.groupBoxAction.TabIndex = 9;
             this.groupBoxAction.TabStop = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnPrint.Appearance.Options.UseFont = true;
+            this.btnPrint.Appearance.Options.UseForeColor = true;
+            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(12, 14);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(100, 30);
+            this.btnPrint.TabIndex = 13;
+            this.btnPrint.Text = "In...";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // tbnExport
+            // 
+            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.tbnExport.Appearance.Options.UseFont = true;
+            this.tbnExport.Appearance.Options.UseForeColor = true;
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.tbnExport.Location = new System.Drawing.Point(12, 52);
+            this.tbnExport.Name = "tbnExport";
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
+            this.tbnExport.TabIndex = 12;
+            this.tbnExport.Text = "Xuất file";
+            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
             // 
             // gridControlSoCDHA
             // 
@@ -551,7 +548,7 @@
             this.gridColumn7.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn7.Caption = "Chẩn đoán trước TT";
+            this.gridColumn7.Caption = "Chẩn đoán trước PT";
             this.gridColumn7.FieldName = "chandoantruocphauthuat";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
@@ -569,7 +566,7 @@
             this.gridColumn15.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn15.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn15.Caption = "Chẩn đoán sau TT";
+            this.gridColumn15.Caption = "Chẩn đoán sau PT";
             this.gridColumn15.FieldName = "chandoansauphauthuat";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;
@@ -609,7 +606,7 @@
             this.bandedGridColumn10.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn10.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn10.Caption = "Mã thủ thuật";
+            this.bandedGridColumn10.Caption = "Mã phẫu thuật";
             this.bandedGridColumn10.FieldName = "servicepricecode";
             this.bandedGridColumn10.Name = "bandedGridColumn10";
             this.bandedGridColumn10.OptionsColumn.AllowEdit = false;
@@ -626,7 +623,7 @@
             this.bandedGridColumn9.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn9.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn9.Caption = "Tên thủ thuật";
+            this.bandedGridColumn9.Caption = "Tên phẫu thuật";
             this.bandedGridColumn9.FieldName = "servicepricename";
             this.bandedGridColumn9.Name = "bandedGridColumn9";
             this.bandedGridColumn9.OptionsColumn.AllowEdit = false;
@@ -643,7 +640,7 @@
             this.bandedGridColumn8.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn8.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn8.Caption = "Phương pháp thủ thuật";
+            this.bandedGridColumn8.Caption = "Phương pháp phẫu thuật";
             this.bandedGridColumn8.FieldName = "phuongphappttt";
             this.bandedGridColumn8.Name = "bandedGridColumn8";
             this.bandedGridColumn8.OptionsColumn.AllowEdit = false;
@@ -735,7 +732,7 @@
             this.bandedGridColumn3.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn3.Caption = "Ngày/giờ thủ thuật";
+            this.bandedGridColumn3.Caption = "Ngày/giờ phẫu thuật";
             this.bandedGridColumn3.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
             this.bandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn3.FieldName = "phauthuatthuthuatdate";
@@ -755,7 +752,7 @@
             this.bandedGridColumn1.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn1.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn1.Caption = "Loại thủ thuật";
+            this.bandedGridColumn1.Caption = "Loại phẫu thuật";
             this.bandedGridColumn1.FieldName = "loaipttt";
             this.bandedGridColumn1.Name = "bandedGridColumn1";
             this.bandedGridColumn1.OptionsColumn.AllowEdit = false;
@@ -772,7 +769,7 @@
             this.bandedGridColumn_PTVien.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn_PTVien.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn_PTVien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn_PTVien.Caption = "Bác sĩ thủ thuật";
+            this.bandedGridColumn_PTVien.Caption = "Bác sĩ phẫu thuật";
             this.bandedGridColumn_PTVien.FieldName = "phauthuatvien";
             this.bandedGridColumn_PTVien.Name = "bandedGridColumn_PTVien";
             this.bandedGridColumn_PTVien.OptionsColumn.AllowEdit = false;
@@ -849,37 +846,7 @@
             // 
             this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
             // 
-            // btnPrint
-            // 
-            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnPrint.Appearance.Options.UseFont = true;
-            this.btnPrint.Appearance.Options.UseForeColor = true;
-            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
-            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(12, 14);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 30);
-            this.btnPrint.TabIndex = 13;
-            this.btnPrint.Text = "In...";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // tbnExport
-            // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(12, 52);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 30);
-            this.tbnExport.TabIndex = 12;
-            this.tbnExport.Text = "Xuất file";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
-            // 
-            // ucSoPhauThuatThuThuat
+            // ucBC45_SoPhauThuatLamSang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -887,15 +854,14 @@
             this.Controls.Add(this.panelControlThongTinDV);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "ucSoPhauThuatThuThuat";
+            this.Name = "ucBC45_SoPhauThuatLamSang";
             this.Size = new System.Drawing.Size(1110, 594);
-            this.Load += new System.EventHandler(this.ucSoPhauThuatThuThuat_Load);
+            this.Load += new System.EventHandler(this.ucBC45_SoPhauThuatLamSang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiSoThuThuat.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSoCDHA)).EndInit();
@@ -916,7 +882,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.DateTimePicker dateDenNgay;
         private System.Windows.Forms.DateTimePicker dateTuNgay;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.ComboBoxEdit cboTieuChi;
         private DevExpress.XtraGrid.GridControl gridControlSoCDHA;
@@ -943,7 +908,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn_GayMe;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn_GiupViec;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn11;
-        private DevExpress.XtraEditors.ComboBoxEdit cboLoaiSoThuThuat;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSKhoa;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn4;

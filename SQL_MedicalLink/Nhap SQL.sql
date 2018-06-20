@@ -938,8 +938,9 @@ select mbp.patientid,
 	
 from service se
 	inner join maubenhpham mbp on mbp.maubenhphamid=se.maubenhphamid
-where se.idmayxn='0' --and tenmayxn<>''
-		and mbp.maubenhphamfinishdate between '2018-06-19:06:00:00' and '2018-06-20:06:00:00'
+where se.idmayxn='0' --and tenmayxn<>'' 
+		and servicepricecode='SHTT37097'
+		and mbp.maubenhphamfinishdate between '2018-06-19 06:00:00' and '2018-06-20 06:00:00'
 order by mbp.maubenhphamfinishdate
 
 

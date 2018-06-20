@@ -576,10 +576,10 @@ namespace MedicalLink.Base
                 ClassCommon.classPermission REPORT_19 = new ClassCommon.classPermission();
                 REPORT_19.permissioncheck = false;
                 REPORT_19.permissioncode = "REPORT_19";
-                REPORT_19.permissionname = "Sổ thủ thuật  - khoa lâm sàng";
+                REPORT_19.permissionname = "Sổ thủ thuật  - Khoa lâm sàng";
                 REPORT_19.permissiontype = 3;
                 REPORT_19.tabMenuId = 5;
-                REPORT_19.permissionnote = "Sổ thủ thuật - khoa lâm sàng";
+                REPORT_19.permissionnote = "Sổ thủ thuật - Khoa lâm sàng";
                 lstresult.Add(REPORT_19);
 
                 ClassCommon.classPermission REPORT_20 = new ClassCommon.classPermission();
@@ -806,6 +806,17 @@ namespace MedicalLink.Base
                 REPORT_44.tabMenuId = 5;
                 REPORT_44.permissionnote = "Báo cáo sử dụng dịch vụ - Đối tượng thanh toán Yêu cầu (ver 2)";
                 lstresult.Add(REPORT_44);
+
+                ClassCommon.classPermission REPORT_45 = new ClassCommon.classPermission();
+                REPORT_45.permissioncheck = false;
+                REPORT_45.permissioncode = "REPORT_45";
+                REPORT_45.permissionname = "Sổ phẫu thuật - Khoa Lâm sàng";
+                REPORT_45.permissiontype = 3;
+                REPORT_45.tabMenuId = 5;
+                REPORT_45.permissionnote = "";
+                lstresult.Add(REPORT_45);
+
+
 
 
 

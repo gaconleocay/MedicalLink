@@ -923,7 +923,7 @@ File.Exists(this.txtPath.Text)
 
 0976655948
 --------
-xet nghiem
+xet nghiem không có mã máy
 
 select idmayxn,tenmayxn from service 
 where idmayxn=0
@@ -933,13 +933,14 @@ order by tenmayxn
 
 
 select mbp.patientid,
-	se.vienphiid,se.maubenhphamid,se.servicepriceid,se.servicepricecode,se.servicecode,se.servicename,se.idmayxn,se.tenmayxn
-
+	se.vienphiid,se.maubenhphamid,se.servicepriceid,se.servicepricecode,se.servicecode,se.servicename,se.idmayxn,se.tenmayxn,
+	mbp.maubenhphamfinishdate
+	
 from service se
 	inner join maubenhpham mbp on mbp.maubenhphamid=se.maubenhphamid
 where se.idmayxn='0' --and tenmayxn<>''
-		and mbp.maubenhphamfinishdate>='2018-05-11:00:00:00'
-	
+		and mbp.maubenhphamfinishdate between '2018-06-19:06:00:00' and '2018-06-20:06:00:00'
+order by mbp.maubenhphamfinishdate
 
 
 
@@ -1071,7 +1072,12 @@ Server: trừ tiền ID thẻ - dịch vụ theo ID tripod + lưu thời gian
 
 
 
+delete from ml_thuchienpttt where thuchienptttid in (
 
+select pttt.thuchienptttid from
+
+(select (row_number() OVER (PARTITION BY servicepriceid ORDER BY servicepriceid)) as stt,thuchienptttid,servicepriceid
+from ml_thuchienpttt) as pttt where  pttt.stt>1 )
 
 
 

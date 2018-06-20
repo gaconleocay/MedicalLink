@@ -282,9 +282,14 @@ namespace MedicalLink.BCQLTaiChinh.NhapThongTinPTTT
                 string _holyid = _ptttDTO.holyid != null ? _ptttDTO.holyid.ToString() : "0";
                 string _dungcuvienid = _ptttDTO.dungcuvienid != null ? _ptttDTO.dungcuvienid.ToString() : "0";
 
+
+                //Kiem tra ton tai trong CSDL
+                string _sqlKiemtra = "SELECT servicepriceid FROM ml_thuchienpttt where servicepriceid='" + _ptttDTO.servicepriceid + "';";
+                DataTable _dataKiemTra = condb.GetDataTable_MeL(_sqlKiemtra);
+
                 if (_mochinhid != "0" || _moimochinhid != "0" || _bacsigaymeid != "0" || _moigaymeid != "0" || _ktvphumeid != "0" || _phu1id != "0" || _phu2id != "0" || _ktvhoitinhid != "0" || _ddhoitinhid != "0" || _ddhanhchinhid != "0" || _holyid != "0" || _dungcuvienid != "0")
                 {
-                    if (_ptttDTO.thuchienptttid != 0) //update
+                    if (_dataKiemTra.Rows.Count>0) //update
                     {
                         _sqlexcute = @"UPDATE ml_thuchienpttt SET vienphiid='" + _ptttDTO.vienphiid + "',patientid='" + _ptttDTO.patientid + "',patientname = '" + _ptttDTO.patientname + "', medicalrecordid='" + _ptttDTO.medicalrecordid + "', hosobenhanid='" + _ptttDTO.hosobenhanid + "', maubenhphamid='" + _ptttDTO.maubenhphamid + "', bhytid='" + _ptttDTO.bhytid + "', bhytcode='" + _ptttDTO.bhytcode + "', servicepricecode='" + _ptttDTO.servicepricecode + "', servicepricename='" + _ptttDTO.servicepricename + "', servicepricedate='" + _ptttDTO.servicepricedate.Value.ToString("yyyy-MM-dd HH:mm:ss") + "', loaidoituong='" + _ptttDTO.loaidoituong + "', dongia='" + _ptttDTO.dongia + "', soluong='" + _ptttDTO.soluong + "', pttt_loaiid='" + _ptttDTO.pttt_loaiid + "', departmentgroupid='" + _ptttDTO.departmentgroupid + "', departmentid='" + _ptttDTO.departmentid + "', ngchidinhid='" + _ptttDTO.ngchidinhid + "', mochinhid='" + _mochinhid + "', moimochinhid='" + _moimochinhid + "', bacsigaymeid='" + _bacsigaymeid + "', moigaymeid='" + _moigaymeid + "', ktvphumeid='" + _ktvphumeid + "', phu1id='" + _phu1id + "', phu2id='" + _phu2id + "', ktvhoitinhid='" + _ktvhoitinhid + "', ddhoitinhid='" + _ddhoitinhid + "', ddhanhchinhid='" + _ddhanhchinhid + "', holyid='" + _holyid + "', dungcuvienid='" + _dungcuvienid + "', mota='" + _ptttDTO.mota + "', lastuserupdated='" + SessionLogin.SessionUsercode + " - " + SessionLogin.SessionUsername + "', lasttimeupdated='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "' WHERE servicepriceid='" + _ptttDTO.servicepriceid + "';";
                     }
@@ -296,7 +301,7 @@ VALUES ('" + _ptttDTO.servicepriceid + "','" + _ptttDTO.vienphiid + "','" + _ptt
                 }
                 else//delete
                 {
-                    if (_ptttDTO.thuchienptttid != 0)
+                    if (_dataKiemTra.Rows.Count > 0)
                     {
                         _sqlexcute = "delete from ml_thuchienpttt where thuchienptttid='" + _ptttDTO.thuchienptttid + "';";
                     }

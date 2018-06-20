@@ -370,8 +370,8 @@
             this.gridColumn2.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn2.Caption = "Tên khoa";
-            this.gridColumn2.FieldName = "departmentgroupname";
+            this.gridColumn2.Caption = "Mã user";
+            this.gridColumn2.FieldName = "usercode";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;

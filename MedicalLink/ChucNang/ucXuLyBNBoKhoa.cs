@@ -157,7 +157,7 @@ namespace MedicalLink.ChucNang
                 }
                 else // tìm theo mã VP
                 {
-                    _timkiem = " and medicalrecord.patientid = " + txtBNBKMaVP.Text;
+                    _timkiem = " and medicalrecord.vienphiid = " + txtBNBKMaVP.Text;
                 }
                 string sqlquerry = "SELECT distinct medicalrecord.medicalrecordid as madieutri, medicalrecord.patientid as mabenhnhan, medicalrecord.vienphiid as mavienphi, hosobenhan.patientname as tenbenhnhan, case medicalrecord.medicalrecordstatus when 99 then 'Kết thúc' else 'Đang điều trị' end as trangthai, medicalrecord.thoigianvaovien as thoigianvaovien, medicalrecord.thoigianravien as thoigianravien, departmentgroup.departmentgroupname as tenkhoa, medicalrecord.departmentgroupid, medicalrecord.departmentid, (CASE medicalrecord.departmentid WHEN '0' THEN 'Hành chính' ELSE (select department.departmentname from department where medicalrecord.departmentid=department.departmentid) END) as tenphong, medicalrecord.loaibenhanid as loaibenhan FROM medicalrecord, hosobenhan,departmentgroup,department WHERE medicalrecord.departmentgroupid=departmentgroup.departmentgroupid and medicalrecord.hosobenhanid=hosobenhan.hosobenhanid " + _timkiem + " ORDER BY madieutri;";
 
@@ -229,7 +229,7 @@ namespace MedicalLink.ChucNang
 
                 if (trangth == "Đang điều trị")
                 {
-                    if (!KiemTraTonTaiDichVu(mavp, departmentgroupid, departmentid))
+                    if (!KiemTraTonTaiDichVu(madt, departmentgroupid, departmentid))
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị!");
                         frmthongbao.Show();
@@ -308,7 +308,7 @@ namespace MedicalLink.ChucNang
 
                 if (trangth == "Đang điều trị")
                 {
-                    if (!KiemTraTonTaiDichVu(mavp, departmentgroupid, departmentid))
+                    if (!KiemTraTonTaiDichVu(madt, departmentgroupid, departmentid))
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
                         frmthongbao.Show();
@@ -379,7 +379,7 @@ namespace MedicalLink.ChucNang
 
                 if (trangth == "Đang điều trị")
                 {
-                    if (!KiemTraTonTaiDichVu(mavp, departmentgroupid, departmentid))
+                    if (!KiemTraTonTaiDichVu(madt, departmentgroupid, departmentid))
                     {
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
                         frmthongbao.Show();
@@ -514,12 +514,12 @@ namespace MedicalLink.ChucNang
         }
 
 
-        private bool KiemTraTonTaiDichVu(long _vienphiid, string _departmentgroupid, string _departmentid)
+        private bool KiemTraTonTaiDichVu(long _madieutri, string _departmentgroupid, string _departmentid)
         {
             bool result = false;
             try
             {
-                string sqlkiemtra = "select vienphiid from serviceprice where vienphiid='" + _vienphiid + "' and departmentgroupid='" + _departmentgroupid + "' and departmentid='" + _departmentid + "' ; ";
+                string sqlkiemtra = "select vienphiid from serviceprice where medicalrecordid='" + _madieutri + "' and departmentgroupid='" + _departmentgroupid + "' and departmentid='" + _departmentid + "' ; ";
                 DataTable _datakiemtra = condb.GetDataTable_HIS(sqlkiemtra);
                 if (_datakiemtra != null && _datakiemtra.Rows.Count > 0)
                 { }

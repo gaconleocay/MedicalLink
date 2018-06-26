@@ -48,6 +48,7 @@ namespace MedicalLink.ChucNang
             {
                 if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
+                    txtFilePath.Text = openFileDialogSelect.FileName;
                     gridControlDichVu.DataSource = null;
                     lstServicePriceRef = new List<classServicePriceRef>();
                     Workbook workbook = new Workbook(openFileDialogSelect.FileName);

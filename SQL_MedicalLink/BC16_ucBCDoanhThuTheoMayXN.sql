@@ -77,11 +77,13 @@ GROUP BY SERV.ma_xn,SERV.ten_xn"+_tenmayxn_khacvisinh_groupby+",SERV.gia_bhyt,SE
 
 
 
----------===========Chi tiet - ngay 20/6/2018
+---------===========Chi tiet - ngay 22/6/2018
 
 SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricedate) as stt,
 	vp.vienphiid,
 	vp.patientid,
+	mbp.maubenhphamid,
+	mbp.maubenhphamdate,
 	hsba.patientname,
 	bh.bhytcode,
 	degp.departmentgroupname,
@@ -124,7 +126,7 @@ FROM
 		(select s.idmayxn from service s where s.servicepriceid=se.servicepriceid and s.servicedate>'2017-05-01 00:00:00'
 			order by coalesce(s.idmayxn,0) desc limit 1) as idmayxn
 		from serviceprice se where se.bhyt_groupcode='03XN' "+_servicepricecode+_tieuchi_ser+_doituong_ser+") ser
-	inner join (select maubenhphamid,userid,usertrakq from maubenhpham where maubenhphamgrouptype=0 "+_tieuchi_mbp+_loaibaocao+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+	inner join (select maubenhphamid,maubenhphamdate,userid,usertrakq from maubenhpham where maubenhphamgrouptype=0 "+_tieuchi_mbp+_loaibaocao+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 	inner join (select vienphiid,patientid,hosobenhanid,bhytid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,vienphistatus,vienphistatus_vp from vienphi where 1=1 "+_tieuchi_vp+_doituong_vp+_trangthaibenhan+") vp on vp.vienphiid=ser.vienphiid
 	inner join (select hosobenhanid,patientname from hosobenhan where hosobenhandate>'2017-05-01 00:00:00') hsba on hsba.hosobenhanid=vp.hosobenhanid
 	inner join (select bhytid,bhytcode from bhyt where bhytdate>'2017-05-01 00:00:00') bh on bh.bhytid=vp.bhytid

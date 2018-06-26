@@ -48,8 +48,9 @@ namespace MedicalLink.ChucNang
             {
                 if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
+                    txtFilePath.Text = openFileDialogSelect.FileName;
                     gridControlThuoc.DataSource = null;
-                    lstMedicineRef = new List<MedicineRef>();
+                    this.lstMedicineRef = new List<MedicineRef>();
                     Workbook workbook = new Workbook(openFileDialogSelect.FileName);
                     Worksheet worksheet = workbook.Worksheets["DanhMucThuoc"];
                     DataTable data_Excel = worksheet.Cells.ExportDataTable(6, 0, worksheet.Cells.MaxDataRow - 5, worksheet.Cells.MaxDataColumn + 1, true);

@@ -263,7 +263,6 @@
             this.cbbChonKieu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cbbChonKieu.Size = new System.Drawing.Size(207, 22);
             this.cbbChonKieu.TabIndex = 9;
-           
             // 
             // labelControl2
             // 
@@ -414,7 +413,7 @@
             this.gridColumn2.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn2.Caption = "ID loại dịch vụ";
-            this.gridColumn2.FieldName = "servicegrouptype";
+            this.gridColumn2.FieldName = "datatype";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.OptionsColumn.AllowEdit = false;
             this.gridColumn2.Visible = true;
@@ -432,7 +431,7 @@
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn3.Caption = "Loại dịch vụ";
-            this.gridColumn3.FieldName = "servicegrouptype_name";
+            this.gridColumn3.FieldName = "datatype_name";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Visible = true;
@@ -450,7 +449,7 @@
             this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn4.Caption = "Mã dịch vụ";
-            this.gridColumn4.FieldName = "servicepricecode";
+            this.gridColumn4.FieldName = "medicinecode";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.OptionsColumn.AllowEdit = false;
             this.gridColumn4.Visible = true;
@@ -468,7 +467,7 @@
             this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn5.Caption = "Mã nhóm";
-            this.gridColumn5.FieldName = "servicepricegroupcode";
+            this.gridColumn5.FieldName = "medicinegroupcode";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
             this.gridColumn5.Visible = true;
@@ -486,7 +485,7 @@
             this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn6.Caption = "Mã user";
-            this.gridColumn6.FieldName = "servicepricecodeuser";
+            this.gridColumn6.FieldName = "medicinecodeuser";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.OptionsColumn.AllowEdit = false;
             this.gridColumn6.Visible = true;
@@ -504,7 +503,7 @@
             this.gridColumn7.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn7.Caption = "Mã stt thầu";
-            this.gridColumn7.FieldName = "servicepricesttuser";
+            this.gridColumn7.FieldName = "stt_dauthau";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.Visible = true;
@@ -522,7 +521,7 @@
             this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn8.Caption = "Tên viện phí";
-            this.gridColumn8.FieldName = "servicepricename";
+            this.gridColumn8.FieldName = "medicinename";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.OptionsColumn.AllowEdit = false;
             this.gridColumn8.Visible = true;
@@ -540,7 +539,7 @@
             this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn9.Caption = "Tên BHYT";
-            this.gridColumn9.FieldName = "servicepricenamebhyt";
+            this.gridColumn9.FieldName = "medicinename";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.OptionsColumn.AllowEdit = false;
             this.gridColumn9.Visible = true;
@@ -558,7 +557,7 @@
             this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn10.Caption = "ĐVT";
-            this.gridColumn10.FieldName = "servicepriceunit";
+            this.gridColumn10.FieldName = "donvitinh";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.OptionsColumn.AllowEdit = false;
             this.gridColumn10.Visible = true;
@@ -647,8 +646,8 @@
             this.gridColumn15.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn15.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn15.Caption = "ID áp dụng theo";
-            this.gridColumn15.FieldName = "servicepricefee_old_type";
+            this.gridColumn15.Caption = "Năm cung ứng";
+            this.gridColumn15.FieldName = "namcungung";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.OptionsColumn.AllowEdit = false;
             this.gridColumn15.Visible = true;
@@ -665,13 +664,13 @@
             this.gridColumn17.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn17.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn17.Caption = "Áp dụng theo";
-            this.gridColumn17.FieldName = "servicepricefee_old_type_name";
+            this.gridColumn17.Caption = "Đánh STT dùng thuốc";
+            this.gridColumn17.FieldName = "danhsttdungthuoc";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.OptionsColumn.AllowEdit = false;
             this.gridColumn17.Visible = true;
             this.gridColumn17.VisibleIndex = 16;
-            this.gridColumn17.Width = 120;
+            this.gridColumn17.Width = 135;
             // 
             // gridColumn16
             // 
@@ -683,8 +682,8 @@
             this.gridColumn16.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn16.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn16.Caption = "Thời gian áp dụng";
-            this.gridColumn16.FieldName = "servicepricefee_old_date";
+            this.gridColumn16.Caption = "Dạng dùng";
+            this.gridColumn16.FieldName = "dangdung";
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.OptionsColumn.AllowEdit = false;
             this.gridColumn16.Visible = true;
@@ -701,8 +700,8 @@
             this.gridColumn18.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn18.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn18.Caption = "ID hạng PTTT";
-            this.gridColumn18.FieldName = "pttt_hangid";
+            this.gridColumn18.Caption = "Đóng gói";
+            this.gridColumn18.FieldName = "donggoi";
             this.gridColumn18.Name = "gridColumn18";
             this.gridColumn18.OptionsColumn.AllowEdit = false;
             this.gridColumn18.Visible = true;
@@ -719,8 +718,8 @@
             this.gridColumn19.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn19.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn19.Caption = "Hạng PTTT";
-            this.gridColumn19.FieldName = "pttt_hangid_name";
+            this.gridColumn19.Caption = "Số đăng ký";
+            this.gridColumn19.FieldName = "sodangky";
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.OptionsColumn.AllowEdit = false;
             this.gridColumn19.Visible = true;
@@ -737,8 +736,8 @@
             this.gridColumn20.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn20.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn20.Caption = "ID loại PTTT";
-            this.gridColumn20.FieldName = "pttt_loaiid";
+            this.gridColumn20.Caption = "Số lô";
+            this.gridColumn20.FieldName = "solo";
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.Visible = true;
@@ -755,8 +754,8 @@
             this.gridColumn21.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn21.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn21.Caption = "Loại PTTT";
-            this.gridColumn21.FieldName = "pttt_loaiid_name";
+            this.gridColumn21.Caption = "Nồng độ";
+            this.gridColumn21.FieldName = "nongdo";
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.OptionsColumn.AllowEdit = false;
             this.gridColumn21.Visible = true;
@@ -773,12 +772,10 @@
             this.gridColumn22.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn22.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn22.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn22.Caption = "ID trạng thái";
+            this.gridColumn22.Caption = "111";
             this.gridColumn22.FieldName = "servicelock";
             this.gridColumn22.Name = "gridColumn22";
             this.gridColumn22.OptionsColumn.AllowEdit = false;
-            this.gridColumn22.Visible = true;
-            this.gridColumn22.VisibleIndex = 21;
             this.gridColumn22.Width = 120;
             // 
             // gridColumn23
@@ -791,12 +788,10 @@
             this.gridColumn23.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn23.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn23.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn23.Caption = "Mã nhóm BHYT";
+            this.gridColumn23.Caption = "111";
             this.gridColumn23.FieldName = "bhyt_groupcode";
             this.gridColumn23.Name = "gridColumn23";
             this.gridColumn23.OptionsColumn.AllowEdit = false;
-            this.gridColumn23.Visible = true;
-            this.gridColumn23.VisibleIndex = 22;
             this.gridColumn23.Width = 120;
             // 
             // gridColumn24
@@ -809,12 +804,10 @@
             this.gridColumn24.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn24.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn24.Caption = "Tên nhóm BHYT";
+            this.gridColumn24.Caption = "111";
             this.gridColumn24.FieldName = "bhyt_groupcode_name";
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.OptionsColumn.AllowEdit = false;
-            this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 23;
             this.gridColumn24.Width = 249;
             // 
             // gridColumn25
@@ -827,12 +820,10 @@
             this.gridColumn25.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn25.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn25.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn25.Caption = "Mã nhóm báo cáo";
+            this.gridColumn25.Caption = "111";
             this.gridColumn25.FieldName = "report_groupcode";
             this.gridColumn25.Name = "gridColumn25";
             this.gridColumn25.OptionsColumn.AllowEdit = false;
-            this.gridColumn25.Visible = true;
-            this.gridColumn25.VisibleIndex = 24;
             this.gridColumn25.Width = 120;
             // 
             // gridColumn26
@@ -845,12 +836,10 @@
             this.gridColumn26.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn26.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn26.Caption = "Mã nhóm tài khoản";
+            this.gridColumn26.Caption = "111";
             this.gridColumn26.FieldName = "report_tkcode";
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.OptionsColumn.AllowEdit = false;
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 25;
             this.gridColumn26.Width = 120;
             // 
             // gridColumn27
@@ -863,12 +852,10 @@
             this.gridColumn27.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn27.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn27.Caption = "Là nhóm";
+            this.gridColumn27.Caption = "111";
             this.gridColumn27.FieldName = "servicepricetype";
             this.gridColumn27.Name = "gridColumn27";
             this.gridColumn27.OptionsColumn.AllowEdit = false;
-            this.gridColumn27.Visible = true;
-            this.gridColumn27.VisibleIndex = 26;
             this.gridColumn27.Width = 120;
             // 
             // gridColumn28
@@ -881,12 +868,10 @@
             this.gridColumn28.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn28.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn28.Caption = "Mã kết quả";
+            this.gridColumn28.Caption = "111";
             this.gridColumn28.FieldName = "servicecode";
             this.gridColumn28.Name = "gridColumn28";
             this.gridColumn28.OptionsColumn.AllowEdit = false;
-            this.gridColumn28.Visible = true;
-            this.gridColumn28.VisibleIndex = 27;
             this.gridColumn28.Width = 120;
             // 
             // openFileDialogSelect

@@ -1082,6 +1082,18 @@ from ml_thuchienpttt) as pttt where  pttt.stt>1 )
 
 
 
+----tim ngay thanh toan
+select vp.patientid, 
+	vp.vienphiid, 
+	TO_CHAR(vp.duyet_ngayduyet, 'HH24:MI dd/MM/yyyy') as duyet_ngayduyet,
+	TO_CHAR(vp.duyet_ngayduyet_vp, 'HH24:MI dd/MM/yyyy') as duyet_ngayduyet_vp,
+	TO_CHAR(vp.vienphidate_ravien, 'dd/MM/yyyy') as vienphidate_ravien,
+	degp.departmentgroupname
+from vienphi vp
+	inner join departmentgroup degp on degp.departmentgroupid=vp.departmentgroupid
+where vp.vienphiid in ()
+--and vienphistatus=2
+--order by patientid,vienphiid
 
 
 

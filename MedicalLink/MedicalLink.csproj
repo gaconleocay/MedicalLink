@@ -633,6 +633,19 @@
     <Compile Include="BCQLTaiChinh\BC102_TrichThuongChuyenGiaYC.Designer.cs">
       <DependentUpon>BC102_TrichThuongChuyenGiaYC.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChucNang\ImportDMThuocVatTu\MedicineRef.cs" />
+    <Compile Include="ChucNang\ImportDMThuocVatTu\frmChonNhomThuocVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucNang\ImportDMThuocVatTu\frmChonNhomThuocVatTu.Designer.cs">
+      <DependentUpon>frmChonNhomThuocVatTu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\ImportDMThuocVatTu\ucImportDMThuocVatTu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\ImportDMThuocVatTu\ucImportDMThuocVatTu.Designer.cs">
+      <DependentUpon>ucImportDMThuocVatTu.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1183,12 +1196,6 @@
     <Compile Include="BaoCao\ucBCDSBNSDdv.Designer.cs">
       <DependentUpon>ucBCDSBNSDdv.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\ucImportDMThuoc.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ChucNang\ucImportDMThuoc.Designer.cs">
-      <DependentUpon>ucImportDMThuoc.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChucNang\ucKTHSBALoiTrangThai.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1560,6 +1567,12 @@
     <EmbeddedResource Include="BCQLTaiChinh\BC102_TrichThuongChuyenGiaYC.resx">
       <DependentUpon>BC102_TrichThuongChuyenGiaYC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\ImportDMThuocVatTu\frmChonNhomThuocVatTu.resx">
+      <DependentUpon>frmChonNhomThuocVatTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\ImportDMThuocVatTu\ucImportDMThuocVatTu.resx">
+      <DependentUpon>ucImportDMThuocVatTu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.resx">
       <DependentUpon>ucSuaHanSuDungThuocVatTu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1754,9 +1767,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\ucBCDSBNSDdv.resx">
       <DependentUpon>ucBCDSBNSDdv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\ucImportDMThuoc.resx">
-      <DependentUpon>ucImportDMThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucKTHSBALoiTrangThai.resx">
       <DependentUpon>ucKTHSBALoiTrangThai.cs</DependentUpon>
@@ -2200,6 +2210,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\So_ThuThuatLamSang_ThanNhanTao.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\0_ToolsDMThuoc_Exportv2.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -320,6 +320,10 @@ namespace MedicalLink.BaoCao
                 var rowHandle = bandedGridViewSoCDHA.FocusedRowHandle;
                 this.filterDSBN.servicepricecode = bandedGridViewSoCDHA.GetRowCellValue(rowHandle, "ma_xn").ToString();
                 this.filterDSBN.idmay_xn = bandedGridViewSoCDHA.GetRowCellValue(rowHandle, "idmay_xn").ToString();
+                this.filterDSBN.gia_bhyt = Utilities.TypeConvertParse.ToDecimal(bandedGridViewSoCDHA.GetRowCellValue(rowHandle, "gia_bhyt").ToString());
+                this.filterDSBN.gia_vp = Utilities.TypeConvertParse.ToDecimal(bandedGridViewSoCDHA.GetRowCellValue(rowHandle, "gia_vp").ToString());
+                this.filterDSBN.gia_yc = Utilities.TypeConvertParse.ToDecimal(bandedGridViewSoCDHA.GetRowCellValue(rowHandle, "gia_yc").ToString());
+                this.filterDSBN.gia_nnn = Utilities.TypeConvertParse.ToDecimal(bandedGridViewSoCDHA.GetRowCellValue(rowHandle, "gia_nnn").ToString());
 
                 frmDSBenhNhan _frmChiTiet = new frmDSBenhNhan(this.filterDSBN);
                 _frmChiTiet.ShowDialog();

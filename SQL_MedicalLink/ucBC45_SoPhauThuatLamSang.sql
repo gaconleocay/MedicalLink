@@ -4,7 +4,7 @@
 
 
 
---ngay 20/6/2018
+--ngay 26/6/2018
 
 SELECT
 		 ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt,
@@ -61,14 +61,14 @@ SELECT
 		giupviec.username as giupviec,
 		nnhap.username as ghichu
 FROM
-	(select servicepriceid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+tieuchi_thoigianchidinh+ khoachidinh +" ) ser
+	(select servicepriceid,vienphiid,hosobenhanid,maubenhphamid,servicepricecode,servicepricename,servicepricedate,departmentid,departmentgroupid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') "+tieuchi_thoigianchidinh+ khoachidinh +" ) ser
 left join 
 	(select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,servicepriceid,chandoantruocphauthuat_code,chandoantruocphauthuat,chandoansauphauthuat_code,chandoansauphauthuat,phauthuatthuthuatdate,phuongphappttt,pttt_phuongphapvocamid,pttt_hangid,phauthuatvien,bacsigayme,phumo1,phumo3,userid_gmhs from phauthuatthuthuat pttt) pttt on pttt.servicepriceid=ser.servicepriceid
 inner join 
 	(select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and pttt_loaiid in (1,2,3,4)) serf on serf.servicepricecode=ser.servicepricecode
 inner join 
 	(select hosobenhanid,patientcode,patientname,gioitinhcode,birthday,hosobenhandate,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid
-inner join (select hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.hosobenhanid=hsba.hosobenhanid
+inner join (select vienphiid,hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.vienphiid=ser.vienphiid
 left join (select departmentgroupid,departmentgroupname from departmentgroup) kchd on kchd.departmentgroupid=ser.departmentgroupid 
 left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) pcd on pcd.departmentid=ser.departmentid 
 left join nhompersonnel bspt on bspt.userhisid=pttt.phauthuatvien 

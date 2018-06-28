@@ -3,8 +3,8 @@
 --Chẩn đoán= chẩn đoán chỉ định
 --Tra ket qua tung phan: nguoi tra kq, thoi gian tra kq
 --khong co t.gian tra kq tung phan thi lay t.gian tra kq cuoi cung 14/8
---ngay 22/1: sua chuc nang duyet PTTT
---ngay 2/4/2018 có sửa tiêu chí vào join: trong code chương trình 
+--ngay 28/6/2018
+
 
 
 ----Su dung cho Khoa Chan doan hinh anh
@@ -195,7 +195,7 @@ FROM (
 	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchiencls where 1=1 " + tieuchi_date_thuchien + ") cls on cls.servicepriceid=ser.servicepriceid 
 	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 
-	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid
+	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_tiepnhan + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid
 	INNER JOIN (select servicepriceid,servicetimetrakq,serviceusertrakq from service where servicecode not in (select sef.servicegroupcode from service_ref sef group by sef.servicegroupcode)) se on se.servicepriceid=ser.servicepriceid
 	) A
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=A.hosobenhanid 
@@ -403,7 +403,7 @@ FROM (
 	left join (select servicepriceid,thuchienclsid,bacsigayme,phumo1,phumo2,phumo3,phumo4,tools_username from thuchienclswhere 1=1 " + tieuchi_date_thuchien + ") cls on cls.servicepriceid=ser.servicepriceid 
 	inner join (select servicepricecode, pttt_loaiid from servicepriceref where servicegrouptype in (2,3) and bhyt_groupcode in ('04CDHA','05TDCN','03XN','07KTC','06PTTT') "+serf_nhomdichvu + serf_pttt_loaiid+") serf on serf.servicepricecode=ser.servicepricecode 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphistatus_vp,vienphidate_ravien,duyet_ngayduyet_vp from vienphi "+tieuchi_date_vp+") vp on vp.vienphiid=ser.vienphiid 
-	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_thuchien + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid
+	INNER JOIN (select maubenhphamid,sophieu,departmentid_des,maubenhphamfinishdate,maubenhphamdate_thuchien,usertrakq,chandoan from maubenhpham where maubenhphamgrouptype in (0,1) "+ tieuchi_date_tiepnhan + mbp_departmentid+ ") mbp on mbp.maubenhphamid=ser.maubenhphamid
 	) A
 INNER JOIN (select hosobenhanid, patientname, gioitinhcode, birthday, bhytcode, hc_sonha, hc_thon, hc_xacode, hc_xaname, hc_huyencode, hc_huyenname, hc_tinhcode, hc_tinhname, hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=A.hosobenhanid 
 INNER JOIN bhyt bh on bh.bhytid=A.bhytid 

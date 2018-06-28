@@ -17,6 +17,12 @@ namespace MedicalLink.ClassCommon
         public string loaibaocao { get; set; }
         public string servicepricecode { get; set; }
         public string idmay_xn { get; set; }
+        public decimal? gia_bhyt { get;set;}
+        public decimal? gia_vp { get; set; }
+        public decimal? gia_yc { get; set; }
+        public decimal? gia_nnn { get; set; }
+
+
 
     }
 }

@@ -1,4 +1,4 @@
---ngay 8/2/2018: lay danh sach phieu chi dinh
+--ngay 26/6/2018: lay danh sach phieu chi dinh
 
 SELECT mbp.maubenhphamid, 
 	mbp.medicalrecordid, 
@@ -26,7 +26,7 @@ SELECT mbp.maubenhphamid,
 	mbp.maubenhphamphieutype as maubenhphamphieutypeid 
 FROM maubenhpham mbp 
 INNER JOIN hosobenhan hsba on mbp.hosobenhanid=hsba.hosobenhanid 
-INNER JOIN vienphi vp on vp.hosobenhanid=hsba.hosobenhanid 
+INNER JOIN vienphi vp on vp.vienphiid=mbp.vienphiid 
 INNER JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=mbp.departmentid 
 INNER JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=mbp.departmentgroupid
 WHERE " + timkiemtheo + " 

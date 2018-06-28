@@ -404,7 +404,8 @@
             "Theo ngày thực hiện",
             "Theo ngày thanh toán",
             "Theo ngày chỉ định",
-            "Theo ngày tiếp nhận"});
+            "Theo ngày tiếp nhận",
+            "Theo ngày trả kết quả"});
             this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTieuChi.Size = new System.Drawing.Size(156, 22);
             this.cboTieuChi.TabIndex = 72;

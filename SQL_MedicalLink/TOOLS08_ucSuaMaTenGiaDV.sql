@@ -1,4 +1,4 @@
---ngay 22/4/2018
+--ngay 26/4/2018
 
 SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepriceid) as stt, 
 	ser.servicepriceid, 
@@ -29,7 +29,8 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepriceid) as stt,
 	ser.huongdansudung 
 FROM (select * from serviceprice where 1=1 "+_tieuchi_ser+_dsdichvu_ser+") ser 
 inner join (select * from vienphi where 1=1 "+_tieuchi_vp+_trangthaiVP+_loaivienphiid+_doituongbenhnhanid+") vp on ser.vienphiid=vp.vienphiid 
-inner join hosobenhan hsba on vp.hosobenhanid=hsba.hosobenhanid inner join departmentgroup degp on ser.departmentgroupid=degp.departmentgroupid 
+inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid
+inner join departmentgroup degp on ser.departmentgroupid=degp.departmentgroupid 
 left join (select departmentid,departmentname from department where departmenttype in (0,2,3,9)) de on ser.departmentid=de.departmentid;
 
 

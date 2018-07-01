@@ -1096,5 +1096,23 @@ where vp.vienphiid in ()
 --order by patientid,vienphiid
 
 
+select * from vienphi 
+where vienphistatus=0 and loaivienphiid=1 and vienphidate>'2018-01-01 00:00:00' 
+and departmentgroupid=33 and doituongbenhnhanid>=2
 
+
+
+
+SELECT count(*) as count, 
+		sum(case when doituongbenhnhanid=1 then 1 else 0 end) as count_bh, 
+		sum(case when doituongbenhnhanid<>1 then 1 else 0 end) as count_vp, 
+		vp.departmentgroupid 
+	FROM vienphi vp 
+	WHERE vp.vienphistatus=0 
+			and loaivienphiid=1 
+			and vienphidate>'2018-01-01 00:00:00' 
+			--and departmentgroupid=33 
+			and doituongbenhnhanid>=2
+	GROUP BY vp.departmentgroupid
+	
 

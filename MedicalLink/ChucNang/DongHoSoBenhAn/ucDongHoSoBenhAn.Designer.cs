@@ -79,10 +79,10 @@
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnt23 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageCollectionMBA = new DevExpress.Utils.ImageCollection(this.components);
-            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThaiVP.Properties)).BeginInit();
@@ -264,7 +264,8 @@
             this.cboBenhAn.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboBenhAn.Properties.Items.AddRange(new object[] {
-            "Ngoại trú"});
+            "Ngoại trú",
+            "Nội trú"});
             this.cboBenhAn.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboBenhAn.Size = new System.Drawing.Size(103, 22);
             this.cboBenhAn.TabIndex = 3;
@@ -929,6 +930,28 @@
             this.gridColumnt23.VisibleIndex = 6;
             this.gridColumnt23.Width = 125;
             // 
+            // gridColumn6
+            // 
+            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn6.AppearanceCell.Options.UseFont = true;
+            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn6.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn6.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn6.Caption = "Thời gian ra viện";
+            this.gridColumn6.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
+            this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn6.FieldName = "vienphidate_ravien";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.OptionsColumn.AllowEdit = false;
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 7;
+            this.gridColumn6.Width = 125;
+            // 
             // gridColumn5
             // 
             this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -969,28 +992,6 @@
             // 
             this.imageCollectionMBA.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imageCollectionMBA.ImageStream")));
             this.imageCollectionMBA.Images.SetKeyName(0, "check-mark-16.png");
-            // 
-            // gridColumn6
-            // 
-            this.gridColumn6.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn6.AppearanceCell.Options.UseFont = true;
-            this.gridColumn6.AppearanceCell.Options.UseTextOptions = true;
-            this.gridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn6.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.gridColumn6.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gridColumn6.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn6.AppearanceHeader.Options.UseForeColor = true;
-            this.gridColumn6.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn6.Caption = "Thời gian ra viện";
-            this.gridColumn6.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
-            this.gridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.gridColumn6.FieldName = "vienphidate_ravien";
-            this.gridColumn6.Name = "gridColumn6";
-            this.gridColumn6.OptionsColumn.AllowEdit = false;
-            this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 7;
-            this.gridColumn6.Width = 125;
             // 
             // ucDongHoSoBenhAn
             // 

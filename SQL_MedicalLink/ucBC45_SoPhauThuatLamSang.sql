@@ -30,7 +30,7 @@ SELECT
 		(case pttt.pttt_phuongphapvocamid
 			when 1 then 'Gây mê tĩnh mạch'
 			when 2 then 'Gây mê nội khí quản'
-			when 3 then 'Gây mê tại chỗ'
+			when 3 then 'Gây tê tại chỗ'
 			when 4 then 'Tiền mê + gây tê tại chỗ'
 			when 5 then 'Gây tê tủy sống'
 			when 6 then 'Gây tê'

@@ -86,6 +86,11 @@ namespace MedicalLink.ChucNang
                 {
                     _loaivienphiid = " and loaivienphiid=1 ";
                 }
+                else if (cboBenhAn.Text == "Nội trú")
+                {
+                    _loaivienphiid = " and loaivienphiid=0 ";
+                }
+
                 //doi tuong BN
                 if (cboDoiTuongBN.Text == "Viện phí")
                 {

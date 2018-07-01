@@ -7,7 +7,7 @@ CREATE OR REPLACE VIEW serviceprice_department AS
     ser.hosobenhanid,
     ser.departmentgroupid,
     ser.departmentid,
-    ser.doituongbenhnhanid,
+    mrd.doituongbenhnhanid,
     mrd.thoigianvaovien,
     mrd.loaibenhanid,
     mrd.medicalrecordstatus,
@@ -462,14 +462,21 @@ CREATE OR REPLACE VIEW serviceprice_department AS
             END
             ELSE 0::double precision
         END) AS money_vattu_vp,
-    ( SELECT sum(bill.datra) AS sum
+    (SELECT sum(bill.datra) AS sum
            FROM bill
-          WHERE bill.vienphiid = ser.vienphiid AND bill.loaiphieuthuid = 2 AND bill.dahuyphieu = 0) AS tam_ung
-   FROM serviceprice ser
-     JOIN medicalrecord mrd ON ser.medicalrecordid = mrd.medicalrecordid
-  WHERE ser.servicepricedate > '2014-01-01 00:00:00'::timestamp without time zone AND ser.thuockhobanle = 0
-  GROUP BY ser.vienphiid, ser.hosobenhanid, ser.departmentgroupid, ser.departmentid, ser.doituongbenhnhanid, mrd.thoigianvaovien, mrd.loaibenhanid, mrd.medicalrecordstatus, mrd.xutrikhambenhid
-  ORDER BY ser.vienphiid DESC;
+          WHERE bill.vienphiid = ser.vienphiid AND bill.loaiphieuthuid = 2 AND bill.dahuyphieu = 0) AS tam_ung,
+	(case when mrd.doituongbenhnhanid>1 and ser.billid_thutien=0 and ser.billid_clbh_thutien=0 
+		then 0
+		else 1 end) as thutienstatus
+		
+   FROM (select * from serviceprice where thuockhobanle=0 and servicepricedate>'2017-06-01 00:00:00') ser
+     JOIN (select * from medicalrecord where loaibenhanid in (24,20) and thoigianvaovien>'2017-06-01 00:00:00') mrd ON ser.medicalrecordid = mrd.medicalrecordid
+  GROUP BY ser.vienphiid,ser.hosobenhanid,ser.departmentgroupid,ser.departmentid,mrd.doituongbenhnhanid,mrd.thoigianvaovien,mrd.loaibenhanid,mrd.medicalrecordstatus,mrd.xutrikhambenhid,ser.billid_thutien,ser.billid_clbh_thutien
 
---ALTER TABLE serviceprice_department
- -- OWNER TO postgres;
+
+  
+  
+  
+  
+  
+  

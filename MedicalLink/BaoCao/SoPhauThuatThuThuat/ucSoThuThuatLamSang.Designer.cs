@@ -75,8 +75,8 @@
             this.bandedGridColumn_GiupViec = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn11 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
-            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
-            this.tbnExport = new DevExpress.XtraEditors.SimpleButton();
+            this.dropDownPrint = new DevExpress.XtraEditors.DropDownButton();
+            this.dropDownExport = new DevExpress.XtraEditors.DropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -264,8 +264,8 @@
             // 
             // groupBoxAction
             // 
-            this.groupBoxAction.Controls.Add(this.btnPrint);
-            this.groupBoxAction.Controls.Add(this.tbnExport);
+            this.groupBoxAction.Controls.Add(this.dropDownPrint);
+            this.groupBoxAction.Controls.Add(this.dropDownExport);
             this.groupBoxAction.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxAction.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.groupBoxAction.Location = new System.Drawing.Point(983, 2);
@@ -849,35 +849,33 @@
             // 
             this.repositoryItemMemoEdit2.Name = "repositoryItemMemoEdit2";
             // 
-            // btnPrint
+            // dropDownPrint
             // 
-            this.btnPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnPrint.Appearance.Options.UseFont = true;
-            this.btnPrint.Appearance.Options.UseForeColor = true;
-            this.btnPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
-            this.btnPrint.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(12, 14);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(100, 30);
-            this.btnPrint.TabIndex = 13;
-            this.btnPrint.Text = "In...";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.dropDownPrint.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownPrint.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownPrint.Appearance.Options.UseFont = true;
+            this.dropDownPrint.Appearance.Options.UseForeColor = true;
+            this.dropDownPrint.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownPrint.Image = global::MedicalLink.Properties.Resources.printer_16;
+            this.dropDownPrint.Location = new System.Drawing.Point(6, 18);
+            this.dropDownPrint.Name = "dropDownPrint";
+            this.dropDownPrint.Size = new System.Drawing.Size(110, 30);
+            this.dropDownPrint.TabIndex = 4;
+            this.dropDownPrint.Text = "In...";
             // 
-            // tbnExport
+            // dropDownExport
             // 
-            this.tbnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.tbnExport.Appearance.Options.UseFont = true;
-            this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(12, 52);
-            this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 30);
-            this.tbnExport.TabIndex = 12;
-            this.tbnExport.Text = "Xuất file";
-            this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
+            this.dropDownExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold);
+            this.dropDownExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dropDownExport.Appearance.Options.UseFont = true;
+            this.dropDownExport.Appearance.Options.UseForeColor = true;
+            this.dropDownExport.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
+            this.dropDownExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.dropDownExport.Location = new System.Drawing.Point(6, 53);
+            this.dropDownExport.Name = "dropDownExport";
+            this.dropDownExport.Size = new System.Drawing.Size(110, 30);
+            this.dropDownExport.TabIndex = 3;
+            this.dropDownExport.Text = "Export...";
             // 
             // ucSoThuThuatLamSang
             // 
@@ -954,7 +952,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand3;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand2;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand4;
-        private DevExpress.XtraEditors.SimpleButton btnPrint;
-        private DevExpress.XtraEditors.SimpleButton tbnExport;
+        private DevExpress.XtraEditors.DropDownButton dropDownPrint;
+        private DevExpress.XtraEditors.DropDownButton dropDownExport;
     }
 }

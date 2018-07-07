@@ -198,7 +198,10 @@
             this.cboTieuChi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.cboTieuChi.Properties.Items.AddRange(new object[] {
+            "Theo ngày thực hiện",
+            "Theo ngày thanh toán",
             "Theo ngày chỉ định",
+            "Theo ngày tiếp nhận",
             "Theo ngày trả kết quả"});
             this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTieuChi.Size = new System.Drawing.Size(155, 22);

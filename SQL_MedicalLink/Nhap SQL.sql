@@ -1039,6 +1039,16 @@ FROM Resordertab re
 WHERE re.accessnumber='17835251';
 
 
+
+select hsba.gioitinhname,
+		hsba.hc_tinhname,
+		hsba.hc_huyenname,
+		hsba.hc_xaname
+from Resordertab re
+inner join maubenhpham mbp on mbp.maubenhphamid=re.accessnumber
+inner join hosobenhan hsba on hsba.hosobenhanid=mbp.hosobenhanid
+
+
 -------=========
 select ser.*
 from (select * from vienphi where duyet_ngayduyet_vp >'2018-05-01 00:00:00') vp
@@ -1116,3 +1126,4 @@ SELECT count(*) as count,
 	GROUP BY vp.departmentgroupid
 	
 
+vienphiid=1188984

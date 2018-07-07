@@ -1,7 +1,7 @@
 ---Bao cao VT thanh toan rieng > 45 TLCB ngay 30/8
 --Chinh sua lay tat cả vtyt có id là tt riêng, không cần so sánh vs 45 tlcb
 --ngay 11/10: them stent1,2
-
+--ngay 3/7/2018: them XN, CDHA duoc vt tt rieng di kem
 
 
 SELECT row_number () over (" + _orderby + ") as stt,
@@ -68,7 +68,7 @@ LEFT JOIN
 				end) as servicepricemoney,
 			departmentgroupid,departmentid
 		from serviceprice 
-		where bhyt_groupcode in ('06PTTT','07KTC') and loaidoituong in (0,1,3,4,6)
+		where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC') and loaidoituong in (0,1,3,4,6)
 			"+_tieuchi_ser+"
 		) SER ON SER.servicepriceid=VT.servicepriceid_thanhtoanrieng
 LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=SER.departmentgroupid

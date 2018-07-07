@@ -11,6 +11,7 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using System.IO;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils.Menu;
 
 namespace MedicalLink.BaoCao
 {
@@ -30,6 +31,8 @@ namespace MedicalLink.BaoCao
             dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             gridControlSoCDHA.DataSource = null;
             LoadDanhSachKhoa();
+            LoadDanhSachButtonExport();
+            LoadDanhSachButonPrint();
         }
         private void LoadDanhSachKhoa()
         {
@@ -49,7 +52,47 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void LoadDanhSachButtonExport()
+        {
+            try
+            {
+                DXPopupMenu menu = new DXPopupMenu();
+                menu.Items.Add(new DXMenuItem("Sổ thủ thuật lâm sàng"));
+                if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
+                {
+                    menu.Items.Add(new DXMenuItem("Sổ thủ thuật lâm sàng - Thận nhân tạo"));
+                }
+                dropDownExport.DropDownControl = menu;
+                foreach (DXMenuItem item in menu.Items)
+                    item.Click += Item_Export_Click;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void LoadDanhSachButonPrint()
+        {
+            try
+            {
+                DXPopupMenu menu = new DXPopupMenu();
+                menu.Items.Add(new DXMenuItem("Sổ thủ thuật lâm sàng"));
+                if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
+                {
+                    menu.Items.Add(new DXMenuItem("Sổ thủ thuật lâm sàng - Thận nhân tạo"));
+                }
+                dropDownPrint.DropDownControl = menu;
+                foreach (DXMenuItem item in menu.Items)
+                    item.Click += Item_Print_Click;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         #endregion
+
+        #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -119,8 +162,30 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
+        #endregion
+
         #region In va xuat file
-        private void tbnExport_Click(object sender, EventArgs e)
+        void Item_Export_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tenbaocao = ((DXMenuItem)sender).Caption;
+                if (tenbaocao == "Sổ thủ thuật lâm sàng")
+                {
+                    ExportSoThuThuatLamSang();
+                }
+                else if (tenbaocao == "Sổ thủ thuật lâm sàng - Thận nhân tạo")
+                {
+                    ExportSoThuThuatLamSang_TNT();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        private void ExportSoThuThuatLamSang()
         {
             try
             {
@@ -139,10 +204,10 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "So_ThuThuatLamSang_CacKhoa.xlsx";
-                if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
-                {
-                    fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
-                }
+                //if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
+                //{
+                //    fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
+                //}
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
                 export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBaoCao);
             }
@@ -151,8 +216,55 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void ExportSoThuThuatLamSang_TNT()
+        {
+            try
+            {
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
 
-        private void btnPrint_Click(object sender, EventArgs e)
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = tungaydenngay;
+                thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
+                thongTinThem.Add(reportitem_khoa);
+
+                string fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
+
+                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, dataBaoCao);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        void Item_Print_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string tenbaocao = ((DXMenuItem)sender).Caption;
+                if (tenbaocao == "Sổ thủ thuật lâm sàng")
+                {
+                    PrintSoThuThuatLamSang();
+                }
+                else if (tenbaocao == "Sổ thủ thuật lâm sàng - Thận nhân tạo")
+                {
+                    PrintSoThuThuatLamSang_TNT();
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
+        private void PrintSoThuThuatLamSang()
         {
             try
             {
@@ -174,10 +286,41 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "So_ThuThuatLamSang_CacKhoa.xlsx";
-                if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
-                {
-                    fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
-                }
+                //if (cboLoaiSoThuThuat.Text == "Thủ thuật Thận nhân tạo")
+                //{
+                //    fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
+                //}
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+            SplashScreenManager.CloseForm();
+
+        }
+        private void PrintSoThuThuatLamSang_TNT()
+        {
+            try
+            {
+                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
+
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = tungaydenngay;
+                thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
+                thongTinThem.Add(reportitem_khoa);
+
+                string fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
                 Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
@@ -228,6 +371,8 @@ namespace MedicalLink.BaoCao
                     bandedGridColumn_GiupViec.Visible = true;
                     chkcomboListDSKhoa.Enabled = false;
                 }
+                LoadDanhSachButtonExport();
+                LoadDanhSachButonPrint();
             }
             catch (Exception ex)
             {

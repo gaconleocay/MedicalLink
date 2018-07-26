@@ -1,10 +1,10 @@
 --Sổ Phẫu thuật thủ thuật.
 --ucSoPhauThuatThuThuat
+--Lay pttt_loaiid in (5,6,7,8)
 
 
 
-
---ngay 26/6/2018: fix bug nhan doi do tach benh an
+--ngay 11/7/2018: fix bug nhan doi do tach benh an
 
 SELECT
 		 ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt,
@@ -65,7 +65,7 @@ FROM
 left join 
 	(select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,servicepriceid,chandoantruocphauthuat_code,chandoantruocphauthuat,chandoansauphauthuat_code,chandoansauphauthuat,phauthuatthuthuatdate,phuongphappttt,pttt_phuongphapvocamid,pttt_hangid,phauthuatvien,bacsigayme,phumo1,phumo3,userid_gmhs from phauthuatthuthuat pttt) pttt on pttt.servicepriceid=ser.servicepriceid
 inner join 
-	(select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and pttt_loaiid not in (1,2,3,4)) serf on serf.servicepricecode=ser.servicepricecode
+	(select servicepricecode,pttt_loaiid from servicepriceref where servicegrouptype=4 and pttt_loaiid in (5,6,7,8) and servicepricegroupcode<>'PTYC') serf on serf.servicepricecode=ser.servicepricecode
 inner join 
 	(select hosobenhanid,patientcode,patientname,gioitinhcode,birthday,hosobenhandate,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan) hsba on hsba.hosobenhanid=ser.hosobenhanid
 inner join (select vienphiid,hosobenhanid,doituongbenhnhanid from vienphi) vp on vp.vienphiid=ser.vienphiid

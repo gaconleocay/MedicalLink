@@ -214,6 +214,10 @@ CREATE TABLE medicalrecord
   khambenh_nhanapmattrai text,
   CONSTRAINT medicalrecord_pkey PRIMARY KEY (medicalrecordid)
 )
+
+
+
+
 CREATE TABLE vienphi
 (
   vienphiid serial NOT NULL,
@@ -312,9 +316,20 @@ CREATE TABLE vienphi
   bhyt_tuyenbenhvien integer,
   masothue text,
   sotaikhoan text,
+  userdangkythebhyt integer,
+  thoigiandangkythe timestamp without time zone,
+  userhuydangkythebhyt integer,
+  vienphidate_ravien_update timestamp without time zone,
+  lydohuyduyetketoan text,
+  theghep_bhytcode text,
+  theghep_bhytfromdate timestamp without time zone,
+  theghep_bhytutildate timestamp without time zone,
+  theghep_macskcbbd text,
+  theghep_du5nam6thangluongcoban integer,
+  theghep_dtcbh_luyke6thang integer,
+  theghep_noisinhsong text,
   CONSTRAINT vienphi_pkey PRIMARY KEY (vienphiid)
 )
-bhyt_tuyenbenhvien
 
 CREATE TABLE serviceprice
 (
@@ -351,7 +366,7 @@ CREATE TABLE serviceprice
   servicepricemoney_bhyt_tra double precision,
   servicepricemoney_miengiam double precision,
   servicepricemoney_danop double precision,
-  servicepricemoney_miengiam_type integer default 0,
+  servicepricemoney_miengiam_type integer DEFAULT 0,
   billid_thutien integer DEFAULT 0,
   billid_hoantien integer DEFAULT 0,
   billid_clbh_thutien integer DEFAULT 0,
@@ -385,10 +400,16 @@ CREATE TABLE serviceprice
   chiphimaymoc double precision,
   chiphipttt double precision,
   mayytedbid integer,
-  servicepriceid_thanhtoanrieng
+  loaingaygiuong integer,
+  servicepriceid_thanhtoanrieng integer,
+  stenphuthuoc integer,
+  duyetpttt_stt integer,
+  duyetpttt_date timestamp without time zone,
+  duyetpttt_usercode text,
+  duyetpttt_username text,
+  bhyt_pttt integer,
   CONSTRAINT serviceprice_pkey PRIMARY KEY (servicepriceid)
 )
-WITH (
 
 CREATE TABLE servicepriceref
 (
@@ -879,58 +900,17 @@ Kiểm tra xem có tồn tại phiếu chỉ định trước/hoặc sau hạn t
   Allow Internet access	GUANGDONG OPPO MOBILE TELECOMMUNICATIONS CORP.LTD	GUANGDONG OPPO MOBILE TELECOMMUN	192.168.2.215	Automatic IP	A8:1B:5A:FA:1A:A7	2.4 GHz	-	-	0:00:00	
 
   
--------
-2817298624 - 1989
-2817465920 - 1987
-2816790128 - 1988
-2815600416 - 1995
-2817462400 - 1986
-2815600992 - 1991
-2815601008 - 1992
-01638660011
-01642636666
-
-alter table tools_tbllog add vienphiid integer; alter table tools_tbllog add patientid integer;
-
 ---Thêm tiêu chí giam dinh
-
 Có 1 cái là giám dịnh theo thuốc tỷ lệ ko áp dụng với các truong hop dac biẹt là chưa có e ạ
 Cc1, te 1, cy5, ca5, qn5
 
-
-103910000
-25500000
-
-khoa tran: 240880227
-khoa tran: pass: Ankhoa2016
   
-  
-SELECT mrd.medicalrecordid,
-		degp.departmentgroupname,
-		de.departmentname,
-		(mrd.medicalrecordid || ' - ' || degp.departmentgroupname) as medicalrecordkhoa
-FROM medicalrecord mrd
-	inner join departmentgroup degp on degp.departmentgroupid=mrd.departmentgroupid
-	inner join department de on de.departmentid=mrd.departmentid
-WHERE mrd.vienphiid = '" + this.vienphiId + "' 
-	and mrd.thoigianvaovien <='" + _tgiansudung + "' and mrd.thoigianravien >='" + _tgiansudung + "';  
-  
-  
----------
-File.Exists(this.txtPath.Text)
-
-
-
-0976655948
---------
-xet nghiem không có mã máy
-
+--xet nghiem không có mã máy
 select idmayxn,tenmayxn from service 
 where idmayxn=0
 	and 
 group by idmayxn,tenmayxn
 order by tenmayxn
-
 
 select mbp.patientid,
 	se.vienphiid,se.maubenhphamid,se.servicepriceid,se.servicepricecode,se.servicecode,se.servicename,se.idmayxn,se.tenmayxn,
@@ -945,27 +925,7 @@ order by mbp.maubenhphamfinishdate
 
 
 
---
-
-select 
-	serf.servicepricecode,
-	serf.servicepricename,
-	serf.servicepriceunit,
-	se.servicecode,
-	se.servicename,
-	se.serviceunit
-from servicepriceref serf
-	left join serviceref4price map on map.servicepricecode = serf.servicepricecode
-	left join service_ref se on se.servicecode=map.servicecode
-where serf.ServiceGroupType=2
-
-
-
-
-
-
-
-
+-
 accessnumber = maubenhphamid
 examcode=servicepricecode
 
@@ -982,17 +942,7 @@ from resordertab rs
 	inner join servicepriceref serf on serf.servicepricecode=rs.examcode
 	inner join department de on cast(de.departmentid as text)=serf.listdepartmentphongthuchien
 where cast(rs.accessnumber as integer)<17756008
-
-
-
-
-
-GRANT SELECT, UPDATE ON TABLE Resordertab TO pacs;	  
-GRANT SELECT ON TABLE vienphi TO pacs;	  
-GRANT SELECT ON TABLE maubenhpham TO pacs;	  
-GRANT SELECT ON TABLE bhyt TO pacs;	  
-GRANT SELECT ON TABLE servicepriceref TO pacs;	  
-GRANT SELECT ON TABLE department TO pacs;	  	  
+	  
 
 SELECT
 	vp.vienphiid as ma_lien_ket,
@@ -1055,20 +1005,6 @@ from (select * from vienphi where duyet_ngayduyet_vp >'2018-05-01 00:00:00') vp
 	inner join (select * from serviceprice where departmentgroupid=27 ) ser on ser.vienphiid=vp.vienphiid
 where vp.vienphistatus_vp=1 and vp.doituongbenhnhanid>1 and vp.loaivienphiid=1 and ser.billid_thutien=0 and ser.billid_clbh_thutien=0 
 
-
-
-
-
-resresulttab_resresulttabid_seq
-
-
-
-select count(*) from vienphi 
-where vienphistatus>0 and vienphidate_ravien>'2018-01-01 00:00:00' 
-and COALESCE(vienphistatus_vp,0)=0 and departmentid in (59)
-
-
-
 -- Pass không mã hóa,
 --Thêm user chưa bắt user trùng nhau
 - Sắp xếp theo cột trên lưới
@@ -1127,3 +1063,16 @@ SELECT count(*) as count,
 	
 
 vienphiid=1188984
+
+
+ smart vpn client
+ 
+--Khoi phuc HSBA XOa TOOL_05
+select * from hosobenhan where patientid=801068 order by hosobenhanid;
+select * from bhyt where patientid=801068 order by bhytid;
+select * from medicalrecord where patientid=801068 
+ 
+ 
+ 
+ 
+ 

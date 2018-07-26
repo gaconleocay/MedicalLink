@@ -161,6 +161,7 @@ CREATE TABLE ml_mayxnchiphi
   cp_khxaydung double precision default 0,
   lastuserupdated text,
   lasttimeupdated timestamp without time zone,
+  nhombc_ma text,
   CONSTRAINT ml_mayxnchiphi_pkey PRIMARY KEY (mayxndmxncpid)
 )
 WITH (
@@ -169,6 +170,31 @@ WITH (
 
 CREATE INDEX mayxnchiphi_mayxn_ma_idx ON ml_mayxnchiphi USING btree (mayxn_ma);
 CREATE INDEX mayxnchiphi_servicepricecode_idx ON ml_mayxnchiphi USING btree (servicepricecode);
+CREATE INDEX mayxnchiphi_nhombc_ma_idx ON ml_mayxnchiphi USING btree (nhombc_ma);
+
+alter table ml_mayxnchiphi add nhombc_ma text
+
+
+---=========Table: ml_mayxnnhombc
+--drop table ml_mayxnnhombc
+
+CREATE TABLE ml_mayxnnhombc
+(
+  mayxnnhombcid serial not null,
+  nhombc_ma text,
+  nhombc_ten text,
+  istrakq integer default 1,
+   ghichu text,
+  lastuserupdated text,
+  lasttimeupdated timestamp without time zone,
+  CONSTRAINT ml_mayxnnhombc_pkey PRIMARY KEY (mayxnnhombcid)
+)
+WITH (
+  OIDS=FALSE
+);
+
+CREATE INDEX mayxnnhombc_nhombc_ma_idx ON ml_mayxnnhombc USING btree (nhombc_ma);
+CREATE INDEX mayxnnhombc_istrakq_idx ON ml_mayxnnhombc USING btree (istrakq);
 
 
 
@@ -233,3 +259,9 @@ CREATE INDEX thuchienpttt_departmentid_idx ON ml_thuchienpttt USING btree (depar
 CREATE INDEX thuchienpttt_patientid_idx ON ml_thuchienpttt USING btree (patientid);
 CREATE INDEX thuchienpttt_servicepricedate_idx ON ml_thuchienpttt USING btree (servicepricedate);
 CREATE INDEX thuchienpttt_bhytid_idx ON ml_thuchienpttt USING btree (bhytid);
+
+
+
+
+
+

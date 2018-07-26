@@ -440,13 +440,13 @@
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gridColumn3.Caption = "Phụ_số ca";
-            this.gridColumn3.DisplayFormat.FormatString = "#,##0";
+            this.gridColumn3.DisplayFormat.FormatString = "#,##0.0";
             this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.gridColumn3.FieldName = "sl_phu";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.OptionsColumn.AllowEdit = false;
             this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sl_phu", "{0:#,##0}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sl_phu", "{0:#,##0.0}")});
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 5;
             this.gridColumn3.Width = 125;

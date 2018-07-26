@@ -1,7 +1,7 @@
 --Bao cao Danh sách mổ Yêu cầu bằng phương pháp kính hiển vi														
 --BC117_MoYCBangPPKinhHienVi
 
---ngay 20/6/2018
+--ngay 16/7/2018
 
 SELECT	row_number () over (order by nv.username) as stt,
 	nv.username,nv.usercode,
@@ -38,7 +38,7 @@ FROM
 	select pttt.phu1id as userid,
 			'phuid' as user_loai,
 			sum(pttt.soluong) as soluong
-	from (select vienphiid,soluong,phu1id from ml_thuchienpttt where servicepricecode='U11970-3701' and phu1id>0 "+tieuchi_ser+") pttt
+	from (select vienphiid,(case when phu2id>0 then soluong/2 else soluong end) as soluong,phu1id from ml_thuchienpttt where servicepricecode='U11970-3701' and phu1id>0 "+tieuchi_ser+") pttt
 		inner join (select *
 					from dblink('myconn','select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+"')
 					as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid
@@ -47,7 +47,7 @@ FROM
 	select pttt.phu2id as userid,
 			'phuid' as user_loai,
 			sum(pttt.soluong) as soluong
-	from (select vienphiid,soluong,phu2id from ml_thuchienpttt where servicepricecode='U11970-3701' and phu2id>0 "+tieuchi_ser+") pttt
+	from (select vienphiid,(case when phu1id>0 then soluong/2 else soluong end) as soluong,phu2id from ml_thuchienpttt where servicepricecode='U11970-3701' and phu2id>0 "+tieuchi_ser+") pttt
 		inner join (select *
 					from dblink('myconn','select vienphiid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+"')
 					as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid

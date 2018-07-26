@@ -14,20 +14,27 @@ namespace MedicalLink.ClassCommon
         public string MAYXN_TEN { get; set; }
         public string SERVICEPRICECODE { get; set; }
         public string SERVICEPRICENAME { get; set; }
-        //public string SERVICEPRICENAMENHANDAN { get; set; }
-        //public string SERVICEPRICENAMEBHYT { get; set; }
-        //public string SERVICEPRICENAMENUOCNGOAI { get; set; }
         public string SERVICEPRICEUNIT { get; set; }
-        //public decimal? SERVICEPRICEFEE { get; set; }
-        //public decimal? SERVICEPRICEFEENHANDAN { get; set; }
-        //public decimal? SERVICEPRICEFEEBHYT { get; set; }
-        //public decimal? SERVICEPRICEFEENUOCNGOAI { get; set; }
         public decimal? CP_HOACHAT { get; set; }
         public decimal? CP_HAOPHIXN { get; set; }
         public decimal? CP_LUONG { get; set; }
         public decimal? CP_DIENNUOC { get; set; }
         public decimal? CP_KHMAYMOC { get; set; }
         public decimal? CP_KHXAYDUNG { get; set; }
+        public string NHOMBC_MA { get; set; }
+        public string LASTUSERUPDATED { get; set; }
+        public DateTime? LASTTIMEUPDATED { get; set; }
+    }
+
+
+    public class MayXetNghiemNhomBCDTO
+    {
+        public int? STT { get; set; }
+        public int? MAYXNNHOMBCID { get; set; }
+        public string NHOMBC_MA { get; set; }
+        public string NHOMBC_TEN { get; set; }
+        public int? ISTRAKQ { get; set; }
+        public string GHICHU { get; set; }
         public string LASTUSERUPDATED { get; set; }
         public DateTime? LASTTIMEUPDATED { get; set; }
     }

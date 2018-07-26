@@ -128,12 +128,11 @@ namespace MedicalLink.BaoCao
                 DXPopupMenu menu = new DXPopupMenu();
                 menu.Items.Add(new DXMenuItem("Báo cáo phẫu thuật thủ thuật"));
                 menu.Items.Add(new DXMenuItem("Báo cáo thanh toán tiền phẫu thuật thủ thuật"));
-                // ... add more items
+                menu.Items.Add(new DXMenuItem("Báo cáo phẫu thuật thủ thuật - Theo filter trên lưới"));
+                menu.Items.Add(new DXMenuItem("Báo cáo thanh toán tiền phẫu thuật thủ thuật - Theo filter trên lưới"));
                 dropDownPrint.DropDownControl = menu;
-                // subscribe item.Click event
                 foreach (DXMenuItem item in menu.Items)
                     item.Click += Item_InAn_Click;
-                // setup initial selection
             }
             catch (Exception ex)
             {
@@ -694,7 +693,6 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
         private void tbnExportBCThanhToanPTTTTheoFilter_Click()
         {
             try
@@ -774,6 +772,14 @@ namespace MedicalLink.BaoCao
                 else if (tenbaocao == "Báo cáo thanh toán tiền phẫu thuật thủ thuật")
                 {
                     tbnInAnBCThanhToanPTTT_Click();
+                }
+                else if (tenbaocao == "Báo cáo phẫu thuật thủ thuật - Theo filter trên lưới")
+                {
+                    tbnInAnBCPTTT_Filter_Click();
+                }
+                else if (tenbaocao == "Báo cáo thanh toán tiền phẫu thuật thủ thuật - Theo filter trên lưới")
+                {
+                    tbnInAnBCThanhToanPTTT_Filter_Click();
                 }
             }
             catch (Exception ex)
@@ -906,6 +912,130 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
             SplashScreenManager.CloseForm();
+        }
+        private void tbnInAnBCPTTT_Filter_Click()
+        {
+            try
+            {
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
+                thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
+                thongTinThem.Add(reportitem_khoa);
+
+                string fileTemplatePath = "BC_PhauThuatThuThuat_CHUNG.xlsx";
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_001") //gay me
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_GMHT.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002") //tai mui hong
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TMH.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003")//rang ham mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_RHM.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004")//mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_MAT.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005")//khoa khac
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_CHUNG.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")//thu thuat - mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TT_MAT.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//thua thuat - tru mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TT_KHOAKHAC.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//thu thuat khac
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_TT_CHUNG.xlsx";
+                }
+                //else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                //{
+                //    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay.xlsx";
+                //}
+                DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, dataExportFilter);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void tbnInAnBCThanhToanPTTT_Filter_Click()
+        {
+            try
+            {
+                string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+                string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
+
+                List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
+                ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
+                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
+                thongTinThem.Add(reportitem);
+                ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
+                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
+                thongTinThem.Add(reportitem_khoa);
+
+                string fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_001") //gay me
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002") //tai mui hong
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003")//rang ham mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004")//mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005")//khoa khac
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanPhauThuat.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")//thu thuat - mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanThuThuat.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//thua thuat - tru mat
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanThuThuat.xlsx";
+                }
+                else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//thu thuat khac
+                {
+                    fileTemplatePath = "BC_PhauThuatThuThuat_ThanhToanThuThuat.xlsx";
+                }
+                //else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_009")//thu thuat noi soi da day
+                //{
+                //    fileTemplatePath = "BC_PhauThuatThuThuat_TT_NoiSoiDaDay_ThanhToan.xlsx";
+                //}
+                DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(bandedGridViewDataBCPTTT);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, dataExportFilter);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
         }
         #endregion
 

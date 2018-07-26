@@ -1,11 +1,11 @@
---bao cao doanh thu theo may xet nghiem  ngay 14/6/2017 
+--bao cao doanh thu theo may xet nghiem
 --ucBCDoanhThuTheoMayXN
 
 --su dung tat ca
---ngay 11/5/2018 them chi phi + tach vi sinh
+--ngay 25/7/2018 them chi phi + tach vi sinh
 SELECT ROW_NUMBER() OVER (ORDER BY SERV.ten_xn) as stt,
 		SERV.ma_xn, SERV.ten_xn
-		"+_tenmayxn_khacvisinh_select+",
+		"+_tenmayxn_traquamay_select+",
 		sum(SERV.sl_bhyt) as sl_bhyt, 
 		sum(SERV.sl_vp) as sl_vp, 
 		sum(SERV.sl_yc) as sl_yc, 
@@ -57,20 +57,22 @@ FROM
 			 when tkq.usercode like '%-gp' then 'Khoa giải phẫu bệnh'
 			 when tkq.usercode like '%-xndk' then 'Khoa xét nghiệm đa khoa'
 			 else '' end) as khoatra_kq,
-		(select s.idmayxn from service s where s.servicepriceid=ser.servicepriceid and s.servicedate>'2017-05-01 00:00:00'
+		(select s.idmayxn from service s where s.servicepriceid=ser.servicepriceid and s.servicedate>'2018-01-01 00:00:00'
 			order by coalesce(s.idmayxn,0) desc limit 1) as idmayxn,
-		(select s.tenmayxn from service s where s.servicepriceid=ser.servicepriceid and s.servicedate>'2017-05-01 00:00:00'
+		(select s.tenmayxn from service s where s.servicepriceid=ser.servicepriceid and s.servicedate>'2018-01-01 00:00:00'
 			order by coalesce(s.idmayxn,0) desc limit 1) as tenmayxn	
 	from (select servicepriceid,vienphiid,maubenhphamid,servicepricecode,servicepricename,doituongbenhnhanid,loaidoituong,soluong,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,servicepricemoney_nuocngoai,chiphidauvao,chiphipttt,chiphimaymoc,mayytedbid from serviceprice where bhyt_groupcode='03XN' "+_tieuchi_ser+_doituong_ser+") ser 
-		 INNER JOIN (select maubenhphamid,usertrakq from maubenhpham where maubenhphamgrouptype=0 "+_tieuchi_mbp+_loaibaocao+") MBP ON MBP.maubenhphamid=ser.maubenhphamid
-		 LEFT JOIN nhompersonnel tkq on tkq.userhisid=MBP.usertrakq
+		 inner join (select maubenhphamid,usertrakq from maubenhpham where maubenhphamgrouptype=0 "+_tieuchi_mbp+_nhomBC_phongTH+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+		 inner join (select vienphiid from vienphi where 1=1 "+_tieuchi_vp+_trangthaibenhan+_doituong_vp+") vp on vp.vienphiid=ser.vienphiid	
+		 left join (select userhisid,usercode from nhompersonnel) tkq on tkq.userhisid=mbp.usertrakq
+		 "+_nhombc_filter+"
+	group by ser.vienphiid,ser.servicepriceid,ser.maubenhphamid,ser.servicepricecode,ser.servicepricename,ser.doituongbenhnhanid,ser.loaidoituong,ser.soluong,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney,ser.servicepricemoney_nuocngoai,ser.chiphidauvao,ser.chiphipttt,ser.chiphimaymoc,ser.mayytedbid,tkq.usercode
 		) SERV
- INNER JOIN (select vienphiid from vienphi where 1=1 "+_tieuchi_vp+_trangthaibenhan+_doituong_vp+") VP ON VP.vienphiid=SERV.vienphiid	
 LEFT JOIN (SELECT *
 					FROM dblink('myconn_mel','select cp.mayxn_ma,kv.mayxn_ten,kv.khuvuc_ma,kv.khuvuc_ten,cp.servicepricecode,cp.cp_hoachat,cp.cp_haophixn,cp.cp_luong,cp.cp_diennuoc,cp.cp_khmaymoc,cp.cp_khxaydung from ml_mayxnchiphi cp left join ml_mayxnkhuvuc kv on cp.mayxn_ma=kv.mayxn_ma')
-					AS ml_mayxn(mayxn_ma integer,mayxn_ten text,khuvuc_ma text,khuvuc_ten text,servicepricecode text,cp_hoachat double precision,cp_haophixn double precision,cp_luong double precision,cp_diennuoc double precision,cp_khmaymoc double precision,cp_khxaydung double precision)) chiphi on chiphi.servicepricecode=SERV.ma_xn "+_dieukien_khacvisinh+"
-" + dsmayxn + "					
-GROUP BY SERV.ma_xn,SERV.ten_xn"+_tenmayxn_khacvisinh_groupby+",SERV.gia_bhyt,SERV.gia_vp,SERV.gia_yc,SERV.gia_nnn,SERV.khoatra_kq,chiphi.khuvuc_ten,SERV.cp_tructiep,SERV.cp_maymoc,SERV.cp_ldlk,SERV.cp_pttt,chiphi.cp_hoachat,chiphi.cp_haophixn,chiphi.cp_luong,chiphi.cp_diennuoc,chiphi.cp_khmaymoc,chiphi.cp_khxaydung;
+					AS ml_mayxn(mayxn_ma integer,mayxn_ten text,khuvuc_ma text,khuvuc_ten text,servicepricecode text,cp_hoachat double precision,cp_haophixn double precision,cp_luong double precision,cp_diennuoc double precision,cp_khmaymoc double precision,cp_khxaydung double precision)) chiphi on chiphi.servicepricecode=SERV.ma_xn "+_dieukien_traquamay+"
+" + _dsmayxn + "					
+GROUP BY SERV.ma_xn,SERV.ten_xn"+_tenmayxn_traquamay_groupby+",SERV.gia_bhyt,SERV.gia_vp,SERV.gia_yc,SERV.gia_nnn,SERV.khoatra_kq,chiphi.khuvuc_ten,SERV.cp_tructiep,SERV.cp_maymoc,SERV.cp_ldlk,SERV.cp_pttt,chiphi.cp_hoachat,chiphi.cp_haophixn,chiphi.cp_luong,chiphi.cp_diennuoc,chiphi.cp_khmaymoc,chiphi.cp_khxaydung;
 
 
 
@@ -123,13 +125,13 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricedate) as stt,
 			 else '' end) as khoatra_kq			
 FROM 
 	(select se.servicepriceid,se.vienphiid,se.maubenhphamid,se.servicepricecode,se.servicepricename,se.soluong,se.loaidoituong,se.departmentgroupid,se.departmentid,se.servicepricedate,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,servicepricemoney_nuocngoai,
-		(select s.idmayxn from service s where s.servicepriceid=se.servicepriceid and s.servicedate>'2017-05-01 00:00:00'
+		(select s.idmayxn from service s where s.servicepriceid=se.servicepriceid and s.servicedate>'2018-01-01 00:00:00'
 			order by coalesce(s.idmayxn,0) desc limit 1) as idmayxn
 		from serviceprice se where se.bhyt_groupcode='03XN' and servicepricemoney_bhyt="+_gia_bhyt+" and servicepricemoney_nhandan="+_gia_vp+" and servicepricemoney="+_gia_yc+" and servicepricemoney_nuocngoai="+_gia_nnn+" "+_servicepricecode+_tieuchi_ser+_doituong_ser+") ser
 	inner join (select maubenhphamid,maubenhphamdate,userid,usertrakq from maubenhpham where maubenhphamgrouptype=0 "+_tieuchi_mbp+_loaibaocao+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 	inner join (select vienphiid,patientid,hosobenhanid,bhytid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,vienphistatus,vienphistatus_vp from vienphi where 1=1 "+_tieuchi_vp+_doituong_vp+_trangthaibenhan+") vp on vp.vienphiid=ser.vienphiid
-	inner join (select hosobenhanid,patientname from hosobenhan where hosobenhandate>'2017-05-01 00:00:00') hsba on hsba.hosobenhanid=vp.hosobenhanid
-	inner join (select bhytid,bhytcode from bhyt where bhytdate>'2017-05-01 00:00:00') bh on bh.bhytid=vp.bhytid
+	inner join (select hosobenhanid,patientname from hosobenhan where hosobenhandate>'2018-01-01 00:00:00') hsba on hsba.hosobenhanid=vp.hosobenhanid
+	inner join (select bhytid,bhytcode from bhyt where bhytdate>'2018-01-01 00:00:00') bh on bh.bhytid=vp.bhytid
 	left join (select userhisid,username from nhompersonnel) ngd ON ngd.userhisid=mbp.userid 
 	left join nhompersonnel tkq on tkq.userhisid=mbp.usertrakq
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid

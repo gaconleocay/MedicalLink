@@ -491,7 +491,7 @@ namespace MedicalLink.BaoCao
             {
                 if (_lstDepartmentId == "BAOCAO_009")
                 {
-                    result = true;
+                    result = false;
                 }
                 else
                 {

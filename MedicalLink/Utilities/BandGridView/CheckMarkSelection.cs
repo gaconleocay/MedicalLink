@@ -335,7 +335,7 @@ namespace MedicalLink.Utilities.BandGridView
             if (IsRowSelected(e.RowHandle))
             {
                 e.Appearance.BackColor = SystemColors.Highlight;
-                // e.Appearance.ForeColor = SystemColors.HighlightText;
+                e.Appearance.ForeColor = Color.White;
             }
         }
     }

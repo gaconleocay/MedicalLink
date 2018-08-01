@@ -1,9 +1,10 @@
 --ucBCDSBNSDdv
 
 1. Theo tung dich vu 
----ngay 17/6
+---ngay 26/7
 
 SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, 
+	ser.servicepriceid,
 	vp.patientid as mabn, 
 	vp.vienphiid as mavp, 
 	hsba.patientname as tenbn, 
@@ -44,7 +45,7 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 	CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, 
 	(case ser.thuockhobanle when 0 then '' else 'Đơn nhà thuốc' end) as thuockhobanle 
 FROM 
-	(select vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,
+	(select servicepriceid,vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,
 		(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
 			else (case when loaidoituong=0 then servicepricemoney_bhyt
 						  when loaidoituong=1 then servicepricemoney_nhandan
@@ -52,7 +53,8 @@ FROM
 				  end)
 		end) as dongia,
 		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where " + this.DanhSachDichVu + tieuchi_ser+_bhyt_groupcode+") ser 
-	inner join (select servicepricecode,pttt_loaiid from servicepriceref where " + this.DanhSachDichVu+") serf on serf.servicepricecode=ser.servicepricecode	
+	inner join (select serff.servicepricecode,serff.pttt_loaiid from (select servicepricecode,pttt_loaiid from servicepriceref where ServiceGroupType not in (5,6) 
+		union all select medicinecode as servicepricecode,0 as pttt_loaiid from medicine_ref) serff where " + this.DanhSachDichVu + ") serf on serf.servicepricecode=ser.servicepricecode	
 	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 "+tieuchi_vp+loaivienphiid+doituongbenhnhanid+") vp ON ser.vienphiid=vp.vienphiid 
 	INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 "+tieuchi_hsba+") hsba ON hsba.hosobenhanid=vp.hosobenhanid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid 

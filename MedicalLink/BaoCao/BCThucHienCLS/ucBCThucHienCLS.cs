@@ -47,7 +47,7 @@ namespace MedicalLink.BaoCao
             LoadDanhSachExport();
             LoadDanhSachButonPrint();
             LoadDanhSachBaoCao();
-            KiemTraQuyenDuyetPTTT();
+            //KiemTraQuyenDuyetPTTT();
             LoadControlDuyetPTT();
         }
 
@@ -117,20 +117,20 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-        private void KiemTraQuyenDuyetPTTT()
-        {
-            try
-            {
-                if (!MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_05"))
-                {
-                    helper.CheckMarkColumn.ColumnEdit.ReadOnly = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
+        //private void KiemTraQuyenDuyetPTTT()
+        //{
+        //    try
+        //    {
+        //        if (!MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_05"))
+        //        {
+        //            helper.CheckMarkColumn.ColumnEdit.ReadOnly = true;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MedicalLink.Base.Logging.Error(ex);
+        //    }
+        //}
         private void LoadControlDuyetPTT()
         {
             try
@@ -260,7 +260,6 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void cboLoaiBaoCao_EditValueChanged(object sender, EventArgs e)
         {
             try

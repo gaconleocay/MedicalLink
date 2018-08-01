@@ -1072,7 +1072,7 @@ select * from hosobenhan where patientid=801068 order by hosobenhanid;
 select * from bhyt where patientid=801068 order by bhytid;
 select * from medicalrecord where patientid=801068 
  
- 
+ select * from service where maubenhphamid=18758982 and servicepriceid=47250590
  
  
  

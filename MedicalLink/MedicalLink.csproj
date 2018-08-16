@@ -561,6 +561,12 @@
     <Compile Include="BCQLTaiChinh\frmBC105_NhapTongChi.Designer.cs">
       <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
     </Compile>
+    <Compile Include="BCQLTaiChinh\frmDSBenhNhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\frmDSBenhNhan.Designer.cs">
+      <DependentUpon>frmDSBenhNhan.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCQLTaiChinh\NhapThongTinPTTT\ucNhapThucHienPTTT.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -739,6 +745,7 @@
     <Compile Include="ClassCommon\BCDoanhThuDichVuBC08DTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonChungTuThuocSDDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\BCQLTaiChinhFilterChiTietDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\ChiThuongDichVuVienPhiDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\DSCacKhoaDuocHuongK3DTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\KhoaChuanBiBNQD151DTO.cs" />
@@ -1530,6 +1537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\frmBC105_NhapTongChi.resx">
       <DependentUpon>frmBC105_NhapTongChi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\frmDSBenhNhan.resx">
+      <DependentUpon>frmDSBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\NhapThongTinPTTT\ucNhapThucHienPTTT.resx">
       <DependentUpon>ucNhapThucHienPTTT.cs</DependentUpon>

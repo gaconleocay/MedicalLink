@@ -1,8 +1,8 @@
 --Bao cao chi tiet su dung dich vu Kham benh
 --ucBC107_KhamBenhChiTiet
 
---ngay 25/5/2018: sua trang thai kham
-
+--ngay 16/8/2018: sua trang thai kham
+--lay BS kham benh = bs nhấn bắt đầu đầu tiên
 SELECT
 	row_number () over (order by ser.servicepricedate) as stt,
 	ser.servicepriceid,
@@ -61,7 +61,9 @@ FROM (select servicepriceid,servicepricecode,servicepricename,maubenhphamid,vien
 				  end)
 		end) as dongia 
 		from serviceprice where bhyt_groupcode='01KB' "+lstdichvu_ser+tieuchi_ser+") ser
-	inner join (select maubenhphamid,userid,maubenhphamstatus,(case when userthuchien=0 then userid else userthuchien end) as  userthuchien from maubenhpham where maubenhphamgrouptype=2 "+tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+	inner join (select maubenhphamid,userid,maubenhphamstatus,
+	--(case when userthuchien=0 then userid else userthuchien end) as  userthuchien 
+	(select pk.userid from sothutuphongkham pk where pk.medicalrecordid=m.medicalrecordid order by sothutuid limit 1) as userthuchien from maubenhpham m where maubenhphamgrouptype=2 "+tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 	inner join (select vienphiid,hosobenhanid,patientid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,vienphistatus,vienphistatus_vp,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 	inner join (select hosobenhanid,patientname from hosobenhan where 1=1 "+tieuchi_hsba+") hsba on hsba.hosobenhanid=vp.hosobenhanid
 	left join (select userhisid,usercode,username from nhompersonnel) ncd on ncd.userhisid=mbp.userthuchien

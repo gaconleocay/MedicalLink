@@ -41,13 +41,21 @@ namespace MedicalLink.Utilities.GridControl
                     DataRow row = result.NewRow();
                     foreach (GridColumn column in gridViewData.Columns)
                     {
-                        if (column.ColumnType.FullName.Contains("Decimal"))
+                        //Sap xep lai thu tu cot
+                        if (column.FieldName.ToLower() == "stt")
                         {
-                            row[column.FieldName] = gridViewData.GetRowCellValue(i, column) ?? 0;
+                            row[column.FieldName] = i + 1;
                         }
                         else
                         {
-                            row[column.FieldName] = gridViewData.GetRowCellValue(i, column);
+                            if (column.ColumnType.FullName.Contains("Decimal"))
+                            {
+                                row[column.FieldName] = gridViewData.GetRowCellValue(i, column) ?? 0;
+                            }
+                            else
+                            {
+                                row[column.FieldName] = gridViewData.GetRowCellValue(i, column);
+                            }
                         }
                     }
                     result.Rows.Add(row);

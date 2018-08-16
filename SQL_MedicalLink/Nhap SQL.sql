@@ -1033,10 +1033,12 @@ select vp.patientid,
 	vp.vienphiid, 
 	TO_CHAR(vp.duyet_ngayduyet, 'HH24:MI dd/MM/yyyy') as duyet_ngayduyet,
 	TO_CHAR(vp.duyet_ngayduyet_vp, 'HH24:MI dd/MM/yyyy') as duyet_ngayduyet_vp,
-	TO_CHAR(vp.vienphidate_ravien, 'dd/MM/yyyy') as vienphidate_ravien,
-	degp.departmentgroupname
+	TO_CHAR(vp.vienphidate_ravien, 'HH24:MI dd/MM/yyyy') as vienphidate_ravien,
+	degp.departmentgroupname,
+	de.departmentname
 from vienphi vp
 	inner join departmentgroup degp on degp.departmentgroupid=vp.departmentgroupid
+	inner join department de on de.departmentid=vp.departmentid
 where vp.vienphiid in ()
 --and vienphistatus=2
 --order by patientid,vienphiid

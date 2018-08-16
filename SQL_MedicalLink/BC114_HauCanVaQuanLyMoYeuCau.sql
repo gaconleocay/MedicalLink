@@ -2,7 +2,7 @@
 												
 --BC114_HauCanVaQuanLyMoYeuCau
 
---9/6/2018
+--8/8/2018
 select 0 as stt,
 		'' as departmentgroupname,
 		sum(case when ser.servicepricecode='U11620-4506' then ser.soluong else 0 end) as soluong_tt,
@@ -18,7 +18,7 @@ select 0 as stt,
 		'' as ghichu
 from 
 		(select vienphiid,soluong,departmentgroupid,servicepricecode,
-				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia
 			from serviceprice 
 			where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
 		inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid;	

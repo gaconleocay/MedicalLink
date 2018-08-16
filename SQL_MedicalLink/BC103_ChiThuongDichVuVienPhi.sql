@@ -1,8 +1,10 @@
 --Báo cáo CHI THƯỞNG DỊCH VỤ VIỆN PHÍ														
 --ucBC103_ChiThuongDichVuVienPhi
 
---ngay 17/6/2018: sua filter XN = bỏ các dv có phân loại PTTT đi
+--ngay 16/8/2018: sua filter XN = bỏ các dv có phân loại PTTT đi
 
+--Cấu hình tại: ml_chiathuongdvvp
+--Cấu hình DM dùng chung:REPORT_103_KHOA;REPORT_103_DV_KB;REPORT_103_DV_SADT
 
 --Kham benh - khoa khac
 SELECT 
@@ -23,7 +25,7 @@ FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,s
 						  end)
 				end) as dongia
 		from serviceprice 
-		where bhyt_groupcode='01KB' and departmentid not in (398,205,206,207,208,209,211) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kb+") ser
+		where bhyt_groupcode='01KB' and departmentid not in (398,"+lstdsphongkham_kbyc+") and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kb+") ser
 	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 GROUP BY ser.departmentid,ser.dongia
 
@@ -71,7 +73,7 @@ FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,s
 						  end)
 				end) as dongia
 		from serviceprice 
-		where bhyt_groupcode='01KB' and departmentid in (205,206,207,208,209,211) and EXTRACT(DOW FROM servicepricedate) not in (6,0) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kbyc+") ser
+		where bhyt_groupcode='01KB' and departmentid in ("+lstdsphongkham_kbyc+") and EXTRACT(DOW FROM servicepricedate) not in (6,0) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kbyc+") ser
 	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid	
 GROUP BY ser.departmentid,ser.dongia
 
@@ -95,7 +97,7 @@ FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,s
 						  end)
 				end) as dongia
 		from serviceprice 
-		where bhyt_groupcode='01KB' and departmentid in (205,206,207,208,209,211) and EXTRACT(DOW FROM servicepricedate) in (6,0) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kbycth7cn+") ser
+		where bhyt_groupcode='01KB' and departmentid in ("+lstdsphongkham_kbyc+") and EXTRACT(DOW FROM servicepricedate) in (6,0) and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser_kbycth7cn+") ser
 	inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid	
 GROUP BY ser.departmentid,ser.dongia
 		

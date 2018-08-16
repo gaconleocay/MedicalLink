@@ -1,7 +1,7 @@
 --báo cáo THỐNG KÊ SỐ TIỀN KHÁM YÊU CẦU THỨ 7, CHỦ NHẬT 
 --ucBC101_TKTienKhamYCT7CN
 
---ngay 12/6/2018
+--ngay 8/8/2018
 
 SELECT row_number () over (order by ser.yyyymmdd) as stt,
 	ser.ngaythangnam,
@@ -16,7 +16,7 @@ SELECT row_number () over (order by ser.yyyymmdd) as stt,
 	sum(case when ser.departmentid=222 then ser.soluong else 0 end) as ktmh_sl,
 	sum(case when ser.departmentid=222 then (ser.soluong*ser.dongia) else 0 end) as ktmh_thanhtien
 FROM (select vienphiid,maubenhphamid,departmentid,TO_CHAR(servicepricedate, 'dd/MM/yyyy') as ngaythangnam,TO_CHAR(servicepricedate, 'yyyymmdd') as yyyymmdd,soluong,
-			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia
 		from serviceprice 
 		where departmentid in (209,210,211,354,355,205,409,206,207,208,201,202,212,220,222)
 			and EXTRACT(DOW FROM servicepricedate) in (6,0) and bhyt_groupcode='01KB' and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser+") ser

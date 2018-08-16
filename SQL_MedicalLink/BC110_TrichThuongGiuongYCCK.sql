@@ -1,7 +1,7 @@
 --Bao cao trich thuong tien dich vu giuong yeu cau chuyen khoan
 --BC110_TrichThuongGiuongYCCK
 
---ngay 8/6/2018
+--ngay 8/8/2018
 
 SELECT row_number () over (order by degp.departmentgroupname) as stt,
 	degp.departmentgroupid,
@@ -20,7 +20,7 @@ LEFT JOIN
 		(sum(ser.dongia*ser.soluong*0.88)-sum(ser.soluong*80000))*0.25 as tienhuong
 	from 
 		(select vienphiid,soluong,departmentgroupid,
-				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia
 			from serviceprice 
 			where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
 		inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid

@@ -9,7 +9,9 @@ ALter table nhompersonnel add nhom_bcten text;
 
 */
 
---ngay 12/6/2018
+--ngay 16/8/2018
+--lay BS kham benh = bs nhấn bắt đầu đầu tiên
+
 SELECT 
 	(row_number() OVER (PARTITION BY ncd.nhom_bcid ORDER BY ncd.username)) as stt,
 	mbp.userthuchien as userhisid,
@@ -25,8 +27,8 @@ SELECT
 	0 as thuclinh,
 	'' as kynhan,
 	0 as isgroup
-FROM (select maubenhphamid,userid,maubenhphamstatus,(case when userthuchien=0 then userid else userthuchien end) as userthuchien from maubenhpham where maubenhphamgrouptype=2 "+tieuchi_mbp+_khoaChiDinh+") mbp 
-	inner join (select maubenhphamid,vienphiid,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+FROM (select maubenhphamid,userid,maubenhphamstatus,(select pk.userid from sothutuphongkham pk where pk.medicalrecordid=m.medicalrecordid order by sothutuid limit 1) as userthuchien from maubenhpham m where maubenhphamgrouptype=2 "+tieuchi_mbp+_khoaChiDinh+") mbp 
+	inner join (select maubenhphamid,vienphiid,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia
 				from serviceprice where bhyt_groupcode='01KB' and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+lstdichvu_ser+tieuchi_ser+_khoaChiDinh+") ser on ser.maubenhphamid=mbp.maubenhphamid
 	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 	inner join (select userhisid,usercode,username,nhom_bcid,nhom_bcten from nhompersonnel group by userhisid,usercode,username,nhom_bcid,nhom_bcten) ncd on ncd.userhisid=mbp.userthuchien

@@ -1,7 +1,7 @@
 --Danh sách Khoa hưởng tiền dịch vụ yêu cầu chất lượng cao													
 --BC113_DSKhoaHuongTienDVYCCLC
 
---10/6/2018
+--8/8/2018
 
 SELECT row_number () over (order by degp.departmentgroupname) as stt,
 	degp.departmentgroupid,
@@ -29,7 +29,7 @@ INNER JOIN
 		sum(ser.soluong*ser.dongia) as thanhtien	
 	from 
 		(select vienphiid,soluong,medicalrecordid,
-				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else servicepricemoney_nhandan end) as dongia
+				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia
 			from serviceprice 
 			where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
 		inner join (select backdepartmentid,medicalrecordid,medicalrecordid_next from medicalrecord where 1=1 "+tieuchi_mrd+") mrd on mrd.medicalrecordid=ser.medicalrecordid

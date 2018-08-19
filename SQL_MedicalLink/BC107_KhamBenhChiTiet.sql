@@ -63,7 +63,7 @@ FROM (select servicepriceid,servicepricecode,servicepricename,maubenhphamid,vien
 		from serviceprice where bhyt_groupcode='01KB' "+lstdichvu_ser+tieuchi_ser+") ser
 	inner join (select maubenhphamid,userid,maubenhphamstatus,
 	--(case when userthuchien=0 then userid else userthuchien end) as  userthuchien 
-	(select pk.userid from sothutuphongkham pk where pk.medicalrecordid=m.medicalrecordid order by sothutuid limit 1) as userthuchien from maubenhpham m where maubenhphamgrouptype=2 "+tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
+	(select pk.userid from sothutuphongkham pk where isremoved=0 and pk.medicalrecordid=m.medicalrecordid order by sothutuid limit 1) as userthuchien from maubenhpham m where maubenhphamgrouptype=2 "+tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 	inner join (select vienphiid,hosobenhanid,patientid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,vienphistatus,vienphistatus_vp,doituongbenhnhanid from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 	inner join (select hosobenhanid,patientname from hosobenhan where 1=1 "+tieuchi_hsba+") hsba on hsba.hosobenhanid=vp.hosobenhanid
 	left join (select userhisid,usercode,username from nhompersonnel) ncd on ncd.userhisid=mbp.userthuchien

@@ -20,6 +20,9 @@ CREATE INDEX ml_bc112giuongyc_code_idx
 
 --=(((Tổng giường yêu cầu toàn viện - Tổng thu( của BC giuong ngoaikieu))*0.88)) - Tiền xuất ăn (của BC GYC 12%)
 
+
+
+
 SELECT
 	degp.stt,
 	degp.departmentgroupname,

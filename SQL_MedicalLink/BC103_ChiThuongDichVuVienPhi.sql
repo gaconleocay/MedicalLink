@@ -35,7 +35,7 @@ FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,s
 				when departmentid in (393,394) then servicepricecode='15'
 				when departmentid in (398) then servicepricecode='14'
 				when departmentid in (205,206,207,208,209,211,354) then servicepricecode in ('14')
-				when departmentid in (14) then servicepricecode='U18843-5947'
+				when departmentid in (14) then servicepricecode in ('U18843-5947','14')
 				when departmentid in (379) then servicepricecode='14'
 			end)
 			and bhyt_groupcode='01KB' and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+") ser
@@ -254,7 +254,7 @@ FROM
 				when departmentid in (393,394) then servicepricecode='15'
 				when departmentid in (398) then servicepricecode='14'
 				when departmentid in (205,206,207,208,209,211,354) then servicepricecode in ('14','U18843-5947')
-				when departmentid in (14) then servicepricecode='U18843-5947'
+				when departmentid in (14) then servicepricecode in ('U18843-5947','14')
 				when departmentid in (379) then servicepricecode='14'
 			end) 
 		or 

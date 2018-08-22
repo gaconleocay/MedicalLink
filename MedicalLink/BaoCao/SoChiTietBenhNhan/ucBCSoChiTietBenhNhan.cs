@@ -306,7 +306,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 string fileTemplatePath = "BC_SoChiTietBenhNhan_01.xlsx";
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, Utilities.DataTables.ListToDataTable(this.lstDataSoChiTietBN));
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, Utilities.DataTables.ListToDataTable(this.lstDataSoChiTietBN));
                 //export.ExportExcelTemplate_ReportTemps("", fileTemplatePath, thongTinThem, Utilities.Util_DataTable.ListToDataTable(this.lstDataSoChiTietBN));
 
                 //DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControl = new DevExpress.XtraSpreadsheet.SpreadsheetControl();

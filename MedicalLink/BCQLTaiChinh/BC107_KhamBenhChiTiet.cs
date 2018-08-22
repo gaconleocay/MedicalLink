@@ -162,7 +162,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 string fileTemplatePath = ".xlsx";
                 DataTable _dataBaocao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBC);
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaocao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaocao);
             }
             catch (Exception ex)
             {

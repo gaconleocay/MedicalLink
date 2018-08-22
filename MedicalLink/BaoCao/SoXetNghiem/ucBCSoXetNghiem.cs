@@ -263,7 +263,7 @@ namespace MedicalLink.BaoCao
                     _dataBaoCao = this.dataBaoCao_KM;
                 }
 
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaoCao);
             }
             catch (Exception ex)
             {

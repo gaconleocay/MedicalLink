@@ -244,7 +244,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(_item_tien_string);
 
                 string fileTemplatePath = "BC_104_TrichThuongFibro.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
             {

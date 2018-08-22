@@ -202,7 +202,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(item_phong);
 
                 string fileTemplatePath = "BC_43_SoPhauThuatThuThuat_CLS.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
             {

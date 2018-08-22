@@ -541,7 +541,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else
                 {
-                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','2','Nhân viên','" + _userhisid + "');";
+                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote,userhisid) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','2','Nhân viên','" + _userhisid + "');";
                 }
                 condb.ExecuteNonQuery_MeL(sqlinsert_user);
             }

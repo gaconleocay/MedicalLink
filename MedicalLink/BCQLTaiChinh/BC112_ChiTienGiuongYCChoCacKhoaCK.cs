@@ -216,7 +216,7 @@ namespace MedicalLink.BCQLTaiChinh
                 thongTinThem.Add(_item_THANHTIEN);
 
                 string fileTemplatePath = "BC_112_ChiTienGiuongYCChoCacKhoaCK.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem);
             }
             catch (Exception ex)
             {

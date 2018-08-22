@@ -19,5 +19,7 @@ namespace MedicalLink.ClassCommon
         public string USERGNHOM_NAME { get; set; }
         public int? NHOM_BCID { get; set; }
         public string NHOM_BCTEN { get; set; }
+        public int? DEPARTMENTGROUPID { get; set; }
+        public string DEPARTMENTGROUPNAME { get; set; }
     }
 }

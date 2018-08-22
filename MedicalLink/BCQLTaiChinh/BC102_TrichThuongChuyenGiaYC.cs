@@ -350,7 +350,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 string fileTemplatePath = "BC_102_TrichThuongChuyenGiaYeuCau.xlsx";
                 DataTable _dataBaocao = Utilities.DataTables.ListToDataTable(this.lstBaoCao);
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaocao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, _dataBaocao);
             }
             catch (Exception ex)
             {

@@ -11,7 +11,7 @@ namespace MedicalLink.Utilities.PrintPreview
 {
     public static class PrintPreview_ExcelFileTemplate
     {
-        public static void ShowPrintPreview_UsingExcelTemplate(string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem, DataTable dataTable)
+        public static void UsingExcelTemplate(string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem, DataTable dataTable)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace MedicalLink.Utilities.PrintPreview
             }
         }
 
-        public static void ShowPrintPreview_UsingExcelTemplate(string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem)
+        public static void UsingExcelTemplate(string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem)
         {
             try
             {

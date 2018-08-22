@@ -382,6 +382,11 @@ namespace MedicalLink.FormCommon
                     case "REPORT_45":
                         ucResult = new BaoCao.ucBC45_SoPhauThuatLamSang();
                         break;
+                    case "REPORT_46":
+                        ucResult = new BaoCao.ucBC46_TinhHinhThanhToan();
+                        break;
+
+
 
 
                     //Bao cao QL Tai chinh

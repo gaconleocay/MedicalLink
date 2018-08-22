@@ -204,7 +204,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
 
                 string fileTemplatePath = "BC_ThanhToanPTTT_TongHop.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBCPhauThuat);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBCPhauThuat);
             }
             catch (Exception ex)
             {

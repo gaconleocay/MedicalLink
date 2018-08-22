@@ -300,7 +300,7 @@ namespace MedicalLink.BCQLTaiChinh
 
 
                 string fileTemplatePath = "BC_105_TrichThuongDVNuocSoi.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem);
             }
             catch (Exception ex)
             {

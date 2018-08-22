@@ -226,7 +226,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
                 thongTinThem.Add(reportitem_kho);
                 string fileTemplatePath = "BC_ThuTienNhaThuocHangNgay.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBCBXuatThuoc);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBCBXuatThuoc);
             }
             catch (Exception ex)
             {

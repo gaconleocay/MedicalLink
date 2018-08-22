@@ -274,7 +274,7 @@ namespace MedicalLink.Dashboard
 
                 string fileTemplatePath = "DB_13_CapNhatVaDieuDongNhanLuc.xlsx";
                 DataTable data_XuatBaoCao = ExportExcel_GroupColume();
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
             {

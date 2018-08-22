@@ -134,6 +134,86 @@ namespace MedicalLink.Utilities.Common.Excel
             }
         }
 
+        public void ExportExcelTemplate(string pv_sErr, string fileNameTemplate, List<ClassCommon.reportExcelDTO> thongTinThem, List<DataTable> lstdataTable)
+        {
+            try
+            {
+                DataSet dataExportExcel = new DataSet();
+                dataExportExcel.Tables.Add(InsertOrders(thongTinThem));
+
+                foreach (var item in lstdataTable)
+                {
+                    DataTable dataTableCopy = item.Copy();
+                    dataExportExcel.Tables.Add(dataTableCopy);
+                }
+
+                string fileTemplatePath = Environment.CurrentDirectory + "\\Templates\\" + fileNameTemplate;
+                WorkbookDesigner designer;
+                using (SaveFileDialog saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "Excel 2010 (.xlsx)|*.xlsx |Excel 2003 (.xls)|*.xls|Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+                    if (saveDialog.ShowDialog() != DialogResult.Cancel)
+                    {
+                        string exportFilePath = saveDialog.FileName;
+                        string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+                        if (File.Exists(fileTemplatePath))
+                        {
+                            designer = new WorkbookDesigner();
+                            string strRoot = Environment.CurrentDirectory + "\\Library\\";
+                            Aspose.Cells.License l = new Aspose.Cells.License();
+                            string strLicense = strRoot + "Aspose.Cells.lic";
+                            l.SetLicense(strLicense);
+                            designer.Open(fileTemplatePath);
+                            if (dataExportExcel.Tables.Count > 0)
+                            {
+                                dataExportExcel.Tables[0].TableName = "DATA";
+                                for (int i = 1; i < dataExportExcel.Tables.Count; i++)
+                                {
+                                    dataExportExcel.Tables[i].TableName = "DATA" + i;
+                                }
+                                designer.SetDataSource(dataExportExcel);
+                                designer.Process();
+                                designer.Workbook.CalculateFormula();
+                                switch (fileExtenstion)
+                                {
+                                    case ".xls":
+                                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
+                                        break;
+                                    case ".xlsx":
+                                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Xlsx));
+                                        break;
+                                    case ".pdf":
+                                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Pdf));
+                                        break;
+                                    case ".html":
+                                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Html));
+                                        break;
+                                    default:
+                                        designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
+                                        break;
+                                }
+                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                frmthongbao.Show();
+                            }
+                        }
+                        else
+                        {
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_TEMPLATE_BAO_CAO);
+                            frmthongbao.Show();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+                MessageBox.Show("Export dữ liệu thất bại!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
         public void ExportDataGridViewToFile(DevExpress.XtraGrid.GridControl gridControlData, DevExpress.XtraGrid.Views.Grid.GridView gridViewData)
         {
             if (gridViewData.RowCount > 0)

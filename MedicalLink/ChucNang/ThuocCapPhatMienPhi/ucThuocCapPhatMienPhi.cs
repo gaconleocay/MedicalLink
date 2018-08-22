@@ -233,7 +233,7 @@ namespace MedicalLink.ChucNang
 
                 DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
                 string fileTemplatePath = "TOOL_23_BNCapPhatThuocVatTuMienPhi.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, dataExportFilter);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, dataExportFilter);
             }
             catch (Exception ex)
             {

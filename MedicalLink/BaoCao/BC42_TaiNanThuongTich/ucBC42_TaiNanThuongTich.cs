@@ -330,7 +330,7 @@ namespace MedicalLink.BaoCao
                 reportitem.value = tungaydenngay;
                 thongTinThem.Add(reportitem);
 
-                string fileTemplatePath = "BC_42_ThongKeTaiNanThuongTich.xlsx"; Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, DataTables.ListToDataTable(this.lstBaoCao));
+                string fileTemplatePath = "BC_42_ThongKeTaiNanThuongTich.xlsx"; Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, DataTables.ListToDataTable(this.lstBaoCao));
             }
             catch (Exception ex)
             {

@@ -273,7 +273,7 @@ namespace MedicalLink.BaoCao
                     fileTemplatePath = "BC_37_DoanhThuTheoLoaiHinhDichVu_TongHop.xlsx";
                     data_XuatBaoCao = ExportExcel_GroupColume_TongHop();
                 }
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
             {

@@ -394,7 +394,7 @@ namespace MedicalLink.BaoCao
                     fileTemplatePath = "BC_41_ThongKeSuDungDichVuYeuCau_DSBN.xlsx";
                     data_XuatBaoCao = ExportExcel_GroupColume_DSBN();
                 }
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
             {

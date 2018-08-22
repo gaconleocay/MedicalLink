@@ -290,7 +290,7 @@ namespace MedicalLink.BaoCao
                 //{
                 //    fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
                 //}
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
             {
@@ -321,7 +321,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem_khoa);
 
                 string fileTemplatePath = "So_ThuThuatLamSang_ThanNhanTao.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
             {

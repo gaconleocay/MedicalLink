@@ -114,7 +114,7 @@ namespace MedicalLink.BaoCao
 
                 string fileTemplatePath = "BC_39_ChinhSuaHoaDonTamUng.xlsx";
                 System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
             }
             catch (Exception ex)
             {

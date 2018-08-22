@@ -152,7 +152,7 @@ namespace MedicalLink.BaoCao
 
                 string fileTemplatePath = "BC_VTYTTTRiengLonHon45TLCB.xlsx";
                 DataTable dataExportFilter = Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao);
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, dataExportFilter);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, dataExportFilter);
             }
             catch (Exception ex)
             {

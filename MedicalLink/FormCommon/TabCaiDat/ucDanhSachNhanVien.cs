@@ -19,7 +19,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
     public partial class ucDanhSachNhanVien : UserControl
     {
         #region Khai bao
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private ConnectDatabase condb = new ConnectDatabase();
         private string CurentUserCodeid;
         private string CurentUserHisId;
         #endregion
@@ -40,9 +40,11 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 txtuserhisid.Enabled = false;
                 cboNhomNhanVien.Enabled = false;
                 cboNhomBaoCao.Enabled = false;
+                cboKhoa.Enabled = false;
 
                 //lay danh sach nhan vien
                 LayDanhSachNhanVien();
+                LoadDanhSachKhoa();
             }
             catch (Exception ex)
             {
@@ -70,6 +72,21 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 Base.Logging.Error(ex);
             }
         }
+        private void LoadDanhSachKhoa()
+        {
+            try
+            {
+                string _sqlKhoa = "select departmentgroupid,departmentgroupname from departmentgroup order by departmentgroupname;";
+                DataTable _dataKhoa = condb.GetDataTable_HIS(_sqlKhoa);
+                cboKhoa.Properties.DataSource = _dataKhoa;
+                cboKhoa.Properties.DisplayMember = "departmentgroupname";
+                cboKhoa.Properties.ValueMember = "departmentgroupid";
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
         #region Events
@@ -86,6 +103,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 txtuserhisid.Enabled = true;
                 cboNhomNhanVien.Enabled = true;
                 cboNhomBaoCao.Enabled = true;
+                cboKhoa.Enabled = true;
                 txtusercode.Focus();
 
                 this.CurentUserCodeid = "";
@@ -120,16 +138,17 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     if (dialogResult == DialogResult.Yes)
                     {
 
-                        string sqlxoatk = "DELETE FROM nhompersonnel WHERE usercode='" + _usercode + "';";
-                        if (condb.ExecuteNonQuery_HIS(sqlxoatk))
+                        string _sqlxoaHIS = "DELETE FROM nhompersonnel WHERE usercode='" + _usercode + "';";
+                        string _sqlXoaML = "DELETE FROM ml_nhanvien WHERE usercode='" + _usercode + "';";
+                        if (condb.ExecuteNonQuery_HIS(_sqlxoaHIS) && condb.ExecuteNonQuery_MeL(_sqlXoaML))
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.XOA_THANH_CONG);
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.XOA_THANH_CONG);
                             frmthongbao.Show();
                             LayDanhSachNhanVien();
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                     }
@@ -155,6 +174,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     txtuserhisid.Text = this.CurentUserHisId;
                     cboNhomNhanVien.Text = gridViewDSNV.GetRowCellValue(rowHandle, "usergnhom_name").ToString();
                     cboNhomBaoCao.Text = gridViewDSNV.GetRowCellValue(rowHandle, "nhom_bcten").ToString();
+                    //cboKhoa.EditValue = null;
+                    int _khoaID= Utilities.TypeConvertParse.ToInt32(gridViewDSNV.GetRowCellValue(rowHandle, "departmentgroupid").ToString()); ;
+                    cboKhoa.EditValue = _khoaID;
 
                     txtusercode.Enabled = true;
                     txtusername.Enabled = true;
@@ -162,6 +184,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     txtuserhisid.Enabled = true;
                     cboNhomNhanVien.Enabled = true;
                     cboNhomBaoCao.Enabled = true;
+                    cboKhoa.Enabled = true;
                 }
             }
             catch (Exception ex)
@@ -170,6 +193,9 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
         }
 
+        #endregion
+
+        #region Luu lai
         private void btnLuuLai_Click(object sender, EventArgs e)
         {
             try
@@ -183,6 +209,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 string en_userpassword = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
                 string _usergnhom = "0";
                 string _nhom_bcid = "0";
+                string _departmentgroupid = "0";
 
                 //nhom nhan vien
                 if (cboNhomNhanVien.Text == "Bác sĩ")
@@ -205,7 +232,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     _usergnhom = "99";
                 }
-
                 //nhom bao cao
                 if (cboNhomBaoCao.Text == "Nhân viên hợp đồng")
                 {
@@ -219,20 +245,27 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     _nhom_bcid = "99";
                 }
-                //
+                //khoa
+                if (cboKhoa.EditValue != null)
+                {
+                    _departmentgroupid = cboKhoa.EditValue.ToString();
+                }
+
                 if (txtusercode.Text != this.CurentUserCodeid) //them moi
                 {
                     if (CheckAccTonTai(txtusercode.Text.Trim(), txtuserhisid.Text.Trim()))
                     {
-                        string sql = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten) VALUES('" + _usercode + "','" + _username + "','" + en_userpassword + "','0','','" + txtuserhisid.Text.Trim() + "','" + _usergnhom + "','" + cboNhomNhanVien.Text + "','" + _nhom_bcid + "','" + cboNhomBaoCao.Text + "');";
-                        if (condb.ExecuteNonQuery_HIS(sql))
+                        string _sqlInsertHIS = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten,departmentgroupid,departmentgroupname) VALUES('" + _usercode + "','" + _username + "','" + en_userpassword + "','0','','" + txtuserhisid.Text.Trim() + "','" + _usergnhom + "','" + cboNhomNhanVien.Text + "','" + _nhom_bcid + "','" + cboNhomBaoCao.Text + "','" + _departmentgroupid + "','" + cboKhoa.Text + "');";
+                        string _sqlInsertMeL = _sqlInsertHIS.Replace("nhompersonnel", "ml_nhanvien");
+
+                        if (condb.ExecuteNonQuery_HIS(_sqlInsertHIS) && condb.ExecuteNonQuery_MeL(_sqlInsertMeL))
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.THEM_MOI_THANH_CONG);
                             frmthongbao.Show();
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                         gridControlDSNV.DataSource = null;
@@ -241,15 +274,17 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else
                 {
-                    string sql = "UPDATE nhompersonnel SET username='" + _username + "', userpassword='" + en_userpassword + "', userstatus='0', usernote='' , userhisid = '" + txtuserhisid.Text.Trim() + "', usergnhom='" + _usergnhom + "', usergnhom_name='" + cboNhomNhanVien.Text + "', nhom_bcid='" + _nhom_bcid + "',nhom_bcten='" + cboNhomBaoCao.Text + "' WHERE usercode='" + _usercode + "';";
-                    if (condb.ExecuteNonQuery_HIS(sql))
+                    string _sqlUpdateHIS = "UPDATE nhompersonnel SET username='" + _username + "', userpassword='" + en_userpassword + "', userstatus='0', usernote='' , userhisid = '" + txtuserhisid.Text.Trim() + "', usergnhom='" + _usergnhom + "', usergnhom_name='" + cboNhomNhanVien.Text + "', nhom_bcid='" + _nhom_bcid + "',nhom_bcten='" + cboNhomBaoCao.Text + "',departmentgroupid='" + _departmentgroupid + "',departmentgroupname='" + cboKhoa.Text + "' WHERE usercode='" + _usercode + "';";
+                    string _sqlUpdateMeL = _sqlUpdateHIS.Replace("nhompersonnel", "ml_nhanvien");
+
+                    if (condb.ExecuteNonQuery_HIS(_sqlUpdateHIS) && condb.ExecuteNonQuery_MeL(_sqlUpdateMeL))
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.SUA_THANH_CONG);
                         frmthongbao.Show();
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.CO_LOI_XAY_RA);
                         frmthongbao.Show();
                     }
                     gridControlDSNV.DataSource = null;
@@ -270,20 +305,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
             if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-            }
-        }
-        private void gridViewDSNV_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            try
-            {
-                if (e.Column == stt)
-                {
-                    e.DisplayText = Convert.ToString(e.RowHandle + 1);
-                }
-            }
-            catch (Exception)
-            {
-
             }
         }
         private void gridViewDSNV_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -309,7 +330,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 if (datacheck != null && datacheck.Rows.Count > 0)
                 {
                     result = false;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.TEN_TAI_KHOA_DA_TON_TAI);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.TEN_TAI_KHOA_DA_TON_TAI);
                     frmthongbao.Show();
                     return false;
                 }
@@ -319,7 +340,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 if (datacheckHisId != null && datacheckHisId.Rows.Count > 0)
                 {
                     result = false;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MA_HIS_ID_DA_TON_TAI);
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(ThongBaoLable.MA_HIS_ID_DA_TON_TAI);
                     frmthongbao.Show();
                     return false;
                 }
@@ -363,7 +384,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             string _usergnhom_name = _itemIns.USERGNHOM_NAME ?? "";
                             string _nhom_bcid = (_itemIns.NHOM_BCID ?? 0).ToString();
                             string _nhom_bcten = _itemIns.NHOM_BCTEN ?? "";
-
+                            string _departmentgroupid = (_itemIns.DEPARTMENTGROUPID ?? 0).ToString();
+                            string _departmentgroupname = _itemIns.DEPARTMENTGROUPNAME ?? "";
 
                             if ((_itemIns.STT != null && _itemIns.STT != 0) && _itemIns.USERCODE != null)
                             {
@@ -373,10 +395,11 @@ namespace MedicalLink.FormCommon.TabCaiDat
                                 if (_dataKiemTra != null && _dataKiemTra.Rows.Count > 0)
                                 {
                                     //update
-                                    string _sqlUpdate = @"UPDATE nhompersonnel SET username='" + _username + "', userstatus='" + _userstatus + "', usernote='" + _usernote + "' , userhisid = '" + _userhisid + "', usergnhom='" + _usergnhom + "', usergnhom_name='" + _usergnhom_name + "', nhom_bcid='" + _nhom_bcid + "', nhom_bcten='" + _nhom_bcten + "' WHERE usercode='" + _itemIns.USERCODE + "';";
+                                    string _sqlUpdateHIS = @"UPDATE nhompersonnel SET username='" + _username + "', userstatus='" + _userstatus + "', usernote='" + _usernote + "' , userhisid = '" + _userhisid + "', usergnhom='" + _usergnhom + "', usergnhom_name='" + _usergnhom_name + "', nhom_bcid='" + _nhom_bcid + "', nhom_bcten='" + _nhom_bcten + "',departmentgroupid='" + _departmentgroupid + "',departmentgroupname='" + _departmentgroupname + "' WHERE usercode='" + _itemIns.USERCODE + "';";
                                     try
                                     {
-                                        if (condb.ExecuteNonQuery_HIS(_sqlUpdate))
+                                        string _sqlUpdateMeL = _sqlUpdateHIS.Replace("nhompersonnel", "ml_nhanvien");
+                                        if (condb.ExecuteNonQuery_HIS(_sqlUpdateHIS) && condb.ExecuteNonQuery_MeL(_sqlUpdateMeL))
                                         {
                                             dem_update += 1;
                                         }
@@ -390,10 +413,11 @@ namespace MedicalLink.FormCommon.TabCaiDat
                                 else
                                 {
                                     //Insert
-                                    string _sqlInsert = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten) VALUES('" + _itemIns.USERCODE + "','" + _username + "','" + Base.EncryptAndDecrypt.Encrypt("", true) + "','" + _userstatus + "','" + _usernote + "','" + _userhisid + "','" + _usergnhom + "','" + _usergnhom_name + "','" + _nhom_bcid + "','" + _nhom_bcten + "');";
+                                    string _sqlInsertHIS = @"INSERT INTO nhompersonnel(usercode,username,userpassword,userstatus,usernote,userhisid,usergnhom,usergnhom_name,nhom_bcid,nhom_bcten,departmentgroupid,departmentgroupname) VALUES('" + _itemIns.USERCODE + "','" + _username + "','" + Base.EncryptAndDecrypt.Encrypt("", true) + "','" + _userstatus + "','" + _usernote + "','" + _userhisid + "','" + _usergnhom + "','" + _usergnhom_name + "','" + _nhom_bcid + "','" + _nhom_bcten + "','" + _departmentgroupid + "','" + _departmentgroupname + "');";
                                     try
                                     {
-                                        if (condb.ExecuteNonQuery_HIS(_sqlInsert))
+                                        string _sqlInsertMeL = _sqlInsertHIS.Replace("nhompersonnel", "ml_nhanvien");
+                                        if (condb.ExecuteNonQuery_HIS(_sqlInsertHIS) && condb.ExecuteNonQuery_MeL(_sqlInsertMeL))
                                         {
                                             dem_insert += 1;
                                         }
@@ -437,9 +461,17 @@ namespace MedicalLink.FormCommon.TabCaiDat
 
                 string fileTemplatePath = "0_ToolsNhanVien_Export.xlsx";
                 string _sqllayds = "SELECT row_number () over (order by userhisid) as stt, * FROM nhompersonnel;";
+                string _sqlKhoa = "select departmentgroupid as khoa_id,departmentgroupname as khoa_ten from departmentgroup order by departmentgroupname;";
+
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(_sqllayds);
+                DataTable _dataKhoa = condb.GetDataTable_HIS(_sqlKhoa);
+
+                List<DataTable> _lstDataTable = new List<DataTable>();
+                _lstDataTable.Add(_dataBaoCao);
+                _lstDataTable.Add(_dataKhoa);
+
                 Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _dataBaoCao);
+                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, _lstDataTable);
             }
             catch (Exception ex)
             {

@@ -282,7 +282,7 @@ namespace MedicalLink.BaoCao
                 }
                 thongTinThem.Add(reportitem_tenbc);
 
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
             {

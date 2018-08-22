@@ -300,7 +300,7 @@ namespace MedicalLink.BaoCao
                 reportitem_tc.value = cboTieuChi.Text;
                 thongTinThem.Add(reportitem_tc);
 
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, this.dataBaoCao);
             }
             catch (Exception ex)
             {

@@ -359,7 +359,7 @@ namespace MedicalLink.BaoCao
                 thongTinThem.Add(reportitem);
 
                 string fileTemplatePath = "BC_PhauThuat_YeuCau.xlsx";
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, dataBCPhauThuat_YC);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, dataBCPhauThuat_YC);
             }
             catch (Exception ex)
             {
@@ -383,7 +383,7 @@ namespace MedicalLink.BaoCao
 
                 string fileTemplatePath = "BC_PhauThuat_YeuCau_ThanhToan.xlsx";
 
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.ShowPrintPreview_UsingExcelTemplate(fileTemplatePath, thongTinThem, dataBCPhauThuat_YC);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, dataBCPhauThuat_YC);
             }
             catch (Exception ex)
             {

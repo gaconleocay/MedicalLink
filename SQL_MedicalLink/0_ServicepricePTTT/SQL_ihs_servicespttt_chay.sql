@@ -5,7 +5,7 @@
 --ngay 31/8 sua lai chia money_dkpttt_vattu_bh va vp
 --ngay 23/3/2018: tách nhóm PTTT yêu cầu và nhóm Vật tư thanh toán riêng
 --ngay 26/5/2018: thêm cột trạng thái thu tiền: thutienstatus
-
+--ngay 31/8/2018: Fix thiếu thuốc thanh toán riêng
 
 INSERT INTO ihs_servicespttt(servicepriceptttid,vienphiid,patientid,bhytid,hosobenhanid,loaivienphiid,vienphistatus,khoaravien,phongravien,doituongbenhnhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet,vienphistatus_vp,duyet_ngayduyet_vp,vienphistatus_bh,duyet_ngayduyet_bh,bhyt_tuyenbenhvien,departmentid,departmentgroupid,departmentgroup_huong,money_khambenh_bh,money_khambenh_vp,money_xetnghiem_bh,money_xetnghiem_vp,money_cdha_bh,money_cdha_vp,money_tdcn_bh,money_tdcn_vp,money_pttt_bh,money_pttt_vp,money_ptttyeucau_bh,money_ptttyeucau_vp,money_mau_bh,money_mau_vp,money_giuongthuong_bh,money_giuongthuong_vp,money_giuongyeucau_bh,money_giuongyeucau_vp,money_nuocsoi_bh,money_nuocsoi_vp,money_xuatan_bh,money_xuatan_vp,money_diennuoc_bh,money_diennuoc_vp,money_vanchuyen_bh,money_vanchuyen_vp,money_khac_bh,money_khac_vp,money_phuthu_bh,money_phuthu_vp,money_thuoc_bh,money_thuoc_vp,money_vattu_bh,money_vattu_vp,money_vtthaythe_bh,money_vtthaythe_vp,money_dvktc_bh,money_dvktc_vp,money_chiphikhac,money_hpngaygiuong,money_hppttt,money_hpdkpttt_gm_thuoc,money_hpdkpttt_gm_vattu,money_dkpttt_thuoc_bh,money_dkpttt_thuoc_vp,money_dkpttt_vattu_bh,money_dkpttt_vattu_vp,money_vattu_ttrieng_bh,money_vattu_ttrieng_vp,money_hppttt_goi_thuoc,money_hppttt_goi_vattu,thutienstatus)
 SELECT nextval('ihs_servicespttt_servicepriceptttid_seq'),
@@ -314,11 +314,13 @@ sum(case when ser.departmentid in (34,335,269,285)
 									then ser.servicepricemoney * ser.soluong else 0 end)			
 					else 0 end)
 	  else 0 end) as money_hpdkpttt_gm_vattu,
---Thuoc di kem PTTT	  
+--Thuoc di kem PTTT	+ Thuoc TT rieng
 sum(case when ser.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and ser.loaidoituong=2 and ser.servicepriceid_master in (select ser_ktc.servicepriceid from serviceprice ser_ktc where ser_ktc.vienphiid=vp.vienphiid and ser_ktc.loaidoituong in (0,4,6)) and ((select seref.tinhtoanlaigiadvktc from servicepriceref seref where seref.servicepricecode=(select ser_ktc.servicepricecode from serviceprice ser_ktc where ser_ktc.servicepriceid=ser.servicepriceid_master))=1)
 			then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)
+			when ser.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1 
+			then (case when ser.maubenhphamphieutype=0 then ser.servicepricemoney_bhyt*ser.soluong else 0-(ser.servicepricemoney_bhyt * ser.soluong) end)			
 			else 0 end) as money_dkpttt_thuoc_bh,	
 sum(case when ser.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and ser.loaidoituong=2 and ser.servicepriceid_master in (select ser_ktc.servicepriceid from serviceprice ser_ktc where ser_ktc.vienphiid=vp.vienphiid and ser_ktc.loaidoituong in (1,3)) and ((select seref.tinhtoanlaigiadvktc from servicepriceref seref where seref.servicepricecode=(select ser_ktc.servicepricecode from serviceprice ser_ktc where ser_ktc.servicepriceid=ser.servicepriceid_master))=1)
 			then (case when ser.doituongbenhnhanid=4 
@@ -379,7 +381,7 @@ sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102
 	 else 0 end) as money_dkpttt_vattu_vp,
 	 
 --VT TT rieng
-sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM','102VTngoaiDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
+sum(case when ser.bhyt_groupcode in ('101VTtrongDMTT','10VT','101VTtrongDM') and ser.loaidoituong=20 and ser.servicepriceid_thanhtoanrieng>0 and vp.doituongbenhnhanid=1
 			then (case when ser.maubenhphamphieutype=0 
 							then servicepricemoney_bhyt*ser.soluong
 					    else 0-(servicepricemoney_bhyt*ser.soluong) end)

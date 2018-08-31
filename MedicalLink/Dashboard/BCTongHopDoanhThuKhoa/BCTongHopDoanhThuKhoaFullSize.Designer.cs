@@ -95,6 +95,10 @@
             this.bandedGridColumn33 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn27 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn28 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn49 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn50 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn51 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+            this.bandedGridColumn52 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -240,6 +244,10 @@
             this.bandedGridColumn42,
             this.bandedGridColumn33,
             this.bandedGridColumn28,
+            this.bandedGridColumn49,
+            this.bandedGridColumn50,
+            this.bandedGridColumn51,
+            this.bandedGridColumn52,
             this.bandedGridColumn29,
             this.bandedGridColumn30});
             this.bandedGridViewTTDTKhoa.GridControl = this.gridControlTTDTKhoa;
@@ -370,10 +378,10 @@
             this.bandedGridColumn4.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn4.Caption = "SL BHYT";
+            this.bandedGridColumn4.Caption = "Số lượt BH";
             this.bandedGridColumn4.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.bandedGridColumn4.FieldName = "soluong_bh";
+            this.bandedGridColumn4.FieldName = "soluot_bh";
             this.bandedGridColumn4.Name = "bandedGridColumn4";
             this.bandedGridColumn4.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn4.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -393,10 +401,10 @@
             this.bandedGridColumn5.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn5.Caption = "SL viện phí";
+            this.bandedGridColumn5.Caption = "Số lượt VP";
             this.bandedGridColumn5.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.bandedGridColumn5.FieldName = "soluong_vp";
+            this.bandedGridColumn5.FieldName = "soluot_vp";
             this.bandedGridColumn5.Name = "bandedGridColumn5";
             this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -416,7 +424,7 @@
             this.bandedGridColumn6.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn6.Caption = "SL Tổng";
+            this.bandedGridColumn6.Caption = "Số lượng";
             this.bandedGridColumn6.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn6.FieldName = "soluong";
@@ -1295,9 +1303,12 @@
             this.gridBand7.Columns.Add(this.bandedGridColumn33);
             this.gridBand7.Columns.Add(this.bandedGridColumn27);
             this.gridBand7.Columns.Add(this.bandedGridColumn28);
+            this.gridBand7.Columns.Add(this.bandedGridColumn49);
+            this.gridBand7.Columns.Add(this.bandedGridColumn50);
+            this.gridBand7.Columns.Add(this.bandedGridColumn51);
             this.gridBand7.Name = "gridBand7";
             this.gridBand7.VisibleIndex = 6;
-            this.gridBand7.Width = 1040;
+            this.gridBand7.Width = 1430;
             // 
             // bandedGridColumn20
             // 
@@ -1481,6 +1492,98 @@
             this.bandedGridColumn28.Visible = true;
             this.bandedGridColumn28.Width = 130;
             // 
+            // bandedGridColumn49
+            // 
+            this.bandedGridColumn49.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn49.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn49.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn49.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn49.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn49.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn49.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn49.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn49.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn49.Caption = "Chi phí xét nghiệm";
+            this.bandedGridColumn49.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn49.FieldName = "chiphixn";
+            this.bandedGridColumn49.Name = "bandedGridColumn49";
+            this.bandedGridColumn49.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn49.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "chiphixn", "{0:#,##0}")});
+            this.bandedGridColumn49.Visible = true;
+            this.bandedGridColumn49.Width = 130;
+            // 
+            // bandedGridColumn50
+            // 
+            this.bandedGridColumn50.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn50.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn50.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn50.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn50.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn50.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn50.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn50.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn50.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn50.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn50.Caption = "Chi phí CĐHA";
+            this.bandedGridColumn50.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn50.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn50.FieldName = "chiphicdha";
+            this.bandedGridColumn50.Name = "bandedGridColumn50";
+            this.bandedGridColumn50.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn50.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "chiphicdha", "{0:#,##0}")});
+            this.bandedGridColumn50.Visible = true;
+            this.bandedGridColumn50.Width = 130;
+            // 
+            // bandedGridColumn51
+            // 
+            this.bandedGridColumn51.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn51.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn51.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn51.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn51.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn51.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn51.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn51.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn51.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn51.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn51.Caption = "Chi phí khoa";
+            this.bandedGridColumn51.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn51.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn51.FieldName = "chiphikhoa";
+            this.bandedGridColumn51.Name = "bandedGridColumn51";
+            this.bandedGridColumn51.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn51.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "chiphikhoa", "{0:#,##0}")});
+            this.bandedGridColumn51.Visible = true;
+            this.bandedGridColumn51.Width = 130;
+            // 
+            // bandedGridColumn52
+            // 
+            this.bandedGridColumn52.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.bandedGridColumn52.AppearanceCell.Options.UseFont = true;
+            this.bandedGridColumn52.AppearanceCell.Options.UseTextOptions = true;
+            this.bandedGridColumn52.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.bandedGridColumn52.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bandedGridColumn52.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bandedGridColumn52.AppearanceHeader.Options.UseFont = true;
+            this.bandedGridColumn52.AppearanceHeader.Options.UseForeColor = true;
+            this.bandedGridColumn52.AppearanceHeader.Options.UseTextOptions = true;
+            this.bandedGridColumn52.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.bandedGridColumn52.Caption = "Lãi";
+            this.bandedGridColumn52.DisplayFormat.FormatString = "#,##0";
+            this.bandedGridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.bandedGridColumn52.FieldName = "lai";
+            this.bandedGridColumn52.Name = "bandedGridColumn52";
+            this.bandedGridColumn52.OptionsColumn.AllowEdit = false;
+            this.bandedGridColumn52.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "lai", "{0:#,##0}")});
+            this.bandedGridColumn52.Visible = true;
+            this.bandedGridColumn52.Width = 130;
+            // 
             // repositoryItemButton_View
             // 
             this.repositoryItemButton_View.AutoHeight = false;
@@ -1575,6 +1678,10 @@
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn33;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn27;
         private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn28;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn49;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn50;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn51;
+        private DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn bandedGridColumn52;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButton_View;
     }
 }

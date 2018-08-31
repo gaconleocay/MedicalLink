@@ -167,7 +167,7 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(529, 25);
+            this.labelControl4.Location = new System.Drawing.Point(417, 24);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(59, 16);
             this.labelControl4.TabIndex = 24;
@@ -185,7 +185,7 @@
             // cboTrangThaiVienPhi
             // 
             this.cboTrangThaiVienPhi.EditValue = "Đã thanh toán";
-            this.cboTrangThaiVienPhi.Location = new System.Drawing.Point(594, 23);
+            this.cboTrangThaiVienPhi.Location = new System.Drawing.Point(482, 22);
             this.cboTrangThaiVienPhi.Name = "cboTrangThaiVienPhi";
             this.cboTrangThaiVienPhi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTrangThaiVienPhi.Properties.Appearance.Options.UseFont = true;
@@ -198,7 +198,7 @@
             "Ra viện chưa thanh toán",
             "Đã thanh toán"});
             this.cboTrangThaiVienPhi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboTrangThaiVienPhi.Size = new System.Drawing.Size(166, 22);
+            this.cboTrangThaiVienPhi.Size = new System.Drawing.Size(130, 22);
             this.cboTrangThaiVienPhi.TabIndex = 22;
             this.cboTrangThaiVienPhi.EditValueChanged += new System.EventHandler(this.cboTrangThaiVienPhi_EditValueChanged);
             // 
@@ -276,7 +276,7 @@
             this.cboNhomDichVu.Properties.NullText = "";
             this.cboNhomDichVu.Properties.PopupSizeable = false;
             this.cboNhomDichVu.Properties.ShowHeader = false;
-            this.cboNhomDichVu.Size = new System.Drawing.Size(240, 22);
+            this.cboNhomDichVu.Size = new System.Drawing.Size(130, 22);
             this.cboNhomDichVu.TabIndex = 25;
             // 
             // groupBoxAction

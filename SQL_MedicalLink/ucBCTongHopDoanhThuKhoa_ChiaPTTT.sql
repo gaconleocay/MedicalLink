@@ -6,14 +6,16 @@
 
  
  
---=====================================I.if (cboDoiTuong.Text == "ĐT BHYT + DV BHYT") 
+--1.1=====================================I.if (cboDoiTuong.Text == "ĐT BHYT + DV BHYT") 
 --if (cboTieuChi.Text == "Đã thanh toán")  DT BHYT+DV BHYT
---ngay 1/7/2018
+--ngay 27/8/2018
  
 SELECT ROW_NUMBER () OVER (ORDER BY dep.departmentgroupname) as stt, 
 		dep.departmentgroupid, 
 		dep.departmentgroupname, 
 		(A.soluot) as soluot, 
+		(A.soluot_bh) as soluot_bh, 
+		(A.soluot_vp) as soluot_vp, 
 		(C.count_bh) as soluong_bh, 
 		(C.count_vp) as soluong_vp, 
 		(C.count) as soluong, 
@@ -63,6 +65,8 @@ SELECT ROW_NUMBER () OVER (ORDER BY dep.departmentgroupname) as stt,
 FROM (select departmentgroupid,departmentgroupname from departmentgroup where departmentgroupid<>21 and departmentgrouptype in (1,4,11,10,100)) dep
 	LEFT JOIN (SELECT spt.departmentgroupid, 
 					count(spt.*) as soluot, 
+					sum(case when spt.doituongbenhnhanid=1 then 1 else 0 end) as soluot_bh,
+					sum(case when spt.doituongbenhnhanid>1 then 1 else 0 end) as soluot_vp,
 					sum(spt.money_khambenh_bh) as money_khambenh, 
 					sum(spt.money_xetnghiem_bh) as money_xetnghiem, 
 					sum(spt.money_cdha_bh + spt.money_tdcn_bh) as money_cdhatdcn, 
@@ -178,12 +182,12 @@ FROM (select departmentgroupid,departmentgroupname from departmentgroup where de
 			FROM (select vp.vienphiid from vienphi vp where vp.vienphistatus_vp=1 " + doituongbenhnhanid_vp + " and vp.duyet_ngayduyet_vp between '" + thoiGianTu + "' and '" + thoiGianDen + "') vp		
 				inner join (select vienphiid,departmentgroupid,servicepriceid,servicepricecode,loaidoituong,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid from serviceprice where bhyt_groupcode in ('04CDHA','05TDCN') and loaidoituong in (0,4,6)) ser on ser.vienphiid=vp.vienphiid
 				inner join (select servicepricecode,pttt_loaiid from servicepriceref where bhyt_groupcode in ('04CDHA','05TDCN')) serf on serf.servicepricecode=ser.servicepricecode) A
-		GROUP BY A.departmentgroupid) CP_CDHA on CP_CDHA.departmentgroupid=dep.departmentgroupid		
+		GROUP BY A.departmentgroupid) CP_CDHA on CP_CDHA.departmentgroupid=dep.departmentgroupid;		
 	
 
 
 			
---=====================================I.if (cboDoiTuong.Text == "ĐT BHYT + DV BHYT") 			
+--1.2=====================================I.if (cboDoiTuong.Text == "ĐT BHYT + DV BHYT") 			
 -- else if (cboTieuChi.Text == "Ra viện chưa thanh toán")
 --ngay 1/7/2018
 
@@ -191,6 +195,8 @@ SELECT ROW_NUMBER () OVER (ORDER BY dep.departmentgroupname) as stt,
 	dep.departmentgroupid, 
 	dep.departmentgroupname, 
 	(A.soluot) as soluot, 
+	(A.soluot_bh) as soluot_bh, 
+	(A.soluot_vp) as soluot_vp,
 	(C.count_bh) as soluong_bh, 
 	(C.count_vp) as soluong_vp, 
 	(C.count) as soluong, 
@@ -239,7 +245,9 @@ SELECT ROW_NUMBER () OVER (ORDER BY dep.departmentgroupname) as stt,
 	CP_CDHA.chiphicdha
 FROM (select departmentgroupid,departmentgroupname from departmentgroup where departmentgroupid<>21 and departmentgrouptype in (1,4,11,10,100)) dep 
 LEFT JOIN (SELECT spt.departmentgroupid, 
-			count(spt.*) as soluot, 
+			count(spt.*) as soluot,
+			sum(case when spt.doituongbenhnhanid=1 then 1 else 0 end) as soluot_bh,
+			sum(case when spt.doituongbenhnhanid>1 then 1 else 0 end) as soluot_vp,
 			sum(spt.money_khambenh_bh) as money_khambenh, 
 			sum(spt.money_xetnghiem_bh) as money_xetnghiem, 
 			sum(spt.money_cdha_bh + spt.money_tdcn_bh) as money_cdhatdcn, 
@@ -360,7 +368,7 @@ LEFT JOIN
 	
 	
 		
---=====================================I.if (cboDoiTuong.Text == "ĐT BHYT + DV BHYT")  
+--1.3=====================================I.if (cboDoiTuong.Text == "ĐT BHYT + DV BHYT")  
 --else if (cboTieuChi.Text == "Chưa ra viện")
 --ngay 27/5/2018
 
@@ -370,7 +378,9 @@ SELECT ROW_NUMBER () OVER (ORDER BY O.departmentgroupname) as stt,
 	CP_XN.chiphixn		
 FROM (SELECT dep.departmentgroupid, 
 		dep.departmentgroupname, 
-		sum(A.soluot) as soluot, 
+		sum(A.soluot) as soluot,
+		sum(A.soluot_bh) as soluot_bh, 
+		sum(A.soluot_vp) as soluot_vp,
 		sum(C.count_bh) as soluong_bh, 
 		sum(C.count_vp) as soluong_vp, 
 		sum(C.count) as soluong, 
@@ -417,6 +427,8 @@ FROM (SELECT dep.departmentgroupid,
 FROM departmentgroup dep 
 LEFT JOIN (SELECT spt.departmentgroupid, 
 			count(spt.*) as soluot, 
+			sum(case when spt.doituongbenhnhanid=1 then 1 else 0 end) as soluot_bh,
+			sum(case when spt.doituongbenhnhanid>1 then 1 else 0 end) as soluot_vp,
 			sum(spt.money_khambenh_bh) as money_khambenh, 
 			sum(spt.money_xetnghiem_bh) as money_xetnghiem, 
 			sum(spt.money_cdha_bh + spt.money_tdcn_bh) as money_cdhatdcn, 
@@ -517,7 +529,7 @@ LEFT JOIN
  
  
  
---=====================================II. Cho doi tuong Khac (trừ DTBHYT+dvBHYT)
+--1.4=====================================II. Cho doi tuong Khac (trừ DTBHYT+dvBHYT)
  --if (cboTrangThai.Text == "Đã thanh toán")
 --ngay 29/5/2018: them hao phi XN; CDHA, hao phi Khoa
  
@@ -530,7 +542,9 @@ SELECT ROW_NUMBER () OVER (ORDER BY O.departmentgroupname) as stt,
 FROM 
 (SELECT dep.departmentgroupid, 
 	dep.departmentgroupname, 
-	sum(A.soluot) as soluot, 
+	sum(A.soluot) as soluot,
+	sum(A.soluot_bh) as soluot_bh, 
+	sum(A.soluot_vp) as soluot_vp,
 	sum(C.count_bh) as soluong_bh, 
 	sum(C.count_vp) as soluong_vp, 
 	sum(C.count) as soluong, 
@@ -578,6 +592,8 @@ FROM departmentgroup dep
 	LEFT JOIN 
 	(SELECT spt.departmentgroupid, 
 		count(spt.*) as soluot, 
+		sum(case when spt.doituongbenhnhanid=1 then 1 else 0 end) as soluot_bh,
+		sum(case when spt.doituongbenhnhanid>1 then 1 else 0 end) as soluot_vp,
 		sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as money_khambenh, 
 		sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as money_xetnghiem, 
 		sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as money_cdhatdcn, 
@@ -730,13 +746,13 @@ LEFT JOIN
 		where medicinestorebilltype=202 and medicinestorebillstatus=2 and isremove=0 and bill_mode=4
 		and ngaysudungthuoc between '" + thoiGianTu + "' and '" + thoiGianDen + "' 
 		group by departmentgroupid
-		) CP_KHOA on CP_KHOA.departmentgroupid=O.departmentgroupid
+		) CP_KHOA on CP_KHOA.departmentgroupid=O.departmentgroupid;
 
 
 
 
 
---=====================================II. Cho doi tuong Khac (trừ DTBHYT+dvBHYT)
+--1.5=====================================II. Cho doi tuong Khac (trừ DTBHYT+dvBHYT)
 --else if (cboTrangThai.Text == "Ra viện chưa thanh toán") 
 --ngay 1/7/2018
  
@@ -744,6 +760,8 @@ SELECT ROW_NUMBER () OVER (ORDER BY dep.departmentgroupname) as stt,
 	dep.departmentgroupid, 
 	dep.departmentgroupname, 
 	(A.soluot) as soluot, 
+	(A.soluot_bh) as soluot_bh, 
+	(A.soluot_vp) as soluot_vp,
 	(C.count_bh) as soluong_bh, 
 	(C.count_vp) as soluong_vp, 
 	(C.count) as soluong, 
@@ -794,6 +812,8 @@ FROM (select departmentgroupid,departmentgroupname from departmentgroup where de
 	LEFT JOIN 
 	(SELECT spt.departmentgroupid, 
 		count(spt.*) as soluot, 
+		sum(case when spt.doituongbenhnhanid=1 then 1 else 0 end) as soluot_bh,
+		sum(case when spt.doituongbenhnhanid>1 then 1 else 0 end) as soluot_vp,
 		sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as money_khambenh, 
 		sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as money_xetnghiem, 
 		sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as money_cdhatdcn, 
@@ -937,7 +957,7 @@ LEFT JOIN
  
  
  
---=====================================II. Cho doi tuong Khac (trừ DTBHYT+dvBHYT)
+--1.6=====================================II. Cho doi tuong Khac (trừ DTBHYT+dvBHYT)
 -- else if (cboTieuChi.Text == "Chưa ra viện")
 --ngay 1/7/2018
 
@@ -946,6 +966,8 @@ SELECT ROW_NUMBER () OVER (ORDER BY dep.departmentgroupname) as stt,
 	dep.departmentgroupid, 
 	dep.departmentgroupname, 
 	(A.soluot) as soluot, 
+	(A.soluot_bh) as soluot_bh, 
+	(A.soluot_vp) as soluot_vp,
 	(C.count_bh) as soluong_bh, 
 	(C.count_vp) as soluong_vp, 
 	(C.count) as soluong, 
@@ -995,6 +1017,8 @@ FROM (select departmentgroupid,departmentgroupname from departmentgroup where de
 	LEFT JOIN 
 	(SELECT spt.departmentgroupid, 
 		count(spt.*) as soluot, --sai
+		sum(case when spt.doituongbenhnhanid=1 then 1 else 0 end) as soluot_bh,
+		sum(case when spt.doituongbenhnhanid>1 then 1 else 0 end) as soluot_vp,
 		sum(spt.money_khambenh_bh + spt.money_khambenh_vp) as money_khambenh, 
 		sum(spt.money_xetnghiem_bh + spt.money_xetnghiem_vp) as money_xetnghiem, 
 		sum(spt.money_cdha_bh + spt.money_cdha_vp + spt.money_tdcn_bh + spt.money_tdcn_vp) as money_cdhatdcn, 

@@ -15,12 +15,16 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
 {
     public partial class BCTongHopDoanhThuKhoaFullSize : Form
     {
-        DataTable dataBaoCao { get; set; }
-        string tungaydenngay { get; set; }
+        #region Khai bao
+        private DataTable dataBaoCao { get; set; }
+        private string tungaydenngay { get; set; }
+
+        #endregion
         public BCTongHopDoanhThuKhoaFullSize()
         {
             InitializeComponent();
         }
+
         public BCTongHopDoanhThuKhoaFullSize(DataTable dataBaoCao, string tungaydenngay)
         {
             InitializeComponent();
@@ -30,6 +34,7 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
             lblTenThongTinChiTiet.Text = "BÁO CÁO TỔNG HỢP DOANH THU KHOA";
         }
 
+        #region Custom
         private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             try
@@ -47,6 +52,9 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
             }
         }
 
+        #endregion
+
+        #region Events
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -67,7 +75,7 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
             }
         }
 
-
+        #endregion
 
     }
 }

@@ -1101,6 +1101,14 @@ namespace MedicalLink.Base
                 REPORT_119.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_119_DV";
                 lstresult.Add(REPORT_119);
 
+                ClassCommon.classPermission REPORT_120 = new ClassCommon.classPermission();
+                REPORT_120.permissioncheck = false;
+                REPORT_120.permissioncode = "REPORT_120";
+                REPORT_120.permissionname = "BC thủ thuật thực hiện trên các dịch vụ kỹ thuật cao, chất lượng cao, yêu cầu";
+                REPORT_120.permissiontype = 3;
+                REPORT_120.tabMenuId = 4;
+                REPORT_120.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_120_DV";
+                lstresult.Add(REPORT_120);
 
 
 

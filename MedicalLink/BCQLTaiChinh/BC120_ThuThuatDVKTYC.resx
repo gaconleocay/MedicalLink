@@ -118,27 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnFullScreen.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnTimKiem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAD3SURBVDhPnZOtCsJgFIYXDGLwUkwmr8MrMRmtBqPZ6AWYRExGo0lMJjGIyBgGkfm8387km/vG
-        ZAeecX7fwc5ZNInSFdxhDZ3IM+I+nOBmqE/IP8NQTTGkxha+IvgzrxbioqbEgjdcYQktE+jBwfJCPb5A
-        4guc3WsrjPrY+koCTwsqBaiFhkW9APnf4SnoA9YLkAsNK58LxJUCxCPLF4attrec20JJAL/t5QvDMnxt
-        Zw4DBaUt4HchX1lhuGQUg2sk1j0Eh8m5O3FGUCXQAouKRn4B2cXi/HVIvqkXsrPnkf8LLzj+iXo1s5HA
-        w4ImuEPagVbWgHT3Aa9FqSfLRxRrAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAiNJREFUSEu1
+        lbFrU1EUxkMIpYhDCaFDyCBSHPwDHDpIEQmdOog4SOgcOjhIEaeSIM5FOouDSAfp5OAkIiIiUoqISBAn
+        kVJKEQcRKb3X33n3u7Em3vdioh98nPfO/c5337m596Z0HJ2SL8N5uAF3OiX3CX6Ej3m/Bmcl/XtQPAPv
+        we/QJ2gTXiKWVTYaKDDzpxRHo/ewy/sycYX4gPgtjDn7gLZKi4HYlgUDM8+Kb8ApDfdBbg6+kM4mO6+h
+        fCBcgHFZVmGyfcZq0Loz7fM8bR+IbN3tq94QK0ongWYJHoZO/Fml00D4QRPcVCoXaKeh7SybYEXpNBB9
+        CRP4y0oVAu3LUONuKZUGwn1NcFWpQmD8SjVdpdI4Jr6jVC7QzcI9LVFL6TQQ3YYmtqKa0kmguw6P4A/0
+        daXTQGj7O/4OW/CEhobA2DlMvwatu690MSiw08pXZYfoWTD6tcd5rkLuIjPPloav9xc0XAzEFQrtamB/
+        Z53YSX0LH8EncBfaskRzi7ZVW8SLxGTXfSCE7gqxJ4NB2uSbcBF+DrmsG+vcPmJGVvlASDd2fbg1ol3b
+        6zyzhP60JKZpB/NsAkX3mufiH30UYNQMxoN0HEDXkGx8YHISQ85P7CAzj8/WSVXS8YFJHepm/U/LhdEZ
+        jN4F4yHadT7+X2wEJnZQ6eSPy3VXssmAUQNTdfLbch1IMjkwPIXhdjCOdD0N/xtgSif+IcZ2pXDSffMn
+        ZxntUHku7ZkAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="repositoryItemButton_View.Buttons" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAD3SURBVDhPnZOtCsJgFIYXDGLwUkwmr8MrMRmtBqPZ6AWYRExGo0lMJjGIyBgGkfm8387km/vG
-        ZAeecX7fwc5ZNInSFdxhDZ3IM+I+nOBmqE/IP8NQTTGkxha+IvgzrxbioqbEgjdcYQktE+jBwfJCPb5A
-        4guc3WsrjPrY+koCTwsqBaiFhkW9APnf4SnoA9YLkAsNK58LxJUCxCPLF4attrec20JJAL/t5QvDMnxt
-        Zw4DBaUt4HchX1lhuGQUg2sk1j0Eh8m5O3FGUCXQAouKRn4B2cXi/HVIvqkXsrPnkf8LLzj+iXo1s5HA
-        w4ImuEPagVbWgHT3Aa9FqSfLRxRrAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>33</value>
-  </metadata>
 </root>

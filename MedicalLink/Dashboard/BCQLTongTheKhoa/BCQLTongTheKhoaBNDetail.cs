@@ -151,7 +151,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                         }
                     case 6:  //SL BN da thanh toan trong ngay
                         {
-                            _tieuchi_songaythanhtoan = " DATE_PART('day', spt.duyet_ngayduyet_vp - spt.vienphidate_ravien) as songaythanhtoan, ";
+                            _tieuchi_songaythanhtoan = " ((spt.duyet_ngayduyet_vp::date)-(spt.vienphidate_ravien::date)) as songaythanhtoan, ";
                             _tieuchi_ravien_spt = " and spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and spt.phongravien in (" + this.lstPhongChonLayBC + ") ";
                             _tieuchi_ravien_vp = " and vp.departmentid in (" + this.lstPhongChonLayBC + ") and vp.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and vp.vienphistatus_vp=1 ";
                             lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN RA VIỆN ĐÃ THANH TOÁN";
@@ -159,7 +159,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                         }
                     case 7:  //SL BN da thanh toan tinh theo doanh thu khoa
                         {
-                            _tieuchi_songaythanhtoan = " DATE_PART('day', spt.duyet_ngayduyet_vp - spt.vienphidate_ravien) as songaythanhtoan, ";
+                            _tieuchi_songaythanhtoan = " ((spt.duyet_ngayduyet_vp::date)-(spt.vienphidate_ravien::date)) as songaythanhtoan, ";
                             _tieuchi_ravien_spt = " and spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and spt.departmentid in (" + this.lstPhongChonLayBC + ") ";
                             _tieuchi_ravien_vp = " and b.departmentid in (" + this.lstPhongChonLayBC + ") and vp.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and vp.vienphistatus_vp=1 ";
                             lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN RA VIỆN ĐÃ THANH TOÁN THEO DOANH THU KHOA";
@@ -167,7 +167,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                         }
                     case 8:  //SL BN da thanh toan tinh theo doanh thu khoa Gay me
                         {
-                            _tieuchi_songaythanhtoan = " DATE_PART('day', spt.duyet_ngayduyet_vp - spt.vienphidate_ravien) as songaythanhtoan, ";
+                            _tieuchi_songaythanhtoan = " ((spt.duyet_ngayduyet_vp::date)-(spt.vienphidate_ravien::date)) as songaythanhtoan, ";
                             _tieuchi_ravien_spt = " and spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and spt.departmentid in (34,335,269,285) and spt.departmentgroup_huong in (" + this.lstKhoaChonLayBC + ") ";
                             _tieuchi_ravien_vp = " and b.departmentid in (" + this.lstPhongChonLayBC + ") and vp.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and vp.vienphistatus_vp=1 ";
                             lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN RA VIỆN ĐÃ THANH TOÁN THEO DOANH THU KHOA TẠI GÂY MÊ HỒI TỈNH";
@@ -175,7 +175,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
                         }
                     case 9:  //SL BN da thanh toan tinh theo doanh thu tổng
                         {
-                            _tieuchi_songaythanhtoan = " DATE_PART('day', spt.duyet_ngayduyet_vp - spt.vienphidate_ravien) as songaythanhtoan, ";
+                            _tieuchi_songaythanhtoan = " ((spt.duyet_ngayduyet_vp::date)-(spt.vienphidate_ravien::date)) as songaythanhtoan, ";
                             _tieuchi_ravien_spt = " and spt.vienphistatus_vp=1 and spt.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and (spt.departmentid in (" + this.lstPhongChonLayBC + ") or (spt.departmentid in (34,335,269,285) and spt.departmentgroup_huong in (" + this.lstKhoaChonLayBC + "))) ";
                             _tieuchi_ravien_vp = " and b.departmentid in (" + this.lstPhongChonLayBC + ",34,335,269,285) and vp.duyet_ngayduyet_vp between '" + this.dateTuNgay + "' and '" + this.dateDenNgay + "' and vp.vienphistatus_vp=1 ";
                             lblTenThongTinChiTiet.Text = "DANH SÁCH CHI TIẾT BỆNH NHÂN RA VIỆN ĐÃ THANH TOÁN THEO DOANH THU KHOA + GÂY MÊ HỒI TỈNH";

@@ -1,7 +1,7 @@
 --Báo cáo CHI THƯỞNG DỊCH VỤ VIỆN PHÍ														
 --ucBC103_ChiThuongDichVuVienPhi
 
---ngay 17/8/2018: sua filter XN = bỏ các dv có phân loại PTTT đi
+--ngay 23/8/2018: sua filter XN = bỏ các dv có phân loại PTTT đi
 
 --Cấu hình tại: ml_chiathuongdvvp
 --Cấu hình DM dùng chung:REPORT_103_KHOA;REPORT_103_DV_KB;REPORT_103_DV_SADT
@@ -32,7 +32,7 @@ FROM (select vienphiid,departmentgroupid,departmentid,soluong,servicepricecode,s
 				when departmentid in (220) then servicepricecode='15'
 				when departmentid in (408) then servicepricecode='15'
 				when departmentid in (278) then servicepricecode='15'
-				when departmentid in (393,394) then servicepricecode='15'
+				when departmentid in (393,394,424) then servicepricecode='15'
 				when departmentid in (398) then servicepricecode='14'
 				when departmentid in (205,206,207,208,209,211,354) then servicepricecode in ('14')
 				when departmentid in (14) then servicepricecode in ('U18843-5947','14')
@@ -251,7 +251,7 @@ FROM
 				when departmentid in (220) then servicepricecode='15'
 				when departmentid in (408) then servicepricecode='15'
 				when departmentid in (278) then servicepricecode='15'
-				when departmentid in (393,394) then servicepricecode='15'
+				when departmentid in (393,394,424) then servicepricecode='15'
 				when departmentid in (398) then servicepricecode='14'
 				when departmentid in (205,206,207,208,209,211,354) then servicepricecode in ('14','U18843-5947')
 				when departmentid in (14) then servicepricecode in ('U18843-5947','14')

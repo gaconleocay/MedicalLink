@@ -1,5 +1,5 @@
 ---Bao cao doanh thu theo nhom dich vu - Ngay 18/7/2017
-
+--ucDoanhThuTheoNhomDichVu
 
 --TOng hop
 SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY dv.servicepricegroupcode,dv.servicepricename)) as stt,
@@ -65,7 +65,7 @@ GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.ser
 
 ---Chi tiet
 
-select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY dv.servicepricegroupcode,dv.servicepricename)) as stt,
+select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY serf.servicepricegroupcode,ser.servicepricename)) as stt,
 		vp.vienphiid,
 		vp.patientid,
 		hsba.patientname,

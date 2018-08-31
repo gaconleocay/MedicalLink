@@ -278,10 +278,10 @@
     <Compile Include="BaoCao\BC43_SoThuThuatCLS\ucBC43_SoThuThuatCLS.Designer.cs">
       <DependentUpon>ucBC43_SoThuThuatCLS.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BC45_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.cs">
+    <Compile Include="BaoCao\BC46_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BC45_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.Designer.cs">
+    <Compile Include="BaoCao\BC46_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.Designer.cs">
       <DependentUpon>ucBC46_TinhHinhThanhToan.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.cs">
@@ -513,6 +513,12 @@
     <Compile Include="Base\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
+    <Compile Include="BCQLTaiChinh\BC120_ThuThuatDVKTYC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BCQLTaiChinh\BC120_ThuThuatDVKTYC.Designer.cs">
+      <DependentUpon>BC120_ThuThuatDVKTYC.cs</DependentUpon>
+    </Compile>
     <Compile Include="BCQLTaiChinh\BC119_DSHuongTienDVMoYC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -745,6 +751,7 @@
     <Compile Include="ClassCommon\BCDoanhThuDichVuBC08DTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonChungTuThuocSDDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\BC120_ThuThuatDVKTYC.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\BCQLTaiChinhFilterChiTietDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\ChiThuongDichVuVienPhiDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\DSCacKhoaDuocHuongK3DTO.cs" />
@@ -1397,7 +1404,7 @@
     <EmbeddedResource Include="BaoCao\BC43_SoThuThuatCLS\ucBC43_SoThuThuatCLS.resx">
       <DependentUpon>ucBC43_SoThuThuatCLS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BC45_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.resx">
+    <EmbeddedResource Include="BaoCao\BC46_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.resx">
       <DependentUpon>ucBC46_TinhHinhThanhToan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
@@ -1513,6 +1520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC16_DoanhThuMayXN\ucBCDoanhThuTheoMayXN.resx">
       <DependentUpon>ucBCDoanhThuTheoMayXN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BCQLTaiChinh\BC120_ThuThuatDVKTYC.resx">
+      <DependentUpon>BC120_ThuThuatDVKTYC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BCQLTaiChinh\BC119_DSHuongTienDVMoYC.resx">
       <DependentUpon>BC119_DSHuongTienDVMoYC.cs</DependentUpon>
@@ -2229,6 +2239,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_46_TinhHinhThanhToanBNRaVien.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_120_ThuThuatDVKTYC.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

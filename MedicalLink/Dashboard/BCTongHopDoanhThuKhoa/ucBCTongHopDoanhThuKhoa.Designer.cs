@@ -657,10 +657,10 @@
             this.bandedGridColumn4.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn4.Caption = "SL BHYT";
+            this.bandedGridColumn4.Caption = "Số lượt BH";
             this.bandedGridColumn4.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.bandedGridColumn4.FieldName = "soluong_bh";
+            this.bandedGridColumn4.FieldName = "soluot_bh";
             this.bandedGridColumn4.Name = "bandedGridColumn4";
             this.bandedGridColumn4.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn4.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -680,10 +680,10 @@
             this.bandedGridColumn5.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn5.Caption = "SL viện phí";
+            this.bandedGridColumn5.Caption = "Số lượt VP";
             this.bandedGridColumn5.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.bandedGridColumn5.FieldName = "soluong_vp";
+            this.bandedGridColumn5.FieldName = "soluot_vp";
             this.bandedGridColumn5.Name = "bandedGridColumn5";
             this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn5.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -703,7 +703,7 @@
             this.bandedGridColumn6.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn6.Caption = "SL Tổng";
+            this.bandedGridColumn6.Caption = "Số lượng";
             this.bandedGridColumn6.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn6.FieldName = "soluong";

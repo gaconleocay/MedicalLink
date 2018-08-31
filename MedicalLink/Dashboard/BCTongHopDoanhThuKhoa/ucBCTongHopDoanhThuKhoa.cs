@@ -53,6 +53,7 @@ namespace MedicalLink.Dashboard
 
         #endregion
 
+        #region Events
         private void radioThang_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -266,17 +267,6 @@ namespace MedicalLink.Dashboard
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        private void bandedGridViewDataQLTTKhoa_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            GridView view = sender as GridView;
-            if (e.RowHandle == view.FocusedRowHandle)
-            {
-                e.Appearance.BackColor = Color.DodgerBlue;
-                e.Appearance.ForeColor = Color.White;
-            }
-        }
-
         private void cboTieuChi_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -304,6 +294,20 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        #endregion
+
+        #region Custom
+        private void bandedGridViewDataQLTTKhoa_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            if (e.RowHandle == view.FocusedRowHandle)
+            {
+                e.Appearance.BackColor = Color.DodgerBlue;
+                e.Appearance.ForeColor = Color.White;
+            }
+        }
+
+        #endregion
 
     }
 }

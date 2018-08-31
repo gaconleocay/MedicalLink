@@ -169,6 +169,26 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.CloseForm();
         }
 
+        #region Cusstom
+        private void bandedGridViewSoCDHA_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.DodgerBlue;
+                    e.Appearance.ForeColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
+
         #region Export
         private void tbnExport_Click(object sender, EventArgs e)
         {
@@ -247,24 +267,8 @@ namespace MedicalLink.BaoCao
         }
 
         #endregion
-        private void bandedGridViewSoCDHA_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
-        {
-            try
-            {
-                GridView view = sender as GridView;
-                if (e.RowHandle == view.FocusedRowHandle)
-                {
-                    e.Appearance.BackColor = Color.DodgerBlue;
-                    e.Appearance.ForeColor = Color.White;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
 
-
+        #region Print
         private void btnPrint_Click(object sender, EventArgs e)
         {
             try
@@ -302,6 +306,7 @@ namespace MedicalLink.BaoCao
 
         }
 
+        #endregion
 
         #region Event Change
         private void radioXemTongHop_CheckedChanged(object sender, EventArgs e)

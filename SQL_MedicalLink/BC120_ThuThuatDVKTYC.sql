@@ -1,28 +1,39 @@
---TRÍCH THƯỞNG DỊCH VỤ NƯỚC SÔI						
-		
---ucBC105_TrichThuongDVNuocSoi
+--THỦ THUẬT THỰC HIỆN TRÊN CÁC DỊCH VỤ KỸ THUẬT CAO, CHẤT LƯỢNG CAO, YÊU CẦU
+--BC120_ThuThuatDVKTYC
 
 
 
---ngay 8/8/2018
+--ngay 26/8/2018
 
-SELECT row_number() over() as stt,
-	'' as departmentgroupname,
-	sum(ser.soluong*ser.dongia) as tongthu,
-	0 as tongchi,
-	0 as phantramhuong,
-	0 as thuclinh,
-	'' as kynhan
-FROM (select vienphiid,departmentid,soluong,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,
+SELECT (row_number() OVER (PARTITION BY degp.departmentgroupid order by degp.departmentgroupname,ser.servicepricename)) as stt,
+	degp.departmentgroupid,
+	degp.departmentgroupname,
+	ser.servicepricecode,
+	ser.servicepricename,
+	sum(ser.soluong) as soluong,
+	ser.dongia,
+	sum(ser.soluong*ser.dongia) as thanhtien,
+	sum(ser.soluong*ser.dongia*0.98) as thanhtiensauthue,
+	(sum(ser.soluong*ser.dongia*0.98)*0.5) as trichlaibv,
+	(sum(ser.soluong*ser.dongia*0.98)*0.45) as khoathuchien,
+	(sum(ser.soluong*ser.dongia*0.98)*0.02) as banlanhdao,
+	(sum(ser.soluong*ser.dongia*0.98)*0.01) as tckt,
+	(sum(ser.soluong*ser.dongia*0.98)*0.01) as cntt,
+	(sum(ser.soluong*ser.dongia*0.98)*0.01) as khth,
+	0 as isgroup
+FROM (select vienphiid,servicepricecode,servicepricename,soluong,billid_thutien,billid_clbh_thutien,departmentgroupid,departmentid,
 			(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia
 		from serviceprice 
-		where bhyt_groupcode='12NG' and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser+") ser
-	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid;
-	
-	
-	
-----Chi tiet - 23/8/2018	
-	
+		where 1=1 "+tieuchi_ser+lstdichvu_ser+_lstKhoaChonLayBC+") ser
+	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid
+GROUP BY degp.departmentgroupid,degp.departmentgroupname,ser.servicepricecode,ser.servicepricename,ser.dongia;
+
+
+
+
+--ngay 26/8/2018
+
 SELECT row_number() over (order by vp.patientid,mbp.maubenhphamdate) as stt, 
 	ser.servicepriceid,
 	vp.patientid, 
@@ -60,14 +71,10 @@ SELECT row_number() over (order by vp.patientid,mbp.maubenhphamdate) as stt,
 FROM 
 	(select servicepriceid,vienphiid,maubenhphamid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,servicepricedate,maubenhphamphieutype,bhyt_groupcode,loaidoituong
 		from serviceprice 
-		where bhyt_groupcode='12NG' and (case when loaidoituong>0 then billid_thutien>0 or billid_clbh_thutien>0 end) "+tieuchi_ser+lstdichvu_ser+") ser
+		where bhyt_groupcode='06PTTT' "+tieuchi_ser+lstdichvu_ser+_lstKhoaChonLayBC+") ser
 	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
-	LEFT JOIN (select maubenhphamid,maubenhphamstatus,maubenhphamdate,userid,departmentid_des from maubenhpham where maubenhphamgrouptype=4 "+_tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid		
+	INNER JOIN (select maubenhphamid,maubenhphamstatus,maubenhphamdate,userid,departmentid_des from maubenhpham where maubenhphamgrouptype=4 "+_tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid		
 	INNER JOIN (select hosobenhanid,patientname,bhytcode from hosobenhan where 1=1 "+_tieuchi_hsba+_hosobenhanstatus+") hsba on hsba.hosobenhanid=vp.hosobenhanid
 	LEFT JOIN (select userhisid,username from nhompersonnel) ngcd ON ngcd.userhisid=mbp.userid	
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid 
-	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid
-
-
-	
-	
+	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid;

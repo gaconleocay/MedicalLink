@@ -410,11 +410,7 @@ namespace MedicalLink.BCQLTaiChinh
             try
             {
                 GridView view = sender as GridView;
-                if (e.RowHandle == view.FocusedRowHandle)
-                {
-                    e.Appearance.BackColor = Color.DodgerBlue;
-                    e.Appearance.ForeColor = Color.White;
-                }
+
                 if (radioXemTongHop.Checked)
                 {
                     int _isgroup = (int)view.GetRowCellValue(e.RowHandle, "isgroup");
@@ -427,6 +423,12 @@ namespace MedicalLink.BCQLTaiChinh
                     {
                         e.Appearance.BackColor = Color.White;
                     }
+                }
+
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.DodgerBlue;
+                    e.Appearance.ForeColor = Color.White;
                 }
             }
             catch (Exception ex)

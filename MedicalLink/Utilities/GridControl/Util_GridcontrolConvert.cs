@@ -17,22 +17,22 @@ namespace MedicalLink.Utilities.GridControl
             {
                 foreach (GridColumn column in gridViewData.Columns)
                 {
-                    if (result.Columns.Contains(column.Caption) == false && column.Caption != null)
+                    if (result.Columns.Contains(column.FieldName) == false && column.FieldName != null)
                     {
                         if (column.ColumnType.Name.Contains("Nullable"))
                         {
                             if (column.ColumnType.FullName.Contains("Decimal"))
                             {
-                                result.Columns.Add(column.Caption, Type.GetType("System.Decimal"));
+                                result.Columns.Add(column.FieldName, Type.GetType("System.Decimal"));
                             }
                             else
                             {
-                                result.Columns.Add(column.Caption, Type.GetType("System.String"));
+                                result.Columns.Add(column.FieldName, Type.GetType("System.String"));
                             }
                         }
                         else
                         {
-                            result.Columns.Add(column.Caption, column.ColumnType);
+                            result.Columns.Add(column.FieldName, column.ColumnType);
                         }
                     }
                 }
@@ -42,19 +42,19 @@ namespace MedicalLink.Utilities.GridControl
                     foreach (GridColumn column in gridViewData.Columns)
                     {
                         //Sap xep lai thu tu cot
-                        if (column.Caption.ToLower() == "stt")
+                        if (column.FieldName.ToLower() == "stt")
                         {
-                            row[column.Caption] = i + 1;
+                            row[column.FieldName] = i + 1;
                         }
                         else
                         {
                             if (column.ColumnType.FullName.Contains("Decimal"))
                             {
-                                row[column.Caption] = gridViewData.GetRowCellValue(i, column) ?? 0;
+                                row[column.FieldName] = gridViewData.GetRowCellValue(i, column) ?? 0;
                             }
                             else
                             {
-                                row[column.Caption] = gridViewData.GetRowCellValue(i, column);
+                                row[column.FieldName] = gridViewData.GetRowCellValue(i, column);
                             }
                         }
                     }

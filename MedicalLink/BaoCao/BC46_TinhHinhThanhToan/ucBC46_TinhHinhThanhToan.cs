@@ -93,6 +93,7 @@ namespace MedicalLink.BaoCao
                 }
                 else
                 {
+                    SplashScreenManager.CloseForm();
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
                     frmthongbao.Show();
                     return;

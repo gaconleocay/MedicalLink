@@ -248,7 +248,7 @@ namespace MedicalLink.FormCommon
 
                     //Bao cao
                     case "REPORT_01":
-                        ucResult = new ChucNang.ucBCDSBNSDdv();
+                        ucResult = new ChucNang.ucBC01_DSBNSDdv();
                         break;
                     case "REPORT_02":
                         ucResult = new ChucNang.ucBCThongKeTheoICD10();
@@ -293,7 +293,7 @@ namespace MedicalLink.FormCommon
                         ucResult = new BaoCao.ucBCSoXetNghiem();
                         break;
                     case "REPORT_16":
-                        ucResult = new BaoCao.ucBCDoanhThuTheoMayXN();
+                        ucResult = new BaoCao.ucBC16_DoanhThuTheoMayXN();
                         break;
                     case "REPORT_17":
                         ucResult = new BaoCao.BCPhauThuat_YeuCau();
@@ -314,7 +314,7 @@ namespace MedicalLink.FormCommon
                         ucResult = new BaoCao.ucBangKeTongHopHoaDon();
                         break;
                     case "REPORT_23":
-                        ucResult = new BaoCao.ucDoanhThuTheoNhomDichVu();
+                        ucResult = new BaoCao.ucBC23_DoanhThuTheoNhomDichVu();
                         break;
                     case "REPORT_24":
                         ucResult = new BaoCao.ucBNThieuTienTamUng();

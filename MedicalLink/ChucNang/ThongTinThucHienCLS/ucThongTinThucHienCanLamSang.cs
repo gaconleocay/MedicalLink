@@ -75,6 +75,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 string maubenhphamstatus = "mbp.maubenhphamstatus<>0";
                 if (cboPhongThucHien.EditValue == null)
                 {
+                    SplashScreenManager.CloseForm();
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
                     frmthongbao.Show();
                     return;

@@ -455,11 +455,11 @@
     <Compile Include="BaoCao\SoPhauThuatThuThuat\ucBC45_SoPhauThuatLamSang.Designer.cs">
       <DependentUpon>ucBC45_SoPhauThuatLamSang.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\SoPhauThuatThuThuat\ucSoThuThuatLamSang.cs">
+    <Compile Include="BaoCao\SoPhauThuatThuThuat\ucBC19_SoThuThuatLamSang.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\SoPhauThuatThuThuat\ucSoThuThuatLamSang.Designer.cs">
-      <DependentUpon>ucSoThuThuatLamSang.cs</DependentUpon>
+    <Compile Include="BaoCao\SoPhauThuatThuThuat\ucBC19_SoThuThuatLamSang.Designer.cs">
+      <DependentUpon>ucBC19_SoThuThuatLamSang.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\SoXetNghiem\ucBCSoXetNghiem.cs">
       <SubType>UserControl</SubType>
@@ -1497,8 +1497,8 @@
     <EmbeddedResource Include="BaoCao\SoPhauThuatThuThuat\ucBC45_SoPhauThuatLamSang.resx">
       <DependentUpon>ucBC45_SoPhauThuatLamSang.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\SoPhauThuatThuThuat\ucSoThuThuatLamSang.resx">
-      <DependentUpon>ucSoThuThuatLamSang.cs</DependentUpon>
+    <EmbeddedResource Include="BaoCao\SoPhauThuatThuThuat\ucBC19_SoThuThuatLamSang.resx">
+      <DependentUpon>ucBC19_SoThuThuatLamSang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\SoXetNghiem\ucBCSoXetNghiem.resx">
       <DependentUpon>ucBCSoXetNghiem.cs</DependentUpon>

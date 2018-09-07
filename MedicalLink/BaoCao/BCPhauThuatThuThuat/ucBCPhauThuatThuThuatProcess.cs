@@ -32,7 +32,7 @@ namespace MedicalLink.BaoCao
                 string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 //  string tieuchi_date = "";
-                string _tieuchi_pttt = " and phauthuatthuthuatdate>'2017-01-01 00:00:00' ";
+                string _tieuchi_pttt = " ";//không phải set mặc định vì LEFT JOIN
                 string _tieuchi_ser = " and servicepricedate>'2017-01-01 00:00:00' ";
                 string _tieuchi_vp = " and vienphidate>'2017-01-01 00:00:00' ";
                 string _departmentid_ser = "";

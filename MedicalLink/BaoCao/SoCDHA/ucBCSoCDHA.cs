@@ -90,21 +90,24 @@ namespace MedicalLink.BaoCao
                 }
 
                 //Khoa
-                List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
-                if (lstKhoaCheck.Count > 0)
+                if (!KiemTraPhong_LaCDHA())
                 {
-                    for (int i = 0; i < lstKhoaCheck.Count; i++)
+                    List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
+                    if (lstKhoaCheck.Count > 0)
                     {
-                        _lstKhoaPhongChiDinh += "," + lstKhoaCheck[i];
+                        for (int i = 0; i < lstKhoaCheck.Count; i++)
+                        {
+                            _lstKhoaPhongChiDinh += "," + lstKhoaCheck[i];
+                        }
+                        _lstKhoaPhongChiDinh += ")";
                     }
-                    _lstKhoaPhongChiDinh += ")";
-                }
-                else
-                {
-                    SplashScreenManager.CloseForm();
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
-                    frmthongbao.Show();
-                    return;
+                    else
+                    {
+                        SplashScreenManager.CloseForm();
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                        frmthongbao.Show();
+                        return;
+                    }
                 }
 
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -336,6 +339,11 @@ namespace MedicalLink.BaoCao
                     gridBandThuocVTDiKem.Visible = false;
                 }
 
+                if (KiemTraPhong_LaCDHA())
+                {
+                    chkcomboListDSKhoa.Enabled = false;
+                }
+                else { chkcomboListDSKhoa.Enabled = true; }
             }
             catch (Exception ex)
             {
@@ -345,7 +353,26 @@ namespace MedicalLink.BaoCao
 
         #endregion
 
+        #region Process
+        private bool KiemTraPhong_LaCDHA()
+        {
+            bool result = false;
+            try
+            {
+                //var _PhongThucHien = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.TypeConvertParse.ToInt32(cboPhongThucHien.EditValue.ToString())).FirstOrDefault();
+                //if (_PhongThucHien != null && _PhongThucHien.departmenttype == 7)//Phong=CDHA
+                //{
+                //    result = true;
+                //}
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
 
+        #endregion
 
     }
 }

@@ -44,7 +44,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
                     dateTGTraKetQua.Value = this.SuaPhieuCDDV.maubenhphamfinishdate;
                 }
                 dateTGChiDinh.Focus();
-                LoadMaDieuTri();
+                LoadDotDieuTri();
 
                 if (this.SuaPhieuCDDV.maubenhphamgrouptypeid != 3)
                 {
@@ -83,12 +83,12 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-        private void LoadMaDieuTri()
+        private void LoadDotDieuTri()
         {
             try
             {
                 string _tgiansudung = DateTime.ParseExact(dateTGSuDung.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                string _phieuDieutri = "SELECT mrd.medicalrecordid, degp.departmentgroupname, de.departmentname, (mrd.medicalrecordid || ' - ' || degp.departmentgroupname) as medicalrecordkhoa FROM medicalrecord mrd inner join departmentgroup degp on degp.departmentgroupid=mrd.departmentgroupid inner join department de on de.departmentid=mrd.departmentid WHERE mrd.vienphiid = '" + this.SuaPhieuCDDV.vienphiid + "' and mrd.thoigianvaovien <='" + _tgiansudung + "' and mrd.thoigianravien >='" + _tgiansudung + "';";
+                string _phieuDieutri = "SELECT mrd.medicalrecordid, degp.departmentgroupname, de.departmentname, (mrd.medicalrecordid || ' - ' || degp.departmentgroupname) as medicalrecordkhoa FROM medicalrecord mrd inner join departmentgroup degp on degp.departmentgroupid=mrd.departmentgroupid inner join department de on de.departmentid=mrd.departmentid WHERE mrd.vienphiid = '" + this.SuaPhieuCDDV.vienphiid + "' and mrd.thoigianvaovien <='" + _tgiansudung + "' and (case when mrd.thoigianravien<>'0001-01-01 00:00:00' then mrd.thoigianravien >='" + _tgiansudung + "' else 1=1 end);";
                 DataTable _dataDotDieuTri = condb.GetDataTable_HIS(_phieuDieutri);
                 if (_dataDotDieuTri != null && _dataDotDieuTri.Rows.Count > 0)
                 {
@@ -206,7 +206,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
                 {
                     LoadPhieuDieuTri();
                 }
-                LoadMaDieuTri();
+                LoadDotDieuTri();
                 if (dateTGSuDung.Value != this.SuaPhieuCDDV.thoigiansudung)
                 {
                     btnSuaThoiGian.Enabled = true;

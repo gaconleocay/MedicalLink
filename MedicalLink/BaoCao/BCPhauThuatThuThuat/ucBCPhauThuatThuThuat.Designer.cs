@@ -332,7 +332,9 @@
             this.cboTieuChi.Properties.Items.AddRange(new object[] {
             "Theo ngày thực hiện",
             "Theo ngày thanh toán",
-            "Theo ngày chỉ định"});
+            "Theo ngày chỉ định",
+            "Theo ngày vào viện",
+            "Theo ngày ra viện"});
             this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboTieuChi.Size = new System.Drawing.Size(141, 22);
             this.cboTieuChi.TabIndex = 72;
@@ -1937,7 +1939,7 @@
             this.imMenu.Images.SetKeyName(4, "status_1.png");
             this.imMenu.Images.SetKeyName(5, "status_3.png");
             // 
-            // BCPhauThuatThuThuat
+            // ucBCPhauThuatThuThuat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1945,7 +1947,7 @@
             this.Controls.Add(this.panelControlThongTinDV);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "BCPhauThuatThuThuat";
+            this.Name = "ucBCPhauThuatThuThuat";
             this.Size = new System.Drawing.Size(1100, 613);
             this.Load += new System.EventHandler(this.BCPhauThuatThuThuat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).EndInit();

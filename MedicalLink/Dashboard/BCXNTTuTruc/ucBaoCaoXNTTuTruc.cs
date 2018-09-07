@@ -304,6 +304,7 @@ namespace MedicalLink.Dashboard
 
         #endregion
 
+        #region Events
         private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
         {
             try
@@ -335,7 +336,7 @@ namespace MedicalLink.Dashboard
                 Base.Logging.Warn(ex);
             }
         }
-        void itemXemLichSuNhapXuat_Click(object sender, EventArgs e)
+      private  void itemXemLichSuNhapXuat_Click(object sender, EventArgs e)
         {
             try
             {
@@ -354,6 +355,21 @@ namespace MedicalLink.Dashboard
             }
         }
 
+        private void chkXemChiTiet_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                btnTimKiem_Click(null, null);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
+
+        #region Xuat excel va in
         private void tbnExport_Click(object sender, EventArgs e)
         {
             try
@@ -447,17 +463,7 @@ namespace MedicalLink.Dashboard
             return result;
         }
 
-        private void chkXemChiTiet_CheckedChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                btnTimKiem_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
+        #endregion
 
         #region Custom
         private void gridViewThuocTuTruc_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)

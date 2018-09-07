@@ -30,6 +30,9 @@ CREATE INDEX serviceprice_duyetpttt_user_idx ON serviceprice USING btree (duyetp
 
 
 --ngay 23/5: fix loi x2 ket qua
+--ngay 4/9/2018: them theo ngay vao vien + ra vien
+
+
 
 SELECT row_number () over (order by A.ngay_chidinh) as stt, 
 A.servicepriceid,

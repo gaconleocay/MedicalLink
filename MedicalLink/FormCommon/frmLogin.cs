@@ -161,7 +161,7 @@ namespace MedicalLink.FormCommon
                 MedicalLink.GlobalStore.KhoangThoiGianLayDuLieu = System.DateTime.Now.Year - 1 + "-01-01 00:00:00";
                 if (GlobalStore.lstOption != null && GlobalStore.lstOption.Count > 0)
                 {
-                    GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = TypeConvertParse.ToInt64(GlobalStore.lstOption.Where(o => o.toolsoptioncode == "ThoiGianCapNhatTbl_tools_bndangdt_tmp").FirstOrDefault().toolsoptionvalue);
+                    //GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp = TypeConvertParse.ToInt64(GlobalStore.lstOption.Where(o => o.toolsoptioncode == "ThoiGianCapNhatTbl_tools_bndangdt_tmp").FirstOrDefault().toolsoptionvalue);
                     GlobalStore.KhoangThoiGianLayDuLieu = GlobalStore.lstOption.Where(o => o.toolsoptioncode == "KhoangThoiGianLayDuLieu").FirstOrDefault().toolsoptionvalue;
                 }
             }

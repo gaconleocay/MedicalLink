@@ -142,7 +142,14 @@ namespace MedicalLink.Dashboard
 
                 if (thoiGianTu > 20161231 && thoiGianDen > 20161231)
                 {
-                    LayDuLieuBaoCao_ChayMoi();
+                    if (chkLayHaoPhi.Checked)
+                    {
+                        LayDuLieuBaoCao_ChayMoi();
+                    }
+                    else
+                    {
+                        LayDuLieuBaoCao_ChayMoi_KhongHaoPhi();
+                    }
                 }
                 else if (thoiGianTu < 20161231 && thoiGianDen <= 20161231)
                 {

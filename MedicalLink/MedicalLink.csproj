@@ -284,6 +284,12 @@
     <Compile Include="BaoCao\BC46_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.Designer.cs">
       <DependentUpon>ucBC46_TinhHinhThanhToan.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BC47_BomTiemHaoPhi\ucBC47_BomTiemHaoPhi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC47_BomTiemHaoPhi\ucBC47_BomTiemHaoPhi.Designer.cs">
+      <DependentUpon>ucBC47_BomTiemHaoPhi.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1406,6 +1412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC46_TinhHinhThanhToan\ucBC46_TinhHinhThanhToan.resx">
       <DependentUpon>ucBC46_TinhHinhThanhToan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC47_BomTiemHaoPhi\ucBC47_BomTiemHaoPhi.resx">
+      <DependentUpon>ucBC47_BomTiemHaoPhi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
       <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>

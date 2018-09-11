@@ -323,7 +323,7 @@
             // timerTuDongCapNhat
             // 
             this.timerTuDongCapNhat.Interval = 1000;
-            this.timerTuDongCapNhat.Tick += new System.EventHandler(this.timerTuDongCapNhat_Tick);
+            //this.timerTuDongCapNhat.Tick += new System.EventHandler(this.timerTuDongCapNhat_Tick);
             // 
             // panelControlData
             // 

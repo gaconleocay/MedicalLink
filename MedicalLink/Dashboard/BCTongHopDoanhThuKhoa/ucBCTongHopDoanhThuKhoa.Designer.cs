@@ -119,6 +119,7 @@
             this.bandedGridColumn51 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn52 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.chkLayHaoPhi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -146,6 +147,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkLayHaoPhi);
             this.groupBoxFile.Controls.Add(this.chkThuTienStatus);
             this.groupBoxFile.Controls.Add(this.labelControl5);
             this.groupBoxFile.Controls.Add(this.cboTieuChi);
@@ -178,7 +180,7 @@
             this.chkThuTienStatus.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkThuTienStatus.Location = new System.Drawing.Point(626, 23);
             this.chkThuTienStatus.Name = "chkThuTienStatus";
-            this.chkThuTienStatus.Size = new System.Drawing.Size(66, 89);
+            this.chkThuTienStatus.Size = new System.Drawing.Size(114, 23);
             this.chkThuTienStatus.TabIndex = 85;
             this.chkThuTienStatus.Text = "DV đã thu tiền";
             this.chkThuTienStatus.UseVisualStyleBackColor = true;
@@ -393,7 +395,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnTimKiem.Location = new System.Drawing.Point(718, 39);
+            this.btnTimKiem.Location = new System.Drawing.Point(763, 39);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -1870,6 +1872,18 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
             // 
+            // chkLayHaoPhi
+            // 
+            this.chkLayHaoPhi.Checked = true;
+            this.chkLayHaoPhi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkLayHaoPhi.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkLayHaoPhi.Location = new System.Drawing.Point(626, 58);
+            this.chkLayHaoPhi.Name = "chkLayHaoPhi";
+            this.chkLayHaoPhi.Size = new System.Drawing.Size(114, 23);
+            this.chkLayHaoPhi.TabIndex = 86;
+            this.chkLayHaoPhi.Text = "Lấy hao phí";
+            this.chkLayHaoPhi.UseVisualStyleBackColor = true;
+            // 
             // ucBCTongHopDoanhThuKhoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1987,5 +2001,6 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand5;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand8;
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBand7;
+        private System.Windows.Forms.CheckBox chkLayHaoPhi;
     }
 }

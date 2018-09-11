@@ -330,7 +330,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             {
                                 //Xoa
                                 string _sql_delete = "DELETE FROM ml_mayxnchiphi WHERE mayxn_ma='" + _mayxn_ma + "' and servicepricecode='" + item_dv.SERVICEPRICECODE + "'; ";
-                                if (condb.ExecuteNonQuery_MeL(_sql_delete))
+                                if (condb.ExecuteNonQuery_MeL(_sql_delete) && condb.ExecuteNonQuery_HIS(_sql_delete))
                                 {
                                     _update_count += _dataKiemTra.Rows.Count;
                                 }
@@ -346,7 +346,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
 
 
                             sql_insert = "INSERT INTO ml_mayxnchiphi(mayxn_ma, mayxn_ten, servicepricecode, servicepricename, servicepriceunit, cp_hoachat, cp_haophixn, cp_luong, cp_diennuoc, cp_khmaymoc, cp_khxaydung, nhombc_ma, lastuserupdated, lasttimeupdated) VALUES ('" + _mayxn_ma + "', '" + item_dv.MAYXN_TEN + "', '" + item_dv.SERVICEPRICECODE + "', '" + _SERVICEPRICENAME + "', '" + item_dv.SERVICEPRICEUNIT + "', '" + _cp_hoachat + "', '" + _cp_haophixn + "', '" + _cp_luong + "', '" + _cp_diennuoc + "', '" + _cp_khmaymoc + "', '" + _cp_khxaydung + "', '" + item_dv.NHOMBC_MA + "', '" + Base.SessionLogin.SessionUsercode + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'); ";
-                            if (condb.ExecuteNonQuery_MeL(sql_insert))
+                            if (condb.ExecuteNonQuery_MeL(sql_insert) && condb.ExecuteNonQuery_HIS(sql_insert))
                             {
                                 insert_count += 1;
                             }
@@ -401,10 +401,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         string mayxndmxncpid = gridViewDVXNChiPhi.GetRowCellValue(item_index, "MAYXNDMXNCPID").ToString();
                         sql_deleteDV += "DELETE FROM ml_mayxnchiphi where mayxndmxncpid='" + mayxndmxncpid + "'; ";
                     }
-                    condb.ExecuteNonQuery_MeL(sql_deleteDV);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
-                    frmthongbao.Show();
-                    ucChiPhiXetNghiem_Load(null, null);
+                    if (condb.ExecuteNonQuery_MeL(sql_deleteDV) && condb.ExecuteNonQuery_HIS(sql_deleteDV))
+                    {
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
+                        frmthongbao.Show();
+                        ucChiPhiXetNghiem_Load(null, null);
+                    }
                 }
             }
             catch (Exception ex)

@@ -139,7 +139,7 @@ FROM (select departmentgroupid,departmentgroupname from departmentgroup where de
 				from vienphi vp inner join bill b on vp.vienphiid=b.vienphiid 
 				where vp." + loaithoigian + " between '" + thoiGianTu + "' and '" + thoiGianDen + "' and b.loaiphieuthuid=2 and b.dahuyphieu=0 and vp." + _loaitrangthai + " " + doituongbenhnhanid_vp + " 
 				group by b.departmentgroupid) BILL ON BILL.departmentgroupid=dep.departmentgroupid
-
+--chi phi XN
 	LEFT JOIN	
 			(SELECT 
 				SERV.departmentgroupid,

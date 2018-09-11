@@ -271,30 +271,30 @@ namespace MedicalLink.Dashboard
             }
         }
 
-        private void timerTuDongCapNhat_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                tickCurrentVal--;
-                if (tickCurrentVal == 0)
-                {
-                    if (GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
-                    {
-                       // LayDuLieuBaoCao_DaChayDuLieu();
-                        LayDuLieuBaoCao_ChayMoi();
-                    }
-                    else
-                    {
-                        LayDuLieuBaoCao_ChayMoi();
-                    }
-                    tickCurrentVal = thoiGianCapNhat;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
+        //private void timerTuDongCapNhat_Tick(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        tickCurrentVal--;
+        //        if (tickCurrentVal == 0)
+        //        {
+        //            if (GlobalStore.ThoiGianCapNhatTbl_tools_bndangdt_tmp > 0)
+        //            {
+        //               // LayDuLieuBaoCao_DaChayDuLieu();
+        //                LayDuLieuBaoCao_ChayMoi();
+        //            }
+        //            else
+        //            {
+        //                LayDuLieuBaoCao_ChayMoi();
+        //            }
+        //            tickCurrentVal = thoiGianCapNhat;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MedicalLink.Base.Logging.Warn(ex);
+        //    }
+        //}
 
         private void bandedGridViewDataBNNT_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {

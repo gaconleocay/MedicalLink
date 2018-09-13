@@ -825,6 +825,28 @@ namespace MedicalLink.Base
                 REPORT_46.permissionnote = "";
                 lstresult.Add(REPORT_46);
 
+                ClassCommon.classPermission REPORT_47 = new ClassCommon.classPermission();
+                REPORT_47.permissioncheck = false;
+                REPORT_47.permissioncode = "REPORT_47";
+                REPORT_47.permissionname = "Báo cáo bơm, kim tiêm hao phí trong xét nghiệm";
+                REPORT_47.permissiontype = 3;
+                REPORT_47.tabMenuId = 5;
+                REPORT_47.permissionnote = "";
+                lstresult.Add(REPORT_47);
+
+                ClassCommon.classPermission REPORT_48 = new ClassCommon.classPermission();
+                REPORT_48.permissioncheck = false;
+                REPORT_48.permissioncode = "REPORT_48";
+                REPORT_48.permissionname = "Báo cáo phẫu thuật thủ thuật - chi tiết thuốc/vật tư trong gói";
+                REPORT_48.permissiontype = 3;
+                REPORT_48.tabMenuId = 5;
+                REPORT_48.permissionnote = "";
+                lstresult.Add(REPORT_48);
+
+
+
+
+
 
 
                 //Báo cáo quản lý =6; permissiontype = 3;

@@ -44,7 +44,6 @@ namespace MedicalLink.BaoCao
                 string baocaotungloai = "";
                 string _trangthaipttt = "";
                 string _doituongbenhnhanid = "";
-                string _sqlhaophi = "";
 
                 //tieu chi
                 if (cboTieuChi.Text == "Theo ngày thực hiện")
@@ -237,16 +236,6 @@ namespace MedicalLink.BaoCao
                     _pttt_loaiid_serf = " and pttt_loaiid=0";
                 }
 
-                //
-                if (chkLayChiTietHP.Checked)
-                {
-                    _sqlhaophi = " 0 as thuoc_tronggoi, 0 as vattu_tronggoi, ";
-                }
-                else
-                {
-                    _sqlhaophi = " (case when serf.tinhtoanlaigiadvktc=1 then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) end) as thuoc_tronggoi, (case when serf.tinhtoanlaigiadvktc=1 then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) end) as vattu_tronggoi, ";
-                }
-
                 //ngay 12/9/2018
                 sql_laydulieu = $@"SELECT row_number () over (order by A.ngay_chidinh) as stt, 
 	A.servicepriceid,
@@ -284,7 +273,6 @@ namespace MedicalLink.BaoCao
 	A.loaipttt_l2, 
 	A.loaipttt_l3, 
 	A.loaipttt, 
-	A.tinhtoanlaigiadvktc,
 	A.soluong, 
 	A.servicepricefee, 
 	A.tyle, 
@@ -346,7 +334,15 @@ FROM
 		(case ser.loaidoituong when 0 then ser.servicepricename_bhyt when 1 then ser.servicepricename_nhandan else ser.servicepricename end) as servicepricename, 
 		(case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee, 
 		(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle, 
-		{_sqlhaophi}
+		0 as thuoc_tronggoi,
+		0 as vattu_tronggoi,
+		/*(case when serf.tinhtoanlaigiadvktc=1 
+				then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) 
+			else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) end) as thuoc_tronggoi, 
+		(case when serf.tinhtoanlaigiadvktc=1 
+				then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) 
+			else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) 
+			end) as vattu_tronggoi, */
 		(case serf.pttt_loaiid 
 				when 1 then 'Phẫu thuật đặc biệt' 
 				when 2 then 'Phẫu thuật loại 1' 
@@ -361,7 +357,6 @@ FROM
 		(case when serf.pttt_loaiid in (2,6) then 'x' else '' end) as loaipttt_l1, 
 		(case when serf.pttt_loaiid in (3,7) then 'x' else '' end) as loaipttt_l2, 
 		(case when serf.pttt_loaiid in (4,8) then 'x' else '' end) as loaipttt_l3, 
-		serf.tinhtoanlaigiadvktc,
 		ser.soluong as soluong, 
 		((ser.chiphidauvao + ser.chiphimaymoc + ser.chiphipttt) + COALESCE((case when ser.mayytedbid<>0 then (select myt.chiphiliendoanh from mayyte myt where myt.mayytedbid=ser.mayytedbid) else 0 end),0))* ser.soluong as chiphikhac, 
 		{baocaotungloai}
@@ -391,8 +386,8 @@ LEFT JOIN (select userhisid,username from nhompersonnel) gv2 ON gv2.userhisid=A.
 LEFT JOIN (select userhisid,username from nhompersonnel) nnth ON nnth.userhisid=A.nguoinhapthuchien
 INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh.bhytid=A.bhytid;";
 
-                DataTable _dataBCPTTT = condb.GetDataTable_HIS(sql_laydulieu);
-                if (_dataBCPTTT != null && _dataBCPTTT.Rows.Count > 0)
+                this.dataBCPTTT = condb.GetDataTable_HIS(sql_laydulieu);
+                if (this.dataBCPTTT != null && this.dataBCPTTT.Rows.Count > 0)
                 {
                     //Lay chi tiet thuoc/vat tu trong goi
                     if (chkLayChiTietHP.Checked)
@@ -400,17 +395,16 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                         DataTable _dataHaoPhi = LayDuLieu_HaoPhiTrongGoi();
                         if (_dataHaoPhi.Rows.Count > 0)
                         {
-                            List<BC08PhauThuatThuThuatDTO> lstdataKetQua = Utilities.DataTables.DataTableToList<BC08PhauThuatThuThuatDTO>(_dataBCPTTT);
-                            HienThiDuLieuTimKiem(lstdataKetQua, _dataHaoPhi);
+                            HienThiDuLieuTimKiem(this.dataBCPTTT, _dataHaoPhi);
                         }
                         else
                         {
-                            gridControlDataBCPTTT.DataSource = _dataBCPTTT;
+                            gridControlDataBCPTTT.DataSource = this.dataBCPTTT;
                         }
                     }
                     else
                     {
-                        gridControlDataBCPTTT.DataSource = _dataBCPTTT;
+                        gridControlDataBCPTTT.DataSource = this.dataBCPTTT;
                     }
                 }
                 else
@@ -436,11 +430,16 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                 string _tieuchi_ser = " and servicepricedate>'2016-01-01 00:00:00' ";
                 string _tieuchi_vp = " and vienphidate>'2016-01-01 00:00:00' ";
                 string _departmentid_ser = "";
-                //string _pttt_loaiid_serf = "";
+                string _pttt_loaiid_serf = "";
                 string _doituongbenhnhanid = "";
-                //string _trangthaipttt = "";
+                string _trangthaipttt = "";
 
                 //tieu chi
+                //if (cboTieuChi.Text == "Theo ngày thực hiện")
+                //{
+                //    _tieuchi_pttt = " and phauthuatthuthuatdate between '" + tungay + "' and '" + denngay + "' ";
+                //}
+                //else 
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     _tieuchi_ser = " and servicepricedate between '" + _tungay + "' and '" + _denngay + "' ";
@@ -467,22 +466,22 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                 }
 
                 //trang thai
-                //if (cboTrangThai.Text == "Chưa gửi YC")
-                //{
-                //    _trangthaipttt = " and coalesce(duyetpttt_stt,0)=0 ";
-                //}
-                //else if (cboTrangThai.Text == "Đã gửi YC")
-                //{
-                //    _trangthaipttt = " and duyetpttt_stt=1 ";
-                //}
-                //else if (cboTrangThai.Text == "Đã tiếp nhận YC")
-                //{
-                //    _trangthaipttt = " and duyetpttt_stt=2 ";
-                //}
-                //else if (cboTrangThai.Text == "Đã duyệt PTTT")
-                //{
-                //    _trangthaipttt = " and duyetpttt_stt=3 ";
-                //}
+                if (cboTrangThai.Text == "Chưa gửi YC")
+                {
+                    _trangthaipttt = " and coalesce(duyetpttt_stt,0)=0 ";
+                }
+                else if (cboTrangThai.Text == "Đã gửi YC")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=1 ";
+                }
+                else if (cboTrangThai.Text == "Đã tiếp nhận YC")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=2 ";
+                }
+                else if (cboTrangThai.Text == "Đã duyệt PTTT")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=3 ";
+                }
                 //else if (cboTrangThai.Text == "Đã khóa")
                 //{
                 //    _trangthaipttt = " and duyetpttt_stt=99 ";
@@ -508,7 +507,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid in (285,34) ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002")//phau thuat - lay khoa tai mui hong: ser.departmentid in (122); ser.departmengrouptid in (10)
                 {
@@ -521,7 +520,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid=122 ";
                     }
-                    // _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003") //phau thuat - lay khoa rang ham mat: ser.departmentid in (116); ser.departmengrouptid in (9)
                 {
@@ -534,7 +533,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid=116 ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004") //phau thuat -Mổ Mắt_B_Điều Trị + phòng khám Mổ mắt+ BDT khoa mắt kkb-khám mắt
                 {
@@ -547,7 +546,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid in (269,335,80,212) ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005") //phau thuat - khoa khac
                 {
@@ -559,7 +558,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     }
                     _departmentid_ser += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
 
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")// thu thuat - khoa mat + phong kham mat ser.departmentid in (80,212)
                 {
@@ -572,7 +571,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid in (80,212) ";
                     }
-                    // _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//Báo cáo Thủ thuật - Các khoa khác (trừ khoa mắt & PK mắt): ser.departmentid not in (80,212)
                 {
@@ -585,7 +584,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid not in (80,212) ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//Báo cáo Thủ thuật - khoa khac
                 {
@@ -596,25 +595,26 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                         _departmentid_ser += lstPhongCheck[i] + ",";
                     }
                     _departmentid_ser += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
                 }
 
                 if (chkChuaPhanLoaiPTTT.Checked)
                 {
-                    // _pttt_loaiid_serf = " and pttt_loaiid=0";
+                    _pttt_loaiid_serf = " and pttt_loaiid=0";
                 }
-                string _sqlLayHP = $@"SELECT goi.servicepriceid_master,
+                string _sqlLayHP = $@"------Thuoc/vat tu trong goi ngay 12/9/2018
+SELECT ser.servicepriceid,
 	goi.servicepriceid as goi_servicepriceid,
-	goi.servicepriceid_thanhtoanrieng,
-	goi.loaidoituong,
 	goi.loaithuocvt,
 	goi.servicepricecode as goi_servicepricecode,
 	goi.servicepricename as goi_servicepricename,
 	goi.soluong as goi_soluong,
 	goi.servicepricefee as goi_servicepricefee,
 	(goi.soluong*goi.servicepricefee) as goi_thanhtien
-FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}) vp 
-	inner join (select vienphiid,servicepriceid,(case when bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') then 1 else 2 end) as loaithuocvt,servicepricecode,servicepricename,servicepricename_bhyt,servicepricename_nhandan,(case loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan else servicepricemoney end) as servicepricefee,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,coalesce(servicepriceid_thanhtoanrieng,0) as servicepriceid_thanhtoanrieng,servicepriceid_master,loaidoituong from serviceprice where loaidoituong in (2,5,7,9) and bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_departmentid_ser}) goi on goi.vienphiid=vp.vienphiid";
+FROM (select se.vienphiid,se.servicepriceid,serf.tinhtoanlaigiadvktc
+from ((select servicepriceid,servicepricecode,vienphiid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') {_trangthaipttt} {_tieuchi_ser} {_departmentid_ser}) se inner join (select servicepricecode,tinhtoanlaigiadvktc,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') {_pttt_loaiid_serf}) serf on serf.servicepricecode=se.servicepricecode)) ser
+inner join (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}) vp on vp.vienphiid=ser.vienphiid 
+inner join (select vienphiid,servicepriceid,(case when bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') then 1 else 2 end) as loaithuocvt,servicepricecode,servicepricename,servicepricename_bhyt,servicepricename_nhandan,(case loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan else servicepricemoney end) as servicepricefee,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,coalesce(servicepriceid_thanhtoanrieng,0) as servicepriceid_thanhtoanrieng,servicepriceid_master,loaidoituong from serviceprice where loaidoituong in (2,5,7,9) and bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser}) goi on (case when ser.tinhtoanlaigiadvktc=1 then goi.servicepriceid_master=ser.servicepriceid else (goi.loaidoituong=2 and goi.servicepriceid_master=ser.servicepriceid and goi.servicepriceid_thanhtoanrieng=0) end);";
                 result = condb.GetDataTable_HIS(_sqlLayHP);
             }
             catch (Exception ex)
@@ -623,29 +623,19 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
             }
             return result;
         }
-        private void HienThiDuLieuTimKiem(List<BC08PhauThuatThuThuatDTO> lstdataKetQua, DataTable _haoPhi)
+        private void HienThiDuLieuTimKiem(DataTable _dataKetQua, DataTable _haoPhi)
         {
             try
             {
                 List<BC08PhauThuatThuThuatDTO> lstresult = new List<BC08PhauThuatThuThuatDTO>();
+                List<BC08PhauThuatThuThuatDTO> lstdataKetQua = Utilities.DataTables.DataTableToList<BC08PhauThuatThuThuatDTO>(_dataKetQua);
 
                 foreach (var _itemKQ in lstdataKetQua)
                 {
                     lstresult.Add(_itemKQ);//add dvkt
 
-                    var _haoPhi_Thuoc = _haoPhi.AsEnumerable().Where(o => o.Field<object>("servicepriceid_master").ToString() == _itemKQ.servicepriceid && o.Field<object>("loaithuocvt").ToString() == "1");
-                    var _haoPhi_VatTu = _haoPhi.AsEnumerable().Where(o => o.Field<object>("servicepriceid_master").ToString() == _itemKQ.servicepriceid && o.Field<object>("loaithuocvt").ToString() == "2");
-
-                    if (_itemKQ.tinhtoanlaigiadvktc == 1)
-                    {
-                        _haoPhi_Thuoc = _haoPhi_Thuoc.Where(o => o.Field<object>("loaidoituong").ToString() != "2");
-                        _haoPhi_VatTu = _haoPhi_VatTu.Where(o => o.Field<object>("loaidoituong").ToString() != "2");
-                    }
-                    else
-                    {
-                        _haoPhi_Thuoc = _haoPhi_Thuoc.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() != "0");
-                        _haoPhi_VatTu = _haoPhi_VatTu.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() != "0");
-                    }
+                    var _haoPhi_Thuoc = _haoPhi.AsEnumerable().Where(o => o.Field<object>("servicepriceid").ToString() == _itemKQ.servicepriceid && o.Field<object>("loaithuocvt").ToString() == "1");
+                    var _haoPhi_VatTu = _haoPhi.AsEnumerable().Where(o => o.Field<object>("servicepriceid").ToString() == _itemKQ.servicepriceid && o.Field<object>("loaithuocvt").ToString() == "2");
                     if (_haoPhi_Thuoc.Any() || _haoPhi_VatTu.Any())
                     {
                         DataTable _dataHP_Thuoc = (_haoPhi_Thuoc.Any() == true) ? _haoPhi_Thuoc.CopyToDataTable() : new DataTable();
@@ -669,7 +659,7 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                             _lstChiTiet[i].thuoc_soluong = Utilities.TypeConvertParse.ToDecimal(_dataHP_Thuoc.Rows[i]["goi_soluong"].ToString());
                             _lstChiTiet[i].thuoc_servicepricefee = Utilities.TypeConvertParse.ToDecimal(_dataHP_Thuoc.Rows[i]["goi_servicepricefee"].ToString());
                             _lstChiTiet[i].thuoc_thanhtien = Utilities.TypeConvertParse.ToDecimal(_dataHP_Thuoc.Rows[i]["goi_thanhtien"].ToString());
-                            _thanhtien_Thuoc += _lstChiTiet[i].thuoc_thanhtien ?? 0;
+                            _thanhtien_Thuoc += _lstChiTiet[i].thuoc_thanhtien??0;
                         }
                         for (int i = 0; i < _dataHP_VatTu.Rows.Count; i++)
                         {
@@ -678,13 +668,11 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                             _lstChiTiet[i].vattu_soluong = Utilities.TypeConvertParse.ToDecimal(_dataHP_VatTu.Rows[i]["goi_soluong"].ToString());
                             _lstChiTiet[i].vattu_servicepricefee = Utilities.TypeConvertParse.ToDecimal(_dataHP_VatTu.Rows[i]["goi_servicepricefee"].ToString());
                             _lstChiTiet[i].vattu_thanhtien = Utilities.TypeConvertParse.ToDecimal(_dataHP_VatTu.Rows[i]["goi_thanhtien"].ToString());
-                            _thanhtien_VatTu += _lstChiTiet[i].vattu_thanhtien ?? 0;
+                            _thanhtien_VatTu += _lstChiTiet[i].vattu_thanhtien??0;
                         }
-
                         lstresult.AddRange(_lstChiTiet);//add chi tiet
                         _itemKQ.thuoc_tronggoi = _thanhtien_Thuoc;
                         _itemKQ.vattu_tronggoi = _thanhtien_VatTu;
-                        _itemKQ.lai = _itemKQ.lai - (_thanhtien_Thuoc + _thanhtien_VatTu);
                     }
                 }
                 gridControlDataBCPTTT.DataSource = lstresult;
@@ -694,6 +682,7 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+
         #endregion
 
         #region Hien Thi nut In xuat Excel

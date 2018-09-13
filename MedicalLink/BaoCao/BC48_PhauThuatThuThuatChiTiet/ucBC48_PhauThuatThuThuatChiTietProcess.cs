@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace MedicalLink.BaoCao
 {
-    public partial class ucBCPhauThuatThuThuat : UserControl
+    public partial class ucBC48_PhauThuatThuThuatChiTiet : UserControl
     {
         #region Lay du lieu va xu ly hien thi du lieu
         internal void LayDuLieuBaoCao_ChayMoi()
@@ -25,43 +25,29 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                EnableAndDisableNutIn();
-                this.helper.ClearSelection();
                 string sql_laydulieu = "";
 
                 string _tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string _denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
-                //  string tieuchi_date = "";
-                string _tieuchi_pttt = " ";//không phải set mặc định vì LEFT JOIN
                 string _tieuchi_ser = " and servicepricedate>'2016-01-01 00:00:00' ";
                 string _tieuchi_vp = " and vienphidate>'2016-01-01 00:00:00' ";
                 string _tieuchi_bhyt = " and bhytdate>'2016-01-01 00:00:00' ";
-                string _tieuchi_mbp = " and maubenhphamdate>'2016-01-01 00:00:00' ";
                 string _tieuchi_hsba = " and hosobenhandate>'2016-01-01 00:00:00' ";
                 string _departmentid_ser = "";
                 string _pttt_loaiid_serf = "";
-                string chiachobacsi = "";
-                string baocaotungloai = "";
                 string _trangthaipttt = "";
                 string _doituongbenhnhanid = "";
-                string _sqlhaophi = "";
 
                 //tieu chi
-                if (cboTieuChi.Text == "Theo ngày thực hiện")
-                {
-                    _tieuchi_pttt = " and phauthuatthuthuatdate between '" + _tungay + "' and '" + _denngay + "' ";
-                }
-                else if (cboTieuChi.Text == "Theo ngày chỉ định")
+                if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     _tieuchi_ser = " and servicepricedate between '" + _tungay + "' and '" + _denngay + "' ";
-                    _tieuchi_mbp = " and maubenhphamdate between '" + _tungay + "' and '" + _denngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
                     _tieuchi_vp = " and vienphidate between '" + _tungay + "' and '" + _denngay + "' ";
                     _tieuchi_hsba = " and hosobenhandate between '" + _tungay + "' and '" + _denngay + "' ";
                     _tieuchi_ser = " and servicepricedate>='" + _tungay + "' ";
-                    _tieuchi_mbp = " and maubenhphamdate>='" + _tungay + "' ";
                     _tieuchi_bhyt = " and bhytdate>'" + _tungay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
@@ -126,8 +112,6 @@ namespace MedicalLink.BaoCao
                         _departmentid_ser = " and departmentid in (285,34) ";
                     }
                     _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100)) - (A.GAYME_TIEN * (A.TYLE/100)) - (A.PHU1_TIEN * (A.TYLE/100)) - (A.PHU2_TIEN * (A.TYLE/100)) - (A.GIUPVIEC1_TIEN * (A.TYLE/100)) - (A.GIUPVIEC2_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
-                    baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, pttt.bacsigayme as gayme_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as gayme_tien, pttt.phume2 as moigayme_tenbs, (case when pttt.phume2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, pttt.phumo2 as phu2_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 else 0 end) * ser.soluong) as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, pttt.phumo4 as giupviec2_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 else 0 end) * ser.soluong) as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002")//phau thuat - lay khoa tai mui hong: ser.departmentid in (122); ser.departmengrouptid in (10)
                 {
@@ -141,8 +125,7 @@ namespace MedicalLink.BaoCao
                         _departmentid_ser = " and departmentid=122 ";
                     }
                     _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.PHU2_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100))-(A.GIUPVIEC2_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
-                    baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, pttt.phumo2 as phu2_tenbs, ((case serf.pttt_loaiid when 2 then 90000 else 0 end) * ser.soluong) as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, pttt.phumo4 as giupviec2_tenbs, ((case serf.pttt_loaiid when 2 then 70000 when 3 then 30000 else 0 end) * ser.soluong) as giupviec2_tien, ";
+
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003") //phau thuat - lay khoa rang ham mat: ser.departmentid in (116); ser.departmengrouptid in (9)
                 {
@@ -156,8 +139,6 @@ namespace MedicalLink.BaoCao
                         _departmentid_ser = " and departmentid=116 ";
                     }
                     _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
-                    baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004") //phau thuat -Mổ Mắt_B_Điều Trị + phòng khám Mổ mắt+ BDT khoa mắt kkb-khám mắt
                 {
@@ -171,8 +152,6 @@ namespace MedicalLink.BaoCao
                         _departmentid_ser = " and departmentid in (269,335,80,212) ";
                     }
                     _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.GAYME_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
-                    baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, pttt.bacsigayme as gayme_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as gayme_tien, pttt.phume2 as moigayme_tenbs, (case when pttt.phume2>0 then ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 else 0 end) * ser.soluong) else 0 end) as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005") //phau thuat - khoa khac
                 {
@@ -185,8 +164,6 @@ namespace MedicalLink.BaoCao
                     _departmentid_ser += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
 
                     _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.GAYME_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.PHU2_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100))-(A.GIUPVIEC2_TIEN * (A.TYLE/100)) - (A.moimochinh_tien * (A.tyle/100)) - (A.moigayme_tien * (A.tyle/100)) ";
-                    baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as mochinh_tien, (case when pttt.phauthuatvien2>0 then pttt.phauthuatvien2 end) as moimochinh_tenbs, (case when pttt.phauthuatvien2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moimochinh_tien, pttt.bacsigayme as gayme_tenbs, ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 when 4 then 50000 else 0 end) * ser.soluong) as gayme_tien, pttt.phume2 as moigayme_tenbs, (case when pttt.phume2>0 then ((case serf.pttt_loaiid when 1 then 280000 when 2 then 125000 when 3 then 65000 else 0 end) * ser.soluong) else 0 end) as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 when 3 then 50000 when 4 then 30000 else 0 end) * ser.soluong) as phu1_tien, pttt.phumo2 as phu2_tenbs, ((case serf.pttt_loaiid when 1 then 200000 when 2 then 90000 else 0 end) * ser.soluong) as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 when 4 then 15000 else 0 end) * ser.soluong) as giupviec1_tien, pttt.phumo4 as giupviec2_tenbs, ((case serf.pttt_loaiid when 1 then 120000 when 2 then 70000 when 3 then 30000 else 0 end) * ser.soluong) as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")// thu thuat - khoa mat + phong kham mat ser.departmentid in (80,212)
                 {
@@ -200,8 +177,6 @@ namespace MedicalLink.BaoCao
                         _departmentid_ser = " and departmentid in (80,212) ";
                     }
                     _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) ";
-                    baocaotungloai = "  pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 5 then 84000 when 6 then 37500 when 7 then 19500 when 8 then 15000 else 0 end) * ser.soluong) as mochinh_tien, 0 as moimochinh_tenbs, 0 as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, 0 as phu1_tenbs, 0 as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 5 then 36000 when 6 then 21000 when 7 then 9000 when 8 then 4500 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//Báo cáo Thủ thuật - Các khoa khác (trừ khoa mắt & PK mắt): ser.departmentid not in (80,212)
                 {
@@ -215,8 +190,6 @@ namespace MedicalLink.BaoCao
                         _departmentid_ser = " and departmentid not in (80,212) ";
                     }
                     _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) ";
-                    baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 5 then 84000 when 6 then 37500 when 7 then 19500 when 8 then 15000 else 0 end) * ser.soluong) as mochinh_tien, 0 as moimochinh_tenbs, 0 as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 5 then 60000 when 6 then 27000 else 0 end) * ser.soluong) as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 5 then 36000 when 7 then 9000 when 8 then 4500 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//Báo cáo Thủ thuật - khoa khac
                 {
@@ -228,23 +201,11 @@ namespace MedicalLink.BaoCao
                     }
                     _departmentid_ser += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
                     _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
-                    chiachobacsi = " -(A.MOCHINH_TIEN * (A.TYLE/100))-(A.PHU1_TIEN * (A.TYLE/100))-(A.GIUPVIEC1_TIEN * (A.TYLE/100)) ";
-                    baocaotungloai = " pttt.phauthuatvien as mochinh_tenbs, ((case serf.pttt_loaiid when 5 then 84000 when 6 then 37500 when 7 then 19500 when 8 then 15000 else 0 end) * ser.soluong) as mochinh_tien, 0 as moimochinh_tenbs, 0 as moimochinh_tien, 0 as gayme_tenbs, 0 as gayme_tien, 0 as moigayme_tenbs, 0 as moigayme_tien, pttt.phumo1 as phu1_tenbs, ((case serf.pttt_loaiid when 5 then 60000 when 6 then 27000 else 0 end) * ser.soluong) as phu1_tien, 0 as phu2_tenbs, 0 as phu2_tien, pttt.phumo3 as giupviec1_tenbs, ((case serf.pttt_loaiid when 5 then 36000 when 7 then 9000 when 8 then 4500 else 0 end) * ser.soluong) as giupviec1_tien, 0 as giupviec2_tenbs, 0 as giupviec2_tien, ";
                 }
 
                 if (chkChuaPhanLoaiPTTT.Checked)
                 {
                     _pttt_loaiid_serf = " and pttt_loaiid=0";
-                }
-
-                //
-                if (chkLayChiTietHP.Checked)
-                {
-                    _sqlhaophi = " 0 as thuoc_tronggoi, 0 as vattu_tronggoi, ";
-                }
-                else
-                {
-                    _sqlhaophi = " (case when serf.tinhtoanlaigiadvktc=1 then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle')) else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) end) as thuoc_tronggoi, (case when serf.tinhtoanlaigiadvktc=1 then (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle')) else (select sum(case when ser_dikem.maubenhphamphieutype=0 then ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong else 0-(ser_dikem.servicepricemoney_nhandan * ser_dikem.soluong) end) from serviceprice ser_dikem where ser_dikem.servicepriceid_master=ser.servicepriceid and ser_dikem.loaidoituong in (2,5,7,9) and ser_dikem.bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') and COALESCE(servicepriceid_thanhtoanrieng,0)=0) end) as vattu_tronggoi, ";
                 }
 
                 //ngay 12/9/2018
@@ -272,11 +233,6 @@ namespace MedicalLink.BaoCao
 	kchd.departmentgroupname as khoachidinh, 
 	pcd.departmentname as phongchidinh, 
 	TO_CHAR(A.ngay_chidinh,'HH24:MI dd/MM/yyyy') as ngay_chidinh, 
-	TO_CHAR(A.ngay_thuchien,'HH24:MI dd/MM/yyyy') as ngay_thuchien, 
-	(case when A.ngay_ketthuc<>'0001-01-01 00:00:00' then TO_CHAR(A.ngay_ketthuc,'HH24:MI dd/MM/yyyy') end) as ngay_ketthuc,
-	kcd.departmentgroupname as khoachuyenden, 
-	krv.departmentgroupname as khoaravien, 
-	mbp.chandoan as cd_chidinh,
 	A.servicepricecode, 
 	A.servicepricename, 
 	A.loaipttt_db, 
@@ -290,29 +246,10 @@ namespace MedicalLink.BaoCao
 	A.tyle, 
 	round(cast(A.thuoc_tronggoi as numeric),0) as thuoc_tronggoi, 
 	round(cast(A.vattu_tronggoi as numeric),0) as vattu_tronggoi, 
-	round(cast(A.chiphikhac as numeric),0) AS chiphikhac, 
 	(A.servicepricefee * A.soluong) as thanhtien, 
-	round(cast(((A.servicepricefee * A.soluong) - coalesce(A.thuoc_tronggoi,0) - coalesce(A.vattu_tronggoi,0) - coalesce(A.chiphikhac,0) {chiachobacsi} ) as numeric),0) as lai, 
-	mc.username as mochinh_tenbs, 
-	(case when coalesce(mc.username,'CX')<>'CX' then (A.mochinh_tien * (A.tyle/100)) else 0 end) as mochinh_tien, 
-	mmc.username as moimochinh_tenbs, 
-	(case when coalesce(mmc.username,'CX')<>'CX' then (A.moimochinh_tien * (A.tyle/100)) else 0 end) as moimochinh_tien, 
-	gm.username as gayme_tenbs, 
-	(case when coalesce(gm.username,'CX')<>'CX' then (A.gayme_tien * (A.tyle/100)) else 0 end) as gayme_tien, 
-	mgm.username as moigayme_tenbs, 
-	(case when coalesce(mgm.username,'CX')<>'CX' then (A.moigayme_tien * (A.tyle/100)) else 0 end) as moigayme_tien, 
-	p1.username as phu1_tenbs, 
-	(case when coalesce(p1.username,'CX')<>'CX' then (A.phu1_tien * (A.tyle/100)) else 0 end) as phu1_tien, 
-	p2.username as phu2_tenbs, 
-	(case when coalesce(p2.username,'CX')<>'CX' then (A.phu2_tien * (A.tyle/100)) else 0 end) as phu2_tien, 
-	gv1.username as giupviec1_tenbs, 
-	(case when coalesce(gv1.username,'CX')<>'CX' then (A.giupviec1_tien * (A.tyle/100)) else 0 end) as giupviec1_tien, 
-	gv2.username as giupviec2_tenbs, 
-	(case when coalesce(gv2.username,'CX')<>'CX' then (A.giupviec2_tien * (A.tyle/100)) else 0 end) as giupviec2_tien, 
 	TO_CHAR(A.ngay_vaovien, 'HH24:MI dd/MM/yyyy') as ngay_vaovien, 
 	TO_CHAR(A.ngay_ravien, 'HH24:MI dd/MM/yyyy') as ngay_ravien, 
 	TO_CHAR(A.ngay_thanhtoan, 'HH24:MI dd/MM/yyyy') as ngay_thanhtoan,
-	nnth.username as nguoinhapthuchien,
 	'' as thuoc_servicepricecode,
 	'' as thuoc_servicepricename,
 	'' as thuoc_soluong,
@@ -338,15 +275,13 @@ FROM
 		ser.departmentgroupid as khoachidinh, 
 		ser.departmentid as phongchidinh, 
 		ser.servicepricedate as ngay_chidinh, 
-		pttt.phauthuatthuthuatdate as ngay_thuchien, 
-		pttt.phauthuatthuthuatdate_ketthuc as ngay_ketthuc,
-		(select mrd.backdepartmentid from medicalrecord mrd where mrd.medicalrecordid=ser.medicalrecordid) as khoachuyenden, 
 		(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
 		ser.servicepricecode, 
 		(case ser.loaidoituong when 0 then ser.servicepricename_bhyt when 1 then ser.servicepricename_nhandan else ser.servicepricename end) as servicepricename, 
 		(case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee, 
 		(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle, 
-		{_sqlhaophi}
+		0 as thuoc_tronggoi,
+		0 as vattu_tronggoi,
 		(case serf.pttt_loaiid 
 				when 1 then 'Phẫu thuật đặc biệt' 
 				when 2 then 'Phẫu thuật loại 1' 
@@ -362,51 +297,33 @@ FROM
 		(case when serf.pttt_loaiid in (3,7) then 'x' else '' end) as loaipttt_l2, 
 		(case when serf.pttt_loaiid in (4,8) then 'x' else '' end) as loaipttt_l3, 
 		serf.tinhtoanlaigiadvktc,
-		ser.soluong as soluong, 
-		((ser.chiphidauvao + ser.chiphimaymoc + ser.chiphipttt) + COALESCE((case when ser.mayytedbid<>0 then (select myt.chiphiliendoanh from mayyte myt where myt.mayytedbid=ser.mayytedbid) else 0 end),0))* ser.soluong as chiphikhac, 
-		{baocaotungloai}
+		ser.soluong as soluong,
 		vp.vienphidate as ngay_vaovien, 
 		(case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as ngay_ravien, 
-		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
-		pttt.userid_gmhs as nguoinhapthuchien
+		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan
+
 	FROM (select servicepriceid,vienphiid,duyetpttt_stt,duyetpttt_date,duyetpttt_usercode,duyetpttt_username,maubenhphamid,bhyt_groupcode,departmentgroupid,departmentid,servicepricedate,medicalrecordid,servicepricecode,loaidoituong,servicepricename,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') {_trangthaipttt} {_tieuchi_ser} {_departmentid_ser}) ser
-	left join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,* from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}) vp on vp.vienphiid=ser.vienphiid 
 	inner join (select servicepricecode,tinhtoanlaigiadvktc,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') {_pttt_loaiid_serf}) serf on serf.servicepricecode=ser.servicepricecode 
-	WHERE coalesce(pttt.stt,1)=1 {_tieuchi_pttt}) A 
+	) A 
 INNER JOIN (select hosobenhanid,patientname,gioitinhcode,birthday,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsbA.hosobenhanid=A.hosobenhanid 
-INNER JOIN (select maubenhphamid,chandoan from maubenhpham where 1=1 {_tieuchi_mbp}) mbp on mbp.maubenhphamid=A.maubenhphamid 
 LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kchd ON kchd.departmentgroupid=A.khoachidinh 
 LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=A.phongchidinh
-LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=A.khoachuyenden 
-LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) krv ON krv.departmentgroupid=A.khoaravien 
-LEFT JOIN (select userhisid,username from nhompersonnel) mc ON mc.userhisid=A.mochinh_tenbs 
-LEFT JOIN (select userhisid,username from nhompersonnel) mmc ON mmc.userhisid=A.moimochinh_tenbs 
-LEFT JOIN (select userhisid,username from nhompersonnel) gm ON gm.userhisid=A.gayme_tenbs 
-LEFT JOIN (select userhisid,username from nhompersonnel) mgm ON mgm.userhisid=A.moigayme_tenbs 
-LEFT JOIN (select userhisid,username from nhompersonnel) p1 ON p1.userhisid=A.phu1_tenbs 
-LEFT JOIN (select userhisid,username from nhompersonnel) p2 ON p2.userhisid=A.phu2_tenbs 
-LEFT JOIN (select userhisid,username from nhompersonnel) gv1 ON gv1.userhisid=A.giupviec1_tenbs 
-LEFT JOIN (select userhisid,username from nhompersonnel) gv2 ON gv2.userhisid=A.giupviec2_tenbs
-LEFT JOIN (select userhisid,username from nhompersonnel) nnth ON nnth.userhisid=A.nguoinhapthuchien
 INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh.bhytid=A.bhytid;";
 
                 DataTable _dataBCPTTT = condb.GetDataTable_HIS(sql_laydulieu);
                 if (_dataBCPTTT != null && _dataBCPTTT.Rows.Count > 0)
-                {
-                    //Lay chi tiet thuoc/vat tu trong goi
-                    if (chkLayChiTietHP.Checked)
+                {          //Lay chi tiet thuoc/vat tu trong goi
+                    List<BC48_PhauThuatThuThuatChiTietDTO> lstdataKetQua = Utilities.DataTables.DataTableToList<BC48_PhauThuatThuThuatChiTietDTO>(_dataBCPTTT);
+                    //string _lstSerID = "0";
+                    //foreach (var item in lstdataKetQua)
+                    //{
+                    //    _lstSerID += "," + item.servicepriceid;
+                    //}
+                    DataTable _dataHaoPhi = LayDuLieu_HaoPhiTrongGoi();
+                    if (_dataHaoPhi.Rows.Count > 0)
                     {
-                        DataTable _dataHaoPhi = LayDuLieu_HaoPhiTrongGoi();
-                        if (_dataHaoPhi.Rows.Count > 0)
-                        {
-                            List<BC08PhauThuatThuThuatDTO> lstdataKetQua = Utilities.DataTables.DataTableToList<BC08PhauThuatThuThuatDTO>(_dataBCPTTT);
-                            HienThiDuLieuTimKiem(lstdataKetQua, _dataHaoPhi);
-                        }
-                        else
-                        {
-                            gridControlDataBCPTTT.DataSource = _dataBCPTTT;
-                        }
+                        HienThiDuLieuTimKiem(lstdataKetQua, _dataHaoPhi);
                     }
                     else
                     {
@@ -436,9 +353,9 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                 string _tieuchi_ser = " and servicepricedate>'2016-01-01 00:00:00' ";
                 string _tieuchi_vp = " and vienphidate>'2016-01-01 00:00:00' ";
                 string _departmentid_ser = "";
-                //string _pttt_loaiid_serf = "";
+                string _pttt_loaiid_serf = "";
                 string _doituongbenhnhanid = "";
-                //string _trangthaipttt = "";
+                string _trangthaipttt = "";
 
                 //tieu chi
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
@@ -467,22 +384,22 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                 }
 
                 //trang thai
-                //if (cboTrangThai.Text == "Chưa gửi YC")
-                //{
-                //    _trangthaipttt = " and coalesce(duyetpttt_stt,0)=0 ";
-                //}
-                //else if (cboTrangThai.Text == "Đã gửi YC")
-                //{
-                //    _trangthaipttt = " and duyetpttt_stt=1 ";
-                //}
-                //else if (cboTrangThai.Text == "Đã tiếp nhận YC")
-                //{
-                //    _trangthaipttt = " and duyetpttt_stt=2 ";
-                //}
-                //else if (cboTrangThai.Text == "Đã duyệt PTTT")
-                //{
-                //    _trangthaipttt = " and duyetpttt_stt=3 ";
-                //}
+                if (cboTrangThai.Text == "Chưa gửi YC")
+                {
+                    _trangthaipttt = " and coalesce(duyetpttt_stt,0)=0 ";
+                }
+                else if (cboTrangThai.Text == "Đã gửi YC")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=1 ";
+                }
+                else if (cboTrangThai.Text == "Đã tiếp nhận YC")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=2 ";
+                }
+                else if (cboTrangThai.Text == "Đã duyệt PTTT")
+                {
+                    _trangthaipttt = " and duyetpttt_stt=3 ";
+                }
                 //else if (cboTrangThai.Text == "Đã khóa")
                 //{
                 //    _trangthaipttt = " and duyetpttt_stt=99 ";
@@ -508,7 +425,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid in (285,34) ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_002")//phau thuat - lay khoa tai mui hong: ser.departmentid in (122); ser.departmengrouptid in (10)
                 {
@@ -521,7 +438,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid=122 ";
                     }
-                    // _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_003") //phau thuat - lay khoa rang ham mat: ser.departmentid in (116); ser.departmengrouptid in (9)
                 {
@@ -534,7 +451,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid=116 ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_004") //phau thuat -Mổ Mắt_B_Điều Trị + phòng khám Mổ mắt+ BDT khoa mắt kkb-khám mắt
                 {
@@ -547,7 +464,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid in (269,335,80,212) ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_005") //phau thuat - khoa khac
                 {
@@ -559,7 +476,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     }
                     _departmentid_ser += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
 
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (1,2,3,4) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_006")// thu thuat - khoa mat + phong kham mat ser.departmentid in (80,212)
                 {
@@ -572,7 +489,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid in (80,212) ";
                     }
-                    // _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_007")//Báo cáo Thủ thuật - Các khoa khác (trừ khoa mắt & PK mắt): ser.departmentid not in (80,212)
                 {
@@ -585,7 +502,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                     {
                         _departmentid_ser = " and departmentid not in (80,212) ";
                     }
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
                 }
                 else if (cboLoaiBaoCao.EditValue.ToString() == "BAOCAO_008")//Báo cáo Thủ thuật - khoa khac
                 {
@@ -596,12 +513,12 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                         _departmentid_ser += lstPhongCheck[i] + ",";
                     }
                     _departmentid_ser += lstPhongCheck[lstPhongCheck.Count - 1] + ") ";
-                    //_pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
+                    _pttt_loaiid_serf = " and pttt_loaiid in (5,6,7,8) ";
                 }
 
                 if (chkChuaPhanLoaiPTTT.Checked)
                 {
-                    // _pttt_loaiid_serf = " and pttt_loaiid=0";
+                    _pttt_loaiid_serf = " and pttt_loaiid=0";
                 }
                 string _sqlLayHP = $@"SELECT goi.servicepriceid_master,
 	goi.servicepriceid as goi_servicepriceid,
@@ -623,11 +540,26 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
             }
             return result;
         }
-        private void HienThiDuLieuTimKiem(List<BC08PhauThuatThuThuatDTO> lstdataKetQua, DataTable _haoPhi)
+        private DataTable LayDuLieu_HaoPhiTrongGoi(string _lstSerID)
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                string _sqlLayHP = $@"";
+                result = condb.GetDataTable_HIS(_sqlLayHP);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+            return result;
+        }
+
+        private void HienThiDuLieuTimKiem(List<BC48_PhauThuatThuThuatChiTietDTO> lstdataKetQua, DataTable _haoPhi)
         {
             try
             {
-                List<BC08PhauThuatThuThuatDTO> lstresult = new List<BC08PhauThuatThuThuatDTO>();
+                List<BC48_PhauThuatThuThuatChiTietDTO> lstresult = new List<BC48_PhauThuatThuThuatChiTietDTO>();
 
                 foreach (var _itemKQ in lstdataKetQua)
                 {
@@ -651,12 +583,12 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                         DataTable _dataHP_Thuoc = (_haoPhi_Thuoc.Any() == true) ? _haoPhi_Thuoc.CopyToDataTable() : new DataTable();
                         DataTable _dataHP_VatTu = (_haoPhi_VatTu.Any() == true) ? _haoPhi_VatTu.CopyToDataTable() : new DataTable();
 
-                        List<BC08PhauThuatThuThuatDTO> _lstChiTiet = new List<BC08PhauThuatThuThuatDTO>();
+                        List<BC48_PhauThuatThuThuatChiTietDTO> _lstChiTiet = new List<BC48_PhauThuatThuThuatChiTietDTO>();
                         int _count = (_dataHP_Thuoc.Rows.Count > _dataHP_VatTu.Rows.Count) ? _dataHP_Thuoc.Rows.Count : _dataHP_VatTu.Rows.Count;
 
                         for (int i = 0; i < _count; i++)
                         {
-                            BC08PhauThuatThuThuatDTO _item = new BC08PhauThuatThuThuatDTO();
+                            BC48_PhauThuatThuThuatChiTietDTO _item = new BC48_PhauThuatThuThuatChiTietDTO();
                             _lstChiTiet.Add(_item);
                         }
 
@@ -680,11 +612,9 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                             _lstChiTiet[i].vattu_thanhtien = Utilities.TypeConvertParse.ToDecimal(_dataHP_VatTu.Rows[i]["goi_thanhtien"].ToString());
                             _thanhtien_VatTu += _lstChiTiet[i].vattu_thanhtien ?? 0;
                         }
-
                         lstresult.AddRange(_lstChiTiet);//add chi tiet
                         _itemKQ.thuoc_tronggoi = _thanhtien_Thuoc;
                         _itemKQ.vattu_tronggoi = _thanhtien_VatTu;
-                        _itemKQ.lai = _itemKQ.lai - (_thanhtien_Thuoc + _thanhtien_VatTu);
                     }
                 }
                 gridControlDataBCPTTT.DataSource = lstresult;
@@ -694,36 +624,7 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-        #endregion
 
-        #region Hien Thi nut In xuat Excel
-        private void EnableAndDisableNutIn()
-        {
-            try
-            {
-                if (cboTrangThai.Text == "Đã duyệt PTTT" || CheckPermission.ChkPerModule("SYS_05") || CheckPermission.ChkPerModule("THAOTAC_06"))
-                {
-                    dropDownPrint.Enabled = true;
-                }
-                else
-                {
-                    dropDownPrint.Enabled = false;
-                }
-
-                if (CheckPermission.ChkPerModule("SYS_05") || (CheckPermission.ChkPerModule("THAOTAC_07") && cboTrangThai.Text == "Đã duyệt PTTT") || CheckPermission.ChkPerModule("THAOTAC_06"))
-                {
-                    dropDownExport.Enabled = true;
-                }
-                else
-                {
-                    dropDownExport.Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
         #endregion
 
     }

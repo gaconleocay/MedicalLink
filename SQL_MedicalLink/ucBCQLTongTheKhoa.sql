@@ -315,9 +315,7 @@ FROM
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode='03XN') ser on ser.vienphiid=vp.vienphiid
 						left join (select s.idmayxn,servicepriceid from service s where coalesce(s.idmayxn,0)>0 and s.servicedate>'2017-05-01 00:00:00') se on se.servicepriceid=ser.servicepriceid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,se.idmayxn,vp.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
 				GROUP BY SERV.departmentgroupid
 		UNION ALL
 		SELECT 
@@ -333,9 +331,7 @@ FROM
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid,maubenhphamid from serviceprice where bhyt_groupcode='03XN') ser on ser.vienphiid=vp.vienphiid
 						inner join (select maubenhphamid from maubenhpham where maubenhphamgrouptype=0 and departmentid_des=253 and maubenhphamdate>'2018-01-01 00:00:00') mbp on mbp.maubenhphamid=ser.maubenhphamid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,vp.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode
 				GROUP BY SERV.departmentgroupid) XN
 		GROUP BY XN.departmentgroupid) CP_XN on CP_XN.departmentgroupid=A.khoaravien
 --Chi phi CDHA 
@@ -527,9 +523,7 @@ LEFT JOIN
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where bhyt_groupcode='03XN' and departmentid in (" + this.lstPhongChonLayBC + ")) ser on ser.vienphiid=vp.vienphiid
 						left join (select s.idmayxn,servicepriceid from service s where coalesce(s.idmayxn,0)>0 and s.servicedate>'2017-05-01 00:00:00') se on se.servicepriceid=ser.servicepriceid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,se.idmayxn,ser.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
 				GROUP BY SERV.departmentgroupid
 		UNION ALL
 		SELECT 
@@ -545,9 +539,7 @@ LEFT JOIN
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid,maubenhphamid from serviceprice where bhyt_groupcode='03XN' and departmentid in (" + this.lstPhongChonLayBC + ")) ser on ser.vienphiid=vp.vienphiid
 						inner join (select maubenhphamid from maubenhpham where maubenhphamgrouptype=0 and departmentid_des=253 and maubenhphamdate>'2018-01-01 00:00:00' and departmentid in (" + this.lstPhongChonLayBC + ")) mbp on mbp.maubenhphamid=ser.maubenhphamid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,ser.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode
 				GROUP BY SERV.departmentgroupid) XN
 		GROUP BY XN.departmentgroupid) CP_XN on CP_XN.departmentgroupid=A.departmentgroupid
 --Chi phi CDHA 
@@ -797,9 +789,7 @@ FROM
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where loaidoituong in (0,4,6) and bhyt_groupcode='03XN') ser on ser.vienphiid=vp.vienphiid
 						left join (select s.idmayxn,servicepriceid from service s where coalesce(s.idmayxn,0)>0 and s.servicedate>'2017-05-01 00:00:00') se on se.servicepriceid=ser.servicepriceid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,se.idmayxn,vp.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
 				GROUP BY SERV.departmentgroupid
 		UNION ALL
 		SELECT 
@@ -815,9 +805,7 @@ FROM
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid,maubenhphamid from serviceprice where loaidoituong in (0,4,6) and bhyt_groupcode='03XN') ser on ser.vienphiid=vp.vienphiid
 						inner join (select maubenhphamid from maubenhpham where maubenhphamgrouptype=0 and departmentid_des=253 and maubenhphamdate>'2018-01-01 00:00:00') mbp on mbp.maubenhphamid=ser.maubenhphamid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,vp.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode
 				GROUP BY SERV.departmentgroupid) XN
 		GROUP BY XN.departmentgroupid) CP_XN on CP_XN.departmentgroupid=A.khoaravien
 --Chi phi CDHA 
@@ -1008,9 +996,7 @@ LEFT JOIN
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid from serviceprice where loaidoituong in (0,4,6) and bhyt_groupcode='03XN' and departmentid in (" + this.lstPhongChonLayBC + ")) ser on ser.vienphiid=vp.vienphiid
 						left join (select s.idmayxn,servicepriceid from service s where coalesce(s.idmayxn,0)>0 and s.servicedate>'2017-05-01 00:00:00') se on se.servicepriceid=ser.servicepriceid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,se.idmayxn,ser.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode and chiphi.mayxn_ma=SERV.idmayxn
 				GROUP BY SERV.departmentgroupid
 		UNION ALL
 		SELECT 
@@ -1026,9 +1012,7 @@ LEFT JOIN
 						inner join (select servicepriceid,vienphiid,servicepricecode,soluong,departmentgroupid,maubenhphamid from serviceprice where loaidoituong in (0,4,6) and bhyt_groupcode='03XN' and departmentid in (" + this.lstPhongChonLayBC + ")) ser on ser.vienphiid=vp.vienphiid
 						inner join (select maubenhphamid from maubenhpham where maubenhphamgrouptype=0 and departmentid_des=253 and maubenhphamdate>'2018-01-01 00:00:00' and departmentid in (" + this.lstPhongChonLayBC + ")) mbp on mbp.maubenhphamid=ser.maubenhphamid
 					group by ser.servicepriceid,ser.servicepricecode,ser.soluong,ser.departmentgroupid) SERV
-				LEFT JOIN (SELECT *
-							FROM dblink('myconn_mel','select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp')
-							AS ml_mayxn(mayxn_ma integer,servicepricecode text,chiphixn double precision)) chiphi on chiphi.servicepricecode=SERV.servicepricecode
+				LEFT JOIN (select cp.mayxn_ma,cp.servicepricecode,(cp.cp_hoachat+cp.cp_haophixn+cp.cp_luong+cp.cp_diennuoc+cp.cp_khmaymoc+cp.cp_khxaydung) as chiphixn from ml_mayxnchiphi cp) chiphi on chiphi.servicepricecode=SERV.servicepricecode
 				GROUP BY SERV.departmentgroupid) XN
 		GROUP BY XN.departmentgroupid) CP_XN on CP_XN.departmentgroupid=A.departmentgroupid
 --Chi phi CDHA 

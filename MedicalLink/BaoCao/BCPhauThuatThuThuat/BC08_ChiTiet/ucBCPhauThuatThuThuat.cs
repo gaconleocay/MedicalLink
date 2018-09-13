@@ -25,6 +25,7 @@ namespace MedicalLink.BaoCao
     {
         #region Declaration
         private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DataTable dataBCPTTT { get; set; }
         private List<ClassCommon.ToolsOtherListDTO> lstOtherList { get; set; }
         private Utilities.BandGridView.GridCheckMarksSelection helper;
 

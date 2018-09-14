@@ -643,8 +643,8 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                     }
                     else
                     {
-                        _haoPhi_Thuoc = _haoPhi_Thuoc.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() != "0");
-                        _haoPhi_VatTu = _haoPhi_VatTu.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() != "0");
+                        _haoPhi_Thuoc = _haoPhi_Thuoc.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() == "0");
+                        _haoPhi_VatTu = _haoPhi_VatTu.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() == "0");
                     }
                     if (_haoPhi_Thuoc.Any() || _haoPhi_VatTu.Any())
                     {

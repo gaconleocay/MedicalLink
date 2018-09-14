@@ -305,10 +305,10 @@
     <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.Designer.cs">
       <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.cs">
+    <Compile Include="BaoCao\BC14_BNSDDVKetHop\ucBCBNSDDVKetHop.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.Designer.cs">
+    <Compile Include="BaoCao\BC14_BNSDDVKetHop\ucBCBNSDDVKetHop.Designer.cs">
       <DependentUpon>ucBCBNSDDVKetHop.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BCBNSuDungDichVuTheoNhom\ucBNSDDV_ThuChiKhac.cs">
@@ -1436,7 +1436,7 @@
     <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
       <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCBNSDDVKetHop\ucBCBNSDDVKetHop.resx">
+    <EmbeddedResource Include="BaoCao\BC14_BNSDDVKetHop\ucBCBNSDDVKetHop.resx">
       <DependentUpon>ucBCBNSDDVKetHop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBNSuDungDichVuTheoNhom\ucBNSDDV_ThuChiKhac.resx">

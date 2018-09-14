@@ -531,7 +531,7 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
 	goi.servicepricefee as goi_servicepricefee,
 	(goi.soluong*goi.servicepricefee) as goi_thanhtien
 FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}) vp 
-	inner join (select vienphiid,servicepriceid,(case when bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') then 1 else 2 end) as loaithuocvt,servicepricecode,servicepricename,servicepricename_bhyt,servicepricename_nhandan,(case loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan else servicepricemoney end) as servicepricefee,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,coalesce(servicepriceid_thanhtoanrieng,0) as servicepriceid_thanhtoanrieng,servicepriceid_master,loaidoituong from serviceprice where loaidoituong in (2,5,7,9) and bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_departmentid_ser}) goi on goi.vienphiid=vp.vienphiid";
+	inner join (select vienphiid,servicepriceid,(case when bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') then 1 else 2 end) as loaithuocvt,servicepricecode,servicepricename,servicepricename_bhyt,servicepricename_nhandan,(case loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan else servicepricemoney end) as servicepricefee,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,coalesce(servicepriceid_thanhtoanrieng,0) as servicepriceid_thanhtoanrieng,servicepriceid_master,loaidoituong from serviceprice where loaidoituong in (2,5,7,9) and bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_departmentid_ser}) goi on goi.vienphiid=vp.vienphiid;";
                 result = condb.GetDataTable_HIS(_sqlLayHP);
             }
             catch (Exception ex)
@@ -575,8 +575,8 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
                     }
                     else
                     {
-                        _haoPhi_Thuoc = _haoPhi_Thuoc.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() != "0");
-                        _haoPhi_VatTu = _haoPhi_VatTu.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() != "0");
+                        _haoPhi_Thuoc = _haoPhi_Thuoc.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() == "0");
+                        _haoPhi_VatTu = _haoPhi_VatTu.Where(o => o.Field<object>("servicepriceid_thanhtoanrieng").ToString() == "0");
                     }
                     if (_haoPhi_Thuoc.Any() || _haoPhi_VatTu.Any())
                     {

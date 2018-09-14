@@ -22,10 +22,10 @@ namespace MedicalLink.ClassCommon
         public string patientname { get; set; }
         public string year_nam { get; set; }
         public string year_nu { get; set; }
-        //public string bhytcode { get; set; }
-        //public string diachi { get; set; }
-        //public string khoachidinh { get; set; }
-        //public string phongchidinh { get; set; }
+        public string bhytcode { get; set; }
+        public string diachi { get; set; }
+        public string khoachidinh { get; set; }
+        public string phongchidinh { get; set; }
         public string ngay_chidinh { get; set; }
         public string servicepricecode { get; set; }
         public string servicepricename { get; set; }

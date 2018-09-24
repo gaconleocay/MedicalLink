@@ -454,7 +454,7 @@ namespace MedicalLink.Dashboard
         {
             try
             {
-                int typeID = 0;
+                QLTongTheKhoaDetailFilterDTO _filter = new QLTongTheKhoaDetailFilterDTO();
                 //loai:
                 //=1: BN hien dien
                 //=2: BN chuyen di
@@ -469,55 +469,63 @@ namespace MedicalLink.Dashboard
                 //BN hien dien
                 if (rowHandle == 0 && columeFieldName == "BNDangDT_value")
                 {
-                    typeID = 1;
+                    _filter.loaiLayDuLieu = 1;
                 }
                 //BN chuyen di
                 else if (rowHandle == 1 && columeFieldName == "BNDangDT_value")
                 {
-                    typeID = 2;
+                    _filter.loaiLayDuLieu = 2;
                 }
                 //BN chuyen den
                 else if (rowHandle == 2 && columeFieldName == "BNDangDT_value")
                 {
-                    typeID = 3;
+                    _filter.loaiLayDuLieu = 3;
                 }
                 //Bn ra vien
                 else if (rowHandle == 3 && columeFieldName == "BNDangDT_value")
                 {
-                    typeID = 4;
+                    _filter.loaiLayDuLieu = 4;
                 }
                 //SL Bn ra vien chua thanh toan
                 else if (rowHandle == 3 && columeFieldName == "RaVienChuaTT_value")
                 {
-                    typeID = 5;
+                    _filter.loaiLayDuLieu = 5;
                 }
                 //SL BN ra vien da thanh toan
                 else if (rowHandle == 3 && columeFieldName == "DaTT_value")
                 {
-                    typeID = 6;
+                    _filter.loaiLayDuLieu = 6;
                 }
                 //Doanh thu slbn
                 else if (rowHandle == 3 && columeFieldName == "DoanhThu_value")
                 {
-                    typeID = 7;
+                    _filter.loaiLayDuLieu = 7;
                 }
                 //Daonh thu GMHT
                 else if (rowHandle == 3 && columeFieldName == "DoanhThuGM_value")
                 {
-                    typeID = 8;
+                    _filter.loaiLayDuLieu = 8;
                 }
                 //Doanh thu tong 
                 else if (rowHandle == 3 && columeFieldName == "DoanhThuTongGM_value")
                 {
-                    typeID = 9;
+                    _filter.loaiLayDuLieu = 9;
                 }
 
-                if (typeID != 0 && thoiGianTu != "" && thoiGianDen != "")
+                if (_filter.loaiLayDuLieu != 0 && thoiGianTu != "" && thoiGianDen != "")
                 {
-                    Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail frmDetail = new Dashboard.BCQLTongTheKhoa.BCQLTongTheKhoaBNDetail(typeID, thoiGianTu, thoiGianDen, this.lstPhongChonLayBC, this.lstKhoaChonLayBC, KhoangThoiGianLayDuLieu);
+                    _filter.dateTuNgay = this.thoiGianTu;
+                    _filter.dateDenNgay = this.thoiGianDen;
+                    _filter.lstPhongChonLayBC = this.lstPhongChonLayBC;
+                    _filter.lstKhoaChonLayBC = this.lstKhoaChonLayBC;
+                    _filter.dateKhoangDLTu = this.KhoangThoiGianLayDuLieu;
+                    if (chkThuTienStatus.Checked)
+                    { _filter.thutienstatus = true; }
+                    _filter.cboDoiTuongText = cboDoiTuong.Text;
+
+                    BCQLTongTheKhoaBNDetail frmDetail = new BCQLTongTheKhoaBNDetail(_filter);
                     frmDetail.ShowDialog();
                 }
-
             }
             catch (Exception ex)
             {

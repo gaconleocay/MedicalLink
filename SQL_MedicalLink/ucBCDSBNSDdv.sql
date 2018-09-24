@@ -1,7 +1,7 @@
 --ucBCDSBNSDdv
 
-1. Theo tung dich vu 
----ngay 29/8
+--1. Theo tung dich vu 
+---ngay 24/9
 
 SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) as stt, 
 	ser.servicepriceid,
@@ -9,6 +9,9 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 	vp.patientid as mabn, 
 	vp.vienphiid as mavp, 
 	hsba.patientname as tenbn,
+	hsba.gioitinhname,
+	to_char(hsba.birthday,'dd/MM/yyyy') as birthday,
+	((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end)) as diachi,
 	(case vp.doituongbenhnhanid 
 			when 1 then 'BHYT'
 			when 2 then 'Viện phí'
@@ -43,8 +46,8 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 	pcd.departmentname as phongchidinh, 
 	(case ser.maubenhphamphieutype when 1 then 'Phiếu trả' else '' end) as loaiphieu, 
 	vp.vienphidate as thoigianvaovien, 
-	(case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as thoigianravien, 
-	(case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as thoigianduyetvp, 
+	(case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as thoigianravien, 
+	(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as thoigianduyetvp, 
 	vp.duyet_ngayduyet as thoigianduyetbh,
 	(case when vp.vienphistatus=0 then 'Đang điều trị' 
 			else (case when vp.vienphistatus_vp=1 then 'Đã thanh toán' else 'Chưa thanh toán' end) 
@@ -98,11 +101,11 @@ FROM
 						  else servicepricemoney
 				  end)
 		end) as dongia,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,
-		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where " + this.DanhSachDichVu + tieuchi_ser+_bhyt_groupcode+") ser 
+		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where {this.DanhSachDichVu} {tieuchi_ser} {_bhyt_groupcode}) ser 
 	inner join (select serff.servicepricecode,serff.pttt_loaiid from (select servicepricecode,pttt_loaiid from servicepriceref where ServiceGroupType not in (5,6) 
-		union all select medicinecode as servicepricecode,0 as pttt_loaiid from medicine_ref) serff where " + this.DanhSachDichVu + ") serf on serf.servicepricecode=ser.servicepricecode	
-	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 "+tieuchi_vp+loaivienphiid+doituongbenhnhanid+") vp ON ser.vienphiid=vp.vienphiid 
-	INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 "+tieuchi_hsba+") hsba ON hsba.hosobenhanid=vp.hosobenhanid 
+		union all select medicinecode as servicepricecode,0 as pttt_loaiid from medicine_ref) serff where {this.DanhSachDichVu}) serf on serf.servicepricecode=ser.servicepricecode	
+	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 {tieuchi_vp+loaivienphiid} {doituongbenhnhanid}) vp ON ser.vienphiid=vp.vienphiid 
+	INNER JOIN (select hosobenhanid,patientname,gioitinhname,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname from hosobenhan where 1=1 {tieuchi_hsba}) hsba ON hsba.hosobenhanid=vp.hosobenhanid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid 
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid 
@@ -162,10 +165,10 @@ FROM
 							  else servicepricemoney
 					  end)
 		end) as dongia,	
-		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where 1=1 "+tieuchi_ser+") ser 	
-	INNER JOIN (select serff.servicepricecode from (select servicepricecode,servicepricegroupcode,servicepricename from servicepriceref where ServiceGroupType not in (5,6) union all select medicinecode as servicepricecode,medicinegroupcode as servicepricegroupcode,medicinename as servicepricename from medicine_ref) serff where " + danhsachDichVu + ") serf on serf.servicepricecode=ser.servicepricecode 	
-	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 "+tieuchi_vp+loaivienphiid+doituongbenhnhanid+") vp ON ser.vienphiid=vp.vienphiid 
-	INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 "+tieuchi_hsba+") hsba ON vp.hosobenhanid=hsba.hosobenhanid 
+		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where 1=1 {tieuchi_ser}) ser 	
+	INNER JOIN (select serff.servicepricecode from (select servicepricecode,servicepricegroupcode,servicepricename from servicepriceref where ServiceGroupType not in (5,6) union all select medicinecode as servicepricecode,medicinegroupcode as servicepricegroupcode,medicinename as servicepricename from medicine_ref) serff where { danhsachDichVu + ") serf on serf.servicepricecode=ser.servicepricecode 	
+	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 {tieuchi_vp+loaivienphiid+doituongbenhnhanid}) vp ON ser.vienphiid=vp.vienphiid 
+	INNER JOIN (select hosobenhanid,patientname from hosobenhan where 1=1 {tieuchi_hsba}) hsba ON vp.hosobenhanid=hsba.hosobenhanid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid 
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid 

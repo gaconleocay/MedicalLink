@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCSoCDHA));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.lblTheoLoai = new System.Windows.Forms.Label();
+            this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.cboPhongThucHien = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -72,18 +74,16 @@
             this.gridBandThuocVTDiKem = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
             this.bandedGridColumn4 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn5 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
-            this.label2 = new System.Windows.Forms.Label();
-            this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhongThucHien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSoCDHA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewSoCDHA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemo_ND)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -98,7 +98,7 @@
             // 
             // groupBoxFile
             // 
-            this.groupBoxFile.Controls.Add(this.label2);
+            this.groupBoxFile.Controls.Add(this.lblTheoLoai);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSKhoa);
             this.groupBoxFile.Controls.Add(this.cboPhongThucHien);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -117,6 +117,33 @@
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // lblTheoLoai
+            // 
+            this.lblTheoLoai.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTheoLoai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblTheoLoai.Location = new System.Drawing.Point(194, 59);
+            this.lblTheoLoai.Name = "lblTheoLoai";
+            this.lblTheoLoai.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblTheoLoai.Size = new System.Drawing.Size(77, 16);
+            this.lblTheoLoai.TabIndex = 95;
+            this.lblTheoLoai.Text = "Khoa trả KQ";
+            // 
+            // chkcomboListDSKhoa
+            // 
+            this.chkcomboListDSKhoa.EditValue = "";
+            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(273, 56);
+            this.chkcomboListDSKhoa.Name = "chkcomboListDSKhoa";
+            this.chkcomboListDSKhoa.Properties.AllowMultiSelect = true;
+            this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSKhoa.Properties.Appearance.Options.UseFont = true;
+            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
+            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(510, 22);
+            this.chkcomboListDSKhoa.TabIndex = 94;
             // 
             // cboPhongThucHien
             // 
@@ -836,33 +863,6 @@
             this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn5.Visible = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label2.Location = new System.Drawing.Point(219, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 16);
-            this.label2.TabIndex = 95;
-            this.label2.Text = "Nơi gửi";
-            // 
-            // chkcomboListDSKhoa
-            // 
-            this.chkcomboListDSKhoa.EditValue = "";
-            this.chkcomboListDSKhoa.Location = new System.Drawing.Point(273, 56);
-            this.chkcomboListDSKhoa.Name = "chkcomboListDSKhoa";
-            this.chkcomboListDSKhoa.Properties.AllowMultiSelect = true;
-            this.chkcomboListDSKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSKhoa.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSKhoa.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
-            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(510, 22);
-            this.chkcomboListDSKhoa.TabIndex = 94;
-            // 
             // ucBCSoCDHA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -878,13 +878,13 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhongThucHien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSoCDHA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bandedGridViewSoCDHA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemo_ND)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -934,7 +934,7 @@
         private DevExpress.XtraGrid.Views.BandedGrid.GridBand gridBandThuocVTDiKem;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
         private DevExpress.XtraEditors.SimpleButton tbnExport;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTheoLoai;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSKhoa;
     }
 }

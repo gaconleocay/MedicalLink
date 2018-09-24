@@ -455,10 +455,10 @@
     <Compile Include="BaoCao\BCVTTTRieng45TLCB\ucBCVTTTRieng45TLCB.Designer.cs">
       <DependentUpon>ucBCVTTTRieng45TLCB.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\SoCDHA\ucBCSoCDHA.cs">
+    <Compile Include="BaoCao\BC13_SoCDHA\ucBCSoCDHA.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\SoCDHA\ucBCSoCDHA.Designer.cs">
+    <Compile Include="BaoCao\BC13_SoCDHA\ucBCSoCDHA.Designer.cs">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\SoChiTietBenhNhan\ucBCSoChiTietBenhNhan.cs">
@@ -1037,6 +1037,7 @@
     <Compile Include="Dashboard\BCCanLamSang\ucBaoCaoCanLamSangProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Dashboard\BCQLTongTheKhoa\QLTongTheKhoaDetailFilterDTO.cs" />
     <Compile Include="Dashboard\BCTongHopDoanhThuKhoa\ucBCTongHopDoanhThuKhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1514,7 +1515,7 @@
     <EmbeddedResource Include="BaoCao\BCVTTTRieng45TLCB\ucBCVTTTRieng45TLCB.resx">
       <DependentUpon>ucBCVTTTRieng45TLCB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\SoCDHA\ucBCSoCDHA.resx">
+    <EmbeddedResource Include="BaoCao\BC13_SoCDHA\ucBCSoCDHA.resx">
       <DependentUpon>ucBCSoCDHA.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\SoChiTietBenhNhan\ucBCSoChiTietBenhNhan.resx">

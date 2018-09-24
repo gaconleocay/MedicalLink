@@ -17,7 +17,6 @@ namespace MedicalLink.BaoCao
     public partial class ucBCSoCDHA : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        //private DataTable dataBaoCao { get; set; }
         public ucBCSoCDHA()
         {
             InitializeComponent();
@@ -26,11 +25,23 @@ namespace MedicalLink.BaoCao
         #region Load
         private void ucUpdateDataSerPrice_Load(object sender, EventArgs e)
         {
-            dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
-            gridControlSoCDHA.DataSource = null;
+            LoadDaLieuMacDinh();
             LoadDataPhongThucHien();
             LoadDanhSachKhoa();
+        }
+        private void LoadDaLieuMacDinh()
+        {
+            try
+            {
+                dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
+                lblTheoLoai.Visible = false;
+                chkcomboListDSKhoa.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
         }
         private void LoadDataPhongThucHien()
         {
@@ -76,10 +87,12 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                string tieuchi_mbp = "";
-                string tieuchi_vp = "";
-                string _lstKhoaPhongChiDinh = " and departmentgroupid in (0";
-
+                string tieuchi_mbp = " and maubenhphamdate>'2017-01-01 00:00:00' ";
+                string tieuchi_vp = " and vienphidate>'2017-01-01 00:00:00' ";
+                string tieuchi_hsba = " and hosobenhandate>'2017-01-01 00:00:00' ";
+                string _tieuchi_se = " and servicedate>'2017-01-01 00:00:00' ";
+                string _theokhoagui = "";
+                string _theokhoatrakq = "";
                 //Phong thuc hien
                 if (cboPhongThucHien.EditValue == null)
                 {
@@ -89,17 +102,25 @@ namespace MedicalLink.BaoCao
                     return;
                 }
 
-                //Khoa
-                if (!KiemTraPhong_LaCDHA())
+                if (chkcomboListDSKhoa.Visible)
                 {
                     List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
                     if (lstKhoaCheck.Count > 0)
                     {
+                        string _lstdepartmentgroup = "0";
                         for (int i = 0; i < lstKhoaCheck.Count; i++)
                         {
-                            _lstKhoaPhongChiDinh += "," + lstKhoaCheck[i];
+                            _lstdepartmentgroup += "," + lstKhoaCheck[i];
                         }
-                        _lstKhoaPhongChiDinh += ")";
+                        _lstdepartmentgroup= _lstdepartmentgroup.Replace("0,","");
+                        if (lblTheoLoai.Text == "Khoa gửi")
+                        {
+                            _theokhoagui = " and departmentgroupid in (" + _lstdepartmentgroup + ") ";
+                        }
+                        if (lblTheoLoai.Text == "Khoa trả KQ")
+                        {
+                            _theokhoatrakq = " WHERE (case when ntkq.departmentgroupid is not null then ntkq.departmentgroupid else ntkqcc.departmentgroupid end) in (" + _lstdepartmentgroup + ") ";
+                        }
                     }
                     else
                     {
@@ -122,14 +143,74 @@ namespace MedicalLink.BaoCao
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
                 {
-                    tieuchi_vp = " where vienphistatus>0 and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_vp = " and vienphistatus>0 and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_hsba = " and hosobenhandate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày duyệt VP")
                 {
-                    tieuchi_vp = " where vienphistatus_vp=1 and vienphistatus>0 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_vp = " and vienphistatus_vp=1 and vienphistatus>0 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
 
-                string sql_timkiem = " SELECT ROW_NUMBER () OVER (ORDER BY hsba.patientcode, A.maubenhphamid) as stt, hsba.patientcode, hsba.patientname, A.maubenhphamid, (case when hsba.gioitinhcode='01' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nam, (case hsba.gioitinhcode when '02' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) - cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nu, ((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, (case when hsba.bhytcode <>'' then 'x' else '' end) as COBHYT, A.CHANDOAN, (KYC.DEPARTMENTGROUPNAME || ' - ' || PYC.DEPARTMENTNAME) AS NOIGUI, A.YEUCAU, A.KETQUA, A.MAUBENHPHAMDATE, A.maubenhphamfinishdate, A.vienphidate_ravien, A.duyet_ngayduyet_vp, (case when A.servicetimetrakq is not null then A.servicetimetrakq else (a.maubenhphamfinishdate) end) as servicetimetrakq, NTKQ.USERNAME AS NGUOIDOC, (CASE WHEN A.DEPARTMENTID_DES=244 THEN 'X' ELSE '' END) AS PHIM_20X25, (CASE WHEN A.DEPARTMENTID_DES IN (245,246) THEN 'X' ELSE '' END) AS PHIM_35X43, A.isthuocdikem, A.isvattudikem FROM (SELECT mbp.maubenhphamid, mbp.hosobenhanid, mbp.departmentgroupid, mbp.departmentid, mbp.departmentid_des, mbp.chandoan, mbp.usertrakq, mbp.userthuchien, mbp.maubenhphamdate, (case when mbp.maubenhphamfinishdate<>'0001-01-01 00:00:00' then mbp.maubenhphamfinishdate end) as maubenhphamfinishdate, (case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as vienphidate_ravien, (case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as duyet_ngayduyet_vp, se.servicename as yeucau, se.servicevalue as ketqua, (case when se.servicetimetrakq<>'0001-01-01 00:00:00' then se.servicetimetrakq end) as servicetimetrakq, se.serviceusertrakq, (case when (select count(*) from serviceprice where servicepriceid_master=se.servicepriceid and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle'))>0 then 'X' end) as isthuocdikem, (case when (select count(*) from serviceprice where servicepriceid_master=se.servicepriceid and bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle'))>0 then 'X' end) as isvattudikem FROM (select maubenhphamid,hosobenhanid,departmentgroupid,departmentid,departmentid_des,chandoan,usertrakq, userthuchien,maubenhphamdate,maubenhphamfinishdate from maubenhpham where maubenhphamgrouptype=1 and departmentid_des='" + cboPhongThucHien.EditValue.ToString() + "' " + tieuchi_mbp + _lstKhoaPhongChiDinh + ") mbp LEFT JOIN (select servicepriceid,servicename,servicevalue,maubenhphamid,servicetimetrakq,serviceusertrakq from service where servicecode not in (select sef.servicegroupcode from service_ref sef group by sef.servicegroupcode)) se ON se.maubenhphamid=mbp.maubenhphamid INNER JOIN (select vienphiid,hosobenhanid,vienphidate_ravien,duyet_ngayduyet_vp from vienphi " + tieuchi_vp + ") vp on vp.hosobenhanid=mbp.hosobenhanid ) A INNER JOIN (select hosobenhanid,patientcode,patientname,gioitinhcode,hosobenhandate,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame,bhytcode from hosobenhan) hsba ON hsba.hosobenhanid=A.hosobenhanid LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kyc ON kyc.departmentgroupid=A.departmentgroupid LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pyc ON pyc.departmentid=A.departmentid LEFT JOIN (select userhisid,usercode,username from nhompersonnel) ntkq ON ntkq.usercode=A.serviceusertrakq; ";
+                string sql_timkiem = $@"SELECT
+		ROW_NUMBER () OVER (ORDER BY hsba.patientcode, A.maubenhphamid) as stt,
+		hsba.patientcode,
+		hsba.patientname,
+		A.maubenhphamid,
+		(case when hsba.gioitinhcode='01' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) 
+		- cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nam, 
+		(case hsba.gioitinhcode when '02' then cast((cast(to_char(hsba.hosobenhandate, 'yyyy') as integer) 
+		- cast(to_char(hsba.birthday, 'yyyy') as integer)) as text) else '' end) as year_nu,
+		((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) ||
+		(case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) ||
+		(case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) ||
+		(case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) ||
+		(case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) ||
+		hc_quocgianame) as diachi,
+		(case when hsba.bhytcode <>'' then 'x' else '' end) as cobhyt,
+		a.chandoan,
+		(kyc.departmentgroupname || ' - ' || pyc.departmentname) as noigui,
+		a.yeucau,
+		a.ketqua,
+		a.maubenhphamdate,
+		a.maubenhphamfinishdate, --tra ket qua cuoi cung
+		a.vienphidate_ravien,
+		a.duyet_ngayduyet_vp,
+		(case when A.servicetimetrakq is not null then A.servicetimetrakq else (a.maubenhphamfinishdate) end) as servicetimetrakq,
+		(case when ntkq.username is not null then ntkq.username else ntkqcc.username end) as nguoidoc,
+		(case when a.departmentid_des=244 then 'x' else '' end) as phim_20x25,
+		(case when a.departmentid_des in (245,246) then 'x' else '' end) as phim_35x43,
+		A.isthuocdikem,
+		A.isvattudikem
+FROM
+	(SELECT mbp.maubenhphamid,
+			mbp.hosobenhanid,
+			mbp.departmentgroupid,
+			mbp.departmentid,
+			mbp.departmentid_des,
+			mbp.chandoan,
+			mbp.usertrakq, 
+			mbp.userthuchien,
+			mbp.maubenhphamdate,
+			(case when mbp.maubenhphamfinishdate<>'0001-01-01 00:00:00' then mbp.maubenhphamfinishdate end) as maubenhphamfinishdate,
+			(case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as vienphidate_ravien,
+			(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as duyet_ngayduyet_vp,
+			se.servicename as yeucau,
+			se.servicevalue as ketqua,
+			(case when se.servicetimetrakq<>'0001-01-01 00:00:00' then se.servicetimetrakq end) as servicetimetrakq,
+			se.serviceusertrakq,
+			(case when (select count(*) from serviceprice where servicepriceid_master=se.servicepriceid and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle'))>0 then 'X' end) as isthuocdikem,
+		(case when (select count(*) from serviceprice where servicepriceid_master=se.servicepriceid and bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle'))>0 then 'X' end) as isvattudikem
+	FROM (select maubenhphamid,hosobenhanid,departmentgroupid,departmentid,departmentid_des,chandoan,usertrakq, userthuchien,maubenhphamdate,maubenhphamfinishdate from maubenhpham where maubenhphamgrouptype=1 and
+	departmentid_des='{cboPhongThucHien.EditValue.ToString()}' {tieuchi_mbp} {_theokhoagui}) mbp
+		LEFT JOIN (select servicepriceid,servicename,servicevalue,maubenhphamid,servicetimetrakq,serviceusertrakq from service where servicecode not in (select sef.servicegroupcode from service_ref sef group by sef.servicegroupcode) {_tieuchi_se}) se ON se.maubenhphamid=mbp.maubenhphamid
+		INNER JOIN (select vienphiid,hosobenhanid,vienphidate_ravien,duyet_ngayduyet_vp,vienphistatus,vienphistatus_vp from vienphi where 1=1 {tieuchi_vp}) vp on vp.hosobenhanid=mbp.hosobenhanid
+		) A	
+	INNER JOIN (select hosobenhanid,patientcode,patientname,gioitinhcode,hosobenhandate,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame,bhytcode from hosobenhan where 1=1 {tieuchi_hsba}) hsba ON hsba.hosobenhanid=A.hosobenhanid
+	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kyc ON kyc.departmentgroupid=A.departmentgroupid
+	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pyc ON pyc.departmentid=A.departmentid
+	LEFT JOIN (select userhisid,usercode,username,departmentgroupid from nhompersonnel) ntkq ON ntkq.usercode=A.serviceusertrakq --nguoi tra kq tung pham
+	LEFT JOIN (select userhisid,username,departmentgroupid from nhompersonnel) ntkqcc ON ntkqcc.userhisid=COALESCE(A.usertrakq, A.userthuchien)
+{_theokhoatrakq} ;";
                 DataTable dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (dataBaoCao != null && dataBaoCao.Rows.Count > 0)
                 {
@@ -320,8 +401,9 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                long _phongthuchien = Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString());
                 //phong Sieu am va phong X-quang can thiep.
-                if (Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 247 || Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 422)
+                if (_phongthuchien == 247 || _phongthuchien == 422)
                 {
                     gridBandCoPhim.Visible = false;
                 }
@@ -330,7 +412,7 @@ namespace MedicalLink.BaoCao
                     gridBandCoPhim.Visible = true;
                 }
                 //hien thi THuoc/vat tu di kem: phong XQ, CT, MRI
-                if (Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 244 || Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 245 || Utilities.TypeConvertParse.ToInt64(cboPhongThucHien.EditValue.ToString()) == 246)
+                if (_phongthuchien == 244 || _phongthuchien == 245 || _phongthuchien == 246)
                 {
                     gridBandThuocVTDiKem.Visible = true;
                 }
@@ -339,11 +421,32 @@ namespace MedicalLink.BaoCao
                     gridBandThuocVTDiKem.Visible = false;
                 }
 
-                if (KiemTraPhong_LaCDHA())
+                //Kiem tra phan quyen nhom BC
+                bool _ktFilterKhoa = false;
+                ClassCommon.ToolsOtherListDTO _itemTheoKhoaGui = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_13_SoCDHA" && o.tools_otherlistcode == "TheoKhoaGui").FirstOrDefault();
+                ClassCommon.ToolsOtherListDTO _itemTheoKhoaTraKetQua = GlobalStore.lstOtherList_Global.Where(o => o.tools_othertypelistcode == "REPORT_13_SoCDHA" && o.tools_otherlistcode == "TheoKhoaTraKetQua").FirstOrDefault();
+
+                if (_itemTheoKhoaGui.tools_otherlistvalue.Contains(_phongthuchien.ToString() + ","))//theo khoa gui
                 {
-                    chkcomboListDSKhoa.Enabled = false;
+                    lblTheoLoai.Text = "Khoa gửi";
+                    _ktFilterKhoa = true;
                 }
-                else { chkcomboListDSKhoa.Enabled = true; }
+                if (_itemTheoKhoaTraKetQua.tools_otherlistvalue.Contains(_phongthuchien.ToString() + ","))
+                {
+                    lblTheoLoai.Text = "Khoa trả KQ";
+                    _ktFilterKhoa = true;
+                }
+
+                if (_ktFilterKhoa)
+                {
+                    lblTheoLoai.Visible = true;
+                    chkcomboListDSKhoa.Visible = true;
+                }
+                else
+                {
+                    lblTheoLoai.Visible = false;
+                    chkcomboListDSKhoa.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -354,23 +457,23 @@ namespace MedicalLink.BaoCao
         #endregion
 
         #region Process
-        private bool KiemTraPhong_LaCDHA()
-        {
-            bool result = false;
-            try
-            {
-                //var _PhongThucHien = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.TypeConvertParse.ToInt32(cboPhongThucHien.EditValue.ToString())).FirstOrDefault();
-                //if (_PhongThucHien != null && _PhongThucHien.departmenttype == 7)//Phong=CDHA
-                //{
-                //    result = true;
-                //}
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-            return result;
-        }
+        //private bool KiemTraPhong_LaCDHA()
+        //{
+        //    bool result = false;
+        //    try
+        //    {
+        //        //var _PhongThucHien = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentid == Utilities.TypeConvertParse.ToInt32(cboPhongThucHien.EditValue.ToString())).FirstOrDefault();
+        //        //if (_PhongThucHien != null && _PhongThucHien.departmenttype == 7)//Phong=CDHA
+        //        //{
+        //        //    result = true;
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MedicalLink.Base.Logging.Warn(ex);
+        //    }
+        //    return result;
+        //}
 
         #endregion
 

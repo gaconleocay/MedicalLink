@@ -525,7 +525,7 @@ namespace MedicalLink.Base
                 REPORT_13.permissionname = "Sổ chuẩn đoán hình ảnh";
                 REPORT_13.permissiontype = 3;
                 REPORT_13.tabMenuId = 5;
-                REPORT_13.permissionnote = "Sổ chẩn đoán hình ảnh";
+                REPORT_13.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_13_SoCDHA";
                 lstresult.Add(REPORT_13);
 
                 ClassCommon.classPermission REPORT_14 = new ClassCommon.classPermission();

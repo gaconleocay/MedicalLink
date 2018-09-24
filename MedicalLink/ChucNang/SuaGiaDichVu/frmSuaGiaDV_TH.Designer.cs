@@ -137,14 +137,11 @@
             this.txtGiaNNN.Name = "txtGiaNNN";
             this.txtGiaNNN.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGiaNNN.Properties.Appearance.Options.UseFont = true;
-            this.txtGiaNNN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaNNN.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaNNN.Properties.MaxLength = 10;
             this.txtGiaNNN.Size = new System.Drawing.Size(204, 22);
             this.txtGiaNNN.TabIndex = 8;
             this.txtGiaNNN.EditValueChanged += new System.EventHandler(this.txtGiaNNN_EditValueChanged);
             this.txtGiaNNN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGiaNNN_KeyDown);
-            this.txtGiaNNN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaNNN_KeyPress);
+            this.txtGiaNNN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaVP_KeyPress);
             // 
             // txtGiaBHYT
             // 
@@ -152,14 +149,11 @@
             this.txtGiaBHYT.Name = "txtGiaBHYT";
             this.txtGiaBHYT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGiaBHYT.Properties.Appearance.Options.UseFont = true;
-            this.txtGiaBHYT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaBHYT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaBHYT.Properties.MaxLength = 10;
             this.txtGiaBHYT.Size = new System.Drawing.Size(204, 22);
             this.txtGiaBHYT.TabIndex = 7;
             this.txtGiaBHYT.EditValueChanged += new System.EventHandler(this.txtGiaBHYT_EditValueChanged);
             this.txtGiaBHYT.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGiaBHYT_KeyDown);
-            this.txtGiaBHYT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaBHYT_KeyPress);
+            this.txtGiaBHYT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaVP_KeyPress);
             // 
             // txtGiaYC
             // 
@@ -167,9 +161,6 @@
             this.txtGiaYC.Name = "txtGiaYC";
             this.txtGiaYC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGiaYC.Properties.Appearance.Options.UseFont = true;
-            this.txtGiaYC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaYC.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaYC.Properties.MaxLength = 10;
             this.txtGiaYC.Size = new System.Drawing.Size(204, 22);
             this.txtGiaYC.TabIndex = 6;
             this.txtGiaYC.EditValueChanged += new System.EventHandler(this.txtGiaVP_EditValueChanged);
@@ -182,14 +173,11 @@
             this.txtGiaVP.Name = "txtGiaVP";
             this.txtGiaVP.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGiaVP.Properties.Appearance.Options.UseFont = true;
-            this.txtGiaVP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaVP.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtGiaVP.Properties.MaxLength = 10;
             this.txtGiaVP.Size = new System.Drawing.Size(204, 22);
             this.txtGiaVP.TabIndex = 5;
             this.txtGiaVP.EditValueChanged += new System.EventHandler(this.txtGia_EditValueChanged);
             this.txtGiaVP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGia_KeyDown);
-            this.txtGiaVP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGia_KeyPress);
+            this.txtGiaVP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaVP_KeyPress);
             // 
             // btnSuaGiaMoi
             // 

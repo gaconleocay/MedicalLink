@@ -1005,7 +1005,7 @@
             this.bandedGridColumn7.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn7.Caption = "Thời gian chỉ định";
-            this.bandedGridColumn7.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn7.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
             this.bandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn7.FieldName = "ngay_chidinh";
             this.bandedGridColumn7.Name = "bandedGridColumn7";
@@ -1027,7 +1027,7 @@
             this.bandedGridColumn33.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn33.Caption = "Thời gian thực hiện";
-            this.bandedGridColumn33.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn33.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
             this.bandedGridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn33.FieldName = "ngay_thuchien";
             this.bandedGridColumn33.Name = "bandedGridColumn33";
@@ -1049,7 +1049,7 @@
             this.bandedGridColumn52.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn52.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn52.Caption = "Thời gian kết thúc";
-            this.bandedGridColumn52.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn52.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
             this.bandedGridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn52.FieldName = "ngay_ketthuc";
             this.bandedGridColumn52.Name = "bandedGridColumn52";
@@ -2094,7 +2094,7 @@
             this.bandedGridColumn30.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn30.Caption = "Thời gian vào viện";
-            this.bandedGridColumn30.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn30.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
             this.bandedGridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn30.FieldName = "ngay_vaovien";
             this.bandedGridColumn30.Name = "bandedGridColumn30";
@@ -2116,7 +2116,7 @@
             this.bandedGridColumn31.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn31.Caption = "Thời gian ra viện";
-            this.bandedGridColumn31.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn31.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
             this.bandedGridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn31.FieldName = "ngay_ravien";
             this.bandedGridColumn31.Name = "bandedGridColumn31";
@@ -2138,7 +2138,7 @@
             this.bandedGridColumn32.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn32.Caption = "Thời gian thanh toán";
-            this.bandedGridColumn32.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn32.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
             this.bandedGridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn32.FieldName = "ngay_thanhtoan";
             this.bandedGridColumn32.Name = "bandedGridColumn32";
@@ -2211,7 +2211,7 @@
             this.bandedGridColumn49.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn49.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.bandedGridColumn49.Caption = "Thời gian duyệt PTTT";
-            this.bandedGridColumn49.DisplayFormat.FormatString = "yyyy-MM-dd HH:mm";
+            this.bandedGridColumn49.DisplayFormat.FormatString = "HH:mm dd/MM/yyyy";
             this.bandedGridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn49.FieldName = "duyetpttt_date";
             this.bandedGridColumn49.Name = "bandedGridColumn49";

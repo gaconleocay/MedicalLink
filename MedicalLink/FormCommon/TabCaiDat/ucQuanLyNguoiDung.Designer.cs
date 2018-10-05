@@ -35,6 +35,7 @@
             DevExpress.XtraGrid.GridFormatRule gridFormatRule3 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule4 = new DevExpress.XtraGrid.GridFormatRule();
             DevExpress.XtraGrid.GridFormatRule gridFormatRule5 = new DevExpress.XtraGrid.GridFormatRule();
+            DevExpress.XtraGrid.GridFormatRule gridFormatRule6 = new DevExpress.XtraGrid.GridFormatRule();
             this.checker = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -114,6 +115,16 @@
             this.gridColumn23 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit10 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.TabSoCDHA = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControlCDHA_Khoa = new DevExpress.XtraGrid.GridControl();
+            this.gridViewCDHA_Khoa = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheck_KhoaGui = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheck_KhoaTra = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
@@ -159,6 +170,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPhongLuu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPhongLuu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit10)).BeginInit();
+            this.TabSoCDHA.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlCDHA_Khoa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCDHA_Khoa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheck_KhoaGui)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheck_KhoaTra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -535,7 +551,7 @@
             this.gridViewDSUser.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSUser.OptionsView.ShowGroupPanel = false;
             this.gridViewDSUser.RowHeight = 25;
-            this.gridViewDSUser.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewDSUser_CustomDrawRowIndicator);
+            this.gridViewDSUser.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
             this.gridViewDSUser.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSUser_RowCellStyle);
             this.gridViewDSUser.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.gridViewDSUser_PopupMenuShowing);
             // 
@@ -648,7 +664,8 @@
             this.TabKhoaPhong,
             this.TabBaoCao,
             this.TabKhoThuoc,
-            this.TabPhongLuu});
+            this.TabPhongLuu,
+            this.TabSoCDHA});
             this.xtraTabControl1.TabPageWidth = 80;
             // 
             // TabChucNang
@@ -981,7 +998,7 @@
             this.gridViewBaoCao.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewBaoCao.OptionsView.ShowGroupPanel = false;
             this.gridViewBaoCao.RowHeight = 25;
-            this.gridViewBaoCao.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewBaoCao_CustomDrawRowIndicator);
+            this.gridViewBaoCao.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
             this.gridViewBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSUser_RowCellStyle);
             // 
             // gridColumn9
@@ -1084,7 +1101,7 @@
             this.gridViewKhoThuoc.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewKhoThuoc.OptionsView.ShowGroupPanel = false;
             this.gridViewKhoThuoc.RowHeight = 25;
-            this.gridViewKhoThuoc.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewKhoThuoc_CustomDrawRowIndicator);
+            this.gridViewKhoThuoc.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
             this.gridViewKhoThuoc.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSUser_RowCellStyle);
             // 
             // gridColumn13
@@ -1212,7 +1229,7 @@
             this.gridViewPhongLuu.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewPhongLuu.OptionsView.ShowGroupPanel = false;
             this.gridViewPhongLuu.RowHeight = 25;
-            this.gridViewPhongLuu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewPhongLuu_CustomDrawRowIndicator);
+            this.gridViewPhongLuu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
             this.gridViewPhongLuu.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSUser_RowCellStyle);
             // 
             // gridColumn19
@@ -1291,6 +1308,159 @@
             this.repositoryItemCheckEdit10.AutoHeight = false;
             this.repositoryItemCheckEdit10.Name = "repositoryItemCheckEdit10";
             // 
+            // TabSoCDHA
+            // 
+            this.TabSoCDHA.Controls.Add(this.gridControlCDHA_Khoa);
+            this.TabSoCDHA.Name = "TabSoCDHA";
+            this.TabSoCDHA.Size = new System.Drawing.Size(669, 502);
+            this.TabSoCDHA.Text = "Sổ CĐHA";
+            // 
+            // gridControlCDHA_Khoa
+            // 
+            this.gridControlCDHA_Khoa.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
+            this.gridControlCDHA_Khoa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlCDHA_Khoa.Location = new System.Drawing.Point(0, 0);
+            this.gridControlCDHA_Khoa.MainView = this.gridViewCDHA_Khoa;
+            this.gridControlCDHA_Khoa.Name = "gridControlCDHA_Khoa";
+            this.gridControlCDHA_Khoa.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheck_KhoaGui,
+            this.repositoryItemCheck_KhoaTra});
+            this.gridControlCDHA_Khoa.Size = new System.Drawing.Size(669, 502);
+            this.gridControlCDHA_Khoa.TabIndex = 5;
+            this.gridControlCDHA_Khoa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewCDHA_Khoa});
+            // 
+            // gridViewCDHA_Khoa
+            // 
+            this.gridViewCDHA_Khoa.ColumnPanelRowHeight = 25;
+            this.gridViewCDHA_Khoa.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn28,
+            this.gridColumn29,
+            this.gridColumn30,
+            this.gridColumn31,
+            this.gridColumn26});
+            gridFormatRule6.Name = "Format0";
+            gridFormatRule6.Rule = null;
+            this.gridViewCDHA_Khoa.FormatRules.Add(gridFormatRule6);
+            this.gridViewCDHA_Khoa.GridControl = this.gridControlCDHA_Khoa;
+            this.gridViewCDHA_Khoa.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, null, this.gridColumn29, "")});
+            this.gridViewCDHA_Khoa.IndicatorWidth = 35;
+            this.gridViewCDHA_Khoa.Name = "gridViewCDHA_Khoa";
+            this.gridViewCDHA_Khoa.OptionsFind.AlwaysVisible = true;
+            this.gridViewCDHA_Khoa.OptionsFind.ShowClearButton = false;
+            this.gridViewCDHA_Khoa.OptionsSelection.CheckBoxSelectorColumnWidth = 30;
+            this.gridViewCDHA_Khoa.OptionsSelection.MultiSelect = true;
+            this.gridViewCDHA_Khoa.OptionsView.EnableAppearanceEvenRow = true;
+            this.gridViewCDHA_Khoa.OptionsView.ShowGroupPanel = false;
+            this.gridViewCDHA_Khoa.RowHeight = 25;
+            this.gridViewCDHA_Khoa.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridViewChucNang_CustomDrawRowIndicator);
+            this.gridViewCDHA_Khoa.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDSUser_RowCellStyle);
+            // 
+            // gridColumn28
+            // 
+            this.gridColumn28.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn28.AppearanceCell.Options.UseFont = true;
+            this.gridColumn28.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn28.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn28.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn28.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn28.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn28.Caption = "departmentgroupid";
+            this.gridColumn28.FieldName = "departmentgroupid";
+            this.gridColumn28.Name = "gridColumn28";
+            // 
+            // gridColumn29
+            // 
+            this.gridColumn29.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn29.AppearanceCell.Options.UseFont = true;
+            this.gridColumn29.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn29.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn29.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn29.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn29.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn29.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn29.Caption = "Mã khoa";
+            this.gridColumn29.FieldName = "departmentgroupcode";
+            this.gridColumn29.Name = "gridColumn29";
+            this.gridColumn29.OptionsColumn.AllowEdit = false;
+            this.gridColumn29.Visible = true;
+            this.gridColumn29.VisibleIndex = 0;
+            this.gridColumn29.Width = 101;
+            // 
+            // gridColumn30
+            // 
+            this.gridColumn30.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn30.AppearanceCell.Options.UseFont = true;
+            this.gridColumn30.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn30.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn30.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn30.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn30.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn30.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn30.Caption = "Tên khoa";
+            this.gridColumn30.FieldName = "departmentgroupname";
+            this.gridColumn30.Name = "gridColumn30";
+            this.gridColumn30.OptionsColumn.AllowEdit = false;
+            this.gridColumn30.Visible = true;
+            this.gridColumn30.VisibleIndex = 1;
+            this.gridColumn30.Width = 316;
+            // 
+            // gridColumn31
+            // 
+            this.gridColumn31.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn31.AppearanceCell.Options.UseFont = true;
+            this.gridColumn31.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn31.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn31.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn31.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn31.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn31.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn31.Caption = "Khoa gửi";
+            this.gridColumn31.ColumnEdit = this.repositoryItemCheck_KhoaGui;
+            this.gridColumn31.FieldName = "iskhoagui";
+            this.gridColumn31.Name = "gridColumn31";
+            this.gridColumn31.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
+            this.gridColumn31.Visible = true;
+            this.gridColumn31.VisibleIndex = 2;
+            this.gridColumn31.Width = 100;
+            // 
+            // repositoryItemCheck_KhoaGui
+            // 
+            this.repositoryItemCheck_KhoaGui.AutoHeight = false;
+            this.repositoryItemCheck_KhoaGui.Name = "repositoryItemCheck_KhoaGui";
+            this.repositoryItemCheck_KhoaGui.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            // 
+            // gridColumn26
+            // 
+            this.gridColumn26.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn26.AppearanceCell.Options.UseFont = true;
+            this.gridColumn26.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn26.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn26.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn26.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.gridColumn26.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn26.AppearanceHeader.Options.UseForeColor = true;
+            this.gridColumn26.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn26.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn26.Caption = "Khoa trả KQ";
+            this.gridColumn26.ColumnEdit = this.repositoryItemCheck_KhoaTra;
+            this.gridColumn26.FieldName = "iskhoatra";
+            this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.UnboundType = DevExpress.Data.UnboundColumnType.Boolean;
+            this.gridColumn26.Visible = true;
+            this.gridColumn26.VisibleIndex = 3;
+            this.gridColumn26.Width = 100;
+            // 
+            // repositoryItemCheck_KhoaTra
+            // 
+            this.repositoryItemCheck_KhoaTra.AutoHeight = false;
+            this.repositoryItemCheck_KhoaTra.Name = "repositoryItemCheck_KhoaTra";
+            this.repositoryItemCheck_KhoaTra.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            // 
             // imMenu
             // 
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
@@ -1358,6 +1528,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlPhongLuu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewPhongLuu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit10)).EndInit();
+            this.TabSoCDHA.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlCDHA_Khoa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCDHA_Khoa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheck_KhoaGui)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheck_KhoaTra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
             this.ResumeLayout(false);
 
@@ -1445,5 +1620,15 @@
         private DevExpress.XtraEditors.TextEdit txtuserhisid;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
+        private DevExpress.XtraTab.XtraTabPage TabSoCDHA;
+        private DevExpress.XtraGrid.GridControl gridControlCDHA_Khoa;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewCDHA_Khoa;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn30;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn31;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheck_KhoaGui;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheck_KhoaTra;
     }
 }

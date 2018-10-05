@@ -248,6 +248,42 @@
     <Compile Include="BaoCao\BangKeTongHopHoaDon\ucBangKeTongHopHoaDon.Designer.cs">
       <DependentUpon>ucBangKeTongHopHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.Designer.cs">
+      <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCau.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCau.Designer.cs">
+      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.Designer.cs">
+      <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.Designer.cs">
+      <DependentUpon>frmKhoaGuiYeuCau_PTTT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\ucBCPhauThuatThuThuat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\ucBCPhauThuatThuThuat.Designer.cs">
+      <DependentUpon>ucBCPhauThuatThuThuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\ucBCPhauThuatThuThuatProcess.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\ucBCPhauThuatThuThuatProcessDuyet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="BaoCao\BC16_DoanhThuMayXN\frmDSBenhNhan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -371,47 +407,11 @@
     <Compile Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.Designer.cs">
       <DependentUpon>ucBCHoaDonThanhToanVP.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.Designer.cs">
-      <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.Designer.cs">
-      <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.Designer.cs">
-      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuatProcessDuyet.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="BaoCao\BCThucHienCLS\frmKhoaGuiYeuCau_CLS.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BaoCao\BCThucHienCLS\frmKhoaGuiYeuCau_CLS.Designer.cs">
       <DependentUpon>frmKhoaGuiYeuCau_CLS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuat.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuat.Designer.cs">
-      <DependentUpon>ucBCPhauThuatThuThuat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuatProcess.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BaoCao\BCPhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.Designer.cs">
-      <DependentUpon>frmKhoaGuiYeuCau_PTTT.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BCSuDungThuoc\ucBCSuDungThuoc.cs">
       <SubType>UserControl</SubType>
@@ -796,6 +796,7 @@
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
     <Compile Include="ClassCommon\DanhMucThuocVatTuDTO.cs" />
     <Compile Include="ClassCommon\DanhSachNhanVienDTO.cs" />
+    <Compile Include="ClassCommon\PQSoCDHA_DepartmentgroupDTO.cs" />
     <Compile Include="ClassCommon\Departmentgroup_KhoaPTTTDTO.cs" />
     <Compile Include="ClassCommon\DoanhThuTheoMayXNFilterDTO.cs" />
     <Compile Include="ClassCommon\DVXetNghiemChiPhiDTO.cs" />
@@ -1410,6 +1411,21 @@
     <EmbeddedResource Include="BaoCao\BaoCaoBHYT21_New\ucBaoCaoBHYT21_NewChenh.resx">
       <DependentUpon>ucBaoCaoBHYT21_NewChenh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.resx">
+      <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCau.resx">
+      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.resx">
+      <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.resx">
+      <DependentUpon>frmKhoaGuiYeuCau_PTTT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\ucBCPhauThuatThuThuat.resx">
+      <DependentUpon>ucBCPhauThuatThuThuat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC16_DoanhThuMayXN\frmDSBenhNhan.resx">
       <DependentUpon>frmDSBenhNhan.cs</DependentUpon>
     </EmbeddedResource>
@@ -1470,29 +1486,14 @@
     <EmbeddedResource Include="BaoCao\BCHoaDonThanhToanVP\ucBCHoaDonThanhToanVP.resx">
       <DependentUpon>ucBCHoaDonThanhToanVP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.resx">
-      <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.resx">
-      <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\BCPhauThuat_YeuCau.resx">
-      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCThucHienCLS\frmKhoaGuiYeuCau_CLS.resx">
       <DependentUpon>frmKhoaGuiYeuCau_CLS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\ucBCPhauThuatThuThuat.resx">
-      <DependentUpon>ucBCPhauThuatThuThuat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\frmLayNhomDichVu.resx">
       <DependentUpon>frmLayNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCChiDinhPTTT\ucBCChiDinhPTTT.resx">
       <DependentUpon>ucBCChiDinhPTTT.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BCPhauThuatThuThuat\frmKhoaGuiYeuCau_PTTT.resx">
-      <DependentUpon>frmKhoaGuiYeuCau_PTTT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCSuDungThuoc\ucBCSuDungThuoc.resx">
       <DependentUpon>ucBCSuDungThuoc.cs</DependentUpon>

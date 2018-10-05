@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBC23_DoanhThuTheoNhomDichVu));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.chkBnTronVien = new DevExpress.XtraEditors.CheckEdit();
             this.radioXemChiTiet = new System.Windows.Forms.RadioButton();
             this.radioXemTongHop = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,20 +67,19 @@
             this.bandedGridColumn_soluong = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.bandedGridColumn_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn_bntronvien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.departmentgroupid = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.chkBnTronVien = new DevExpress.XtraEditors.CheckEdit();
-            this.gridColumn_bntronvien = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThaiVienPhi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboNhomDichVu.Properties)).BeginInit();
             this.groupBoxAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBaoCao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBaoCao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -116,6 +116,20 @@
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // chkBnTronVien
+            // 
+            this.chkBnTronVien.EditValue = true;
+            this.chkBnTronVien.Location = new System.Drawing.Point(624, 23);
+            this.chkBnTronVien.Name = "chkBnTronVien";
+            this.chkBnTronVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBnTronVien.Properties.Appearance.Options.UseFont = true;
+            this.chkBnTronVien.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkBnTronVien.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkBnTronVien.Properties.Caption = "+BN trốn viện";
+            this.chkBnTronVien.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkBnTronVien.Size = new System.Drawing.Size(107, 20);
+            this.chkBnTronVien.TabIndex = 86;
             // 
             // radioXemChiTiet
             // 
@@ -257,7 +271,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(887, 27);
+            this.btnTimKiem.Location = new System.Drawing.Point(863, 27);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -570,7 +584,7 @@
             this.gridColumn7.OptionsColumn.AllowEdit = false;
             this.gridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 10;
+            this.gridColumn7.VisibleIndex = 9;
             this.gridColumn7.Width = 219;
             // 
             // gridColumn_PhongChiDinh
@@ -589,7 +603,7 @@
             this.gridColumn_PhongChiDinh.OptionsColumn.AllowEdit = false;
             this.gridColumn_PhongChiDinh.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.False;
             this.gridColumn_PhongChiDinh.Visible = true;
-            this.gridColumn_PhongChiDinh.VisibleIndex = 11;
+            this.gridColumn_PhongChiDinh.VisibleIndex = 10;
             this.gridColumn_PhongChiDinh.Width = 200;
             // 
             // gridColumn_TGChiDinh
@@ -609,7 +623,7 @@
             this.gridColumn_TGChiDinh.Name = "gridColumn_TGChiDinh";
             this.gridColumn_TGChiDinh.OptionsColumn.AllowEdit = false;
             this.gridColumn_TGChiDinh.Visible = true;
-            this.gridColumn_TGChiDinh.VisibleIndex = 12;
+            this.gridColumn_TGChiDinh.VisibleIndex = 11;
             this.gridColumn_TGChiDinh.Width = 120;
             // 
             // bandedGridColumn10
@@ -661,8 +675,6 @@
             this.bandedGridColumn8.FieldName = "servicepricegroupcode";
             this.bandedGridColumn8.Name = "bandedGridColumn8";
             this.bandedGridColumn8.OptionsColumn.AllowEdit = false;
-            this.bandedGridColumn8.Visible = true;
-            this.bandedGridColumn8.VisibleIndex = 9;
             this.bandedGridColumn8.Width = 125;
             // 
             // bandedGridColumn7
@@ -680,7 +692,7 @@
             this.bandedGridColumn7.Name = "bandedGridColumn7";
             this.bandedGridColumn7.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn7.Visible = true;
-            this.bandedGridColumn7.VisibleIndex = 13;
+            this.bandedGridColumn7.VisibleIndex = 12;
             this.bandedGridColumn7.Width = 132;
             // 
             // bandedGridColumn_soluong
@@ -700,7 +712,7 @@
             this.bandedGridColumn_soluong.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soluong", "{0:#,##0.0}")});
             this.bandedGridColumn_soluong.Visible = true;
-            this.bandedGridColumn_soluong.VisibleIndex = 14;
+            this.bandedGridColumn_soluong.VisibleIndex = 13;
             this.bandedGridColumn_soluong.Width = 87;
             // 
             // bandedGridColumn5
@@ -720,7 +732,7 @@
             this.bandedGridColumn5.Name = "bandedGridColumn5";
             this.bandedGridColumn5.OptionsColumn.AllowEdit = false;
             this.bandedGridColumn5.Visible = true;
-            this.bandedGridColumn5.VisibleIndex = 15;
+            this.bandedGridColumn5.VisibleIndex = 14;
             this.bandedGridColumn5.Width = 142;
             // 
             // bandedGridColumn_thanhtien
@@ -742,34 +754,8 @@
             this.bandedGridColumn_thanhtien.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "thanhtien", "{0:#,##0}")});
             this.bandedGridColumn_thanhtien.Visible = true;
-            this.bandedGridColumn_thanhtien.VisibleIndex = 16;
+            this.bandedGridColumn_thanhtien.VisibleIndex = 15;
             this.bandedGridColumn_thanhtien.Width = 145;
-            // 
-            // departmentgroupid
-            // 
-            this.departmentgroupid.Caption = "departmentgroupid";
-            this.departmentgroupid.FieldName = "departmentgroupid";
-            this.departmentgroupid.Name = "departmentgroupid";
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "isgroup";
-            this.gridColumn1.FieldName = "isgroup";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // chkBnTronVien
-            // 
-            this.chkBnTronVien.EditValue = true;
-            this.chkBnTronVien.Location = new System.Drawing.Point(624, 23);
-            this.chkBnTronVien.Name = "chkBnTronVien";
-            this.chkBnTronVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBnTronVien.Properties.Appearance.Options.UseFont = true;
-            this.chkBnTronVien.Properties.Appearance.Options.UseTextOptions = true;
-            this.chkBnTronVien.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.chkBnTronVien.Properties.Caption = "+BN trốn viện";
-            this.chkBnTronVien.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
-            this.chkBnTronVien.Size = new System.Drawing.Size(107, 20);
-            this.chkBnTronVien.TabIndex = 86;
             // 
             // gridColumn_bntronvien
             // 
@@ -786,8 +772,20 @@
             this.gridColumn_bntronvien.Name = "gridColumn_bntronvien";
             this.gridColumn_bntronvien.OptionsColumn.AllowEdit = false;
             this.gridColumn_bntronvien.Visible = true;
-            this.gridColumn_bntronvien.VisibleIndex = 17;
+            this.gridColumn_bntronvien.VisibleIndex = 16;
             this.gridColumn_bntronvien.Width = 125;
+            // 
+            // departmentgroupid
+            // 
+            this.departmentgroupid.Caption = "departmentgroupid";
+            this.departmentgroupid.FieldName = "departmentgroupid";
+            this.departmentgroupid.Name = "departmentgroupid";
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "isgroup";
+            this.gridColumn1.FieldName = "isgroup";
+            this.gridColumn1.Name = "gridColumn1";
             // 
             // ucBC23_DoanhThuTheoNhomDichVu
             // 
@@ -804,13 +802,13 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThaiVienPhi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboNhomDichVu.Properties)).EndInit();
             this.groupBoxAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBaoCao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBaoCao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -264,4 +264,34 @@ CREATE INDEX thuchienpttt_bhytid_idx ON ml_thuchienpttt USING btree (bhytid);
 
 
 
+-- DROP TABLE tools_tbluser_medicinestore;
+
+CREATE TABLE tools_tbluser_rpt13
+(
+  rpt13id serial NOT NULL,
+  usercode text,
+  username text,
+  departmentgroupid integer,
+  departmentgroupcode text,
+  departmentgroupname text,
+  iskhoagui integer,
+  iskhoatra integer,
+  CONSTRAINT tools_tbluser_rpt13_pkey PRIMARY KEY (rpt13id)
+);
+
+CREATE INDEX tbluser_rpt13_usercode_idx ON tools_tbluser_rpt13 USING btree (usercode);
+CREATE INDEX tbluser_rpt13_departmentgroupid_idx ON tools_tbluser_rpt13 USING btree (departmentgroupid);
+
+
+
+select departmentgroupid,departmentgroupcode,departmentgroupname from tools_tbluser_rpt13 where iskhoagui=1 and usercode='"++"';
+
+
+
+
+
+
+
+
+
 

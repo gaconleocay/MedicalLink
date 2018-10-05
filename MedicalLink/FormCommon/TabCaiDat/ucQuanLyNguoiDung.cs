@@ -27,6 +27,8 @@ namespace MedicalLink.FormCommon.TabCaiDat
         private List<ClassCommon.classPermission> LstPerBaoCao { get; set; }
         private List<ClassCommon.classUserMedicineStore> lstUserMedicineStore { get; set; }
         private List<ClassCommon.classUserMedicinePhongLuu> lstUserMedicinePhongLuu { get; set; }
+        private List<ClassCommon.PQSoCDHA_DepartmentgroupDTO> LstPer_PQSoCDHA { get; set; }
+
         #endregion
 
         public ucQuanLyNguoiDung()
@@ -46,6 +48,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 LoadDanhSachBaoCao();
                 LoadDanhSachKhoThuoc();
                 LoadDanhSachPhongLuu();
+                LoadDanhSachSoCDHA_Khoa();
             }
             catch (Exception ex)
             {
@@ -186,6 +189,23 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void LoadDanhSachSoCDHA_Khoa()
+        {
+            try
+            {
+                string sql = "select 0 as iskhoagui,0 as iskhoatra,departmentgroupid,departmentgroupcode,departmentgroupname from departmentgroup order by departmentgroupname;";
+                DataTable _dataPhongLuu = condb.GetDataTable_HIS(sql);
+                if (_dataPhongLuu.Rows.Count > 0)
+                {
+                    this.LstPer_PQSoCDHA = Utilities.DataTables.DataTableToList<ClassCommon.PQSoCDHA_DepartmentgroupDTO>(_dataPhongLuu);
+                    gridControlCDHA_Khoa.DataSource = this.LstPer_PQSoCDHA;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
 
         private void EnableAndDisableControl(bool value)
         {
@@ -227,18 +247,21 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 gridControlBaoCao.DataSource = null;
                 gridControlKhoThuoc.DataSource = null;
                 gridControlPhongLuu.DataSource = null;
+                gridControlCDHA_Khoa.DataSource = null;
 
                 LoadDanhSachChucNang();
                 LoadDanhSachKhoaPhong();
                 LoadDanhSachBaoCao();
                 LoadDanhSachKhoThuoc();
                 LoadDanhSachPhongLuu();
+                LoadDanhSachSoCDHA_Khoa();
 
                 LoadPhanQuyenChucNang();
                 LoadPhanQuyenKhoaPhong();
                 LoadPhanQuyenBaoCao();
                 LoadPhanQuyenKhoThuoc();
                 LoadPhanQuyenPhongLuu();
+                LoadPhanQuyenSoCDHA_Khoa();
             }
             catch (Exception ex)
             {
@@ -383,6 +406,36 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        private void LoadPhanQuyenSoCDHA_Khoa()
+        {
+            try
+            {
+                gridControlCDHA_Khoa.DataSource = null;
+                string _sqlSoCDHA = "select iskhoagui,iskhoatra,departmentgroupid,departmentgroupcode,departmentgroupname FROM tools_tbluser_rpt13 WHERE usercode='" + currentUserCode + "';";
+                DataTable _dataSoCDHA = condb.GetDataTable_MeL(_sqlSoCDHA);
+                if (_dataSoCDHA != null && _dataSoCDHA.Rows.Count > 0)
+                {
+                    for (int i = 0; i < this.LstPer_PQSoCDHA.Count; i++)
+                    {
+                        var _itemDegp = _dataSoCDHA.AsEnumerable().Where(o => o.Field<object>("departmentgroupid").ToString() == this.LstPer_PQSoCDHA[i].departmentgroupid.ToString());
+                        if (_itemDegp.Any())
+                        {
+                            DataTable _dataTable = _itemDegp.CopyToDataTable();
+                            if (_dataTable.Rows[0]["iskhoagui"].ToString() == "1")
+                            { this.LstPer_PQSoCDHA[i].iskhoagui = true; }
+                            if (_dataTable.Rows[0]["iskhoatra"].ToString() == "1")
+                            { this.LstPer_PQSoCDHA[i].iskhoatra = true; }
+                        }
+                    }
+                }
+                gridControlCDHA_Khoa.DataSource = this.LstPer_PQSoCDHA;
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
         private void btnUserThem_Click(object sender, EventArgs e)
         {
             currentUserCode = null;
@@ -402,12 +455,14 @@ namespace MedicalLink.FormCommon.TabCaiDat
             gridControlBaoCao.DataSource = null;
             gridControlKhoThuoc.DataSource = null;
             gridControlPhongLuu.DataSource = null;
+            gridControlCDHA_Khoa.DataSource = null;
 
             LoadDanhSachChucNang();
             LoadDanhSachKhoaPhong();
             LoadDanhSachBaoCao();
             LoadDanhSachKhoThuoc();
             LoadDanhSachPhongLuu();
+            LoadDanhSachSoCDHA_Khoa();
         }
 
         //Tạo Menu chức năng xóa người dùng
@@ -435,18 +490,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 try
                 {
-                    string sqlxoatk = "DELETE FROM tools_tbluser WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_chucnang = "DELETE FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_khoaphong = "DELETE FROM tools_tbluser_departmentgroup WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_khothuoc = "DELETE FROM tools_tbluser_medicinestore WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
-                    string sqlxoatk_phongluu = "DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "';";
+                    string sqlxoatk = "DELETE FROM tools_tbluser WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "'; DELETE FROM tools_tbluser_permission WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "'; DELETE FROM tools_tbluser_departmentgroup WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "'; DELETE FROM tools_tbluser_medicinestore WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "'; DELETE FROM tools_tbluser_medicinephongluu WHERE usercode='" + MedicalLink.Base.EncryptAndDecrypt.Encrypt(currentUserCode.ToString(), true) + "'; DELETE FROM tools_tbluser_rpt13 WHERE usercode='" + currentUserCode + "'; ";
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa tài khoản: " + currentUserCode + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'SYS_02');";
 
                     condb.ExecuteNonQuery_MeL(sqlxoatk);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_chucnang);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_khoaphong);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_khothuoc);
-                    condb.ExecuteNonQuery_MeL(sqlxoatk_phongluu);
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
@@ -483,6 +530,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         CreateNewUserBaoCao(en_txtUsercode);
                         CreateNewUserMedicineStore(en_txtUsercode);
                         CreateNewUserMedicinePhongLuu(en_txtUsercode);
+                        CreateNewUserSoCDHA(txtUserCode.Text.Trim().ToLower());
                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                         frmthongbao.Show();
                         //LoadDanhSachNguoiDung();
@@ -497,6 +545,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     UpdateUserBaoCao(en_txtUsercode);
                     UpdateUserMedicineStore(en_txtUsercode);
                     UpdateUserMedicinePhongLuu(en_txtUsercode);
+                    UpdateUserSoCDHA(txtUserCode.Text.Trim().ToLower());
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                     frmthongbao.Show();
                 }
@@ -528,6 +577,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             return result;
         }
 
+        #region Tao moi
         private void CreateNewUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword, int _userhisid)
         {
             try
@@ -537,7 +587,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 // usergnhom=2: User
                 if (cbbUserNhom.Text == "Quản trị hệ thống")
                 {
-                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','1','','"+_userhisid+"');";
+                    sqlinsert_user = "INSERT INTO tools_tbluser(usercode, username, userpassword, userstatus, usergnhom, usernote, userhisid) VALUES ('" + en_txtUserID + "','" + en_txtUsername + "','" + en_txtUserPassword + "','0','1','','" + _userhisid + "');";
                 }
                 else
                 {
@@ -654,7 +704,31 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 Logging.Error(ex);
             }
         }
+        private void CreateNewUserSoCDHA(string txtUserID)
+        {
+            try
+            {
+                string _sqlinsert_SoCDHA = "";
+                for (int i = 0; i < this.LstPer_PQSoCDHA.Count; i++)
+                {
+                    if (this.LstPer_PQSoCDHA[i].iskhoagui == true || this.LstPer_PQSoCDHA[i].iskhoatra == true)
+                    {
+                        _sqlinsert_SoCDHA += "INSERT INTO tools_tbluser_rpt13(usercode,username,departmentgroupid,departmentgroupcode,departmentgroupname,iskhoagui,iskhoatra) VALUES ('" + txtUserID + "', '" + txtUsername.Text + "', '" + this.LstPer_PQSoCDHA[i].departmentgroupid + "', '" + this.LstPer_PQSoCDHA[i].departmentgroupcode + "', '" + this.LstPer_PQSoCDHA[i].departmentgroupname + "', '" + (this.LstPer_PQSoCDHA[i].iskhoagui == true ? 1 : 0) + "', '" + (this.LstPer_PQSoCDHA[i].iskhoatra == true ? 1 : 0) + "'); ";
+                    }
+                }
+                if (_sqlinsert_SoCDHA != "")
+                {
+                    condb.ExecuteNonQuery_MeL(_sqlinsert_SoCDHA);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Error(ex);
+            }
+        }
+        #endregion
 
+        #region Update
         private void UpdateUser(string en_txtUserID, string en_txtUsername, string en_txtUserPassword, int _userhisid)
         {
             try
@@ -844,6 +918,56 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 Logging.Error(ex);
             }
         }
+        private void UpdateUserSoCDHA(string txtUserID)
+        {
+            try
+            {
+                string _sqlinsert_SoCDHA = "";
+                string _sqlupdate_SoCDHA = "";
+                string _sqldelete_SoCDHA = "";
+                for (int i = 0; i < this.LstPer_PQSoCDHA.Count; i++)
+                {
+                    string sqlkiemtratontai = "SELECT * FROM tools_tbluser_rpt13 WHERE usercode='" + txtUserID + "' and departmentgroupid='" + this.LstPer_PQSoCDHA[i].departmentgroupid + "';";
+                    DataTable _dataKTSo = condb.GetDataTable_MeL(sqlkiemtratontai);
+                    if (_dataKTSo.Rows.Count > 0) //Nếu có quyền đó rồi thì Update
+                    {
+                        if (this.LstPer_PQSoCDHA[i].iskhoagui == false && this.LstPer_PQSoCDHA[i].iskhoatra == false)
+                        {
+                            _sqldelete_SoCDHA += "DELETE FROM tools_tbluser_rpt13 WHERE usercode='" + txtUserID + "' and departmentgroupid='" + this.LstPer_PQSoCDHA[i].departmentgroupid + "'; ";
+                        }
+                        else//update
+                        {
+                            _sqlupdate_SoCDHA += "UPDATE tools_tbluser_rpt13 SET username='" + txtUsername.Text + "', departmentgroupname='" + LstPer_PQSoCDHA[i].departmentgroupname + "', iskhoagui='" + (this.LstPer_PQSoCDHA[i].iskhoagui == true ? 1 : 0) + "', iskhoatra='" + (this.LstPer_PQSoCDHA[i].iskhoatra == true ? 1 : 0) + "' WHERE usercode='" + txtUserID + "' and departmentgroupid='" + this.LstPer_PQSoCDHA[i].departmentgroupid + "'; ";
+                        }
+                    }
+                    else //nếu không có quyền đó thì Insert
+                    {
+                        if (this.LstPer_PQSoCDHA[i].iskhoagui == true || this.LstPer_PQSoCDHA[i].iskhoatra == true)
+                        {
+                            _sqlinsert_SoCDHA += "INSERT INTO tools_tbluser_rpt13(usercode,username,departmentgroupid,departmentgroupcode,departmentgroupname,iskhoagui,iskhoatra) VALUES ('" + txtUserID + "', '" + txtUsername.Text + "', '" + this.LstPer_PQSoCDHA[i].departmentgroupid + "', '" + this.LstPer_PQSoCDHA[i].departmentgroupcode + "', '" + this.LstPer_PQSoCDHA[i].departmentgroupname + "', '" + (this.LstPer_PQSoCDHA[i].iskhoagui == true ? 1 : 0) + "', '" + (this.LstPer_PQSoCDHA[i].iskhoatra == true ? 1 : 0) + "'); ";
+                        }
+                    }
+                }
+                if (_sqlinsert_SoCDHA != "")
+                {
+                    condb.ExecuteNonQuery_MeL(_sqlinsert_SoCDHA);
+                }
+                if (_sqldelete_SoCDHA != "")
+                {
+                    condb.ExecuteNonQuery_MeL(_sqldelete_SoCDHA);
+                }
+                if (_sqlupdate_SoCDHA != "")
+                {
+                    condb.ExecuteNonQuery_MeL(_sqlupdate_SoCDHA);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.Error(ex);
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -890,26 +1014,6 @@ namespace MedicalLink.FormCommon.TabCaiDat
         }
 
         private void gridViewChucNang_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-        private void gridViewDSUser_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-        private void gridViewBaoCao_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-        private void gridViewKhoThuoc_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-        private void gridViewPhongLuu_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             if (e.Info.IsRowIndicator && e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();

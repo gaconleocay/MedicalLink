@@ -1,23 +1,22 @@
 ---Bao cao doanh thu theo nhom dich vu - Ngay 1/9/2017
 --ucBC23_DoanhThuTheoNhomDichVu
 
---TOng hop
-SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY dv.servicepricegroupcode,dv.servicepricename)) as stt,
+--TOng hop - 28/9/2018
+
+SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY dv.servicepricename)) as stt,
 	degp.departmentgroupname,
 	dv.servicepricecode,
 	dv.servicepricename,
-	dv.servicepricegroupcode,
 	dv.loaidoituong,
 	sum(dv.soluong) as soluong,
 	dv.servicepricemoney,
 	sum(dv.soluong * dv.servicepricemoney) as thanhtien
 FROM (select departmentgroupid,departmentgroupname from departmentgroup) degp 
-LEFT JOIN 	
+INNER JOIN 	
 	(select 
 		ser.departmentgroupid,
 		ser.servicepricecode,
 		ser.servicepricename,
-		serf.servicepricegroupcode,
 		(case ser.loaidoituong
 			when 0 then 'BHYT'
 			when 1 then 'Viện phí'
@@ -47,29 +46,22 @@ LEFT JOIN
 					when 9 then ser.servicepricemoney_nhandan
 					end)
 			end) as servicepricemoney
-	from (select servicepricecode,servicepricegroupcode from servicepriceref where "+lstservicegroupcode+") serf 
-		inner join (select vienphiid,servicepricecode,servicepricename,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where bhyt_groupcode in ('06PTTT','07KTC','12NG') "+khoachidinh+") ser on ser.servicepricecode=serf.servicepricecode
-		inner join (select vienphiid,doituongbenhnhanid 
-					from vienphi 
-					where "+trangthaibenhan+_bntronvien+"
-					--vienphistatus=0
-					-- vienphistatus>0 and coalesce(vienphistatus_vp,0)=0 
-					--vienphistatus>0 and vienphistatus_vp=1 and duyet_ngayduyet_vp between '2017-01-01 00:00:00' and '2017-01-04 23:59:59'
-					) vp on vp.vienphiid=ser.vienphiid 
-	group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,serf.servicepricegroupcode,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid
-	order by serf.servicepricegroupcode,ser.servicepricename) dv on dv.departmentgroupid=degp.departmentgroupid
-GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.servicepricegroupcode,dv.loaidoituong,dv.servicepricemoney;
+	from (select vienphiid,servicepricecode,servicepricename,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where 1=1 {_lstservicecode} {khoachidinh} {_tieuchi_ser}) ser
+		inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 {_tieuchi_vp} {_trangthaibenhan} {_bntronvien}) vp on vp.vienphiid=ser.vienphiid 
+	group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid
+	order by ser.servicepricename) dv on dv.departmentgroupid=degp.departmentgroupid
+GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loaidoituong,dv.servicepricemoney;
 
 
 
 
----Chi tiet
+---Chi tiet - 28/9/2018
 
-select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY serf.servicepricegroupcode,ser.servicepricename)) as stt,
+select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY ser.servicepricename)) as stt,
 		vp.vienphiid,
 		vp.patientid,
 		hsba.patientname,
-		to_char(hsba.birthday, 'yyyy') as namsinh,
+		to_char(hsba.birthday,'yyyy') as namsinh,
 		hsba.gioitinhname as gioitinh,
 		hsba.bhytcode,
 		degp.departmentgroupname,
@@ -78,7 +70,6 @@ select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY serf.s
 		ser.departmentgroupid,
 		ser.servicepricecode,
 		ser.servicepricename,
-		serf.servicepricegroupcode,
 		(case ser.loaidoituong
 			when 0 then 'BHYT'
 			when 1 then 'Viện phí'
@@ -125,14 +116,10 @@ select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY serf.s
 					end)
 			end) as thanhtien,
 		(case when vp.datronvien=1 then 'BN trốn viện' else '' end) as bntronvien
-	from (select servicepricecode,servicepricegroupcode from servicepriceref where "+lstservicegroupcode+") serf 
-		inner join (select vienphiid,servicepricecode,servicepricename,servicepricedate,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where bhyt_groupcode in ('06PTTT','07KTC','12NG') "+khoachidinh+") ser on ser.servicepricecode=serf.servicepricecode
-		inner join (select vienphiid,doituongbenhnhanid,hosobenhanid,patientid,datronvien
-					from vienphi 
-					where "+trangthaibenhan+_bntronvien+"
-					) vp on vp.vienphiid=ser.vienphiid 
+	from (select vienphiid,servicepricecode,servicepricename,servicepricedate,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where 1=1 {_lstservicecode} {khoachidinh} {_tieuchi_ser}) ser
+		inner join (select vienphiid,doituongbenhnhanid,hosobenhanid,patientid,datronvien from vienphi where 1=1 {_tieuchi_vp} {_trangthaibenhan} {_bntronvien}) vp on vp.vienphiid=ser.vienphiid 
 		inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid	
 		left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) de on de.departmentid=ser.departmentid
-		inner join (select hosobenhanid,patientname,birthday,gioitinhname,bhytcode from hosobenhan) hsba on hsba.hosobenhanid=vp.hosobenhanid;
+		inner join (select hosobenhanid,patientname,birthday,gioitinhname,bhytcode from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid;
 
 	

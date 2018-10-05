@@ -84,9 +84,12 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
+                string _tieuchi_ser = " and servicepricedate>'2018-01-01 00:00:00' ";
+                string _tieuchi_vp = " and vienphidate>'2017-01-01 00:00:00' ";
+                string _tieuchi_hsba= " and hosobenhandate>'2017-01-01 00:00:00' ";
                 string khoachidinh = " and departmentgroupid in (";
-                string lstservicegroupcode = " servicepricegroupcode in (";
-                string trangthaibenhan = "";
+                string _lstservicecode = "";
+                string _trangthaibenhan = "";
                 string sql_timkiem = "";
                 string _bntronvien = "";
 
@@ -111,14 +114,29 @@ namespace MedicalLink.BaoCao
                     return;
                 }
 
+                //Lay danh sach Dich vu
                 if (cboNhomDichVu.EditValue != null)
                 {
+                    string _lstservicegroupcode = "";
                     string[] dsdv_temp = cboNhomDichVu.EditValue.ToString().Split(',');
                     for (int i = 0; i < dsdv_temp.Length - 1; i++)
                     {
-                        lstservicegroupcode += "'" + dsdv_temp[i].ToString().Trim() + "',";
+                        _lstservicegroupcode += "'" + dsdv_temp[i].ToString().Trim() + "',";
                     }
-                    lstservicegroupcode += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString().Trim() + "') ";
+                    _lstservicegroupcode += "'" + dsdv_temp[dsdv_temp.Length - 1].ToString().Trim() + "' ";
+
+                    string _sqlLayDSDV = "select servicepricecode from servicepriceref where servicepricegroupcode  in (" + _lstservicegroupcode + ");";
+                    DataTable _dataDSDV = condb.GetDataTable_HIS(_sqlLayDSDV);
+                    if (_dataDSDV.Rows.Count > 0)
+                    {
+                        _lstservicecode = " and servicepricecode in ('AdA1'";
+
+                        for (int i = 0; i < _dataDSDV.Rows.Count; i++)
+                        {
+                            _lstservicecode += ",'" + _dataDSDV.Rows[i]["servicepricecode"].ToString() + "'";
+                        }
+                        _lstservicecode += ") ";
+                    }
                 }
                 else
                 {
@@ -131,15 +149,16 @@ namespace MedicalLink.BaoCao
 
                 if (cboTrangThaiVienPhi.Text == "Đang điều trị")
                 {
-                    trangthaibenhan = " vienphistatus=0 ";
+                    _trangthaibenhan = " and vienphistatus=0 ";
                 }
                 else if (cboTrangThaiVienPhi.Text == "Ra viện chưa thanh toán")
                 {
-                    trangthaibenhan = " vienphistatus>0 and coalesce(vienphistatus_vp,0)=0 ";
+                    _trangthaibenhan = " and vienphistatus>0 and coalesce(vienphistatus_vp,0)=0 ";
                 }
                 else if (cboTrangThaiVienPhi.Text == "Đã thanh toán")
                 {
-                    trangthaibenhan = " vienphistatus>0 and vienphistatus_vp=1 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                    _trangthaibenhan = " and vienphistatus>0 and vienphistatus_vp=1 ";
+                    _tieuchi_vp = " and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "'";
                 }
                 //BN tron vien
                 if (chkBnTronVien.Checked == false)
@@ -149,11 +168,121 @@ namespace MedicalLink.BaoCao
 
                 if (radioXemTongHop.Checked) //xem tong hop
                 {
-                    sql_timkiem = " SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname order by dv.servicepricegroupcode,dv.servicepricename)) as stt, degp.departmentgroupid, degp.departmentgroupname, dv.servicepricecode, dv.servicepricename, dv.servicepricegroupcode, dv.loaidoituong, sum(dv.soluong) as soluong, dv.servicepricemoney, sum(dv.soluong * dv.servicepricemoney) as thanhtien FROM (select departmentgroupid,departmentgroupname from departmentgroup) degp inner JOIN (select ser.departmentgroupid, ser.servicepricecode, ser.servicepricename, serf.servicepricegroupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, sum(ser.soluong) as soluong, (case when vp.doituongbenhnhanid=4 then ser.servicepricemoney_nuocngoai else (case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan when 2 then ser.servicepricemoney_bhyt when 3 then ser.servicepricemoney when 4 then ser.servicepricemoney when 5 then ser.servicepricemoney when 6 then ser.servicepricemoney when 7 then ser.servicepricemoney_nhandan when 8 then ser.servicepricemoney_nhandan when 9 then ser.servicepricemoney_nhandan end) end) as servicepricemoney from (select servicepricecode,servicepricegroupcode from servicepriceref where " + lstservicegroupcode + ") serf inner join (select vienphiid,servicepricecode,servicepricename,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where bhyt_groupcode in ('06PTTT','07KTC','12NG') " + khoachidinh + ") ser on ser.servicepricecode=serf.servicepricecode inner join (select vienphiid,doituongbenhnhanid from vienphi where " + trangthaibenhan + _bntronvien + " ) vp on vp.vienphiid=ser.vienphiid group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,serf.servicepricegroupcode,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid) dv on dv.departmentgroupid=degp.departmentgroupid GROUP BY degp.departmentgroupid,degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.servicepricegroupcode,dv.loaidoituong,dv.servicepricemoney; ";
+                    sql_timkiem = $@"SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY dv.servicepricename)) as stt,
+	degp.departmentgroupname,
+	dv.servicepricecode,
+	dv.servicepricename,
+	dv.loaidoituong,
+	sum(dv.soluong) as soluong,
+	dv.servicepricemoney,
+	sum(dv.soluong * dv.servicepricemoney) as thanhtien
+FROM (select departmentgroupid,departmentgroupname from departmentgroup) degp 
+INNER JOIN 	
+	(select 
+		ser.departmentgroupid,
+		ser.servicepricecode,
+		ser.servicepricename,
+		(case ser.loaidoituong
+			when 0 then 'BHYT'
+			when 1 then 'Viện phí'
+			when 2 then 'Đi kèm'
+			when 3 then 'Yêu cầu'
+			when 4 then 'BHYT+YC '
+			when 5 then 'Hao phí giường, CK'
+			when 6 then 'BHYT+phụ thu'
+			when 7 then 'Hao phí PTTT'
+			when 8 then 'Đối tượng khác'
+			when 9 then 'Hao phí khác'
+			end) as loaidoituong,
+		sum(ser.soluong) as soluong,
+		(case when vp.doituongbenhnhanid=4 
+					then ser.servicepricemoney_nuocngoai
+			else 
+				(case ser.loaidoituong
+					when 0 then ser.servicepricemoney_bhyt
+					when 1 then ser.servicepricemoney_nhandan
+					when 2 then ser.servicepricemoney_bhyt
+					when 3 then ser.servicepricemoney
+					when 4 then ser.servicepricemoney
+					when 5 then ser.servicepricemoney
+					when 6 then ser.servicepricemoney
+					when 7 then ser.servicepricemoney_nhandan
+					when 8 then ser.servicepricemoney_nhandan
+					when 9 then ser.servicepricemoney_nhandan
+					end)
+			end) as servicepricemoney
+	from (select vienphiid,servicepricecode,servicepricename,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where 1=1 {_lstservicecode} {khoachidinh} {_tieuchi_ser}) ser
+		inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 {_tieuchi_vp} {_trangthaibenhan} {_bntronvien}) vp on vp.vienphiid=ser.vienphiid 
+	group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid
+	order by ser.servicepricename) dv on dv.departmentgroupid=degp.departmentgroupid
+GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loaidoituong,dv.servicepricemoney;";
                 }
                 else
                 {
-                    sql_timkiem = " select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY serf.servicepricegroupcode,ser.servicepricename)) as stt, vp.vienphiid, vp.patientid, hsba.patientname, to_char(hsba.birthday, 'yyyy') as namsinh, hsba.gioitinhname as gioitinh, hsba.bhytcode, degp.departmentgroupname, de.departmentname, ser.servicepricedate, ser.departmentgroupid, ser.servicepricecode, ser.servicepricename, serf.servicepricegroupcode, (case ser.loaidoituong when 0 then 'BHYT' when 1 then 'Viện phí' when 2 then 'Đi kèm' when 3 then 'Yêu cầu' when 4 then 'BHYT+YC ' when 5 then 'Hao phí giường, CK' when 6 then 'BHYT+phụ thu' when 7 then 'Hao phí PTTT' when 8 then 'Đối tượng khác' when 9 then 'Hao phí khác' end) as loaidoituong, ser.soluong as soluong, (case when vp.doituongbenhnhanid=4 then ser.servicepricemoney_nuocngoai else (case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan when 2 then ser.servicepricemoney_bhyt when 3 then ser.servicepricemoney when 4 then ser.servicepricemoney when 5 then ser.servicepricemoney when 6 then ser.servicepricemoney when 7 then ser.servicepricemoney_nhandan when 8 then ser.servicepricemoney_nhandan when 9 then ser.servicepricemoney_nhandan end) end) as servicepricemoney, (case when vp.doituongbenhnhanid=4 then (ser.servicepricemoney_nuocngoai * ser.soluong) else (case ser.loaidoituong when 0 then (ser.servicepricemoney_bhyt * ser.soluong) when 1 then (ser.servicepricemoney_nhandan * ser.soluong) when 2 then (ser.servicepricemoney_bhyt * ser.soluong) when 3 then (ser.servicepricemoney * ser.soluong) when 4 then (ser.servicepricemoney * ser.soluong) when 5 then (ser.servicepricemoney * ser.soluong) when 6 then (ser.servicepricemoney * ser.soluong) when 7 then (ser.servicepricemoney_nhandan * ser.soluong) when 8 then (ser.servicepricemoney_nhandan * ser.soluong) when 9 then (ser.servicepricemoney_nhandan * ser.soluong) end) end) as thanhtien, (case when vp.datronvien=1 then 'BN trốn viện' else '' end) as bntronvien from (select servicepricecode,servicepricegroupcode from servicepriceref where " + lstservicegroupcode + ") serf inner join (select vienphiid,servicepricecode,servicepricename,servicepricedate,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where bhyt_groupcode in ('06PTTT','07KTC','12NG') " + khoachidinh + ") ser on ser.servicepricecode=serf.servicepricecode inner join (select vienphiid,doituongbenhnhanid,hosobenhanid,patientid,datronvien from vienphi where " + trangthaibenhan + _bntronvien + " ) vp on vp.vienphiid=ser.vienphiid inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) de on de.departmentid=ser.departmentid inner join (select hosobenhanid,patientname,birthday,gioitinhname,bhytcode from hosobenhan) hsba on hsba.hosobenhanid=vp.hosobenhanid; ";
+                    sql_timkiem = $@"select (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY ser.servicepricename)) as stt,
+		vp.vienphiid,
+		vp.patientid,
+		hsba.patientname,
+		to_char(hsba.birthday,'yyyy') as namsinh,
+		hsba.gioitinhname as gioitinh,
+		hsba.bhytcode,
+		degp.departmentgroupname,
+		de.departmentname,
+		ser.servicepricedate,
+		ser.departmentgroupid,
+		ser.servicepricecode,
+		ser.servicepricename,
+		(case ser.loaidoituong
+			when 0 then 'BHYT'
+			when 1 then 'Viện phí'
+			when 2 then 'Đi kèm'
+			when 3 then 'Yêu cầu'
+			when 4 then 'BHYT+YC '
+			when 5 then 'Hao phí giường, CK'
+			when 6 then 'BHYT+phụ thu'
+			when 7 then 'Hao phí PTTT'
+			when 8 then 'Đối tượng khác'
+			when 9 then 'Hao phí khác'
+			end) as loaidoituong,
+		ser.soluong as soluong,
+		(case when vp.doituongbenhnhanid=4 
+					then ser.servicepricemoney_nuocngoai
+			else 
+				(case ser.loaidoituong
+					when 0 then ser.servicepricemoney_bhyt
+					when 1 then ser.servicepricemoney_nhandan
+					when 2 then ser.servicepricemoney_bhyt
+					when 3 then ser.servicepricemoney
+					when 4 then ser.servicepricemoney
+					when 5 then ser.servicepricemoney
+					when 6 then ser.servicepricemoney
+					when 7 then ser.servicepricemoney_nhandan
+					when 8 then ser.servicepricemoney_nhandan
+					when 9 then ser.servicepricemoney_nhandan
+					end)
+			end) as servicepricemoney,
+		(case when vp.doituongbenhnhanid=4 
+					then (ser.servicepricemoney_nuocngoai * ser.soluong)
+			else 
+				(case ser.loaidoituong
+					when 0 then (ser.servicepricemoney_bhyt * ser.soluong)
+					when 1 then (ser.servicepricemoney_nhandan * ser.soluong)
+					when 2 then (ser.servicepricemoney_bhyt * ser.soluong)
+					when 3 then (ser.servicepricemoney * ser.soluong)
+					when 4 then (ser.servicepricemoney * ser.soluong)
+					when 5 then (ser.servicepricemoney * ser.soluong)
+					when 6 then (ser.servicepricemoney * ser.soluong)
+					when 7 then (ser.servicepricemoney_nhandan * ser.soluong)
+					when 8 then (ser.servicepricemoney_nhandan * ser.soluong)
+					when 9 then (ser.servicepricemoney_nhandan * ser.soluong)
+					end)
+			end) as thanhtien,
+		(case when vp.datronvien=1 then 'BN trốn viện' else '' end) as bntronvien
+	from (select vienphiid,servicepricecode,servicepricename,servicepricedate,loaidoituong,departmentgroupid,departmentid,servicepricemoney,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney_nuocngoai,soluong from serviceprice where 1=1 {_lstservicecode} {khoachidinh} {_tieuchi_ser}) ser
+		inner join (select vienphiid,doituongbenhnhanid,hosobenhanid,patientid,datronvien from vienphi where 1=1 {_tieuchi_vp} {_trangthaibenhan} {_bntronvien}) vp on vp.vienphiid=ser.vienphiid 
+		inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=ser.departmentgroupid	
+		left join (select departmentid,departmentname from department where departmenttype in (2,3,9,6,7)) de on de.departmentid=ser.departmentid
+		inner join (select hosobenhanid,patientname,birthday,gioitinhname,bhytcode from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid;";
                 }
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)

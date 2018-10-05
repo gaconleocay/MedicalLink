@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucBCSoCDHA));
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.chkTatCa = new DevExpress.XtraEditors.CheckEdit();
             this.lblTheoLoai = new System.Windows.Forms.Label();
             this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.cboPhongThucHien = new DevExpress.XtraEditors.LookUpEdit();
@@ -77,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhongThucHien.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
@@ -98,6 +100,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkTatCa);
             this.groupBoxFile.Controls.Add(this.lblTheoLoai);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSKhoa);
             this.groupBoxFile.Controls.Add(this.cboPhongThucHien);
@@ -117,6 +120,17 @@
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // chkTatCa
+            // 
+            this.chkTatCa.Location = new System.Drawing.Point(708, 57);
+            this.chkTatCa.Name = "chkTatCa";
+            this.chkTatCa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTatCa.Properties.Appearance.Options.UseFont = true;
+            this.chkTatCa.Properties.Caption = "Tất cả";
+            this.chkTatCa.Size = new System.Drawing.Size(75, 20);
+            this.chkTatCa.TabIndex = 96;
+            this.chkTatCa.CheckedChanged += new System.EventHandler(this.chkTatCa_CheckedChanged);
             // 
             // lblTheoLoai
             // 
@@ -142,7 +156,7 @@
             this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
-            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(510, 22);
+            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(429, 22);
             this.chkcomboListDSKhoa.TabIndex = 94;
             // 
             // cboPhongThucHien
@@ -878,6 +892,7 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkTatCa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhongThucHien.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
@@ -936,5 +951,6 @@
         private DevExpress.XtraEditors.SimpleButton tbnExport;
         private System.Windows.Forms.Label lblTheoLoai;
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSKhoa;
+        private DevExpress.XtraEditors.CheckEdit chkTatCa;
     }
 }

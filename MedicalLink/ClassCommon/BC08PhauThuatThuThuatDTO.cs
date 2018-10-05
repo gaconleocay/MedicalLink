@@ -26,9 +26,9 @@ namespace MedicalLink.ClassCommon
         public string diachi { get; set; }
         public string khoachidinh { get; set; }
         public string phongchidinh { get; set; }
-        public string ngay_chidinh { get; set; }
-        public string ngay_thuchien { get; set; }
-        public string ngay_ketthuc { get; set; }
+        public DateTime? ngay_chidinh { get; set; }
+        public DateTime? ngay_thuchien { get; set; }
+        public DateTime? ngay_ketthuc { get; set; }
         public string khoachuyenden { get; set; }
         public string khoaravien { get; set; }
         public string cd_chidinh { get; set; }
@@ -64,9 +64,9 @@ namespace MedicalLink.ClassCommon
         public decimal? giupviec1_tien { get; set; }
         public string giupviec2_tenbs { get; set; }
         public decimal? giupviec2_tien { get; set; }
-        public string ngay_vaovien { get; set; }
-        public string ngay_ravien { get; set; }
-        public string ngay_thanhtoan { get; set; }
+        public DateTime? ngay_vaovien { get; set; }
+        public DateTime? ngay_ravien { get; set; }
+        public DateTime? ngay_thanhtoan { get; set; }
         public string nguoinhapthuchien { get; set; }
         public string thuoc_servicepricecode { get; set; }
         public string thuoc_servicepricename { get; set; }

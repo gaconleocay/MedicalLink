@@ -102,7 +102,7 @@ namespace MedicalLink.BaoCao
                     return;
                 }
 
-                if (chkcomboListDSKhoa.Visible)
+                if (chkcomboListDSKhoa.Visible && chkTatCa.Checked == false)
                 {
                     List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
                     if (lstKhoaCheck.Count > 0)
@@ -112,7 +112,7 @@ namespace MedicalLink.BaoCao
                         {
                             _lstdepartmentgroup += "," + lstKhoaCheck[i];
                         }
-                        _lstdepartmentgroup= _lstdepartmentgroup.Replace("0,","");
+                        _lstdepartmentgroup = _lstdepartmentgroup.Replace("0,", "");
                         if (lblTheoLoai.Text == "Khoa gửi")
                         {
                             _theokhoagui = " and departmentgroupid in (" + _lstdepartmentgroup + ") ";
@@ -220,6 +220,7 @@ FROM
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
+                    gridControlSoCDHA.DataSource = null;
                 }
             }
             catch (Exception ex)
@@ -396,7 +397,6 @@ FROM
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
         private void cboPhongThucHien_EditValueChanged(object sender, EventArgs e)
         {
             try
@@ -430,11 +430,13 @@ FROM
                 {
                     lblTheoLoai.Text = "Khoa gửi";
                     _ktFilterKhoa = true;
+                    LoadDanhSachKhoaGui_User();
                 }
                 if (_itemTheoKhoaTraKetQua.tools_otherlistvalue.Contains(_phongthuchien.ToString() + ","))
                 {
                     lblTheoLoai.Text = "Khoa trả KQ";
                     _ktFilterKhoa = true;
+                    LoadDanhSachKhoaTraKQ_User();
                 }
 
                 if (_ktFilterKhoa)
@@ -454,9 +456,76 @@ FROM
             }
         }
 
+        private void chkTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkTatCa.Checked)
+                {
+                    chkcomboListDSKhoa.Enabled = false;
+                }
+                else
+                {
+                    chkcomboListDSKhoa.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
         #endregion
 
         #region Process
+        private void LoadDanhSachKhoaGui_User()
+        {
+            try
+            {
+                if (Base.SessionLogin.SessionUsercode != "admin")
+                {
+                    string _sqlDSKhoa = "select departmentgroupid,departmentgroupcode,departmentgroupname from tools_tbluser_rpt13 where iskhoagui=1 and usercode='" + Base.SessionLogin.SessionUsercode + "';";
+                    DataTable _dataDSKhoa = condb.GetDataTable_MeL(_sqlDSKhoa);
+                    chkcomboListDSKhoa.Properties.DataSource = _dataDSKhoa;
+                    chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
+                    chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
+                    chkcomboListDSKhoa.CheckAll();
+                }
+                else
+                {
+                    LoadDanhSachKhoa();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void LoadDanhSachKhoaTraKQ_User()
+        {
+            try
+            {
+                if (Base.SessionLogin.SessionUsercode != "admin")
+                {
+                    string _sqlDSKhoa = "select departmentgroupid,departmentgroupcode,departmentgroupname from tools_tbluser_rpt13 where iskhoatra=1 and usercode='" + Base.SessionLogin.SessionUsercode + "';";
+                    DataTable _dataDSKhoa = condb.GetDataTable_MeL(_sqlDSKhoa);
+                    chkcomboListDSKhoa.Properties.DataSource = _dataDSKhoa;
+                    chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
+                    chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
+                    chkcomboListDSKhoa.CheckAll();
+                }
+                else
+                {
+                    LoadDanhSachKhoa();
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+
+
+
         //private bool KiemTraPhong_LaCDHA()
         //{
         //    bool result = false;
@@ -476,6 +545,7 @@ FROM
         //}
 
         #endregion
+
 
     }
 }

@@ -271,9 +271,9 @@ namespace MedicalLink.BaoCao
 	((case when hsba.hc_sonha<>'' then hsba.hc_sonha || ', ' else '' end) || (case when hsba.hc_thon<>'' then hsba.hc_thon || ' - ' else '' end) || (case when hsba.hc_xacode<>'00' then hsba.hc_xaname || ' - ' else '' end) || (case when hsba.hc_huyencode<>'00' then hsba.hc_huyenname || ' - ' else '' end) || (case when hsba.hc_tinhcode<>'00' then hsba.hc_tinhname || ' - ' else '' end) || hc_quocgianame) as diachi, 
 	kchd.departmentgroupname as khoachidinh, 
 	pcd.departmentname as phongchidinh, 
-	TO_CHAR(A.ngay_chidinh,'HH24:MI dd/MM/yyyy') as ngay_chidinh, 
-	TO_CHAR(A.ngay_thuchien,'HH24:MI dd/MM/yyyy') as ngay_thuchien, 
-	(case when A.ngay_ketthuc<>'0001-01-01 00:00:00' then TO_CHAR(A.ngay_ketthuc,'HH24:MI dd/MM/yyyy') end) as ngay_ketthuc,
+	A.ngay_chidinh,
+	A.ngay_thuchien,
+	(case when A.ngay_ketthuc<>'0001-01-01 00:00:00' then A.ngay_ketthuc end) as ngay_ketthuc,
 	kcd.departmentgroupname as khoachuyenden, 
 	krv.departmentgroupname as khoaravien, 
 	mbp.chandoan as cd_chidinh,
@@ -309,9 +309,9 @@ namespace MedicalLink.BaoCao
 	(case when coalesce(gv1.username,'CX')<>'CX' then (A.giupviec1_tien * (A.tyle/100)) else 0 end) as giupviec1_tien, 
 	gv2.username as giupviec2_tenbs, 
 	(case when coalesce(gv2.username,'CX')<>'CX' then (A.giupviec2_tien * (A.tyle/100)) else 0 end) as giupviec2_tien, 
-	TO_CHAR(A.ngay_vaovien, 'HH24:MI dd/MM/yyyy') as ngay_vaovien, 
-	TO_CHAR(A.ngay_ravien, 'HH24:MI dd/MM/yyyy') as ngay_ravien, 
-	TO_CHAR(A.ngay_thanhtoan, 'HH24:MI dd/MM/yyyy') as ngay_thanhtoan,
+	A.ngay_vaovien,
+	A.ngay_ravien,
+	A.ngay_thanhtoan,
 	nnth.username as nguoinhapthuchien,
 	'' as thuoc_servicepricecode,
 	'' as thuoc_servicepricename,
@@ -375,7 +375,7 @@ FROM
 	inner join (select servicepricecode,tinhtoanlaigiadvktc,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') {_pttt_loaiid_serf}) serf on serf.servicepricecode=ser.servicepricecode 
 	WHERE coalesce(pttt.stt,1)=1 {_tieuchi_pttt}) A 
 INNER JOIN (select hosobenhanid,patientname,gioitinhcode,birthday,bhytcode,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname,hc_quocgianame from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsbA.hosobenhanid=A.hosobenhanid 
-INNER JOIN (select maubenhphamid,chandoan from maubenhpham where 1=1 {_tieuchi_mbp}) mbp on mbp.maubenhphamid=A.maubenhphamid 
+INNER JOIN (select maubenhphamid,chandoan from maubenhpham where 1=1 and maubenhphamgrouptype=4 {_tieuchi_mbp}) mbp on mbp.maubenhphamid=A.maubenhphamid 
 LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kchd ON kchd.departmentgroupid=A.khoachidinh 
 LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=A.phongchidinh
 LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=A.khoachuyenden 

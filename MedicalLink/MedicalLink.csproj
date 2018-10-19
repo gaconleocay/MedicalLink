@@ -335,6 +335,24 @@
     <Compile Include="BaoCao\BC48_PhauThuatThuThuatChiTiet\ucBC48_PhauThuatThuThuatChiTietProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="BaoCao\BC50_SuDungThuocTheoKhoaChiTiet\ucBC50_SuDungThuocTheoKhoaChiTiet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC50_SuDungThuocTheoKhoaChiTiet\ucBC50_SuDungThuocTheoKhoaChiTiet.Designer.cs">
+      <DependentUpon>ucBC50_SuDungThuocTheoKhoaChiTiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC49_SuDungThuocToanVien\ucBC49_SuDungThuocToanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC49_SuDungThuocToanVien\ucBC49_SuDungThuocToanVien.Designer.cs">
+      <DependentUpon>ucBC49_SuDungThuocToanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC52_TGKhamBenhTrungBinh\ucBC52_TGKhamBenhTrungBinh.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC52_TGKhamBenhTrungBinh\ucBC52_TGKhamBenhTrungBinh.Designer.cs">
+      <DependentUpon>ucBC52_TGKhamBenhTrungBinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -794,6 +812,7 @@
     <Compile Include="ClassCommon\BCXuatNhapTonTuTruc.cs" />
     <Compile Include="ClassCommon\CapNhatVaDieuDongNhanSuDTO.cs" />
     <Compile Include="ClassCommon\classBCQLTongTheKhoaBNDetail.cs" />
+    <Compile Include="ClassCommon\BC50SuDungThuocTheoKhoa.cs" />
     <Compile Include="ClassCommon\DanhMucThuocVatTuDTO.cs" />
     <Compile Include="ClassCommon\DanhSachNhanVienDTO.cs" />
     <Compile Include="ClassCommon\PQSoCDHA_DepartmentgroupDTO.cs" />
@@ -1449,6 +1468,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC48_PhauThuatThuThuatChiTiet\ucBC48_PhauThuatThuThuatChiTiet.resx">
       <DependentUpon>ucBC48_PhauThuatThuThuatChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC50_SuDungThuocTheoKhoaChiTiet\ucBC50_SuDungThuocTheoKhoaChiTiet.resx">
+      <DependentUpon>ucBC50_SuDungThuocTheoKhoaChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC49_SuDungThuocToanVien\ucBC49_SuDungThuocToanVien.resx">
+      <DependentUpon>ucBC49_SuDungThuocToanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC52_TGKhamBenhTrungBinh\ucBC52_TGKhamBenhTrungBinh.resx">
+      <DependentUpon>ucBC52_TGKhamBenhTrungBinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
       <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
@@ -2273,6 +2301,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_47_BomKimTiemHaoPhi_TongHop.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_48_PhauThuatThuThuat_ChiTiet_CHUNG.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_49_SuDungThuocToanVien.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_52_TGKhamBenhTrungBinh.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

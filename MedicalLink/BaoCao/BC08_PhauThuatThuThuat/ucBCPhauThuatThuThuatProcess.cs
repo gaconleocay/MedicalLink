@@ -31,13 +31,15 @@ namespace MedicalLink.BaoCao
 
                 string _tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string _denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
+
+                string _TGLayDuLieu = GlobalStore.lstOption.Where(o => o.toolsoptioncode == "REPORT_08_TGLayDuLieu").ToList().FirstOrDefault().toolsoptionvalue;
                 //  string tieuchi_date = "";
                 string _tieuchi_pttt = " ";//không phải set mặc định vì LEFT JOIN
-                string _tieuchi_ser = " and servicepricedate>'2016-01-01 00:00:00' ";
-                string _tieuchi_vp = " and vienphidate>'2016-01-01 00:00:00' ";
-                string _tieuchi_bhyt = " and bhytdate>'2016-01-01 00:00:00' ";
-                string _tieuchi_mbp = " and maubenhphamdate>'2016-01-01 00:00:00' ";
-                string _tieuchi_hsba = " and hosobenhandate>'2016-01-01 00:00:00' ";
+                string _tieuchi_ser = " and servicepricedate>'"+ _TGLayDuLieu + "' ";
+                string _tieuchi_vp = " and vienphidate>'" + _TGLayDuLieu + "' ";
+                string _tieuchi_bhyt = " and bhytdate>'" + _TGLayDuLieu + "' ";
+                string _tieuchi_mbp = " and maubenhphamdate>'" + _TGLayDuLieu + "' ";
+                string _tieuchi_hsba = " and hosobenhandate>'" + _TGLayDuLieu + "' ";
                 string _departmentid_ser = "";
                 string _pttt_loaiid_serf = "";
                 string chiachobacsi = "";

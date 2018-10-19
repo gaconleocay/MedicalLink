@@ -113,7 +113,7 @@ namespace MedicalLink.FormCommon
                 string version = fvi.FileVersion;
                 this.Text = "Phần mềm quản lý tổng thể bệnh viện (v" + version + ")";
                 StatusUsername.Caption = SessionLogin.SessionUsername;
-                StatusDBName.Caption = serverhost + " [ " + serverdb + " ]";
+                StatusDBName.Caption = serverhost;
             }
             catch (Exception ex)
             {

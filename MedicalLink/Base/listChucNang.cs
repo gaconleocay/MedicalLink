@@ -843,9 +843,23 @@ namespace MedicalLink.Base
                 REPORT_48.permissionnote = "";
                 lstresult.Add(REPORT_48);
 
+                ClassCommon.classPermission REPORT_49 = new ClassCommon.classPermission();
+                REPORT_49.permissioncheck = false;
+                REPORT_49.permissioncode = "REPORT_49";
+                REPORT_49.permissionname = "Báo cáo sử dụng thuốc trong toàn viện - theo khoa";
+                REPORT_49.permissiontype = 3;
+                REPORT_49.tabMenuId = 5;
+                REPORT_49.permissionnote = "";
+                lstresult.Add(REPORT_49);
 
-
-
+                ClassCommon.classPermission REPORT_52 = new ClassCommon.classPermission();
+                REPORT_52.permissioncheck = false;
+                REPORT_52.permissioncode = "REPORT_52";
+                REPORT_52.permissionname = "Báo cáo thời gian khám chữa bệnh trung bình";
+                REPORT_52.permissiontype = 3;
+                REPORT_52.tabMenuId = 5;
+                REPORT_52.permissionnote = "Thời gian tính bằng phút";
+                lstresult.Add(REPORT_52);
 
 
 

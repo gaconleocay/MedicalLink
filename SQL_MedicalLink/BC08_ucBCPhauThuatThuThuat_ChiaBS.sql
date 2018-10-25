@@ -31,7 +31,7 @@ CREATE INDEX serviceprice_duyetpttt_user_idx ON serviceprice USING btree (duyetp
 
 --ngay 23/5: fix loi x2 ket qua
 --ngay 12/9/2018: fix bhytcode; them tieu chi + them chi tiet thuoc/vat tu trong goi
-
+--ngay 24/10: fix don gia người nc ngoài
 
 
 SELECT row_number () over (order by A.ngay_chidinh) as stt, 
@@ -136,7 +136,8 @@ FROM
 		(case when vp.vienphistatus<>0 then vp.departmentgroupid else 0 end) as khoaravien, 
 		ser.servicepricecode, 
 		(case ser.loaidoituong when 0 then ser.servicepricename_bhyt when 1 then ser.servicepricename_nhandan else ser.servicepricename end) as servicepricename, 
-		(case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee, 
+		(case when ser.doituongbenhnhanid=4 then ser.servicepricemoney_nuocngoai
+			else (case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) end) as servicepricefee, 
 		(case ser.loaipttt when 1 then 50.0 when 2 then 80.0 else 100.0 end) as tyle, 
 		{_sqlhaophi}
 		/*0 as thuoc_tronggoi,
@@ -170,7 +171,7 @@ FROM
 		(case when vp.vienphistatus>0 then vp.vienphidate_ravien end) as ngay_ravien, 
 		(case when vp.vienphistatus_vp=1 then vp.duyet_ngayduyet_vp end) as ngay_thanhtoan,
 		pttt.userid_gmhs as nguoinhapthuchien
-	FROM (select servicepriceid,vienphiid,duyetpttt_stt,duyetpttt_date,duyetpttt_usercode,duyetpttt_username,maubenhphamid,bhyt_groupcode,departmentgroupid,departmentid,servicepricedate,medicalrecordid,servicepricecode,loaidoituong,servicepricename,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') {_trangthaipttt} {_tieuchi_ser} {_departmentid_ser}) ser
+	FROM (select servicepriceid,vienphiid,duyetpttt_stt,duyetpttt_date,duyetpttt_usercode,duyetpttt_username,maubenhphamid,bhyt_groupcode,departmentgroupid,departmentid,servicepricedate,medicalrecordid,servicepricecode,loaidoituong,servicepricename,servicepricename_bhyt,servicepricename_nhandan,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,loaipttt,soluong,chiphidauvao,chiphimaymoc,chiphipttt,mayytedbid,doituongbenhnhanid,servicepricemoney_nuocngoai from serviceprice where bhyt_groupcode in ('06PTTT','07KTC') {_trangthaipttt} {_tieuchi_ser} {_departmentid_ser}) ser
 	left join (select (row_number() OVER (PARTITION BY servicepriceid ORDER BY phauthuatthuthuatid desc)) as stt,* from phauthuatthuthuat) pttt on pttt.servicepriceid=ser.servicepriceid 
 	inner join (select patientid,vienphiid,hosobenhanid,bhytid,vienphistatus,departmentgroupid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}) vp on vp.vienphiid=ser.vienphiid 
 	inner join (select servicepricecode,tinhtoanlaigiadvktc,pttt_loaiid from servicepriceref where servicegrouptype=4 and bhyt_groupcode in ('06PTTT','07KTC') {_pttt_loaiid_serf}) serf on serf.servicepricecode=ser.servicepricecode 

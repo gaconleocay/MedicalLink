@@ -38,6 +38,7 @@ namespace MedicalLink.BaoCao
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 LoadDanhSachKhoa();
+                LoadDanhSachKhoTT();
             }
             catch (Exception ex)
             {
@@ -62,6 +63,22 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void LoadDanhSachKhoTT()
+        {
+            try
+            {
+                string _sqlKhoTT = "SELECT ms.medicinestoreid,ms.medicinestorename FROM medicine_store ms WHERE ms.medicinestoretype in (3,7,8,9) ORDER BY ms.medicinestoretype,ms.medicinestorename;";
+                DataTable _dataKhoTT = condb.GetDataTable_HIS(_sqlKhoTT);
+                chkcomboListDSTuTruc.Properties.DataSource = _dataKhoTT;
+                chkcomboListDSTuTruc.Properties.DisplayMember = "medicinestorename";
+                chkcomboListDSTuTruc.Properties.ValueMember = "medicinestoreid";
+                chkcomboListDSTuTruc.CheckAll();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
         #region Tim kiem
@@ -74,7 +91,12 @@ namespace MedicalLink.BaoCao
                 string _tieuchi_ser = " and servicepricedate>='2017-01-01 00:00:00' ";
                 string _tieuchi_mbp = " and maubenhphamdate>='2017-01-01 00:00:00' ";
                 string _trangthai_vp = "";
+                string _doituongbenhnhanid = "";
+                string _datatype = "";
+                string _bhyt_groupcode = " and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') ";
                 string _lstKhoaChonLayBC = " and departmentgroupid in (0";
+                string _lstKhoTTChonLayBC = " and medicinestoreid in (0";
+
 
                 string datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -111,6 +133,24 @@ namespace MedicalLink.BaoCao
                 {
                     _trangthai_vp = " and vienphistatus>0 and vienphistatus_vp=1 ";
                 }
+                //Loai thuoc/VT
+                if (cboLoaiThuocVT.Text == "Thuốc")
+                {
+                    _datatype = " and datatype=0 ";
+                }
+                else if (cboLoaiThuocVT.Text == "Vật tư")
+                {
+                    _datatype = " and datatype=1 ";
+                }
+                //cboDoiTuongBN
+                if (cboDoiTuongBN.Text == "BHYT")
+                {
+                    _doituongbenhnhanid = " and doituongbenhnhanid=1 ";
+                }
+                else if (cboDoiTuongBN.Text == "Viện phí")
+                {
+                    _doituongbenhnhanid = " and doituongbenhnhanid<>1 ";
+                }
                 //Khoa
                 List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
                 if (lstKhoaCheck.Count > 0)
@@ -129,6 +169,25 @@ namespace MedicalLink.BaoCao
                     frmthongbao.Show();
                     return;
                 }
+                //Kho/tu truc
+                List<Object> lstKhoTTCheck = chkcomboListDSTuTruc.Properties.Items.GetCheckedValues();
+                if (lstKhoTTCheck.Count > 0)
+                {
+                    for (int i = 0; i < lstKhoTTCheck.Count; i++)
+                    {
+                        _lstKhoTTChonLayBC += "," + lstKhoTTCheck[i];
+                    }
+                    _lstKhoTTChonLayBC += ")";
+                    _lstKhoTTChonLayBC = _lstKhoTTChonLayBC.Replace("(0,", "(");
+                }
+                else
+                {
+                    SplashScreenManager.CloseForm();
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                    frmthongbao.Show();
+                    return;
+                }
+
 
                 string _sql_timkiem = $@"SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY mef.medicinename)) as stt,
 	degp.departmentgroupid,
@@ -144,20 +203,20 @@ namespace MedicalLink.BaoCao
 	sum(O.ton_thanhtien) as ton_thanhtien
 FROM 
 	(select ser.departmentgroupid,ser.dongia,ser.servicepricecode,
-		sum(case when mbp.medicinestoreid in (2,88,87,175) then ser.soluong end) as noitru_sl,
-		sum(case when mbp.medicinestoreid in (2,88,87,175) then ser.soluong*ser.dongia end) as noitru_thanhtien,
-		sum(case when mbp.medicinestoreid not in (2,88,87,175) then ser.soluong end) as tutruc_sl,
-		sum(case when mbp.medicinestoreid not in (2,88,87,175) then ser.soluong*ser.dongia end) as tutruc_thanhtien,
+		sum(case when mbp.medicinestoreid in (2,88,87,175,94,96,5,183,119,141,124) then ser.soluong end) as noitru_sl,
+		sum(case when mbp.medicinestoreid in (2,88,87,175,94,96,5,183,119,141,124) then ser.soluong*ser.dongia end) as noitru_thanhtien,
+		sum(case when mbp.medicinestoreid not in (2,88,87,175,94,96,5,183,119,141,124) then ser.soluong end) as tutruc_sl,
+		sum(case when mbp.medicinestoreid not in (2,88,87,175,94,96,5,183,119,141,124) then ser.soluong*ser.dongia end) as tutruc_thanhtien,
 		0 as ton_sl,
 		0 as ton_thanhtien
 	from 
-		(select vienphiid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp}) vp
+		(select vienphiid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp} {_doituongbenhnhanid}) vp
 		  inner join (select vienphiid,departmentgroupid,servicepricecode,maubenhphamid,
 						(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong
-					from serviceprice where thuockhobanle=0 and soluong>0 and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_lstKhoaChonLayBC}) ser on ser.vienphiid=vp.vienphiid
-		  inner join (select maubenhphamid,medicinestoreid from maubenhpham where maubenhphamgrouptype in (5,6) {_tieuchi_mbp} {_lstKhoaChonLayBC}) mbp on mbp.maubenhphamid=ser.maubenhphamid
+					from serviceprice where thuockhobanle=0 and soluong>0 {_bhyt_groupcode} {_tieuchi_ser} {_lstKhoaChonLayBC}) ser on ser.vienphiid=vp.vienphiid
+		  inner join (select maubenhphamid,medicinestoreid from maubenhpham where maubenhphamgrouptype in (5,6) {_tieuchi_mbp} {_lstKhoaChonLayBC} {_lstKhoTTChonLayBC}) mbp on mbp.maubenhphamid=ser.maubenhphamid
 	group by ser.departmentgroupid,ser.dongia,ser.servicepricecode) O
-	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref) mef on mef.medicinecode=O.servicepricecode
+	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref where 1=1 {_datatype}) mef on mef.medicinecode=O.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=O.departmentgroupid
 WHERE O.noitru_sl<>0 or O.tutruc_sl<>0 or O.ton_sl<>0
 GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,O.dongia;";
@@ -260,6 +319,7 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,m
 
         #endregion
 
+        #region Events
         private void cboTrangThai_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -275,5 +335,8 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,m
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+
+        #endregion
+
     }
 }

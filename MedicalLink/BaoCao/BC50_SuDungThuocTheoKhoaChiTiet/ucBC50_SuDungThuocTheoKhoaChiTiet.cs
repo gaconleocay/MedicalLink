@@ -80,7 +80,27 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-
+        private void LoadDanhSachNhomThuocVatTu()
+        {
+            try
+            {
+                string _sqlDSNhom = @"select medicinerefid,medicinereftype,medicinegroupcode,medicinecode,medicinename from medicine_ref
+where medicinecode in (select medicinegroupcode from medicine_ref where isremove=0 and medicinegroupcode not in ('','NHATHUOC','T46603-4518','VT39826-0633','T37527-3420') group by medicinegroupcode)
+and medicinegroupcode not in ('','NHATHUOC','T46603-4518','VT39826-0633','T37527-3420')
+order by medicinereftype
+	,medicinerefid
+	,medicinegroupcode;";
+                DataTable _dataDSNhom = condb.GetDataTable_HIS(_sqlDSNhom);
+                chkcomboListNhomThuoc.Properties.DataSource = _dataDSNhom;
+                chkcomboListNhomThuoc.Properties.DisplayMember = "departmentgroupname";
+                chkcomboListNhomThuoc.Properties.ValueMember = "departmentgroupid";
+                chkcomboListNhomThuoc.CheckAll();
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
         #region Tim kiem
@@ -89,9 +109,13 @@ namespace MedicalLink.BaoCao
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                string _tieuchi_vp = " and vienphidate_ravien>='2017-01-01 00:00:00' ";
-                string _tieuchi_ser = " and servicepricedate>='2017-01-01 00:00:00' ";
-                string _tieuchi_mbp = " and maubenhphamdate>='2017-01-01 00:00:00' ";
+                DataGridView_ResetLaiCot();
+
+                string _tieuchi_vp = " and vienphidate_ravien>='2018-01-01 00:00:00' ";
+                string _tieuchi_ser = " and servicepricedate>='2018-01-01 00:00:00' ";
+                //string _tieuchi_mbp = " and maubenhphamdate>='2018-01-01 00:00:00' ";
+                string _tieuchi_hsba = " and hosobenhandate>='2018-01-01 00:00:00' ";
+                string _tieuchi_bh = " and bhytdate>='2018-01-01 00:00:00' ";
                 string _trangthai_vp = "";
                 string _lstKhoaChonLayBC = " and departmentgroupid in (0";
 
@@ -101,13 +125,13 @@ namespace MedicalLink.BaoCao
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     _tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
-                    _tieuchi_mbp = " and maubenhphamdate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    //_tieuchi_mbp = " and maubenhphamdate between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
                     _tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
                     _tieuchi_ser = " and servicepricedate>='" + datetungay + "' ";
-                    _tieuchi_mbp = " and maubenhphamdate>='" + datetungay + "' ";
+                    //_tieuchi_mbp = " and maubenhphamdate>='" + datetungay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
                 {
@@ -149,16 +173,36 @@ namespace MedicalLink.BaoCao
                     return;
                 }
 
-                string _sqlDSBN = $@"";
+                string _sqlDSBN = $@"SELECT row_number () over (order by vp.vienphiid) as stt,
+	vp.vienphiid,
+	vp.patientid,
+	hsba.patientname,
+	bh.bhytcode
+FROM 
+	(select vienphiid,hosobenhanid,bhytid,patientid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp}) vp
+	inner join (select hosobenhanid,patientname from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid
+	inner join (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bh}) bh on bh.bhytid=vp.bhytid
+	inner join (select vienphiid from serviceprice where thuockhobanle=0 and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_lstKhoaChonLayBC} group by vienphiid) ser on ser.vienphiid=vp.vienphiid;";
 
-                string _sqlDSThuocVT = $@"";
+                string _sqlDSThuocVT = $@"SELECT
+	vp.vienphiid,	
+	mef.medicinerefid_org,
+	ser.servicepricecode,
+	TO_CHAR(ser.servicepricedate,'HH24:MI dd/MM/yyyy') as servicepricedate,
+    TO_CHAR(ser.servicepricedate,'yyyyMMddHH24MI') as servicepricedatelong,
+	ser.soluong,
+	(ser.soluong*ser.dongia) as thanhtien
+FROM 
+	(select vienphiid,hosobenhanid,bhytid,patientid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp}) vp
+	inner join (select vienphiid,servicepricecode,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong from serviceprice where thuockhobanle=0 and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_lstKhoaChonLayBC}) ser on ser.vienphiid=vp.vienphiid
+	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref) mef on mef.medicinecode=ser.servicepricecode;";
+
                 DataTable _dataDSBN = condb.GetDataTable_HIS(_sqlDSBN);
                 DataTable _dataDSThuocVT = condb.GetDataTable_HIS(_sqlDSThuocVT);
 
                 if (_dataDSBN != null && _dataDSBN.Rows.Count > 0)
                 {
                     HienThiDuLieuTimKiem(_dataDSBN, _dataDSThuocVT);
-                    //gridControlBaoCao.DataSource = _dataDSBN;
                 }
                 else
                 {
@@ -194,10 +238,10 @@ namespace MedicalLink.BaoCao
                     reportitem.value = tungaydenngay;
                     thongTinThem.Add(reportitem);
                     ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
-                    string fileTemplatePath = "BC_49_SuDungThuocToanVien.xlsx";
+                    //string fileTemplatePath = "BC_49_SuDungThuocToanVien.xlsx";
                     DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
                     Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                    export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                    export.ExportExcelNotTemplate("BÁO CÁO CHI TIẾT SỬ DỤNG THUỐC THEO KHOA", data_XuatBaoCao);
                 }
             }
             catch (Exception ex)
@@ -245,6 +289,10 @@ namespace MedicalLink.BaoCao
                     e.Appearance.BackColor = Color.DodgerBlue;
                     e.Appearance.ForeColor = Color.White;
                 }
+                if (view.GetRowCellValue(e.RowHandle, view.Columns["stt"]).ToString() != "")
+                {
+                    e.Appearance.Font = new System.Drawing.Font(e.Appearance.Font, FontStyle.Bold);
+                }
             }
             catch (Exception ex)
             {
@@ -278,24 +326,431 @@ namespace MedicalLink.BaoCao
         {
             try
             {
+                List<BC50DSThuocVTDTO> lstDSThuocVT = Utilities.DataTables.DataTableToList<BC50DSThuocVTDTO>(_dataDSThuocVT);
+                List<BC50DSBenhNhanDTO> lstDSBenhNhan = Utilities.DataTables.DataTableToList<BC50DSBenhNhanDTO>(_dataDSBN);
+
                 //Lay DS DM thuoc
-
-
+                List<BC50DSThuocVTDTO> _lstDMTimKiem = lstDSThuocVT.GroupBy(o => o.medicinerefid_org).Select(n => n.First()).ToList();
+                var DMThuocVT = (from mef in this.lstMedicineRef
+                                 join tk in _lstDMTimKiem on mef.medicinerefid equals tk.medicinerefid_org
+                                 select new
+                                 {
+                                     medicinerefid_org = mef.medicinerefid_org,
+                                     medicinecode = mef.medicinecode,
+                                     medicinename = mef.medicinename,
+                                     dangdung = mef.dangdung,
+                                     hoatchat = mef.hoatchat,
+                                     nhomthau = mef.nhomthau,
+                                 }).ToList().OrderBy(or => or.medicinename).ToList();
 
                 //Tao gridview
+                foreach (var _itemDM in DMThuocVT)
+                {
+                    //
+                    DevExpress.XtraGrid.Views.BandedGrid.GridBand _gridBand_DMThuoc = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
 
+                    DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_medicinecode = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                    DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_medicinename = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                    DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_dangdung = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                    DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_hoatchat = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                    DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_nhomthau = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                    DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_soluong = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                    DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_thanhtien = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                    //
+                    this.gridViewBaoCao.Bands.Add(_gridBand_DMThuoc);
+                    //gridBand_TTBN
+                    _gridBand_DMThuoc.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    _gridBand_DMThuoc.AppearanceHeader.Options.UseFont = true;
+                    _gridBand_DMThuoc.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridBand_DMThuoc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridBand_DMThuoc.Caption = _itemDM.medicinename;
+                    _gridBand_DMThuoc.Columns.Add(_gridColumn_medicinecode);
+                    _gridBand_DMThuoc.Columns.Add(_gridColumn_medicinename);
+                    _gridBand_DMThuoc.Columns.Add(_gridColumn_dangdung);
+                    _gridBand_DMThuoc.Columns.Add(_gridColumn_hoatchat);
+                    _gridBand_DMThuoc.Columns.Add(_gridColumn_nhomthau);
+                    _gridBand_DMThuoc.Columns.Add(_gridColumn_soluong);
+                    _gridBand_DMThuoc.Columns.Add(_gridColumn_thanhtien);
+                    _gridBand_DMThuoc.Name = "gridBand_TTBN";
+                    _gridBand_DMThuoc.VisibleIndex = 0;
+                    _gridBand_DMThuoc.Width = 540;
+                    //=============Column
+                    //_gridColumn_medicinecode
+                    _gridColumn_medicinecode.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_medicinecode.AppearanceCell.Options.UseFont = true;
+                    _gridColumn_medicinecode.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_medicinecode.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                    _gridColumn_medicinecode.AppearanceHeader.Options.UseFont = true;
+                    _gridColumn_medicinecode.AppearanceHeader.Options.UseForeColor = true;
+                    _gridColumn_medicinecode.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridColumn_medicinecode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridColumn_medicinecode.Caption = "Mã thuốc";
+                    _gridColumn_medicinecode.FieldName = "MT_" + _itemDM.medicinecode;
+                    _gridColumn_medicinecode.Name = "MT_" + _itemDM.medicinecode;
+                    _gridColumn_medicinecode.OptionsColumn.ReadOnly = true;
+                    _gridColumn_medicinecode.Visible = true;
+                    _gridColumn_medicinecode.Width = 150;
+                    //_gridColumn_medicinename
+                    _gridColumn_medicinename.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_medicinename.AppearanceCell.Options.UseFont = true;
+                    _gridColumn_medicinename.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_medicinename.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                    _gridColumn_medicinename.AppearanceHeader.Options.UseFont = true;
+                    _gridColumn_medicinename.AppearanceHeader.Options.UseForeColor = true;
+                    _gridColumn_medicinename.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridColumn_medicinename.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridColumn_medicinename.Caption = "Tên thuốc";
+                    _gridColumn_medicinename.FieldName = "TT_" + _itemDM.medicinecode;
+                    _gridColumn_medicinename.Name = "TT_" + _itemDM.medicinecode;
+                    _gridColumn_medicinename.OptionsColumn.ReadOnly = true;
+                    _gridColumn_medicinename.OptionsColumn.AllowEdit = false;
+                    _gridColumn_medicinename.Visible = true;
+                    _gridColumn_medicinename.Width = 250;
+                    //_gridColumn_dangdung
+                    _gridColumn_dangdung.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_dangdung.AppearanceCell.Options.UseFont = true;
+                    _gridColumn_dangdung.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_dangdung.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                    _gridColumn_dangdung.AppearanceHeader.Options.UseFont = true;
+                    _gridColumn_dangdung.AppearanceHeader.Options.UseForeColor = true;
+                    _gridColumn_dangdung.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridColumn_dangdung.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridColumn_dangdung.Caption = "Liều dùng";
+                    _gridColumn_dangdung.FieldName = "LD_" + _itemDM.medicinecode;
+                    _gridColumn_dangdung.Name = "LD_" + _itemDM.medicinecode;
+                    _gridColumn_dangdung.OptionsColumn.ReadOnly = true;
+                    _gridColumn_dangdung.OptionsColumn.AllowEdit = false;
+                    _gridColumn_dangdung.Visible = true;
+                    _gridColumn_dangdung.Width = 150;
+                    //_gridColumn_hoatchat
+                    _gridColumn_hoatchat.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_hoatchat.AppearanceCell.Options.UseFont = true;
+                    _gridColumn_hoatchat.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_hoatchat.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                    _gridColumn_hoatchat.AppearanceHeader.Options.UseFont = true;
+                    _gridColumn_hoatchat.AppearanceHeader.Options.UseForeColor = true;
+                    _gridColumn_hoatchat.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridColumn_hoatchat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridColumn_hoatchat.Caption = "Hoạt chất";
+                    _gridColumn_hoatchat.FieldName = "HC_" + _itemDM.medicinecode;
+                    _gridColumn_hoatchat.Name = "HC_" + _itemDM.medicinecode;
+                    _gridColumn_hoatchat.OptionsColumn.ReadOnly = true;
+                    _gridColumn_hoatchat.OptionsColumn.AllowEdit = false;
+                    _gridColumn_hoatchat.Visible = true;
+                    _gridColumn_hoatchat.Width = 180;
+                    //_gridColumn_nhomthau
+                    _gridColumn_nhomthau.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_nhomthau.AppearanceCell.Options.UseFont = true;
+                    _gridColumn_nhomthau.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_nhomthau.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                    _gridColumn_nhomthau.AppearanceHeader.Options.UseFont = true;
+                    _gridColumn_nhomthau.AppearanceHeader.Options.UseForeColor = true;
+                    _gridColumn_nhomthau.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridColumn_nhomthau.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridColumn_nhomthau.Caption = "Nhóm thầu";
+                    _gridColumn_nhomthau.FieldName = "NT_" + _itemDM.medicinecode;
+                    _gridColumn_nhomthau.Name = "NT_" + _itemDM.medicinecode;
+                    _gridColumn_nhomthau.OptionsColumn.ReadOnly = true;
+                    _gridColumn_nhomthau.OptionsColumn.AllowEdit = false;
+                    _gridColumn_nhomthau.Visible = true;
+                    _gridColumn_nhomthau.Width = 150;
+                    // _gridColumn_soluong
+                    _gridColumn_soluong.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_soluong.AppearanceCell.Options.UseFont = true;
+                    _gridColumn_soluong.AppearanceCell.Options.UseTextOptions = true;
+                    _gridColumn_soluong.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                    _gridColumn_soluong.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_soluong.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                    _gridColumn_soluong.AppearanceHeader.Options.UseFont = true;
+                    _gridColumn_soluong.AppearanceHeader.Options.UseForeColor = true;
+                    _gridColumn_soluong.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridColumn_soluong.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridColumn_soluong.Caption = "Số lượng";
+                    _gridColumn_soluong.DisplayFormat.FormatString = "#,##0.0";
+                    _gridColumn_soluong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+                    _gridColumn_soluong.FieldName = "SL_" + _itemDM.medicinecode;
+                    _gridColumn_soluong.Name = "SL_" + _itemDM.medicinecode;
+                    _gridColumn_soluong.OptionsColumn.AllowEdit = false;
+                    _gridColumn_soluong.OptionsColumn.ReadOnly = true;
+                    _gridColumn_soluong.OptionsColumn.AllowEdit = false;
+                    _gridColumn_soluong.Visible = true;
+                    _gridColumn_soluong.Width = 80;
+                    // _gridColumn_thanhtien
+                    _gridColumn_thanhtien.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_thanhtien.AppearanceCell.Options.UseFont = true;
+                    _gridColumn_thanhtien.AppearanceCell.Options.UseTextOptions = true;
+                    _gridColumn_thanhtien.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+                    _gridColumn_thanhtien.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                    _gridColumn_thanhtien.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                    _gridColumn_thanhtien.AppearanceHeader.Options.UseFont = true;
+                    _gridColumn_thanhtien.AppearanceHeader.Options.UseForeColor = true;
+                    _gridColumn_thanhtien.AppearanceHeader.Options.UseTextOptions = true;
+                    _gridColumn_thanhtien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                    _gridColumn_thanhtien.Caption = "Thành tiền";
+                    _gridColumn_thanhtien.DisplayFormat.FormatString = "#,##0";
+                    _gridColumn_thanhtien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+                    _gridColumn_thanhtien.FieldName = "TTi_" + _itemDM.medicinecode;
+                    _gridColumn_thanhtien.Name = "TTi_" + _itemDM.medicinecode;
+                    _gridColumn_thanhtien.OptionsColumn.AllowEdit = false;
+                    _gridColumn_thanhtien.OptionsColumn.ReadOnly = true;
+                    _gridColumn_thanhtien.OptionsColumn.AllowEdit = false;
+                    _gridColumn_thanhtien.Visible = true;
+                    _gridColumn_thanhtien.Width = 150;
 
-                //Tao datatable
+                }
 
+                //Tao datatable: them cot vao Table _dataDSBN: + cot _DMThuoc   
+                DataTable dataBCResult = _dataDSBN.Clone();
 
+                dataBCResult.Columns.Add("servicepricedate", typeof(string));
+                foreach (var _itemDM in DMThuocVT)
+                {
+                    dataBCResult.Columns.Add("MT_" + _itemDM.medicinecode, typeof(string));
+                    dataBCResult.Columns.Add("TT_" + _itemDM.medicinecode, typeof(string));
+                    dataBCResult.Columns.Add("LD_" + _itemDM.medicinecode, typeof(string));
+                    dataBCResult.Columns.Add("HC_" + _itemDM.medicinecode, typeof(string));
+                    dataBCResult.Columns.Add("NT_" + _itemDM.medicinecode, typeof(string));
+                    dataBCResult.Columns.Add("SL_" + _itemDM.medicinecode, typeof(decimal));
+                    dataBCResult.Columns.Add("TTi_" + _itemDM.medicinecode, typeof(decimal));
+                }
+                //Insert du lieu vao _dataBaoCao
+                foreach (var _itemBN in lstDSBenhNhan)
+                {
+                    //
+                    var _lstThuocBN = lstDSThuocVT.Where(o => o.vienphiid == _itemBN.vienphiid).ToList();
 
+                    DataRow newRow = dataBCResult.NewRow();
+                    newRow["stt"] = _itemBN.stt.ToString();
+                    newRow["vienphiid"] = _itemBN.vienphiid.ToString();
+                    newRow["patientid"] = _itemBN.patientid.ToString();
+                    newRow["patientname"] = _itemBN.patientname;
+                    newRow["bhytcode"] = _itemBN.bhytcode;
+
+                    foreach (var _itemDM in DMThuocVT)
+                    {
+                        newRow["MT_" + _itemDM.medicinecode] = _itemDM.medicinecode;
+                        newRow["TT_" + _itemDM.medicinecode] = _itemDM.medicinename;
+                        newRow["LD_" + _itemDM.medicinecode] = _itemDM.dangdung;
+                        newRow["HC_" + _itemDM.medicinecode] = _itemDM.hoatchat;
+                        newRow["NT_" + _itemDM.medicinecode] = _itemDM.nhomthau;
+                        //soluong+thanhtien
+                        decimal _soluong = 0;
+                        decimal _thanhtien = 0;
+                        var _soLuongThuocBN = _lstThuocBN.Where(o => o.medicinerefid_org == _itemDM.medicinerefid_org).ToList();
+                        if (_soLuongThuocBN != null && _soLuongThuocBN.Count > 0)
+                        {
+                            foreach (var _item in _soLuongThuocBN)
+                            {
+                                _soluong += _item.soluong;
+                                _thanhtien += _item.thanhtien;
+                            }
+                        }
+                        newRow["SL_" + _itemDM.medicinecode] = _soluong;
+                        newRow["TTi_" + _itemDM.medicinecode] = _thanhtien;
+                    }
+
+                    dataBCResult.Rows.Add(newRow);
+                    //add chi tiết từng chỉ định
+                    var _lstThuocBN_Grdate = _lstThuocBN.GroupBy(o => o.servicepricedate).Select(n => n.First()).OrderBy(or => or.servicepricedatelong).ToList();
+                    if (_lstThuocBN_Grdate != null && _lstThuocBN_Grdate.Count > 0)
+                    {
+                        foreach (var _item in _lstThuocBN_Grdate)
+                        {
+                            DataRow _rowCD = dataBCResult.NewRow();
+                            //_rowCD["stt"] = "";
+                            //_rowCD["vienphiid"] = "";
+                            //_rowCD["patientid"] = "";
+                            _rowCD["patientname"] = "";
+                            _rowCD["servicepricedate"] = _item.servicepricedate;
+
+                            foreach (var _itemDM in DMThuocVT)
+                            {
+                                var _kiemtraTh = _lstThuocBN.Where(o => o.servicepricedatelong == _item.servicepricedatelong && o.medicinerefid_org == _itemDM.medicinerefid_org).ToList();
+                                if (_kiemtraTh != null && _kiemtraTh.Count > 0)
+                                {
+                                    _rowCD["MT_" + _itemDM.medicinecode] = _itemDM.medicinecode;
+                                    _rowCD["TT_" + _itemDM.medicinecode] = _itemDM.medicinename;
+                                    _rowCD["LD_" + _itemDM.medicinecode] = _itemDM.dangdung;
+                                    _rowCD["HC_" + _itemDM.medicinecode] = _itemDM.hoatchat;
+                                    _rowCD["NT_" + _itemDM.medicinecode] = _itemDM.nhomthau;
+                                    _rowCD["SL_" + _itemDM.medicinecode] = _kiemtraTh[0].soluong;
+                                    _rowCD["TTi_" + _itemDM.medicinecode] = _kiemtraTh[0].thanhtien;
+                                }
+                            }
+
+                            dataBCResult.Rows.Add(_rowCD);
+                        }
+                    }
+                }
+
+                gridControlBaoCao.DataSource = dataBCResult;
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void DataGridView_ResetLaiCot()
+        {
+            try
+            {
+                //xoa tat ca cac cot
+                this.gridViewBaoCao.Bands.Clear();
+                this.gridViewBaoCao.Columns.Clear();
+
+                //====================
+                DevExpress.XtraGrid.Views.BandedGrid.GridBand _gridBand_TTBN = new DevExpress.XtraGrid.Views.BandedGrid.GridBand();
+                DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_stt = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_vienphiid = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_patientid = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_patientname = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_bhytcode = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn _gridColumn_servicepricedate = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
+                //====================
+                this.gridViewBaoCao.Bands.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.GridBand[] { _gridBand_TTBN });
+                // gridBand_TTBN
+                _gridBand_TTBN.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                _gridBand_TTBN.AppearanceHeader.Options.UseFont = true;
+                _gridBand_TTBN.AppearanceHeader.Options.UseTextOptions = true;
+                _gridBand_TTBN.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridBand_TTBN.Caption = "Thông tin bệnh nhân";
+                _gridBand_TTBN.Columns.Add(_gridColumn_stt);
+                _gridBand_TTBN.Columns.Add(_gridColumn_vienphiid);
+                _gridBand_TTBN.Columns.Add(_gridColumn_patientid);
+                _gridBand_TTBN.Columns.Add(_gridColumn_patientname);
+                _gridBand_TTBN.Columns.Add(_gridColumn_bhytcode);
+                _gridBand_TTBN.Columns.Add(_gridColumn_servicepricedate);
+                _gridBand_TTBN.Name = "gridBand_TTBN";
+                _gridBand_TTBN.VisibleIndex = 0;
+                _gridBand_TTBN.Width = 540;
+                //====================
+
+                this.gridViewBaoCao.Columns.AddRange(new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn[] {
+            _gridColumn_stt,
+            _gridColumn_vienphiid,
+            _gridColumn_patientid,
+            _gridColumn_patientname,
+            _gridColumn_bhytcode,
+            _gridColumn_servicepricedate});
+
+                // gridColumn_stt
+                _gridColumn_stt.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_stt.AppearanceCell.Options.UseFont = true;
+                _gridColumn_stt.AppearanceCell.Options.UseTextOptions = true;
+                _gridColumn_stt.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_stt.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_stt.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                _gridColumn_stt.AppearanceHeader.Options.UseFont = true;
+                _gridColumn_stt.AppearanceHeader.Options.UseForeColor = true;
+                _gridColumn_stt.AppearanceHeader.Options.UseTextOptions = true;
+                _gridColumn_stt.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_stt.Caption = "STT";
+                _gridColumn_stt.FieldName = "stt";
+                _gridColumn_stt.Name = "gridColumn_stt";
+                _gridColumn_stt.OptionsColumn.AllowEdit = false;
+                _gridColumn_stt.Visible = true;
+                _gridColumn_stt.VisibleIndex = 0;
+                _gridColumn_stt.Width = 40;
+
+                // gridColumn_vienphiid
+                _gridColumn_vienphiid.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_vienphiid.AppearanceCell.Options.UseFont = true;
+                _gridColumn_vienphiid.AppearanceCell.Options.UseTextOptions = true;
+                _gridColumn_vienphiid.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_vienphiid.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_vienphiid.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                _gridColumn_vienphiid.AppearanceHeader.Options.UseFont = true;
+                _gridColumn_vienphiid.AppearanceHeader.Options.UseForeColor = true;
+                _gridColumn_vienphiid.AppearanceHeader.Options.UseTextOptions = true;
+                _gridColumn_vienphiid.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_vienphiid.Caption = "Mã VP";
+                _gridColumn_vienphiid.FieldName = "vienphiid";
+                _gridColumn_vienphiid.Name = "gridColumn_vienphiid";
+                _gridColumn_vienphiid.OptionsColumn.ReadOnly = true;
+                _gridColumn_vienphiid.Visible = true;
+                _gridColumn_vienphiid.Width = 75;
+
+                // gridColumn_patientid
+                _gridColumn_patientid.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_patientid.AppearanceCell.Options.UseFont = true;
+                _gridColumn_patientid.AppearanceCell.Options.UseTextOptions = true;
+                _gridColumn_patientid.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_patientid.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_patientid.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                _gridColumn_patientid.AppearanceHeader.Options.UseFont = true;
+                _gridColumn_patientid.AppearanceHeader.Options.UseForeColor = true;
+                _gridColumn_patientid.AppearanceHeader.Options.UseTextOptions = true;
+                _gridColumn_patientid.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_patientid.Caption = "Mã BN";
+                _gridColumn_patientid.FieldName = "patientid";
+                _gridColumn_patientid.Name = "gridColumn_patientid";
+                _gridColumn_patientid.OptionsColumn.ReadOnly = true;
+                _gridColumn_patientid.Visible = true;
+                _gridColumn_patientid.Width = 75;
+
+                // gridColumn_patientname
+                _gridColumn_patientname.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_patientname.AppearanceCell.Options.UseFont = true;
+                _gridColumn_patientname.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_patientname.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                _gridColumn_patientname.AppearanceHeader.Options.UseFont = true;
+                _gridColumn_patientname.AppearanceHeader.Options.UseForeColor = true;
+                _gridColumn_patientname.AppearanceHeader.Options.UseTextOptions = true;
+                _gridColumn_patientname.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_patientname.Caption = "Tên bệnh nhân";
+                _gridColumn_patientname.FieldName = "patientname";
+                _gridColumn_patientname.Name = "gridColumn_patientname";
+                _gridColumn_patientname.OptionsColumn.ReadOnly = true;
+                _gridColumn_patientname.OptionsColumn.AllowEdit = false;
+                _gridColumn_patientname.Visible = true;
+                _gridColumn_patientname.Width = 180;
+
+                // gridColumn_bhytcode
+                _gridColumn_bhytcode.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_bhytcode.AppearanceCell.Options.UseFont = true;
+                _gridColumn_bhytcode.AppearanceCell.Options.UseTextOptions = true;
+                _gridColumn_bhytcode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_bhytcode.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_bhytcode.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                _gridColumn_bhytcode.AppearanceHeader.Options.UseFont = true;
+                _gridColumn_bhytcode.AppearanceHeader.Options.UseForeColor = true;
+                _gridColumn_bhytcode.AppearanceHeader.Options.UseTextOptions = true;
+                _gridColumn_bhytcode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_bhytcode.Caption = "Số thẻ BHYT";
+                _gridColumn_bhytcode.FieldName = "bhytcode";
+                _gridColumn_bhytcode.Name = "gridColumn_bhytcode";
+                _gridColumn_bhytcode.OptionsColumn.ReadOnly = true;
+                _gridColumn_bhytcode.Visible = true;
+                _gridColumn_bhytcode.Width = 140;
+
+                // gridColumn_servicepricedate
+                _gridColumn_servicepricedate.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_servicepricedate.AppearanceCell.Options.UseFont = true;
+                _gridColumn_servicepricedate.AppearanceCell.Options.UseTextOptions = true;
+                _gridColumn_servicepricedate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_servicepricedate.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+                _gridColumn_servicepricedate.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+                _gridColumn_servicepricedate.AppearanceHeader.Options.UseFont = true;
+                _gridColumn_servicepricedate.AppearanceHeader.Options.UseForeColor = true;
+                _gridColumn_servicepricedate.AppearanceHeader.Options.UseTextOptions = true;
+                _gridColumn_servicepricedate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+                _gridColumn_servicepricedate.Caption = "Ngày chỉ định";
+                _gridColumn_servicepricedate.FieldName = "servicepricedate";
+                _gridColumn_servicepricedate.Name = "gridColumn_servicepricedate";
+                _gridColumn_servicepricedate.OptionsColumn.AllowEdit = false;
+                _gridColumn_servicepricedate.Visible = true;
+                _gridColumn_servicepricedate.Width = 125;
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
 
         #endregion
+
+
     }
 }

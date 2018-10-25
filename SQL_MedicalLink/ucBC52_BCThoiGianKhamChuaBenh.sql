@@ -46,6 +46,9 @@ FROM
 			from	
 				(select vienphiid,bhyt_groupcode from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC')  {_tieuchi_ser} group by vienphiid,bhyt_groupcode) ser group by ser.vienphiid) serv on serv.vienphiid=vp.vienphiid ) TMP;
 
+				
+				
+				
 
 				
 ---Chi tiet - 22/10/2018

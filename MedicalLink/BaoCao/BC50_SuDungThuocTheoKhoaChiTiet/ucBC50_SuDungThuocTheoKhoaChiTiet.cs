@@ -17,6 +17,7 @@ using DevExpress.Utils.Menu;
 using MedicalLink.Utilities.GridControl;
 using MedicalLink.DatabaseProcess;
 using DevExpress.XtraPrinting;
+using DevExpress.XtraTreeList.Nodes;
 
 namespace MedicalLink.BaoCao
 {
@@ -39,6 +40,7 @@ namespace MedicalLink.BaoCao
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 LoadDanhSachKhoa();
+                LoadDanhSachNhomThuocVatTu();
                 LoadDanhMucThuocVatTu();
             }
             catch (Exception ex)
@@ -68,7 +70,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                string _sqlThuocVT = "select medicinerefid,medicinerefid_org,medicinecode,medicinename,dangdung,hoatchat,nhomthau from medicine_ref where isremove=0;";
+                string _sqlThuocVT = "select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,dangdung,hoatchat,nhomthau from medicine_ref where isremove=0;";
                 DataTable _dataThuocVT = condb.GetDataTable_HIS(_sqlThuocVT);
                 if (_dataThuocVT.Rows.Count > 0)
                 {
@@ -91,16 +93,24 @@ order by medicinereftype
 	,medicinerefid
 	,medicinegroupcode;";
                 DataTable _dataDSNhom = condb.GetDataTable_HIS(_sqlDSNhom);
-                chkcomboListNhomThuoc.Properties.DataSource = _dataDSNhom;
-                chkcomboListNhomThuoc.Properties.DisplayMember = "departmentgroupname";
-                chkcomboListNhomThuoc.Properties.ValueMember = "departmentgroupid";
-                chkcomboListNhomThuoc.CheckAll();
+
+                treeListLookUpEdit1TreeList.KeyFieldName = "medicinecode";
+                treeListLookUpEdit1TreeList.ParentFieldName = "medicinegroupcode";
+                treeListNhomThuoc.Properties.DisplayMember = "medicinename";
+                treeListNhomThuoc.Properties.ValueMember = "medicinecode";
+
+                treeListLookUpEdit1TreeList.DataSource = _dataDSNhom;
+                treeListLookUpEdit1TreeList.ExpandAll();
+
+                treeListNhomThuoc.EditValue = _dataDSNhom.Rows[2];
+                treeListLookUpEdit1TreeList.SelectNode(treeListLookUpEdit1TreeList.FindNodeByFieldValue("medicinecode", _dataDSNhom.Rows[2]["medicinecode"]));
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+
         #endregion
 
         #region Tim kiem
@@ -118,6 +128,8 @@ order by medicinereftype
                 string _tieuchi_bh = " and bhytdate>='2018-01-01 00:00:00' ";
                 string _trangthai_vp = "";
                 string _lstKhoaChonLayBC = " and departmentgroupid in (0";
+                string _lstDSThuocVT_Mef = " and medicinegroupcode in ('0'";
+                string _lstDSThuocVT_Ser = " and servicepricecode in ('0'";
 
                 string datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -172,6 +184,26 @@ order by medicinereftype
                     frmthongbao.Show();
                     return;
                 }
+                //DS thuoc Vat tu
+                var _lstCheckNode = treeListLookUpEdit1TreeList.GetAllCheckedNodes();
+                foreach (var _item in _lstCheckNode)
+                {
+                    _lstDSThuocVT_Mef += ",'" + _item.GetValue(treeListColumn_medicinecode).ToString() + "'";
+
+                    var _lstThuocSer = this.lstMedicineRef.Where(o => o.medicinegroupcode == _item.GetValue(treeListColumn_medicinecode).ToString()).ToList();
+                    foreach (var item in _lstThuocSer)
+                    {
+                        _lstDSThuocVT_Ser += ",'" + item.medicinecode + "'";
+                    }
+                }
+                _lstDSThuocVT_Mef += ")";
+                _lstDSThuocVT_Mef = _lstDSThuocVT_Mef.Replace("'0',", "");
+                _lstDSThuocVT_Ser += ")";
+                _lstDSThuocVT_Ser = _lstDSThuocVT_Ser.Replace("'0',", "");
+
+
+
+
 
                 string _sqlDSBN = $@"SELECT row_number () over (order by vp.vienphiid) as stt,
 	vp.vienphiid,
@@ -182,20 +214,20 @@ FROM
 	(select vienphiid,hosobenhanid,bhytid,patientid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp}) vp
 	inner join (select hosobenhanid,patientname from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid
 	inner join (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bh}) bh on bh.bhytid=vp.bhytid
-	inner join (select vienphiid from serviceprice where thuockhobanle=0 and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_lstKhoaChonLayBC} group by vienphiid) ser on ser.vienphiid=vp.vienphiid;";
+	inner join (select vienphiid from serviceprice where thuockhobanle=0 and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_lstKhoaChonLayBC} {_lstDSThuocVT_Ser} group by vienphiid) ser on ser.vienphiid=vp.vienphiid;";
 
                 string _sqlDSThuocVT = $@"SELECT
 	vp.vienphiid,	
 	mef.medicinerefid_org,
 	ser.servicepricecode,
 	TO_CHAR(ser.servicepricedate,'HH24:MI dd/MM/yyyy') as servicepricedate,
-    TO_CHAR(ser.servicepricedate,'yyyyMMddHH24MI') as servicepricedatelong,
+	TO_CHAR(ser.servicepricedate,'yyyyMMddHH24MI') as servicepricedatelong,
 	ser.soluong,
 	(ser.soluong*ser.dongia) as thanhtien
 FROM 
 	(select vienphiid,hosobenhanid,bhytid,patientid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp}) vp
-	inner join (select vienphiid,servicepricecode,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong from serviceprice where thuockhobanle=0 and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_lstKhoaChonLayBC}) ser on ser.vienphiid=vp.vienphiid
-	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref) mef on mef.medicinecode=ser.servicepricecode;";
+	inner join (select vienphiid,servicepricecode,servicepricedate,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong from serviceprice where thuockhobanle=0 and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser} {_lstKhoaChonLayBC} {_lstDSThuocVT_Ser}) ser on ser.vienphiid=vp.vienphiid
+	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref where 1=1 {_lstDSThuocVT_Mef}) mef on mef.medicinecode=ser.servicepricecode;";
 
                 DataTable _dataDSBN = condb.GetDataTable_HIS(_sqlDSBN);
                 DataTable _dataDSThuocVT = condb.GetDataTable_HIS(_sqlDSThuocVT);
@@ -749,7 +781,75 @@ FROM
         }
 
 
+
         #endregion
+
+        #region Tree List
+        private void treeListLookUpEdit1TreeList_AfterCheckNode(object sender, DevExpress.XtraTreeList.NodeEventArgs e)
+        {
+            try
+            {
+                if (e.Node.ParentNode != null)
+                {
+                    e.Node.ParentNode.Checked = IsAllChecked(e.Node.ParentNode.Nodes);
+                    SetCheckedChildNodes(e.Node.Nodes);
+                }
+                else
+                {
+                    SetCheckedChildNodes(e.Node.Nodes);
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void SetCheckedChildNodes(TreeListNodes nodes)
+        {
+            try
+            {
+                foreach (TreeListNode node in nodes)
+                {
+                    if (node.Nodes.Count > 0)
+                    {
+                        node.Checked = node.ParentNode.Checked;
+                        SetCheckedChildNodes(node.Nodes);
+                    }
+                    else
+                    {
+                        node.Checked = node.ParentNode.Checked;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private bool IsAllChecked(DevExpress.XtraTreeList.Nodes.TreeListNodes nodes)
+        {
+            bool value = true;
+            try
+            {
+                foreach (TreeListNode node in nodes)
+                {
+                    if (!node.Checked)
+                    {
+                        value = false;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return value;
+        }
+
+
+        #endregion
+
 
 
     }

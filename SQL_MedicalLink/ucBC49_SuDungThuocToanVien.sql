@@ -1,5 +1,5 @@
 --Báo cáo sử dụng thuốc chi tiết Theo khoa
---ngay 19/10/2018
+--ngay 25/10/2018
 
 
 
@@ -27,10 +27,10 @@ FROM
 		(select vienphiid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp} {_doituongbenhnhanid}) vp
 		  inner join (select vienphiid,departmentgroupid,servicepricecode,maubenhphamid,
 						(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong
-					from serviceprice where thuockhobanle=0 and soluong>0 {_bhyt_groupcode} {_tieuchi_ser} {_lstKhoaChonLayBC}) ser on ser.vienphiid=vp.vienphiid
+					from serviceprice where thuockhobanle=0 and soluong>0 {_bhyt_groupcode} {_tieuchi_ser} {_lstKhoaChonLayBC} {_lstDSThuocVT_Ser}) ser on ser.vienphiid=vp.vienphiid
 		  inner join (select maubenhphamid,medicinestoreid from maubenhpham where maubenhphamgrouptype in (5,6) {_tieuchi_mbp} {_lstKhoaChonLayBC} {_lstKhoTTChonLayBC}) mbp on mbp.maubenhphamid=ser.maubenhphamid
 	group by ser.departmentgroupid,ser.dongia,ser.servicepricecode) O
-	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref where 1=1 {_datatype}) mef on mef.medicinecode=O.servicepricecode
+	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref where 1=1 {_lstDSThuocVT_Mef}) mef on mef.medicinecode=O.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=O.departmentgroupid
 WHERE O.noitru_sl<>0 or O.tutruc_sl<>0 or O.ton_sl<>0
 GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,O.dongia;

@@ -10,6 +10,7 @@ namespace MedicalLink.ClassCommon
     {
         public long medicinerefid { get; set; }
         public long medicinerefid_org { get; set; }
+        public string medicinegroupcode { get; set; }
         public string medicinecode { get; set; }
         public string medicinename { get; set; }
         public string dangdung { get; set; }

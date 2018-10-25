@@ -30,6 +30,10 @@
         {
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.cboDoiTuongBN = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkcomboListDSTuTruc = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.lblTenKhoaLayBaoCao = new System.Windows.Forms.Label();
             this.chkcomboListDSKhoa = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -58,15 +62,16 @@
             this.gridColumn_tutruc_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_ton_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chkcomboListDSTuTruc = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.cboLoaiThuocVT = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.cboDoiTuongBN = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.treeListNhomThuoc = new DevExpress.XtraEditors.TreeListLookUpEdit();
+            this.treeListLookUpEdit1TreeList = new DevExpress.XtraTreeList.TreeList();
+            this.treeListColumn_medicinecode = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSTuTruc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).BeginInit();
@@ -75,9 +80,8 @@
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBaoCao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBaoCao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSTuTruc.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThuocVT.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListNhomThuoc.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -92,10 +96,10 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.treeListNhomThuoc);
+            this.groupBoxFile.Controls.Add(this.label2);
             this.groupBoxFile.Controls.Add(this.labelControl6);
             this.groupBoxFile.Controls.Add(this.cboDoiTuongBN);
-            this.groupBoxFile.Controls.Add(this.labelControl5);
-            this.groupBoxFile.Controls.Add(this.cboLoaiThuocVT);
             this.groupBoxFile.Controls.Add(this.label1);
             this.groupBoxFile.Controls.Add(this.chkcomboListDSTuTruc);
             this.groupBoxFile.Controls.Add(this.lblTenKhoaLayBaoCao);
@@ -116,6 +120,60 @@
             this.groupBoxFile.Size = new System.Drawing.Size(971, 120);
             this.groupBoxFile.TabIndex = 27;
             this.groupBoxFile.TabStop = false;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Location = new System.Drawing.Point(449, 25);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(75, 16);
+            this.labelControl6.TabIndex = 102;
+            this.labelControl6.Text = "Đối tượng BN";
+            // 
+            // cboDoiTuongBN
+            // 
+            this.cboDoiTuongBN.EditValue = "Tất cả";
+            this.cboDoiTuongBN.Location = new System.Drawing.Point(538, 20);
+            this.cboDoiTuongBN.Name = "cboDoiTuongBN";
+            this.cboDoiTuongBN.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDoiTuongBN.Properties.Appearance.Options.UseFont = true;
+            this.cboDoiTuongBN.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboDoiTuongBN.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboDoiTuongBN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboDoiTuongBN.Properties.Items.AddRange(new object[] {
+            "BHYT",
+            "Viện phí",
+            "Tất cả"});
+            this.cboDoiTuongBN.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboDoiTuongBN.Size = new System.Drawing.Size(150, 22);
+            this.cboDoiTuongBN.TabIndex = 101;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(474, 90);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(50, 16);
+            this.label1.TabIndex = 93;
+            this.label1.Text = "Kho/TT";
+            // 
+            // chkcomboListDSTuTruc
+            // 
+            this.chkcomboListDSTuTruc.EditValue = "";
+            this.chkcomboListDSTuTruc.Location = new System.Drawing.Point(538, 87);
+            this.chkcomboListDSTuTruc.Name = "chkcomboListDSTuTruc";
+            this.chkcomboListDSTuTruc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSTuTruc.Properties.Appearance.Options.UseFont = true;
+            this.chkcomboListDSTuTruc.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkcomboListDSTuTruc.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.chkcomboListDSTuTruc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.chkcomboListDSTuTruc.Properties.DropDownRows = 15;
+            this.chkcomboListDSTuTruc.Size = new System.Drawing.Size(285, 22);
+            this.chkcomboListDSTuTruc.TabIndex = 94;
             // 
             // lblTenKhoaLayBaoCao
             // 
@@ -140,7 +198,7 @@
             this.chkcomboListDSKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.chkcomboListDSKhoa.Properties.DropDownRows = 15;
-            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(350, 22);
+            this.chkcomboListDSKhoa.Size = new System.Drawing.Size(387, 22);
             this.chkcomboListDSKhoa.TabIndex = 92;
             // 
             // labelControl2
@@ -610,87 +668,84 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ton_thanhtien", "{0:#,##0}")});
             this.gridColumn_ton_thanhtien.Width = 135;
             // 
-            // label1
+            // treeListNhomThuoc
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label1.Location = new System.Drawing.Point(416, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 16);
-            this.label1.TabIndex = 93;
-            this.label1.Text = "Kho/TT";
-            // 
-            // chkcomboListDSTuTruc
-            // 
-            this.chkcomboListDSTuTruc.EditValue = "";
-            this.chkcomboListDSTuTruc.Location = new System.Drawing.Point(472, 87);
-            this.chkcomboListDSTuTruc.Name = "chkcomboListDSTuTruc";
-            this.chkcomboListDSTuTruc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSTuTruc.Properties.Appearance.Options.UseFont = true;
-            this.chkcomboListDSTuTruc.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkcomboListDSTuTruc.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.chkcomboListDSTuTruc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.treeListNhomThuoc.Location = new System.Drawing.Point(538, 53);
+            this.treeListNhomThuoc.Name = "treeListNhomThuoc";
+            this.treeListNhomThuoc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListNhomThuoc.Properties.Appearance.Options.UseFont = true;
+            this.treeListNhomThuoc.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.chkcomboListDSTuTruc.Properties.DropDownRows = 15;
-            this.chkcomboListDSTuTruc.Size = new System.Drawing.Size(350, 22);
-            this.chkcomboListDSTuTruc.TabIndex = 94;
+            this.treeListNhomThuoc.Properties.NullText = "";
+            this.treeListNhomThuoc.Properties.TreeList = this.treeListLookUpEdit1TreeList;
+            this.treeListNhomThuoc.Size = new System.Drawing.Size(285, 22);
+            this.treeListNhomThuoc.TabIndex = 104;
             // 
-            // labelControl5
+            // treeListLookUpEdit1TreeList
             // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Location = new System.Drawing.Point(452, 24);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(56, 16);
-            this.labelControl5.TabIndex = 100;
-            this.labelControl5.Text = "Thuốc/VT";
+            this.treeListLookUpEdit1TreeList.CaptionHeight = 25;
+            this.treeListLookUpEdit1TreeList.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.treeListColumn_medicinecode,
+            this.treeListColumn2});
+            this.treeListLookUpEdit1TreeList.Location = new System.Drawing.Point(69, -40);
+            this.treeListLookUpEdit1TreeList.Name = "treeListLookUpEdit1TreeList";
+            this.treeListLookUpEdit1TreeList.OptionsBehavior.EnableFiltering = true;
+            this.treeListLookUpEdit1TreeList.OptionsView.EnableAppearanceEvenRow = true;
+            this.treeListLookUpEdit1TreeList.OptionsView.ShowCheckBoxes = true;
+            this.treeListLookUpEdit1TreeList.OptionsView.ShowIndentAsRowStyle = true;
+            this.treeListLookUpEdit1TreeList.OptionsView.ShowIndicator = false;
+            this.treeListLookUpEdit1TreeList.RowHeight = 25;
+            this.treeListLookUpEdit1TreeList.Size = new System.Drawing.Size(400, 200);
+            this.treeListLookUpEdit1TreeList.TabIndex = 0;
+            this.treeListLookUpEdit1TreeList.AfterCheckNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeListLookUpEdit1TreeList_AfterCheckNode);
             // 
-            // cboLoaiThuocVT
+            // treeListColumn_medicinecode
             // 
-            this.cboLoaiThuocVT.EditValue = "Tất cả";
-            this.cboLoaiThuocVT.Location = new System.Drawing.Point(534, 20);
-            this.cboLoaiThuocVT.Name = "cboLoaiThuocVT";
-            this.cboLoaiThuocVT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiThuocVT.Properties.Appearance.Options.UseFont = true;
-            this.cboLoaiThuocVT.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiThuocVT.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboLoaiThuocVT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLoaiThuocVT.Properties.Items.AddRange(new object[] {
-            "Thuốc",
-            "Vật tư",
-            "Tất cả"});
-            this.cboLoaiThuocVT.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboLoaiThuocVT.Size = new System.Drawing.Size(150, 22);
-            this.cboLoaiThuocVT.TabIndex = 99;
+            this.treeListColumn_medicinecode.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.treeListColumn_medicinecode.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn_medicinecode.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListColumn_medicinecode.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.treeListColumn_medicinecode.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn_medicinecode.AppearanceHeader.Options.UseForeColor = true;
+            this.treeListColumn_medicinecode.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListColumn_medicinecode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn_medicinecode.Caption = "Mã";
+            this.treeListColumn_medicinecode.FieldName = "medicinecode";
+            this.treeListColumn_medicinecode.MinWidth = 34;
+            this.treeListColumn_medicinecode.Name = "treeListColumn_medicinecode";
+            this.treeListColumn_medicinecode.OptionsColumn.AllowEdit = false;
+            this.treeListColumn_medicinecode.Visible = true;
+            this.treeListColumn_medicinecode.VisibleIndex = 0;
+            this.treeListColumn_medicinecode.Width = 100;
             // 
-            // labelControl6
+            // treeListColumn2
             // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl6.Location = new System.Drawing.Point(452, 56);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(75, 16);
-            this.labelControl6.TabIndex = 102;
-            this.labelControl6.Text = "Đối tượng BN";
+            this.treeListColumn2.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.treeListColumn2.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListColumn2.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.treeListColumn2.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn2.AppearanceHeader.Options.UseForeColor = true;
+            this.treeListColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn2.Caption = "Tên";
+            this.treeListColumn2.FieldName = "medicinename";
+            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.OptionsColumn.AllowEdit = false;
+            this.treeListColumn2.Visible = true;
+            this.treeListColumn2.VisibleIndex = 1;
+            this.treeListColumn2.Width = 250;
             // 
-            // cboDoiTuongBN
+            // label2
             // 
-            this.cboDoiTuongBN.EditValue = "Tất cả";
-            this.cboDoiTuongBN.Location = new System.Drawing.Point(534, 52);
-            this.cboDoiTuongBN.Name = "cboDoiTuongBN";
-            this.cboDoiTuongBN.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboDoiTuongBN.Properties.Appearance.Options.UseFont = true;
-            this.cboDoiTuongBN.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboDoiTuongBN.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboDoiTuongBN.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboDoiTuongBN.Properties.Items.AddRange(new object[] {
-            "BHYT",
-            "Viện phí",
-            "Tất cả"});
-            this.cboDoiTuongBN.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboDoiTuongBN.Size = new System.Drawing.Size(150, 22);
-            this.cboDoiTuongBN.TabIndex = 101;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(440, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 16);
+            this.label2.TabIndex = 103;
+            this.label2.Text = "Nhóm thuốc/VT";
             // 
             // ucBC49_SuDungThuocToanVien
             // 
@@ -707,6 +762,8 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSTuTruc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTieuChi.Properties)).EndInit();
@@ -715,9 +772,8 @@
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBaoCao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBaoCao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSTuTruc.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThuocVT.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListNhomThuoc.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListLookUpEdit1TreeList)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -758,7 +814,10 @@
         private DevExpress.XtraEditors.CheckedComboBoxEdit chkcomboListDSTuTruc;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.ComboBoxEdit cboDoiTuongBN;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.ComboBoxEdit cboLoaiThuocVT;
+        private DevExpress.XtraEditors.TreeListLookUpEdit treeListNhomThuoc;
+        private DevExpress.XtraTreeList.TreeList treeListLookUpEdit1TreeList;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn_medicinecode;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
+        private System.Windows.Forms.Label label2;
     }
 }

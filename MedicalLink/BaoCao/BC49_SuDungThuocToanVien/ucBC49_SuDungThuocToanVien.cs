@@ -25,7 +25,6 @@ namespace MedicalLink.BaoCao
     {
         #region Declaration
         private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        private List<BC50MedicineRefDTO> lstMedicineRef { get; set; }
 
         #endregion
 
@@ -42,8 +41,6 @@ namespace MedicalLink.BaoCao
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 LoadDanhSachKhoa();
                 LoadDanhSachKhoTT();
-                LoadDanhSachNhomThuocVatTu();
-                LoadDanhMucThuocVatTu();
             }
             catch (Exception ex)
             {
@@ -84,50 +81,6 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
-        private void LoadDanhSachNhomThuocVatTu()
-        {
-            try
-            {
-                string _sqlDSNhom = @"select medicinerefid,medicinereftype,medicinegroupcode,medicinecode,medicinename from medicine_ref
-where medicinecode in (select medicinegroupcode from medicine_ref where isremove=0 and medicinegroupcode not in ('','NHATHUOC','T46603-4518','VT39826-0633','T37527-3420') group by medicinegroupcode)
-and medicinegroupcode not in ('','NHATHUOC','T46603-4518','VT39826-0633','T37527-3420')
-order by medicinereftype
-	,medicinerefid
-	,medicinegroupcode;";
-                DataTable _dataDSNhom = condb.GetDataTable_HIS(_sqlDSNhom);
-
-                treeListLookUpEdit1TreeList.KeyFieldName = "medicinecode";
-                treeListLookUpEdit1TreeList.ParentFieldName = "medicinegroupcode";
-                treeListNhomThuoc.Properties.DisplayMember = "medicinename";
-                treeListNhomThuoc.Properties.ValueMember = "medicinecode";
-
-                treeListLookUpEdit1TreeList.DataSource = _dataDSNhom;
-                treeListLookUpEdit1TreeList.ExpandAll();
-
-                treeListNhomThuoc.EditValue = _dataDSNhom.Rows[2];
-                treeListLookUpEdit1TreeList.SelectNode(treeListLookUpEdit1TreeList.FindNodeByFieldValue("medicinecode", _dataDSNhom.Rows[2]["medicinecode"]));
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
-        private void LoadDanhMucThuocVatTu()
-        {
-            try
-            {
-                string _sqlThuocVT = "select medicinerefid,medicinerefid_org,medicinegroupcode,medicinecode,medicinename,dangdung,hoatchat,nhomthau from medicine_ref where isremove=0;";
-                DataTable _dataThuocVT = condb.GetDataTable_HIS(_sqlThuocVT);
-                if (_dataThuocVT.Rows.Count > 0)
-                {
-                    this.lstMedicineRef = Utilities.DataTables.DataTableToList<BC50MedicineRefDTO>(_dataThuocVT);
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
         #endregion
 
         #region Tim kiem
@@ -141,8 +94,7 @@ order by medicinereftype
                 string _tieuchi_mbp = " and maubenhphamdate>='2018-01-01 00:00:00' ";
                 string _trangthai_vp = "";
                 string _doituongbenhnhanid = "";
-                string _lstDSThuocVT_Mef = " and medicinegroupcode in ('0'";
-                string _lstDSThuocVT_Ser = " and servicepricecode in ('0'";
+                string _datatype = "";
 
                 string _bhyt_groupcode = " and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') ";
                 string _lstKhoaChonLayBC = " and departmentgroupid in (0";
@@ -229,23 +181,17 @@ order by medicinereftype
                     frmthongbao.Show();
                     return;
                 }
-                //DS thuoc Vat tu
-                var _lstCheckNode = treeListLookUpEdit1TreeList.GetAllCheckedNodes();
-                foreach (var _item in _lstCheckNode)
+                //Loai thuoc/VT
+                if (cboLoaiThuocVT.Text == "Thuốc")
                 {
-                    _lstDSThuocVT_Mef += ",'" + _item.GetValue(treeListColumn_medicinecode).ToString() + "'";
-
-                    var _lstThuocSer = this.lstMedicineRef.Where(o => o.medicinegroupcode == _item.GetValue(treeListColumn_medicinecode).ToString()).ToList();
-                    foreach (var item in _lstThuocSer)
-                    {
-                        _lstDSThuocVT_Ser += ",'" + item.medicinecode + "'";
-                    }
+                    _datatype = " and datatype=0 ";
+                    _bhyt_groupcode = " and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle') ";
                 }
-                _lstDSThuocVT_Mef += ")";
-                _lstDSThuocVT_Mef = _lstDSThuocVT_Mef.Replace("'0',", "");
-                _lstDSThuocVT_Ser += ")";
-                _lstDSThuocVT_Ser = _lstDSThuocVT_Ser.Replace("'0',", "");
-
+                else if (cboLoaiThuocVT.Text == "Vật tư")
+                {
+                    _datatype = " and datatype=1 ";
+                    _bhyt_groupcode = " and bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') ";
+                }
 
                 string _sql_timkiem = $@"SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY mef.medicinename)) as stt,
 	degp.departmentgroupid,
@@ -271,10 +217,10 @@ FROM
 		(select vienphiid from vienphi where 1=1 {_tieuchi_vp} {_trangthai_vp} {_doituongbenhnhanid}) vp
 		  inner join (select vienphiid,departmentgroupid,servicepricecode,maubenhphamid,
 						(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong
-					from serviceprice where thuockhobanle=0 and soluong>0 {_bhyt_groupcode} {_tieuchi_ser} {_lstKhoaChonLayBC} {_lstDSThuocVT_Ser}) ser on ser.vienphiid=vp.vienphiid
+					from serviceprice where thuockhobanle=0 and soluong>0 {_bhyt_groupcode} {_tieuchi_ser} {_lstKhoaChonLayBC}) ser on ser.vienphiid=vp.vienphiid
 		  inner join (select maubenhphamid,medicinestoreid from maubenhpham where maubenhphamgrouptype in (5,6) {_tieuchi_mbp} {_lstKhoaChonLayBC} {_lstKhoTTChonLayBC}) mbp on mbp.maubenhphamid=ser.maubenhphamid
 	group by ser.departmentgroupid,ser.dongia,ser.servicepricecode) O
-	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref where 1=1 {_lstDSThuocVT_Mef}) mef on mef.medicinecode=O.servicepricecode
+	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref where 1=1 {_datatype}) mef on mef.medicinecode=O.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=O.departmentgroupid
 WHERE O.noitru_sl<>0 or O.tutruc_sl<>0 or O.ton_sl<>0
 GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,O.dongia;";

@@ -585,7 +585,9 @@
             // 
             // gridColumn_servicepricedate
             // 
+            this.gridColumn_servicepricedate.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.gridColumn_servicepricedate.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.gridColumn_servicepricedate.AppearanceCell.Options.UseBackColor = true;
             this.gridColumn_servicepricedate.AppearanceCell.Options.UseFont = true;
             this.gridColumn_servicepricedate.AppearanceCell.Options.UseTextOptions = true;
             this.gridColumn_servicepricedate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;

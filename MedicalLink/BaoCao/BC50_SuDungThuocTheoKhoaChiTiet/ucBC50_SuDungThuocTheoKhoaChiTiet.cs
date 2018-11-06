@@ -408,6 +408,7 @@ FROM
                     _gridBand_DMThuoc.Width = 540;
                     //=============Column
                     //_gridColumn_medicinecode
+                    _gridColumn_medicinecode.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
                     _gridColumn_medicinecode.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
                     _gridColumn_medicinecode.AppearanceCell.Options.UseFont = true;
                     _gridColumn_medicinecode.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
@@ -560,25 +561,25 @@ FROM
 
                     foreach (var _itemDM in DMThuocVT)
                     {
-                        newRow["MT_" + _itemDM.medicinecode] = _itemDM.medicinecode;
-                        newRow["TT_" + _itemDM.medicinecode] = _itemDM.medicinename;
-                        newRow["LD_" + _itemDM.medicinecode] = _itemDM.dangdung;
-                        newRow["HC_" + _itemDM.medicinecode] = _itemDM.hoatchat;
-                        newRow["NT_" + _itemDM.medicinecode] = _itemDM.nhomthau;
-                        //soluong+thanhtien
-                        decimal _soluong = 0;
-                        decimal _thanhtien = 0;
                         var _soLuongThuocBN = _lstThuocBN.Where(o => o.medicinerefid_org == _itemDM.medicinerefid_org).ToList();
                         if (_soLuongThuocBN != null && _soLuongThuocBN.Count > 0)
                         {
+                            newRow["MT_" + _itemDM.medicinecode] = _itemDM.medicinecode;
+                            newRow["TT_" + _itemDM.medicinecode] = _itemDM.medicinename;
+                            newRow["LD_" + _itemDM.medicinecode] = _itemDM.dangdung;
+                            newRow["HC_" + _itemDM.medicinecode] = _itemDM.hoatchat;
+                            newRow["NT_" + _itemDM.medicinecode] = _itemDM.nhomthau;
+                            //soluong+thanhtien
+                            decimal _soluong = 0;
+                            decimal _thanhtien = 0;
                             foreach (var _item in _soLuongThuocBN)
                             {
                                 _soluong += _item.soluong;
                                 _thanhtien += _item.thanhtien;
                             }
+                            newRow["SL_" + _itemDM.medicinecode] = _soluong;
+                            newRow["TTi_" + _itemDM.medicinecode] = _thanhtien;
                         }
-                        newRow["SL_" + _itemDM.medicinecode] = _soluong;
-                        newRow["TTi_" + _itemDM.medicinecode] = _thanhtien;
                     }
 
                     dataBCResult.Rows.Add(newRow);

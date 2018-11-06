@@ -2,7 +2,7 @@
 --BC108_ChiThuongDVThuVienPhi
 
 
---ngay 8/8/2018
+--ngay 27/10/2018
 
 SELECT 1 as stt,
 	'Thần kinh (ĐNĐ) 03/18' as departmentgroupname,
@@ -73,7 +73,7 @@ FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien,maubenhphamid,
 						  end)
 				end) as dongia
 		from serviceprice 
-		where servicepricecode='U30001-3222' "+tieuchi_ser+") ser
+		where servicepricecode in ('U30001-3222','U19816-4240') "+tieuchi_ser+") ser
 	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 	inner join (select maubenhphamid from maubenhpham where userthuchien in (504,508) and departmentid_des=279 "+_tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 GROUP BY ser.dongia
@@ -99,7 +99,7 @@ FROM (select vienphiid,soluong,billid_thutien,billid_clbh_thutien,maubenhphamid,
 						  end)
 				end) as dongia
 		from serviceprice 
-		where servicepricecode='U30001-3222' "+tieuchi_ser+") ser
+		where servicepricecode in ('U30001-3222','U19816-4240') "+tieuchi_ser+") ser
 	inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
 	inner join (select maubenhphamid from maubenhpham where userthuchien not in (504,508) and departmentid_des=279 "+_tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid
 GROUP BY ser.dongia
@@ -108,7 +108,7 @@ GROUP BY ser.dongia
 
 
 	
----Chi tiet - 17/8/2018
+---Chi tiet - 29/8/2018
 
 SELECT row_number() over (order by vp.patientid,mbp.maubenhphamdate) as stt, 
 	ser.servicepriceid,
@@ -125,8 +125,8 @@ SELECT row_number() over (order by vp.patientid,mbp.maubenhphamdate) as stt,
 	ngth.username as nguoithuchien,
 	(case when ser.servicepricecode in ('TD37018','TD37019') then 'Thần kinh (ĐNĐ) 03/18'
 			when (ser.servicepricecode='PT11437030' and ser.departmentgroupid=14) then 'Thận Nhân Tạo'
-			when (ser.servicepricecode='U30001-3222' and mbp.userthuchien in (504,508)) then 'Nội soi TMH (KBYC)'
-			when (ser.servicepricecode='U30001-3222' and mbp.userthuchien not in (504,508)) then 'Nội soi TMH khoa TMH'
+			when (ser.servicepricecode in ('U30001-3222','U19816-4240') and mbp.userthuchien in (504,508)) then 'Nội soi TMH (KBYC)'
+			when (ser.servicepricecode in ('U30001-3222','U19816-4240') and mbp.userthuchien not in (504,508)) then 'Nội soi TMH khoa TMH'
 		end) as nhombaocao,
 	ser.servicepricecode,
 	ser.servicepricename,
@@ -155,7 +155,7 @@ FROM
 	(select servicepriceid,vienphiid,maubenhphamid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,servicepricedate,maubenhphamphieutype,bhyt_groupcode,loaidoituong 
 		from serviceprice 
 		where 
-			(servicepricecode in ('TD37018','TD37019','U30001-3222') or (servicepricecode='PT11437030' and departmentgroupid=14))
+			(servicepricecode in ('TD37018','TD37019','U30001-3222','U19816-4240') or (servicepricecode='PT11437030' and departmentgroupid=14))
 			"+tieuchi_ser+") ser
 	INNER JOIN (select maubenhphamid,maubenhphamstatus,maubenhphamdate,userid,departmentid_des,userthuchien from maubenhpham where maubenhphamgrouptype in (1,4) "+_tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid		
 	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
@@ -165,7 +165,7 @@ FROM
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pth ON pth.departmentid=mbp.departmentid_des
 	LEFT JOIN (select userhisid,username from nhompersonnel) ngth ON ngth.userhisid=mbp.userthuchien
-WHERE (case when ser.servicepricecode='U30001-3222' then mbp.departmentid_des=279 end) or ser.servicepricecode<>'U30001-3222';
+WHERE (case when ser.servicepricecode in ('U30001-3222','U19816-4240') then mbp.departmentid_des=279 end) or ser.servicepricecode<>'U30001-3222';
 	
 	
 	

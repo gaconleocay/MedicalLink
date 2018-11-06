@@ -16,6 +16,8 @@ namespace MedicalLink.ClassCommon.BCQLTaiChinh
         public decimal soluong { get; set; }
         public decimal dongia { get; set; }
         public decimal thanhtien { get; set; }
+        public decimal dongia_chenh { get; set; }
+        public decimal thanhtien_chenh { get; set; }
         public decimal thanhtiensauthue { get; set; }
         public decimal trichlaibv { get; set; }
         public decimal khoathuchien { get; set; }

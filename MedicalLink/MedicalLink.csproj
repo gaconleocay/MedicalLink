@@ -353,6 +353,12 @@
     <Compile Include="BaoCao\BC52_TGKhamBenhTrungBinh\ucBC52_TGKhamBenhTrungBinh.Designer.cs">
       <DependentUpon>ucBC52_TGKhamBenhTrungBinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BC53_BNKhongLamDVKTPK\ucBC53_BNKhongLamDVKTPK.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC53_BNKhongLamDVKTPK\ucBC53_BNKhongLamDVKTPK.Designer.cs">
+      <DependentUpon>ucBC53_BNKhongLamDVKTPK.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1478,6 +1484,9 @@
     <EmbeddedResource Include="BaoCao\BC52_TGKhamBenhTrungBinh\ucBC52_TGKhamBenhTrungBinh.resx">
       <DependentUpon>ucBC52_TGKhamBenhTrungBinh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC53_BNKhongLamDVKTPK\ucBC53_BNKhongLamDVKTPK.resx">
+      <DependentUpon>ucBC53_BNKhongLamDVKTPK.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BCBHYT21Chenh2018\ucBCBHYT21Chenh2018.resx">
       <DependentUpon>ucBCBHYT21Chenh2018.cs</DependentUpon>
     </EmbeddedResource>
@@ -2310,6 +2319,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\BC_52_TGKhamBenhTrungBinh.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\BC_53_BNKhongLamDVKTPK.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

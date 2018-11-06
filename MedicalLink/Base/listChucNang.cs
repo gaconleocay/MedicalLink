@@ -870,6 +870,16 @@ namespace MedicalLink.Base
                 REPORT_52.permissionnote = "Thời gian tính bằng phút";
                 lstresult.Add(REPORT_52);
 
+                ClassCommon.classPermission REPORT_53 = new ClassCommon.classPermission();
+                REPORT_53.permissioncheck = false;
+                REPORT_53.permissioncode = "REPORT_53";
+                REPORT_53.permissionname = "Báo cáo bệnh nhân không làm DVKT phòng khám";
+                REPORT_53.permissiontype = 3;
+                REPORT_53.tabMenuId = 5;
+                REPORT_53.permissionnote = "";
+                lstresult.Add(REPORT_53);
+
+
 
 
                 //Báo cáo quản lý =6; permissiontype = 3;

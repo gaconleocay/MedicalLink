@@ -887,19 +887,7 @@ Thông tin bao gồm:
 * Dùng chung timer thời gian của phần mềm, sau mỗi 10s thì truy vấn CSDL
 * Thiết lập thời gian truy vấn CSDL trên server
 
- 	
- F1_3
-F1_4
 
-Kiểm tra với phiếu chỉ định dịch vụ, nếu phiếu chỉ định là Viện phí thì không check
-Kiểm tra hạn thẻ trước và sau thời gian điều trị.
-Kiểm tra xem có tồn tại phiếu chỉ định trước/hoặc sau hạn thẻ. Nếu có thì cảnh báo Lỗi này
-
-
- 
-  Allow Internet access	GUANGDONG OPPO MOBILE TELECOMMUNICATIONS CORP.LTD	GUANGDONG OPPO MOBILE TELECOMMUN	192.168.2.215	Automatic IP	A8:1B:5A:FA:1A:A7	2.4 GHz	-	-	0:00:00	
-
-  
 ---Thêm tiêu chí giam dinh
 Có 1 cái là giám dịnh theo thuốc tỷ lệ ko áp dụng với các truong hop dac biẹt là chưa có e ạ
 Cc1, te 1, cy5, ca5, qn5
@@ -1154,3 +1142,19 @@ inner join (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhn
 left join (select servicepriceid,maubenhphamid,bhyt_groupcode,servicepricecode,servicepricename,servicepricename_bhyt,servicepricename_nhandan,(case loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan else servicepricemoney end) as servicepricefee,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,coalesce(servicepriceid_thanhtoanrieng,0) as servicepriceid_thanhtoanrieng,servicepriceid_master from serviceprice where loaidoituong in (5,7,9) and bhyt_groupcode in ('09TDT','091TDTtrongDM','093TDTUngthu','092TDTngoaiDM','094TDTTyle') {_tieuchi_ser}) thuoc on (case when ser.tinhtoanlaigiadvktc=1 then thuoc.servicepriceid_master=ser.servicepriceid else (thuoc.servicepriceid_master=ser.servicepriceid and thuoc.servicepriceid_thanhtoanrieng=0) end)
 left join (select servicepriceid,maubenhphamid,bhyt_groupcode,servicepricecode,servicepricename,servicepricename_bhyt,servicepricename_nhandan,(case loaidoituong when 0 then servicepricemoney_bhyt when 1 then servicepricemoney_nhandan else servicepricemoney end) as servicepricefee,(case when maubenhphamphieutype=0 then soluong else 0-soluong end) as soluong,coalesce(servicepriceid_thanhtoanrieng,0) as servicepriceid_thanhtoanrieng,servicepriceid_master from serviceprice where loaidoituong in (5,7,9) and bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') {_tieuchi_ser}) vattu on (case when ser.tinhtoanlaigiadvktc=1 then vattu.servicepriceid_master=ser.servicepriceid else (vattu.servicepriceid_master=ser.servicepriceid and vattu.servicepriceid_thanhtoanrieng=0) end)
 WHERE thuoc.servicepricecode is not null or vattu.servicepricecode is not null
+
+
+
+
+
+
+ALTER TABLE nhompersonnel ADD usercode_byt text;
+ALTER TABLE ml_nhanvien ADD usercode_byt text;
+
+
+
+
+
+
+
+

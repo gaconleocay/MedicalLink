@@ -44,7 +44,7 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                string _sqlSelectKhoa = "SELECT departmentgroupid,departmentgroupname FROM departmentgroup WHERE departmentgrouptype in (1,4,11) ORDER BY departmentgroupname;";
+                string _sqlSelectKhoa = "SELECT departmentgroupid,departmentgroupname FROM departmentgroup WHERE departmentgrouptype in (1,4,11,100) ORDER BY departmentgroupname;";
                 DataTable _dataKhoa = condb.GetDataTable_HIS(_sqlSelectKhoa);
                 if (_dataKhoa != null && _dataKhoa.Rows.Count > 0)
                 {

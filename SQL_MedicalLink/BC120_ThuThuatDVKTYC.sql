@@ -77,7 +77,7 @@ FROM
 		from serviceprice 
 		where bhyt_groupcode='06PTTT' {tieuchi_ser} {lstdichvu_ser} {_lstKhoaChonLayBC}) ser
 	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1 {tieuchi_vp} {trangthai_vp}) vp on vp.vienphiid=ser.vienphiid
-	INNER JOIN (select maubenhphamid,maubenhphamstatus,maubenhphamdate,userid,departmentid_des from maubenhpham where maubenhphamgrouptype=4 {_tieuchi_mbp}) mbp on mbp.maubenhphamid=ser.maubenhphamid		
+	INNER JOIN (select maubenhphamid,maubenhphamstatus,maubenhphamdate,userid,departmentid_des from maubenhpham where maubenhphamgrouptype in (0,1,4) {_tieuchi_mbp}) mbp on mbp.maubenhphamid=ser.maubenhphamid		
 	INNER JOIN (select hosobenhanid,patientname,bhytcode from hosobenhan where 1=1 {_tieuchi_hsba} {_hosobenhanstatus}) hsba on hsba.hosobenhanid=vp.hosobenhanid
 	LEFT JOIN (select userhisid,username from nhompersonnel) ngcd ON ngcd.userhisid=mbp.userid
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid 

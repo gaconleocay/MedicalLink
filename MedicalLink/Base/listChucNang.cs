@@ -882,6 +882,17 @@ namespace MedicalLink.Base
 
 
 
+
+                ClassCommon.classPermission REPORT_57 = new ClassCommon.classPermission();
+                REPORT_57.permissioncheck = false;
+                REPORT_57.permissioncode = "REPORT_57";
+                REPORT_57.permissionname = "Báo cáo kê thuốc/vật tư trước ngày";
+                REPORT_57.permissiontype = 3;
+                REPORT_57.tabMenuId = 5;
+                REPORT_57.permissionnote = "";
+                lstresult.Add(REPORT_57);
+
+
                 //Báo cáo quản lý =6; permissiontype = 3;
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();
                 DASHBOARD_01.permissioncheck = false;

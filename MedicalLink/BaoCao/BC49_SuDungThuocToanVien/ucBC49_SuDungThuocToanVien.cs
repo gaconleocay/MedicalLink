@@ -193,11 +193,12 @@ namespace MedicalLink.BaoCao
                     _bhyt_groupcode = " and bhyt_groupcode in ('10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') ";
                 }
 
-                string _sql_timkiem = $@"SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY mef.medicinename)) as stt,
+                string _sql_timkiem = $@"SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname,mef.medicinegroupcode ORDER BY mef.medicinename)) as stt,
 	degp.departmentgroupid,
 	degp.departmentgroupname,
 	mef.medicinerefid_org,
 	mef.medicinename,
+	mef.medicinegroupcode,
 	O.dongia,
 	sum(O.noitru_sl) as noitru_sl,
 	sum(O.noitru_thanhtien) as noitru_thanhtien,
@@ -220,10 +221,10 @@ FROM
 					from serviceprice where thuockhobanle=0 and soluong>0 {_bhyt_groupcode} {_tieuchi_ser} {_lstKhoaChonLayBC}) ser on ser.vienphiid=vp.vienphiid
 		  inner join (select maubenhphamid,medicinestoreid from maubenhpham where maubenhphamgrouptype in (5,6) {_tieuchi_mbp} {_lstKhoaChonLayBC} {_lstKhoTTChonLayBC}) mbp on mbp.maubenhphamid=ser.maubenhphamid
 	group by ser.departmentgroupid,ser.dongia,ser.servicepricecode) O
-	inner join (select medicinerefid_org,medicinecode,medicinename from medicine_ref where 1=1 {_datatype}) mef on mef.medicinecode=O.servicepricecode
+	inner join (select medicinerefid_org,medicinecode,medicinename,medicinegroupcode from medicine_ref where 1=1 {_datatype}) mef on mef.medicinecode=O.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=O.departmentgroupid
 WHERE O.noitru_sl<>0 or O.tutruc_sl<>0 or O.ton_sl<>0
-GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,O.dongia;";
+GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,mef.medicinegroupcode,O.dongia;";
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {

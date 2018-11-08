@@ -30,6 +30,8 @@
         {
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.cboLoaiThuocVT = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.cboDoiTuongBN = new DevExpress.XtraEditors.ComboBoxEdit();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,11 +64,10 @@
             this.gridColumn_tutruc_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_ton_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.cboLoaiThuocVT = new DevExpress.XtraEditors.ComboBoxEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThuocVT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSTuTruc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).BeginInit();
@@ -77,7 +78,6 @@
             this.panelControlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBaoCao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBaoCao)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThuocVT.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlThongTinDV
@@ -116,6 +116,34 @@
             this.groupBoxFile.Size = new System.Drawing.Size(971, 120);
             this.groupBoxFile.TabIndex = 27;
             this.groupBoxFile.TabStop = false;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Location = new System.Drawing.Point(468, 56);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(56, 16);
+            this.labelControl5.TabIndex = 104;
+            this.labelControl5.Text = "Thuốc/VT";
+            // 
+            // cboLoaiThuocVT
+            // 
+            this.cboLoaiThuocVT.EditValue = "Tất cả";
+            this.cboLoaiThuocVT.Location = new System.Drawing.Point(538, 53);
+            this.cboLoaiThuocVT.Name = "cboLoaiThuocVT";
+            this.cboLoaiThuocVT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiThuocVT.Properties.Appearance.Options.UseFont = true;
+            this.cboLoaiThuocVT.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiThuocVT.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLoaiThuocVT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboLoaiThuocVT.Properties.Items.AddRange(new object[] {
+            "Thuốc",
+            "Vật tư",
+            "Tất cả"});
+            this.cboLoaiThuocVT.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboLoaiThuocVT.Size = new System.Drawing.Size(150, 22);
+            this.cboLoaiThuocVT.TabIndex = 103;
             // 
             // labelControl6
             // 
@@ -412,7 +440,7 @@
             this.gridColumn10,
             this.gridColumn_ton_thanhtien});
             this.gridViewBaoCao.GridControl = this.gridControlBaoCao;
-            this.gridViewBaoCao.GroupCount = 1;
+            this.gridViewBaoCao.GroupCount = 2;
             this.gridViewBaoCao.GroupRowHeight = 25;
             this.gridViewBaoCao.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "noitru_thanhtien", this.gridColumn_noitru_thanhtien, "{0:#,##0 }"),
@@ -428,7 +456,8 @@
             this.gridViewBaoCao.OptionsView.ShowIndicator = false;
             this.gridViewBaoCao.RowHeight = 25;
             this.gridViewBaoCao.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn2, DevExpress.Data.ColumnSortOrder.Ascending),
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn5, DevExpress.Data.ColumnSortOrder.Ascending)});
             this.gridViewBaoCao.ViewCaptionHeight = 25;
             this.gridViewBaoCao.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewBaoCao_RowCellStyle);
             // 
@@ -448,7 +477,7 @@
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 60;
+            this.gridColumn1.Width = 90;
             // 
             // gridColumn2
             // 
@@ -478,10 +507,12 @@
             this.gridColumn5.AppearanceHeader.Options.UseForeColor = true;
             this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.Caption = "Mã thuốc";
-            this.gridColumn5.FieldName = "medicinerefid_org";
+            this.gridColumn5.Caption = "Nhóm thuốc";
+            this.gridColumn5.FieldName = "medicinegroupcode";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.OptionsColumn.AllowEdit = false;
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 7;
             this.gridColumn5.Width = 125;
             // 
             // gridColumn4
@@ -664,34 +695,6 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ton_thanhtien", "{0:#,##0}")});
             this.gridColumn_ton_thanhtien.Width = 135;
             // 
-            // labelControl5
-            // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl5.Location = new System.Drawing.Point(468, 56);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(56, 16);
-            this.labelControl5.TabIndex = 104;
-            this.labelControl5.Text = "Thuốc/VT";
-            // 
-            // cboLoaiThuocVT
-            // 
-            this.cboLoaiThuocVT.EditValue = "Tất cả";
-            this.cboLoaiThuocVT.Location = new System.Drawing.Point(538, 53);
-            this.cboLoaiThuocVT.Name = "cboLoaiThuocVT";
-            this.cboLoaiThuocVT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiThuocVT.Properties.Appearance.Options.UseFont = true;
-            this.cboLoaiThuocVT.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboLoaiThuocVT.Properties.AppearanceDropDown.Options.UseFont = true;
-            this.cboLoaiThuocVT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboLoaiThuocVT.Properties.Items.AddRange(new object[] {
-            "Thuốc",
-            "Vật tư",
-            "Tất cả"});
-            this.cboLoaiThuocVT.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.cboLoaiThuocVT.Size = new System.Drawing.Size(150, 22);
-            this.cboLoaiThuocVT.TabIndex = 103;
-            // 
             // ucBC49_SuDungThuocToanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -707,6 +710,7 @@
             this.panelControlThongTinDV.ResumeLayout(false);
             this.groupBoxFile.ResumeLayout(false);
             this.groupBoxFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThuocVT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboDoiTuongBN.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSTuTruc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkcomboListDSKhoa.Properties)).EndInit();
@@ -717,7 +721,6 @@
             this.panelControlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBaoCao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBaoCao)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiThuocVT.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

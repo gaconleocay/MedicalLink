@@ -353,6 +353,18 @@
     <Compile Include="BaoCao\BC52_TGKhamBenhTrungBinh\ucBC52_TGKhamBenhTrungBinh.Designer.cs">
       <DependentUpon>ucBC52_TGKhamBenhTrungBinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaoCao\BC57_KeThuocVatTuTruocNgay\frmXemChiTietDonThuocVatTu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC57_KeThuocVatTuTruocNgay\frmXemChiTietDonThuocVatTu.Designer.cs">
+      <DependentUpon>frmXemChiTietDonThuocVatTu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao\BC57_KeThuocVatTuTruocNgay\ucBC57_KeThuocVatTuTruocNgay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaoCao\BC57_KeThuocVatTuTruocNgay\ucBC57_KeThuocVatTuTruocNgay.Designer.cs">
+      <DependentUpon>ucBC57_KeThuocVatTuTruocNgay.cs</DependentUpon>
+    </Compile>
     <Compile Include="BaoCao\BC53_BNKhongLamDVKTPK\ucBC53_BNKhongLamDVKTPK.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1484,6 +1496,12 @@
     <EmbeddedResource Include="BaoCao\BC52_TGKhamBenhTrungBinh\ucBC52_TGKhamBenhTrungBinh.resx">
       <DependentUpon>ucBC52_TGKhamBenhTrungBinh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC57_KeThuocVatTuTruocNgay\frmXemChiTietDonThuocVatTu.resx">
+      <DependentUpon>frmXemChiTietDonThuocVatTu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaoCao\BC57_KeThuocVatTuTruocNgay\ucBC57_KeThuocVatTuTruocNgay.resx">
+      <DependentUpon>ucBC57_KeThuocVatTuTruocNgay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC53_BNKhongLamDVKTPK\ucBC53_BNKhongLamDVKTPK.resx">
       <DependentUpon>ucBC53_BNKhongLamDVKTPK.cs</DependentUpon>
     </EmbeddedResource>
@@ -2324,6 +2342,9 @@
     <Content Include="Templates\BC_53_BNKhongLamDVKTPK.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\BC_57_KeThuocVatTuTruocNgay.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -2361,7 +2382,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MedicalLinkLauncher\MedicalLinkLauncher.csproj">
+      <Project>{C8925424-7516-456D-AAE3-D23F504E4055}</Project>
+      <Name>MedicalLinkLauncher</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

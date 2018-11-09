@@ -107,7 +107,7 @@ namespace MedicalLink.BaoCao
 	sum(case when ((mbp.maubenhphamdate_sudung::date)-(now()::date))=7 and mbp.maubenhphamstatus in (4,5,9) then 1 else 0 end) as slthyl_qua7,
 	sum(case when ((mbp.maubenhphamdate_sudung::date)-(now()::date))>7 then 1 else 0 end) as sl_quahon7,
 	sum(case when ((mbp.maubenhphamdate_sudung::date)-(now()::date))>7 and mbp.maubenhphamstatus in (4,5,9) then 1 else 0 end) as slthyl_quahon7
-FROM (select departmentgroupid,maubenhphamdate_sudung,maubenhphamstatus from maubenhpham where maubenhphamdate_sudung>now() {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp
+FROM (select departmentgroupid,maubenhphamdate_sudung,maubenhphamstatus from maubenhpham where maubenhphamdate_sudung>now() and medicinestoreid not in (144,145,146,147,148,158,164,165,181) {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup where 1=1 {_lstKhoaChonLayBC}) degp on degp.departmentgroupid=mbp.departmentgroupid
 GROUP BY degp.departmentgroupid,degp.departmentgroupname;";
 

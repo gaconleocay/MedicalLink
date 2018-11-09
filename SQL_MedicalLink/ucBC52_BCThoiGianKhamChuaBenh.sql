@@ -1,5 +1,5 @@
 --BC Thời gian khám chữa bệnh
---Ngày 22/10/2018
+--Tong hop - Ngày 9/11/2018
 
 
 SELECT TMP.sl_bn,
@@ -38,20 +38,20 @@ FROM
 	(select vienphiid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp}) vp
 	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd}) mrd on mrd.vienphiid=vp.vienphiid
 	inner join (select medicalrecordid,min(sothutudate_start) as sothutudate_start,max(sothutudate_end) as sothutudate_end,max(sothutustatus) as sothutustatus from sothutuphongkham where 1=1 and sothutudate_start<>'0001-01-01 00:00:00' {_tieuchi_stt} group by medicalrecordid) stt on stt.medicalrecordid=mrd.medicalrecordid
-	inner join (select ser.vienphiid,
+	inner join (select ser.vienphiid,ser.medicalrecordid,
 				max(case when ser.bhyt_groupcode='01KB' then 1 else 0 end) as iskb,
 				max(case when ser.bhyt_groupcode='03XN' then 1 else 0 end) as isxn,
 				max(case when ser.bhyt_groupcode in ('04CDHA','07KTC') then 1 else 0 end) as iscdha,
 				max(case when ser.bhyt_groupcode='05TDCN' then 1 else 0 end) as istdcn
 			from	
-				(select vienphiid,bhyt_groupcode from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC')  {_tieuchi_ser} group by vienphiid,bhyt_groupcode) ser group by ser.vienphiid) serv on serv.vienphiid=vp.vienphiid ) TMP;
+				(select vienphiid,bhyt_groupcode,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC')  {_tieuchi_ser} group by vienphiid,bhyt_groupcode,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid) TMP;
 
 				
 				
 				
 
 				
----Chi tiet - 22/10/2018
+---Chi tiet - 9/11/2018
 SELECT row_number () over (order by vp.vienphiid) as stt,
 	vp.vienphiid,
 	vp.patientid,
@@ -77,13 +77,13 @@ FROM
 	(select vienphiid,hosobenhanid,patientid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp}) vp
 	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus,departmentid from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd}) mrd on mrd.vienphiid=vp.vienphiid
 	inner join (select medicalrecordid,min(sothutudate_start) as sothutudate_start,max(sothutudate_end) as sothutudate_end,max(sothutustatus) as sothutustatus from sothutuphongkham where 1=1 and sothutudate_start<>'0001-01-01 00:00:00' {_tieuchi_stt} group by medicalrecordid) stt on stt.medicalrecordid=mrd.medicalrecordid
-	inner join (select ser.vienphiid,
+	inner join (select ser.vienphiid,ser.medicalrecordid,
 				max(case when ser.bhyt_groupcode='01KB' then 1 else 0 end) as iskb,
 				max(case when ser.bhyt_groupcode='03XN' then 1  else 0 end) as isxn,
 				max(case when ser.bhyt_groupcode in ('04CDHA','07KTC') then 1  else 0 end) as iscdha,
 				max(case when ser.bhyt_groupcode='05TDCN' then 1  else 0 end) as istdcn
 			from	
-				(select vienphiid,bhyt_groupcode from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') {_tieuchi_ser} group by vienphiid,bhyt_groupcode) ser group by ser.vienphiid) serv on serv.vienphiid=vp.vienphiid 
+				(select vienphiid,bhyt_groupcode,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') {_tieuchi_ser} group by vienphiid,bhyt_groupcode,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid 
 	inner join (select hosobenhanid,patientname from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid
 	left join (select departmentid,departmentname from department where departmenttype in (2,3,9)) de on de.departmentid=mrd.departmentid;
 				

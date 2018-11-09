@@ -64,6 +64,9 @@
             this.gridColumn_tutruc_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn_ton_thanhtien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -438,7 +441,10 @@
             this.gridColumn8,
             this.gridColumn_tutruc_thanhtien,
             this.gridColumn10,
-            this.gridColumn_ton_thanhtien});
+            this.gridColumn_ton_thanhtien,
+            this.gridColumn3,
+            this.gridColumn6,
+            this.gridColumn7});
             this.gridViewBaoCao.GridControl = this.gridControlBaoCao;
             this.gridViewBaoCao.GroupCount = 2;
             this.gridViewBaoCao.GroupRowHeight = 25;
@@ -695,6 +701,24 @@
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ton_thanhtien", "{0:#,##0}")});
             this.gridColumn_ton_thanhtien.Width = 135;
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "departmentgroupid";
+            this.gridColumn3.FieldName = "departmentgroupid";
+            this.gridColumn3.Name = "gridColumn3";
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "medicinecode";
+            this.gridColumn6.FieldName = "medicinecode";
+            this.gridColumn6.Name = "gridColumn6";
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "isgroup";
+            this.gridColumn7.FieldName = "isgroup";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
             // ucBC49_SuDungThuocToanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -763,5 +787,8 @@
         private DevExpress.XtraEditors.ComboBoxEdit cboDoiTuongBN;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.ComboBoxEdit cboLoaiThuocVT;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

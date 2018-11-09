@@ -53,13 +53,22 @@ namespace MedicalLink.BaoCao.BC57_KeThuocVatTuTruocNgay
 	mes.medicinestorename,
 	ncd.usercode,
 	ncd.username as nguoichidinh,
+	(case when mbp.maubenhphamphieutype=1 then 'Phiếu trả' end) as maubenhphamphieutype,
+	(case vp.doituongbenhnhanid 
+			when 1 then 'BHYT'
+			when 2 then 'Viện phí'
+			when 3 then 'Dịch vụ'
+			when 4 then 'Người nước ngoài'
+			when 5 then 'Miễn phí'
+			when 6 then 'Hợp đồng'
+			end) as doituongbenhnhan,
 	vp.vienphidate,
 	(case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as vienphidate_ravien,
 	(case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as duyet_ngayduyet_vp,	
 	(case when vp.vienphistatus=0 then 'Đang điều trị' else (case when vp.vienphistatus_vp=1 then 'Đã thanh toán' else 'Chưa thanh toán' end) end) as vienphistatus
 FROM 
-	(select maubenhphamid,vienphiid,userid,maubenhphamstatus,maubenhphamdate,medicinestoreid,maubenhphamdate_sudung,departmentgroupid,departmentid from maubenhpham m where maubenhphamdate_sudung>now() {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp 
-	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1 {_tieuchi_vp}) vp on vp.vienphiid=mbp.vienphiid
+	(select maubenhphamid,vienphiid,userid,maubenhphamstatus,maubenhphamdate,medicinestoreid,maubenhphamdate_sudung,departmentgroupid,departmentid,maubenhphamphieutype from maubenhpham m where maubenhphamdate_sudung>now() and medicinestoreid not in (144,145,146,147,148,158,164,165,181) {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp 
+	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp,doituongbenhnhanid from vienphi where 1=1 {_tieuchi_vp}) vp on vp.vienphiid=mbp.vienphiid
 	LEFT JOIN (select userhisid,usercode,username from nhompersonnel) ncd on ncd.userhisid=mbp.userid
 	INNER JOIN (select hosobenhanid,patientname,bhytcode from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=mbp.departmentgroupid 
@@ -94,6 +103,31 @@ FROM
                 {
                     e.Appearance.BackColor = Color.DodgerBlue;
                     e.Appearance.ForeColor = Color.White;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void gridViewBNDetail_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            try
+            {
+                GridView View = sender as GridView;
+                if (e.RowHandle >= 0)
+                {
+                    int tongsongay = Utilities.TypeConvertParse.ToInt32(View.GetRowCellDisplayText(e.RowHandle, View.Columns["songay"]));
+                    if (tongsongay >= 4 && tongsongay <= 7)
+                    {
+                        e.Appearance.BackColor = Color.PeachPuff;
+                        e.HighPriority = true;
+                    }
+                    else if (tongsongay > 7)
+                    {
+                        e.Appearance.BackColor = Color.Salmon;
+                        e.HighPriority = true;
+                    }
                 }
             }
             catch (Exception ex)

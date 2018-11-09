@@ -22,14 +22,14 @@ SELECT row_number () over (order by degp.departmentgroupname) as stt,
 	sum(case when ((mbp.maubenhphamdate_sudung::date)-(now()::date))=7 and mbp.maubenhphamstatus in (4,5,9) then 1 else 0 end) as slthyl_qua7,
 	sum(case when ((mbp.maubenhphamdate_sudung::date)-(now()::date))>7 then 1 else 0 end) as sl_quahon7,
 	sum(case when ((mbp.maubenhphamdate_sudung::date)-(now()::date))>7 and mbp.maubenhphamstatus in (4,5,9) then 1 else 0 end) as slthyl_quahon7
-FROM (select departmentgroupid,maubenhphamdate_sudung,maubenhphamstatus from maubenhpham where maubenhphamdate_sudung>now() {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp
+FROM (select departmentgroupid,maubenhphamdate_sudung,maubenhphamstatus from maubenhpham where maubenhphamdate_sudung>now() and medicinestoreid not in (144,145,146,147,148,158,164,165,181) {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup where 1=1 {_lstKhoaChonLayBC}) degp on degp.departmentgroupid=mbp.departmentgroupid
 GROUP BY degp.departmentgroupid,degp.departmentgroupname;
 	
 
 	
 	
----Chi tiet
+---Chi tiet - 9/11/2018
 
 SELECT row_number() over (order by vp.patientid,mbp.maubenhphamdate_sudung) as stt, 
 	vp.patientid, 
@@ -46,13 +46,22 @@ SELECT row_number() over (order by vp.patientid,mbp.maubenhphamdate_sudung) as s
 	mes.medicinestorename,
 	ncd.usercode,
 	ncd.username as nguoichidinh,
+	(case when mbp.maubenhphamphieutype=1 then 'Phiếu trả' end) as maubenhphamphieutype,
+	(case vp.doituongbenhnhanid 
+			when 1 then 'BHYT'
+			when 2 then 'Viện phí'
+			when 3 then 'Dịch vụ'
+			when 4 then 'Người nước ngoài'
+			when 5 then 'Miễn phí'
+			when 6 then 'Hợp đồng'
+			end) as doituongbenhnhan,
 	vp.vienphidate,
 	(case when vp.vienphidate_ravien<>'0001-01-01 00:00:00' then vp.vienphidate_ravien end) as vienphidate_ravien,
 	(case when vp.duyet_ngayduyet_vp<>'0001-01-01 00:00:00' then vp.duyet_ngayduyet_vp end) as duyet_ngayduyet_vp,	
 	(case when vp.vienphistatus=0 then 'Đang điều trị' else (case when vp.vienphistatus_vp=1 then 'Đã thanh toán' else 'Chưa thanh toán' end) end) as vienphistatus
 FROM 
-	(select maubenhphamid,vienphiid,userid,maubenhphamstatus,maubenhphamdate,medicinestoreid,maubenhphamdate_sudung,departmentgroupid,departmentid from maubenhpham m where maubenhphamdate_sudung>now() {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp 
-	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1 {_tieuchi_vp}) vp on vp.vienphiid=mbp.vienphiid
+	(select maubenhphamid,vienphiid,userid,maubenhphamstatus,maubenhphamdate,medicinestoreid,maubenhphamdate_sudung,departmentgroupid,departmentid,maubenhphamphieutype from maubenhpham m where maubenhphamdate_sudung>now() and medicinestoreid not in (144,145,146,147,148,158,164,165,181) {_maubenhphamgrouptype} {_lstKhoaChonLayBC}) mbp 
+	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp,doituongbenhnhanid from vienphi where 1=1 {_tieuchi_vp}) vp on vp.vienphiid=mbp.vienphiid
 	LEFT JOIN (select userhisid,usercode,username from nhompersonnel) ncd on ncd.userhisid=mbp.userid
 	INNER JOIN (select hosobenhanid,patientname,bhytcode from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=mbp.departmentgroupid 

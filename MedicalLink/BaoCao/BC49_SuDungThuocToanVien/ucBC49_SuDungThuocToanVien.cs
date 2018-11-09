@@ -18,6 +18,7 @@ using MedicalLink.Utilities.GridControl;
 using MedicalLink.DatabaseProcess;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraTreeList.Nodes;
+using MedicalLink.Utilities;
 
 namespace MedicalLink.BaoCao
 {
@@ -197,6 +198,7 @@ namespace MedicalLink.BaoCao
 	degp.departmentgroupid,
 	degp.departmentgroupname,
 	mef.medicinerefid_org,
+	mef.medicinecode,
 	mef.medicinename,
 	mef.medicinegroupcode,
 	O.dongia,
@@ -205,7 +207,8 @@ namespace MedicalLink.BaoCao
 	sum(O.tutruc_sl) as tutruc_sl,
 	sum(O.tutruc_thanhtien) as tutruc_thanhtien,
 	sum(O.ton_sl) as ton_sl,
-	sum(O.ton_thanhtien) as ton_thanhtien
+	sum(O.ton_thanhtien) as ton_thanhtien,
+    0 as isgroup
 FROM 
 	(select ser.departmentgroupid,ser.dongia,ser.servicepricecode,
 		sum(case when mbp.medicinestoreid in (2,88,87,175,94,96,5,183,119,141,124) then ser.soluong end) as noitru_sl,
@@ -224,7 +227,7 @@ FROM
 	inner join (select medicinerefid_org,medicinecode,medicinename,medicinegroupcode from medicine_ref where 1=1 {_datatype}) mef on mef.medicinecode=O.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=O.departmentgroupid
 WHERE O.noitru_sl<>0 or O.tutruc_sl<>0 or O.ton_sl<>0
-GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,mef.medicinegroupcode,O.dongia;";
+GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,mef.medicinecode,mef.medicinegroupcode,O.dongia;";
                 DataTable _dataBaoCao = condb.GetDataTable_HIS(_sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
@@ -265,9 +268,9 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,m
                     thongTinThem.Add(reportitem);
                     ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
                     string fileTemplatePath = "BC_49_SuDungThuocToanVien.xlsx";
-                    DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
+                    //DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
                     Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                    export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                    export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, ExportExcel_GroupColume_CT());
                 }
             }
             catch (Exception ex)
@@ -292,14 +295,92 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,m
                 thongTinThem.Add(reportitem);
 
                 string fileTemplatePath = "BC_49_SuDungThuocToanVien.xlsx";
-                DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                //DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
+                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, ExportExcel_GroupColume_CT());
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
             SplashScreenManager.CloseForm();
+        }
+
+        private DataTable ExportExcel_GroupColume_CT()
+        {
+            System.Data.DataTable result = new System.Data.DataTable();
+            try
+            {
+                DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
+
+                List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO> lstData_XuatBaoCao = new List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO>();
+                List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO> lstDataDoanhThu = DataTables.DataTableToList<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO>(data_XuatBaoCao);
+                //Khoa
+                List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO> lstGroup_Khoa = lstDataDoanhThu.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
+                foreach (var item_khoa in lstGroup_Khoa)
+                {
+                    ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO data_khoa_name = new ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO();
+                    List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO> lstData_Khoa = lstDataDoanhThu.Where(o => o.departmentgroupid == item_khoa.departmentgroupid).ToList();
+                    decimal sum_noitru_sl = 0;
+                    decimal sum_noitru_thanhtien = 0;
+                    decimal sum_tutruc_sl = 0;
+                    decimal sum_tutruc_thanhtien = 0;
+
+                    foreach (var item_tinhsum in lstData_Khoa)
+                    {
+                        sum_noitru_sl += item_tinhsum.noitru_sl;
+                        sum_noitru_thanhtien += item_tinhsum.noitru_thanhtien;
+                        sum_tutruc_sl += item_tinhsum.tutruc_sl;
+                        sum_tutruc_thanhtien += item_tinhsum.tutruc_thanhtien;
+                    }
+                    data_khoa_name.departmentgroupname = item_khoa.departmentgroupname;
+                    data_khoa_name.stt = item_khoa.departmentgroupname;
+                    data_khoa_name.noitru_sl = sum_noitru_sl;
+                    data_khoa_name.noitru_thanhtien = sum_noitru_thanhtien;
+                    data_khoa_name.tutruc_sl = sum_tutruc_sl;
+                    data_khoa_name.tutruc_thanhtien = sum_tutruc_thanhtien;
+                    data_khoa_name.isgroup = 1;
+                    lstData_XuatBaoCao.Add(data_khoa_name);
+                    //Nhom thuoc
+                    List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO> lstGroup_GroupOrg = lstData_Khoa.GroupBy(o => o.medicinegroupcode).Select(n => n.First()).ToList();
+                    foreach (var item_groupOrg in lstGroup_GroupOrg)
+                    {
+                        ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO data_group_name = new ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO();
+                        List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO> lstData_group = lstData_Khoa.Where(o => o.medicinegroupcode == item_groupOrg.medicinegroupcode).ToList();
+                        decimal sum_noitru_sl_org = 0;
+                        decimal sum_noitru_thanhtien_org = 0;
+                        decimal sum_tutruc_sl_org = 0;
+                        decimal sum_tutruc_thanhtien_org = 0;
+
+                        foreach (var item_tinhsum in lstData_group)
+                        {
+                            sum_noitru_sl_org += item_tinhsum.noitru_sl;
+                            sum_noitru_thanhtien_org += item_tinhsum.noitru_thanhtien;
+                            sum_tutruc_sl_org += item_tinhsum.tutruc_sl;
+                            sum_tutruc_thanhtien_org += item_tinhsum.tutruc_thanhtien;
+                        }
+                        data_group_name.medicinegroupcode = item_groupOrg.medicinegroupcode;
+                        data_group_name.stt = "' - " + item_groupOrg.medicinegroupcode + " - " + item_groupOrg.medicinename;
+                        data_group_name.noitru_sl = sum_noitru_sl_org;
+                        data_group_name.noitru_thanhtien = sum_noitru_thanhtien_org;
+                        data_group_name.tutruc_sl = sum_tutruc_sl_org;
+                        data_group_name.tutruc_thanhtien = sum_tutruc_thanhtien_org;
+                        data_group_name.isgroup = 2;
+                        lstData_XuatBaoCao.Add(data_group_name);
+                        for (int i = 0; i < lstData_group.Count; i++)
+                        {
+                            lstData_group[i].stt = "   " + (i + 1).ToString();
+                            lstData_XuatBaoCao.Add(lstData_group[i]);
+                        }
+                        //lstData_XuatBaoCao.AddRange(lstData_group);
+                    }
+                }
+                result = Utilities.DataTables.ListToDataTable(lstData_XuatBaoCao);
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
         }
 
         #endregion
@@ -342,6 +423,9 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,m
         }
 
         #endregion
+
+
+
 
         #region Tree List
         private void treeListLookUpEdit1TreeList_AfterCheckNode(object sender, DevExpress.XtraTreeList.NodeEventArgs e)

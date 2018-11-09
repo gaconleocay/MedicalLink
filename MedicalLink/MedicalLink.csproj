@@ -796,6 +796,7 @@
     <Compile Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.Designer.cs">
       <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClassCommon\BaoCao\BC49SuDungThuocToanVienDTO.cs" />
     <Compile Include="ClassCommon\BC08PhauThuatThuThuatDTO.cs" />
     <Compile Include="ClassCommon\BC42_TaiNanThuongTichDTO.cs" />
     <Compile Include="ClassCommon\BC42_TaiNanThuongTich_LableDTO.cs" />

@@ -3,10 +3,11 @@
 
 
 
-SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname,mef.medicinegroupcode ORDER BY mef.medicinename)) as stt,
+SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname,mef.medicinegroupcode ORDER BY mef.medicinename)) as sttg,
 	degp.departmentgroupid,
 	degp.departmentgroupname,
 	mef.medicinerefid_org,
+	mef.medicinecode,
 	mef.medicinename,
 	mef.medicinegroupcode,
 	O.dongia,
@@ -15,7 +16,8 @@ SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname,mef.medicinegro
 	sum(O.tutruc_sl) as tutruc_sl,
 	sum(O.tutruc_thanhtien) as tutruc_thanhtien,
 	sum(O.ton_sl) as ton_sl,
-	sum(O.ton_thanhtien) as ton_thanhtien
+	sum(O.ton_thanhtien) as ton_thanhtien,
+	0 as isgroup
 FROM 
 	(select ser.departmentgroupid,ser.dongia,ser.servicepricecode,
 		sum(case when mbp.medicinestoreid in (2,88,87,175,94,96,5,183,119,141,124) then ser.soluong end) as noitru_sl,
@@ -34,7 +36,7 @@ FROM
 	inner join (select medicinerefid_org,medicinecode,medicinename,medicinegroupcode from medicine_ref where 1=1 {_datatype}) mef on mef.medicinecode=O.servicepricecode
 	inner join (select departmentgroupid,departmentgroupname from departmentgroup) degp on degp.departmentgroupid=O.departmentgroupid
 WHERE O.noitru_sl<>0 or O.tutruc_sl<>0 or O.ton_sl<>0
-GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,mef.medicinegroupcode,O.dongia;
+GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,mef.medicinename,mef.medicinecode,mef.medicinegroupcode,O.dongia;
 
 
 

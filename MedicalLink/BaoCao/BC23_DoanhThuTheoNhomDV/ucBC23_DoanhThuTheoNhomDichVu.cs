@@ -86,7 +86,7 @@ namespace MedicalLink.BaoCao
             {
                 string _tieuchi_ser = " and servicepricedate>'2018-01-01 00:00:00' ";
                 string _tieuchi_vp = " and vienphidate>'2017-01-01 00:00:00' ";
-                string _tieuchi_hsba= " and hosobenhandate>'2017-01-01 00:00:00' ";
+                string _tieuchi_hsba = " and hosobenhandate>'2017-01-01 00:00:00' ";
                 string khoachidinh = " and departmentgroupid in (";
                 string _lstservicecode = "";
                 string _trangthaibenhan = "";
@@ -169,6 +169,7 @@ namespace MedicalLink.BaoCao
                 if (radioXemTongHop.Checked) //xem tong hop
                 {
                     sql_timkiem = $@"SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY dv.servicepricename)) as stt,
+	degp.departmentgroupid,
 	degp.departmentgroupname,
 	dv.servicepricecode,
 	dv.servicepricename,
@@ -215,7 +216,7 @@ INNER JOIN
 		inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 {_tieuchi_vp} {_trangthaibenhan} {_bntronvien}) vp on vp.vienphiid=ser.vienphiid 
 	group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid
 	order by ser.servicepricename) dv on dv.departmentgroupid=degp.departmentgroupid
-GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loaidoituong,dv.servicepricemoney;";
+GROUP BY degp.departmentgroupid,degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loaidoituong,dv.servicepricemoney;";
                 }
                 else
                 {
@@ -343,14 +344,20 @@ GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loa
                 reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
-                string fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_TongHop.xlsx";
                 if (radioXemChiTiet.Checked)
                 {
-                    fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
+                    string fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
+                    DataTable data_XuatBaoCao = Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao);
+                    Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                    export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
                 }
-                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
-                Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
-                export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                else
+                {
+                    string fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_TongHop.xlsx";
+                    System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                    Utilities.Common.Excel.ExcelExport export = new Utilities.Common.Excel.ExcelExport();
+                    export.ExportExcelTemplate("", fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                }
             }
             catch (Exception ex)
             {
@@ -383,13 +390,18 @@ GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loa
                 reportitem_khoa.value = chkcomboListDSKhoa.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
-                string fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_TongHop.xlsx";
                 if (radioXemChiTiet.Checked)
                 {
-                    fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
+                    DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao);
+                    string fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_ChiTiet.xlsx";
+                    Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
                 }
-                System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
-                Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                else
+                {
+                    string fileTemplatePath = "BC_23_DoanhThuTheoNhomDichVu_TongHop.xlsx";
+                    System.Data.DataTable data_XuatBaoCao = ExportExcel_GroupColume();
+                    Utilities.PrintPreview.PrintPreview_ExcelFileTemplate.UsingExcelTemplate(fileTemplatePath, thongTinThem, data_XuatBaoCao);
+                }
             }
             catch (Exception ex)
             {
@@ -409,8 +421,7 @@ GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loa
             try
             {
                 List<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO> lstData_XuatBaoCao = new List<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO>();
-                List<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO> lstDataDoanhThu = new List<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO>();
-                lstDataDoanhThu = DataTables.DataTableToList<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao));
+                List<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO> lstDataDoanhThu = DataTables.DataTableToList<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO>(Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewDataBaoCao));
 
                 List<ClassCommon.BC23_DoanhThuTheoNhomDichVuDTO> lstData_Group = lstDataDoanhThu.GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
                 foreach (var item_group in lstData_Group)

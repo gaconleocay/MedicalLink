@@ -228,6 +228,10 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     _usergnhom = "4";
                 }
+                else if (cboNhomNhanVien.Text == "Điều dưỡng")
+                {
+                    _usergnhom = "5";
+                }
                 else if (cboNhomNhanVien.Text == "Khác")
                 {
                     _usergnhom = "99";

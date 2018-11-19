@@ -310,6 +310,11 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,m
             System.Data.DataTable result = new System.Data.DataTable();
             try
             {
+                //Lay Danh muc Nhom thuoc/VT
+                string _sqlNhom = "select medicinecode,medicinename from medicine_ref where medicinecode in (select medicinegroupcode from medicine_ref group by medicinegroupcode);";
+                DataTable _dataNhom = condb.GetDataTable_HIS(_sqlNhom);
+                List<ClassCommon.BaoCao.DanhMucNhomThuocDTO> _lstNhomThuoc = DataTables.DataTableToList<ClassCommon.BaoCao.DanhMucNhomThuocDTO>(_dataNhom);
+
                 DataTable data_XuatBaoCao = Utilities.GridControl.Util_GridcontrolConvert.ConvertGridControlToDataTable(gridViewBaoCao);
 
                 List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO> lstData_XuatBaoCao = new List<ClassCommon.BaoCao.BC49SuDungThuocToanVienDTO>();
@@ -359,7 +364,7 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname,mef.medicinerefid_org,m
                             sum_tutruc_thanhtien_org += item_tinhsum.tutruc_thanhtien;
                         }
                         data_group_name.medicinegroupcode = item_groupOrg.medicinegroupcode;
-                        data_group_name.stt = "' - " + item_groupOrg.medicinegroupcode + " - " + item_groupOrg.medicinename;
+                        data_group_name.stt = "' - " + item_groupOrg.medicinegroupcode + " : " + _lstNhomThuoc.Where(o => o.medicinecode == item_groupOrg.medicinegroupcode).FirstOrDefault().medicinename;
                         data_group_name.noitru_sl = sum_noitru_sl_org;
                         data_group_name.noitru_thanhtien = sum_noitru_thanhtien_org;
                         data_group_name.tutruc_sl = sum_tutruc_sl_org;

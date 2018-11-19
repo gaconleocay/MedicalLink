@@ -83,6 +83,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTrichPhanTram = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.chkBnTronVien = new DevExpress.XtraEditors.CheckEdit();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
@@ -94,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -108,6 +110,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkBnTronVien);
             this.groupBoxFile.Controls.Add(this.radioXemChiTiet);
             this.groupBoxFile.Controls.Add(this.radioXemTongHop);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -126,13 +129,12 @@
             this.groupBoxFile.Size = new System.Drawing.Size(975, 90);
             this.groupBoxFile.TabIndex = 13;
             this.groupBoxFile.TabStop = false;
-            this.groupBoxFile.Text = "Tìm kiếm";
             // 
             // radioXemChiTiet
             // 
             this.radioXemChiTiet.AutoSize = true;
             this.radioXemChiTiet.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioXemChiTiet.Location = new System.Drawing.Point(465, 60);
+            this.radioXemChiTiet.Location = new System.Drawing.Point(457, 60);
             this.radioXemChiTiet.Name = "radioXemChiTiet";
             this.radioXemChiTiet.Size = new System.Drawing.Size(94, 20);
             this.radioXemChiTiet.TabIndex = 99;
@@ -145,7 +147,7 @@
             this.radioXemTongHop.AutoSize = true;
             this.radioXemTongHop.Checked = true;
             this.radioXemTongHop.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioXemTongHop.Location = new System.Drawing.Point(465, 23);
+            this.radioXemTongHop.Location = new System.Drawing.Point(457, 23);
             this.radioXemTongHop.Name = "radioXemTongHop";
             this.radioXemTongHop.Size = new System.Drawing.Size(106, 20);
             this.radioXemTongHop.TabIndex = 98;
@@ -157,7 +159,7 @@
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl4.Location = new System.Drawing.Point(222, 62);
+            this.labelControl4.Location = new System.Drawing.Point(214, 62);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(59, 16);
             this.labelControl4.TabIndex = 85;
@@ -166,7 +168,7 @@
             // cboTrangThai
             // 
             this.cboTrangThai.EditValue = "Tất cả";
-            this.cboTrangThai.Location = new System.Drawing.Point(286, 57);
+            this.cboTrangThai.Location = new System.Drawing.Point(278, 57);
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTrangThai.Properties.Appearance.Options.UseFont = true;
@@ -186,7 +188,7 @@
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl2.Location = new System.Drawing.Point(235, 25);
+            this.labelControl2.Location = new System.Drawing.Point(227, 25);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(46, 16);
             this.labelControl2.TabIndex = 23;
@@ -195,7 +197,7 @@
             // cboTieuChi
             // 
             this.cboTieuChi.EditValue = "Theo ngày chỉ định";
-            this.cboTieuChi.Location = new System.Drawing.Point(286, 22);
+            this.cboTieuChi.Location = new System.Drawing.Point(278, 22);
             this.cboTieuChi.Name = "cboTieuChi";
             this.cboTieuChi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTieuChi.Properties.Appearance.Options.UseFont = true;
@@ -215,7 +217,7 @@
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(18, 62);
+            this.labelControl1.Location = new System.Drawing.Point(10, 62);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(23, 16);
             this.labelControl1.TabIndex = 21;
@@ -224,7 +226,7 @@
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Location = new System.Drawing.Point(25, 25);
+            this.labelControl3.Location = new System.Drawing.Point(17, 25);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(16, 16);
             this.labelControl3.TabIndex = 20;
@@ -236,7 +238,7 @@
             this.dateDenNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateDenNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateDenNgay.Location = new System.Drawing.Point(56, 57);
+            this.dateDenNgay.Location = new System.Drawing.Point(48, 57);
             this.dateDenNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateDenNgay.Name = "dateDenNgay";
             this.dateDenNgay.Size = new System.Drawing.Size(159, 23);
@@ -249,7 +251,7 @@
             this.dateTuNgay.CustomFormat = "HH:mm:ss dd/MM/yyyy";
             this.dateTuNgay.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTuNgay.Location = new System.Drawing.Point(56, 22);
+            this.dateTuNgay.Location = new System.Drawing.Point(48, 22);
             this.dateTuNgay.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.dateTuNgay.Name = "dateTuNgay";
             this.dateTuNgay.Size = new System.Drawing.Size(159, 23);
@@ -1057,6 +1059,20 @@
             this.labelControl5.TabIndex = 86;
             this.labelControl5.Text = "Trích 5% cho các khoa phòng";
             // 
+            // chkBnTronVien
+            // 
+            this.chkBnTronVien.EditValue = true;
+            this.chkBnTronVien.Location = new System.Drawing.Point(581, 23);
+            this.chkBnTronVien.Name = "chkBnTronVien";
+            this.chkBnTronVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBnTronVien.Properties.Appearance.Options.UseFont = true;
+            this.chkBnTronVien.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkBnTronVien.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkBnTronVien.Properties.Caption = "+BN trốn viện";
+            this.chkBnTronVien.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkBnTronVien.Size = new System.Drawing.Size(107, 20);
+            this.chkBnTronVien.TabIndex = 100;
+            // 
             // BC109_DSCacKhoaDuocHuongK3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1080,6 +1096,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1140,5 +1157,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn32;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn33;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
+        private DevExpress.XtraEditors.CheckEdit chkBnTronVien;
     }
 }

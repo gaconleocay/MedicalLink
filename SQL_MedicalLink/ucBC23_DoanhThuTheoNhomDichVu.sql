@@ -1,9 +1,10 @@
 ---Bao cao doanh thu theo nhom dich vu - Ngay 1/9/2017
 --ucBC23_DoanhThuTheoNhomDichVu
 
---TOng hop - 28/9/2018
+--TOng hop - 19/11/2018
 
 SELECT (row_number() OVER (PARTITION BY degp.departmentgroupname ORDER BY dv.servicepricename)) as stt,
+	degp.departmentgroupid,
 	degp.departmentgroupname,
 	dv.servicepricecode,
 	dv.servicepricename,
@@ -50,7 +51,7 @@ INNER JOIN
 		inner join (select vienphiid,doituongbenhnhanid from vienphi where 1=1 {_tieuchi_vp} {_trangthaibenhan} {_bntronvien}) vp on vp.vienphiid=ser.vienphiid 
 	group by ser.departmentgroupid,ser.servicepricecode,ser.servicepricename,ser.loaidoituong,ser.servicepricemoney,ser.servicepricemoney_bhyt,ser.servicepricemoney_nhandan,ser.servicepricemoney_nuocngoai,vp.doituongbenhnhanid
 	order by ser.servicepricename) dv on dv.departmentgroupid=degp.departmentgroupid
-GROUP BY degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loaidoituong,dv.servicepricemoney;
+GROUP BY degp.departmentgroupid,degp.departmentgroupname,dv.servicepricecode,dv.servicepricename,dv.loaidoituong,dv.servicepricemoney;
 
 
 

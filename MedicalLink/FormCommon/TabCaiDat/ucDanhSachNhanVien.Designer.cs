@@ -196,6 +196,7 @@
             "Thu ngân",
             "CNTT",
             "Ban lãnh đạo",
+            "Điều dưỡng",
             "Khác"});
             this.cboNhomNhanVien.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
             this.cboNhomNhanVien.Size = new System.Drawing.Size(225, 22);

@@ -2,6 +2,13 @@
 --BCPhauThuatThuThuat_TongHop
 
 ---ngay 23/5/2018
+--Mapping:
+Mời: phẫu thuật viên 2
+Chính: phẫu thuật viên 1
+Phụ: phụ mổ 1
+Giúp việc: phụ mổ 3
+
+
 
 SELECT O.*,
 	  (O.ptdb_moi+O.ptdb_mc+O.ptdb_phu+O.ptdb_gv) as ptdb_tong,

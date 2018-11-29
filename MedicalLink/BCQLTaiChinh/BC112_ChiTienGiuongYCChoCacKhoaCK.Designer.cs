@@ -53,6 +53,7 @@
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkBnTronVien = new DevExpress.XtraEditors.CheckEdit();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
@@ -61,6 +62,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -75,6 +77,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkBnTronVien);
             this.groupBoxFile.Controls.Add(this.labelControl4);
             this.groupBoxFile.Controls.Add(this.cboTrangThai);
             this.groupBoxFile.Controls.Add(this.labelControl2);
@@ -447,6 +450,20 @@
             this.gridColumn10.VisibleIndex = 5;
             this.gridColumn10.Width = 232;
             // 
+            // chkBnTronVien
+            // 
+            this.chkBnTronVien.EditValue = true;
+            this.chkBnTronVien.Location = new System.Drawing.Point(462, 23);
+            this.chkBnTronVien.Name = "chkBnTronVien";
+            this.chkBnTronVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBnTronVien.Properties.Appearance.Options.UseFont = true;
+            this.chkBnTronVien.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkBnTronVien.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkBnTronVien.Properties.Caption = "+BN trốn viện";
+            this.chkBnTronVien.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkBnTronVien.Size = new System.Drawing.Size(107, 20);
+            this.chkBnTronVien.TabIndex = 103;
+            // 
             // BC112_ChiTienGiuongYCChoCacKhoaCK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,6 +482,7 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -495,5 +513,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraEditors.CheckEdit chkBnTronVien;
     }
 }

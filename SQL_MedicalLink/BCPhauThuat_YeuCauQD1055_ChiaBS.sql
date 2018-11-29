@@ -11,7 +11,7 @@ U30001-1207	Phẫu thuật yêu cầu mổ dao siêu âm (Loại 2)
 U30001-2954	Phẫu thuật yêu cầu dao siêu âm (Loại 3)
 
  -----
- --ngay 23/5/2018
+ --ngay 27/11/2018
  
 SELECT row_number () over (order by A.ngay_thuchien) as stt, 
 A.patientid, 
@@ -90,27 +90,9 @@ FROM
 		ser.soluong as soluong, 
 		((ser.chiphidauvao + ser.chiphimaymoc + ser.chiphipttt) + COALESCE((case when ser.mayytedbid<>0 then (select myt.chiphiliendoanh from mayyte myt where myt.mayytedbid=ser.mayytedbid) else 0 end),0))* ser.soluong as chiphikhac, 
 		pttt.phauthuatvien as mochinh_tenbs, 
-		((case serf.servicepricecode 
-				when 'U18851-4427' then 500000 
-				when 'U19154-1951' then 500000 
-				when 'U18765-1454' then 500000 
-				when 'U17261-2902' then 500000 
-				when 'U17265-3936' then 1250000
-				when 'U30001-5346' then 750000
-				when 'U30001-1207' then 500000
-				when 'U30001-2954' then 500000			
-				else 0 end) * ser.soluong) as mochinh_tien,
+		((case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee * ser.soluong * 0.25) as mochinh_tien,
 		pttt.bacsigayme as gayme_tenbs, 
-		((case serf.servicepricecode 
-				when 'U18851-4427' then 100000 
-				when 'U19154-1951' then 100000 
-				when 'U18765-1454' then 100000 
-				when 'U17261-2902' then 100000 
-				when 'U17265-3936' then 250000
-				when 'U30001-5346' then 150000
-				when 'U30001-1207' then 100000
-				when 'U30001-2954' then 100000	
-				else 0 end) * ser.soluong) as gayme_tien,			
+		((case ser.loaidoituong when 0 then ser.servicepricemoney_bhyt when 1 then ser.servicepricemoney_nhandan else ser.servicepricemoney end) as servicepricefee * ser.soluong * 0.05) as gayme_tien,			
 		pttt.phumo1 as phu1_tenbs,  		
 		vp.vienphidate as ngay_vaovien, 
 		(case when vp.vienphistatus <>0 then vp.vienphidate_ravien end) as ngay_ravien, 

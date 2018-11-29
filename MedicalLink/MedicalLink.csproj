@@ -254,11 +254,11 @@
     <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.Designer.cs">
       <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCau.cs">
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BC17_PhauThuat_YeuCau.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCau.Designer.cs">
-      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
+    <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BC17_PhauThuat_YeuCau.Designer.cs">
+      <DependentUpon>BC17_PhauThuat_YeuCau.cs</DependentUpon>
     </Compile>
     <Compile Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.cs">
       <SubType>UserControl</SubType>
@@ -795,6 +795,18 @@
     </Compile>
     <Compile Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.Designer.cs">
       <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.Designer.cs">
+      <DependentUpon>frmCauHinhNgatKetNoiTuDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.Designer.cs">
+      <DependentUpon>ucTool27_KiemTraKetNoiPostgre.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassCommon\BaoCao\BC49SuDungThuocToanVienDTO.cs" />
     <Compile Include="ClassCommon\BC08PhauThuatThuThuatDTO.cs" />
@@ -1452,8 +1464,8 @@
     <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuatThuThuat_TongHop.resx">
       <DependentUpon>BCPhauThuatThuThuat_TongHop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCau.resx">
-      <DependentUpon>BCPhauThuat_YeuCau.cs</DependentUpon>
+    <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\BC17_PhauThuat_YeuCau.resx">
+      <DependentUpon>BC17_PhauThuat_YeuCau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BaoCao\BC08_PhauThuatThuThuat\BCPhauThuat_YeuCauQD1055.resx">
       <DependentUpon>BCPhauThuat_YeuCauQD1055.cs</DependentUpon>
@@ -1748,6 +1760,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.resx">
       <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.resx">
+      <DependentUpon>frmCauHinhNgatKetNoiTuDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.resx">
+      <DependentUpon>ucTool27_KiemTraKetNoiPostgre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucCapNhatKhaDungTonKho.resx">
       <DependentUpon>ucCapNhatKhaDungTonKho.cs</DependentUpon>

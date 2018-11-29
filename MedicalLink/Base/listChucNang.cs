@@ -342,6 +342,14 @@ namespace MedicalLink.Base
                 TOOL_26.permissionnote = "Cập nhật hạn sử dụng thuốc/vật tư";
                 lstresult.Add(TOOL_26);
 
+                ClassCommon.classPermission TOOL_27 = new ClassCommon.classPermission();
+                TOOL_27.permissioncheck = false;
+                TOOL_27.permissioncode = "TOOL_27";
+                TOOL_27.permissionname = "Kiểm tra số lượng kết nối đến CSDL";
+                TOOL_27.permissiontype = 2;
+                TOOL_27.tabMenuId = 2;
+                TOOL_27.permissionnote = "Kiểm tra số lượng kết nối đến CSDL";
+                lstresult.Add(TOOL_27);
 
 
                 // Phan quyen thao tac + chuc nang

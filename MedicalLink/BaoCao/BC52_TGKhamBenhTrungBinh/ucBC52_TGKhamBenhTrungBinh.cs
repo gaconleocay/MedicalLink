@@ -12,6 +12,7 @@ using DevExpress.XtraSplashScreen;
 using System.Globalization;
 using MedicalLink.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraTreeList.Nodes;
 
 namespace MedicalLink.BaoCao
 {
@@ -30,7 +31,7 @@ namespace MedicalLink.BaoCao
         private void ucBC52_TGKhamBenhTrungBinh_Load(object sender, EventArgs e)
         {
             LoadDuLieuMacDinh();
-            LoadDanhMucKhoa();
+            LoadDanhSachNhomDVKT();
         }
         private void LoadDuLieuMacDinh()
         {
@@ -44,22 +45,27 @@ namespace MedicalLink.BaoCao
             gridControlBCTongHop.Dock = DockStyle.Fill;
             gridControlBCChiTiet.Visible = false;
         }
-        private void LoadDanhMucKhoa()
+
+        private void LoadDanhSachNhomDVKT()
         {
             try
             {
-                //linq groupby
-                var lstDSKhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgrouptype == 1 || o.departmentgrouptype == 4 || o.departmentgrouptype == 11).ToList().GroupBy(o => o.departmentgroupid).Select(n => n.First()).ToList();
-                if (lstDSKhoa != null && lstDSKhoa.Count > 0)
-                {
-                    chkcomboListDSKhoa.Properties.DataSource = lstDSKhoa;
-                    chkcomboListDSKhoa.Properties.DisplayMember = "departmentgroupname";
-                    chkcomboListDSKhoa.Properties.ValueMember = "departmentgroupid";
-                }
-                if (lstDSKhoa.Count == 1)
-                {
-                    chkcomboListDSKhoa.CheckAll();
-                }
+                string _sqlDSNhom = @"select servicepricerefid,servicepricegroupcode,servicepricecode,servicepricename
+from servicepriceref
+where servicegrouptype in (2,3) and coalesce(isremove,0)=0 and servicepricegroupcode<>''
+order by servicegrouptype,servicepricegroupcode,servicepricename;";
+                DataTable _dataDSNhom = condb.GetDataTable_HIS(_sqlDSNhom);
+
+                treeListLookUpEdit1TreeList.KeyFieldName = "servicepricecode";
+                treeListLookUpEdit1TreeList.ParentFieldName = "servicepricegroupcode";
+                treeListNhomThuoc.Properties.DisplayMember = "servicepricename";
+                treeListNhomThuoc.Properties.ValueMember = "servicepricecode";
+
+                treeListLookUpEdit1TreeList.DataSource = _dataDSNhom;
+                treeListLookUpEdit1TreeList.ExpandAll();
+
+                treeListNhomThuoc.EditValue = _dataDSNhom.Rows[2];
+                treeListLookUpEdit1TreeList.SelectNode(treeListLookUpEdit1TreeList.FindNodeByFieldValue("servicepricecode", _dataDSNhom.Rows[2]["servicepricecode"]));
             }
             catch (Exception ex)
             {
@@ -69,36 +75,7 @@ namespace MedicalLink.BaoCao
 
         #endregion
 
-        #region Events
-        private void chkcomboListDSKhoa_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                chkcomboListDSPhong.Properties.Items.Clear();
-                List<Object> lstKhoaCheck = chkcomboListDSKhoa.Properties.Items.GetCheckedValues();
-                if (lstKhoaCheck.Count > 0)
-                {
-                    //Load danh muc phong theo khoa da chon
-                    List<ClassCommon.classUserDepartment> lstDSPhong = new List<classUserDepartment>();
-                    for (int i = 0; i < lstKhoaCheck.Count; i++)
-                    {
-                        List<ClassCommon.classUserDepartment> lstdsphongthuockhoa = Base.SessionLogin.LstPhanQuyen_KhoaPhong.Where(o => o.departmentgroupid == Utilities.TypeConvertParse.ToInt32(lstKhoaCheck[i].ToString())).ToList();
-                        lstDSPhong.AddRange(lstdsphongthuockhoa);
-                    }
-                    if (lstDSPhong != null && lstDSPhong.Count > 0)
-                    {
-                        chkcomboListDSPhong.Properties.DataSource = lstDSPhong;
-                        chkcomboListDSPhong.Properties.DisplayMember = "departmentname";
-                        chkcomboListDSPhong.Properties.ValueMember = "departmentid";
-                    }
-                    chkcomboListDSPhong.CheckAll();
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Error(ex);
-            }
-        }
+        #region Events   
         private void radioXemTongHop_CheckedChanged(object sender, EventArgs e)
         {
             try
@@ -153,6 +130,7 @@ namespace MedicalLink.BaoCao
                 string _tieuchi_ser = " and servicepricedate>='2018-01-01 00:00:00' ";
                 string _tieuchi_hsba = " and hosobenhandate>='2018-01-01 00:00:00' ";
                 string _doituongbenhnhanid = "";
+                string _lstvienphi_loaitru = " and vienphiid not in (0";
 
                 string _tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string _denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -190,23 +168,60 @@ namespace MedicalLink.BaoCao
                     _doituongbenhnhanid = " and doituongbenhnhanid<>1 ";
                 }
 
+                //Lay DS Vienphi loai tru
+                string _lstDSDVKT_Ser = " and servicepricecode in ('0'";
+                //DS DVKT
+                var _lstCheckNode = treeListLookUpEdit1TreeList.GetAllCheckedNodes();
+                foreach (var _item in _lstCheckNode)
+                {
+                    _lstDSDVKT_Ser += ",'" + _item.GetValue(treeListColumn_medicinecode).ToString() + "'";
+                }
+                _lstDSDVKT_Ser += ")";
+                _lstDSDVKT_Ser = _lstDSDVKT_Ser.Replace("'0',", "");
+
+                string _sqlLayVP = $@"SELECT vp.vienphiid
+FROM
+	(select vienphiid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp}) vp
+	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd}) mrd on mrd.vienphiid=vp.vienphiid
+	inner join (select ser.vienphiid,ser.medicalrecordid
+				from (select vienphiid,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') {_tieuchi_ser} {_lstDSDVKT_Ser} group by vienphiid,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid;";
+                DataTable _dataLayVP = condb.GetDataTable_HIS(_sqlLayVP);
+                if (_dataLayVP.Rows.Count > 0)
+                {
+                    for (int i = 0; i < _dataLayVP.Rows.Count; i++)
+                    {
+                        _lstvienphi_loaitru += "," + _dataLayVP.Rows[i]["vienphiid"].ToString();
+                    }
+                }
+                _lstvienphi_loaitru = _lstvienphi_loaitru.Replace("0,", "") + ") ";
+
+                //
                 if (radioXemTongHop.Checked)
                 {
                     string _sqlTimKiem = $@"SELECT TMP.sl_bn,
 	TMP.sl_chokham,
-	(TMP.tg_chokham/TMP.sl_bn) as tg_chokham,
+	TMP.tg_chokham,
+	(TMP.tg_chokham/TMP.sl_bn) as tg_chokhamtb,
 	TMP.sl_khamls,
-	(TMP.tg_khamls_qlcl/TMP.sl_khamls) as tg_khamls_qlcl,
-	(TMP.tg_khamls_it/TMP.sl_khamls) as tg_khamls_it,
+	TMP.tg_khamls_qlcl,
+	(TMP.tg_khamls_qlcl/TMP.sl_khamls) as tg_khamls_qlcltb,
+	TMP.tg_khamls_it,
+	(TMP.tg_khamls_it/TMP.sl_khamls) as tg_khamls_ittb,
 	TMP.sl_khamlsxn,
-	(TMP.tg_khamlsxn_qlcl/TMP.sl_khamlsxn) as tg_khamlsxn_qlcl,
-	(TMP.tg_khamlsxn_it/TMP.sl_khamlsxn) as tg_khamlsxn_it,
+	TMP.tg_khamlsxn_qlcl,
+	(TMP.tg_khamlsxn_qlcl/TMP.sl_khamlsxn) as tg_khamlsxn_qlcltb,
+	TMP.tg_khamlsxn_it,
+	(TMP.tg_khamlsxn_it/TMP.sl_khamlsxn) as tg_khamlsxn_ittb,
 	TMP.sl_khamlsxncdha,
-	(TMP.tg_khamlsxncdha_qlcl/TMP.sl_khamlsxncdha) as tg_khamlsxncdha_qlcl,
-	(TMP.tg_khamlsxncdha_it/TMP.sl_khamlsxncdha) as tg_khamlsxncdha_it,
+	TMP.tg_khamlsxncdha_qlcl,
+	(TMP.tg_khamlsxncdha_qlcl/TMP.sl_khamlsxncdha) as tg_khamlsxncdha_qlcltb,
+	TMP.tg_khamlsxncdha_it,
+	(TMP.tg_khamlsxncdha_it/TMP.sl_khamlsxncdha) as tg_khamlsxncdha_ittb,
 	TMP.sl_khamlsxncdhatdcn,
-	(TMP.tg_khamlsxncdhatdcn_qlcl/TMP.sl_khamlsxncdhatdcn) as tg_khamlsxncdhatdcn_qlcl,
-	(TMP.tg_khamlsxncdhatdcn_it/TMP.sl_khamlsxncdhatdcn) as tg_khamlsxncdhatdcn_it
+	TMP.tg_khamlsxncdhatdcn_qlcl,
+	(TMP.tg_khamlsxncdhatdcn_qlcl/TMP.sl_khamlsxncdhatdcn) as tg_khamlsxncdhatdcn_qlcltb,
+	TMP.tg_khamlsxncdhatdcn_it,
+	(TMP.tg_khamlsxncdhatdcn_it/TMP.sl_khamlsxncdhatdcn) as tg_khamlsxncdhatdcn_ittb
 FROM 
 (SELECT
 	count(vp.*) as sl_bn,
@@ -225,8 +240,8 @@ FROM
 	sum(case when mrd.thoigianravien<>'0001-01-01 00:00:00' and (serv.iskb+serv.isxn+serv.iscdha+serv.istdcn)=4 then ((DATE_PART('day',mrd.thoigianravien-mrd.thoigianvaovien)*24+DATE_PART('hour',mrd.thoigianravien-mrd.thoigianvaovien))*60+DATE_PART('minute',mrd.thoigianravien-mrd.thoigianvaovien)) end) as tg_khamlsxncdhatdcn_qlcl,
 	sum(case when stt.sothutustatus>=1 and mrd.thoigianravien<>'0001-01-01 00:00:00' and (serv.iskb+serv.isxn+serv.iscdha+serv.istdcn)=4 then ((DATE_PART('day',mrd.thoigianravien-stt.sothutudate_start)*24+DATE_PART('hour',mrd.thoigianravien-stt.sothutudate_start))*60+DATE_PART('minute',mrd.thoigianravien-stt.sothutudate_start)) end) as tg_khamlsxncdhatdcn_it	
 FROM 
-	(select vienphiid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp}) vp
-	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd}) mrd on mrd.vienphiid=vp.vienphiid
+	(select vienphiid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp} {_lstvienphi_loaitru}) vp
+	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd} {_lstvienphi_loaitru}) mrd on mrd.vienphiid=vp.vienphiid
 	inner join (select medicalrecordid,min(sothutudate_start) as sothutudate_start,max(sothutudate_end) as sothutudate_end,max(sothutustatus) as sothutustatus from sothutuphongkham where 1=1 and sothutudate_start<>'0001-01-01 00:00:00' {_tieuchi_stt} group by medicalrecordid) stt on stt.medicalrecordid=mrd.medicalrecordid
 	inner join (select ser.vienphiid,ser.medicalrecordid,
 				max(case when ser.bhyt_groupcode='01KB' then 1 else 0 end) as iskb,
@@ -234,7 +249,7 @@ FROM
 				max(case when ser.bhyt_groupcode in ('04CDHA','07KTC') then 1 else 0 end) as iscdha,
 				max(case when ser.bhyt_groupcode='05TDCN' then 1 else 0 end) as istdcn
 			from	
-				(select vienphiid,bhyt_groupcode,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC')  {_tieuchi_ser} group by vienphiid,bhyt_groupcode,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid) TMP;";
+				(select vienphiid,bhyt_groupcode,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') {_tieuchi_ser} {_lstvienphi_loaitru} group by vienphiid,bhyt_groupcode,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid) TMP;";
                     DataTable _dataBaoCao = condb.GetDataTable_HIS(_sqlTimKiem);
                     if (_dataBaoCao.Rows.Count > 0)
                     {
@@ -271,8 +286,8 @@ FROM
 	serv.iscdha,
 	serv.istdcn
 FROM
-	(select vienphiid,hosobenhanid,patientid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp}) vp
-	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus,departmentid from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd}) mrd on mrd.vienphiid=vp.vienphiid
+	(select vienphiid,hosobenhanid,patientid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp} {_lstvienphi_loaitru}) vp
+	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus,departmentid from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd} {_lstvienphi_loaitru}) mrd on mrd.vienphiid=vp.vienphiid
 	inner join (select medicalrecordid,min(sothutudate_start) as sothutudate_start,max(sothutudate_end) as sothutudate_end,max(sothutustatus) as sothutustatus from sothutuphongkham where 1=1 and sothutudate_start<>'0001-01-01 00:00:00' {_tieuchi_stt} group by medicalrecordid) stt on stt.medicalrecordid=mrd.medicalrecordid
 	inner join (select ser.vienphiid,ser.medicalrecordid,
 				max(case when ser.bhyt_groupcode='01KB' then 1 else 0 end) as iskb,
@@ -280,7 +295,7 @@ FROM
 				max(case when ser.bhyt_groupcode in ('04CDHA','07KTC') then 1  else 0 end) as iscdha,
 				max(case when ser.bhyt_groupcode='05TDCN' then 1  else 0 end) as istdcn
 			from	
-				(select vienphiid,bhyt_groupcode,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') {_tieuchi_ser} group by vienphiid,bhyt_groupcode,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid 
+				(select vienphiid,bhyt_groupcode,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') {_tieuchi_ser} {_lstvienphi_loaitru} group by vienphiid,bhyt_groupcode,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid 
 	inner join (select hosobenhanid,patientname from hosobenhan where 1=1 {_tieuchi_hsba}) hsba on hsba.hosobenhanid=vp.hosobenhanid
 	left join (select departmentid,departmentname from department where departmenttype in (2,3,9)) de on de.departmentid=mrd.departmentid;";
                     DataTable _dataBaoCao = condb.GetDataTable_HIS(_sqlTimKiem);
@@ -303,6 +318,9 @@ FROM
             SplashScreenManager.CloseForm();
         }
 
+        #endregion
+
+        #region Process
         #endregion
 
         #region Xuat bao cao and print
@@ -386,6 +404,72 @@ FROM
             {
                 MedicalLink.Base.Logging.Warn(ex);
             }
+        }
+
+
+        #endregion
+
+        #region Tree List
+        private void treeListLookUpEdit1TreeList_AfterCheckNode(object sender, DevExpress.XtraTreeList.NodeEventArgs e)
+        {
+            try
+            {
+                if (e.Node.ParentNode != null)
+                {
+                    e.Node.ParentNode.Checked = IsAllChecked(e.Node.ParentNode.Nodes);
+                    SetCheckedChildNodes(e.Node.Nodes);
+                }
+                else
+                {
+                    SetCheckedChildNodes(e.Node.Nodes);
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void SetCheckedChildNodes(TreeListNodes nodes)
+        {
+            try
+            {
+                foreach (TreeListNode node in nodes)
+                {
+                    if (node.Nodes.Count > 0)
+                    {
+                        node.Checked = node.ParentNode.Checked;
+                        SetCheckedChildNodes(node.Nodes);
+                    }
+                    else
+                    {
+                        node.Checked = node.ParentNode.Checked;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private bool IsAllChecked(DevExpress.XtraTreeList.Nodes.TreeListNodes nodes)
+        {
+            bool value = true;
+            try
+            {
+                foreach (TreeListNode node in nodes)
+                {
+                    if (!node.Checked)
+                    {
+                        value = false;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return value;
         }
 
 

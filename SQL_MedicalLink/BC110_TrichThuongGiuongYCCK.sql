@@ -1,7 +1,7 @@
 --Bao cao trich thuong tien dich vu giuong yeu cau chuyen khoan
 --BC110_TrichThuongGiuongYCCK
 
---ngay 8/8/2018
+--ngay 26/11/2018
 
 SELECT row_number () over (order by degp.departmentgroupname) as stt,
 	degp.departmentgroupid,
@@ -23,14 +23,14 @@ LEFT JOIN
 				(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia
 			from serviceprice 
 			where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
-		inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+		inner join (select vienphiid,vienphistatus from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+_bntronvien+") vp on vp.vienphiid=ser.vienphiid
 	group by ser.departmentgroupid) SER on SER.departmentgroupid=degp.departmentgroupid;
 
 
 
 
 
----Chi tiet - 19/8
+---Chi tiet - 26/11
 
 
 SELECT row_number() over (order by vp.patientid,mbp.maubenhphamdate) as stt, 
@@ -73,7 +73,7 @@ FROM
 		from serviceprice 
 		where 1=1 "+tieuchi_ser+lstdichvu_ser+") ser
 	INNER JOIN (select maubenhphamid,maubenhphamstatus,maubenhphamdate,userid,departmentid_des from maubenhpham where maubenhphamgrouptype=4 "+_tieuchi_mbp+") mbp on mbp.maubenhphamid=ser.maubenhphamid		
-	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+") vp on vp.vienphiid=ser.vienphiid
+	INNER JOIN (select vienphiid,patientid,vienphistatus,hosobenhanid,vienphidate,vienphidate_ravien,vienphistatus_vp,duyet_ngayduyet_vp from vienphi where 1=1 "+tieuchi_vp+trangthai_vp+_bntronvien+") vp on vp.vienphiid=ser.vienphiid
 	INNER JOIN (select hosobenhanid,patientname,bhytcode from hosobenhan where 1=1 "+_tieuchi_hsba+_hosobenhanstatus+") hsba on hsba.hosobenhanid=vp.hosobenhanid
 	LEFT JOIN (select userhisid,username from nhompersonnel) ngcd ON ngcd.userhisid=mbp.userid	
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid 

@@ -83,6 +83,7 @@
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkBnTronVien = new DevExpress.XtraEditors.CheckEdit();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
@@ -93,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,6 +109,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkBnTronVien);
             this.groupBoxFile.Controls.Add(this.radioXemChiTiet);
             this.groupBoxFile.Controls.Add(this.radioXemTongHop);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -1072,6 +1075,20 @@
             this.gridColumn13.VisibleIndex = 11;
             this.gridColumn13.Width = 120;
             // 
+            // chkBnTronVien
+            // 
+            this.chkBnTronVien.EditValue = true;
+            this.chkBnTronVien.Location = new System.Drawing.Point(575, 25);
+            this.chkBnTronVien.Name = "chkBnTronVien";
+            this.chkBnTronVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBnTronVien.Properties.Appearance.Options.UseFont = true;
+            this.chkBnTronVien.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkBnTronVien.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkBnTronVien.Properties.Caption = "+BN trốn viện";
+            this.chkBnTronVien.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkBnTronVien.Size = new System.Drawing.Size(107, 20);
+            this.chkBnTronVien.TabIndex = 104;
+            // 
             // BC111_ChiThuongGiuongNgoaiKieuVP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1092,6 +1109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBNDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1152,5 +1170,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
         private System.Windows.Forms.RadioButton radioXemChiTiet;
         private System.Windows.Forms.RadioButton radioXemTongHop;
+        private DevExpress.XtraEditors.CheckEdit chkBnTronVien;
     }
 }

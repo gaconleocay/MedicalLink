@@ -84,6 +84,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTrichPhanTram = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.chkBnTronVien = new DevExpress.XtraEditors.CheckEdit();
             this.panel1.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
@@ -95,6 +96,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDataBC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -109,6 +111,7 @@
             // 
             // groupBoxFile
             // 
+            this.groupBoxFile.Controls.Add(this.chkBnTronVien);
             this.groupBoxFile.Controls.Add(this.radioXemChiTiet);
             this.groupBoxFile.Controls.Add(this.radioXemTongHop);
             this.groupBoxFile.Controls.Add(this.labelControl4);
@@ -264,7 +267,7 @@
             this.btnTimKiem.Appearance.Options.UseFont = true;
             this.btnTimKiem.Appearance.Options.UseForeColor = true;
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(702, 29);
+            this.btnTimKiem.Location = new System.Drawing.Point(721, 29);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(100, 40);
             this.btnTimKiem.TabIndex = 5;
@@ -1079,6 +1082,20 @@
             this.labelControl5.TabIndex = 86;
             this.labelControl5.Text = "Trích 5% cho các khoa phòng";
             // 
+            // chkBnTronVien
+            // 
+            this.chkBnTronVien.EditValue = true;
+            this.chkBnTronVien.Location = new System.Drawing.Point(581, 23);
+            this.chkBnTronVien.Name = "chkBnTronVien";
+            this.chkBnTronVien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkBnTronVien.Properties.Appearance.Options.UseFont = true;
+            this.chkBnTronVien.Properties.Appearance.Options.UseTextOptions = true;
+            this.chkBnTronVien.Properties.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.chkBnTronVien.Properties.Caption = "+BN trốn viện";
+            this.chkBnTronVien.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Default;
+            this.chkBnTronVien.Size = new System.Drawing.Size(107, 20);
+            this.chkBnTronVien.TabIndex = 102;
+            // 
             // BC110_TrichThuongGiuongYCCK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1102,6 +1119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDataBC)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkBnTronVien.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1163,5 +1181,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
         private System.Windows.Forms.RadioButton radioXemChiTiet;
         private System.Windows.Forms.RadioButton radioXemTongHop;
+        private DevExpress.XtraEditors.CheckEdit chkBnTronVien;
     }
 }

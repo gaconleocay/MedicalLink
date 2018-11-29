@@ -94,6 +94,7 @@ namespace MedicalLink.BCQLTaiChinh
                 string trangthai_vp = "";
                 string sql_timkiem = "";
                 //string tieuchi_mbp = "";
+                string _bntronvien = "";
 
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -128,13 +129,18 @@ namespace MedicalLink.BCQLTaiChinh
                 {
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
+                //BN tron vien
+                if (chkBnTronVien.Checked == false)
+                {
+                    _bntronvien = " and coalesce(datronvien,0)=0 ";
+                }
 
-                sql_timkiem = @"SELECT degp.stt, degp.departmentgroupname, sum(T.thanhtien) as thanhtien, degp.tylehuong, sum(T.thanhtien)*(degp.tylehuong/100.0) as tienthuong, '' as kynhan FROM (SELECT degp.* FROM dblink('myconn_mel','SELECT code,stt,departmentgroupname,tylehuong FROM ml_bc112giuongyc') AS degp(code integer,stt integer,departmentgroupname text,tylehuong double precision)) degp LEFT JOIN (select 112 as code, sum(ser.soluong*ser.dongia*0.88) as thanhtien from (select vienphiid,soluong,servicepricecode, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where bhyt_groupcode='12NG' " + tieuchi_ser + ") ser inner join (select servicepricecode from servicepriceref where servicepricegroupcode='G303YC') serf on serf.servicepricecode=ser.servicepricecode inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid UNION ALL select 112 as code, 0-sum(ser.soluong*ser.dongia*0.88) as thanhtien from (select vienphiid,soluong, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_serBC111 + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid UNION ALL select 112 as code, 0-sum(ser.soluong*80000) as thanhtien from (select vienphiid,soluong, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_serBC110 + lstkhoa_serBC110 + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + ") vp on vp.vienphiid=ser.vienphiid) T on T.code=degp.code GROUP BY degp.stt,degp.departmentgroupname,degp.tylehuong ORDER BY degp.stt;";
+                sql_timkiem = @"SELECT degp.stt, degp.departmentgroupname, sum(T.thanhtien) as thanhtien, degp.tylehuong, sum(T.thanhtien)*(degp.tylehuong/100.0) as tienthuong, '' as kynhan FROM (SELECT degp.* FROM dblink('myconn_mel','SELECT code,stt,departmentgroupname,tylehuong FROM ml_bc112giuongyc') AS degp(code integer,stt integer,departmentgroupname text,tylehuong double precision)) degp LEFT JOIN (select 112 as code, sum(ser.soluong*ser.dongia*0.88) as thanhtien from (select vienphiid,soluong,servicepricecode, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where bhyt_groupcode='12NG' " + tieuchi_ser + ") ser inner join (select servicepricecode from servicepriceref where servicepricegroupcode='G303YC') serf on serf.servicepricecode=ser.servicepricecode inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + _bntronvien + ") vp on vp.vienphiid=ser.vienphiid UNION ALL select 112 as code, 0-sum(ser.soluong*ser.dongia*0.88) as thanhtien from (select vienphiid,soluong, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_serBC111 + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + _bntronvien + ") vp on vp.vienphiid=ser.vienphiid UNION ALL select 112 as code, 0-sum(ser.soluong*80000) as thanhtien from (select vienphiid,soluong, (case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where 1=1 " + tieuchi_ser + lstdichvu_serBC110 + lstkhoa_serBC110 + ") ser inner join (select vienphiid,vienphistatus from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + _bntronvien + ") vp on vp.vienphiid=ser.vienphiid) T on T.code=degp.code GROUP BY degp.stt,degp.departmentgroupname,degp.tylehuong ORDER BY degp.stt;";
 
                 DataTable _dataBaoCao = condb.GetDataTable_HISToMeL(sql_timkiem);
                 if (_dataBaoCao != null && _dataBaoCao.Rows.Count > 0)
                 {
-                this.lstDataBaoCao = Utilities.DataTables.DataTableToList<ChiTienGiuongYCChoCacKhoaCK>(_dataBaoCao);
+                    this.lstDataBaoCao = Utilities.DataTables.DataTableToList<ChiTienGiuongYCChoCacKhoaCK>(_dataBaoCao);
                     gridControlDataBC.DataSource = this.lstDataBaoCao;
                 }
                 else
@@ -175,7 +181,7 @@ namespace MedicalLink.BCQLTaiChinh
 
                 ClassCommon.reportExcelDTO _item_THANHTIEN = new ClassCommon.reportExcelDTO();
                 _item_THANHTIEN.name = "THANHTIEN";
-                _item_THANHTIEN.value = this.lstDataBaoCao[0].thanhtien.ToString().Replace(",",".");
+                _item_THANHTIEN.value = this.lstDataBaoCao[0].thanhtien.ToString().Replace(",", ".");
                 thongTinThem.Add(_item_THANHTIEN);
 
                 string fileTemplatePath = "BC_112_ChiTienGiuongYCChoCacKhoaCK.xlsx";

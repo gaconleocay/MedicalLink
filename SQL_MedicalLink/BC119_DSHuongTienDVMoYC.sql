@@ -1,6 +1,36 @@
 --Danh sách hưởng tiền dịch vụ mổ yêu cầu											
 --BC119_DSHuongTienDVMoYC
 
+
+--ngay 6/12/2018 - Server HIS
+SELECT
+	vp.vienphiid,
+	ser.servicepricecode,
+	pttt.phauthuatvien as mochinh,
+	pttt.phumo1,
+	pttt.phumo2,
+	pttt.bacsigayme,
+	pttt.phume as ktvphume,
+	pttt.dungcuvien,
+	pttt.phume2 as ddhoitinh,
+	pttt.phumo3 as ktvhoitinh,
+	pttt.dieuduong as ddhanhchinh,
+	pttt.phumo4 as holy,
+	ser.soluong,
+	ser.dongia,
+	(case when (pttt.phumo1>0 and pttt.phumo2>0) then (ser.soluong/2)
+			else ser.soluong end) as soluong_phu
+FROM 
+	(select vienphiid,servicepriceid,phauthuatvien,phumo1,phumo2,phumo3,phumo4,bacsigayme,phume,phume2,dungcuvien,dieuduong from phauthuatthuthuat where 1=1 {tieuchi_pttt}) pttt
+	inner join (select vienphiid,servicepriceid,servicepricecode,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where 1=1 {lstdichvu_ser} {tieuchi_ser}) ser on ser.servicepriceid=pttt.servicepriceid
+	inner join (select vienphiid from vienphi where 1=1 {tieuchi_vp} {trangthai_vp}) vp on vp.vienphiid=ser.vienphiid;
+
+
+
+
+
+/*
+
 --ngay 16/7/2018
 
 SELECT	row_number () over (order by nv.username) as stt,
@@ -204,4 +234,4 @@ FROM
 INNER JOIN ml_nhanvien nv ON nv.userhisid=PT.userid
 GROUP BY nv.usercode,nv.username;
 
-
+*/

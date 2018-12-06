@@ -19,7 +19,9 @@ namespace MedicalLink.BCQLTaiChinh
     {
         #region Khai bao
         private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        private DataTable dataBaoCao { get; set; }
+        //private DataTable dataBaoCao { get; set; }
+        private List<BacSiDTO> lstBacSi { get; set; }
+        private List<BC119DSHuongTienDVMoYCDTO> lstResultBC = new List<BC119DSHuongTienDVMoYCDTO>();
         private string DanhMucDichVu_String { get; set; }
 
         #endregion
@@ -46,6 +48,23 @@ namespace MedicalLink.BCQLTaiChinh
                     }
                     this.DanhMucDichVu_String += lstOtherList[lstOtherList.Count - 1].tools_otherlistvalue;
                 }
+                LoadDanhSachBacSi();
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+        private void LoadDanhSachBacSi()
+        {
+            try
+            {
+                string _sqlbacsi = "SELECT userhisid,usercode,username,departmentgroupname FROM ml_nhanvien ORDER BY username;";
+                DataTable _dataBacSi = condb.GetDataTable_MeL(_sqlbacsi);
+                if (_dataBacSi.Rows.Count > 0)
+                {
+                    this.lstBacSi = Utilities.DataTables.DataTableToList<BacSiDTO>(_dataBacSi);
+                }
             }
             catch (Exception ex)
             {
@@ -61,9 +80,11 @@ namespace MedicalLink.BCQLTaiChinh
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                string tieuchi_ser = "";
-                string tieuchi_vp = "";
+                this.lstResultBC = new List<BC119DSHuongTienDVMoYCDTO>();
+                string tieuchi_ser = " and servicepricedate >= '2017-01-01 00:00:00' ";
+                string tieuchi_vp = " and vienphidate >= '2017-01-01 00:00:00' ";
                 //string tieuchi_mrd = "";
+                string tieuchi_pttt = " and phauthuatthuthuatdate>'2017-01-01 00:00:00' ";
                 string lstdichvu_ser = " and servicepricecode in (" + this.DanhMucDichVu_String + ") ";
                 string trangthai_vp = "";
                 string sql_timkiem = "";
@@ -74,21 +95,21 @@ namespace MedicalLink.BCQLTaiChinh
                 if (cboTieuChi.Text == "Theo ngày chỉ định")
                 {
                     tieuchi_ser = " and servicepricedate between '" + datetungay + "' and '" + datedenngay + "' ";
+                    tieuchi_pttt = " and phauthuatthuthuatdate>'" + datetungay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
                     tieuchi_vp = " and vienphidate between ''" + datetungay + "'' and ''" + datedenngay + "'' ";
                     tieuchi_ser = " and servicepricedate >= '" + datetungay + "' ";
+                    tieuchi_pttt = " and phauthuatthuthuatdate>'" + datetungay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
                 {
                     tieuchi_vp = " and vienphidate_ravien between ''" + datetungay + "'' and ''" + datedenngay + "'' ";
-                    tieuchi_ser = " and servicepricedate >= '2017-01-01 00:00:00' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
                     tieuchi_vp = " and duyet_ngayduyet_vp between ''" + datetungay + "'' and ''" + datedenngay + "'' ";
-                    tieuchi_ser = " and servicepricedate >= '2017-01-01 00:00:00' ";
                 }
                 //trang thai
                 if (cboTrangThai.Text == "Đang điều trị")
@@ -104,12 +125,32 @@ namespace MedicalLink.BCQLTaiChinh
                     trangthai_vp = " and vienphistatus<>0 and vienphistatus_vp=1 ";
                 }
 
-                sql_timkiem = @" SELECT row_number () over (order by nv.username) as stt, nv.username,nv.usercode, '' as departmentgroupname, '' as sotaikhoan, sum(case when (PT.user_loai='mochinhid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as mochinh_sltt, sum(case when (PT.user_loai='mochinhid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as mochinh_sll1, sum(case when (PT.user_loai='mochinhid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as mochinh_sll2, sum(case when (PT.user_loai='mochinhid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as mochinh_sll3, sum(case when (PT.user_loai='phuid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as phu_sltt, sum(case when (PT.user_loai='phuid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as phu_sll1, sum(case when (PT.user_loai='phuid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as phu_sll2, sum(case when (PT.user_loai='phuid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as phu_sll3, sum(case when (PT.user_loai='bacsigaymeid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as bacsigayme_sltt, sum(case when (PT.user_loai='bacsigaymeid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as bacsigayme_sll1, sum(case when (PT.user_loai='bacsigaymeid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as bacsigayme_sll2, sum(case when (PT.user_loai='bacsigaymeid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as bacsigayme_sll3, sum(case when (PT.user_loai='ktvphumeid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as ktvphume_sltt, sum(case when (PT.user_loai='ktvphumeid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as ktvphume_sll1, sum(case when (PT.user_loai='ktvphumeid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as ktvphume_sll2, sum(case when (PT.user_loai='ktvphumeid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as ktvphume_sll3, sum(case when (PT.user_loai='dungcuvienid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as dungcuvien_sltt, sum(case when (PT.user_loai='dungcuvienid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as dungcuvien_sll1, sum(case when (PT.user_loai='dungcuvienid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as dungcuvien_sll2, sum(case when (PT.user_loai='dungcuvienid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as dungcuvien_sll3, sum(case when (PT.user_loai='ddhoitinhid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as ddhoitinh_sltt, sum(case when (PT.user_loai='ddhoitinhid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as ddhoitinh_sll1, sum(case when (PT.user_loai='ddhoitinhid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as ddhoitinh_sll2, sum(case when (PT.user_loai='ddhoitinhid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as ddhoitinh_sll3, sum(case when (PT.user_loai='ktvhoitinhid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as ktvhoitinh_sltt, sum(case when (PT.user_loai='ktvhoitinhid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as ktvhoitinh_sll1, sum(case when (PT.user_loai='ktvhoitinhid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as ktvhoitinh_sll2, sum(case when (PT.user_loai='ktvhoitinhid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as ktvhoitinh_sll3, sum(case when (PT.user_loai='ddhanhchinhid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as ddhanhchinh_sltt, sum(case when (PT.user_loai='ddhanhchinhid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as ddhanhchinh_sll1, sum(case when (PT.user_loai='ddhanhchinhid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as ddhanhchinh_sll2, sum(case when (PT.user_loai='ddhanhchinhid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as ddhanhchinh_sll3, sum(case when (PT.user_loai='holyid' and PT.servicepricecode='U11620-4506') then PT.soluong else 0 end) as holy_sltt, sum(case when (PT.user_loai='holyid' and PT.servicepricecode='U11621-4524') then PT.soluong else 0 end) as holy_sll1, sum(case when (PT.user_loai='holyid' and PT.servicepricecode='U11622-4536') then PT.soluong else 0 end) as holy_sll2, sum(case when (PT.user_loai='holyid' and PT.servicepricecode='U11623-4610') then PT.soluong else 0 end) as holy_sll3, sum(case PT.user_loai when 'mochinhid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*5000000 when 'U11621-4524' then PT.soluong*1500000 when 'U11622-4536' then PT.soluong*1300000 when 'U11622-4536' then PT.soluong*1200000 else 0 end) when 'phuid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*1300000 when 'U11621-4524' then PT.soluong*750000 when 'U11622-4536' then PT.soluong*600000 when 'U11622-4536' then PT.soluong*500000 else 0 end) when 'bacsigaymeid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*500000 when 'U11621-4524' then PT.soluong*400000 when 'U11622-4536' then PT.soluong*350000 when 'U11622-4536' then PT.soluong*325000 else 0 end) when 'ktvphumeid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*200000 when 'U11621-4524' then PT.soluong*160000 when 'U11622-4536' then PT.soluong*140000 when 'U11622-4536' then PT.soluong*130000 else 0 end) when 'dungcuvienid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*200000 when 'U11621-4524' then PT.soluong*160000 when 'U11622-4536' then PT.soluong*140000 when 'U11622-4536' then PT.soluong*130000 else 0 end) when 'ddhoitinhid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*30000 when 'U11621-4524' then PT.soluong*24000 when 'U11622-4536' then PT.soluong*21000 when 'U11622-4536' then PT.soluong*19500 else 0 end) when 'ktvhoitinhid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*30000 when 'U11621-4524' then PT.soluong*24000 when 'U11622-4536' then PT.soluong*21000 when 'U11622-4536' then PT.soluong*19500 else 0 end) when 'ddhanhchinhid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*30000 when 'U11621-4524' then PT.soluong*24000 when 'U11622-4536' then PT.soluong*21000 when 'U11622-4536' then PT.soluong*19500 else 0 end) when 'holyid' then (case PT.servicepricecode when 'U11620-4506' then PT.soluong*10000 when 'U11621-4524' then PT.soluong*8000 when 'U11622-4536' then PT.soluong*7000 when 'U11622-4536' then PT.soluong*6500 else 0 end) else 0 end) as thuclinh, '' as kynhan FROM (select pttt.mochinhid as userid, 'mochinhid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,mochinhid,servicepricecode from ml_thuchienpttt where mochinhid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.mochinhid,pttt.servicepricecode union all select pttt.phu1id as userid, 'phuid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,(case when phu2id>0 then soluong/2 else soluong end) as soluong,phu1id,servicepricecode from ml_thuchienpttt where phu1id>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.phu1id,pttt.servicepricecode union all select pttt.phu2id as userid, 'phuid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,(case when phu1id>0 then soluong/2 else soluong end) as soluong,phu2id,servicepricecode from ml_thuchienpttt where phu2id>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.phu2id,pttt.servicepricecode union all select pttt.bacsigaymeid as userid, 'bacsigaymeid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,bacsigaymeid,servicepricecode from ml_thuchienpttt where bacsigaymeid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.bacsigaymeid,pttt.servicepricecode union all select pttt.ktvphumeid as userid, 'ktvphumeid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,ktvphumeid,servicepricecode from ml_thuchienpttt where ktvphumeid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.ktvphumeid,pttt.servicepricecode union all select pttt.dungcuvienid as userid, 'dungcuvienid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,dungcuvienid,servicepricecode from ml_thuchienpttt where dungcuvienid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.dungcuvienid,pttt.servicepricecode union all select pttt.ddhoitinhid as userid, 'ddhoitinhid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,ddhoitinhid,servicepricecode from ml_thuchienpttt where ddhoitinhid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.ddhoitinhid,pttt.servicepricecode union all select pttt.ktvhoitinhid as userid, 'ktvhoitinhid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,ktvhoitinhid,servicepricecode from ml_thuchienpttt where ktvhoitinhid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.ktvhoitinhid,pttt.servicepricecode union all select pttt.ddhanhchinhid as userid, 'ddhanhchinhid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,ddhanhchinhid,servicepricecode from ml_thuchienpttt where ddhanhchinhid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.ddhanhchinhid,pttt.servicepricecode union all select pttt.holyid as userid, 'holyid' as user_loai, sum(pttt.soluong) as soluong, pttt.servicepricecode from (select vienphiid,soluong,holyid,servicepricecode from ml_thuchienpttt where holyid>0 " + tieuchi_ser + lstdichvu_ser + ") pttt inner join (select * from dblink('myconn','select vienphiid from vienphi where 1=1 " + tieuchi_vp + trangthai_vp + "') as vienphi(vienphiid integer)) vienphi on vienphi.vienphiid=pttt.vienphiid group by pttt.holyid,pttt.servicepricecode ) PT INNER JOIN ml_nhanvien nv ON nv.userhisid=PT.userid GROUP BY nv.usercode,nv.username;";
+                sql_timkiem = $@"SELECT
+	vp.vienphiid,
+	ser.servicepricecode,
+	pttt.phauthuatvien as mochinh,
+	pttt.phumo1,
+	pttt.phumo2,
+	pttt.bacsigayme,
+	pttt.phume as ktvphume,
+	pttt.dungcuvien,
+	pttt.phume2 as ddhoitinh,
+	pttt.phumo3 as ktvhoitinh,
+	pttt.dieuduong as ddhanhchinh,
+	pttt.phumo4 as holy,
+	ser.soluong,
+	ser.dongia,
+	(case when (pttt.phumo1>0 and pttt.phumo2>0) then (ser.soluong/2)
+			else ser.soluong end) as soluong_phu
+FROM 
+	(select vienphiid,servicepriceid,phauthuatvien,phumo1,phumo2,phumo3,phumo4,bacsigayme,phume,phume2,dungcuvien,dieuduong from phauthuatthuthuat where 1=1 {tieuchi_pttt}) pttt
+	inner join (select vienphiid,servicepriceid,servicepricecode,soluong,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia from serviceprice where 1=1 {lstdichvu_ser} {tieuchi_ser}) ser on ser.servicepriceid=pttt.servicepriceid
+	inner join (select vienphiid from vienphi where 1=1 {tieuchi_vp} {trangthai_vp}) vp on vp.vienphiid=ser.vienphiid;";
 
-                this.dataBaoCao = condb.GetDataTable_MeLToHIS(sql_timkiem);
-                if (this.dataBaoCao != null && this.dataBaoCao.Rows.Count > 0)
+                DataTable dataBaoCao = condb.GetDataTable_HIS(sql_timkiem);
+                if (dataBaoCao != null && dataBaoCao.Rows.Count > 0)
                 {
-                    gridControlDataBC.DataSource = this.dataBaoCao;
+                    XuLyVaHienThiBaoCao_TongHop(dataBaoCao);
                 }
                 else
                 {
@@ -221,17 +262,90 @@ namespace MedicalLink.BCQLTaiChinh
             decimal _result = 0;
             try
             {
-                for (int i = 0; i < this.dataBaoCao.Rows.Count; i++)
-                {
-                    decimal _thuclinh = Utilities.TypeConvertParse.ToDecimal(this.dataBaoCao.Rows[i]["thuclinh"].ToString());
-                    _result += _thuclinh;
-                }
+                _result = this.lstResultBC.Sum(s => s.thuclinh);
             }
             catch (Exception ex)
             {
                 Base.Logging.Warn(ex);
             }
             return _result;
+        }
+        private void XuLyVaHienThiBaoCao_TongHop(DataTable _dataBC)
+        {
+            try
+            {
+                List<BC119ThucHienPTTTDTO> _lstThucHienPTTT = Utilities.DataTables.DataTableToList<BC119ThucHienPTTTDTO>(_dataBC);
+
+                if (this.lstBacSi != null)
+                {
+                    foreach (var _itemBS in this.lstBacSi)
+                    {
+                        BC119DSHuongTienDVMoYCDTO _bacsiBC = new BC119DSHuongTienDVMoYCDTO();
+                        _bacsiBC.stt = this.lstResultBC.Count + 1;
+                        _bacsiBC.usercode = _itemBS.usercode;
+                        _bacsiBC.username = _itemBS.username;
+                        _bacsiBC.departmentgroupname = _itemBS.departmentgroupname;
+
+                        //mochinh
+                        _bacsiBC.mochinh_sltt = _lstThucHienPTTT.Where(o => o.mochinh == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.mochinh_sll1 = _lstThucHienPTTT.Where(o => o.mochinh == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.mochinh_sll2 = _lstThucHienPTTT.Where(o => o.mochinh == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.mochinh_sll3 = _lstThucHienPTTT.Where(o => o.mochinh == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //phu
+                        _bacsiBC.phu_sltt = _lstThucHienPTTT.Where(o => (o.phumo1 == _itemBS.userhisid || o.phumo2 == _itemBS.userhisid) && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong_phu);
+                        _bacsiBC.phu_sll1 = _lstThucHienPTTT.Where(o => (o.phumo1 == _itemBS.userhisid || o.phumo2 == _itemBS.userhisid) && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong_phu);
+                        _bacsiBC.phu_sll2 = _lstThucHienPTTT.Where(o => (o.phumo1 == _itemBS.userhisid || o.phumo2 == _itemBS.userhisid) && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong_phu);
+                        _bacsiBC.phu_sll3 = _lstThucHienPTTT.Where(o => (o.phumo1 == _itemBS.userhisid || o.phumo2 == _itemBS.userhisid) && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong_phu);
+                        //bacsigayme
+                        _bacsiBC.bacsigayme_sltt = _lstThucHienPTTT.Where(o => o.bacsigayme == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.bacsigayme_sll1 = _lstThucHienPTTT.Where(o => o.bacsigayme == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.bacsigayme_sll2 = _lstThucHienPTTT.Where(o => o.bacsigayme == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.bacsigayme_sll3 = _lstThucHienPTTT.Where(o => o.bacsigayme == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //ktvphume
+                        _bacsiBC.ktvphume_sltt = _lstThucHienPTTT.Where(o => o.ktvphume == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ktvphume_sll1 = _lstThucHienPTTT.Where(o => o.ktvphume == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ktvphume_sll2 = _lstThucHienPTTT.Where(o => o.ktvphume == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ktvphume_sll3 = _lstThucHienPTTT.Where(o => o.ktvphume == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //dungcuvien
+                        _bacsiBC.dungcuvien_sltt = _lstThucHienPTTT.Where(o => o.dungcuvien == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.dungcuvien_sll1 = _lstThucHienPTTT.Where(o => o.dungcuvien == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.dungcuvien_sll2 = _lstThucHienPTTT.Where(o => o.dungcuvien == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.dungcuvien_sll3 = _lstThucHienPTTT.Where(o => o.dungcuvien == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //ddhoitinh
+                        _bacsiBC.ddhoitinh_sltt = _lstThucHienPTTT.Where(o => o.ddhoitinh == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ddhoitinh_sll1 = _lstThucHienPTTT.Where(o => o.ddhoitinh == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ddhoitinh_sll2 = _lstThucHienPTTT.Where(o => o.ddhoitinh == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ddhoitinh_sll3 = _lstThucHienPTTT.Where(o => o.ddhoitinh == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //ktvhoitinh
+                        _bacsiBC.ktvhoitinh_sltt = _lstThucHienPTTT.Where(o => o.ktvhoitinh == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ktvhoitinh_sll1 = _lstThucHienPTTT.Where(o => o.ktvhoitinh == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ktvhoitinh_sll2 = _lstThucHienPTTT.Where(o => o.ktvhoitinh == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ktvhoitinh_sll3 = _lstThucHienPTTT.Where(o => o.ktvhoitinh == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //ddhanhchinh
+                        _bacsiBC.ddhanhchinh_sltt = _lstThucHienPTTT.Where(o => o.ddhanhchinh == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ddhanhchinh_sll1 = _lstThucHienPTTT.Where(o => o.ddhanhchinh == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ddhanhchinh_sll2 = _lstThucHienPTTT.Where(o => o.ddhanhchinh == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.ddhanhchinh_sll3 = _lstThucHienPTTT.Where(o => o.ddhanhchinh == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //holy
+                        _bacsiBC.holy_sltt = _lstThucHienPTTT.Where(o => o.holy == _itemBS.userhisid && o.servicepricecode == "U11620-4506").ToList().Sum(s => s.soluong);
+                        _bacsiBC.holy_sll1 = _lstThucHienPTTT.Where(o => o.holy == _itemBS.userhisid && o.servicepricecode == "U11621-4524").ToList().Sum(s => s.soluong);
+                        _bacsiBC.holy_sll2 = _lstThucHienPTTT.Where(o => o.holy == _itemBS.userhisid && o.servicepricecode == "U11622-4536").ToList().Sum(s => s.soluong);
+                        _bacsiBC.holy_sll3 = _lstThucHienPTTT.Where(o => o.holy == _itemBS.userhisid && o.servicepricecode == "U11623-4610").ToList().Sum(s => s.soluong);
+                        //thuclinh
+                        _bacsiBC.thuclinh = (_bacsiBC.mochinh_sltt * 5000000) + (_bacsiBC.mochinh_sll1 * 1500000) + (_bacsiBC.mochinh_sll2 * 1300000) + (_bacsiBC.mochinh_sll3 * 1200000) + (_bacsiBC.phu_sltt * 1300000) + (_bacsiBC.phu_sll1 * 750000) + (_bacsiBC.phu_sll2 * 600000) + (_bacsiBC.phu_sll3 * 500000) + (_bacsiBC.bacsigayme_sltt * 500000) + (_bacsiBC.bacsigayme_sll1 * 400000) + (_bacsiBC.bacsigayme_sll2 * 350000) + (_bacsiBC.bacsigayme_sll3 * 325000) + (_bacsiBC.ktvphume_sltt * 200000) + (_bacsiBC.ktvphume_sll1 * 160000) + (_bacsiBC.ktvphume_sll2 * 140000) + (_bacsiBC.ktvphume_sll3 * 130000) + (_bacsiBC.dungcuvien_sltt * 200000) + (_bacsiBC.dungcuvien_sll1 * 160000) + (_bacsiBC.dungcuvien_sll2 * 140000) + (_bacsiBC.dungcuvien_sll3 * 130000) + (_bacsiBC.ddhoitinh_sltt * 30000) + (_bacsiBC.ddhoitinh_sll1 * 24000) + (_bacsiBC.ddhoitinh_sll2 * 21000) + (_bacsiBC.ddhoitinh_sll3 * 19500) + (_bacsiBC.ktvhoitinh_sltt * 30000) + (_bacsiBC.ktvhoitinh_sll1 * 24000) + (_bacsiBC.ktvhoitinh_sll2 * 21000) + (_bacsiBC.ktvhoitinh_sll3 * 19500) + (_bacsiBC.ddhanhchinh_sltt * 30000) + (_bacsiBC.ddhanhchinh_sll1 * 24000) + (_bacsiBC.ddhanhchinh_sll2 * 21000) + (_bacsiBC.ddhanhchinh_sll3 * 19500) + (_bacsiBC.holy_sltt * 10000) + (_bacsiBC.holy_sll1 * 8000) + (_bacsiBC.holy_sll2 * 7000) + (_bacsiBC.holy_sll3 * 6500);
+
+                        if (_bacsiBC.thuclinh > 0)
+                        {
+                            this.lstResultBC.Add(_bacsiBC);
+                        }
+                    }
+                }
+                gridControlDataBC.DataSource = this.lstResultBC;
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
         }
 
         #endregion

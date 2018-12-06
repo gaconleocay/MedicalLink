@@ -820,6 +820,9 @@
     <Compile Include="ClassCommon\BCDoanhThuDichVuBC08DTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonChungTuThuocSDDTO.cs" />
     <Compile Include="ClassCommon\BCHoaDonThanhToanVPDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\BC119DSHuongTienDVMoYCDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\BC118DSHuongTienDVYCCLCDTO.cs" />
+    <Compile Include="ClassCommon\BCQLTaiChinh\BC117MoYCBangPPKinhHienViDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\BC120_ThuThuatDVKTYC.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\BCQLTaiChinhFilterChiTietDTO.cs" />
     <Compile Include="ClassCommon\BCQLTaiChinh\ChiThuongDichVuVienPhiDTO.cs" />

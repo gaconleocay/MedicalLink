@@ -1146,7 +1146,7 @@ namespace MedicalLink.Base
                 REPORT_116.permissiontype = 3;
                 REPORT_116.tabMenuId = 4;
                 REPORT_116.permissionnote = "Sử dụng dữ liệu cho các báo cáo: REPORT_117; REPORT_118; REPORT_119";
-                lstresult.Add(REPORT_116);
+                //lstresult.Add(REPORT_116);
 
                 ClassCommon.classPermission REPORT_117 = new ClassCommon.classPermission();
                 REPORT_117.permissioncheck = false;

@@ -9,7 +9,7 @@ U11623-4610	Phẫu thuật yêu cầu chọn bác sĩ, chọn thời gian (PT lo
 
  
  
---ngay 28/11/2018: 
+--ngay 29/11/2018: 
 
  
 SELECT row_number () over (order by A.ngay_thuchien) as stt, 
@@ -120,37 +120,37 @@ FROM
 				when 'U11623-4610' then 325000
 				else 0 end) * ser.soluong) as gayme_tien,
 		pttt.phumo1 as phu1_tenbs, 
-		(case when pttt.phumo1=0 then ((case serf.servicepricecode 
-										when 'U11970-3701' then 500000 
-										when 'U11620-4506' then 1300000 
-										when 'U11621-4524' then 750000 
-										when 'U11622-4536' then 600000 
-										when 'U11623-4610' then 500000
-										else 0 end) * ser.soluong)
-			else ((case serf.servicepricecode 
-					when 'U11970-3701' then 250000 
-					when 'U11620-4506' then 650000 
-					when 'U11621-4524' then 375000 
-					when 'U11622-4536' then 300000 
-					when 'U11623-4610' then 250000
-					else 0 end) * ser.soluong)
-			end) as phu1_tien,
+		(case when (pttt.phumo1<>0 and pttt.phumo2=0) then ((case serf.servicepricecode 
+															when 'U11970-3701' then 500000 
+															when 'U11620-4506' then 1300000 
+															when 'U11621-4524' then 750000 
+															when 'U11622-4536' then 600000 
+															when 'U11623-4610' then 500000
+															else 0 end) * ser.soluong)
+			when (pttt.phumo1<>0 and pttt.phumo2<>0) then ((case serf.servicepricecode 
+															when 'U11970-3701' then 250000 
+															when 'U11620-4506' then 650000 
+															when 'U11621-4524' then 375000 
+															when 'U11622-4536' then 300000 
+															when 'U11623-4610' then 250000
+															else 0 end) * ser.soluong)
+			else 0 end) as phu1_tien,
 		pttt.phumo2 as phu2_tenbs, 
-		(case when pttt.phumo1=0 then ((case serf.servicepricecode 
-										when 'U11970-3701' then 500000 
-										when 'U11620-4506' then 1300000 
-										when 'U11621-4524' then 750000 
-										when 'U11622-4536' then 600000 
-										when 'U11623-4610' then 500000
-										else 0 end) * ser.soluong)
-			else ((case serf.servicepricecode 
-					when 'U11970-3701' then 250000 
-					when 'U11620-4506' then 650000 
-					when 'U11621-4524' then 375000 
-					when 'U11622-4536' then 300000 
-					when 'U11623-4610' then 250000
-					else 0 end) * ser.soluong)
-			end) as phu2_tien,				
+		(case when (pttt.phumo1=0 and pttt.phumo2<>0) then ((case serf.servicepricecode 
+															when 'U11970-3701' then 500000 
+															when 'U11620-4506' then 1300000 
+															when 'U11621-4524' then 750000 
+															when 'U11622-4536' then 600000 
+															when 'U11623-4610' then 500000
+															else 0 end) * ser.soluong)
+			when (pttt.phumo1<>0 and pttt.phumo2<>0) then ((case serf.servicepricecode 
+															when 'U11970-3701' then 250000 
+															when 'U11620-4506' then 650000 
+															when 'U11621-4524' then 375000 
+															when 'U11622-4536' then 300000 
+															when 'U11623-4610' then 250000
+															else 0 end) * ser.soluong)
+			else 0 end) as phu2_tien,				
 		pttt.phume as ktvphume_tenbs, 
 		((case serf.servicepricecode 
 				when 'U11970-3701' then 175000 

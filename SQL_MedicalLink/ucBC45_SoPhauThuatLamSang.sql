@@ -4,7 +4,7 @@
 
 
 
---ngay 1/9/2018
+--ngay 14/12/2018
 
 SELECT
 		 ROW_NUMBER () OVER (ORDER BY ser.servicepricedate) as stt,
@@ -39,6 +39,7 @@ SELECT
 			when 9 then 'Gây tê Codan'
 			when 10 then 'Gây tê nhãn cầu'
 			when 11 then 'Gây tê cạnh sống'
+			when 12 then 'Gây tê hậu nhãn cầu'
 			when 99 then 'Khác'
 			end) as pttt_phuongphapvocam,
 		kchd.departmentgroupname as khoachidinh, 

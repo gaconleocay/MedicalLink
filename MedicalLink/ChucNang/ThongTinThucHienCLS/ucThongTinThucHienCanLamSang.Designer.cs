@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucThongTinThucHienCanLamSang));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gridControlDS_PhieuDichVu = new DevExpress.XtraGrid.GridControl();
@@ -83,6 +83,8 @@
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.imageListstatus = new System.Windows.Forms.ImageList(this.components);
             this.imMenu = new DevExpress.Utils.ImageCollection(this.components);
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.cboLoaiDichVu = new DevExpress.XtraEditors.ComboBoxEdit();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDS_PhieuDichVu)).BeginInit();
@@ -100,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_NhapThucHien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiDichVu.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -466,6 +469,8 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.labelControl4);
+            this.panel3.Controls.Add(this.cboLoaiDichVu);
             this.panel3.Controls.Add(this.labelControl3);
             this.panel3.Controls.Add(this.labelControl2);
             this.panel3.Controls.Add(this.btnTimKiem);
@@ -485,7 +490,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl3.Location = new System.Drawing.Point(357, 6);
+            this.labelControl3.Location = new System.Drawing.Point(242, 6);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(59, 16);
             this.labelControl3.TabIndex = 100;
@@ -495,7 +500,7 @@
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labelControl2.Location = new System.Drawing.Point(324, 34);
+            this.labelControl2.Location = new System.Drawing.Point(209, 34);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(92, 16);
             this.labelControl2.TabIndex = 98;
@@ -518,7 +523,7 @@
             // dtThoiGianDen
             // 
             this.dtThoiGianDen.EditValue = null;
-            this.dtThoiGianDen.Location = new System.Drawing.Point(102, 31);
+            this.dtThoiGianDen.Location = new System.Drawing.Point(40, 31);
             this.dtThoiGianDen.Name = "dtThoiGianDen";
             this.dtThoiGianDen.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtThoiGianDen.Properties.Appearance.Options.UseFont = true;
@@ -537,7 +542,7 @@
             this.dtThoiGianDen.Properties.EditFormat.FormatString = "HH:mm:ss dd/MM/yyyy";
             this.dtThoiGianDen.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtThoiGianDen.Properties.Mask.EditMask = "HH:mm:ss dd/MM/yyyy";
-            this.dtThoiGianDen.Size = new System.Drawing.Size(200, 22);
+            this.dtThoiGianDen.Size = new System.Drawing.Size(160, 22);
             this.dtThoiGianDen.TabIndex = 95;
             // 
             // labelControl1
@@ -546,14 +551,14 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.labelControl1.Location = new System.Drawing.Point(8, 34);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(78, 16);
+            this.labelControl1.Size = new System.Drawing.Size(23, 16);
             this.labelControl1.TabIndex = 94;
-            this.labelControl1.Text = "Thời gian đến";
+            this.labelControl1.Text = "Đến";
             // 
             // dtThoiGianTu
             // 
             this.dtThoiGianTu.EditValue = null;
-            this.dtThoiGianTu.Location = new System.Drawing.Point(102, 3);
+            this.dtThoiGianTu.Location = new System.Drawing.Point(40, 3);
             this.dtThoiGianTu.Name = "dtThoiGianTu";
             this.dtThoiGianTu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtThoiGianTu.Properties.Appearance.Options.UseFont = true;
@@ -572,7 +577,7 @@
             this.dtThoiGianTu.Properties.EditFormat.FormatString = "HH:mm:ss dd/MM/yyyy";
             this.dtThoiGianTu.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.dtThoiGianTu.Properties.Mask.EditMask = "HH:mm:ss dd/MM/yyyy";
-            this.dtThoiGianTu.Size = new System.Drawing.Size(200, 22);
+            this.dtThoiGianTu.Size = new System.Drawing.Size(160, 22);
             this.dtThoiGianTu.TabIndex = 93;
             // 
             // labelControl9
@@ -581,13 +586,13 @@
             this.labelControl9.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.labelControl9.Location = new System.Drawing.Point(17, 6);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(69, 16);
+            this.labelControl9.Size = new System.Drawing.Size(16, 16);
             this.labelControl9.TabIndex = 92;
-            this.labelControl9.Text = "Thời gian từ";
+            this.labelControl9.Text = "Từ";
             // 
             // cboPhongThucHien
             // 
-            this.cboPhongThucHien.Location = new System.Drawing.Point(432, 31);
+            this.cboPhongThucHien.Location = new System.Drawing.Point(317, 31);
             this.cboPhongThucHien.Name = "cboPhongThucHien";
             this.cboPhongThucHien.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPhongThucHien.Properties.Appearance.Options.UseFont = true;
@@ -604,7 +609,7 @@
             this.cboPhongThucHien.Properties.NullText = "";
             this.cboPhongThucHien.Properties.PopupSizeable = false;
             this.cboPhongThucHien.Properties.View = this.gridLookUpEdit_Phong;
-            this.cboPhongThucHien.Size = new System.Drawing.Size(351, 22);
+            this.cboPhongThucHien.Size = new System.Drawing.Size(420, 22);
             this.cboPhongThucHien.TabIndex = 97;
             // 
             // gridLookUpEdit_Phong
@@ -650,7 +655,7 @@
             // cboTrangThai
             // 
             this.cboTrangThai.EditValue = "Tất cả";
-            this.cboTrangThai.Location = new System.Drawing.Point(432, 3);
+            this.cboTrangThai.Location = new System.Drawing.Point(317, 3);
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTrangThai.Properties.Appearance.Options.UseFont = true;
@@ -732,7 +737,7 @@
             // 
             this.repositoryItemButton_NhapThucHien.AutoHeight = false;
             this.repositoryItemButton_NhapThucHien.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::MedicalLink.Properties.Resources.add_list_16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Nhập thực hiện Cận lâm sàng", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::MedicalLink.Properties.Resources.add_list_16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "Nhập thực hiện Cận lâm sàng", null, null, true)});
             this.repositoryItemButton_NhapThucHien.Name = "repositoryItemButton_NhapThucHien";
             this.repositoryItemButton_NhapThucHien.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButton_NhapThucHien.Click += new System.EventHandler(this.repositoryItemButton_NhapThucHien_Click);
@@ -875,6 +880,35 @@
             this.imMenu.ImageStream = ((DevExpress.Utils.ImageCollectionStreamer)(resources.GetObject("imMenu.ImageStream")));
             this.imMenu.Images.SetKeyName(0, "add-list-16.png");
             // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.labelControl4.Location = new System.Drawing.Point(509, 6);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(67, 16);
+            this.labelControl4.TabIndex = 102;
+            this.labelControl4.Text = "Loại dịch vụ";
+            // 
+            // cboLoaiDichVu
+            // 
+            this.cboLoaiDichVu.EditValue = "Xét nghiệm";
+            this.cboLoaiDichVu.Location = new System.Drawing.Point(582, 3);
+            this.cboLoaiDichVu.Name = "cboLoaiDichVu";
+            this.cboLoaiDichVu.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboLoaiDichVu.Properties.Appearance.Options.UseFont = true;
+            this.cboLoaiDichVu.Properties.AppearanceDropDown.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.cboLoaiDichVu.Properties.AppearanceDropDown.Options.UseFont = true;
+            this.cboLoaiDichVu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboLoaiDichVu.Properties.Items.AddRange(new object[] {
+            "Xét nghiệm",
+            "Chẩn đoán hình ảnh"});
+            this.cboLoaiDichVu.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            this.cboLoaiDichVu.Size = new System.Drawing.Size(155, 22);
+            this.cboLoaiDichVu.TabIndex = 101;
+            this.cboLoaiDichVu.SelectedIndexChanged += new System.EventHandler(this.cboLoaiDichVu_SelectedIndexChanged);
+            // 
             // ucThongTinThucHienCanLamSang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -902,6 +936,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButton_NhapThucHien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imMenu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboLoaiDichVu.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -957,5 +992,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.ComboBoxEdit cboLoaiDichVu;
     }
 }

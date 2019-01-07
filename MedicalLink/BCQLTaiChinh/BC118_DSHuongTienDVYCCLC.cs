@@ -97,17 +97,17 @@ namespace MedicalLink.BCQLTaiChinh
                 }
                 else if (cboTieuChi.Text == "Theo ngày vào viện")
                 {
-                    tieuchi_vp = " and vienphidate between ''" + datetungay + "'' and ''" + datedenngay + "'' ";
+                    tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
                     tieuchi_ser = " and servicepricedate >= '" + datetungay + "' ";
                     tieuchi_pttt = " and phauthuatthuthuatdate>'" + datetungay + "' ";
                 }
                 else if (cboTieuChi.Text == "Theo ngày ra viện")
                 {
-                    tieuchi_vp = " and vienphidate_ravien between ''" + datetungay + "'' and ''" + datedenngay + "'' ";                
+                    tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";                
                 }
                 else if (cboTieuChi.Text == "Theo ngày thanh toán")
                 {
-                    tieuchi_vp = " and duyet_ngayduyet_vp between ''" + datetungay + "'' and ''" + datedenngay + "'' ";
+                    tieuchi_vp = " and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
                 }
                 //trang thai
                 if (cboTrangThai.Text == "Đang điều trị")

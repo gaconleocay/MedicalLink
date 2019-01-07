@@ -76,8 +76,6 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 		when '101VTtrongDMTT' then 'Vật tư thay thế'
 		when '102VTngoaiDM' then 'Vật tư ngoài DM'
 		when '103VTtyle' then 'Vật tư TT theo tỷ lệ'
-		when '32323232' then '323232323'
-		when '32323232' then '323232323'
 		end) as bhyt_groupcode,
 	(case ser.loaidoituong 
 		when 0 then 'BHYT' 
@@ -94,23 +92,16 @@ SELECT ROW_NUMBER() OVER (ORDER BY ser.servicepricecode,vp.duyet_ngayduyet_vp) a
 	end) as loaidoituong, 
 	(case when ser.thuockhobanle<>0 then 'Đơn nhà thuốc' end) as thuockhobanle 
 FROM 
-	(select servicepriceid,maubenhphamid,vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,
-		(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
-			else (case when loaidoituong=0 then servicepricemoney_bhyt
-						  when loaidoituong=1 then servicepricemoney_nhandan
-						  else servicepricemoney
-				  end)
-		end) as dongia,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,
-		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where {this.DanhSachDichVu} {tieuchi_ser} {_bhyt_groupcode}) ser 
-	inner join (select serff.servicepricecode,serff.pttt_loaiid from (select servicepricecode,pttt_loaiid from servicepriceref where ServiceGroupType not in (5,6) 
-		union all select medicinecode as servicepricecode,0 as pttt_loaiid from medicine_ref) serff where {this.DanhSachDichVu}) serf on serf.servicepricecode=ser.servicepricecode	
-	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 {tieuchi_vp+loaivienphiid} {doituongbenhnhanid}) vp ON ser.vienphiid=vp.vienphiid 
+	(select servicepriceid,maubenhphamid,vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle 
+		from serviceprice where {this.DanhSachDichVu} {tieuchi_ser} {_bhyt_groupcode}) ser 
+	inner join (select serff.servicepricecode,serff.pttt_loaiid from ({_serfdvktthuoc}) serff where {this.DanhSachDichVu}) serf on serf.servicepricecode=ser.servicepricecode	
+	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 {tieuchi_vp} {loaivienphiid} {doituongbenhnhanid}) vp ON ser.vienphiid=vp.vienphiid 
 	INNER JOIN (select hosobenhanid,patientname,gioitinhname,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname from hosobenhan where 1=1 {tieuchi_hsba}) hsba ON hsba.hosobenhanid=vp.hosobenhanid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid 
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid 
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid 
-	INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid;
+	INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bh}) bhyt ON bhyt.bhytid=vp.bhytid;
 
 
 	

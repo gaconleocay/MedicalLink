@@ -1003,6 +1003,11 @@ namespace MedicalLink.Base
 
 
 
+
+
+
+
+
                 //Báo cáo QL tài chính=3; tabMenuId = 6;
                 ClassCommon.classPermission REPORT_101 = new ClassCommon.classPermission();
                 REPORT_101.permissioncheck = false;

@@ -17,6 +17,6 @@ namespace MedicalLink
         public static List<DepartmentDTO> lstDepartmentBV { get; set; }
 
         public static List<ToolsOptionDTO> lstOption { get; set; }
-
+        public static List<ClassCommon.Base.ServicepriceRefDTO> lstServicepriceRef { get; set; }
     }
 }

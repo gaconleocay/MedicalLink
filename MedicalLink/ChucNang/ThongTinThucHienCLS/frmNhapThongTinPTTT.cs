@@ -1,4 +1,5 @@
 ﻿using MedicalLink.ClassCommon;
+using MedicalLink.ClassCommon.ChucNang;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +45,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             {
                 Load_ThongTinVeBenhNhan();
                 Load_PhuongPhapPTTT();
+                Load_PhuongPhamVoCam();
                 Load_LoaiPTTT();
                 Load_NguoiThucHien();
                 dtTGThucHien.DateTime = DateTime.Now;
@@ -96,6 +98,21 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 Base.Logging.Warn(ex);
             }
         }
+        private void Load_PhuongPhamVoCam()
+        {
+            try
+            {
+                List<PhuongPhapVoCamDTO> _lstPPVoCam = GetPhuongPhapVoCam.GetListPhuongPhapVoCam();
+                cboPhuongPhapVoCam.Properties.DataSource = _lstPPVoCam;
+                cboPhuongPhapVoCam.Properties.DisplayMember = "ppvocamname";
+                cboPhuongPhapVoCam.Properties.ValueMember = "ppvocamid";
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Warn(ex);
+            }
+        }
+
         private void Load_LoaiPTTT()
         {
             try
@@ -191,27 +208,29 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
         {
             try
             {
-                string kiemtrathuchien = "select thuchienclsid, medicalrecordid, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, mota, pttt_hangid, phuongphappttt_code from thuchiencls where servicepriceid=" + this.currentThongtinPTTT.servicepriceid + ";";
+                string kiemtrathuchien = "select thuchienclsid, medicalrecordid, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, mota, pttt_hangid, phuongphappttt_code, ppvocamid from thuchiencls where servicepriceid=" + this.currentThongtinPTTT.servicepriceid + ";";
                 DataTable dataThucHIenCLS = condb.GetDataTable_HIS(kiemtrathuchien);
                 if (dataThucHIenCLS != null && dataThucHIenCLS.Rows.Count > 0)
                 {
                     this.currentthuchienclsid = Utilities.TypeConvertParse.ToInt64(dataThucHIenCLS.Rows[0]["thuchienclsid"].ToString());
                     dtTGThucHien.DateTime = Utilities.TypeConvertParse.ToDateTime(dataThucHIenCLS.Rows[0]["thuchienclsdate"].ToString());
-                    cboLoaiPTTT.EditValue = dataThucHIenCLS.Rows[0]["pttt_hangid"];
+                    //cboLoaiPTTT.EditValue = dataThucHIenCLS.Rows[0]["pttt_hangid"];
                     cboPhuongPhapPTTT.EditValue = dataThucHIenCLS.Rows[0]["phuongphappttt_code"];
-
+                    cboPhuongPhapVoCam.EditValue = dataThucHIenCLS.Rows[0]["ppvocamid"];
                     cboMoChinh.EditValue = dataThucHIenCLS.Rows[0]["phauthuatvien"];
                     cboPhu1.EditValue = dataThucHIenCLS.Rows[0]["phumo1"];
                     cboPhu2.EditValue = dataThucHIenCLS.Rows[0]["phumo2"];
                     cboGayMe.EditValue = dataThucHIenCLS.Rows[0]["bacsigayme"];
                     cboGiupViec1.EditValue = dataThucHIenCLS.Rows[0]["phumo3"];
                     cboGiupViec2.EditValue = dataThucHIenCLS.Rows[0]["phumo4"];
-                    txtMoTa.Text = dataThucHIenCLS.Rows[0]["mota"].ToString() ;
+                    txtMoTa.Text = dataThucHIenCLS.Rows[0]["mota"].ToString();
                 }
                 else
                 {
                     this.currentthuchienclsid = 0;
                 }
+
+                cboLoaiPTTT.EditValue = GlobalStore.lstServicepriceRef.Where(o => o.servicepricecode == this.currentThongtinPTTT.servicepricecode).FirstOrDefault().pttt_hangid;
             }
             catch (Exception ex)
             {
@@ -220,7 +239,6 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
         }
         #endregion
 
-        //
         private void btnLuuLai_Click(object sender, EventArgs e)
         {
             try
@@ -229,11 +247,11 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 string thuchienclsdate = DateTime.ParseExact(dtTGThucHien.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                 if (this.currentthuchienclsid == 0) //them moi
                 {
-                    luulaithuchien = "INSERT INTO thuchiencls(medicalrecordid, medicalrecordid_gmhs, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, mota, pttt_hangid, phuongphappttt_code, phuongphappttt) VALUES ('" + this.currentThongtinPTTT.medicalrecordid + "', '" + this.currentThongtinPTTT.medicalrecordid + "', '" + this.currentThongtinPTTT.patientid + "', '" + this.currentThongtinPTTT.maubenhphamid + "', '" + this.currentThongtinPTTT.servicepriceid + "', '" + thuchienclsdate + "', '" + cboMoChinh.EditValue + "', '" + cboGayMe.EditValue + "', '" + cboPhu1.EditValue + "', '" + cboPhu2.EditValue + "', '" + cboGiupViec1.EditValue + "', '" + cboGiupViec2.EditValue + "', '" + txtMoTa.Text + "', '" + cboLoaiPTTT.EditValue + "', '" + cboPhuongPhapPTTT.EditValue + "', '" + cboPhuongPhapPTTT.Text + "');";
+                    luulaithuchien = "INSERT INTO thuchiencls(medicalrecordid, medicalrecordid_gmhs, patientid, maubenhphamid, servicepriceid, thuchienclsdate, phauthuatvien, bacsigayme, phumo1, phumo2, phumo3, phumo4, mota, pttt_hangid, phuongphappttt_code, phuongphappttt, ppvocamid) VALUES ('" + this.currentThongtinPTTT.medicalrecordid + "', '" + this.currentThongtinPTTT.medicalrecordid + "', '" + this.currentThongtinPTTT.patientid + "', '" + this.currentThongtinPTTT.maubenhphamid + "', '" + this.currentThongtinPTTT.servicepriceid + "', '" + thuchienclsdate + "', '" + (cboMoChinh.EditValue ?? 0).ToString() + "', '" + (cboGayMe.EditValue ?? 0).ToString() + "', '" + (cboPhu1.EditValue ?? 0).ToString() + "', '" + (cboPhu2.EditValue ?? 0).ToString() + "', '" + (cboGiupViec1.EditValue ?? 0).ToString() + "', '" + (cboGiupViec2.EditValue ?? 0).ToString() + "', '" + txtMoTa.Text + "', '" + (cboLoaiPTTT.EditValue ?? 0).ToString() + "', '" + (cboPhuongPhapPTTT.EditValue ?? 0).ToString() + "', '" + cboPhuongPhapPTTT.Text + "', '" + (cboPhuongPhapVoCam.EditValue ?? 0).ToString() + "');";
                 }
                 else
                 {
-                    luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + cboMoChinh.EditValue + "',  bacsigayme = '" + cboGayMe.EditValue + "', phumo1 = '" + cboPhu1.EditValue + "', phumo2 = '" + cboPhu2.EditValue + "', phumo3 = '" + cboGiupViec1.EditValue + "', phumo4 = '" + cboGiupViec2.EditValue + "', mota = '" + txtMoTa.Text + "', pttt_hangid = '" + cboLoaiPTTT.EditValue + "', phuongphappttt_code = '" + cboPhuongPhapPTTT.EditValue + "', phuongphappttt = '" + cboPhuongPhapPTTT.Text + "' WHERE thuchienclsid = " + this.currentthuchienclsid + "; ";
+                    luulaithuchien = "UPDATE thuchiencls SET thuchienclsdate='" + thuchienclsdate + "', phauthuatvien='" + (cboMoChinh.EditValue ?? 0).ToString() + "',  bacsigayme = '" + (cboGayMe.EditValue ?? 0).ToString() + "', phumo1 = '" + (cboPhu1.EditValue ?? 0).ToString() + "', phumo2 = '" + (cboPhu2.EditValue ?? 0).ToString() + "', phumo3 = '" + (cboGiupViec1.EditValue ?? 0).ToString() + "', phumo4 = '" + (cboGiupViec2.EditValue ?? 0).ToString() + "', mota = '" + txtMoTa.Text + "', pttt_hangid = '" + (cboLoaiPTTT.EditValue ?? 0).ToString() + "', phuongphappttt_code = '" + (cboPhuongPhapPTTT.EditValue ?? 0).ToString() + "', phuongphappttt = '" + cboPhuongPhapPTTT.Text + "', ppvocamid='" + (cboPhuongPhapVoCam.EditValue ?? 0).ToString() + "' WHERE thuchienclsid = " + this.currentthuchienclsid + "; ";
                 }
                 if (condb.ExecuteNonQuery_HIS(luulaithuchien))
                 {

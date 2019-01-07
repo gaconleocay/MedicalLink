@@ -106,6 +106,11 @@
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.cboPhuongPhapVoCam = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn24 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboGiupViec2.Properties)).BeginInit();
@@ -140,6 +145,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLoaiPTTT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPhuongPhapVoCam.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -168,6 +175,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.labelControl1);
+            this.panel2.Controls.Add(this.cboPhuongPhapVoCam);
             this.panel2.Controls.Add(this.cboGiupViec2);
             this.panel2.Controls.Add(this.cboGiupViec1);
             this.panel2.Controls.Add(this.cboGayMe);
@@ -1026,6 +1035,61 @@
             this.gridColumn4.FieldName = "loaiptttid";
             this.gridColumn4.Name = "gridColumn4";
             // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(513, 262);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(120, 16);
+            this.labelControl1.TabIndex = 117;
+            this.labelControl1.Text = "Phương pháp vô cảm";
+            // 
+            // cboPhuongPhapVoCam
+            // 
+            this.cboPhuongPhapVoCam.Location = new System.Drawing.Point(643, 259);
+            this.cboPhuongPhapVoCam.Name = "cboPhuongPhapVoCam";
+            this.cboPhuongPhapVoCam.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboPhuongPhapVoCam.Properties.Appearance.Options.UseFont = true;
+            this.cboPhuongPhapVoCam.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboPhuongPhapVoCam.Properties.ImmediatePopup = true;
+            this.cboPhuongPhapVoCam.Properties.NullText = "";
+            this.cboPhuongPhapVoCam.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
+            this.cboPhuongPhapVoCam.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.cboPhuongPhapVoCam.Properties.View = this.gridView8;
+            this.cboPhuongPhapVoCam.Size = new System.Drawing.Size(350, 22);
+            this.cboPhuongPhapVoCam.TabIndex = 118;
+            // 
+            // gridView8
+            // 
+            this.gridView8.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn24,
+            this.gridColumn25});
+            this.gridView8.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView8.Name = "gridView8";
+            this.gridView8.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView8.OptionsView.ShowGroupPanel = false;
+            this.gridView8.OptionsView.ShowIndicator = false;
+            this.gridView8.RowHeight = 25;
+            // 
+            // gridColumn24
+            // 
+            this.gridColumn24.Caption = "ppvocamid";
+            this.gridColumn24.FieldName = "ppvocamid";
+            this.gridColumn24.Name = "gridColumn24";
+            // 
+            // gridColumn25
+            // 
+            this.gridColumn25.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn25.AppearanceCell.Options.UseFont = true;
+            this.gridColumn25.Caption = "ppvocamname";
+            this.gridColumn25.FieldName = "ppvocamname";
+            this.gridColumn25.Name = "gridColumn25";
+            this.gridColumn25.OptionsColumn.AllowEdit = false;
+            this.gridColumn25.OptionsColumn.ShowCaption = false;
+            this.gridColumn25.Visible = true;
+            this.gridColumn25.VisibleIndex = 0;
+            // 
             // frmNhapThongTinPTTT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1073,6 +1137,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboLoaiPTTT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboPhuongPhapVoCam.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1156,5 +1222,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn23;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.GridLookUpEdit cboPhuongPhapVoCam;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
     }
 }

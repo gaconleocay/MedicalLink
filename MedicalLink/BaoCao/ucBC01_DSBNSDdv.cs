@@ -19,9 +19,9 @@ namespace MedicalLink.ChucNang
     {
         #region Khai bao
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        //private DataTable dataBCBXuatThuoc { get; set; }
         private string DanhSachDichVu { get; set; }
         private List<ServicepriceDTO> lstDanhMucDichVu { get; set; }
+        private string ThoiGianGioiHanDuLieu { get; set; }
         #endregion
         public ucBC01_DSBNSDdv()
         {
@@ -59,6 +59,7 @@ namespace MedicalLink.ChucNang
                 dateTuNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 LoadDanhMucDichVu();
+                LoadThoiGianGioiHanDuLieu();
             }
             catch (Exception ex)
             {
@@ -88,7 +89,26 @@ namespace MedicalLink.ChucNang
                 Base.Logging.Error(ex);
             }
         }
-
+        private void LoadThoiGianGioiHanDuLieu()
+        {
+            try
+            {
+                string _sqlDMDichVu = "select toolsoptionvalue from tools_option where toolsoptioncode='REPORT_01_TGLayDuLieu';";
+                DataTable _dataTG = condb.GetDataTable_MeL(_sqlDMDichVu);
+                if (_dataTG.Rows.Count > 0)
+                {
+                    this.ThoiGianGioiHanDuLieu = _dataTG.Rows[0]["toolsoptionvalue"].ToString();
+                }
+                else
+                {
+                    this.ThoiGianGioiHanDuLieu = "2017-01-01 00:00:00";
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
         #region Tim kiem
@@ -97,12 +117,14 @@ namespace MedicalLink.ChucNang
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
             try
             {
-                string tieuchi_ser = "";
-                string tieuchi_vp = "";
-                string tieuchi_hsba = "";
+                string tieuchi_ser = " and servicepricedate>'"+ this.ThoiGianGioiHanDuLieu + "' ";
+                string tieuchi_vp = " and vienphidate>'" + this.ThoiGianGioiHanDuLieu + "' ";
+                string tieuchi_hsba = " and hosobenhandate>'" + this.ThoiGianGioiHanDuLieu + "' ";
+                string _tieuchi_bh = " and bhytdate>'" + this.ThoiGianGioiHanDuLieu + "' ";
                 string loaivienphiid = "";
                 string doituongbenhnhanid = "";
                 string _bhyt_groupcode = "";
+                string _serfdvktthuoc = "select servicepricecode,pttt_loaiid from servicepriceref where ServiceGroupType not in (5,6) union all select medicinecode as servicepricecode,0 as pttt_loaiid from medicine_ref";
 
                 if ((txtDSMaDichVu.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,). Tìm thuốc theo tất cả các lô định dạng: AAA*"))
                 {
@@ -127,19 +149,25 @@ namespace MedicalLink.ChucNang
                     {
                         tieuchi_vp = " and vienphidate between '" + datetungay + "' and '" + datedenngay + "' ";
                         tieuchi_hsba = " and hosobenhandate between '" + datetungay + "' and '" + datedenngay + "' ";
+                        _tieuchi_bh = " and bhytdate between '" + datetungay + "' and '" + datedenngay + "' ";
                     }
                     else if (cbbTieuChi.Text == "Theo ngày ra viện")
                     {
                         tieuchi_vp = " and vienphidate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
                         tieuchi_hsba = " and hosobenhandate_ravien between '" + datetungay + "' and '" + datedenngay + "' ";
+                        tieuchi_ser = " and servicepricedate between '" + this.ThoiGianGioiHanDuLieu + "' and '" + datedenngay + "' ";
                     }
                     else if (cbbTieuChi.Text == "Theo ngày duyệt VP")
                     {
                         tieuchi_vp = " and vienphistatus<>0 and vienphistatus_vp=1 and duyet_ngayduyet_vp between '" + datetungay + "' and '" + datedenngay + "' ";
+                        tieuchi_ser = " and servicepricedate between '" + this.ThoiGianGioiHanDuLieu + "' and '" + datedenngay + "' ";
                     }
                     else if (cbbTieuChi.Text == "Theo ngày duyệt BHYT")//theo ngay duyet BHYT
                     {
                         tieuchi_vp = " and vienphistatus_bh=1 and duyet_ngayduyet between '" + datetungay + "' and '" + datedenngay + "' ";
+                        tieuchi_ser = " and servicepricedate between '" + this.ThoiGianGioiHanDuLieu + "' and '" + datedenngay + "' ";
+                        tieuchi_hsba = " and hosobenhandate between '" + this.ThoiGianGioiHanDuLieu + "' and '" + datedenngay + "' ";
+                        _tieuchi_bh = " and bhytdate between '" + this.ThoiGianGioiHanDuLieu + "' and '" + datedenngay + "' ";
                     }
 
                     // Lấy loaivienphiid
@@ -166,10 +194,12 @@ namespace MedicalLink.ChucNang
                     if (cboNhomDichVu.Text == "Dịch vụ kỹ thuật")
                     {
                         _bhyt_groupcode = " and bhyt_groupcode in ( '01KB','03XN','04CDHA','05TDCN','06PTTT','07KTC','12NG','999DVKHAC','1000PhuThu','11VC') ";
+                        _serfdvktthuoc = "select servicepricecode,pttt_loaiid from servicepriceref where ServiceGroupType not in (5,6)";
                     }
                     else if (cboNhomDichVu.Text == "Thuốc và vật tư")
                     {
                         _bhyt_groupcode = " and bhyt_groupcode in ('09TDT','091TDTtrongDM','092TDTngoaiDM','093TDTUngthu','094TDTTyle','10VT','101VTtrongDM','101VTtrongDMTT','102VTngoaiDM','103VTtyle') ";
+                        _serfdvktthuoc = "select medicinecode as servicepricecode,0 as pttt_loaiid from medicine_ref";
                     }
 
                     // Thực thi câu lệnh SQL
@@ -247,8 +277,6 @@ namespace MedicalLink.ChucNang
 		when '101VTtrongDMTT' then 'Vật tư thay thế'
 		when '102VTngoaiDM' then 'Vật tư ngoài DM'
 		when '103VTtyle' then 'Vật tư TT theo tỷ lệ'
-		when '32323232' then '323232323'
-		when '32323232' then '323232323'
 		end) as bhyt_groupcode,
 	(case ser.loaidoituong 
 		when 0 then 'BHYT' 
@@ -265,23 +293,16 @@ namespace MedicalLink.ChucNang
 	end) as loaidoituong, 
 	(case when ser.thuockhobanle<>0 then 'Đơn nhà thuốc' end) as thuockhobanle 
 FROM 
-	(select servicepriceid,maubenhphamid,vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,
-		(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai
-			else (case when loaidoituong=0 then servicepricemoney_bhyt
-						  when loaidoituong=1 then servicepricemoney_nhandan
-						  else servicepricemoney
-				  end)
-		end) as dongia,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,
-		servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle from serviceprice where {this.DanhSachDichVu} {tieuchi_ser} {_bhyt_groupcode}) ser 
-	inner join (select serff.servicepricecode,serff.pttt_loaiid from (select servicepricecode,pttt_loaiid from servicepriceref where ServiceGroupType not in (5,6) 
-		union all select medicinecode as servicepricecode,0 as pttt_loaiid from medicine_ref) serff where {this.DanhSachDichVu}) serf on serf.servicepricecode=ser.servicepricecode	
-	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 {tieuchi_vp + loaivienphiid} {doituongbenhnhanid}) vp ON ser.vienphiid=vp.vienphiid 
+	(select servicepriceid,maubenhphamid,vienphiid,departmentgroupid,departmentid,servicepricecode,servicepricename,billid_thutien,billid_clbh_thutien,(case when doituongbenhnhanid=4 then servicepricemoney_nuocngoai else (case when loaidoituong=0 then servicepricemoney_bhyt when loaidoituong=1 then servicepricemoney_nhandan else servicepricemoney end) end) as dongia,servicepricemoney_bhyt,servicepricemoney_nhandan,servicepricemoney,servicepricedate,maubenhphamphieutype,soluong,bhyt_groupcode,loaidoituong,thuockhobanle 
+		from serviceprice where {this.DanhSachDichVu} {tieuchi_ser} {_bhyt_groupcode}) ser 
+	inner join (select serff.servicepricecode,serff.pttt_loaiid from ({_serfdvktthuoc}) serff where {this.DanhSachDichVu}) serf on serf.servicepricecode=ser.servicepricecode	
+	INNER JOIN (select patientid,vienphiid,hosobenhanid,vienphidate,vienphidate_ravien,duyet_ngayduyet_vp,duyet_ngayduyet,vienphistatus,vienphistatus_vp,vienphistatus_bh,chandoanravien_code,chandoanravien,chandoanravien_kemtheo_code,chandoanravien_kemtheo,departmentgroupid,departmentid,bhytid,doituongbenhnhanid,loaivienphiid from vienphi where 1=1 {tieuchi_vp} {loaivienphiid} {doituongbenhnhanid}) vp ON ser.vienphiid=vp.vienphiid 
 	INNER JOIN (select hosobenhanid,patientname,gioitinhname,birthday,hc_sonha,hc_thon,hc_xacode,hc_xaname,hc_huyencode,hc_huyenname,hc_tinhcode,hc_tinhname from hosobenhan where 1=1 {tieuchi_hsba}) hsba ON hsba.hosobenhanid=vp.hosobenhanid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) degp ON vp.departmentgroupid=degp.departmentgroupid 
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) de ON vp.departmentid=de.departmentid 
 	LEFT JOIN (select departmentgroupid,departmentgroupname from departmentgroup) kcd ON kcd.departmentgroupid=ser.departmentgroupid 
 	LEFT JOIN (select departmentid,departmentname from department where departmenttype in (2,3,6,7,9)) pcd ON pcd.departmentid=ser.departmentid 
-	INNER JOIN (select bhytid,bhytcode from bhyt) bhyt ON bhyt.bhytid=vp.bhytid;";
+	INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bh}) bhyt ON bhyt.bhytid=vp.bhytid;";
 
                     DataTable _dataBCBXuatThuoc = condb.GetDataTable_HIS(_sqlquerry);
 

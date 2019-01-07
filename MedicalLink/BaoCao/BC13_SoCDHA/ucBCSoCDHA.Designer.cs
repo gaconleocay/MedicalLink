@@ -211,6 +211,7 @@
             this.cboTieuChi.Properties.Items.AddRange(new object[] {
             "Theo ngày chỉ định",
             "Theo ngày trả kết quả",
+            "Theo ngày trả kết quả từng phần",
             "Theo ngày ra viện",
             "Theo ngày duyệt VP"});
             this.cboTieuChi.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;

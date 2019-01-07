@@ -13,6 +13,7 @@ namespace MedicalLink.ClassCommon
         public long medicalrecordid { get; set; }
         public long maubenhphamid { get; set; }
         public long servicepriceid { get; set; }
+        public string servicepricecode { get;set;}
         public long patientid { get; set; }
         public string departmentname { get; set; }
         public string chandoancls_name { get; set; }

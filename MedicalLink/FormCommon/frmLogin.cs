@@ -146,6 +146,7 @@ namespace MedicalLink.FormCommon
                 LoadDanhSachCauHinhDungChung();
                 LoadCauHinhThoiGianLayDuLieu();
                 //LoadDanhSachKhoaTrongBenhVien(); //chua su dung
+                LoadDanhMucDichVuKyThuat();
             }
             catch (Exception ex)
             {
@@ -234,6 +235,22 @@ namespace MedicalLink.FormCommon
                         otherList.departmenttype = Utilities.TypeConvertParse.ToInt32(dataKhoaBV.Rows[i]["departmenttype"].ToString());
                         GlobalStore.lstDepartmentBV.Add(otherList);
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Error(ex);
+            }
+        }
+        private void LoadDanhMucDichVuKyThuat()
+        {
+            try
+            {
+                string _sqlDVKT = "select * from ServicePriceRef where servicegrouptype in (1,2,3,4,11)";
+                DataTable _dataDVKT = condb.GetDataTable_HIS(_sqlDVKT);
+                if (_dataDVKT != null && _dataDVKT.Rows.Count > 0)
+                {
+                    GlobalStore.lstServicepriceRef = Utilities.DataTables.DataTableToList<ClassCommon.Base.ServicepriceRefDTO>(_dataDVKT);
                 }
             }
             catch (Exception ex)

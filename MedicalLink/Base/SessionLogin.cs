@@ -33,7 +33,6 @@ namespace MedicalLink.Base
         public static List<ClassCommon.classUserMedicineStore> LstPhanQuyen_KhoThuoc { get; set; }
         public static List<ClassCommon.classUserMedicinePhongLuu> LstPhanQuyen_PhongLuu { get; set; }
 
-
         #region Chuc nang cho Tab menu
         public static List<ClassCommon.classPermission> LstPhanQuyen_HeThong { get; set; }
         public static List<ClassCommon.classPermission> LstPhanQuyen_ChucNang { get; set; }

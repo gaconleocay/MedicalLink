@@ -35,6 +35,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
+            this.chkLayHaoPhi = new System.Windows.Forms.CheckBox();
             this.chkThuTienStatus = new System.Windows.Forms.CheckBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cboTieuChi = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -119,7 +120,6 @@
             this.bandedGridColumn51 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.bandedGridColumn52 = new DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn();
             this.repositoryItemButton_View = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.chkLayHaoPhi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlThongTinDV)).BeginInit();
             this.panelControlThongTinDV.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
@@ -174,6 +174,18 @@
             this.groupBoxFile.TabIndex = 10;
             this.groupBoxFile.TabStop = false;
             this.groupBoxFile.Text = "Tìm kiếm";
+            // 
+            // chkLayHaoPhi
+            // 
+            this.chkLayHaoPhi.Checked = true;
+            this.chkLayHaoPhi.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkLayHaoPhi.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkLayHaoPhi.Location = new System.Drawing.Point(626, 58);
+            this.chkLayHaoPhi.Name = "chkLayHaoPhi";
+            this.chkLayHaoPhi.Size = new System.Drawing.Size(114, 23);
+            this.chkLayHaoPhi.TabIndex = 86;
+            this.chkLayHaoPhi.Text = "Lấy hao phí";
+            this.chkLayHaoPhi.UseVisualStyleBackColor = true;
             // 
             // chkThuTienStatus
             // 
@@ -1057,7 +1069,7 @@
             this.bandedGridColumn35.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn35.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn35.Caption = "Thuốc trong gói PTTT";
+            this.bandedGridColumn35.Caption = "Thuốc TT riêng trong gói PTTT";
             this.bandedGridColumn35.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn35.FieldName = "money_dkpttt_thuoc";
@@ -1078,7 +1090,7 @@
             this.bandedGridColumn34.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn34.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn34.Caption = "VTYT trong gói PTTT";
+            this.bandedGridColumn34.Caption = "Vật tư TT riêng trong gói PTTT";
             this.bandedGridColumn34.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn34.FieldName = "money_dkpttt_vattu";
@@ -1603,7 +1615,7 @@
             this.bandedGridColumn20.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn20.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn20.Caption = "Gây mê_Chi phí thuốc trong gói";
+            this.bandedGridColumn20.Caption = "GM_CP thuốc TT riêng trong gói";
             this.bandedGridColumn20.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn20.FieldName = "gmht_money_hpdkpttt_thuoc";
@@ -1626,7 +1638,7 @@
             this.bandedGridColumn21.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn21.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn21.Caption = "Gây mê_Chi phí vật tư trong gói";
+            this.bandedGridColumn21.Caption = "GM_CP vật tư TT riêng trong gói";
             this.bandedGridColumn21.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn21.FieldName = "gmht_money_hpdkpttt_vattu";
@@ -1649,7 +1661,7 @@
             this.bandedGridColumn44.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn44.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn44.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn44.Caption = "Gây mê_HP PTTT ngoài gói (thuốc + VT)";
+            this.bandedGridColumn44.Caption = "GM_HP khác";
             this.bandedGridColumn44.FieldName = "gmht_money_hppttt";
             this.bandedGridColumn44.Name = "bandedGridColumn44";
             this.bandedGridColumn44.OptionsColumn.AllowEdit = false;
@@ -1670,7 +1682,7 @@
             this.bandedGridColumn43.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn43.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn43.Caption = "Khoa khác_Chi phí thuốc trong gói";
+            this.bandedGridColumn43.Caption = "Khoa khác_CP thuốc TT riêng trong gói";
             this.bandedGridColumn43.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn43.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn43.FieldName = "money_hpdkpttt_thuoc";
@@ -1693,7 +1705,7 @@
             this.bandedGridColumn42.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn42.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn42.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn42.Caption = "Khoa khác_Chi phí vật tư trong gói";
+            this.bandedGridColumn42.Caption = "Khoa khác_CP vật tư TT riêng trong gói";
             this.bandedGridColumn42.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn42.FieldName = "money_hpdkpttt_vattu";
@@ -1716,7 +1728,7 @@
             this.bandedGridColumn33.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn33.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn33.Caption = "Khoa khác_HP PTTT ngoài gói (thuốc + VT)";
+            this.bandedGridColumn33.Caption = "Khoa khác_HP khác";
             this.bandedGridColumn33.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn33.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn33.FieldName = "money_hppttt";
@@ -1762,7 +1774,7 @@
             this.bandedGridColumn28.AppearanceHeader.Options.UseForeColor = true;
             this.bandedGridColumn28.AppearanceHeader.Options.UseTextOptions = true;
             this.bandedGridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.bandedGridColumn28.Caption = "Chi phí khác";
+            this.bandedGridColumn28.Caption = "CP khác (đầu vào, máy móc…)";
             this.bandedGridColumn28.DisplayFormat.FormatString = "#,##0";
             this.bandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.bandedGridColumn28.FieldName = "money_chiphikhac";
@@ -1871,18 +1883,6 @@
             this.repositoryItemButton_View.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButton_View.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem", null, null, true)});
             this.repositoryItemButton_View.Name = "repositoryItemButton_View";
-            // 
-            // chkLayHaoPhi
-            // 
-            this.chkLayHaoPhi.Checked = true;
-            this.chkLayHaoPhi.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLayHaoPhi.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkLayHaoPhi.Location = new System.Drawing.Point(626, 58);
-            this.chkLayHaoPhi.Name = "chkLayHaoPhi";
-            this.chkLayHaoPhi.Size = new System.Drawing.Size(114, 23);
-            this.chkLayHaoPhi.TabIndex = 86;
-            this.chkLayHaoPhi.Text = "Lấy hao phí";
-            this.chkLayHaoPhi.UseVisualStyleBackColor = true;
             // 
             // ucBCTongHopDoanhThuKhoa
             // 

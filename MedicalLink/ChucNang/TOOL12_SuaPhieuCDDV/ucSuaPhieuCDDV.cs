@@ -688,22 +688,46 @@ namespace MedicalLink.ChucNang
                             MessageBox.Show("Thực hiện thất bại. \nPhiếu thuốc/vật tư không kê từ tủ trực hoặc chưa được xuất.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
-                    else
+                    else //dvkt
                     {
-                        DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu mã: " + maubenhphamid + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                        if (dialogResult == DialogResult.Yes)
+                        //kiem tra xem có phieu thuoc/vt nao di kem khong
+                        string _lstSerId = "0";
+                        string _sqlSerId = "select servicepriceid from serviceprice where maubenhphamid='" + maubenhphamid + "';";
+                        DataTable _dataSerId = condb.GetDataTable_HIS(_sqlSerId);
+                        if (_dataSerId.Rows.Count > 0)
                         {
-                            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                            // thực thi câu lệnh update và lưu log
-                            string sqlxecute_mbp = "DELETE FROM maubenhpham WHERE maubenhphamid='" + maubenhphamid + "';";
-                            string sqlexcute_ser = "DELETE FROM serviceprice WHERE maubenhphamid='" + maubenhphamid + "';";
-                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và dịch vụ mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_12');";
-                            condb.ExecuteNonQuery_HIS(sqlxecute_mbp);
-                            condb.ExecuteNonQuery_HIS(sqlexcute_ser);
-                            condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                            MessageBox.Show("Xóa phiếu dịch vụ mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            gridControlDS_PhieuDichVu.DataSource = null;
-                            btnTimKiem_Click(null, null);
+                            for (int i = 0; i < _dataSerId.Rows.Count; i++)
+                            {
+                                _lstSerId += "," + _dataSerId.Rows[i]["servicepriceid"].ToString();
+                            }
+                            _lstSerId = _lstSerId.Replace("0,", "");
+                        }
+                        if (_lstSerId != "0")
+                        {
+                            string _sqlthuocdk = "select servicepriceid from serviceprice where servicepriceid_master in (" + _lstSerId + ") or servicepriceid_thanhtoanrieng in (" + _lstSerId + ");";
+                            DataTable _dataThuocDK = condb.GetDataTable_HIS(_sqlthuocdk);
+                            if (_dataThuocDK.Rows.Count > 0)
+                            {
+                                MessageBox.Show("Thực hiện thất bại. \nCó thuốc/vật tư đi kèm dịch vụ.", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            else
+                            {
+                                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa phiếu mã: " + maubenhphamid + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                                if (dialogResult == DialogResult.Yes)
+                                {
+                                    String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                    // thực thi câu lệnh update và lưu log
+                                    string sqlxecute_mbp = "DELETE FROM maubenhpham WHERE maubenhphamid='" + maubenhphamid + "';";
+                                    string sqlexcute_ser = "DELETE FROM serviceprice WHERE maubenhphamid='" + maubenhphamid + "';";
+                                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa phiếu và dịch vụ mã: " + maubenhphamid + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "','" + _vienphiid + "', 'TOOL_12');";
+                                    condb.ExecuteNonQuery_HIS(sqlxecute_mbp);
+                                    condb.ExecuteNonQuery_HIS(sqlexcute_ser);
+                                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
+                                    MessageBox.Show("Xóa phiếu dịch vụ mã: " + maubenhphamid + " thành công.\nVui lòng kiểm tra lại", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    gridControlDS_PhieuDichVu.DataSource = null;
+                                    btnTimKiem_Click(null, null);
+                                }
+                            }
                         }
                     }
                 }

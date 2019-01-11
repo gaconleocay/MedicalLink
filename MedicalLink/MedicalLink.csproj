@@ -772,10 +772,10 @@
     <Compile Include="ChucNang\TOOL24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.Designer.cs">
       <DependentUpon>ucTOOL24_CapNhatLoaiHTT.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.cs">
+    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.Designer.cs">
+    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.Designer.cs">
       <DependentUpon>frmSuaThoiGianTraKQ_DV.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\ThongTinThucHienCLS\frmNhapThongTinPTTT.cs">
@@ -1341,11 +1341,11 @@
     <Compile Include="ChucNang\ucUpdateDataSerPrice.Designer.cs">
       <DependentUpon>ucUpdateDataSerPrice.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\ucXuLyBNBoKhoa.cs">
+    <Compile Include="ChucNang\ucTOOL05_XuLyBNBoKhoa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\ucXuLyBNBoKhoa.Designer.cs">
-      <DependentUpon>ucXuLyBNBoKhoa.cs</DependentUpon>
+    <Compile Include="ChucNang\ucTOOL05_XuLyBNBoKhoa.Designer.cs">
+      <DependentUpon>ucTOOL05_XuLyBNBoKhoa.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\ucSuaThoiGianRaVien.cs">
       <SubType>UserControl</SubType>
@@ -1353,16 +1353,16 @@
     <Compile Include="ChucNang\ucSuaThoiGianRaVien.Designer.cs">
       <DependentUpon>ucSuaThoiGianRaVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianChiDinh.cs">
+    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianChiDinh.Designer.cs">
+    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.Designer.cs">
       <DependentUpon>frmSuaThoiGianChiDinh.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\SuaPhieuCDDV\ucSuaPhieuCDDV.cs">
+    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\ucSuaPhieuCDDV.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\SuaPhieuCDDV\ucSuaPhieuCDDV.Designer.cs">
+    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\ucSuaPhieuCDDV.Designer.cs">
       <DependentUpon>ucSuaPhieuCDDV.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\CheckPermission.cs" />
@@ -1748,7 +1748,7 @@
     <EmbeddedResource Include="ChucNang\SuaGiaDichVu\ucSuaMaTenGiaDV.resx">
       <DependentUpon>ucSuaMaTenGiaDV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.resx">
+    <EmbeddedResource Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.resx">
       <DependentUpon>frmSuaThoiGianTraKQ_DV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\SuaPhoiThanhToan\SuaPhoiThanhToan_SoLuong.resx">
@@ -1928,16 +1928,16 @@
     <EmbeddedResource Include="ChucNang\ucUpdateDataSerPrice.resx">
       <DependentUpon>ucUpdateDataSerPrice.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\ucXuLyBNBoKhoa.resx">
-      <DependentUpon>ucXuLyBNBoKhoa.cs</DependentUpon>
+    <EmbeddedResource Include="ChucNang\ucTOOL05_XuLyBNBoKhoa.resx">
+      <DependentUpon>ucTOOL05_XuLyBNBoKhoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucSuaThoiGianRaVien.resx">
       <DependentUpon>ucSuaThoiGianRaVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\SuaPhieuCDDV\frmSuaThoiGianChiDinh.resx">
+    <EmbeddedResource Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.resx">
       <DependentUpon>frmSuaThoiGianChiDinh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\SuaPhieuCDDV\ucSuaPhieuCDDV.resx">
+    <EmbeddedResource Include="ChucNang\TOOL12_SuaPhieuCDDV\ucSuaPhieuCDDV.resx">
       <DependentUpon>ucSuaPhieuCDDV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\frmConnectDB.resx">

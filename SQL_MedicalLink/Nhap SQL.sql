@@ -1102,8 +1102,27 @@ where map.servicepricecode in (select tmp.servicepricecode from (select (row_num
 order by serf.servicepricecode 
 
 
-	
-	
+"Xóa phiếu và dịch vụ mã: 21552307"
+"Xóa phiếu và dịch vụ mã: 21517588"
+"Xóa phiếu và dịch vụ mã: 21676590"
+"Xóa phiếu và dịch vụ mã: 21669315"
+"Xóa phiếu và dịch vụ mã: 21628135"
+"Xóa phiếu và dịch vụ mã: 21598780"
+"Xóa phiếu và dịch vụ mã: 21622372"
+"Xóa phiếu và dịch vụ mã: 21368788"
+"Xóa phiếu và dịch vụ mã: 21607569"
+"Xóa phiếu và dịch vụ mã: 21549276"
+"Xóa phiếu và dịch vụ mã: 21562136"
+"Xóa phiếu và dịch vụ mã: 21564389"
+"Xóa phiếu và dịch vụ mã: 21552473"
+"Xóa phiếu và dịch vụ mã: 21546362"
+"Xóa phiếu và dịch vụ mã: 21341339"
+
+select * from serviceprice where  --servicepriceid=53039401
+
+vienphiid=1336441 and bhyt_groupcode='06PTTT';
+
+select * from tbllogdata where logvalue like '%53039401%';
 	
 	
 	

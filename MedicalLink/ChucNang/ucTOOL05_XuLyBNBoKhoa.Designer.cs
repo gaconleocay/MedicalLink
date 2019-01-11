@@ -1,6 +1,6 @@
 ﻿namespace MedicalLink.ChucNang
 {
-    partial class ucXuLyBNBoKhoa
+    partial class ucTOOL05_XuLyBNBoKhoa
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucXuLyBNBoKhoa));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucTOOL05_XuLyBNBoKhoa));
             this.panelControlBNBK_TK = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxBNBK_TK = new System.Windows.Forms.GroupBox();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();

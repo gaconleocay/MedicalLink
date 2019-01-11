@@ -13,10 +13,10 @@ using MedicalLink.Base;
 
 namespace MedicalLink.ChucNang
 {
-    public partial class ucXuLyBNBoKhoa : UserControl
+    public partial class ucTOOL05_XuLyBNBoKhoa : UserControl
     {
         MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
-        public ucXuLyBNBoKhoa()
+        public ucTOOL05_XuLyBNBoKhoa()
         {
             InitializeComponent();
             // Hiển thị Text Hint Mã viện phí
@@ -172,7 +172,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Error(ex);
             }
         }
 
@@ -254,28 +254,20 @@ namespace MedicalLink.ChucNang
                                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn chuyển BN ra ngoài phòng hành chính ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                                 if (dialogResult == DialogResult.Yes)
                                 {
-                                    try
+                                    // thực thi câu lệnh update và lưu log
+                                    string sqlxecute = "UPDATE medicalrecord SET medicalrecordstatus='0', departmentid='0' WHERE medicalrecordid='" + madt + "';";
+                                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, patientid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển BN: " + mabn + " mã VP: " + mavp + " mã điều trị: " + madt + " ra phòng hành chính','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + mavp + "', '" + mabn + "', 'TOOL_05');";
+                                    if (condb.ExecuteNonQuery_HIS(sqlxecute) &&
+                                       condb.ExecuteNonQuery_MeL(sqlinsert_log))
                                     {
-                                        // thực thi câu lệnh update và lưu log
-                                        string sqlxecute = "UPDATE medicalrecord SET medicalrecordstatus='0', departmentid='0' WHERE medicalrecordid='" + madt + "';";
-                                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển BN: " + mabn + " mã VP: " + mavp + " mã điều trị: " + madt + " ra phòng hành chính','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '"+ mavp + "', 'TOOL_05');";
-                                        condb.ExecuteNonQuery_HIS(sqlxecute);
-                                        condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                         ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển mã điều trị ra phòng hành chính thành công!");
                                         frmthongbao.Show();
-                                        // load lại dữ liệu của form
                                         gridControlBNBK.DataSource = null;
                                         btnBNBKTimKiem_Click(null, null);
                                     }
-                                    catch (Exception)
-                                    {
-                                        MessageBox.Show("Không thể thực hiện được! \nCó lỗi xảy ra", "Thông báo");
-                                    }
+                                    else
+                                    { MessageBox.Show("Không thể thực hiện được! \nCó lỗi xảy ra", "Thông báo"); }
                                 }
-                                //else if (dialogResult == DialogResult.No)
-                                //{
-                                //    //do something else
-                                //}
                             }
                         }
 
@@ -289,7 +281,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Error(ex);
             }
         }
 
@@ -326,30 +318,23 @@ namespace MedicalLink.ChucNang
                             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa mã điều trị: " + madt + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                             if (dialogResult == DialogResult.Yes)
                             {
-                                try
+                                // thực thi câu lệnh update và lưu log
+                                string sqlxecute = "DELETE FROM medicalrecord WHERE medicalrecordid='" + madt + "';";
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, patientid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa mã điều trị: " + madt + " của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + mavp + "', '" + mabn + "', 'TOOL_05');";
+                                if (condb.ExecuteNonQuery_HIS(sqlxecute) &&
+                                  condb.ExecuteNonQuery_MeL(sqlinsert_log))
                                 {
-                                    // thực thi câu lệnh update và lưu log
-                                    string sqlxecute = "DELETE FROM medicalrecord WHERE medicalrecordid='" + madt + "';";
-                                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa mã điều trị: " + madt + " của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_05');";
-                                    condb.ExecuteNonQuery_HIS(sqlxecute);
-                                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị thành công!");
                                     frmthongbao.Show();
-                                    // load lại dữ liệu của form
                                     gridControlBNBK.DataSource = null;
                                     btnBNBKTimKiem_Click(null, null);
                                 }
-                                catch (Exception)
+                                else
                                 {
                                     MessageBox.Show("Không thể thực hiện được! \nCó lỗi xảy ra", "Thông báo");
                                 }
                             }
-                            //else if (dialogResult == DialogResult.No)
-                            //{
-                            //    //do something else
-                            //}
                         }
-
                     }
                 }
                 else
@@ -360,7 +345,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Error(ex);
             }
         }
 
@@ -397,30 +382,24 @@ namespace MedicalLink.ChucNang
                             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa mã điều trị: " + madt + " \nvà chuyển sang phơi thanh toán ngoại trú?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                             if (dialogResult == DialogResult.Yes)
                             {
-                                try
+                                // thực thi câu lệnh update và lưu log
+                                string sqldelete = "DELETE FROM medicalrecord WHERE medicalrecordid='" + madt + "';";
+                                string sqlchuyenngt = "UPDATE vienphi SET loaivienphiid='1' WHERE vienphiid ='" + mavp + "';";
+                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, patientid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa và chuyển thành phơi TT ngoại trú mã điều trị: " + madt + " của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + mavp + "', '" + mabn + "', 'TOOL_05');";
+                                if (condb.ExecuteNonQuery_HIS(sqldelete) &&
+                                 condb.ExecuteNonQuery_HIS(sqlchuyenngt) &&
+                                 condb.ExecuteNonQuery_MeL(sqlinsert_log))
                                 {
-                                    // thực thi câu lệnh update và lưu log
-                                    string sqldelete = "DELETE FROM medicalrecord WHERE medicalrecordid='" + madt + "';";
-                                    string sqlchuyenngt = "UPDATE vienphi SET loaivienphiid='1' WHERE vienphiid ='" + mavp + "';";
-                                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa và chuyển thành phơi TT ngoại trú mã điều trị: " + madt + " của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_05');";
-                                    condb.ExecuteNonQuery_HIS(sqldelete);
-                                    condb.ExecuteNonQuery_HIS(sqlchuyenngt);
-                                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị và chuyển thành phơi ngoại trú thành công!");
                                     frmthongbao.Show();
-                                    // load lại dữ liệu của form
                                     gridControlBNBK.DataSource = null;
                                     btnBNBKTimKiem_Click(null, null);
                                 }
-                                catch (Exception)
+                                else
                                 {
                                     MessageBox.Show("Không thể thực hiện được! \nCó lỗi xảy ra", "Thông báo");
                                 }
                             }
-                            //else if (dialogResult == DialogResult.No)
-                            //{
-                            //    //do something else
-                            //}
                         }
 
                     }
@@ -433,7 +412,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Error(ex);
             }
         }
 
@@ -441,7 +420,6 @@ namespace MedicalLink.ChucNang
         {
             try
             {
-                // lấy giá trị tại dòng click chuột
                 var rowHandle = gridViewBNBK.FocusedRowHandle;
                 long madt = Convert.ToInt32(gridViewBNBK.GetRowCellValue(rowHandle, "madieutri").ToString());
                 long mabn = Convert.ToInt32(gridViewBNBK.GetRowCellValue(rowHandle, "mabenhnhan").ToString());
@@ -457,7 +435,7 @@ namespace MedicalLink.ChucNang
 
                     if (_kiemtradichvu == -1)
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được!\nVì bệnh nhân có phát sinh dịch vụ!");
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được!\nVì bệnh nhân có phát sinh dịch vụ hoặc phiếu thu!");
                         frmthongbao.Show();
                     }
                     else
@@ -474,27 +452,21 @@ namespace MedicalLink.ChucNang
                         DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa toàn bộ bệnh án của mã Viện phí: " + mavp + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            try
+                            //string sqldeletemedi = "DELETE FROM medicalrecord WHERE vienphiid='" + mavp + "';";
+                            string sqldeletevp = "DELETE FROM vienphi WHERE vienphiid='" + mavp + "';";
+                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, patientid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa toàn bộ bệnh án của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + mavp + "', '" + mabn + "', 'TOOL_05');";
+                            //condb.ExecuteNonQuery_HIS(sqldeletemedi);
+                            if (condb.ExecuteNonQuery_HIS(sqldeletevp) &&
+                               condb.ExecuteNonQuery_MeL(sqlinsert_log))
                             {
-                                // thực thi câu lệnh delete và lưu log
-                                string sqldeletemedi = "DELETE FROM medicalrecord WHERE vienphiid='" + mavp + "';";
-                                string sqldeletevp = "DELETE FROM vienphi WHERE vienphiid='" + mavp + "';";
-                                string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa toàn bộ bệnh án của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_05');";
-                                condb.ExecuteNonQuery_HIS(sqldeletemedi);
-                                condb.ExecuteNonQuery_HIS(sqldeletevp);
-                                condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa toàn bộ bệnh án thành công.\nVui lòng kiểm tra lại");
                                 frmthongbao.Show();
                             }
-                            catch (Exception)
+                            else
                             {
                                 MessageBox.Show("Không thể thực hiện được! \nCó lỗi xảy ra", "Thông báo");
                             }
                         }
-                        //else if (dialogResult == DialogResult.No)
-                        //{
-                        //    //do something else
-                        //}
                     }
                 }
                 else
@@ -502,18 +474,18 @@ namespace MedicalLink.ChucNang
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được.Mã điều trị đã kết thúc");
                     frmthongbao.Show();
                 }
-
-                // load lại dữ liệu của form
                 gridControlBNBK.DataSource = null;
                 btnBNBKTimKiem_Click(null, null);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MedicalLink.Base.Logging.Error(ex);
             }
         }
 
+        #endregion
 
+        #region Kiem tra
         private bool KiemTraTonTaiDichVu(long _madieutri, string _departmentgroupid, string _departmentid)
         {
             bool result = false;
@@ -545,6 +517,13 @@ namespace MedicalLink.ChucNang
             int result = -1;
             try
             {
+                //kiem tra co tam ung, thu tien hay khong?
+                string _sqlbill = "select billid from bill where vienphiid='" + _vienphiid + "' and dahuyphieu=0;";
+                DataTable _dataBill = condb.GetDataTable_HIS(_sqlbill);
+                if (_dataBill.Rows.Count > 0)
+                {
+                    return result;
+                }
                 string sqlkiemtra = "select vienphiid from serviceprice where vienphiid='" + _vienphiid + "' ; ";
                 DataTable _datakiemtra = condb.GetDataTable_HIS(sqlkiemtra);
                 if (_datakiemtra != null && _datakiemtra.Rows.Count > 0)
@@ -571,6 +550,5 @@ namespace MedicalLink.ChucNang
             return result;
         }
         #endregion
-
     }
 }

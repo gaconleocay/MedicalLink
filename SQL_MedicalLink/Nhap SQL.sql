@@ -2,8 +2,9 @@
 
 -- DROP TABLE bhyt;
 
+
 CREATE TABLE bhyt
-(medicalrecordid
+(
   bhytid serial NOT NULL,
   patientid integer,
   hosobenhanid integer,
@@ -29,7 +30,20 @@ CREATE TABLE bhyt
   noisinhsong text,
   du5nam6thangluongcoban integer,
   dtcbh_luyke6thang integer,
+  bhytcheckstatus integer,
   stt_dkbhyt text,
+  bhyt_miencungchitra timestamp without time zone,
+  theghep_bhytcode text,
+  theghep_bhytfromdate timestamp without time zone,
+  theghep_bhytutildate timestamp without time zone,
+  theghep_miencungchitra timestamp without time zone,
+  theghep_macskcbbd text,
+  theghep_du5nam6thangluongcoban integer,
+  theghep_dtcbh_luyke6thang integer,
+  theghep_noisinhsong text,
+  isduyetbhyt integer,
+  bhyt_ngaydu5nam timestamp without time zone,
+  theghep_ngaydu5nam timestamp without time zone,
   CONSTRAINT bhyt_pkey PRIMARY KEY (bhytid)
 )
 
@@ -1058,9 +1072,9 @@ vienphiid=1188984
  smart vpn client
  
 --Khoi phuc HSBA XOa TOOL_05
-select * from hosobenhan where patientid=801068 order by hosobenhanid;
-select * from bhyt where patientid=801068 order by bhytid;
-select * from medicalrecord where patientid=801068 
+select * from hosobenhan where patientid=761031 order by hosobenhanid;
+select * from bhyt where patientid=761031 order by bhytid;
+select * from medicalrecord where patientid=761031 
  
  select * from service where maubenhphamid=18758982 and servicepriceid=47250590
  
@@ -1126,11 +1140,24 @@ select * from tbllogdata where logvalue like '%53039401%';
 	
 	
 	
+---
+update medicine_ref 
+set servicepricefeebhyt=servicepricefeenhandan,
+servicepricebhytquydoi='0',
+servicepricebhytquydoi_tt='0'
+where medicinecode in (	
 	
 	
 	
 	
 	
-	
+alter table ie_bhyt_check add sttthe integer DEFAULT 1;
+alter table ie_bhyt_check add sttthe integer DEFAULT 1;
+CREATE INDEX ie_bhyt_check_sttthe_idx
+  ON ie_bhyt_check
+  USING btree
+  (sttthe);
 
 
+alter table ie_bhyt_check add bhyt_ngaydu5nam timestamp without time zone;
+alter table ie_bhyt_check add theghep_ngaydu5nam timestamp without time zone;

@@ -182,7 +182,7 @@ order by servicegrouptype,servicepricegroupcode,servicepricename;";
                 string _sqlLayVP = $@"SELECT vp.vienphiid
 FROM
 	(select vienphiid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp}) vp
-	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd}) mrd on mrd.vienphiid=vp.vienphiid
+	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (219,224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd}) mrd on mrd.vienphiid=vp.vienphiid
 	inner join (select ser.vienphiid,ser.medicalrecordid
 				from (select vienphiid,medicalrecordid from serviceprice where bhyt_groupcode in ('01KB','03XN','04CDHA','05TDCN','07KTC') {_tieuchi_ser} {_lstDSDVKT_Ser} group by vienphiid,medicalrecordid) ser group by ser.vienphiid,ser.medicalrecordid) serv on serv.medicalrecordid=mrd.medicalrecordid;";
                 DataTable _dataLayVP = condb.GetDataTable_HIS(_sqlLayVP);
@@ -241,7 +241,7 @@ FROM
 	sum(case when stt.sothutustatus>=1 and mrd.thoigianravien<>'0001-01-01 00:00:00' and (serv.iskb+serv.isxn+serv.iscdha+serv.istdcn)=4 then ((DATE_PART('day',mrd.thoigianravien-stt.sothutudate_start)*24+DATE_PART('hour',mrd.thoigianravien-stt.sothutudate_start))*60+DATE_PART('minute',mrd.thoigianravien-stt.sothutudate_start)) end) as tg_khamlsxncdhatdcn_it	
 FROM 
 	(select vienphiid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp} {_lstvienphi_loaitru}) vp
-	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd} {_lstvienphi_loaitru}) mrd on mrd.vienphiid=vp.vienphiid
+	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (219,224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd} {_lstvienphi_loaitru}) mrd on mrd.vienphiid=vp.vienphiid
 	inner join (select medicalrecordid,min(sothutudate_start) as sothutudate_start,max(sothutudate_end) as sothutudate_end,max(sothutustatus) as sothutustatus from sothutuphongkham where 1=1 and sothutudate_start<>'0001-01-01 00:00:00' {_tieuchi_stt} group by medicalrecordid) stt on stt.medicalrecordid=mrd.medicalrecordid
 	inner join (select ser.vienphiid,ser.medicalrecordid,
 				max(case when ser.bhyt_groupcode='01KB' then 1 else 0 end) as iskb,
@@ -287,7 +287,7 @@ FROM
 	serv.istdcn
 FROM
 	(select vienphiid,hosobenhanid,patientid from vienphi where 1=1 {_doituongbenhnhanid} {_tieuchi_vp} {_lstvienphi_loaitru}) vp
-	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus,departmentid from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd} {_lstvienphi_loaitru}) mrd on mrd.vienphiid=vp.vienphiid
+	inner join (select vienphiid,medicalrecordid,thoigianvaovien,thoigianravien,medicalrecordstatus,departmentid from medicalrecord where loaibenhanid=24 and departmentgroupid in (33,46) and departmentid not in (219,224,221,239) {_doituongbenhnhanid} {_tieuchi_mrd} {_lstvienphi_loaitru}) mrd on mrd.vienphiid=vp.vienphiid
 	inner join (select medicalrecordid,min(sothutudate_start) as sothutudate_start,max(sothutudate_end) as sothutudate_end,max(sothutustatus) as sothutustatus from sothutuphongkham where 1=1 and sothutudate_start<>'0001-01-01 00:00:00' {_tieuchi_stt} group by medicalrecordid) stt on stt.medicalrecordid=mrd.medicalrecordid
 	inner join (select ser.vienphiid,ser.medicalrecordid,
 				max(case when ser.bhyt_groupcode='01KB' then 1 else 0 end) as iskb,

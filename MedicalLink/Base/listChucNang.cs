@@ -900,6 +900,16 @@ namespace MedicalLink.Base
                 REPORT_57.permissionnote = "";
                 lstresult.Add(REPORT_57);
 
+                ClassCommon.classPermission REPORT_58 = new ClassCommon.classPermission();
+                REPORT_58.permissioncheck = false;
+                REPORT_58.permissioncode = "REPORT_58";
+                REPORT_58.permissionname = "Báo cáo sử dụng vật tư theo nhóm";
+                REPORT_58.permissiontype = 3;
+                REPORT_58.tabMenuId = 5;
+                REPORT_58.permissionnote = "";
+                lstresult.Add(REPORT_58);
+
+
 
                 //Báo cáo quản lý =6; permissiontype = 3;
                 ClassCommon.classPermission DASHBOARD_01 = new ClassCommon.classPermission();

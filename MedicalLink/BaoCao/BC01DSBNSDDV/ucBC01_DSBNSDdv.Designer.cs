@@ -1,4 +1,4 @@
-﻿namespace MedicalLink.ChucNang
+﻿namespace MedicalLink.BaoCao
 {
     partial class ucBC01_DSBNSDdv
     {
@@ -89,6 +89,7 @@
             this.benhkemtheo_code = new DevExpress.XtraGrid.Columns.GridColumn();
             this.benhkemtheo_name = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnTuyChon = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControlTKDV_TK)).BeginInit();
             this.panelControlTKDV_TK.SuspendLayout();
             this.groupBoxXuatBC.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             // groupBoxXuatBC
             // 
+            this.groupBoxXuatBC.Controls.Add(this.btnTuyChon);
             this.groupBoxXuatBC.Controls.Add(this.tbnExport);
             this.groupBoxXuatBC.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBoxXuatBC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -125,7 +127,6 @@
             this.groupBoxXuatBC.Size = new System.Drawing.Size(118, 111);
             this.groupBoxXuatBC.TabIndex = 14;
             this.groupBoxXuatBC.TabStop = false;
-            this.groupBoxXuatBC.Text = "Xuất báo cáo";
             // 
             // tbnExport
             // 
@@ -133,11 +134,11 @@
             this.tbnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.tbnExport.Appearance.Options.UseFont = true;
             this.tbnExport.Appearance.Options.UseForeColor = true;
-            this.tbnExport.Image = ((System.Drawing.Image)(resources.GetObject("tbnExport.Image")));
+            this.tbnExport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
             this.tbnExport.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
-            this.tbnExport.Location = new System.Drawing.Point(9, 37);
+            this.tbnExport.Location = new System.Drawing.Point(12, 27);
             this.tbnExport.Name = "tbnExport";
-            this.tbnExport.Size = new System.Drawing.Size(100, 40);
+            this.tbnExport.Size = new System.Drawing.Size(100, 30);
             this.tbnExport.TabIndex = 13;
             this.tbnExport.Text = "Xuất file";
             this.tbnExport.Click += new System.EventHandler(this.tbnExport_Click);
@@ -1161,6 +1162,20 @@
             this.gridColumn8.VisibleIndex = 28;
             this.gridColumn8.Width = 177;
             // 
+            // btnTuyChon
+            // 
+            this.btnTuyChon.Appearance.Font = new System.Drawing.Font("Tahoma", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTuyChon.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnTuyChon.Appearance.Options.UseFont = true;
+            this.btnTuyChon.Appearance.Options.UseForeColor = true;
+            this.btnTuyChon.Image = global::MedicalLink.Properties.Resources.arrow_32_16;
+            this.btnTuyChon.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.btnTuyChon.Location = new System.Drawing.Point(12, 73);
+            this.btnTuyChon.Name = "btnTuyChon";
+            this.btnTuyChon.Size = new System.Drawing.Size(100, 30);
+            this.btnTuyChon.TabIndex = 14;
+            this.btnTuyChon.Text = "Tùy chọn";
+            // 
             // ucBC01_DSBNSDdv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1251,5 +1266,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn17;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraEditors.SimpleButton btnTuyChon;
     }
 }

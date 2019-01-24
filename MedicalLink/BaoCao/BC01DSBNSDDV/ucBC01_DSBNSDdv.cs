@@ -13,7 +13,7 @@ using DevExpress.XtraSplashScreen;
 using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 
-namespace MedicalLink.ChucNang
+namespace MedicalLink.BaoCao
 {
     public partial class ucBC01_DSBNSDdv : UserControl
     {

@@ -337,6 +337,7 @@
             this.gridViewDSHoaDon.Name = "gridViewDSHoaDon";
             this.gridViewDSHoaDon.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridViewDSHoaDon.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDSHoaDon.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDSHoaDon.OptionsView.RowAutoHeight = true;
             this.gridViewDSHoaDon.OptionsView.ShowFooter = true;
             this.gridViewDSHoaDon.OptionsView.ShowIndicator = false;

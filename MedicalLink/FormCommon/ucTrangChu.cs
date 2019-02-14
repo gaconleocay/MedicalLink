@@ -121,7 +121,7 @@ namespace MedicalLink.FormCommon
 
                     }
                     navBarItemMaHoaGiaiMa.Visible = false;//luon luon false
-                    navBarItemNhatKySuKien.Visible = false;
+                    //navBarItemNhatKySuKien.Visible = false;
                     navBarItemQLMayTram.Visible = false;
                 }
             }

@@ -97,37 +97,35 @@ namespace MedicalLink.ChucNang
         }
 
         private void tbnSuaGiaMoi_Click(object sender, EventArgs e)
-        {  // Lấy thời gian
-            String datetime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        {
             try
             {
-                // Querry thực hiện
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa dv mã: [" + madv_th + "] thành giá mới ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    string sqlupdate_gia = "UPDATE serviceprice SET servicepricemoney_nhandan='" + txtGiaVP.Text.Replace(",", ".") + "', servicepricemoney='" + txtGiaYC.Text.Replace(",", ".") + "', servicepricemoney_bhyt='" + txtGiaBHYT.Text.Replace(",", ".") + "', servicepricemoney_nuocngoai='" + txtGiaNNN.Text.Replace(",", ".") + "' WHERE servicepriceid='" + servicepriceid_th + "' ;";
+                    string sqlupdate_gia = "UPDATE serviceprice SET servicepricemoney_nhandan='" + txtGiaVP.Text.Replace(".", "").Replace(",", ".") + "', servicepricemoney='" + txtGiaYC.Text.Replace(".", "").Replace(",", ".") + "', servicepricemoney_bhyt='" + txtGiaBHYT.Text.Replace(".", "").Replace(",", ".") + "', servicepricemoney_nuocngoai='" + txtGiaNNN.Text.Replace(".", "").Replace(",", ".") + "' WHERE servicepriceid='" + servicepriceid_th + "' ;";
 
                     //Log
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update 1 danh mục dv servicepriceid=" + servicepriceid_th + " mã : " + madv_th + " giá YC: " + dongiayeucau_th + "; giá VP: " + dongiavienphi_th + "; giá BHYT: " + dongiabhyt_th + "; giá NNN: " + dongiannn_th + " thành giá VP: " + txtGiaVP.Text.Replace(",", ".") + "; giá YC: " + txtGiaYC.Text.Replace(",", ".") + "; giá BHYT: " + txtGiaBHYT.Text.Replace(",", ".") + "; giá NNN: " + txtGiaNNN.Text.Replace(",", ".") + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_08');";
-                    condb.ExecuteNonQuery_HIS(sqlupdate_gia);
-                    condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                    MessageBox.Show("Sửa giá dịch vụ [" + madv_th + "] thành công", "Thông báo !");
-                    this.Visible = false;
-
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid, patientid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update 1 danh mục dv servicepriceid=" + servicepriceid_th + " mã : " + madv_th + " giá YC: " + dongiayeucau_th + "; giá VP: " + dongiavienphi_th + "; giá BHYT: " + dongiabhyt_th + "; giá NNN: " + dongiannn_th + " thành giá VP: " + txtGiaVP.Text.Replace(",", ".") + "; giá YC: " + txtGiaYC.Text.Replace(",", ".") + "; giá BHYT: " + txtGiaBHYT.Text.Replace(",", ".") + "; giá NNN: " + txtGiaNNN.Text.Replace(",", ".") + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_08','" + this.mavp_th + "','" + this.mabn_th + "');";
+                    if (condb.ExecuteNonQuery_HIS(sqlupdate_gia))
+                    {
+                        condb.ExecuteNonQuery_MeL(sqlinsert_log);
+                        MessageBox.Show("Sửa giá dịch vụ [" + madv_th + "] thành công", "Thông báo !");
+                        this.Visible = false;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MedicalLink.Base.Logging.Error(ex);
             }
-
-
         }
 
-        private void txtGia_EditValueChanged(object sender, EventArgs e)
+        private void txtGiaVP_EditValueChanged(object sender, EventArgs e)
         {
             if (txtGiaVP.Text != dongiayeucau_th || txtGiaBHYT.Text != dongiabhyt_th || txtGiaYC.Text != dongiavienphi_th || txtGiaNNN.Text != dongiannn_th)
             {
+                txtGiaVP.Text = txtGiaVP.Text.Replace(".","");
                 btnSuaGiaMoi.Enabled = true;
             }
             else
@@ -136,10 +134,11 @@ namespace MedicalLink.ChucNang
             }
         }
 
-        private void txtGiaVP_EditValueChanged(object sender, EventArgs e)
+        private void txtGiaYC_EditValueChanged(object sender, EventArgs e)
         {
             if (txtGiaVP.Text != dongiayeucau_th || txtGiaBHYT.Text != dongiabhyt_th || txtGiaYC.Text != dongiavienphi_th || txtGiaNNN.Text != dongiannn_th)
             {
+                txtGiaYC.Text = txtGiaYC.Text.Replace(".", "");
                 btnSuaGiaMoi.Enabled = true;
             }
             else
@@ -152,6 +151,7 @@ namespace MedicalLink.ChucNang
         {
             if (txtGiaVP.Text != dongiayeucau_th || txtGiaBHYT.Text != dongiabhyt_th || txtGiaYC.Text != dongiavienphi_th || txtGiaNNN.Text != dongiannn_th)
             {
+                txtGiaBHYT.Text = txtGiaBHYT.Text.Replace(".", "");
                 btnSuaGiaMoi.Enabled = true;
             }
             else
@@ -164,6 +164,7 @@ namespace MedicalLink.ChucNang
         {
             if (txtGiaVP.Text != dongiayeucau_th || txtGiaBHYT.Text != dongiabhyt_th || txtGiaYC.Text != dongiavienphi_th || txtGiaNNN.Text != dongiannn_th)
             {
+                txtGiaNNN.Text = txtGiaNNN.Text.Replace(".", "");
                 btnSuaGiaMoi.Enabled = true;
             }
             else
@@ -181,8 +182,6 @@ namespace MedicalLink.ChucNang
                 e.Handled = true;
             }
         }
-
-   
         private void txtGia_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

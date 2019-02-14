@@ -452,11 +452,10 @@ namespace MedicalLink.ChucNang
                         DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa toàn bộ bệnh án của mã Viện phí: " + mavp + " ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            //string sqldeletemedi = "DELETE FROM medicalrecord WHERE vienphiid='" + mavp + "';";
+                            string sqldeletemedi = "DELETE FROM medicalrecord WHERE vienphiid='" + mavp + "';";
                             string sqldeletevp = "DELETE FROM vienphi WHERE vienphiid='" + mavp + "';";
                             string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, vienphiid, patientid, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Xóa toàn bộ bệnh án của BN: " + mabn + " mã VP: " + mavp + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', '" + mavp + "', '" + mabn + "', 'TOOL_05');";
-                            //condb.ExecuteNonQuery_HIS(sqldeletemedi);
-                            if (condb.ExecuteNonQuery_HIS(sqldeletevp) &&
+                            if (condb.ExecuteNonQuery_HIS(sqldeletemedi) && condb.ExecuteNonQuery_HIS(sqldeletevp) &&
                                condb.ExecuteNonQuery_MeL(sqlinsert_log))
                             {
                                 ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa toàn bộ bệnh án thành công.\nVui lòng kiểm tra lại");

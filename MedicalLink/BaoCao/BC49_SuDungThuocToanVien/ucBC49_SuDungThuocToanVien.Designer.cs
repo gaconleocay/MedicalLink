@@ -457,6 +457,7 @@
             this.gridViewBaoCao.OptionsFind.AlwaysVisible = true;
             this.gridViewBaoCao.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
             this.gridViewBaoCao.OptionsView.ColumnAutoWidth = false;
+            this.gridViewBaoCao.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewBaoCao.OptionsView.RowAutoHeight = true;
             this.gridViewBaoCao.OptionsView.ShowFooter = true;
             this.gridViewBaoCao.OptionsView.ShowIndicator = false;

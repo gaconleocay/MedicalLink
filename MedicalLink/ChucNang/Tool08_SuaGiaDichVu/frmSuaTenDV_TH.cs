@@ -357,15 +357,14 @@ namespace MedicalLink.ChucNang
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn sửa dịch vụ mã: [" + lblMaDichVu.Text + "] thành mã: [" + txtMaDV_Moi.Text + "] ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    string sqlupdate_ten = "UPDATE serviceprice SET servicepricecode='" + txtMaDV_Moi.Text + "', servicepricename='" + lblTenVP_Moi.Text + "', servicepricename_bhyt='" + cbbTenDV_Moi.Text + "', servicepricename_nhandan='" + lblTenVP_Moi.Text + "', servicepricename_nuocngoai='" + lblTenVP_Moi.Text + "' WHERE servicepriceid='" + lblServicepriceID.Text + "' ;";
+                    string sqlupdate_ten = "UPDATE serviceprice SET servicepricecode='" + txtMaDV_Moi.Text + "', servicepricename='" + lblTenVP_Moi.Text.Replace("'", "''") + "', servicepricename_bhyt='" + cbbTenDV_Moi.Text.Replace("'", "''") + "', servicepricename_nhandan='" + lblTenVP_Moi.Text.Replace("'", "''") + "', servicepricename_nuocngoai='" + lblTenVP_Moi.Text.Replace("'", "''") + "' WHERE servicepriceid='" + lblServicepriceID.Text + "' ;";
 
                     //Log
-                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update 1 danh mục dv servicepriceid=" + lblServicepriceID.Text + " từ mã [" + lblMaDichVu.Text + "]-[" + lblTenDichVuBHYT.Text + "] thành: [" + txtMaDV_Moi.Text + "]-[" + cbbTenDV_Moi.Text + "]' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_08');";
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid, patientid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update 1 danh mục dv servicepriceid=" + lblServicepriceID.Text + " từ mã [" + lblMaDichVu.Text + "]-[" + lblTenDichVuBHYT.Text.Replace("'", "''") + "] thành: [" + txtMaDV_Moi.Text + "]-[" + cbbTenDV_Moi.Text.Replace("'", "''") + "]' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_08', '" + lblMaBenhNhan.Text + "', '" + lblMaVienPhi.Text + "');";
                     condb.ExecuteNonQuery_HIS(sqlupdate_ten);
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
                     MessageBox.Show("Sửa mã,tên dịch vụ từ [" + lblMaDichVu.Text + "] thành mã: [" + txtMaDV_Moi.Text + "] thành công", "Thông báo !");
                     this.Visible = false;
-
                 }
             }
             catch (Exception ex)
@@ -387,9 +386,9 @@ namespace MedicalLink.ChucNang
                     {
                         if (ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "madv").ToString() == lblMaDichVu.Text)
                         {
-                            string sqlupdate_ten = "UPDATE serviceprice SET servicepricecode='" + txtMaDV_Moi.Text + "', servicepricename='" + lblTenYC_Moi.Text + "', servicepricename_bhyt='" + cbbTenDV_Moi.Text + "', servicepricename_nhandan='" + lblTenVP_Moi.Text + "', servicepricename_nuocngoai='" + lblTenNNN_Moi.Text + "' WHERE servicepriceid='" + ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "servicepriceid").ToString() + "' ;";
+                            string sqlupdate_ten = "UPDATE serviceprice SET servicepricecode='" + txtMaDV_Moi.Text + "', servicepricename='" + lblTenYC_Moi.Text.Replace("'", "''") + "', servicepricename_bhyt='" + cbbTenDV_Moi.Text.Replace("'","''") + "', servicepricename_nhandan='" + lblTenVP_Moi.Text.Replace("'", "''") + "', servicepricename_nuocngoai='" + lblTenNNN_Moi.Text.Replace("'", "''") + "' WHERE servicepriceid='" + ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "servicepriceid").ToString() + "' ;";
                             //Log
-                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update 1 danh mục dv servicepriceid=" + ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "servicepriceid").ToString() + " từ mã [" + lblMaDichVu.Text + "]-[" + lblTenDichVuBHYT.Text + "] thành: [" + txtMaDV_Moi.Text + "]-[" + cbbTenDV_Moi.Text + "]' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_08');";
+                            string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid, patientid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Update 1 danh mục dv servicepriceid=" + ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "servicepriceid").ToString() + " từ mã [" + lblMaDichVu.Text.Replace("'", "''") + "]-[" + lblTenDichVuBHYT.Text.Replace("'", "''") + "] thành: [" + txtMaDV_Moi.Text.Replace("'", "''") + "]-[" + cbbTenDV_Moi.Text.Replace("'", "''") + "]' , '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_08', '" + ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "mavp").ToString() + "', '" + ucsuagiadv.gridViewDSDV.GetRowCellValue(i, "mabn").ToString() + "');";
                             condb.ExecuteNonQuery_HIS(sqlupdate_ten);
                             condb.ExecuteNonQuery_MeL(sqlinsert_log);
                             dem += 1;

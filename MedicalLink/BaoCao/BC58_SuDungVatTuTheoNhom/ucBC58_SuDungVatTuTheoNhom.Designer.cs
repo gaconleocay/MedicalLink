@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panelControlThongTinDV = new DevExpress.XtraEditors.PanelControl();
             this.groupBoxFile = new System.Windows.Forms.GroupBox();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -456,6 +456,7 @@
             this.gridViewBaoCao.OptionsFind.AlwaysVisible = true;
             this.gridViewBaoCao.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
             this.gridViewBaoCao.OptionsView.ColumnAutoWidth = false;
+            this.gridViewBaoCao.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewBaoCao.OptionsView.RowAutoHeight = true;
             this.gridViewBaoCao.OptionsView.ShowFooter = true;
             this.gridViewBaoCao.OptionsView.ShowGroupPanel = false;
@@ -482,7 +483,7 @@
             // 
             this.repositoryItemButton_XemCT.AutoHeight = false;
             this.repositoryItemButton_XemCT.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::MedicalLink.Properties.Resources.arrow_32_16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Xem chi tiết", null, null, true)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, global::MedicalLink.Properties.Resources.arrow_32_16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Xem chi tiết", null, null, true)});
             this.repositoryItemButton_XemCT.Name = "repositoryItemButton_XemCT";
             this.repositoryItemButton_XemCT.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButton_XemCT.Click += new System.EventHandler(this.repositoryItemButton_XemCT_Click);

@@ -764,6 +764,7 @@
             this.bandedGridViewDataBCPTTT.OptionsFind.FindNullPrompt = "Từ khóa tìm kiếm...";
             this.bandedGridViewDataBCPTTT.OptionsFind.ShowClearButton = false;
             this.bandedGridViewDataBCPTTT.OptionsView.ColumnAutoWidth = false;
+            this.bandedGridViewDataBCPTTT.OptionsView.EnableAppearanceEvenRow = true;
             this.bandedGridViewDataBCPTTT.OptionsView.ShowFooter = true;
             this.bandedGridViewDataBCPTTT.OptionsView.ShowGroupPanel = false;
             this.bandedGridViewDataBCPTTT.OptionsView.ShowIndicator = false;

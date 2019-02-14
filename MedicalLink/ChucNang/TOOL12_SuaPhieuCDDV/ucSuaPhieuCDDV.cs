@@ -390,6 +390,75 @@ namespace MedicalLink.ChucNang
             }
         }
 
+
+        #endregion
+
+        #region Events
+        private void gridViewDS_PhieuDichVu_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            try
+            {
+                if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
+                {
+                    e.Menu.Items.Clear();
+                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
+                    {
+                        DXMenuItem itemSuaThoiGian = new DXMenuItem("Sửa thời gian chỉ định/sử dụng/trả kết quả");
+                        itemSuaThoiGian.Image = imMenu.Images[4];
+                        itemSuaThoiGian.Click += new EventHandler(repositoryItemButtonEdit_Click);
+                        e.Menu.Items.Add(itemSuaThoiGian);
+                    }
+                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_03"))
+                    {
+                        DXMenuItem itemSuaThoiGian_TT = new DXMenuItem("Sửa thời gian chỉ định/sử dụng/trả kết quả (Đã ra viện)");
+                        itemSuaThoiGian_TT.Image = imMenu.Images[6];
+                        itemSuaThoiGian_TT.Click += new EventHandler(itemSuaThoiGian_TT_Click);
+                        e.Menu.Items.Add(itemSuaThoiGian_TT);
+                        itemSuaThoiGian_TT.BeginGroup = true;
+                    }
+                    DXMenuItem itemXoaPhieuChiDinh = new DXMenuItem("Xóa phiếu chỉ định");
+                    itemXoaPhieuChiDinh.Image = imMenu.Images[1];
+                    itemXoaPhieuChiDinh.Click += new EventHandler(repositoryItemButtonDelete_Click);
+                    e.Menu.Items.Add(itemXoaPhieuChiDinh);
+                    itemXoaPhieuChiDinh.BeginGroup = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void gridViewChiTiet_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            try
+            {
+                if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
+                {
+                    e.Menu.Items.Clear();
+                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
+                    {
+                        DXMenuItem itemSuaThoiGian = new DXMenuItem("Sửa thời gian trả kết quả dịch vụ");
+                        itemSuaThoiGian.Image = imMenu.Images[4];
+                        itemSuaThoiGian.Click += new EventHandler(repositoryItemButton_SuaDV_Click);
+                        e.Menu.Items.Add(itemSuaThoiGian);
+
+                        DXMenuItem _itemXoa = new DXMenuItem("Xóa dịch vụ");
+                        _itemXoa.Image = imMenu.Images[1];
+                        _itemXoa.Click += new EventHandler(repositoryItemButton_XoaDV_Click);
+                        e.Menu.Items.Add(_itemXoa);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
+
+        #region Phieu Chi dinh
         private void gridControlDS_PhieuDichVu_Click(object sender, EventArgs e)
         {
             try
@@ -416,112 +485,42 @@ namespace MedicalLink.ChucNang
             }
         }
 
-        #endregion
-
-        #region Events
-        private void gridViewDS_PhieuDichVu_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
-        {
-            try
-            {
-                if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
-                {
-                    e.Menu.Items.Clear();
-                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
-                    {
-                        DXMenuItem itemSuaThoiGian = new DXMenuItem("Sửa thời gian chỉ định/sử dụng/trả kết quả");
-                        itemSuaThoiGian.Image = imMenu.Images[4];
-                        itemSuaThoiGian.Click += new EventHandler(itemSuaThoiGian_Click);
-                        e.Menu.Items.Add(itemSuaThoiGian);
-                    }
-                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_03"))
-                    {
-                        DXMenuItem itemSuaThoiGian_TT = new DXMenuItem("Sửa thời gian chỉ định/sử dụng/trả kết quả (Đã ra viện)");
-                        itemSuaThoiGian_TT.Image = imMenu.Images[6];
-                        itemSuaThoiGian_TT.Click += new EventHandler(itemSuaThoiGian_TT_Click);
-                        e.Menu.Items.Add(itemSuaThoiGian_TT);
-                        itemSuaThoiGian_TT.BeginGroup = true;
-                    }
-                    DXMenuItem itemXoaPhieuChiDinh = new DXMenuItem("Xóa phiếu chỉ định");
-                    itemXoaPhieuChiDinh.Image = imMenu.Images[1];
-                    itemXoaPhieuChiDinh.Click += new EventHandler(itemXoaPhieuChiDinh_Click);
-                    e.Menu.Items.Add(itemXoaPhieuChiDinh);
-                    itemXoaPhieuChiDinh.BeginGroup = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        private void gridViewChiTiet_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
-        {
-            try
-            {
-                if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Row)
-                {
-                    e.Menu.Items.Clear();
-                    if (MedicalLink.Base.CheckPermission.ChkPerModule("THAOTAC_01"))
-                    {
-                        DXMenuItem itemSuaThoiGian = new DXMenuItem("Sửa thời gian trả kết quả dịch vụ");
-                        itemSuaThoiGian.Image = imMenu.Images[4];
-                        itemSuaThoiGian.Click += new EventHandler(repositoryItemButton_SuaDV_Click);
-                        e.Menu.Items.Add(itemSuaThoiGian);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        //Sua thoi gian chi dinh dich vu
         private void repositoryItemButtonEdit_Click(object sender, EventArgs e)
         {
             try
             {
                 if (CheckPermission.ChkPerModule("THAOTAC_01"))
                 {
-                    itemSuaThoiGian_Click(null, null);
+                    var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
+                    string trangthai = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString();
+
+                    SuaPhieuCDDVDTO _filter = new SuaPhieuCDDVDTO();
+
+                    _filter.vienphiid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "vienphiid").ToString());
+                    _filter.maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
+                    _filter.phieudieutriid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "phieudieutriid").ToString());
+                    _filter.thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
+                    _filter.thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
+                    _filter.maubenhphamfinishdate = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamfinishdate").ToString());
+                    _filter.medicalrecordid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
+                    _filter.maubenhphamgrouptypeid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamgrouptypeid").ToString());
+
+                    if (trangthai == "Đang điều trị")
+                    {
+                        XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new XyLyMauBenhPham.frmSuaThoiGianChiDinh(_filter);
+                        frmsuaTGCD.ShowDialog();
+                        gridControlDS_PhieuDichVu.DataSource = null;
+                        btnTimKiem_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hồ sơ bệnh án đã đóng. \nKhông cho phép sửa", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BAN_KHONG_CO_QUYEN_CHINH_SUA);
                     frmthongbao.Show();
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        private void itemSuaThoiGian_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var rowHandle = gridViewDS_PhieuDichVu.FocusedRowHandle;
-                string trangthai = gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "trangthai").ToString();
-
-                SuaPhieuCDDVDTO _filter = new SuaPhieuCDDVDTO();
-
-                _filter.vienphiid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "vienphiid").ToString());
-                _filter.maubenhphamid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamid").ToString());
-                _filter.phieudieutriid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "phieudieutriid").ToString());
-                _filter.thoigianchidinh = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate").ToString());
-                _filter.thoigiansudung = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamdate_sudung").ToString());
-                _filter.maubenhphamfinishdate = Convert.ToDateTime(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamfinishdate").ToString());
-                _filter.medicalrecordid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "medicalrecordid").ToString());
-                _filter.maubenhphamgrouptypeid = Convert.ToInt64(gridViewDS_PhieuDichVu.GetRowCellValue(rowHandle, "maubenhphamgrouptypeid").ToString());
-
-                if (trangthai == "Đang điều trị")
-                {
-                    XyLyMauBenhPham.frmSuaThoiGianChiDinh frmsuaTGCD = new XyLyMauBenhPham.frmSuaThoiGianChiDinh(_filter);
-                    frmsuaTGCD.ShowDialog();
-                    gridControlDS_PhieuDichVu.DataSource = null;
-                    btnTimKiem_Click(null, null);
-                }
-                else
-                {
-                    MessageBox.Show("Hồ sơ bệnh án đã đóng. \nKhông cho phép sửa", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -555,63 +554,7 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-        //Sua thoi gian tra KQ dich vu
-        private void repositoryItemButton_SuaDV_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var rowHandle = gridViewChiTiet.FocusedRowHandle;
-
-                SuaPhieuCDDVTraKetQuaDTO _filter = new SuaPhieuCDDVTraKetQuaDTO();
-                _filter.servicepriceid = Convert.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "servicepriceid").ToString());
-                _filter.servicepricename = gridViewChiTiet.GetRowCellValue(rowHandle, "servicepricename").ToString();
-                _filter.maubenhphamgrouptypeid = Convert.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "maubenhphamgrouptypeid").ToString());
-
-                if (gridViewChiTiet.GetRowCellValue(rowHandle, "thoigiantraketqua") != null && gridViewChiTiet.GetRowCellValue(rowHandle, "thoigiantraketqua").ToString() != "")
-                {
-                    _filter.thoigiantraketqua = Convert.ToDateTime(gridViewChiTiet.GetRowCellValue(rowHandle, "thoigiantraketqua").ToString());
-                    if (gridViewChiTiet.GetRowCellValue(rowHandle, "phauthuatthuthuatdate") != null && gridViewChiTiet.GetRowCellValue(rowHandle, "phauthuatthuthuatdate").ToString() != "")
-                    {
-                        _filter.phauthuatthuthuatdate = Convert.ToDateTime(gridViewChiTiet.GetRowCellValue(rowHandle, "phauthuatthuthuatdate").ToString());
-                    }
-                    else
-                    {
-                        _filter.phauthuatthuthuatdate = Convert.ToDateTime("0001-01-01 00:00:00"); ;
-                    }
-
-                    frmSuaThoiGianTraKQ_DV _frmDV = new frmSuaThoiGianTraKQ_DV(_filter);
-                    _frmDV.ShowDialog();
-                    gridControlChiTiet.DataSource = null;
-                    gridControlDS_PhieuDichVu_Click(null, null);
-                }
-                else
-                {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_CHUA_TRA_KET_QUA);
-                    frmthongbao.Show();
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        #endregion
-
-        #region Xoa phieu CDDV
         private void repositoryItemButtonDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                itemXoaPhieuChiDinh_Click(null, null);
-            }
-            catch (Exception ex)
-            {
-                MedicalLink.Base.Logging.Warn(ex);
-            }
-        }
-        private void itemXoaPhieuChiDinh_Click(object sender, EventArgs e)
         {
             try
             {
@@ -743,13 +686,90 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        #endregion
+
+        #region Dich vu
+        //Sua thoi gian tra KQ dich vu
+        private void repositoryItemButton_SuaDV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var rowHandle = gridViewChiTiet.FocusedRowHandle;
+
+                SuaPhieuCDDVTraKetQuaDTO _filter = new SuaPhieuCDDVTraKetQuaDTO();
+                _filter.servicepriceid = Convert.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "servicepriceid").ToString());
+                _filter.servicepricename = gridViewChiTiet.GetRowCellValue(rowHandle, "servicepricename").ToString();
+                _filter.maubenhphamgrouptypeid = Convert.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "maubenhphamgrouptypeid").ToString());
+
+                if (gridViewChiTiet.GetRowCellValue(rowHandle, "thoigiantraketqua") != null && gridViewChiTiet.GetRowCellValue(rowHandle, "thoigiantraketqua").ToString() != "")
+                {
+                    _filter.thoigiantraketqua = Convert.ToDateTime(gridViewChiTiet.GetRowCellValue(rowHandle, "thoigiantraketqua").ToString());
+                    if (gridViewChiTiet.GetRowCellValue(rowHandle, "phauthuatthuthuatdate") != null && gridViewChiTiet.GetRowCellValue(rowHandle, "phauthuatthuthuatdate").ToString() != "")
+                    {
+                        _filter.phauthuatthuthuatdate = Convert.ToDateTime(gridViewChiTiet.GetRowCellValue(rowHandle, "phauthuatthuthuatdate").ToString());
+                    }
+                    else
+                    {
+                        _filter.phauthuatthuthuatdate = Convert.ToDateTime("0001-01-01 00:00:00"); ;
+                    }
+
+                    frmSuaThoiGianTraKQ_DV _frmDV = new frmSuaThoiGianTraKQ_DV(_filter);
+                    _frmDV.ShowDialog();
+                    gridControlChiTiet.DataSource = null;
+                    gridControlDS_PhieuDichVu_Click(null, null);
+                }
+                else
+                {
+                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_CHUA_TRA_KET_QUA);
+                    frmthongbao.Show();
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+        private void repositoryItemButton_XoaDV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var rowHandle = gridViewChiTiet.FocusedRowHandle;
+                long _servicepriceid = Convert.ToInt64(gridViewChiTiet.GetRowCellValue(rowHandle, "servicepriceid").ToString());
+                //kiem tra da thu tien, da tra KQ thi khong cho xóa
+
+
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+        }
+
+        #endregion
+
+        #region Process
+        private bool KiemTraXoaDichVu(long _servicepriceid)
+        {
+            bool result = false;
+            try
+            {
+                string _sqlKTThuTien = "select servicepriceid,billid_clbh_thutien,billid_thutien from serviceprice where servicipriceid=" + _servicepriceid + ";";
+                DataTable _dataKTThuTien = condb.GetDataTable_HIS(_sqlKTThuTien);
+                if (_dataKTThuTien.Rows.Count > 0)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MedicalLink.Base.Logging.Warn(ex);
+            }
+            return result;
+        }
 
 
         #endregion
 
-
-        #region Menu Popup
-
-        #endregion
     }
 }

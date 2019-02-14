@@ -24,6 +24,7 @@ namespace MedicalLink.ChucNang
             InitializeComponent();
         }
 
+        #region Load
         private void ucXuLyMaVPTrang_Load(object sender, EventArgs e)
         {
             //Lấy thời gian lấy BC mặc định là ngày hiện tại
@@ -32,6 +33,9 @@ namespace MedicalLink.ChucNang
             DateTime date_den = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
             dateDenNgay.Value = date_den;
         }
+        #endregion
+
+        #region Tim kiem
         private void btnSelect_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
@@ -140,6 +144,9 @@ namespace MedicalLink.ChucNang
             SplashScreenManager.CloseForm();
         }
 
+        #endregion
+
+        #region Events
         // update danh mục dịch vụ
         private void btnUpdateDVOK_Click(object sender, EventArgs e)
         {
@@ -197,15 +204,6 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
-
-
-        // Đánh số thứ tự ở cột Indicator gridView
-        private void gridViewDichVu_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
-        {
-            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
-                e.Info.DisplayText = (e.RowHandle + 1).ToString();
-        }
-
         private void tbnExport_Click(object sender, EventArgs e)
         {
             if (gridViewVPTrang.RowCount > 0)
@@ -260,6 +258,14 @@ namespace MedicalLink.ChucNang
             }
         }
 
+        #endregion
+
+        #region Custom
+        private void gridViewDichVu_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            if (e.Info.IsRowIndicator && e.RowHandle >= 0)
+                e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
         private void gridViewVPTrang_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
         {
             try
@@ -274,6 +280,9 @@ namespace MedicalLink.ChucNang
                 MedicalLink.Base.Logging.Warn(ex);
             }
         }
+        #endregion
+
+
 
 
     }

@@ -247,6 +247,9 @@ namespace MedicalLink.FormCommon
                     case "TOOL_27":
                         ucResult = new ChucNang.ucTool27_KiemTraKetNoiPostgre();
                         break;
+                    case "TOOL_28":
+                        ucResult = new ChucNang.ucTool28_FixLoiSaiMauBanPham();
+                        break;
 
                     //Bao cao
                     case "REPORT_01":

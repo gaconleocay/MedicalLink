@@ -784,16 +784,16 @@
     <Compile Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.Designer.cs">
       <DependentUpon>ucSuaPhieuTamUng.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\TOOL24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.cs">
+    <Compile Include="ChucNang\Tool24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\TOOL24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.Designer.cs">
+    <Compile Include="ChucNang\Tool24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.Designer.cs">
       <DependentUpon>ucTOOL24_CapNhatLoaiHTT.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.cs">
+    <Compile Include="ChucNang\Tool12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.Designer.cs">
+    <Compile Include="ChucNang\Tool12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.Designer.cs">
       <DependentUpon>frmSuaThoiGianTraKQ_DV.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\ThongTinThucHienCLS\frmNhapThongTinPTTT.cs">
@@ -814,17 +814,23 @@
     <Compile Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.Designer.cs">
       <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.cs">
+    <Compile Include="ChucNang\Tool27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.Designer.cs">
+    <Compile Include="ChucNang\Tool27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.Designer.cs">
       <DependentUpon>frmCauHinhNgatKetNoiTuDong.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.cs">
+    <Compile Include="ChucNang\Tool27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.Designer.cs">
+    <Compile Include="ChucNang\Tool27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.Designer.cs">
       <DependentUpon>ucTool27_KiemTraKetNoiPostgre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChucNang\Tool28_FixLoiSaiMauBanPham\ucTool28_FixLoiSaiMauBanPham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChucNang\Tool28_FixLoiSaiMauBanPham\ucTool28_FixLoiSaiMauBanPham.Designer.cs">
+      <DependentUpon>ucTool28_FixLoiSaiMauBanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="ClassCommon\BaoCao\BC01DSBNSDDVDTO.cs" />
     <Compile Include="ClassCommon\BaoCao\BC49SuDungThuocToanVienDTO.cs" />
@@ -954,22 +960,22 @@
     <Compile Include="ChucNang\MoBenhAn\ucMoBenhAn.Designer.cs">
       <DependentUpon>ucMoBenhAn.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\SuaGiaDichVu\frmSuaGiaDV_TH.cs">
+    <Compile Include="ChucNang\Tool08_SuaGiaDichVu\frmSuaGiaDV_TH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChucNang\SuaGiaDichVu\frmSuaGiaDV_TH.Designer.cs">
+    <Compile Include="ChucNang\Tool08_SuaGiaDichVu\frmSuaGiaDV_TH.Designer.cs">
       <DependentUpon>frmSuaGiaDV_TH.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\SuaGiaDichVu\frmSuaTenDV_TH.cs">
+    <Compile Include="ChucNang\Tool08_SuaGiaDichVu\frmSuaTenDV_TH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChucNang\SuaGiaDichVu\frmSuaTenDV_TH.Designer.cs">
+    <Compile Include="ChucNang\Tool08_SuaGiaDichVu\frmSuaTenDV_TH.Designer.cs">
       <DependentUpon>frmSuaTenDV_TH.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\SuaGiaDichVu\ucSuaMaTenGiaDV.cs">
+    <Compile Include="ChucNang\Tool08_SuaGiaDichVu\ucSuaMaTenGiaDV.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\SuaGiaDichVu\ucSuaMaTenGiaDV.Designer.cs">
+    <Compile Include="ChucNang\Tool08_SuaGiaDichVu\ucSuaMaTenGiaDV.Designer.cs">
       <DependentUpon>ucSuaMaTenGiaDV.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\SuaPhoiThanhToan\SuaPhoiThanhToan_SoLuong.cs">
@@ -1224,6 +1230,12 @@
     <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
     <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
     <Compile Include="DatabaseProcess\TinhMucHuongBHYT.cs" />
+    <Compile Include="FormCommon\TabCaiDat\ucLogSuKien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\TabCaiDat\ucLogSuKien.Designer.cs">
+      <DependentUpon>ucLogSuKien.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCommon\TabCaiDat\ucDanhMucDichVu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1373,16 +1385,16 @@
     <Compile Include="ChucNang\ucSuaThoiGianRaVien.Designer.cs">
       <DependentUpon>ucSuaThoiGianRaVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.cs">
+    <Compile Include="ChucNang\Tool12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.Designer.cs">
+    <Compile Include="ChucNang\Tool12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.Designer.cs">
       <DependentUpon>frmSuaThoiGianChiDinh.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\ucSuaPhieuCDDV.cs">
+    <Compile Include="ChucNang\Tool12_SuaPhieuCDDV\ucSuaPhieuCDDV.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\TOOL12_SuaPhieuCDDV\ucSuaPhieuCDDV.Designer.cs">
+    <Compile Include="ChucNang\Tool12_SuaPhieuCDDV\ucSuaPhieuCDDV.Designer.cs">
       <DependentUpon>ucSuaPhieuCDDV.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\CheckPermission.cs" />
@@ -1765,19 +1777,19 @@
     <EmbeddedResource Include="ChucNang\PhieuTamUng\ucSuaPhieuTamUng.resx">
       <DependentUpon>ucSuaPhieuTamUng.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\TOOL24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.resx">
+    <EmbeddedResource Include="ChucNang\Tool24_CapNhatLoaiHTT\ucTOOL24_CapNhatLoaiHTT.resx">
       <DependentUpon>ucTOOL24_CapNhatLoaiHTT.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\SuaGiaDichVu\frmSuaGiaDV_TH.resx">
+    <EmbeddedResource Include="ChucNang\Tool08_SuaGiaDichVu\frmSuaGiaDV_TH.resx">
       <DependentUpon>frmSuaGiaDV_TH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\SuaGiaDichVu\frmSuaTenDV_TH.resx">
+    <EmbeddedResource Include="ChucNang\Tool08_SuaGiaDichVu\frmSuaTenDV_TH.resx">
       <DependentUpon>frmSuaTenDV_TH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\SuaGiaDichVu\ucSuaMaTenGiaDV.resx">
+    <EmbeddedResource Include="ChucNang\Tool08_SuaGiaDichVu\ucSuaMaTenGiaDV.resx">
       <DependentUpon>ucSuaMaTenGiaDV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.resx">
+    <EmbeddedResource Include="ChucNang\Tool12_SuaPhieuCDDV\frmSuaThoiGianTraKQ_DV.resx">
       <DependentUpon>frmSuaThoiGianTraKQ_DV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\SuaPhoiThanhToan\SuaPhoiThanhToan_SoLuong.resx">
@@ -1801,11 +1813,14 @@
     <EmbeddedResource Include="ChucNang\ThuocCapPhatMienPhi\ucThuocCapPhatMienPhi.resx">
       <DependentUpon>ucThuocCapPhatMienPhi.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.resx">
+    <EmbeddedResource Include="ChucNang\Tool27_KiemTraKetNoiPostgre\frmCauHinhNgatKetNoiTuDong.resx">
       <DependentUpon>frmCauHinhNgatKetNoiTuDong.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\TOOL27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.resx">
+    <EmbeddedResource Include="ChucNang\Tool27_KiemTraKetNoiPostgre\ucTool27_KiemTraKetNoiPostgre.resx">
       <DependentUpon>ucTool27_KiemTraKetNoiPostgre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChucNang\Tool28_FixLoiSaiMauBanPham\ucTool28_FixLoiSaiMauBanPham.resx">
+      <DependentUpon>ucTool28_FixLoiSaiMauBanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\ucCapNhatKhaDungTonKho.resx">
       <DependentUpon>ucCapNhatKhaDungTonKho.cs</DependentUpon>
@@ -1891,6 +1906,9 @@
     <EmbeddedResource Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoa.resx">
       <DependentUpon>ucDashboardDoanhThuTungKhoa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\TabCaiDat\ucLogSuKien.resx">
+      <DependentUpon>ucLogSuKien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\TabCaiDat\ucDanhMucDichVu.resx">
       <DependentUpon>ucDanhMucDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1963,10 +1981,10 @@
     <EmbeddedResource Include="ChucNang\ucSuaThoiGianRaVien.resx">
       <DependentUpon>ucSuaThoiGianRaVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\TOOL12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.resx">
+    <EmbeddedResource Include="ChucNang\Tool12_SuaPhieuCDDV\frmSuaThoiGianChiDinh.resx">
       <DependentUpon>frmSuaThoiGianChiDinh.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\TOOL12_SuaPhieuCDDV\ucSuaPhieuCDDV.resx">
+    <EmbeddedResource Include="ChucNang\Tool12_SuaPhieuCDDV\ucSuaPhieuCDDV.resx">
       <DependentUpon>ucSuaPhieuCDDV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\frmConnectDB.resx">

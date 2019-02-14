@@ -351,6 +351,17 @@ namespace MedicalLink.Base
                 TOOL_27.permissionnote = "Kiểm tra số lượng kết nối đến CSDL";
                 lstresult.Add(TOOL_27);
 
+                ClassCommon.classPermission TOOL_28 = new ClassCommon.classPermission();
+                TOOL_28.permissioncheck = false;
+                TOOL_28.permissioncode = "TOOL_28";
+                TOOL_28.permissionname = "Fix lỗi sai Phiếu chỉ định dịch vụ";
+                TOOL_28.permissiontype = 2;
+                TOOL_28.tabMenuId = 2;
+                TOOL_28.permissionnote = "Phiếu chỉ định ở bảng maubenhpham_copy1";
+                lstresult.Add(TOOL_28);
+
+
+
 
                 // Phan quyen thao tac + chuc nang
                 ClassCommon.classPermission THAOTAC_01 = new ClassCommon.classPermission();
@@ -424,7 +435,7 @@ namespace MedicalLink.Base
                 REPORT_01.permissionname = "BC danh sách BN sử dụng dịch vụ...";
                 REPORT_01.permissiontype = 3;
                 REPORT_01.tabMenuId = 5;
-                REPORT_01.permissionnote = "BC danh sách BN sử dụng dịch vụ...";
+                REPORT_01.permissionnote = "Cấu hình thời gian lấy dữ liệu ở phần tùy chọn mã: REPORT_01_TGLayDuLieu";
                 lstresult.Add(REPORT_01);
 
                 ClassCommon.classPermission REPORT_02 = new ClassCommon.classPermission();
@@ -488,7 +499,7 @@ namespace MedicalLink.Base
                 REPORT_08.permissionname = "Báo cáo phẫu thuật thủ thuật (doanh thu chia bác sĩ)";
                 REPORT_08.permissiontype = 3;
                 REPORT_08.tabMenuId = 5;
-                REPORT_08.permissionnote = "Báo cáo phẫu thuật thủ thuật (doanh thu chia bác sĩ)";
+                REPORT_08.permissionnote = "Cấu hình thời gian lấy dữ liệu ở phần tùy chọn mã: REPORT_08_TGLayDuLieu";
                 lstresult.Add(REPORT_08);
 
                 ClassCommon.classPermission REPORT_09 = new ClassCommon.classPermission();
@@ -524,7 +535,7 @@ namespace MedicalLink.Base
                 REPORT_12.permissionname = "Báo cáo thực hiện Cận lâm sàng (doanh thu chia bác sĩ)";
                 REPORT_12.permissiontype = 3;
                 REPORT_12.tabMenuId = 5;
-                REPORT_12.permissionnote = "Báo cáo thực hiện Cận lâm sàng (doanh thu chia bác sĩ)";
+                REPORT_12.permissionnote = "Cấu hình thời gian lấy dữ liệu ở phần tùy chọn mã: REPORT_12_TGLayDuLieu";
                 lstresult.Add(REPORT_12);
 
                 ClassCommon.classPermission REPORT_13 = new ClassCommon.classPermission();
@@ -533,7 +544,7 @@ namespace MedicalLink.Base
                 REPORT_13.permissionname = "Sổ chuẩn đoán hình ảnh";
                 REPORT_13.permissiontype = 3;
                 REPORT_13.tabMenuId = 5;
-                REPORT_13.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_13_SoCDHA";
+                REPORT_13.permissionnote = "Cấu hình trong DM dùng chung mã: REPORT_13_SoCDHA; Và thời gian lấy dữ liệu ở phần tùy chọn mã: REPORT_13_TGLayDuLieu";
                 lstresult.Add(REPORT_13);
 
                 ClassCommon.classPermission REPORT_14 = new ClassCommon.classPermission();
@@ -803,7 +814,7 @@ namespace MedicalLink.Base
                 REPORT_43.permissionname = "Sổ thủ thuật  - khoa cận lâm sàng";
                 REPORT_43.permissiontype = 3;
                 REPORT_43.tabMenuId = 5;
-                REPORT_43.permissionnote = "Lấy dịch vụ được xếp loại PTTT";
+                REPORT_43.permissionnote = "Lấy dịch vụ được xếp loại PTTT; Cấu hình thời gian lấy dữ liệu ở phần tùy chọn mã: REPORT_43_TGLayDuLieu";
                 lstresult.Add(REPORT_43);
 
                 ClassCommon.classPermission REPORT_44 = new ClassCommon.classPermission();
@@ -906,7 +917,7 @@ namespace MedicalLink.Base
                 REPORT_58.permissionname = "Báo cáo sử dụng vật tư theo nhóm";
                 REPORT_58.permissiontype = 3;
                 REPORT_58.tabMenuId = 5;
-                REPORT_58.permissionnote = "";
+                REPORT_58.permissionnote = "Cấu hình thời gian lấy dữ liệu ở phần tùy chọn mã: REPORT_58_TGLayDuLieu";
                 lstresult.Add(REPORT_58);
 
 

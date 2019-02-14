@@ -163,7 +163,7 @@
             this.txtGiaYC.Properties.Appearance.Options.UseFont = true;
             this.txtGiaYC.Size = new System.Drawing.Size(204, 22);
             this.txtGiaYC.TabIndex = 6;
-            this.txtGiaYC.EditValueChanged += new System.EventHandler(this.txtGiaVP_EditValueChanged);
+            this.txtGiaYC.EditValueChanged += new System.EventHandler(this.txtGiaYC_EditValueChanged);
             this.txtGiaYC.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGiaVP_KeyDown);
             this.txtGiaYC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaVP_KeyPress);
             // 
@@ -175,7 +175,7 @@
             this.txtGiaVP.Properties.Appearance.Options.UseFont = true;
             this.txtGiaVP.Size = new System.Drawing.Size(204, 22);
             this.txtGiaVP.TabIndex = 5;
-            this.txtGiaVP.EditValueChanged += new System.EventHandler(this.txtGia_EditValueChanged);
+            this.txtGiaVP.EditValueChanged += new System.EventHandler(this.txtGiaVP_EditValueChanged);
             this.txtGiaVP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGia_KeyDown);
             this.txtGiaVP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGiaVP_KeyPress);
             // 

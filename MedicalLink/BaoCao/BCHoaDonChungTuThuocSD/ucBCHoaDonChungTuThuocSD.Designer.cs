@@ -285,6 +285,7 @@
             this.gridViewDatBaoCao.Name = "gridViewDatBaoCao";
             this.gridViewDatBaoCao.OptionsBehavior.AutoExpandAllGroups = true;
             this.gridViewDatBaoCao.OptionsView.ColumnAutoWidth = false;
+            this.gridViewDatBaoCao.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDatBaoCao.OptionsView.RowAutoHeight = true;
             this.gridViewDatBaoCao.OptionsView.ShowFooter = true;
             this.gridViewDatBaoCao.OptionsView.ShowIndicator = false;

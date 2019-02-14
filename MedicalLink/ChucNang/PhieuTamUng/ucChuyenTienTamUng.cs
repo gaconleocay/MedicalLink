@@ -125,7 +125,7 @@ namespace MedicalLink.ChucNang
                     // Querry lấy dữ liệu về phiếu tạm ứng tiền khi nhập mã VP
                     sqlquerry = "select distinct bill.billid as maphieuthu, bill.patientid as mabenhnhan, bill.vienphiid as mavienphi, bill.patientname as tenbenhnhan, 'Tạm ứng' as loaiphieu, bill.datra as sotien, bill.billdate as ngaythu, case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else '' end as trangthai from bill, vienphi where bill.loaiphieuthuid=2 and vienphi.vienphiid=bill.vienphiid and bill.vienphiid=" + txtChuyenTienVP1.Text + " order by maphieuthu;";
                 }
-                else if (txtChuyenTienVP1.Text.Trim()  == "Chuyển từ VP" && txtSoTheBHYT.Text.Trim().Length == 15)
+                else if (txtChuyenTienVP1.Text.Trim() == "Chuyển từ VP" && txtSoTheBHYT.Text.Trim().Length == 15)
                 {
                     // Querry lấy dữ liệu về phiếu tạm ứng tiền khi nhập So the BHYT
                     sqlquerry = "select distinct bill.billid as maphieuthu, bill.patientid as mabenhnhan, bill.vienphiid as mavienphi, bill.patientname as tenbenhnhan, 'Tạm ứng' as loaiphieu, bill.datra as sotien, bill.billdate as ngaythu, case vienphi.vienphistatus_vp when 1 then 'Đã duyệt VP' else '' end as trangthai from bill, vienphi,bhyt where bill.loaiphieuthuid=2 and vienphi.vienphiid=bill.vienphiid and bhyt.bhytid=vienphi.bhytid and bhyt.bhytcode='" + txtSoTheBHYT.Text.Trim().ToUpper() + "' order by maphieuthu;";
@@ -136,15 +136,10 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewChuyenTien.RowCount == 0)
                 {
+                    gridControlChuyenTien.DataSource = null;
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
-                /*
-                NpgsqlCommand command = new NpgsqlCommand(sqlquerry, conn);
-                command.CommandType = CommandType.Text;
-                NpgsqlDataAdapter da = new NpgsqlDataAdapter(command);
-                dt = new DataTable();
-                */
                 txtChuyenTienVP2.Enabled = false;
                 txtChuyenTienVP2.Text = "";
                 btnChuyenTienOK.Enabled = false;
@@ -196,27 +191,27 @@ namespace MedicalLink.ChucNang
                 long maphieuth = Convert.ToInt64(gridViewChuyenTien.GetRowCellValue(rowHandle, "maphieuthu").ToString());
                 string sotientu = Convert.ToString(gridViewChuyenTien.GetRowCellValue(rowHandle, "sotien").ToString());
                 long mavienphi = Convert.ToInt64(gridViewChuyenTien.GetRowCellValue(rowHandle, "mavienphi").ToString());
+                string _mabenhnhan = gridViewChuyenTien.GetRowCellValue(rowHandle, "mabenhnhan").ToString();
                 //string trangth = Convert.ToString(gridViewChuyenTien.GetRowCellValue(rowHandle, "trangthai").ToString());
 
                 // Querry thực hiện
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn chuyển " + sotientu.ToString() + " từ BN VP " + txtChuyenTienVP1.Text + " sang BN VP " + txtChuyenTienVP2.Text + " không ???", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    try
+                    // thực thi câu lệnh update và lưu log
+                    string sqlxecute = "update bill set vienphiid=" + txtChuyenTienVP2.Text + ", patientid=(select patientid from vienphi where vienphiid=" + txtChuyenTienVP2.Text + "), patientname=(select patientname from hosobenhan where hosobenhanid=(select hosobenhanid from vienphi where vienphiid=" + txtChuyenTienVP2.Text + ")), billremark='Tạm ứng cho viện phí VP' || right(('00000000' || '" + txtChuyenTienVP2.Text + "'),9), lydohuyphieu='Chuyển từ mã VP: ' || " + mavienphi + " where billid=" + maphieuth;
+                    string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid,patientid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển TƯ " + sotientu + " từ mã VP: " + mavienphi + " sang mã VP: " + txtChuyenTienVP2.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_02', '" + mavienphi + "', '" + _mabenhnhan + "');";
+                    if (condb.ExecuteNonQuery_HIS(sqlxecute))
                     {
-                        // thực thi câu lệnh update và lưu log
-                        string sqlxecute = "update bill set vienphiid=" + txtChuyenTienVP2.Text + ", patientid=(select patientid from vienphi where vienphiid=" + txtChuyenTienVP2.Text + "), patientname=(select patientname from hosobenhan where hosobenhanid=(select hosobenhanid from vienphi where vienphiid=" + txtChuyenTienVP2.Text + ")), billremark='Tạm ứng cho viện phí VP' || right(('00000000' || '" + txtChuyenTienVP2.Text + "'),9), lydohuyphieu='Chuyển từ mã VP: ' || " + mavienphi + " where billid=" + maphieuth;
-                        string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Chuyển TƯ " + sotientu + " từ mã VP: " + mavienphi + " sang mã VP: " + txtChuyenTienVP2.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_02');";
-                        condb.ExecuteNonQuery_HIS(sqlxecute);
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                         MessageBox.Show("Đã chuyển " + sotientu.ToString() + " từ BN VP " + mavienphi + " sang BN VP " + txtChuyenTienVP2.Text, "Thông báo");
                         // load lại dữ liệu của form
-                        gridControlChuyenTien.DataSource = null;
-                        btnChuyenTienTK_Click(null, null);
+                        btnChuyenTienTK.PerformClick();
                     }
-                    catch (Exception)
+                    else
                     {
-                        MessageBox.Show("Không thể thực hiện được!", "Thông báo");
+                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                        frmthongbao.Show();
                     }
                 }
             }

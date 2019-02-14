@@ -105,7 +105,7 @@ namespace MedicalLink.FormCommon
             try
             {
                 panelCaiDatChiTiet.Controls.Clear();
-                ucMaHoaVaGiaiMa frmResult = new ucMaHoaVaGiaiMa();
+                ucLogSuKien frmResult = new ucLogSuKien();
                 frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
                 panelCaiDatChiTiet.Controls.Add(frmResult);
             }

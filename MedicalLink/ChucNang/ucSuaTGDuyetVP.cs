@@ -190,7 +190,7 @@ namespace MedicalLink.ChucNang
                     condb.ExecuteNonQuery_HIS(sqlupdate_stt0); //mục đích để Trigger hoạt động
                     string sqlupdate = "UPDATE vienphi SET vienphistatus_vp=1, duyet_ngayduyet_bh='" + dateThoiGianSua.Text + "',  duyet_ngayduyet_vp='" + dateThoiGianSua.Text + "' WHERE vienphiid='" + mavp + "';";
                     condb.ExecuteNonQuery_HIS(sqlupdate);
-                    string sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG duyệt VP BN: " + txtMaBenhNhan.Text + " mã VP: " + mavp + " từ TG: " + dateThoiGianHienTai.Text + " thành TG: " + dateThoiGianSua.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_04');";
+                    string sqlluulog = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa TG duyệt VP BN: " + txtMaBenhNhan.Text + " mã VP: " + mavp + " từ TG: " + dateThoiGianHienTai.Text + " thành TG: " + dateThoiGianSua.Text + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_04', '"+ mavp + "');";
                     condb.ExecuteNonQuery_MeL(sqlluulog);
                     ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.SUA_THANH_CONG);
                     frmthongbao.Show();

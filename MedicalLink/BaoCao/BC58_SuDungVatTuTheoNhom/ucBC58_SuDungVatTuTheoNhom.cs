@@ -29,6 +29,8 @@ namespace MedicalLink.BaoCao
         #region Declaration
         private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
         private BC58FilterTheoKhoaDTO filterTimKiem { get; set; }
+        private string ThoiGianGioiHanDuLieu { get; set; }
+
         #endregion
 
         #region Load
@@ -44,6 +46,7 @@ namespace MedicalLink.BaoCao
                 dateDenNgay.Value = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");
                 LoadDanhSachKhoa();
                 LoadDanhSachKhoTT();
+                LoadThoiGianGioiHanDuLieu();
             }
             catch (Exception ex)
             {
@@ -84,6 +87,26 @@ namespace MedicalLink.BaoCao
                 MedicalLink.Base.Logging.Error(ex);
             }
         }
+        private void LoadThoiGianGioiHanDuLieu()
+        {
+            try
+            {
+                string _sqlDMDichVu = "select toolsoptionvalue from tools_option where toolsoptioncode='REPORT_58_TGLayDuLieu';";
+                DataTable _dataTG = condb.GetDataTable_MeL(_sqlDMDichVu);
+                if (_dataTG.Rows.Count > 0)
+                {
+                    this.ThoiGianGioiHanDuLieu = _dataTG.Rows[0]["toolsoptionvalue"].ToString();
+                }
+                else
+                {
+                    this.ThoiGianGioiHanDuLieu = "" + this.ThoiGianGioiHanDuLieu + "";
+                }
+            }
+            catch (Exception ex)
+            {
+                Base.Logging.Error(ex);
+            }
+        }
         #endregion
 
         #region Tim kiem
@@ -94,9 +117,9 @@ namespace MedicalLink.BaoCao
             {
                 this.filterTimKiem = new BC58FilterTheoKhoaDTO();
 
-                string _tieuchi_vp = " and vienphidate>='2018-01-01 00:00:00' ";
-                string _tieuchi_ser = " and servicepricedate>='2018-01-01 00:00:00' ";
-                string _tieuchi_mbp = " and maubenhphamdate>='2018-01-01 00:00:00' ";
+                string _tieuchi_vp = " and vienphidate>='" + this.ThoiGianGioiHanDuLieu + "' ";
+                string _tieuchi_ser = " and servicepricedate>='" + this.ThoiGianGioiHanDuLieu + "' ";
+                string _tieuchi_mbp = " and maubenhphamdate>='" + this.ThoiGianGioiHanDuLieu + "' ";
                 string _trangthai_vp = "";
                 string _doituongbenhnhanid = "";
                 string _datatype = "";

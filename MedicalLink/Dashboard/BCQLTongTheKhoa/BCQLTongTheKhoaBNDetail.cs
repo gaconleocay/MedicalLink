@@ -17,7 +17,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
     {
         #region Khai bao
         private QLTongTheKhoaDetailFilterDTO filter { get; set; }
-        private Base.ConnectDatabase condb = new Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         #endregion
 
@@ -43,7 +43,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
 
         private void BCTongTheKhoaBNDetail_Load(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 LoadDataToGrid();
@@ -68,7 +68,7 @@ namespace MedicalLink.Dashboard.BCQLTongTheKhoa
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -713,7 +713,7 @@ LEFT JOIN (select sum(b.datra) as tam_ung,vp.vienphiid from vienphi vp
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void HienThiDuLieu(DataView DataBaoCao)
@@ -782,7 +782,7 @@ LEFT JOIN (select sum(b.datra) as tam_ung,vp.vienphiid from vienphi vp
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -837,7 +837,7 @@ LEFT JOIN (select sum(b.datra) as tam_ung,vp.vienphiid from vienphi vp
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -882,7 +882,7 @@ LEFT JOIN (select sum(b.datra) as tam_ung,vp.vienphiid from vienphi vp
                                     default:
                                         break;
                                 }
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                                 frmthongbao.Show();
                             }
                         }
@@ -894,13 +894,13 @@ LEFT JOIN (select sum(b.datra) as tam_ung,vp.vienphiid from vienphi vp
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

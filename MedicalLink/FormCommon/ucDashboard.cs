@@ -15,7 +15,7 @@ namespace MedicalLink.FormCommon
     public partial class ucDashboard : UserControl
     {
         #region Declaration
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         public string CurrentTabPage { get; set; }
         public int SelectedTabPageIndex { get; set; }
         internal frmMain frmMain;
@@ -40,7 +40,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -68,7 +68,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -88,7 +88,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void xtraTabControlDashboard_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
@@ -111,7 +111,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -126,7 +126,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarBCBenhNhanNoiTru_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -140,7 +140,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarBCBenhNhanNgoaiTru_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -154,7 +154,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarBCTongHopToanVien_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -168,7 +168,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarBCDTCLS_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -182,7 +182,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarBCXNTTuTruc_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -196,7 +196,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarBCBNSDThuocTaiKhoa_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -210,7 +210,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarDBDTTungKhoa_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -224,7 +224,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void navBarDBBenhNhanNoiTru_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
@@ -238,7 +238,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -253,7 +253,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

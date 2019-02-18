@@ -27,7 +27,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
     public partial class ucLogSuKien : UserControl
     {
         #region Declaration
-        private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         #endregion
 
@@ -45,7 +45,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -53,7 +53,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string _datetungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -68,13 +68,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 else
                 {
                     gridControlBaoCao.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -92,7 +92,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -111,7 +111,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

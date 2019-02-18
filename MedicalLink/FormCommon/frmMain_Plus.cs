@@ -19,6 +19,7 @@ namespace MedicalLink.FormCommon
                 Base.SessionLogin.LstPhanQuyen_BaoCaoIn = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 10).OrderBy(o => o.permissioncode).ToList();
                 Base.SessionLogin.LstPhanQuyen_QLTaiChinh = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 3 && o.tabMenuId == 4).OrderBy(o => o.permissioncode).ToList();
                 Base.SessionLogin.LstPhanQuyen_Dashboard = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 5).ToList();
+                Base.SessionLogin.LstPhanQuyen_QlDuoc = Base.SessionLogin.LstPhanQuyenUser.Where(o => o.permissiontype == 7).ToList();
 
                 //Enable and disable Tab
                 if (SessionLogin.LstPhanQuyen_ChucNang != null && SessionLogin.LstPhanQuyen_ChucNang.Count > 0)
@@ -37,10 +38,14 @@ namespace MedicalLink.FormCommon
                 {
                     tabMenuDashboard.PageVisible = true;
                 }
+                if (SessionLogin.LstPhanQuyen_QlDuoc != null && SessionLogin.LstPhanQuyen_QlDuoc.Count > 0)
+                {
+                    tabMenuQLDuoc.PageVisible = true;
+                }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -52,10 +57,12 @@ namespace MedicalLink.FormCommon
                 tabMenuBaoCao.PageVisible = enabledisable;
                 tabMenuQLTaiChinh.PageVisible = enabledisable;
                 tabMenuDashboard.PageVisible = enabledisable;
+                tabMenuQLDuoc.PageVisible = enabledisable;
+
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

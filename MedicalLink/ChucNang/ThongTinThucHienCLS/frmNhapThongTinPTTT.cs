@@ -17,7 +17,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
     {
         #region Khai bao
         private classNhapThongTinPTTT currentThongtinPTTT;
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private long currentthuchienclsid;
         #endregion
         public frmNhapThongTinPTTT()
@@ -34,7 +34,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -53,7 +53,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_ThongTinVeBenhNhan()
@@ -80,7 +80,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_PhuongPhapPTTT()
@@ -95,7 +95,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_PhuongPhamVoCam()
@@ -109,7 +109,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -165,7 +165,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_NguoiThucHien()
@@ -201,7 +201,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_ThongTinThucHienCanLamSangDichVu()
@@ -234,7 +234,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -255,18 +255,18 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 }
                 if (condb.ExecuteNonQuery_HIS(luulaithuchien))
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THAO_TAC_THANH_CONG);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THAO_TAC_THANH_CONG);
                     frmthongbao.Show();
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
     }

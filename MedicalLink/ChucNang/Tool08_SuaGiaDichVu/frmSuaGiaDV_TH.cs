@@ -15,7 +15,7 @@ namespace MedicalLink.ChucNang
     public partial class frmSuaGiaDV_TH : Form
     {
         #region Khai bao
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         int servicepriceid_th;
         string tendv_th;
         string madv_th;
@@ -117,7 +117,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

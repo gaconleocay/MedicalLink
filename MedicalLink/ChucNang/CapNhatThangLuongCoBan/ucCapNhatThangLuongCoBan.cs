@@ -17,7 +17,7 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
     public partial class ucCapNhatThangLuongCoBan : UserControl
     {
         #region Khai bao
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         #endregion
         public ucCapNhatThangLuongCoBan()
@@ -34,12 +34,12 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string tieuchi = "";
@@ -64,14 +64,14 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
                 btnCapNhat.Enabled = false;
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -89,7 +89,7 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -102,7 +102,7 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
                     DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn cập nhật tháng lương cơ bản?", "Thông báo!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                        SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                         string datetungay_string = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                         string datedenngay_string = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
                         string dateupdate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -148,13 +148,13 @@ namespace MedicalLink.ChucNang.CapNhatThangLuongCoBan
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chưa nhập mức lương cơ bản mới!");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Chưa nhập mức lương cơ bản mới!");
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

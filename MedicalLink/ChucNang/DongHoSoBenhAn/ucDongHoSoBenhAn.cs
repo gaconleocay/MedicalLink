@@ -18,7 +18,7 @@ namespace MedicalLink.ChucNang
     public partial class ucDongHoSoBenhAn : UserControl
     {
         #region Khai bao
-        private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         #endregion
         public ucDongHoSoBenhAn()
@@ -37,7 +37,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhMucKhoa()
@@ -59,7 +59,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -67,7 +67,7 @@ namespace MedicalLink.ChucNang
         #region Events
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string _sql_timkiem = "";
@@ -140,19 +140,19 @@ namespace MedicalLink.ChucNang
                     else
                     {
                         gridControlHSBA.DataSource = null;
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -183,7 +183,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void chkcomboListDSKhoa_EditValueChanged(object sender, EventArgs e)
@@ -212,13 +212,13 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
         private void gridViewHSBA_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 if (gridViewHSBA.RowCount > 0)
@@ -240,7 +240,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -260,7 +260,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -282,7 +282,7 @@ namespace MedicalLink.ChucNang
                 if (dialogResult == DialogResult.Yes)
                 {
                     int _demupdate = 0;
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                     try
                     {
                         if (gridViewHSBA.GetSelectedRows().Count() > 0)
@@ -319,7 +319,7 @@ namespace MedicalLink.ChucNang
                     }
                     catch (Exception ex)
                     {
-                        MedicalLink.Base.Logging.Error(ex);
+                        O2S_Common.Logging.LogSystem.Error(ex);
                     }
                     SplashScreenManager.CloseForm();
 
@@ -349,7 +349,7 @@ namespace MedicalLink.ChucNang
                 if (dialogResult == DialogResult.Yes)
                 {
                     int _demupdate = 0;
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                     try
                     {
                         if (gridViewHSBA.GetSelectedRows().Count() > 0)
@@ -377,7 +377,7 @@ namespace MedicalLink.ChucNang
                     }
                     catch (Exception ex)
                     {
-                        MedicalLink.Base.Logging.Error(ex);
+                        O2S_Common.Logging.LogSystem.Error(ex);
                     }
                     SplashScreenManager.CloseForm();
 
@@ -418,7 +418,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

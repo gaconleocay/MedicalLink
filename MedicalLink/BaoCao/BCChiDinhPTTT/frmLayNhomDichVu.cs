@@ -15,7 +15,7 @@ namespace MedicalLink.ChucNang.BCPTTT
     {
         public delegate void GetString(string dsnhomdichvu);
         public GetString MyGetData;
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
 
         public frmLayNhomDichVu()
@@ -73,7 +73,7 @@ namespace MedicalLink.ChucNang.BCPTTT
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
     }

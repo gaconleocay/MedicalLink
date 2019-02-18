@@ -16,7 +16,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
 {
     public partial class ucSettingDatabase : UserControl
     {
-        private ConnectDatabase condb = new ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         public ucSettingDatabase()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadKetNoiDatabase()
@@ -53,7 +53,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_DuongDanDenFolderVersion()
@@ -69,7 +69,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -121,7 +121,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -136,7 +136,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -159,7 +159,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LuuLaiDuongDanFolderVersion()
@@ -171,12 +171,12 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void btnDBUpdate_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 if (KetNoiSCDLProcess.CapNhatCoSoDuLieu())
@@ -191,7 +191,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi cập nhật cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MedicalLink.Base.Logging.Error("Lỗi cập nhật cơ sở dữ liệu!" + ex.ToString());
+                O2S_Common.Logging.LogSystem.Error("Lỗi cập nhật cơ sở dữ liệu!" + ex.ToString());
             }
             SplashScreenManager.CloseForm();
         }

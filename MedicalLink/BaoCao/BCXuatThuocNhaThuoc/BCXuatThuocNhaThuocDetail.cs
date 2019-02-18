@@ -18,7 +18,7 @@ namespace MedicalLink.BaoCao.BCXuatThuocNhaThuoc
     {
         #region Khai bao
         private long medicinestorebillid_cd { get; set; }
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         #endregion
 
         public BCXuatThuocNhaThuocDetail()
@@ -34,14 +34,14 @@ namespace MedicalLink.BaoCao.BCXuatThuocNhaThuoc
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
         #region Load
         private void BCXuatThuocNhaThuocDetail_Load(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 if (this.medicinestorebillid_cd != 0)
@@ -51,7 +51,7 @@ namespace MedicalLink.BaoCao.BCXuatThuocNhaThuoc
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -65,7 +65,7 @@ namespace MedicalLink.BaoCao.BCXuatThuocNhaThuoc
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -110,7 +110,7 @@ namespace MedicalLink.BaoCao.BCXuatThuocNhaThuoc
                                     default:
                                         break;
                                 }
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                                 frmthongbao.Show();
                             }
                         }
@@ -122,13 +122,13 @@ namespace MedicalLink.BaoCao.BCXuatThuocNhaThuoc
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void gridViewBNDetail_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)

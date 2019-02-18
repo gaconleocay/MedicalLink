@@ -19,7 +19,7 @@ namespace MedicalLink.BaoCao
     public partial class ucBC52_TGKhamBenhTrungBinh : UserControl
     {
         #region Declaration
-        private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         #endregion
 
         public ucBC52_TGKhamBenhTrungBinh()
@@ -69,7 +69,7 @@ order by servicegrouptype,servicepricegroupcode,servicepricename;";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -92,7 +92,7 @@ order by servicegrouptype,servicepricegroupcode,servicepricename;";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void radioXemChiTiet_CheckedChanged(object sender, EventArgs e)
@@ -111,7 +111,7 @@ order by servicegrouptype,servicepricegroupcode,servicepricename;";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -121,7 +121,7 @@ order by servicegrouptype,servicepricegroupcode,servicepricename;";
         #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string _tieuchi_vp = " and vienphidate>='2018-01-01 00:00:00' ";
@@ -258,7 +258,7 @@ FROM
                     else
                     {
                         gridControlBCTongHop.DataSource = null;
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                     }
                 }
@@ -306,14 +306,14 @@ FROM
                     else
                     {
                         gridControlBCChiTiet.DataSource = null;
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -337,7 +337,7 @@ FROM
 
                     List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                     ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                    reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                    reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                     reportitem.value = tungaydenngay;
                     thongTinThem.Add(reportitem);
                     ClassCommon.reportExcelDTO reportitem_tientong = new ClassCommon.reportExcelDTO();
@@ -355,12 +355,12 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -370,7 +370,7 @@ FROM
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 thongTinThem.Add(reportitem);
 
@@ -380,7 +380,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -402,7 +402,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -426,7 +426,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void SetCheckedChildNodes(TreeListNodes nodes)
@@ -448,7 +448,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private bool IsAllChecked(DevExpress.XtraTreeList.Nodes.TreeListNodes nodes)
@@ -467,7 +467,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             return value;
         }

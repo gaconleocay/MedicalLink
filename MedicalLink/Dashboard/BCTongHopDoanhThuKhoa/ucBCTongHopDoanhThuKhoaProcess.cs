@@ -16,7 +16,7 @@ namespace MedicalLink.Dashboard
         private DangDTRaVienChuaDaTTFilterDTO filter { get; set; }
         private void LayDuLieuBaoCao_ChayMoi()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 lblThoiGianLayBaoCao.Text = System.DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
@@ -92,14 +92,14 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
 
         private void LayDuLieuBaoCao_ChayMoi_KhongHaoPhi()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 lblThoiGianLayBaoCao.Text = System.DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
@@ -310,7 +310,7 @@ LEFT JOIN
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -337,7 +337,7 @@ LEFT JOIN
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -345,7 +345,7 @@ LEFT JOIN
         #region Lay du lieu tu nam 2013 - 2016 dung bang: tools_serviceprice_pttt
         private void LayDuLieuBaoCao_Old()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 lblThoiGianLayBaoCao.Text = System.DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
@@ -413,7 +413,7 @@ LEFT JOIN
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }

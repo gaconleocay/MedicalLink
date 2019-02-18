@@ -18,7 +18,7 @@ namespace MedicalLink.BaoCao
 {
     public partial class ucBCThuocTheoNguoiKe : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         DataTable dataBCBXuatThuoc { get; set; }
 
         public ucBCThuocTheoNguoiKe()
@@ -46,14 +46,14 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
         #endregion
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string lstKhoThuocChonLayBC = "";
@@ -74,7 +74,7 @@ namespace MedicalLink.BaoCao
                 }
                 if (lstKhoThuocChonLayBC == "")
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHO_THUOC);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHO_THUOC);
                     frmthongbao.Show();
                     SplashScreenManager.CloseForm();
                     return;
@@ -93,7 +93,7 @@ namespace MedicalLink.BaoCao
                 }
                 if (chkNhom_TatCa.Checked == false && lstPhongLuuChonLayBC == "")
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_LUU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_LUU);
                     frmthongbao.Show();
                     SplashScreenManager.CloseForm();
                     return;
@@ -110,13 +110,13 @@ namespace MedicalLink.BaoCao
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -134,7 +134,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -155,7 +155,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -188,7 +188,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -203,10 +203,10 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
-                reportitem_kho.name = Base.bienTrongBaoCao.LST_MECICINESTORENAME;
+                reportitem_kho.name = Base.BienTrongBaoCao.LST_MECICINESTORENAME;
                 reportitem_kho.value = chkcomboListDSKho.Text.ToUpper();
 
                 thongTinThem.Add(reportitem);
@@ -218,7 +218,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -226,7 +226,7 @@ namespace MedicalLink.BaoCao
         {
             try
             {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
 
@@ -234,10 +234,10 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
-                reportitem_kho.name = Base.bienTrongBaoCao.LST_MECICINESTORENAME;
+                reportitem_kho.name = Base.BienTrongBaoCao.LST_MECICINESTORENAME;
                 reportitem_kho.value = chkcomboListDSKho.Text.ToUpper();
 
                 thongTinThem.Add(reportitem);
@@ -247,7 +247,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }

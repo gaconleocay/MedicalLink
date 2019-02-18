@@ -17,7 +17,7 @@ namespace MedicalLink.ChucNang
     {
         #region Khai bao
         ucSuaThongTinBenhAn SuaThongTinBenhAn;
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         //DataView dv_tinhhuyenxa;
         // DataView dv_tinh, dv_huyen, dv_xa;
 
@@ -49,7 +49,7 @@ namespace MedicalLink.ChucNang
         #region Load
         private void SuaThongTin_ThucHien_Load(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 if (SuaThongTinBenhAn != null)
@@ -107,7 +107,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -140,7 +140,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadXaHuyenTinh()
@@ -176,7 +176,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -194,7 +194,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDataHuyen_VeMay(string tinh_code_tk)
@@ -266,7 +266,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             catch (Exception)
@@ -414,7 +414,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -462,7 +462,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -589,7 +589,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -605,7 +605,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -622,7 +622,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -635,7 +635,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -647,7 +647,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

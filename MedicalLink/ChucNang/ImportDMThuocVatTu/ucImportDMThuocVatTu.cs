@@ -16,7 +16,7 @@ namespace MedicalLink.ChucNang
 {
     public partial class ucImportDMThuocVatTu : UserControl
     {
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private List<MedicineRef> lstMedicineRef { get; set; }
         public ucImportDMThuocVatTu()
         {
@@ -36,7 +36,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -96,7 +96,7 @@ namespace MedicalLink.ChucNang
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                         return;
                     }
@@ -105,9 +105,9 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA_KIEM_TRA_LAI_TEMPLATE);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA_KIEM_TRA_LAI_TEMPLATE);
                 frmthongbao.Show();
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -132,13 +132,13 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -165,7 +165,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -191,7 +191,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -213,7 +213,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -230,7 +230,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -247,7 +247,7 @@ namespace MedicalLink.ChucNang
                     DialogResult dialogResult = MessageBox.Show("Hãy backup dữ liệu trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                        SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                         switch (chonkieuimport)
                         {
                             case "Tên thuốc":
@@ -306,7 +306,7 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
 
@@ -314,7 +314,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 SplashScreenManager.CloseForm();
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void ThemMoiDanhMucThuocVatTuProcess()
@@ -328,7 +328,7 @@ namespace MedicalLink.ChucNang
                 DialogResult dialogResult = MessageBox.Show("Hãy backup trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                     foreach (var item_servicep in this.lstMedicineRef)
                     {
                         try
@@ -371,7 +371,7 @@ namespace MedicalLink.ChucNang
             {
                 SplashScreenManager.CloseForm();
                 MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -411,7 +411,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_MaDMBYT()
@@ -449,7 +449,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_MaSTTThau()
@@ -487,7 +487,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_NamThau()
@@ -525,7 +525,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_DanhSTTNgaySD()
@@ -563,7 +563,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_DuongDung()
@@ -601,7 +601,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_DongGoi()
@@ -638,7 +638,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_SoDangKy()
@@ -676,7 +676,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CapNhatProcess_SoLo()
@@ -713,7 +713,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

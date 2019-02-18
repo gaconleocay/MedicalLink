@@ -19,7 +19,7 @@ namespace MedicalLink.BaoCao
     public partial class ucBCSoXetNghiem : UserControl
     {
         #region Khai bao
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private DataTable dataBaoCao_VS { get; set; }
         private DataTable dataBaoCao_SHTQ { get; set; }
         private DataTable dataBaoCao_NTVD { get; set; }
@@ -53,7 +53,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDataPhongThucHien()
@@ -75,7 +75,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadMaChiSoXetNghiem()
@@ -154,7 +154,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -172,10 +172,10 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
-                reportitem_kho.name = Base.bienTrongBaoCao.DEPARTMENTNAME;
+                reportitem_kho.name = Base.BienTrongBaoCao.DEPARTMENTNAME;
                 reportitem_kho.value = cboLoaiSoXN.Text.ToUpper();
                 thongTinThem.Add(reportitem);
                 thongTinThem.Add(reportitem_kho);
@@ -212,12 +212,12 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -228,10 +228,10 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
-                reportitem_kho.name = Base.bienTrongBaoCao.DEPARTMENTNAME;
+                reportitem_kho.name = Base.BienTrongBaoCao.DEPARTMENTNAME;
                 reportitem_kho.value = cboLoaiSoXN.Text.ToUpper();
                 thongTinThem.Add(reportitem);
                 thongTinThem.Add(reportitem_kho);
@@ -267,7 +267,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -331,7 +331,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void bandedGridViewSoCDHA_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
@@ -347,7 +347,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -357,11 +357,11 @@ namespace MedicalLink.BaoCao
         {
             if (cboLoaiSoXN.EditValue == null)
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_SO_XET_NGHIEM);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_SO_XET_NGHIEM);
                 frmthongbao.Show();
                 return;
             }
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
 
             string tieuchi_mbp = "";
             string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");

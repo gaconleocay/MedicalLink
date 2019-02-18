@@ -303,7 +303,7 @@ namespace MedicalLink.Utilities.BandGridView
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         void View_CustomDrawColumnHeader(object sender, ColumnHeaderCustomDrawEventArgs e)

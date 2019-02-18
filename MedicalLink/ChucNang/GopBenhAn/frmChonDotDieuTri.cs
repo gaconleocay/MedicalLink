@@ -15,7 +15,7 @@ namespace MedicalLink.ChucNang.GopBenhAn
     {
         private List<MedicalrecordGopBADTO> lst_Phong { get; set; }
         private long medicalrecordid_B { get; set; }
-        private Base.ConnectDatabase condb = new Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         // khai báo 1 hàm delegate
         public delegate void GetString(long medicalrecordid_A);
         // khai báo 1 kiểu hàm delegate
@@ -45,7 +45,7 @@ namespace MedicalLink.ChucNang.GopBenhAn
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -63,13 +63,13 @@ namespace MedicalLink.ChucNang.GopBenhAn
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
     }

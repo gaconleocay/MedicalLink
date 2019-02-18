@@ -42,15 +42,16 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.tabPaneMenu = new DevExpress.XtraBars.Navigation.TabPane();
+            this.btnResert = new DevExpress.XtraEditors.SimpleButton();
             this.tabMenuTrangChu = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tabMenuDashboard = new DevExpress.XtraBars.Navigation.TabNavigationPage();
-            this.tabMenuChucNang = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tabMenuQLTaiChinh = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.tabMenuBaoCao = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.tabMenuChucNang = new DevExpress.XtraBars.Navigation.TabNavigationPage();
+            this.tabMenuQLDuoc = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.timerClock = new System.Windows.Forms.Timer(this.components);
             this.timerKiemTraLicense = new System.Windows.Forms.Timer(this.components);
             this.timerTblBNDangDT = new System.Windows.Forms.Timer(this.components);
-            this.btnResert = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabPaneMenu)).BeginInit();
             this.tabPaneMenu.SuspendLayout();
@@ -179,14 +180,16 @@
             this.tabPaneMenu.Controls.Add(this.btnResert);
             this.tabPaneMenu.Controls.Add(this.tabMenuTrangChu);
             this.tabPaneMenu.Controls.Add(this.tabMenuDashboard);
-            this.tabPaneMenu.Controls.Add(this.tabMenuChucNang);
             this.tabPaneMenu.Controls.Add(this.tabMenuQLTaiChinh);
             this.tabPaneMenu.Controls.Add(this.tabMenuBaoCao);
+            this.tabPaneMenu.Controls.Add(this.tabMenuChucNang);
+            this.tabPaneMenu.Controls.Add(this.tabMenuQLDuoc);
             this.tabPaneMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPaneMenu.Location = new System.Drawing.Point(0, 0);
             this.tabPaneMenu.Margin = new System.Windows.Forms.Padding(0);
             this.tabPaneMenu.Name = "tabPaneMenu";
             this.tabPaneMenu.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
+            this.tabMenuQLDuoc,
             this.tabMenuDashboard,
             this.tabMenuQLTaiChinh,
             this.tabMenuBaoCao,
@@ -197,6 +200,24 @@
             this.tabPaneMenu.Size = new System.Drawing.Size(1084, 636);
             this.tabPaneMenu.TabIndex = 5;
             this.tabPaneMenu.Text = "MENU";
+            // 
+            // btnResert
+            // 
+            this.btnResert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnResert.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnResert.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnResert.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnResert.Appearance.Options.UseBackColor = true;
+            this.btnResert.Appearance.Options.UseFont = true;
+            this.btnResert.Appearance.Options.UseForeColor = true;
+            this.btnResert.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
+            this.btnResert.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
+            this.btnResert.Location = new System.Drawing.Point(961, 3);
+            this.btnResert.Name = "btnResert";
+            this.btnResert.Size = new System.Drawing.Size(110, 26);
+            this.btnResert.TabIndex = 11;
+            this.btnResert.Text = "Khởi động lại";
+            this.btnResert.Click += new System.EventHandler(this.btnResert_Click);
             // 
             // tabMenuTrangChu
             // 
@@ -220,19 +241,6 @@
             this.tabMenuDashboard.Name = "tabMenuDashboard";
             this.tabMenuDashboard.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuDashboard.Size = new System.Drawing.Size(1066, 588);
-            // 
-            // tabMenuChucNang
-            // 
-            this.tabMenuChucNang.Appearance.BackColor = System.Drawing.SystemColors.Control;
-            this.tabMenuChucNang.Appearance.Options.UseBackColor = true;
-            this.tabMenuChucNang.Caption = "CHỨC NĂNG";
-            this.tabMenuChucNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabMenuChucNang.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuChucNang.Image")));
-            this.tabMenuChucNang.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuChucNang.Margin = new System.Windows.Forms.Padding(0);
-            this.tabMenuChucNang.Name = "tabMenuChucNang";
-            this.tabMenuChucNang.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
-            this.tabMenuChucNang.Size = new System.Drawing.Size(1066, 588);
             // 
             // tabMenuQLTaiChinh
             // 
@@ -260,6 +268,32 @@
             this.tabMenuBaoCao.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
             this.tabMenuBaoCao.Size = new System.Drawing.Size(1066, 588);
             // 
+            // tabMenuChucNang
+            // 
+            this.tabMenuChucNang.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.tabMenuChucNang.Appearance.Options.UseBackColor = true;
+            this.tabMenuChucNang.Caption = "CHỨC NĂNG";
+            this.tabMenuChucNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabMenuChucNang.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuChucNang.Image")));
+            this.tabMenuChucNang.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuChucNang.Margin = new System.Windows.Forms.Padding(0);
+            this.tabMenuChucNang.Name = "tabMenuChucNang";
+            this.tabMenuChucNang.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuChucNang.Size = new System.Drawing.Size(1066, 588);
+            // 
+            // tabMenuQLDuoc
+            // 
+            this.tabMenuQLDuoc.Appearance.BackColor = System.Drawing.SystemColors.Control;
+            this.tabMenuQLDuoc.Appearance.Options.UseBackColor = true;
+            this.tabMenuQLDuoc.Caption = "QL DƯỢC";
+            this.tabMenuQLDuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.tabMenuQLDuoc.Image = ((System.Drawing.Image)(resources.GetObject("tabMenuQLDuoc.Image")));
+            this.tabMenuQLDuoc.ItemShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuQLDuoc.Margin = new System.Windows.Forms.Padding(0);
+            this.tabMenuQLDuoc.Name = "tabMenuQLDuoc";
+            this.tabMenuQLDuoc.Properties.ShowMode = DevExpress.XtraBars.Navigation.ItemShowMode.ImageAndText;
+            this.tabMenuQLDuoc.Size = new System.Drawing.Size(1066, 588);
+            // 
             // timerClock
             // 
             this.timerClock.Tick += new System.EventHandler(this.timerClock_Tick);
@@ -272,24 +306,6 @@
             // timerTblBNDangDT
             // 
             this.timerTblBNDangDT.Tick += new System.EventHandler(this.timerTblBCNoiTru_Tick);
-            // 
-            // btnResert
-            // 
-            this.btnResert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnResert.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnResert.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.btnResert.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnResert.Appearance.Options.UseBackColor = true;
-            this.btnResert.Appearance.Options.UseFont = true;
-            this.btnResert.Appearance.Options.UseForeColor = true;
-            this.btnResert.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat;
-            this.btnResert.Image = global::MedicalLink.Properties.Resources.recurring_appointment_16;
-            this.btnResert.Location = new System.Drawing.Point(961, 3);
-            this.btnResert.Name = "btnResert";
-            this.btnResert.Size = new System.Drawing.Size(110, 26);
-            this.btnResert.TabIndex = 11;
-            this.btnResert.Text = "Khởi động lại";
-            this.btnResert.Click += new System.EventHandler(this.btnResert_Click);
             // 
             // frmMain
             // 
@@ -340,5 +356,6 @@
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuQLTaiChinh;
         private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuBaoCao;
         private DevExpress.XtraEditors.SimpleButton btnResert;
+        private DevExpress.XtraBars.Navigation.TabNavigationPage tabMenuQLDuoc;
     }
 }

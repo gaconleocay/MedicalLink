@@ -21,7 +21,7 @@ namespace MedicalLink.ChucNang
 {
     public partial class ucCapNhatKhaDungTonKho : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private long tickCurrentVal = 0;
         long thoiGianCapNhat;
 
@@ -198,7 +198,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -323,13 +323,13 @@ namespace MedicalLink.ChucNang
                     }
                     catch (Exception ex)
                     {
-                        MedicalLink.Base.Logging.Warn(ex);
+                        O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -337,7 +337,7 @@ namespace MedicalLink.ChucNang
         #region btn Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string datetungay = "";
@@ -352,7 +352,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -405,20 +405,20 @@ namespace MedicalLink.ChucNang
                                 default:
                                     break;
                             }
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                             frmthongbao.Show();
                         }
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion

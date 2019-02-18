@@ -19,7 +19,7 @@ namespace MedicalLink.ChucNang
     public partial class ucTool28_FixLoiSaiMauBanPham : UserControl
     {
         #region Khai bao
-        private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         #endregion
 
@@ -38,7 +38,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -46,7 +46,7 @@ namespace MedicalLink.ChucNang
         #region Events
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string _trangthaivp = "";
@@ -79,7 +79,15 @@ namespace MedicalLink.ChucNang
 
                 //string _sqlTimKiem = $@"select mbp1.* from maubenhpham_copy1 mbp1 where mbp1.maubenhphamdate between '{datetungay}' and '{datedenngay}';";
 
-                string _sqlTimKiem = $@"select row_number () over (order by mbp1.maubenhphamid) as stt, (case mbp1.maubenhphamgrouptype	when 0 then 'Xét nghiệm'	when 1 then 'CĐHA'	when 2 then 'Khám bệnh'	when 3 then 'Phiếu điều trị'	when 4 then 'Chuyên khoa '	when 5 then 'Thuốc'	when 6 then 'Vật tư '	end) as maubenhphamgrouptype_name, mbp1.*, hsba.patientname as patientname_hsba
+                string _sqlTimKiem = $@"select row_number () over (order by mbp1.maubenhphamid) as stt, (case mbp1.maubenhphamgrouptype
+	when 0 then 'Xét nghiệm'
+	when 1 then 'CĐHA'
+	when 2 then 'Khám bệnh'
+	when 3 then 'Phiếu điều trị'
+	when 4 then 'Chuyên khoa '
+	when 5 then 'Thuốc'
+	when 6 then 'Vật tư '
+	end) as maubenhphamgrouptype_name, mbp1.*, hsba.patientname as patientname_hsba
 from maubenhpham_copy1 mbp1
     inner join vienphi vp on vp.vienphiid=mbp1.vienphiid
 	inner join hosobenhan hsba on hsba.hosobenhanid=vp.hosobenhanid
@@ -94,13 +102,13 @@ where mbp1.maubenhphamdate between '{datetungay}' and '{datedenngay}' {_trangtha
                 else
                 {
                     gridControlMBP.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -119,7 +127,7 @@ where mbp1.maubenhphamdate between '{datetungay}' and '{datedenngay}' {_trangtha
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -130,12 +138,12 @@ where mbp1.maubenhphamdate between '{datetungay}' and '{datedenngay}' {_trangtha
                 //string _sqlupdate = "UPDATE maubenhpham_copy1 SET maubenhphamID = nextval('maubenhpham_maubenhphamid_seq'::regclass);";
                 //if (condb.ExecuteNonQuery_HIS(_sqlupdate))
                 //{
-                //    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                //    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                 //    frmthongbao.Show();
                 //}
                 //else
                 //{
-                //    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THAT_BAI);
+                //    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THAT_BAI);
                 //    frmthongbao.Show();
                 //}
             }
@@ -155,7 +163,12 @@ where mbp1.maubenhphamdate between '{datetungay}' and '{datedenngay}' {_trangtha
                 string _medicalrecordid = gridViewMBP.GetRowCellValue(rowHandle, "medicalrecordid").ToString();
                 string _departmentid = gridViewMBP.GetRowCellValue(rowHandle, "departmentid").ToString();
 
-                string _sqlTimKiem = $@"select * from servicepricewhere maubenhphamid={_maubenhphamid} and vienphiid={_vienphiid} and medicalrecordid={_medicalrecordid} and departmentid={_departmentid}and vienphiid<>(select vienphiid from maubenhpham where maubenhphamid={_maubenhphamid});";
+                string _sqlTimKiem = $@"select * from serviceprice
+where maubenhphamid={_maubenhphamid} 
+and vienphiid={_vienphiid} 
+and medicalrecordid={_medicalrecordid} 
+and departmentid={_departmentid}
+and vienphiid<>(select vienphiid from maubenhpham where maubenhphamid={_maubenhphamid});";
                 DataTable _dataDVKT = condb.GetDataTable_HIS(_sqlTimKiem);
                 if (_dataDVKT.Rows.Count > 0)
                 {
@@ -164,13 +177,13 @@ where mbp1.maubenhphamdate between '{datetungay}' and '{datedenngay}' {_trangtha
                 else
                 {
                     gridControlDVKT.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         //Xu ly BN da chon
@@ -215,7 +228,7 @@ UPDATE maubenhpham_copy1 SET remark='1' WHERE maubenhphamid={_maubenhphamid};";
 
                     if (condb.ExecuteNonQuery_HIS(_updateSe) && condb.ExecuteNonQuery_HIS(_updateSER))
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                         frmthongbao.Show();
                         //Luu lai Log
                         string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Cập nhật MBP_ID=" + _maubenhphamid + " sang MBP_ID_New=" + _maubenhphamID_new + " ', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', 'TOOL_28', '" + _vienphiid + "');";
@@ -223,14 +236,14 @@ UPDATE maubenhpham_copy1 SET remark='1' WHERE maubenhphamid={_maubenhphamid};";
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THAT_BAI);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THAT_BAI);
                         frmthongbao.Show();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -247,7 +260,7 @@ UPDATE maubenhpham_copy1 SET remark='1' WHERE maubenhphamid={_maubenhphamid};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -267,7 +280,7 @@ UPDATE maubenhpham_copy1 SET remark='1' WHERE maubenhphamid={_maubenhphamid};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

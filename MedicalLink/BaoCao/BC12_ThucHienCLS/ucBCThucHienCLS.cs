@@ -24,7 +24,7 @@ namespace MedicalLink.BaoCao
     public partial class ucBCThucHienCLS : UserControl
     {
         #region Declaration
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         DataTable dataBCPTTT { get; set; }
         private bool kiemtrasuadulieu = false;
         private DataTable dataNguoiThucHien { get; set; }
@@ -70,7 +70,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LoadDanhSachButonPrint()
@@ -88,7 +88,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LoadDanhSachBaoCao()
@@ -117,7 +117,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         //private void KiemTraQuyenDuyetPTTT()
@@ -131,7 +131,7 @@ namespace MedicalLink.BaoCao
         //    }
         //    catch (Exception ex)
         //    {
-        //        MedicalLink.Base.Logging.Error(ex);
+        //        O2S_Common.Logging.LogSystem.Error(ex);
         //    }
         //}
         private void LoadControlDuyetPTT()
@@ -169,7 +169,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LoadThoiGianGioiHanDuLieu()
@@ -189,7 +189,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -202,7 +202,7 @@ namespace MedicalLink.BaoCao
             {
                 if (cboLoaiBaoCao.EditValue.ToString() != "BAOCAO_009" && chkcomboListDSPhong.Properties.Items.GetCheckedValues().Count == 0)
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_THUC_HIEN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_THUC_HIEN);
                     frmthongbao.Show();
                     return;
                 }
@@ -210,7 +210,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -262,7 +262,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -281,7 +281,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void cboLoaiBaoCao_EditValueChanged(object sender, EventArgs e)
@@ -326,7 +326,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LoadDanhMucPhongThucHien(string _loaiBC)
@@ -357,7 +357,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void bandedGridViewDataBCPTTT_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
@@ -395,7 +395,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void bandedGridViewDataBCPTTT_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
@@ -421,7 +421,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void bandedGridViewDataBCPTTT_ShowFilterPopupCheckedListBox(object sender, FilterPopupCheckedListBoxEventArgs e)
@@ -480,7 +480,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -493,11 +493,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -512,7 +512,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void tbnExportBCThanhToanCLS_Click()
@@ -524,11 +524,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -543,7 +543,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void tbnExportBCCLSTheoFilter_Click()
@@ -555,11 +555,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -575,7 +575,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void tbnExportBCThanhToanCLSTheoFilter_Click()
@@ -587,11 +587,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -607,7 +607,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -643,12 +643,12 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void tbnPrintBCCLS_Click()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -656,11 +656,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -674,13 +674,13 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
         private void tbnPrintBCThanhToanCLS_Click()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -688,11 +688,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -706,7 +706,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -719,11 +719,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -738,7 +738,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void tbnPrintBCThanhToanCLS_Filter_Click()
@@ -750,11 +750,11 @@ namespace MedicalLink.BaoCao
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = "( Từ " + tungay + " - " + denngay + " )";
                 thongTinThem.Add(reportitem);
                 ClassCommon.reportExcelDTO reportitem_khoa = new ClassCommon.reportExcelDTO();
-                reportitem_khoa.name = Base.bienTrongBaoCao.DEPARTMENTGROUPNAME;
+                reportitem_khoa.name = Base.BienTrongBaoCao.DEPARTMENTGROUPNAME;
                 reportitem_khoa.value = chkcomboListDSPhong.Text.ToUpper();
                 thongTinThem.Add(reportitem_khoa);
 
@@ -769,7 +769,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -802,25 +802,25 @@ namespace MedicalLink.BaoCao
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_DA_DUOC_GUI_YC_DUYET_PTTT);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_DA_DUOC_GUI_YC_DUYET_PTTT);
                         frmthongbao.Show();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void btnPTTT_HuyGui_Click(object sender, EventArgs e)
@@ -848,25 +848,25 @@ namespace MedicalLink.BaoCao
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DANG_GUI_YC_PTTT);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DANG_GUI_YC_PTTT);
                         frmthongbao.Show();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void btnPTTT_TiepNhan_Click(object sender, EventArgs e)
@@ -888,25 +888,25 @@ namespace MedicalLink.BaoCao
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DANG_GUI_YC_PTTT);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DANG_GUI_YC_PTTT);
                         frmthongbao.Show();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void btnPTTT_HuyTiepNhan_Click(object sender, EventArgs e)
@@ -928,25 +928,25 @@ namespace MedicalLink.BaoCao
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_TIEP_NHAN_PTTT);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_TIEP_NHAN_PTTT);
                         frmthongbao.Show();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void btnPTTT_Duyet_Click(object sender, EventArgs e)
@@ -968,25 +968,25 @@ namespace MedicalLink.BaoCao
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_TIEP_NHAN_PTTT);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_TIEP_NHAN_PTTT);
                         frmthongbao.Show();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void btnPTTT_HuyDuyet_Click(object sender, EventArgs e)
@@ -1008,25 +1008,25 @@ namespace MedicalLink.BaoCao
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                             frmthongbao.Show();
                         }
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_DUYET_PTTT);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.DICH_VU_KO_PHAI_TT_DA_DUYET_PTTT);
                         frmthongbao.Show();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -1051,13 +1051,13 @@ namespace MedicalLink.BaoCao
                 //}
                 //else
                 //{
-                //    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                //    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                 //    frmthongbao.Show();
                 //}
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

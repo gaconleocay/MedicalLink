@@ -26,7 +26,7 @@ namespace MedicalLink.Utilities.PrintPreview
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -45,7 +45,7 @@ namespace MedicalLink.Utilities.PrintPreview
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
     }

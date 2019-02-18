@@ -16,7 +16,7 @@ namespace MedicalLink.BaoCao.BC58_SuDungVatTuTheoNhom
     public partial class frmXemChiTietKhoaSuDung : Form
     {
         #region Declaration
-        private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         #endregion
 
@@ -82,13 +82,13 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname;";
                 else
                 {
                     gridControlBaoCao.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -105,7 +105,7 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname;";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -123,7 +123,7 @@ GROUP BY degp.departmentgroupid,degp.departmentgroupname;";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

@@ -15,7 +15,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
     public partial class frmSuaPhieuTamUng : Form
     {
         #region Khai bao
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private List<DepartmentgroupDTO> lstDepartGroup { get; set; }
         private SuaPhieuTamUngDTO PhieuTamUng { get; set; }
         #endregion
@@ -44,7 +44,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhMucKhoa()
@@ -63,7 +63,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LoadDanhMucNguoiSuDung()
@@ -81,7 +81,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -116,7 +116,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -130,7 +130,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
             {
                 if (cboKhoa.Text == "" || cboPhong.Text == "" || cboNguoiThu.Text == "")
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
                 else
@@ -157,7 +157,7 @@ namespace MedicalLink.ChucNang.PhieuTamUng
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

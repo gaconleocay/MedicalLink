@@ -21,7 +21,7 @@ namespace MedicalLink.ChucNang
     public partial class ucSuaPhieuTamUng : UserControl
     {
         #region Khai bao
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private List<SuaPhieuTamUngDTO> lstTamUng = new List<SuaPhieuTamUngDTO>();
         #endregion
         public ucSuaPhieuTamUng()
@@ -76,13 +76,13 @@ namespace MedicalLink.ChucNang
                 else
                 {
                     gridControlChuyenTien.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -106,7 +106,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void SuaPhieuTamUng_Click(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace MedicalLink.ChucNang
                     string trangth = Convert.ToString(gridViewChuyenTien.GetRowCellValue(rowHandle, "vienphistatus_vp").ToString());
                     if (trangth == "Đã duyệt VP")
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.BENH_NHAN_DA_DUYET_VIEN_PHI);
                         frmthongbao.Show();
                     }
                     else
@@ -139,7 +139,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

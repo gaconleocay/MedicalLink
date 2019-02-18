@@ -33,7 +33,7 @@ namespace MedicalLink.BCQLTaiChinh
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

@@ -28,7 +28,7 @@ namespace MedicalLink.ChucNang
                 if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
                     txtFilePath.Text = openFileDialogSelect.FileName;
-                    ReadExcelFile _excel = new ReadExcelFile(openFileDialogSelect.FileName);
+                    O2S_Common.Excel.ReadExcelFile _excel = new O2S_Common.Excel.ReadExcelFile(openFileDialogSelect.FileName);
                     var data = _excel.GetDataTable("SELECT DVKT_CODE, TEN_DVKT, DVKT_GIA, MA_DV_BHYT_CU, GIA_DV_CU_1, MA_DV_BHYT_MOI, GIA_DV_MOI FROM [" + worksheetName + "$]");
                     if (data != null)
                     {
@@ -124,7 +124,7 @@ namespace MedicalLink.ChucNang
                                     default:
                                         break;
                                 }
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                                 frmthongbao.Show();
                             }
                         }
@@ -136,7 +136,7 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
@@ -201,7 +201,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

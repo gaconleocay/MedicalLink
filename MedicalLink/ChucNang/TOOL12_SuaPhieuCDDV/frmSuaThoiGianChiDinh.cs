@@ -17,7 +17,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
     {
         #region Khai bao
         private SuaPhieuCDDVDTO SuaPhieuCDDV { get; set; }
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -80,7 +80,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDotDieuTri()
@@ -104,7 +104,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void EnableAndDisable()
@@ -120,7 +120,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -172,7 +172,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -194,7 +194,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void dateTGSuDung_ValueChanged(object sender, EventArgs e)
@@ -218,7 +218,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void dateTGTraKetQua_ValueChanged(object sender, EventArgs e)
@@ -236,7 +236,7 @@ namespace MedicalLink.ChucNang.XyLyMauBenhPham
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion

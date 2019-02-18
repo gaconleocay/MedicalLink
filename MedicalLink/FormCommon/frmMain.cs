@@ -18,7 +18,7 @@ namespace MedicalLink.FormCommon
         #region Khai bao
         private string serverhost = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["ServerHost"].ToString(), true);
         private string serverdb = EncryptAndDecrypt.Decrypt(ConfigurationManager.AppSettings["Database"].ToString(), true);
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         internal string lblHienThiThongTinChucNang { get; set; }
         private DialogResult HoiKhoiDongLai;
 
@@ -47,25 +47,13 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadPageMenu()
         {
             try
             {
-                //tabMenuTrangChu.Controls.Clear();
-                //MedicalLink.FormCommon.ucTrangChu ucTrangChu = new FormCommon.ucTrangChu();
-                //ucTrangChu.MyGetData = new FormCommon.ucTrangChu.GetString(HienThiTenChucNang);
-                //ucTrangChu.Dock = System.Windows.Forms.DockStyle.Fill;
-                //tabMenuTrangChu.Controls.Add(ucTrangChu);
-
-                //tabMenuChucNang.Controls.Clear();
-                //MedicalLink.FormCommon.ucChucNang ucChucNang = new FormCommon.ucChucNang();
-                //ucChucNang.MyGetData = new FormCommon.ucChucNang.GetString(HienThiTenChucNang);
-                //ucChucNang.Dock = System.Windows.Forms.DockStyle.Fill;
-                //tabMenuChucNang.Controls.Add(ucChucNang);
-
                 //trang chu
                 tabMenuTrangChu.Controls.Clear();
                 MedicalLink.FormCommon.ucTrangChu _ucTrangChu = new FormCommon.ucTrangChu();
@@ -96,12 +84,21 @@ namespace MedicalLink.FormCommon
                 _ucDashboard.MyGetData = new FormCommon.ucDashboard.GetString(HienThiTenChucNang);
                 _ucDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
                 tabMenuDashboard.Controls.Add(_ucDashboard);
+                //dashboard
+                tabMenuQLDuoc.Controls.Clear();
+                MedicalLink.FormCommon.ucQLDuoc ucQLDuoc = new FormCommon.ucQLDuoc();
+                ucQLDuoc.MyGetData = new FormCommon.ucQLDuoc.GetString(HienThiTenChucNang);
+                ucQLDuoc.Dock = System.Windows.Forms.DockStyle.Fill;
+                tabMenuQLDuoc.Controls.Add(ucQLDuoc);
+
+
+
 
                 EnableAndDisableChucNang(false);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadThongTinVePhanMem_Version()
@@ -117,7 +114,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -143,7 +140,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -160,7 +157,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -170,7 +167,7 @@ namespace MedicalLink.FormCommon
         {
             try
             {
-                //MedicalLink.Base.Logging.Warn("Kiểm tra phân quyền");
+                //O2S_Common.Logging.LogSystem.Warn("Kiểm tra phân quyền");
                 //Kiểm tra phân quyền
                 if (SessionLogin.SessionUsercode == MedicalLink.Base.KeyTrongPhanMem.AdminUser_key)
                 {
@@ -191,7 +188,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -208,7 +205,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -232,7 +229,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -252,7 +249,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         //delegate
@@ -265,7 +262,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -300,7 +297,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

@@ -18,7 +18,7 @@ namespace MedicalLink.Dashboard
     public partial class ucBCTongHopDoanhThuKhoa : UserControl
     {
         #region Declaration
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         DataTable dataBaoCao { get; set; }
         #endregion
 
@@ -47,7 +47,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -81,7 +81,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -104,7 +104,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -127,7 +127,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -162,7 +162,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -251,7 +251,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -271,7 +271,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void cboTieuChi_SelectedIndexChanged(object sender, EventArgs e)
@@ -297,7 +297,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

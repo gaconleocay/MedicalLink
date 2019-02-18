@@ -48,7 +48,7 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -61,7 +61,7 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
             {
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = this.tungaydenngay;
                 thongTinThem.Add(reportitem);
 
@@ -71,7 +71,7 @@ namespace MedicalLink.Dashboard.BCTongHopDoanhThuKhoa
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

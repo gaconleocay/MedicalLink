@@ -68,7 +68,7 @@ namespace MedicalLink.BaoCao.BC01DSBNSDDV
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -87,7 +87,7 @@ namespace MedicalLink.BaoCao.BC01DSBNSDDV
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

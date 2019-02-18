@@ -15,7 +15,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
     public partial class ucDanhMucDungChung : UserControl
     {
         #region Khai bao
-        ConnectDatabase condb = new ConnectDatabase();
+       private  DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private DataView loaiDanhMuc { get; set; } 
         private long selecttools_othertypelistid { get; set; }
         private long selecttools_otherlistid { get; set; }
@@ -37,7 +37,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_ControlDefault()
@@ -60,7 +60,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDS_LoaiDanhMuc()
@@ -78,7 +78,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDS_DanhMuc(long othertypelistid)
@@ -99,7 +99,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -133,7 +133,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnLoaiDM_Luu_Click(object sender, EventArgs e)
@@ -148,7 +148,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         DataView dataDanhSach = new DataView(condb.GetDataTable_MeL(kiemtratontai));
                         if (dataDanhSach != null && dataDanhSach.Count > 0)
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_SU_DUNG_MA_NAY);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_SU_DUNG_MA_NAY);
                             frmthongbao.Show();
                         }
                         else //them moi
@@ -156,7 +156,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             string insert = "INSERT INTO tools_othertypelist(tools_othertypelistcode, tools_othertypelistname,tools_othertypelistnote) VALUES ('" + txtLoaiDM_Ma.Text.Trim().ToUpper() + "', '" + txtLoaiDM_Ten.Text.Trim() + "', '" + txtLoaiDM_GhiChu.Text.Trim() + "'); ";
                             if (condb.ExecuteNonQuery_MeL(insert))
                             {
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                                 frmthongbao.Show();
                             }
                         }
@@ -166,7 +166,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         string insert = "UPDATE tools_othertypelist SET tools_othertypelistname='" + txtLoaiDM_Ten.Text.Trim() + "', tools_othertypelistnote='" + txtLoaiDM_GhiChu.Text.Trim() + "' WHERE tools_othertypelistid=" + this.selecttools_othertypelistid + "; ";
                         if (condb.ExecuteNonQuery_MeL(insert))
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                             frmthongbao.Show();
                         }
                     }
@@ -174,13 +174,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void gridControlLoaiDM_Click(object sender, EventArgs e)
@@ -216,7 +216,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -250,7 +250,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnDM_Luu_Click(object sender, EventArgs e)
@@ -265,7 +265,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         DataView dataDanhSach = new DataView(condb.GetDataTable_MeL(kiemtratontai));
                         if (dataDanhSach != null && dataDanhSach.Count > 0)
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_SU_DUNG_MA_NAY);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_SU_DUNG_MA_NAY);
                             frmthongbao.Show();
                         }
                         else //them moi
@@ -273,7 +273,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                             string insert = "INSERT INTO tools_otherlist(tools_otherlistcode, tools_otherlistname, tools_othertypelistid, tools_otherlistvalue) VALUES ('" + txtDM_Ma.Text.Trim().ToUpper() + "', '" + txtDM_Ten.Text.Trim().Replace("'", "''") + "','" + cboDM_LoaiDMTen.EditValue.ToString() + "', '" + txtDM_GiaTri.Text.Trim().Replace("'","''") + "'); ";
                             if (condb.ExecuteNonQuery_MeL(insert))
                             {
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                                 frmthongbao.Show();
                             }
                         }
@@ -283,7 +283,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         string insert = "UPDATE tools_otherlist SET tools_otherlistname='" + txtDM_Ten.Text.Trim().Replace("'","''") + "', tools_otherlistvalue='" + txtDM_GiaTri.Text.Trim().Replace("'", "''") + "' WHERE tools_otherlistid=" + this.selecttools_otherlistid + "; ";
                         if (condb.ExecuteNonQuery_MeL(insert))
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                             frmthongbao.Show();
                         }
                     }
@@ -291,13 +291,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void gridControlDM_Click(object sender, EventArgs e)
@@ -323,7 +323,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -343,7 +343,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion

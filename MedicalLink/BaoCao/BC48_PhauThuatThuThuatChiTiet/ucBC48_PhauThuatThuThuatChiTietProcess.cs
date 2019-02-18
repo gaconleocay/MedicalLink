@@ -22,7 +22,7 @@ namespace MedicalLink.BaoCao
         #region Lay du lieu va xu ly hien thi du lieu
         internal void LayDuLieuBaoCao_ChayMoi()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string sql_laydulieu = "";
@@ -333,13 +333,13 @@ INNER JOIN (select bhytid,bhytcode from bhyt where 1=1 {_tieuchi_bhyt}) bh on bh
                 else
                 {
                     gridControlDataBCPTTT.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -536,7 +536,7 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return result;
         }
@@ -550,7 +550,7 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return result;
         }
@@ -621,7 +621,7 @@ FROM (select vienphiid from vienphi where 1=1{_tieuchi_vp} {_doituongbenhnhanid}
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

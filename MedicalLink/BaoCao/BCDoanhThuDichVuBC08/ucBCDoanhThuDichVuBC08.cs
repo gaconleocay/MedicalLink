@@ -22,7 +22,7 @@ namespace MedicalLink.BaoCao
 {
     public partial class ucBCDoanhThuDichVuBC08 : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         DataTable dataBaoCao { get; set; }
         public ucBCDoanhThuDichVuBC08()
         {
@@ -70,7 +70,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -78,7 +78,7 @@ namespace MedicalLink.BaoCao
         #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 this.dataBaoCao = new System.Data.DataTable();
@@ -115,7 +115,7 @@ namespace MedicalLink.BaoCao
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_NHOM_DICH_VU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_NHOM_DICH_VU);
                     frmthongbao.Show();
                 }
                 if (_servicegrouptype.Contains("1"))
@@ -156,13 +156,13 @@ namespace MedicalLink.BaoCao
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -212,7 +212,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void CreateNode_NhomDichVu(List<BCDoanhThuDichVuBC08DTO> _lstData_Group, string servicegrouptype_code, string servicegrouptype_name)
@@ -227,7 +227,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void CreateChildNodeServiceType(TreeListNode rootNode, string servicegrouptype_code, List<BCDoanhThuDichVuBC08DTO> lsttools_serviceref_hienthi)
@@ -260,7 +260,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -272,7 +272,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
         {
             try
             {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
 
                 string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -281,7 +281,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 thongTinThem.Add(reportitem);
 
@@ -296,14 +296,14 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
             //DataTable _dataBaoCao = TraverseTreeView(treeListDSDichVu);
             //List<BCDoanhThuDichVuBC08DTO> _list = TreeListToList(treeListDSDichVu);
             //try
             //{
-            //    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            //    SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             //    string tungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
             //    string denngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
             //    string tungaydenngay = "( Từ " + tungay + " - " + denngay + " )";
@@ -325,7 +325,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             //}
             //catch (Exception ex)
             //{
-            //    MedicalLink.Base.Logging.Warn(ex);
+            //    O2S_Common.Logging.LogSystem.Warn(ex);
             //}
             //SplashScreenManager.CloseForm();
         }
@@ -400,7 +400,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             return result;
         }
@@ -409,7 +409,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
         {
             try
             {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
 
                 string tungay = System.DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string denngay = System.DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -418,7 +418,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 thongTinThem.Add(reportitem);
 
@@ -432,7 +432,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -453,7 +453,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -480,7 +480,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void radioXemChiTiet_CheckedChanged(object sender, EventArgs e)
@@ -504,7 +504,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void cboTrangThaiVienPhi_EditValueChanged(object sender, EventArgs e)
@@ -524,7 +524,7 @@ new object[] { "0", servicegrouptype_name, servicegrouptype_code, servicegroupty
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

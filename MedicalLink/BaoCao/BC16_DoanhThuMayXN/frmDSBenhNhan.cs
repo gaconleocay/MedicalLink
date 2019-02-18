@@ -16,7 +16,7 @@ namespace MedicalLink.BaoCao.BC16_DoanhThuMayXN
     public partial class frmDSBenhNhan : Form
     {
         #region Khai bao
-        private Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private DoanhThuTheoMayXNFilterDTO filter { get; set; }
 
         #endregion
@@ -36,7 +36,7 @@ namespace MedicalLink.BaoCao.BC16_DoanhThuMayXN
         #region Load
         private void frmDSBenhNhan_Load(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string _servicepricecode = " and servicepricecode='" + this.filter.servicepricecode + "' ";
@@ -68,7 +68,7 @@ namespace MedicalLink.BaoCao.BC16_DoanhThuMayXN
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -90,7 +90,7 @@ namespace MedicalLink.BaoCao.BC16_DoanhThuMayXN
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -110,7 +110,7 @@ namespace MedicalLink.BaoCao.BC16_DoanhThuMayXN
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

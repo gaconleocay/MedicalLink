@@ -31,7 +31,7 @@ namespace MedicalLink.Dashboard.BCBenhNhanNoiTru
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -47,7 +47,7 @@ namespace MedicalLink.Dashboard.BCBenhNhanNoiTru
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

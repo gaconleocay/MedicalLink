@@ -20,7 +20,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
 {
     public partial class ucDanhMucDichVu : UserControl
     {
-        ConnectDatabase condb = new ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         List<ToolsServicerefDTO> lsttoolsserviceref { get; set; }
         long tools_servicerefidCurrent { get; set; }
         List<ToolsOtherListDTO> lstDSSoXetNghiem { get; set; }
@@ -43,7 +43,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachSoXetNghiem()
@@ -61,7 +61,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -96,7 +96,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -128,7 +128,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -154,7 +154,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -168,13 +168,13 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
         private void GetDataDanhMucDichVu()
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string servicelock = " and servicelock=0";
@@ -235,7 +235,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -251,7 +251,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -266,7 +266,7 @@ parentForRootNodes, null);
                     if (condb.ExecuteNonQuery_MeL(updateservicepriceref))
                     {
                         //MessageBox.Show("Thiết lập sổ Xét nghiệm thành công dịch vụ mã [" + txtservicepricecode.Text.Trim() + "] !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                         frmthongbao.Show();
                         btnSua.Enabled = true;
                         btnLuu.Enabled = false;
@@ -277,13 +277,13 @@ parentForRootNodes, null);
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -311,7 +311,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void treeListDSDichVu_Click(object sender, EventArgs e)
@@ -395,12 +395,12 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnCapNhatDanhSach_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 int dem_insert = 0;
@@ -446,7 +446,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
             GetDataDanhMucDichVu();
@@ -483,7 +483,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void ThietLapSoXetNghiem_Click(object sender, EventArgs e)
@@ -507,12 +507,12 @@ parentForRootNodes, null);
                     }
                     condb.ExecuteNonQuery_MeL(updateservicepriceref);
                 }
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                 GetDataDanhMucDichVu();
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -537,7 +537,7 @@ parentForRootNodes, null);
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion

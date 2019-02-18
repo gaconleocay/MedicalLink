@@ -11,7 +11,7 @@ namespace MedicalLink.Base
 {
     public static class CheckPermission
     {
-        static MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        static DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         public static bool ChkPerModule(string percode)
         {
             //string en_percode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(percode, true);
@@ -33,7 +33,7 @@ namespace MedicalLink.Base
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return result;
         }
@@ -46,7 +46,7 @@ namespace MedicalLink.Base
             {
                 if (SessionLogin.SessionUsercode == KeyTrongPhanMem.AdminUser_key)
                 {
-                    lstPhanQuyen = Base.listChucNang.getDanhSachChucNang();
+                    lstPhanQuyen = Base.ListChucNang.getDanhSachChucNang();
                     foreach (var item in lstPhanQuyen)
                     {
                         item.permissioncheck = true;
@@ -72,7 +72,7 @@ namespace MedicalLink.Base
                         }
                         foreach (var item_chucnang in lstPhanQuyen)
                         {
-                            var chucnang = Base.listChucNang.getDanhSachChucNang().Where(o => o.permissioncode == item_chucnang.permissioncode).SingleOrDefault();
+                            var chucnang = Base.ListChucNang.getDanhSachChucNang().Where(o => o.permissioncode == item_chucnang.permissioncode).SingleOrDefault();
                             if (chucnang != null)
                             {
                                 item_chucnang.permissionname = chucnang.permissionname;
@@ -86,7 +86,7 @@ namespace MedicalLink.Base
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return lstPhanQuyen;
         }
@@ -127,7 +127,7 @@ namespace MedicalLink.Base
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return lstPhanQuyenKhoaPhong;
         }
@@ -168,7 +168,7 @@ namespace MedicalLink.Base
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return lstPhanQuyen_KhoThuoc;
         }
@@ -210,7 +210,7 @@ namespace MedicalLink.Base
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return lstPhanQuyen_PhongLuu;
         }

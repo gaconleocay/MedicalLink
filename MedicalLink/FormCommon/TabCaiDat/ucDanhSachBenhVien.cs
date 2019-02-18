@@ -11,12 +11,13 @@ using DevExpress.XtraGrid.Views.Grid;
 using MedicalLink.ClassCommon;
 using MedicalLink.Base;
 using DevExpress.XtraSplashScreen;
+using Aspose.Cells;
 
 namespace MedicalLink.FormCommon.TabCaiDat
 {
     public partial class ucDanhSachBenhVien : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
        private string benhvienid = "";
         private string worksheetName = "tools_csyt";
         #region Load
@@ -34,7 +35,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -51,7 +52,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -72,7 +73,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -92,12 +93,12 @@ namespace MedicalLink.FormCommon.TabCaiDat
         {
             try
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(tenThongBao);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(tenThongBao);
                 frmthongbao.Show();
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -116,7 +117,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -146,7 +147,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -166,7 +167,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -176,8 +177,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
             {
                 if (openFileDialogSelect.ShowDialog() == DialogResult.OK)
                 {
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
-                    MedicalLink.Base.ReadExcelFile _excel = new MedicalLink.Base.ReadExcelFile(openFileDialogSelect.FileName);
+                    SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
+                    //Workbook workbook = new Workbook(openFileDialogSelect.FileName);
+                    //Worksheet worksheet = workbook.Worksheets[0];
+                    //DataTable _dataUser_Import = worksheet.Cells.ExportDataTable(0, 0, worksheet.Cells.MaxDataRow + 1, worksheet.Cells.MaxDataColumn + 1, true);
+                    //_dataUser_Import.TableName = "DATA";
+
+                    O2S_Common.Excel.ReadExcelFile _excel = new O2S_Common.Excel.ReadExcelFile(openFileDialogSelect.FileName);
                     var data = _excel.GetDataTable("SELECT BENHVIENKCBBD, BENHVIENCODE, BENHVIENNAME, BENHVIENADDRESS FROM [" + worksheetName + "$]");
                     if (data != null)
                     {
@@ -230,7 +236,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
     }

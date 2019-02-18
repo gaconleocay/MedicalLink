@@ -16,7 +16,7 @@ namespace MedicalLink.BaoCao.BC57_KeThuocVatTuTruocNgay
     public partial class frmXemChiTietDonThuocVatTu : Form
     {
         #region Declaration
-        private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         #endregion
 
         public frmXemChiTietDonThuocVatTu()
@@ -32,7 +32,7 @@ namespace MedicalLink.BaoCao.BC57_KeThuocVatTuTruocNgay
 
         private void LoadDanhSachThuocVatTuChiTiet(string _lstKhoaChonLayBC, string _maubenhphamgrouptype)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string _tieuchi_hsba = "";// and hosobenhandate>='2014-01-01 00:00:00' ";
@@ -82,13 +82,13 @@ FROM
                 else
                 {
                     gridControlBNDetail.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -107,7 +107,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void gridViewBNDetail_RowStyle(object sender, RowStyleEventArgs e)
@@ -132,7 +132,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -148,7 +148,7 @@ FROM
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
     }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MedicalLink</RootNamespace>
     <AssemblyName>MedicalLink</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -155,6 +155,12 @@
     </Reference>
     <Reference Include="Npgsql">
       <HintPath>Library\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="O2S_Common">
+      <HintPath>..\..\..\1_Library\Lib_Debug\O2S_Common.dll</HintPath>
+    </Reference>
+    <Reference Include="O2S_License">
+      <HintPath>..\..\..\1_Library\Lib_Debug\O2S_License.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore">
       <Private>True</Private>
@@ -581,8 +587,9 @@
     <Compile Include="BaoCao\BC16_DoanhThuMayXN\ucBC16_DoanhThuTheoMayXN.Designer.cs">
       <DependentUpon>ucBC16_DoanhThuTheoMayXN.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\bienTrongBaoCao.cs" />
-    <Compile Include="Base\ConnectDatabase.cs" />
+    <Compile Include="Base\BienTrongBaoCao.cs" />
+    <Compile Include="BUS\LoadDataSystems.cs" />
+    <Compile Include="DAL\ConnectDatabase.cs" />
     <Compile Include="Base\EncryptAndDecrypt.cs" />
     <Compile Include="Base\KeyTrongPhanMem.cs" />
     <Compile Include="BCQLTaiChinh\BC120_ThuThuatDVKTYC.cs">
@@ -730,10 +737,10 @@
     <Compile Include="ChucNang\ImportDMThuocVatTu\ucImportDMThuocVatTu.Designer.cs">
       <DependentUpon>ucImportDMThuocVatTu.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.cs">
+    <Compile Include="ChucNang\Tool26_SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.Designer.cs">
+    <Compile Include="ChucNang\Tool26_SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.Designer.cs">
       <DependentUpon>ucSuaHanSuDungThuocVatTu.cs</DependentUpon>
     </Compile>
     <Compile Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.cs">
@@ -901,7 +908,6 @@
     <Compile Include="ClassCommon\MoBenhAnTimKiemDTO.cs" />
     <Compile Include="ClassCommon\reportDTO.cs" />
     <Compile Include="Base\SessionLogin.cs" />
-    <Compile Include="Base\UtilsTable.cs" />
     <Compile Include="BaoCao\BaoCaoBHYT21\ucBBHYT21Chenh.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1225,11 +1231,41 @@
     <Compile Include="Dashboard\DBDoanhThuKhoa\ucDashboardDoanhThuTungKhoaProcess.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DatabaseProcess\CauLenhSQL_CSDL.cs" />
-    <Compile Include="DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
-    <Compile Include="DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
-    <Compile Include="DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
-    <Compile Include="DatabaseProcess\TinhMucHuongBHYT.cs" />
+    <Compile Include="FormCommon\ucQLDuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormCommon\ucQLDuoc.Designer.cs">
+      <DependentUpon>ucQLDuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLDuoc\DM_ThuocDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLDuoc\DM_ThuocDetail.Designer.cs">
+      <DependentUpon>DM_ThuocDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLDuoc\DM_Thuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QLDuoc\DM_Thuoc.Designer.cs">
+      <DependentUpon>DM_Thuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLDuoc\DM_KhoThuocVT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="QLDuoc\DM_KhoThuocVT.Designer.cs">
+      <DependentUpon>DM_KhoThuocVT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLDuoc\DM_KhoThuocVTDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLDuoc\DM_KhoThuocVTDetail.Designer.cs">
+      <DependentUpon>DM_KhoThuocVTDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\DatabaseProcess\CauLenhSQL_CSDL.cs" />
+    <Compile Include="Utilities\DatabaseProcess\FilterDTO\BCDashboardTongHopToanVienFilter.cs" />
+    <Compile Include="Utilities\DatabaseProcess\FilterDTO\BCDashboardBenhNhanNgoaiTruFilter.cs" />
+    <Compile Include="Utilities\DatabaseProcess\FilterDTO\DangDTRaVienChuaDaTTFilterDTO.cs" />
+    <Compile Include="Utilities\DatabaseProcess\TinhMucHuongBHYT.cs" />
     <Compile Include="FormCommon\TabCaiDat\ucLogSuKien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1272,7 +1308,7 @@
     <Compile Include="FormCommon\TabTrangChu\frmThayPass.Designer.cs">
       <DependentUpon>frmThayPass.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCommon\KetNoiSCDLProcess.cs" />
+    <Compile Include="DAL\KetNoiSCDLProcess.cs" />
     <Compile Include="FormCommon\TabTrangChu\ucSettingDatabase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1302,9 +1338,6 @@
     </Compile>
     <Compile Include="FormCommon\ucDashboard.Designer.cs">
       <DependentUpon>ucDashboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormCommon\ucTrangChu_TabCaiDat.cs">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GlobalStore.cs" />
     <Compile Include="FormCommon\TabCaiDat\ucCauHinhHeThong.cs">
@@ -1402,16 +1435,13 @@
     <Compile Include="ClassCommon\classBCBHYT21ChenhNew.cs" />
     <Compile Include="ClassCommon\classBCChiDinhPTTT.cs" />
     <Compile Include="ClassCommon\classBCChiDinhPTTT_User.cs" />
-    <Compile Include="Base\CheckInputString.cs" />
     <Compile Include="ClassCommon\classDanhMucPhong.cs" />
     <Compile Include="ClassCommon\classDMDVKTBHYTChenh.cs" />
     <Compile Include="ClassCommon\classDMDVKTBHYTChenhNew.cs" />
     <Compile Include="ClassCommon\classDoiTuongThanhToan.cs" />
     <Compile Include="ClassCommon\classPermission.cs" />
     <Compile Include="ClassCommon\classVienPhiBHYT.cs" />
-    <Compile Include="Base\listChucNang.cs" />
-    <Compile Include="Base\Logging.cs" />
-    <Compile Include="Base\ReadExcelFile.cs" />
+    <Compile Include="Base\ListChucNang.cs" />
     <Compile Include="Base\ThongBaoLable.cs" />
     <Compile Include="FormCommon\DangKyBanQuyen\ClassEncoding.cs" />
     <Compile Include="FormCommon\DangKyBanQuyen\HardwareInfo.cs" />
@@ -1460,29 +1490,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ThongBao\frmThongBao.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ThongBao\frmThongBao.Designer.cs">
-      <DependentUpon>frmThongBao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ThongBao\SplashScreen1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ThongBao\SplashScreen1.Designer.cs">
-      <DependentUpon>SplashScreen1.cs</DependentUpon>
-    </Compile>
     <Compile Include="ThongBao\WaitForm_MBA.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ThongBao\WaitForm_MBA.Designer.cs">
       <DependentUpon>WaitForm_MBA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ThongBao\WaitForm1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ThongBao\WaitForm1.Designer.cs">
-      <DependentUpon>WaitForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\BandGridView\CheckMarkSelection.cs" />
     <Compile Include="Utilities\Common.Excel\ExcelExport.cs" />
@@ -1741,7 +1753,7 @@
     <EmbeddedResource Include="ChucNang\ImportDMThuocVatTu\ucImportDMThuocVatTu.resx">
       <DependentUpon>ucImportDMThuocVatTu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChucNang\SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.resx">
+    <EmbeddedResource Include="ChucNang\Tool26_SuaHanSuDungThuocVatTu\ucSuaHanSuDungThuocVatTu.resx">
       <DependentUpon>ucSuaHanSuDungThuocVatTu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChucNang\CapNhatThangLuongCoBan\ucCapNhatThangLuongCoBan.resx">
@@ -1936,6 +1948,9 @@
     <EmbeddedResource Include="FormCommon\ucBaoCao.resx">
       <DependentUpon>ucBaoCao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCommon\ucQLDuoc.resx">
+      <DependentUpon>ucQLDuoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCommon\ucQLTaiChinh.resx">
       <DependentUpon>ucQLTaiChinh.cs</DependentUpon>
     </EmbeddedResource>
@@ -2017,45 +2032,25 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ThongBao\frmThongBao.resx">
-      <DependentUpon>frmThongBao.cs</DependentUpon>
+    <EmbeddedResource Include="QLDuoc\DM_ThuocDetail.resx">
+      <DependentUpon>DM_ThuocDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ThongBao\SplashScreen1.resx">
-      <DependentUpon>SplashScreen1.cs</DependentUpon>
+    <EmbeddedResource Include="QLDuoc\DM_Thuoc.resx">
+      <DependentUpon>DM_Thuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLDuoc\DM_KhoThuocVT.resx">
+      <DependentUpon>DM_KhoThuocVT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QLDuoc\DM_KhoThuocVTDetail.resx">
+      <DependentUpon>DM_KhoThuocVTDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThongBao\WaitForm_MBA.resx">
       <DependentUpon>WaitForm_MBA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ThongBao\WaitForm1.resx">
-      <DependentUpon>WaitForm1.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Documents\Huongdansudung.docx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documents\SQL_update_DB moi.sql" />
-    <Content Include="Documents\Tools_DMDVChenh_New.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documents\Tools_DMDVTuongDuong.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documents\Tools_DMDV_chuan.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documents\Tools_DMThuoc_chuan.xls">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documents\ToolsDMDV_v2_chuan.xlsx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="AppSettings.config" />
-    <None Include="Documents\Tools_tblCoSoYTe.xls" />
-    <None Include="Documents\Tools_tblNhanVien.xlsx" />
-    <None Include="Library\Aspose.Cells.lic" />
-    <None Include="Library\Aspose.Words.lic" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -2066,31 +2061,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Images\excel-3-16.png" />
-    <None Include="Images\excel-3-24.png" />
-    <None Include="Images\excel-3-32.png" />
-    <None Include="Images\add-list-16.png" />
-    <None Include="Images\question-mark-16.png" />
-    <None Include="Images\check-mark-24.png" />
-    <None Include="Images\printer-24.png" />
-    <None Include="Images\search-3-24.png" />
-    <None Include="Images\printer-16.png" />
-    <None Include="Images\check-mark-16.png" />
-    <None Include="Images\undo-2-16.png" />
-    <None Include="Images\x-mark-16.png" />
-    <None Include="Images\edit-5-16.png" />
-    <None Include="Images\search-3-16.png" />
-    <None Include="Images\group-16.png" />
-    <None Include="Images\add-file-16.png" />
-    <Content Include="Library\Aspose.Cells.dll" />
-    <Content Include="Library\Aspose.Words.dll" />
-    <Content Include="Library\AutoMapper.dll" />
-    <Content Include="Library\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="Library\log4net.dll" />
-    <Content Include="Library\Microsoft.Office.Interop.Excel.dll" />
-    <Content Include="Library\Microsoft.Office.Interop.Word.dll" />
-    <Content Include="Library\Mono.Security.dll" />
-    <Content Include="Library\Npgsql.dll" />
     <Content Include="Picture\Logo_benhvien.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -2433,17 +2403,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Documents\Huong dan.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Images\edit-2-16.png" />
-    <None Include="Images\save-16.png" />
-    <None Include="Images\recurring-appointment-16.png" />
-    <None Include="Images\recurring-appointment-32.png" />
-    <None Include="Images\ok-16.png" />
-    <None Include="Images\Logo_VT_1.png" />
     <Content Include="Logo_VT_1.ico" />
-    <None Include="Images\arrow-32-16.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -2466,11 +2426,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MedicalLink.Model\MedicalLink.Model.csproj">
+      <Project>{963500d6-54c8-42b7-8985-4e752c4b2888}</Project>
+      <Name>MedicalLink.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MedicalLinkLauncher\MedicalLinkLauncher.csproj">
       <Project>{C8925424-7516-456D-AAE3-D23F504E4055}</Project>
       <Name>MedicalLinkLauncher</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -19,7 +19,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
         public string serveruser = ConfigurationManager.AppSettings["Username"].ToString();
         public string serverpass = ConfigurationManager.AppSettings["Password"].ToString();
         public string serverdb = ConfigurationManager.AppSettings["Database"].ToString();
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         public frmThayPass()
         {
@@ -60,7 +60,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 }
                 catch (Exception ex)
                 {
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
 
             }

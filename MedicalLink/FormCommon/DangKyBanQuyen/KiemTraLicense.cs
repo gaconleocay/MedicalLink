@@ -11,7 +11,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
 {
     internal static class KiemTraLicense
     {
-        static MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        static DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         //private static string license_keydb = "";
 
         internal static void KiemTraLicenseHopLe()
@@ -48,7 +48,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
                     }
                     catch (Exception ex)
                     {
-                        Base.Logging.Error(ex);
+                         O2S_Common.Logging.LogSystem.Error(ex);
                     }
 
                     if (!String.IsNullOrEmpty(makichhoat_giaima))
@@ -80,7 +80,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn("Kiem tra license " + ex.ToString());
+                O2S_Common.Logging.LogSystem.Warn("Kiem tra license " + ex.ToString());
             }
         }
 
@@ -98,7 +98,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn("Lay thong tin ma database " + ex.ToString());
+                O2S_Common.Logging.LogSystem.Warn("Lay thong tin ma database " + ex.ToString());
             }
             return MaDatabase;
         }
@@ -156,7 +156,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn("Kiem tra license " + ex.ToString());
+                O2S_Common.Logging.LogSystem.Warn("Kiem tra license " + ex.ToString());
             }
             return thoiGianSuDung;
         }

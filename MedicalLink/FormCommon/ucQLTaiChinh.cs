@@ -16,7 +16,7 @@ namespace MedicalLink.FormCommon
     public partial class ucQLTaiChinh : UserControl
     {
         #region Declaration
-        private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         //private string CurrentTabPage { get; set; }
         //private int SelectedTabPageIndex { get; set; }
         // internal frmMain frmMain;
@@ -41,7 +41,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -53,7 +53,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -75,7 +75,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         internal void xtraTabControlChucNang_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
@@ -96,7 +96,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -115,7 +115,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void gridViewDSBaoCao_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
@@ -129,7 +129,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -156,7 +156,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion

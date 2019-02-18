@@ -29,7 +29,7 @@ namespace MedicalLink.ChucNang.TOOL27_KiemTraKetNoiPostgre
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -45,7 +45,7 @@ namespace MedicalLink.ChucNang.TOOL27_KiemTraKetNoiPostgre
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
     }

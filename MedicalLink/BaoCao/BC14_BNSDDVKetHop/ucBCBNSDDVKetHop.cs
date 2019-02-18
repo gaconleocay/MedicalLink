@@ -19,7 +19,7 @@ namespace MedicalLink.BaoCao
 {
     public partial class ucBCBNSDDVKetHop : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private DataTable dataDSBenhNhan { get; set; }
         private List<classMedicineRef> lstMedicine { get; set; }
 
@@ -45,7 +45,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         // Hiển thị Text Hint Mã dịch vụ
@@ -89,7 +89,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachBaoCaoXuatExcel()
@@ -110,21 +110,21 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
         //Sự kiện tìm kiếm
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             string[] dsdv_temp;
             string innerjoin_serf = "";
             string tieuchi, loaivienphiid, doituongbenhnhanid;
 
             if ((mmeMaDV.Text == "Nhập mã dịch vụ/thuốc cách nhau bởi dấu phẩy (,). Tìm thuốc theo tất cả các lô định dạng: AAA*") || (cbbTieuChi.Text == "") || (cbbLoaiBA.Text == "") || (chkBHYT.Checked == false && chkVP.Checked == false))
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                 frmthongbao.Show();
             }
             else
@@ -220,13 +220,13 @@ namespace MedicalLink.BaoCao
                     gridControlDSBenhNhan.DataSource = dataDSBenhNhan;
                     if (gridViewDSBenhNhan.RowCount == 0)
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                     }
                 }
                 catch (Exception ex)
                 {
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             SplashScreenManager.CloseForm();
@@ -256,13 +256,13 @@ namespace MedicalLink.BaoCao
         //        }
         //        else
         //        {
-        //            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+        //            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
         //            frmthongbao.Show();
         //        }
         //    }
         //    catch (Exception ex)
         //    {
-        //        MedicalLink.Base.Logging.Warn(ex);
+        //        O2S_Common.Logging.LogSystem.Warn(ex);
         //    }
         //}
 
@@ -279,7 +279,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -299,11 +299,11 @@ namespace MedicalLink.BaoCao
 
                         List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                         ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                        reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                        reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                         reportitem.value = tungaydenngay;
                         thongTinThem.Add(reportitem);
                         ClassCommon.reportExcelDTO reportitem_DV = new ClassCommon.reportExcelDTO();
-                        reportitem_DV.name = Base.bienTrongBaoCao.LST_DICHVU;
+                        reportitem_DV.name = Base.BienTrongBaoCao.LST_DICHVU;
                         reportitem_DV.value = mmeMaDV.Text;
                         thongTinThem.Add(reportitem_DV);
 
@@ -313,7 +313,7 @@ namespace MedicalLink.BaoCao
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                         frmthongbao.Show();
                     }
                 }
@@ -354,7 +354,7 @@ namespace MedicalLink.BaoCao
                                         default:
                                             break;
                                     }
-                                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                                     frmthongbao.Show();
                                 }
                             }
@@ -366,14 +366,14 @@ namespace MedicalLink.BaoCao
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                         frmthongbao.Show();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -389,7 +389,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

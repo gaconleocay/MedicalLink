@@ -15,7 +15,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
     public partial class ucSettingLicense : UserControl
     {
         private string MaDatabase = String.Empty;
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         public ucSettingLicense()
         {
@@ -31,7 +31,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void HienThiThongTinVeLicense()
@@ -53,7 +53,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadFormTaoLicense()
@@ -77,7 +77,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -92,14 +92,14 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chưa nhập mã kích hoạt!");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Chưa nhập mã kích hoạt!");
                     frmthongbao.Show();
                     lblThoiGianSuDung.Text = "none";
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
 
         }
@@ -111,18 +111,18 @@ namespace MedicalLink.FormCommon.TabTrangChu
                 string update_license = "UPDATE tools_license SET licensekey='" + txtKeyKichHoat.Text.Trim() + "' WHERE datakey='" + MaDatabase + "' ;";
                 if (condb.ExecuteNonQuery_MeL(update_license))
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Lưu mã kích hoạt thành công!");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Lưu mã kích hoạt thành công!");
                     frmthongbao.Show();
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CO_LOI_XAY_RA);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnLicenseCopy_Click(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -163,7 +163,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -176,7 +176,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -195,7 +195,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -217,7 +217,7 @@ namespace MedicalLink.FormCommon.TabTrangChu
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

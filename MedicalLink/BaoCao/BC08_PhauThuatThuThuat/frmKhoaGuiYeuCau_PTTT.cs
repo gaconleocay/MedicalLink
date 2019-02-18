@@ -15,7 +15,7 @@ namespace MedicalLink.BaoCao.BCPhauThuatThuThuat
 {
     public partial class frmKhoaGuiYeuCau_PTTT : Form
     {
-        private ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         public frmKhoaGuiYeuCau_PTTT()
         {
@@ -38,7 +38,7 @@ namespace MedicalLink.BaoCao.BCPhauThuatThuThuat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -58,7 +58,7 @@ namespace MedicalLink.BaoCao.BCPhauThuatThuThuat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -90,7 +90,7 @@ namespace MedicalLink.BaoCao.BCPhauThuatThuThuat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -104,7 +104,7 @@ namespace MedicalLink.BaoCao.BCPhauThuatThuThuat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -118,7 +118,7 @@ namespace MedicalLink.BaoCao.BCPhauThuatThuThuat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
     }

@@ -19,7 +19,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
     public partial class ucChiPhiXetNghiem : UserControl
     {
         #region Khai bao
-        private ConnectDatabase condb = new ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private List<ClassCommon.MayXetNghiemKhuVucDTO> lstMayXNKhuVuc { get; set; }
         private List<ClassCommon.DVXetNghiemChiPhiDTO> lstDVXetNghiemChiPhi { get; set; }
         private List<ClassCommon.MayXetNghiemNhomBCDTO> lstMayXNNhomBC { get; set; }
@@ -43,7 +43,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_MayXNKhuVuc()
@@ -61,7 +61,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_DVXNChiPhi()
@@ -79,7 +79,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_NhomBaoCao()
@@ -97,7 +97,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -111,7 +111,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -138,7 +138,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
                         frmthongbao.Show();
                         btnXNKV_Luu.Enabled = false;
                     }
@@ -146,15 +146,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                O2S_Common.Logging.LogSystem.Error(ex);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
                 frmthongbao.Show();
                 btnXNKV_Luu.Enabled = false;
             }
         }
         private void btnLuuLai_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 int insert_count = 0;
@@ -186,7 +186,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         }
                         catch (Exception ex)
                         {
-                            MedicalLink.Base.Logging.Error("Loi insert ml_mayxnkhuvuc " + sql_insert);
+                            O2S_Common.Logging.LogSystem.Error("Loi insert ml_mayxnkhuvuc " + sql_insert);
                             continue;
                         }
                     }
@@ -195,7 +195,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
             ucChiPhiXetNghiem_Load(null, null);
@@ -219,7 +219,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void XoaMayXetNghiem_Click(object sender, EventArgs e)
@@ -235,14 +235,14 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         sql_deleteDV += "DELETE FROM ml_mayxnkhuvuc where mayxnkhuvucid='" + mayxnkhuvucid + "'; ";
                     }
                     condb.ExecuteNonQuery_MeL(sql_deleteDV);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
                     frmthongbao.Show();
                     ucChiPhiXetNghiem_Load(null, null);
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnXNKV_Export_Click(object sender, EventArgs e)
@@ -253,7 +253,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                     ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                    reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                    reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                     reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     thongTinThem.Add(reportitem);
                     string fileTemplatePath = "0_ToolsMayXetNghiemKhuVuc_Export.xlsx";
@@ -264,7 +264,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -290,7 +290,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
                         frmthongbao.Show();
                         btnDVXNCP_Luu.Enabled = false;
                     }
@@ -298,15 +298,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                O2S_Common.Logging.LogSystem.Error(ex);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
                 frmthongbao.Show();
                 btnXNKV_Luu.Enabled = false;
             }
         }
         private void btnDVXNCP_Luu_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 int insert_count = 0;
@@ -353,7 +353,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         }
                         catch (Exception ex)
                         {
-                            MedicalLink.Base.Logging.Error("Loi insert ml_mayxnchiphi " + sql_insert);
+                            O2S_Common.Logging.LogSystem.Error("Loi insert ml_mayxnchiphi " + sql_insert);
                             continue;
                         }
                     }
@@ -362,7 +362,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
             ucChiPhiXetNghiem_Load(null, null);
@@ -386,7 +386,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void XoaChiPhiXetNghiem_Click(object sender, EventArgs e)
@@ -403,7 +403,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     if (condb.ExecuteNonQuery_MeL(sql_deleteDV) && condb.ExecuteNonQuery_HIS(sql_deleteDV))
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
                         frmthongbao.Show();
                         ucChiPhiXetNghiem_Load(null, null);
                     }
@@ -411,7 +411,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnDVXNCP_Export_Click(object sender, EventArgs e)
@@ -422,7 +422,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                     ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                    reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                    reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                     reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     thongTinThem.Add(reportitem);
                     string fileTemplatePath = "0_ToolsDVKTChiPhi_Export.xlsx";
@@ -433,7 +433,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -461,7 +461,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     }
                     else
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
                         frmthongbao.Show();
                         btnNhomBC_Luu.Enabled = false;
                     }
@@ -469,15 +469,15 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
+                O2S_Common.Logging.LogSystem.Error(ex);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("File excel sai định dạng cấu trúc!");
                 frmthongbao.Show();
                 btnXNKV_Luu.Enabled = false;
             }
         }
         private void btnNhomBC_Luu_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 int insert_count = 0;
@@ -509,7 +509,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         }
                         catch (Exception ex)
                         {
-                            MedicalLink.Base.Logging.Error("Loi insert ml_mayxnnhombc " + sql_insert);
+                            O2S_Common.Logging.LogSystem.Error("Loi insert ml_mayxnnhombc " + sql_insert);
                             continue;
                         }
                     }
@@ -518,7 +518,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
             ucChiPhiXetNghiem_Load(null, null);
@@ -542,7 +542,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void XoaNhomBaoCao_Click(object sender, EventArgs e)
@@ -558,14 +558,14 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         sql_deleteDV += "DELETE FROM ml_mayxnnhombc where mayxnnhombcid='" + mayxnnhombcid + "'; ";
                     }
                     condb.ExecuteNonQuery_MeL(sql_deleteDV);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(Base.ThongBaoLable.XOA_THANH_CONG);
                     frmthongbao.Show();
                     ucChiPhiXetNghiem_Load(null, null);
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void btnNhomBC_Export_Click(object sender, EventArgs e)
@@ -576,7 +576,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 {
                     List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                     ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                    reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                    reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                     reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     thongTinThem.Add(reportitem);
                     string fileTemplatePath = "0_ToolsMayXetNghiemNhomBC_Export.xlsx";
@@ -587,7 +587,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -606,7 +606,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

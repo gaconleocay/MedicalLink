@@ -41,6 +41,7 @@ namespace MedicalLink.Base
         public static List<ClassCommon.classPermission> LstPhanQuyen_BaoCaoIn { get; set; }
         public static List<ClassCommon.classPermission> LstPhanQuyen_QLTaiChinh { get; set; }
         public static List<ClassCommon.classPermission> LstPhanQuyen_Dashboard { get; set; }
+        public static List<ClassCommon.classPermission> LstPhanQuyen_QlDuoc { get; set; }
 
 
 

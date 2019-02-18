@@ -15,7 +15,7 @@ namespace MedicalLink.ClassCommon.ChucNang
 
     public static class GetPhuongPhapVoCam
     {
-        private static MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private static DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         public static List<PhuongPhapVoCamDTO> GetListPhuongPhapVoCam()
         {
@@ -106,7 +106,7 @@ namespace MedicalLink.ClassCommon.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return _lstPPVoCam;
         }

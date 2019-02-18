@@ -47,6 +47,5 @@ namespace MedicalLink.ClassCommon.Base
         public decimal chiphidauvao { get; set; }
         public decimal chiphimaymoc { get; set; }
         public decimal chiphipttt { get; set; }
-        public string hoachatxetnghiem { get; set; }
     }
 }

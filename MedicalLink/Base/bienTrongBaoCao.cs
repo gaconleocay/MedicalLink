@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.Base
 {
-    public static class bienTrongBaoCao
+    public static class BienTrongBaoCao
     {
         public static string THOIGIANBAOCAO = "THOIGIANBAOCAO";
         public static string DEPARTMENTNAME = "DEPARTMENTNAME";

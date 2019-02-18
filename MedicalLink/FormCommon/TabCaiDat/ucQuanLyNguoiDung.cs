@@ -20,7 +20,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
     public partial class ucQuanLyNguoiDung : UserControl
     {
         #region Khai bao
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private string currentUserCode;
         private List<ClassCommon.classPermission> LstPer_ChucNang { get; set; }
         private List<ClassCommon.classUserDepartment> lstUserDepartment { get; set; }
@@ -52,7 +52,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachNguoiDung()
@@ -76,25 +76,25 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachChucNang()
         {
             try
             {
-                this.LstPer_ChucNang = Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 1 || o.permissiontype == 2 || o.permissiontype == 4).OrderBy(or => or.permissioncode).ToList();
+                this.LstPer_ChucNang = Base.ListChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 1 || o.permissiontype == 2 || o.permissiontype == 4).OrderBy(or => or.permissioncode).ToList();
                 gridControlChucNang.DataSource = this.LstPer_ChucNang;
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachKhoaPhong()
@@ -121,19 +121,19 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachBaoCao()
         {
             try
             {
-                this.LstPerBaoCao = Base.listChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 3 || o.permissiontype == 10).OrderBy(or => or.permissioncode).ToList();
+                this.LstPerBaoCao = Base.ListChucNang.getDanhSachChucNang().Where(o => o.permissiontype == 3 || o.permissiontype == 10).OrderBy(or => or.permissioncode).ToList();
                 gridControlBaoCao.DataSource = this.LstPerBaoCao;
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachKhoThuoc()
@@ -159,7 +159,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachPhongLuu()
@@ -186,7 +186,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachSoCDHA_Khoa()
@@ -203,7 +203,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -220,7 +220,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -229,7 +229,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         #region Events
         private void gridControlDSUser_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             var rowHandle = gridViewDSUser.FocusedRowHandle;
             try
             {
@@ -265,7 +265,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -294,7 +294,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadPhanQuyenKhoaPhong()
@@ -321,7 +321,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadPhanQuyenBaoCao()
@@ -349,7 +349,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadPhanQuyenKhoThuoc()
@@ -376,7 +376,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadPhanQuyenPhongLuu()
@@ -403,7 +403,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadPhanQuyenSoCDHA_Khoa()
@@ -432,7 +432,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -496,14 +496,14 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     condb.ExecuteNonQuery_MeL(sqlxoatk);
                     condb.ExecuteNonQuery_MeL(sqlinsert_log);
 
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Đã xóa bỏ tài khoản: " + currentUserCode);
                     frmthongbao.Show();
                     gridControlDSUser.DataSource = null;
                     ucQuanLyNguoiDung_Load(null, null);
                 }
                 catch (Exception ex)
                 {
-                    Base.Logging.Warn(ex);
+                    O2S_Common.Logging.LogSystem.Warn(ex);
                 }
             }
         }
@@ -512,7 +512,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
         #region Luu lai
         private void btnLuuLai_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             // Mã hóa tài khoản
             string en_txtUsercode = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUserCode.Text.Trim().ToLower(), true);
             string en_txtUsername = MedicalLink.Base.EncryptAndDecrypt.Encrypt(txtUsername.Text.Trim(), true);
@@ -531,7 +531,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
                         CreateNewUserMedicineStore(en_txtUsercode);
                         CreateNewUserMedicinePhongLuu(en_txtUsercode);
                         CreateNewUserSoCDHA(txtUserCode.Text.Trim().ToLower());
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.THEM_MOI_THANH_CONG);
                         frmthongbao.Show();
                         //LoadDanhSachNguoiDung();
                         ucQuanLyNguoiDung_Load(null, null);
@@ -546,13 +546,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                     UpdateUserMedicineStore(en_txtUsercode);
                     UpdateUserMedicinePhongLuu(en_txtUsercode);
                     UpdateUserSoCDHA(txtUserCode.Text.Trim().ToLower());
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CAP_NHAT_THANH_CONG);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -566,13 +566,13 @@ namespace MedicalLink.FormCommon.TabCaiDat
                 if (datacheck != null && datacheck.Rows.Count > 0)
                 {
                     result = false;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.TEN_TAI_KHOA_DA_TON_TAI);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.TEN_TAI_KHOA_DA_TON_TAI);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             return result;
         }
@@ -597,7 +597,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CreateNewUserPermission(string en_txtUserID)
@@ -619,7 +619,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CreateNewUserDepartment(string en_txtUserID)
@@ -639,7 +639,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CreateNewUserBaoCao(string en_txtUserID)
@@ -661,7 +661,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CreateNewUserMedicineStore(string en_txtUserID)
@@ -681,7 +681,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CreateNewUserMedicinePhongLuu(string en_txtUserID)
@@ -701,7 +701,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void CreateNewUserSoCDHA(string txtUserID)
@@ -723,7 +723,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -746,7 +746,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void UpdateUserPermission(string en_txtUserID)
@@ -781,7 +781,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void UpdateUserDepartment(string en_txtUserID)
@@ -814,7 +814,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void UpdateUserBaoCao(string en_txtUserID)
@@ -849,7 +849,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void UpdateUserMedicineStore(string en_txtUserID)
@@ -882,7 +882,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void UpdateUserMedicinePhongLuu(string en_txtUserID)
@@ -915,7 +915,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void UpdateUserSoCDHA(string txtUserID)
@@ -963,7 +963,7 @@ namespace MedicalLink.FormCommon.TabCaiDat
             }
             catch (Exception ex)
             {
-                Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

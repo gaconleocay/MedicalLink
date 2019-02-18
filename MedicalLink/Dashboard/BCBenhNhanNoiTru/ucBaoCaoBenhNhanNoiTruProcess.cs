@@ -17,7 +17,7 @@ namespace MedicalLink.Dashboard
     {
         private void LayDuLieuBaoCao()
         {
-			 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+			 SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 //  LayDuLieuBaoCao_ChayMoi(); //todo
@@ -32,7 +32,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
 			SplashScreenManager.CloseForm();
         }
@@ -50,13 +50,13 @@ namespace MedicalLink.Dashboard
                 {
                     dataBCTongTheKhoa = null;
                     gridControlDataBNNT.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

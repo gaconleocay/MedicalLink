@@ -31,7 +31,7 @@ namespace MedicalLink
             BonusSkins.Register();
             SkinManager.EnableFormSkins();
             UserLookAndFeel.Default.SetSkinStyle("DevExpress Style");
-            MedicalLink.Base.Logging.Info("Application_Start. Time=" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:fff"));
+            O2S_Common.Logging.LogSystem.Info("Application_Start. Time=" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss:fff"));
             Application.Run(new frmLogin());
             //Application.Run(new MedicalLink.Utilities.PrintPreview.PrintPreviewDev());
         }

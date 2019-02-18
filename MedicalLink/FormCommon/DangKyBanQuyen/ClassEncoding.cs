@@ -37,7 +37,7 @@ namespace MedicalLink.FormCommon.DangKyBanQuyen
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn("Ma hoa chuoi theo nhieu dinh dang " + ex.ToString());
+                O2S_Common.Logging.LogSystem.Warn("Ma hoa chuoi theo nhieu dinh dang " + ex.ToString());
             }
             return encodeText;
         }

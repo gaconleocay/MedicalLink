@@ -19,7 +19,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
     public partial class ucThongTinThucHienCanLamSang : UserControl
     {
         #region Khai bao
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private long patientid, hosobenhanid, departmentgroupid;
         private string chandoancls_name, departmentname;
         #endregion
@@ -39,7 +39,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -47,7 +47,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
         #region Tim kiem
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string thoiGianTu = DateTime.ParseExact(dtThoiGianTu.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd HH:mm:ss");
@@ -62,7 +62,7 @@ namespace MedicalLink.ChucNang.ThongTinThucHienCLS
                 if (cboPhongThucHien.EditValue == null)
                 {
                     SplashScreenManager.CloseForm();
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
                     frmthongbao.Show();
                     return;
                 }
@@ -117,7 +117,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -146,7 +146,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -167,7 +167,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void NhapThucHienCanLamSang_Click(object sender, EventArgs e)
@@ -193,7 +193,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void repositoryItemButton_NhapThucHien_Click(object sender, EventArgs e)
@@ -204,7 +204,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -217,7 +217,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void Load_DanhSachPhongThucHien()
@@ -252,7 +252,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -271,7 +271,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void gridViewDS_PhieuDichVu_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
@@ -298,7 +298,7 @@ FROM (select * from maubenhpham where 1=1 {_maubenhphamgrouptype} {_maubenhphams
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion

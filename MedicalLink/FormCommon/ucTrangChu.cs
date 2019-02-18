@@ -15,6 +15,8 @@ using Npgsql;
 using DevExpress.XtraTab;
 using System.Diagnostics;
 using DevExpress.XtraSplashScreen;
+using MedicalLink.FormCommon.TabTrangChu;
+using MedicalLink.FormCommon.TabCaiDat;
 
 namespace MedicalLink.FormCommon
 {
@@ -24,7 +26,7 @@ namespace MedicalLink.FormCommon
         public string CurrentTabPage { get; set; }
         public int SelectedTabPageIndex { get; set; }
         internal frmMain frmMain;
-        Base.ConnectDatabase condb = new Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private string MaDatabase = String.Empty;
 
         public string serverhost = ConfigurationManager.AppSettings["ServerHost"].ToString();
@@ -57,7 +59,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -76,7 +78,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -127,7 +129,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -151,7 +153,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -165,7 +167,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void HienThiThongTinVeLicense()
@@ -187,7 +189,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadLogoThongTin()
@@ -199,7 +201,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadThongTinVeCSYT()
@@ -220,7 +222,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -239,7 +241,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -255,7 +257,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -274,14 +276,13 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
         #endregion
 
         #region Tabcontrol function
-        //Dong tab
         private void xtraTabControlHome_CloseButtonClick(object sender, EventArgs e)
         {
             try
@@ -296,7 +297,7 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void xtraTabControlHome_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
@@ -319,11 +320,191 @@ namespace MedicalLink.FormCommon
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
 
+        #region Cai Dat
+
+        private void navBarItemLicense_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucSettingLicense frmsuathoigianravien = new ucSettingLicense();
+                frmsuathoigianravien.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmsuathoigianravien);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+        private void navBarItemConnectDB_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucSettingDatabase frmsuathoigianravien = new ucSettingDatabase();
+                frmsuathoigianravien.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmsuathoigianravien);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+        private void navBarItemListNguoiDung_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucQuanLyNguoiDung frmsuathoigianravien = new ucQuanLyNguoiDung();
+                frmsuathoigianravien.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmsuathoigianravien);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+        private void navBarItemListNhanVien_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucDanhSachNhanVien frmsuathoigianravien = new ucDanhSachNhanVien();
+                frmsuathoigianravien.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmsuathoigianravien);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+        private void navBarItemListOption_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucCauHinhHeThong frmsuathoigianravien = new ucCauHinhHeThong();
+                frmsuathoigianravien.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmsuathoigianravien);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+        private void navBarItemMaHoaGiaiMa_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucMaHoaVaGiaiMa frmResult = new ucMaHoaVaGiaiMa();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+        private void navBarItemNhatKySuKien_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucLogSuKien frmResult = new ucLogSuKien();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+        private void navBarItemQLMayTram_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucMaHoaVaGiaiMa frmResult = new ucMaHoaVaGiaiMa();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+        private void navBarItemDMDungChung_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucDanhMucDungChung frmResult = new ucDanhMucDungChung();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+        private void navBarItemDMBenhVien_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucDanhSachBenhVien frmResult = new ucDanhSachBenhVien();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+        private void navBarItemDMDichVu_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucDanhMucDichVu frmResult = new ucDanhMucDichVu();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+        private void navBarItemHaoPhiMayXN_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            try
+            {
+                panelCaiDatChiTiet.Controls.Clear();
+                ucChiPhiXetNghiem frmResult = new ucChiPhiXetNghiem();
+                frmResult.Dock = System.Windows.Forms.DockStyle.Fill;
+                panelCaiDatChiTiet.Controls.Add(frmResult);
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+
+
+        #endregion
 
 
     }

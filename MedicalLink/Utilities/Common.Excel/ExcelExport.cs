@@ -51,7 +51,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             return orderTable;
         }
@@ -115,13 +115,13 @@ namespace MedicalLink.Utilities.Common.Excel
                                         designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
                                         break;
                                 }
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                                 frmthongbao.Show();
                             }
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_TEMPLATE_BAO_CAO);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_TEMPLATE_BAO_CAO);
                             frmthongbao.Show();
                         }
                     }
@@ -129,7 +129,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
                 MessageBox.Show("Export dữ liệu thất bại!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -193,13 +193,13 @@ namespace MedicalLink.Utilities.Common.Excel
                                         designer.Workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
                                         break;
                                 }
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                                 frmthongbao.Show();
                             }
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_TEMPLATE_BAO_CAO);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_TEMPLATE_BAO_CAO);
                             frmthongbao.Show();
                         }
                     }
@@ -207,7 +207,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
                 MessageBox.Show("Export dữ liệu thất bại!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -251,20 +251,20 @@ namespace MedicalLink.Utilities.Common.Excel
                                 default:
                                     break;
                             }
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                             frmthongbao.Show();
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                     MessageBox.Show("Export dữ liệu thất bại!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                 frmthongbao.Show();
             }
         }
@@ -307,7 +307,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             return result;
         }
@@ -347,7 +347,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             return result;
         }
@@ -443,7 +443,7 @@ namespace MedicalLink.Utilities.Common.Excel
                                 _workbook.Save(exportFilePath, new XlsSaveOptions(SaveFormat.Excel97To2003));
                                 break;
                         }
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.EXPORT_DU_LIEU_THANH_CONG);
                         frmthongbao.Show();
                         //}
                     }
@@ -451,7 +451,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
                 MessageBox.Show("Export dữ liệu thất bại!", "Thông báo !", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -469,7 +469,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -512,7 +512,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             return default(Style);
         }
@@ -581,7 +581,7 @@ namespace MedicalLink.Utilities.Common.Excel
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

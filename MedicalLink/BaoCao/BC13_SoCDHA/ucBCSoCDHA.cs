@@ -16,7 +16,7 @@ namespace MedicalLink.BaoCao
 {
     public partial class ucBCSoCDHA : UserControl
     {
-        private MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private string ThoiGianGioiHanDuLieu { get; set; }
         public ucBCSoCDHA()
         {
@@ -42,7 +42,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDataPhongThucHien()
@@ -59,7 +59,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void LoadDanhSachKhoa()
@@ -77,7 +77,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LoadThoiGianGioiHanDuLieu()
@@ -97,7 +97,7 @@ namespace MedicalLink.BaoCao
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -105,7 +105,7 @@ namespace MedicalLink.BaoCao
         #region Events
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 string tieuchi_mbp = " and maubenhphamdate>'" + this.ThoiGianGioiHanDuLieu + "' ";
@@ -120,7 +120,7 @@ namespace MedicalLink.BaoCao
                 if (cboPhongThucHien.EditValue == null)
                 {
                     SplashScreenManager.CloseForm();
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_THUC_HIEN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_PHONG_THUC_HIEN);
                     frmthongbao.Show();
                     return;
                 }
@@ -148,7 +148,7 @@ namespace MedicalLink.BaoCao
                     else
                     {
                         SplashScreenManager.CloseForm();
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.CHUA_CHON_KHOA_PHONG);
                         frmthongbao.Show();
                         return;
                     }
@@ -247,14 +247,14 @@ WHERE 1=1 {_theokhoatrakq};";
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                     gridControlSoCDHA.DataSource = null;
                 }
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
         }
@@ -274,16 +274,16 @@ WHERE 1=1 {_theokhoatrakq};";
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
-                reportitem_kho.name = Base.bienTrongBaoCao.DEPARTMENTNAME;
+                reportitem_kho.name = Base.BienTrongBaoCao.DEPARTMENTNAME;
                 reportitem_kho.value = cboPhongThucHien.Text.ToUpper();
                 thongTinThem.Add(reportitem);
                 thongTinThem.Add(reportitem_kho);
 
                 ClassCommon.reportExcelDTO reportitem_tenbc = new ClassCommon.reportExcelDTO();
-                reportitem_tenbc.name = Base.bienTrongBaoCao.TENBAOCAO;
+                reportitem_tenbc.name = Base.BienTrongBaoCao.TENBAOCAO;
 
                 switch (cboPhongThucHien.EditValue.ToString())
                 {
@@ -330,7 +330,7 @@ WHERE 1=1 {_theokhoatrakq};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -341,7 +341,7 @@ WHERE 1=1 {_theokhoatrakq};";
         {
             try
             {
-                SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
 
                 string datetungay = DateTime.ParseExact(dateTuNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
                 string datedenngay = DateTime.ParseExact(dateDenNgay.Text, "HH:mm:ss dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("HH:mm dd/MM/yyyy");
@@ -351,16 +351,16 @@ WHERE 1=1 {_theokhoatrakq};";
 
                 List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                 ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                 reportitem.value = tungaydenngay;
                 ClassCommon.reportExcelDTO reportitem_kho = new ClassCommon.reportExcelDTO();
-                reportitem_kho.name = Base.bienTrongBaoCao.DEPARTMENTNAME;
+                reportitem_kho.name = Base.BienTrongBaoCao.DEPARTMENTNAME;
                 reportitem_kho.value = cboPhongThucHien.Text.ToUpper();
                 thongTinThem.Add(reportitem);
                 thongTinThem.Add(reportitem_kho);
 
                 ClassCommon.reportExcelDTO reportitem_tenbc = new ClassCommon.reportExcelDTO();
-                reportitem_tenbc.name = Base.bienTrongBaoCao.TENBAOCAO;
+                reportitem_tenbc.name = Base.BienTrongBaoCao.TENBAOCAO;
 
                 switch (cboPhongThucHien.EditValue.ToString())
                 {
@@ -401,7 +401,7 @@ WHERE 1=1 {_theokhoatrakq};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
             SplashScreenManager.CloseForm();
 
@@ -423,7 +423,7 @@ WHERE 1=1 {_theokhoatrakq};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void cboPhongThucHien_EditValueChanged(object sender, EventArgs e)
@@ -483,7 +483,7 @@ WHERE 1=1 {_theokhoatrakq};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -502,7 +502,7 @@ WHERE 1=1 {_theokhoatrakq};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion
@@ -528,7 +528,7 @@ WHERE 1=1 {_theokhoatrakq};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         private void LoadDanhSachKhoaTraKQ_User()
@@ -551,7 +551,7 @@ WHERE 1=1 {_theokhoatrakq};";
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -570,7 +570,7 @@ WHERE 1=1 {_theokhoatrakq};";
         //    }
         //    catch (Exception ex)
         //    {
-        //        MedicalLink.Base.Logging.Warn(ex);
+        //        O2S_Common.Logging.LogSystem.Warn(ex);
         //    }
         //    return result;
         //}

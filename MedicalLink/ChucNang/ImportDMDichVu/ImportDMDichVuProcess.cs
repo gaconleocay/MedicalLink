@@ -24,7 +24,7 @@ namespace MedicalLink.ChucNang
                     DialogResult dialogResult = MessageBox.Show("Hãy backup dữ liệu trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                        SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                         switch (chonkieuimport)
                         {
                             case "Tên dịch vụ BHYT":
@@ -108,7 +108,7 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                 }
 
@@ -116,7 +116,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 SplashScreenManager.CloseForm();
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -144,7 +144,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
                 //lưu lại log
@@ -158,7 +158,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         //Ten dich vu Vien phi
@@ -184,7 +184,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
                 //lưu lại log
@@ -198,7 +198,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         //Ten dich vu PTTT
@@ -224,7 +224,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
 
@@ -240,7 +240,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -267,7 +267,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
 
@@ -282,7 +282,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -309,7 +309,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
 
@@ -326,7 +326,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -353,7 +353,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
 
@@ -370,7 +370,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -397,7 +397,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
 
@@ -414,7 +414,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -441,7 +441,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
 
@@ -458,7 +458,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -485,7 +485,7 @@ namespace MedicalLink.ChucNang
                     catch (Exception ex)
                     {
                         continue;
-                        Base.Logging.Warn(ex);
+                         O2S_Common.Logging.LogSystem.Warn(ex);
                     }
                 }
 
@@ -502,7 +502,7 @@ namespace MedicalLink.ChucNang
             catch (Exception ex)
             {
                 MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -531,7 +531,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -545,7 +545,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -573,7 +573,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -589,7 +589,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else
@@ -623,7 +623,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -639,7 +639,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -667,7 +667,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -683,7 +683,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else
@@ -717,7 +717,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -731,7 +731,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -759,7 +759,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -775,7 +775,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else
@@ -809,7 +809,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -823,7 +823,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -851,7 +851,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -865,7 +865,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else
@@ -899,7 +899,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -913,7 +913,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else if (cbbChonLoai.Text.Trim() == "Sửa giá mới")
@@ -941,7 +941,7 @@ namespace MedicalLink.ChucNang
                         catch (Exception ex)
                         {
                             continue;
-                            Base.Logging.Warn(ex);
+                             O2S_Common.Logging.LogSystem.Warn(ex);
                         }
                     }
                     //lưu lại log
@@ -955,7 +955,7 @@ namespace MedicalLink.ChucNang
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi xảy ra." + ex, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Base.Logging.Error(ex);
+                     O2S_Common.Logging.LogSystem.Error(ex);
                 }
             }
             else
@@ -977,7 +977,7 @@ namespace MedicalLink.ChucNang
                 DialogResult dialogResult = MessageBox.Show("Hãy backup trước khi thực hiện.\nNhấn \"YES\" để tiếp tục, nhấn \"NO\" để quay lại backup ?", "Thông báo !!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                     foreach (var item_servicep in lstServicePriceRef)
                     {
                         try
@@ -1021,7 +1021,7 @@ namespace MedicalLink.ChucNang
             {
                 SplashScreenManager.CloseForm();
                 MessageBox.Show("Có lỗi xảy ra " + ex, "Thông báo");
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 

@@ -22,7 +22,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
     internal partial class frmMoBenhAn_ThucHien_TT : Form
     {
         #region Khai bao
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         string _mabn;
         string _madt;
         string _mavp;
@@ -86,7 +86,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 if (_kt_khoacuoi == 1)
                 {
                     //MessageBox.Show("là BN khoa cuối");
-                    string sqlmobenhan = "UPDATE medicalrecord SET medicalrecordstatus='2' "+ _xoathoigianravien_medi + " WHERE medicalrecordid=" + _madt + "; UPDATE vienphi SET vienphistatus='0', vienphidate_ravien='0001-01-01 00:00:00', chandoanravien='', chandoanravien_code='',   chandoanravien_kemtheo='', chandoanravien_kemtheo_code='' WHERE vienphiid=" + _mavp + "; UPDATE hosobenhan SET hosobenhandate_ravien='0001-01-01 00:00:00', hosobenhanstatus='0', xutrikhambenhid='0' WHERE hosobenhanid=" + _hosobn + ";";
+                    string sqlmobenhan = "UPDATE medicalrecord SET medicalrecordstatus='2' " + _xoathoigianravien_medi + " WHERE medicalrecordid=" + _madt + "; UPDATE vienphi SET vienphistatus='0', vienphidate_ravien='0001-01-01 00:00:00', chandoanravien='', chandoanravien_code='',   chandoanravien_kemtheo='', chandoanravien_kemtheo_code='' WHERE vienphiid=" + _mavp + "; UPDATE hosobenhan SET hosobenhandate_ravien='0001-01-01 00:00:00', hosobenhanstatus='0', xutrikhambenhid='0' WHERE hosobenhanid=" + _hosobn + ";";
                     string sqlinsert = "INSERT INTO logevent (LogApp, LogUser, LogForm, SoftVersion, LogTime, IPAddress, ComputerName, PatientID, HoSoBenhAnID, VienPhiID, MedicalRecordID, MauBenhPhamID, SoThuTuPhongKhamID, ServicePriceID, DepartmentGroupID, DepartmentID, LogEventType, LogEventContentDetail, LogEventContent)  VALUES( 'Tools', '" + SessionLogin.SessionUsercode + "', '', '" + SessionLogin.SessionVersion + "', '" + datetime + "', '" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + _mabn + "', '" + _hosobn + "', '" + _mavp + "', '" + _madt + "', '0', '0', '0', '" + _idkhoa + "', '" + _idphong + "', '4', '" + _mabn + "|" + _tenbn + "|" + _khoa + "|" + _phong + "|" + SessionLogin.SessionUsercode + "|" + SessionLogin.SessionUsername + "|" + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "|" + memoEditLyDo.Text + "', 'Mở bệnh án " + _tenbn + "," + _mabn + "," + _madt + " -> " + ma_nguoiyeucau + "|" + ten_nguoiyeucau + "," + memoEditLyDo.Text + "');";
                     string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid, patientid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Mở lại bệnh án: Mã BN: " + _mabn + " tên BN: " + _tenbn + " mã VP: " + _mavp + " mã ĐT: " + _madt + " ','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_03', '" + _mavp + "', '" + _mabn + "');";
                     if (condb.ExecuteNonQuery_HIS(sqlmobenhan))
@@ -94,7 +94,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                         condb.ExecuteNonQuery_HIS(sqlinsert);
                         condb.ExecuteNonQuery_MeL(sqlinsert_log);
                         //this.Enabled = false;
-                        //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                        //O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
                         //frmthongbao.Show();
                         SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
                         System.Threading.Thread.Sleep(2000);
@@ -122,7 +122,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                             condb.ExecuteNonQuery_HIS(sqlinsert);
                             condb.ExecuteNonQuery_MeL(sqlinsert_log);
                             //this.Enabled = false;
-                            //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                            //O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
                             //frmthongbao.Show();
                             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
                             System.Threading.Thread.Sleep(2000);
@@ -144,7 +144,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                                 condb.ExecuteNonQuery_MeL(sqlinsert_log);
                                 this.Enabled = false;
 
-                                //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                                //O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
                                 //frmthongbao.Show();
                                 SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
                                 System.Threading.Thread.Sleep(2000);
@@ -165,7 +165,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                         {
                             condb.ExecuteNonQuery_HIS(sqlinsert);
                             condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                            //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
+                            //O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.MO_BENH_AN_THANH_CONG);
                             //frmthongbao.Show();
                             SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm_MBA));
                             System.Threading.Thread.Sleep(2000);
@@ -178,7 +178,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
                 SplashScreenManager.CloseForm();
             }
         }
@@ -192,7 +192,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 if (dv_dsnv != null && dv_dsnv.Count > 0)
                 {
                     //su dung form thong bao nay thi khong hien thi duoc
-                    //ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Đã tồn tại mã nhân viên trong hệ thống!");
+                    //O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Đã tồn tại mã nhân viên trong hệ thống!");
                     //frmthongbao.Show();
                     MessageBox.Show("Đã tồn tại mã nhân viên trong hệ thống!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -206,7 +206,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -226,7 +226,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -237,11 +237,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
                 string sqldsnv = "SELECT usercode as manv, username as tennv FROM nhompersonnel ORDER BY usercode";
                 DataTable da_dt = condb.GetDataTable_HIS(sqldsnv);
 
-                //comboBoxNYC.ValueMember = "InvtID"; 
-                DataView da_dt_gop = new DataView(MedicalLink.Base.UtilsTable.getTableDisplayWrapper(da_dt, " | ", "maten_nv", "manv", "tennv"));
-                //comboBoxNYC.DataSource = da_dt_gop;
-                //comboBoxNYC.DisplayMember = "maten_nv";
-                //comboBoxNYC.ValueMember = "manv";
+                DataTable da_dt_gop = O2S_Common.DataTables.UtilsTable.GetTableDisplayWrapper(da_dt, " | ", "maten_nv", "manv", "tennv");
 
                 comboBoxNYC.Properties.DataSource = da_dt_gop;
                 comboBoxNYC.Properties.DisplayMember = "maten_nv";
@@ -250,7 +246,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -268,7 +264,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void txtNVID_KeyDown(object sender, KeyEventArgs e)
@@ -282,7 +278,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -297,7 +293,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -309,7 +305,7 @@ namespace MedicalLink.ChucNang.MoBenhAn
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         #endregion

@@ -45,7 +45,7 @@ namespace MedicalLink.Base
             catch (Exception ex)
             {
                 return "";
-                MedicalLink.Base.Logging.Warn("Ham ma hoa " + ex.ToString());
+                O2S_Common.Logging.LogSystem.Warn("Ham ma hoa " + ex.ToString());
             }
         }
         /// <summary>
@@ -87,7 +87,7 @@ namespace MedicalLink.Base
             catch (Exception ex)
             {
                 return "";
-                MedicalLink.Base.Logging.Warn("Ham giai ma " + ex.ToString());
+                O2S_Common.Logging.LogSystem.Warn("Ham giai ma " + ex.ToString());
             }
         }
 

@@ -63,7 +63,7 @@ namespace MedicalLink.Utilities.GridControl
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
             return result;
         }

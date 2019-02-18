@@ -15,7 +15,7 @@ namespace MedicalLink.ChucNang
 {
     public partial class ucTOOL05_XuLyBNBoKhoa : UserControl
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         public ucTOOL05_XuLyBNBoKhoa()
         {
             InitializeComponent();
@@ -166,13 +166,13 @@ namespace MedicalLink.ChucNang
 
                 if (gridViewBNBK.RowCount == 0)
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_TIM_THAY_BAN_GHI_NAO);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -231,21 +231,21 @@ namespace MedicalLink.ChucNang
                 {
                     if (!KiemTraTonTaiDichVu(madt, departmentgroupid, departmentid))
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị!");
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được!\nVì có dịch vụ phát sinh trong buồng điều trị!");
                         frmthongbao.Show();
                     }
                     else
                     {
                         if (tenph == "Hành chính")
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Mã điều trị đang ở phòng hành chính !");
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Mã điều trị đang ở phòng hành chính !");
                             frmthongbao.Show();
                         }
                         else
                         {
                             if (loaiba == 24)
                             {
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
                                 frmthongbao.Show();
                             }
                             else
@@ -260,7 +260,7 @@ namespace MedicalLink.ChucNang
                                     if (condb.ExecuteNonQuery_HIS(sqlxecute) &&
                                        condb.ExecuteNonQuery_MeL(sqlinsert_log))
                                     {
-                                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Chuyển mã điều trị ra phòng hành chính thành công!");
+                                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Chuyển mã điều trị ra phòng hành chính thành công!");
                                         frmthongbao.Show();
                                         gridControlBNBK.DataSource = null;
                                         btnBNBKTimKiem_Click(null, null);
@@ -275,13 +275,13 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc!");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc!");
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -302,14 +302,14 @@ namespace MedicalLink.ChucNang
                 {
                     if (!KiemTraTonTaiDichVu(madt, departmentgroupid, departmentid))
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
                         frmthongbao.Show();
                     }
                     else
                     {
                         if (loaiba == 24)
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
                             frmthongbao.Show();
                         }
                         else
@@ -324,7 +324,7 @@ namespace MedicalLink.ChucNang
                                 if (condb.ExecuteNonQuery_HIS(sqlxecute) &&
                                   condb.ExecuteNonQuery_MeL(sqlinsert_log))
                                 {
-                                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị thành công!");
+                                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Xóa mã điều trị thành công!");
                                     frmthongbao.Show();
                                     gridControlBNBK.DataSource = null;
                                     btnBNBKTimKiem_Click(null, null);
@@ -339,13 +339,13 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc!");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc!");
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -366,14 +366,14 @@ namespace MedicalLink.ChucNang
                 {
                     if (!KiemTraTonTaiDichVu(madt, departmentgroupid, departmentid))
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Vì có dịch vụ phát sinh trong buồng điều trị");
                         frmthongbao.Show();
                     }
                     else
                     {
                         if (loaiba == 24)
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Bệnh nhân đang ở ngoại trú!");
                             frmthongbao.Show();
                         }
                         else
@@ -390,7 +390,7 @@ namespace MedicalLink.ChucNang
                                  condb.ExecuteNonQuery_HIS(sqlchuyenngt) &&
                                  condb.ExecuteNonQuery_MeL(sqlinsert_log))
                                 {
-                                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa mã điều trị và chuyển thành phơi ngoại trú thành công!");
+                                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Xóa mã điều trị và chuyển thành phơi ngoại trú thành công!");
                                     frmthongbao.Show();
                                     gridControlBNBK.DataSource = null;
                                     btnBNBKTimKiem_Click(null, null);
@@ -406,13 +406,13 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được. Mã điều trị đã kết thúc");
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -435,7 +435,7 @@ namespace MedicalLink.ChucNang
 
                     if (_kiemtradichvu == -1)
                     {
-                        ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được!\nVì bệnh nhân có phát sinh dịch vụ hoặc phiếu thu!");
+                        O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được!\nVì bệnh nhân có phát sinh dịch vụ hoặc phiếu thu!");
                         frmthongbao.Show();
                     }
                     else
@@ -458,7 +458,7 @@ namespace MedicalLink.ChucNang
                             if (condb.ExecuteNonQuery_HIS(sqldeletemedi) && condb.ExecuteNonQuery_HIS(sqldeletevp) &&
                                condb.ExecuteNonQuery_MeL(sqlinsert_log))
                             {
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Xóa toàn bộ bệnh án thành công.\nVui lòng kiểm tra lại");
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Xóa toàn bộ bệnh án thành công.\nVui lòng kiểm tra lại");
                                 frmthongbao.Show();
                             }
                             else
@@ -470,7 +470,7 @@ namespace MedicalLink.ChucNang
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Không thể thực hiện được.Mã điều trị đã kết thúc");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Không thể thực hiện được.Mã điều trị đã kết thúc");
                     frmthongbao.Show();
                 }
                 gridControlBNBK.DataSource = null;
@@ -478,7 +478,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -501,7 +501,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             return result;
         }
@@ -544,7 +544,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                Base.Logging.Warn(ex);
+                 O2S_Common.Logging.LogSystem.Warn(ex);
             }
             return result;
         }

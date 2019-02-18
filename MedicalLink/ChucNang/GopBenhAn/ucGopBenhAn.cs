@@ -18,7 +18,7 @@ namespace MedicalLink.ChucNang
     public partial class ucGopBenhAn : UserControl
     {
         #region Khai bao
-        private Base.ConnectDatabase condb = new Base.ConnectDatabase();
+        private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private List<MedicalrecordGopBADTO> lstHSBA_A { get; set; }
         private List<MedicalrecordGopBADTO> lstHSBA_B { get; set; }
         private long medicalrecordid_A { get; set; }
@@ -42,7 +42,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void txtVienPhiId_A_KeyPress(object sender, KeyPressEventArgs e)
@@ -63,7 +63,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void txtVienPhiId_B_KeyPress(object sender, KeyPressEventArgs e)
@@ -84,7 +84,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -104,7 +104,7 @@ namespace MedicalLink.ChucNang
                 gridControlPhieuDichVu_A.DataSource = null;
                 if (txtVienPhiId_A.Text.Trim() == "")
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                     return;
                 }
@@ -120,13 +120,13 @@ namespace MedicalLink.ChucNang
                 else
                 {
                     gridControlHSDT_A.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -138,7 +138,7 @@ namespace MedicalLink.ChucNang
                 gridControlPhieuDichVu_B.DataSource = null;
                 if (txtVienPhiId_B.Text.Trim() == "")
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.VUI_LONG_NHAP_DAY_DU_THONG_TIN);
                     frmthongbao.Show();
                     return;
                 }
@@ -153,13 +153,13 @@ namespace MedicalLink.ChucNang
                 else
                 {
                     gridControlHSDT_B.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -172,7 +172,7 @@ namespace MedicalLink.ChucNang
                     DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn gộp VP=" + this.lstHSBA_B[0].vienphiid + " sang VP=" + this.lstHSBA_A[0].vienphiid + " ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                        SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                         try
                         {
                             string _lstmedicalrecordid = "";
@@ -213,26 +213,26 @@ namespace MedicalLink.ChucNang
                             }
                             else
                             {
-                                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_THUC_HIEN_DUOC);
+                                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_THUC_HIEN_DUOC);
                                 frmthongbao.Show();
                             }
                         }
                         catch (Exception ex)
                         {
-                            MedicalLink.Base.Logging.Error(ex);
+                            O2S_Common.Logging.LogSystem.Error(ex);
                         }
                         SplashScreenManager.CloseForm();
                     }
                 }
                 else
                 {
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_THUC_HIEN_DUOC);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_THUC_HIEN_DUOC);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -252,7 +252,7 @@ namespace MedicalLink.ChucNang
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -275,13 +275,13 @@ namespace MedicalLink.ChucNang
                 else
                 {
                     gridControlPhieuDichVu_A.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -300,13 +300,13 @@ namespace MedicalLink.ChucNang
                 else
                 {
                     gridControlPhieuDichVu_B.DataSource = null;
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_CO_DU_LIEU);
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -323,7 +323,7 @@ namespace MedicalLink.ChucNang
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn gộp Mã điều trị này của VP=" + this.lstHSBA_B[0].vienphiid + " sang VP=" + this.lstHSBA_A[0].vienphiid + " ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    SplashScreenManager.ShowForm(typeof(MedicalLink.ThongBao.WaitForm1));
+                    SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
                     try
                     {
                         var rowHandle = gridViewHSDT_B.FocusedRowHandle;
@@ -379,20 +379,20 @@ namespace MedicalLink.ChucNang
                         }
                         else
                         {
-                            ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_THUC_HIEN_DUOC);
+                            O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao(MedicalLink.Base.ThongBaoLable.KHONG_THE_THUC_HIEN_DUOC);
                             frmthongbao.Show();
                         }
                     }
                     catch (Exception ex)
                     {
-                        MedicalLink.Base.Logging.Error(ex);
+                        O2S_Common.Logging.LogSystem.Error(ex);
                     }
                     SplashScreenManager.CloseForm();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         public void Get_Mdicalrecordid_A(long _medicalrecordid_A)

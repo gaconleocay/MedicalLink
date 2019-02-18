@@ -14,7 +14,7 @@ namespace MedicalLink.ChucNang.ImportDMThuocVatTu
 {
     public partial class frmChonNhomThuocVatTu : DevExpress.XtraEditors.XtraForm
     {
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
 
         public frmChonNhomThuocVatTu()
         {
@@ -60,7 +60,7 @@ where isremove=0
                 {
                     List<ClassCommon.reportExcelDTO> thongTinThem = new List<ClassCommon.reportExcelDTO>();
                     ClassCommon.reportExcelDTO reportitem = new ClassCommon.reportExcelDTO();
-                    reportitem.name = Base.bienTrongBaoCao.THOIGIANBAOCAO;
+                    reportitem.name = Base.BienTrongBaoCao.THOIGIANBAOCAO;
                     reportitem.value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     thongTinThem.Add(reportitem);
                     string fileTemplatePath = "0_ToolsDMThuoc_Exportv2.xlsx";
@@ -70,7 +70,7 @@ where isremove=0
             }
             catch (Exception ex)
             {
-                Base.Logging.Error(ex);
+                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 

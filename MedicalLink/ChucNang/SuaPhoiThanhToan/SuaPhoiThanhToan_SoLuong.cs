@@ -15,7 +15,7 @@ namespace MedicalLink.ChucNang
     public partial class SuaPhoiThanhToan_SoLuong : DevExpress.XtraEditors.XtraForm
     {
         ucSuaPhoiThanhToan suaPhoiTT;
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         string soluong_old;
 
 
@@ -45,7 +45,7 @@ namespace MedicalLink.ChucNang
                 string sqlinsert_log = "INSERT INTO tools_tbllog(loguser, logvalue, ipaddress, computername, softversion, logtime, logtype, vienphiid, patientid) VALUES ('" + SessionLogin.SessionUsercode + "', 'Sửa số lượng của servicepriceid=" + servicepriceid + " từ " + soluong_old + " thành " + spinSoLuong.Text + "','" + SessionLogin.SessionMyIP + "', '" + SessionLogin.SessionMachineName + "', '" + SessionLogin.SessionVersion + "', '" + datetime + "', 'TOOL_11', '"+ suaPhoiTT.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "mavp").ToString() + "', '"+ suaPhoiTT.gridViewSuaPhoiThanhToan.GetRowCellValue(rowHandle, "mabn").ToString() + "');";
                 condb.ExecuteNonQuery_HIS(sqlxecute);
                 condb.ExecuteNonQuery_MeL(sqlinsert_log);
-                ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Sửa số lượng từ " + soluong_old + " thành " + spinSoLuong.Value.ToString() + " thành công.\nVui lòng kiểm tra lại");
+                O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Sửa số lượng từ " + soluong_old + " thành " + spinSoLuong.Value.ToString() + " thành công.\nVui lòng kiểm tra lại");
                 frmthongbao.Show();
                 this.Close();
                 // load lại dữ liệu của form

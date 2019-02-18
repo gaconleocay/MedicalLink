@@ -21,7 +21,7 @@ namespace MedicalLink.Dashboard
     public partial class ucDashboardBenhNhanNoiTru : UserControl
     {
         #region Declaration
-        MedicalLink.Base.ConnectDatabase condb = new MedicalLink.Base.ConnectDatabase();
+        DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         string thoiGianTu = "";
         string thoiGianDen = "";
         private long tickCurrentVal = 0;
@@ -63,7 +63,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
         #endregion
@@ -78,7 +78,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
 
@@ -94,7 +94,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
 
@@ -108,7 +108,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         public void GetDataCaiDatNangCao(string thoigian)
@@ -146,7 +146,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void radioQuy_CheckedChanged(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void radioNam_CheckedChanged(object sender, EventArgs e)
@@ -190,7 +190,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void dateTuNgay_ValueChanged(object sender, EventArgs e)
@@ -200,13 +200,13 @@ namespace MedicalLink.Dashboard
                 if (dateTuNgay.Value < Utilities.TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu))
                 {
                     dateTuNgay.Value = Utilities.TypeConvertParse.ToDateTime(KhoangThoiGianLayDuLieu);
-                    ThongBao.frmThongBao frmthongbao = new ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
+                    O2S_Common.Utilities.ThongBao.frmThongBao frmthongbao = new O2S_Common.Utilities.ThongBao.frmThongBao("Thời gian không được nhỏ hơn\n khoảng thời gian lấy dữ liệu");
                     frmthongbao.Show();
                 }
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         private void cboChonNhanh_SelectedValueChanged(object sender, EventArgs e)
@@ -294,7 +294,7 @@ namespace MedicalLink.Dashboard
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Warn(ex);
+                O2S_Common.Logging.LogSystem.Warn(ex);
             }
         }
         //private void spinThoiGianCapNhat_EditValueChanged(object sender, EventArgs e)
@@ -318,7 +318,7 @@ namespace MedicalLink.Dashboard
         //    }
         //    catch (Exception ex)
         //    {
-        //        MedicalLink.Base.Logging.Warn(ex);
+        //        O2S_Common.Logging.LogSystem.Warn(ex);
         //    }
         //}
         //private void timerTuDongCapNhat_Tick(object sender, EventArgs e)
@@ -342,7 +342,7 @@ namespace MedicalLink.Dashboard
         //    }
         //    catch (Exception ex)
         //    {
-        //        MedicalLink.Base.Logging.Warn(ex);
+        //        O2S_Common.Logging.LogSystem.Warn(ex);
         //    }
         //}
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MedicalLink.Base
 {
-    public class listChucNang
+    public class ListChucNang
     {
         public static List<ClassCommon.classPermission> getDanhSachChucNang()
         {
@@ -1324,7 +1324,7 @@ namespace MedicalLink.Base
             }
             catch (Exception ex)
             {
-                MedicalLink.Base.Logging.Error(ex);
+                O2S_Common.Logging.LogSystem.Error(ex);
             }
             return lstresult;
         }

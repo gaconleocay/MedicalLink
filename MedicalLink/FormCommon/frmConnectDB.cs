@@ -18,7 +18,7 @@ namespace MedicalLink.FormCommon
 {
     public partial class frmConnectDB : Form
     {
-        ConnectDatabase condb = new ConnectDatabase();
+       private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         string en_licensekeynull = MedicalLink.Base.EncryptAndDecrypt.Encrypt("", true);
         public frmConnectDB()
         {
@@ -113,7 +113,7 @@ namespace MedicalLink.FormCommon
 
         private void btnDBUpdate_Click(object sender, EventArgs e)
         {
-            SplashScreenManager.ShowForm(typeof(ThongBao.WaitForm1));
+            SplashScreenManager.ShowForm(typeof(O2S_Common.Utilities.ThongBao.WaitForm_Wait));
             try
             {
                 if (KetNoiSCDLProcess.CapNhatCoSoDuLieu())
@@ -128,7 +128,7 @@ namespace MedicalLink.FormCommon
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi cập nhật cơ sở dữ liệu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MedicalLink.Base.Logging.Error("Lỗi cập nhật cơ sở dữ liệu!" + ex.ToString());
+                O2S_Common.Logging.LogSystem.Error("Lỗi cập nhật cơ sở dữ liệu!" + ex.ToString());
             }
             SplashScreenManager.CloseForm();
         }

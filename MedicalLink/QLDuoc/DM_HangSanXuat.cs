@@ -13,21 +13,37 @@ using MedicalLink.Base;
 
 namespace MedicalLink.QLDuoc
 {
-    public partial class DM_NuocSanXuat : UserControl
+    public partial class DM_HangSanXuat : UserControl
     {
         private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private int selectID { get; set; }
-        public DM_NuocSanXuat()
+        public DM_HangSanXuat()
         {
             InitializeComponent();
         }
 
         #region Load
-        private void DM_NuocSanXuat_Load(object sender, EventArgs e)
+        private void DM_HangSanXuat_Load(object sender, EventArgs e)
         {
             try
             {
+                LoadDanhMucNuocSanXuat();
                 LoadDanhSachData();
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
+        }
+        private void LoadDanhMucNuocSanXuat()
+        {
+            try
+            {
+                string _sqlData = $@"select nuocsanxuatid,nuocsanxuatcode,nuocsanxuatname from pm_nuocsanxuat where isremove=0 and islock=0 ORDER BY nuocsanxuatname;";
+                DataTable _dtDSKho = condb.GetDataTable_Phr(_sqlData);
+                cbbnuocsanxuat.Properties.DataSource = _dtDSKho;
+                cbbnuocsanxuat.Properties.DisplayMember = "nuocsanxuatname";
+                cbbnuocsanxuat.Properties.ValueMember = "nuocsanxuatid";
             }
             catch (Exception ex)
             {
@@ -38,7 +54,17 @@ namespace MedicalLink.QLDuoc
         {
             try
             {
-                string _sqlData = $@"select row_number () over (order by nuocsanxuatname) as stt,* from pm_nuocsanxuat WHERE isremove=0;";
+                string _sqlData = $@"select row_number () over (order by hsx.hangsanxuatname) as stt,
+	hsx.hangsanxuatid,
+	hsx.hangsanxuatcode,
+	hsx.hangsanxuatname,
+	hsx.nuocsanxuatid,
+	nsx.nuocsanxuatname,
+	hsx.islock,
+	hsx.isremove
+from pm_hangsanxuat hsx
+	left join pm_nuocsanxuat nsx on nsx.nuocsanxuatid=hsx.nuocsanxuatid
+WHERE hsx.isremove=0;";
                 DataTable _dtDSKho = condb.GetDataTable_Phr(_sqlData);
                 if (_dtDSKho != null && _dtDSKho.Rows.Count > 0)
                 {
@@ -80,16 +106,15 @@ namespace MedicalLink.QLDuoc
         {
             try
             {
-                //if ()
-                //{ }
+                //kiem tra ton tai
                 string _sqlinsert = "";
                 if (this.selectID != 0)//sua
                 {
-                    _sqlinsert = "UPDATE pm_nuocsanxuat SET nuocsanxuatcode='" + txtnuocsanxuatcode.Text.Trim() + "', nuocsanxuatname='" + txtnuocsanxuatname.Text.Trim() + "', islock='" + (chkIslock.Checked == true ? 1 : 0) + "', lastuserupdated='" + Base.SessionLogin.SessionUsercode + "' WHERE nuocsanxuatid=" + this.selectID + ";";
+                    _sqlinsert = String.Format("UPDATE public.pm_hangsanxuat SET  hangsanxuatcode='{0}', hangsanxuatname='{1}', nuocsanxuatid='{2}', nuocsanxuatname='{3}', islock='{4}', lastuserupdated='{5}' WHERE hangsanxuatid='{6}';", txthangsanxuatcode.Text.Trim(), txthangsanxuatname.Text.Trim(), cbbnuocsanxuat.EditValue, cbbnuocsanxuat.Text, (chkIslock.Checked == true ? 1 : 0), Base.SessionLogin.SessionUsercode, this.selectID);
                 }
                 else
                 {
-                    _sqlinsert = "INSERT INTO pm_nuocsanxuat(nuocsanxuatcode, nuocsanxuatname, lastuserupdated) VALUES ('" + txtnuocsanxuatcode.Text.Trim() + "', '" + txtnuocsanxuatname.Text.Trim() + "', '" + Base.SessionLogin.SessionUsercode + "');";
+                    _sqlinsert = String.Format("INSERT INTO public.pm_hangsanxuat(hangsanxuatcode, hangsanxuatname, nuocsanxuatid, nuocsanxuatname, lastuserupdated) VALUES ('{0}','{1}','{2}','{3}','{4}');", txthangsanxuatcode.Text.Trim(), txthangsanxuatname.Text.Trim(), cbbnuocsanxuat.EditValue, cbbnuocsanxuat.Text, Base.SessionLogin.SessionUsercode);
                 }
                 if (condb.ExecuteNonQuery_Phr(_sqlinsert))
                 {
@@ -117,12 +142,12 @@ namespace MedicalLink.QLDuoc
             try
             {
                 var rowHandle = gridViewData.FocusedRowHandle;
-                string _nuocsanxuatid = gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatid").ToString();
+                string _hangsanxuatid = gridViewData.GetRowCellValue(rowHandle, "hangsanxuatid").ToString();
 
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    string _sqlXoa = "DELETE FROM pm_nuocsanxuat WHERE nuocsanxuatid=" + this.selectID + ";";
+                    string _sqlXoa = "DELETE FROM pm_hangsanxuat WHERE hangsanxuatid=" + this.selectID + ";";
                     if (condb.ExecuteNonQuery_Phr(_sqlXoa))
                     {
                         ResetControl();
@@ -150,10 +175,11 @@ namespace MedicalLink.QLDuoc
             try
             {
                 var rowHandle = gridViewData.FocusedRowHandle;
-                this.selectID = O2S_Common.TypeConvert.Parse.ToInt32(gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatid").ToString());
-                txtnuocsanxuatid.Text = this.selectID.ToString();
-                txtnuocsanxuatcode.Text = gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatcode").ToString();
-                txtnuocsanxuatname.Text = gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatname").ToString();
+                this.selectID = O2S_Common.TypeConvert.Parse.ToInt32(gridViewData.GetRowCellValue(rowHandle, "hangsanxuatid").ToString());
+                txthangsanxuatid.Text = this.selectID.ToString();
+                txthangsanxuatcode.Text = gridViewData.GetRowCellValue(rowHandle, "hangsanxuatcode").ToString();
+                txthangsanxuatname.Text = gridViewData.GetRowCellValue(rowHandle, "hangsanxuatname").ToString();
+                cbbnuocsanxuat.EditValue = gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatid");
                 chkIslock.Checked = (gridViewData.GetRowCellValue(rowHandle, "islock").ToString() == "1" ? true : false);
 
                 btnXoa.Enabled = true;
@@ -173,11 +199,12 @@ namespace MedicalLink.QLDuoc
             try
             {
                 this.selectID = 0;
-                txtnuocsanxuatid.ResetText();
-                txtnuocsanxuatcode.ResetText();
-                txtnuocsanxuatname.ResetText();
+                txthangsanxuatid.ResetText();
+                txthangsanxuatcode.ResetText();
+                txthangsanxuatname.ResetText();
+                cbbnuocsanxuat.EditValue = null;
                 chkIslock.Checked = false;
-                txtnuocsanxuatcode.Focus();
+                txthangsanxuatcode.Focus();
             }
             catch (Exception ex)
             {

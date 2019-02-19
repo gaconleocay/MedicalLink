@@ -13,17 +13,17 @@ using MedicalLink.Base;
 
 namespace MedicalLink.QLDuoc
 {
-    public partial class DM_NuocSanXuat : UserControl
+    public partial class DM_NhaCungCap : UserControl
     {
         private DAL.ConnectDatabase condb = new DAL.ConnectDatabase();
         private int selectID { get; set; }
-        public DM_NuocSanXuat()
+        public DM_NhaCungCap()
         {
             InitializeComponent();
         }
 
         #region Load
-        private void DM_NuocSanXuat_Load(object sender, EventArgs e)
+        private void DM_NhaCungCap_Load(object sender, EventArgs e)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace MedicalLink.QLDuoc
         {
             try
             {
-                string _sqlData = $@"select row_number () over (order by nuocsanxuatname) as stt,* from pm_nuocsanxuat WHERE isremove=0;";
+                string _sqlData = $@"select row_number () over (order by nhacungcapname) as stt,* FROM pm_nhacungcap WHERE isremove=0;";
                 DataTable _dtDSKho = condb.GetDataTable_Phr(_sqlData);
                 if (_dtDSKho != null && _dtDSKho.Rows.Count > 0)
                 {
@@ -80,16 +80,15 @@ namespace MedicalLink.QLDuoc
         {
             try
             {
-                //if ()
-                //{ }
+                //kiem tra ton tai
                 string _sqlinsert = "";
                 if (this.selectID != 0)//sua
                 {
-                    _sqlinsert = "UPDATE pm_nuocsanxuat SET nuocsanxuatcode='" + txtnuocsanxuatcode.Text.Trim() + "', nuocsanxuatname='" + txtnuocsanxuatname.Text.Trim() + "', islock='" + (chkIslock.Checked == true ? 1 : 0) + "', lastuserupdated='" + Base.SessionLogin.SessionUsercode + "' WHERE nuocsanxuatid=" + this.selectID + ";";
+                    _sqlinsert = String.Format("UPDATE pm_nhacungcap SET nhacungcapcode='{0}', nhacungcapname='{1}', address='{2}', phone='{3}', remark='{4}', islock='{5}', lastuserupdated='{6}' WHERE nhacungcapid='{7}';", txtnhacungcapcode.Text.Trim(), txtnhacungcapname.Text.Trim(), txtaddress.Text.Replace("'", "''"), txtphone.Text, txtremark.Text, (chkIslock.Checked == true ? 1 : 0), Base.SessionLogin.SessionUsercode, this.selectID);
                 }
                 else
                 {
-                    _sqlinsert = "INSERT INTO pm_nuocsanxuat(nuocsanxuatcode, nuocsanxuatname, lastuserupdated) VALUES ('" + txtnuocsanxuatcode.Text.Trim() + "', '" + txtnuocsanxuatname.Text.Trim() + "', '" + Base.SessionLogin.SessionUsercode + "');";
+                    _sqlinsert = String.Format("INSERT INTO public.pm_nhacungcap(nhacungcapcode, nhacungcapname, address, phone, remark, lastuserupdated) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}');", txtnhacungcapcode.Text.Trim(), txtnhacungcapname.Text.Trim(), txtaddress.Text.Replace("'", "''"), txtphone.Text, txtremark.Text, Base.SessionLogin.SessionUsercode);
                 }
                 if (condb.ExecuteNonQuery_Phr(_sqlinsert))
                 {
@@ -117,12 +116,12 @@ namespace MedicalLink.QLDuoc
             try
             {
                 var rowHandle = gridViewData.FocusedRowHandle;
-                string _nuocsanxuatid = gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatid").ToString();
+                string _nhacungcapid = gridViewData.GetRowCellValue(rowHandle, "nhacungcapid").ToString();
 
                 DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa ?", "Thông báo !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    string _sqlXoa = "DELETE FROM pm_nuocsanxuat WHERE nuocsanxuatid=" + this.selectID + ";";
+                    string _sqlXoa = "DELETE FROM pm_nhacungcap WHERE nhacungcapid=" + this.selectID + ";";
                     if (condb.ExecuteNonQuery_Phr(_sqlXoa))
                     {
                         ResetControl();
@@ -150,10 +149,13 @@ namespace MedicalLink.QLDuoc
             try
             {
                 var rowHandle = gridViewData.FocusedRowHandle;
-                this.selectID = O2S_Common.TypeConvert.Parse.ToInt32(gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatid").ToString());
-                txtnuocsanxuatid.Text = this.selectID.ToString();
-                txtnuocsanxuatcode.Text = gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatcode").ToString();
-                txtnuocsanxuatname.Text = gridViewData.GetRowCellValue(rowHandle, "nuocsanxuatname").ToString();
+                this.selectID = O2S_Common.TypeConvert.Parse.ToInt32(gridViewData.GetRowCellValue(rowHandle, "nhacungcapid").ToString());
+                txtnhacungcapid.Text = this.selectID.ToString();
+                txtnhacungcapcode.Text = gridViewData.GetRowCellValue(rowHandle, "nhacungcapcode").ToString();
+                txtnhacungcapname.Text = gridViewData.GetRowCellValue(rowHandle, "nhacungcapname").ToString();
+                txtaddress.EditValue = gridViewData.GetRowCellValue(rowHandle, "address");
+                txtphone.EditValue = gridViewData.GetRowCellValue(rowHandle, "phone");
+                txtremark.EditValue = gridViewData.GetRowCellValue(rowHandle, "remark");
                 chkIslock.Checked = (gridViewData.GetRowCellValue(rowHandle, "islock").ToString() == "1" ? true : false);
 
                 btnXoa.Enabled = true;
@@ -173,11 +175,14 @@ namespace MedicalLink.QLDuoc
             try
             {
                 this.selectID = 0;
-                txtnuocsanxuatid.ResetText();
-                txtnuocsanxuatcode.ResetText();
-                txtnuocsanxuatname.ResetText();
+                txtnhacungcapid.ResetText();
+                txtnhacungcapcode.ResetText();
+                txtnhacungcapname.ResetText();
+                txtaddress.ResetText();
+                txtphone.ResetText();
+                txtremark.ResetText();
                 chkIslock.Checked = false;
-                txtnuocsanxuatcode.Focus();
+                txtnhacungcapcode.Focus();
             }
             catch (Exception ex)
             {

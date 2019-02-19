@@ -30,17 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DM_Thuoc));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkAnThuocKhoa = new DevExpress.XtraEditors.CheckEdit();
+            this.btnImport = new DevExpress.XtraEditors.SimpleButton();
+            this.btnExport = new DevExpress.XtraEditors.SimpleButton();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnExport = new DevExpress.XtraEditors.SimpleButton();
-            this.btnImport = new DevExpress.XtraEditors.SimpleButton();
-            this.chkAnThuocKhoa = new DevExpress.XtraEditors.CheckEdit();
             this.treeListDSThuoc = new DevExpress.XtraTreeList.TreeList();
             this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn4 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumn5 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn6 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn7 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn8 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
@@ -48,15 +47,16 @@
             this.treeListColumn10 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn11 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn12 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn18 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn13 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn14 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn15 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn16 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.treeListColumn17 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.treeListColumn18 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn5 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkAnThuocKhoa.Properties)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListDSThuoc)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +71,49 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1096, 50);
             this.panel1.TabIndex = 0;
+            // 
+            // chkAnThuocKhoa
+            // 
+            this.chkAnThuocKhoa.EditValue = true;
+            this.chkAnThuocKhoa.Location = new System.Drawing.Point(585, 15);
+            this.chkAnThuocKhoa.Name = "chkAnThuocKhoa";
+            this.chkAnThuocKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkAnThuocKhoa.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.chkAnThuocKhoa.Properties.Appearance.Options.UseFont = true;
+            this.chkAnThuocKhoa.Properties.Appearance.Options.UseForeColor = true;
+            this.chkAnThuocKhoa.Properties.Caption = "Ẩn thuốc đã khóa";
+            this.chkAnThuocKhoa.Size = new System.Drawing.Size(133, 20);
+            this.chkAnThuocKhoa.TabIndex = 92;
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnImport.Appearance.Options.UseFont = true;
+            this.btnImport.Appearance.Options.UseForeColor = true;
+            this.btnImport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
+            this.btnImport.Location = new System.Drawing.Point(911, 10);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(120, 30);
+            this.btnImport.TabIndex = 91;
+            this.btnImport.Text = "Thêm từ file";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnExport.Appearance.Options.UseFont = true;
+            this.btnExport.Appearance.Options.UseForeColor = true;
+            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
+            this.btnExport.Location = new System.Drawing.Point(766, 10);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(120, 30);
+            this.btnExport.TabIndex = 90;
+            this.btnExport.Text = "Xuất DS";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnThem
             // 
@@ -94,49 +137,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1096, 563);
             this.panel2.TabIndex = 1;
-            // 
-            // btnExport
-            // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnExport.Appearance.Options.UseFont = true;
-            this.btnExport.Appearance.Options.UseForeColor = true;
-            this.btnExport.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.Image")));
-            this.btnExport.Location = new System.Drawing.Point(766, 10);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(120, 30);
-            this.btnExport.TabIndex = 90;
-            this.btnExport.Text = "Xuất DS";
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImport.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImport.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnImport.Appearance.Options.UseFont = true;
-            this.btnImport.Appearance.Options.UseForeColor = true;
-            this.btnImport.Image = global::MedicalLink.Properties.Resources.excel_3_16;
-            this.btnImport.Location = new System.Drawing.Point(911, 10);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(120, 30);
-            this.btnImport.TabIndex = 91;
-            this.btnImport.Text = "Thêm từ file";
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
-            // chkAnThuocKhoa
-            // 
-            this.chkAnThuocKhoa.EditValue = true;
-            this.chkAnThuocKhoa.Location = new System.Drawing.Point(585, 15);
-            this.chkAnThuocKhoa.Name = "chkAnThuocKhoa";
-            this.chkAnThuocKhoa.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkAnThuocKhoa.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.chkAnThuocKhoa.Properties.Appearance.Options.UseFont = true;
-            this.chkAnThuocKhoa.Properties.Appearance.Options.UseForeColor = true;
-            this.chkAnThuocKhoa.Properties.Caption = "Ẩn thuốc đã khóa";
-            this.chkAnThuocKhoa.Size = new System.Drawing.Size(133, 20);
-            this.chkAnThuocKhoa.TabIndex = 92;
             // 
             // treeListDSThuoc
             // 
@@ -247,33 +247,14 @@
             this.treeListColumn4.AppearanceHeader.Options.UseForeColor = true;
             this.treeListColumn4.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListColumn4.Caption = "Hàm lượng";
-            this.treeListColumn4.FieldName = "hamluong";
+            this.treeListColumn4.Caption = "Mã nhóm";
+            this.treeListColumn4.FieldName = "medicinegroupcode";
             this.treeListColumn4.Name = "treeListColumn4";
             this.treeListColumn4.OptionsColumn.AllowEdit = false;
             this.treeListColumn4.OptionsColumn.ReadOnly = true;
             this.treeListColumn4.Visible = true;
             this.treeListColumn4.VisibleIndex = 3;
-            this.treeListColumn4.Width = 160;
-            // 
-            // treeListColumn5
-            // 
-            this.treeListColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.treeListColumn5.AppearanceCell.Options.UseFont = true;
-            this.treeListColumn5.AppearanceCell.Options.UseTextOptions = true;
-            this.treeListColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListColumn5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeListColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.treeListColumn5.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn5.AppearanceHeader.Options.UseForeColor = true;
-            this.treeListColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListColumn5.Caption = "ID";
-            this.treeListColumn5.FieldName = "medicinerefid";
-            this.treeListColumn5.Name = "treeListColumn5";
-            this.treeListColumn5.OptionsColumn.ReadOnly = true;
-            this.treeListColumn5.Visible = true;
-            this.treeListColumn5.VisibleIndex = 17;
+            this.treeListColumn4.Width = 125;
             // 
             // treeListColumn6
             // 
@@ -286,7 +267,7 @@
             this.treeListColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn6.Caption = "Số đăng ký";
-            this.treeListColumn6.FieldName = "Số đăng ký";
+            this.treeListColumn6.FieldName = "sodangky";
             this.treeListColumn6.Name = "treeListColumn6";
             this.treeListColumn6.OptionsColumn.AllowEdit = false;
             this.treeListColumn6.OptionsColumn.ReadOnly = true;
@@ -305,7 +286,7 @@
             this.treeListColumn7.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn7.Caption = "Hoạt chất";
-            this.treeListColumn7.FieldName = "Hoạt chất";
+            this.treeListColumn7.FieldName = "hoatchat";
             this.treeListColumn7.Name = "treeListColumn7";
             this.treeListColumn7.OptionsColumn.AllowEdit = false;
             this.treeListColumn7.OptionsColumn.ReadOnly = true;
@@ -324,7 +305,7 @@
             this.treeListColumn8.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn8.Caption = "Nồng độ";
-            this.treeListColumn8.FieldName = "Nồng độ";
+            this.treeListColumn8.FieldName = "nongdo";
             this.treeListColumn8.Name = "treeListColumn8";
             this.treeListColumn8.OptionsColumn.AllowEdit = false;
             this.treeListColumn8.OptionsColumn.ReadOnly = true;
@@ -343,7 +324,7 @@
             this.treeListColumn9.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn9.Caption = "Hàm lượng";
-            this.treeListColumn9.FieldName = "Hàm lượng";
+            this.treeListColumn9.FieldName = "hamluong";
             this.treeListColumn9.Name = "treeListColumn9";
             this.treeListColumn9.OptionsColumn.AllowEdit = false;
             this.treeListColumn9.OptionsColumn.ReadOnly = true;
@@ -362,7 +343,7 @@
             this.treeListColumn10.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn10.Caption = "Quy cách đóng gói";
-            this.treeListColumn10.FieldName = "Quy cách đóng gói";
+            this.treeListColumn10.FieldName = "quycachdonggoi";
             this.treeListColumn10.Name = "treeListColumn10";
             this.treeListColumn10.OptionsColumn.AllowEdit = false;
             this.treeListColumn10.OptionsColumn.ReadOnly = true;
@@ -381,7 +362,7 @@
             this.treeListColumn11.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn11.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn11.Caption = "Nước sản xuất";
-            this.treeListColumn11.FieldName = "Nước sản xuất";
+            this.treeListColumn11.FieldName = "nuocsanxuat";
             this.treeListColumn11.Name = "treeListColumn11";
             this.treeListColumn11.OptionsColumn.AllowEdit = false;
             this.treeListColumn11.OptionsColumn.ReadOnly = true;
@@ -400,13 +381,32 @@
             this.treeListColumn12.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn12.Caption = "Hãng sản xuất";
-            this.treeListColumn12.FieldName = "Hãng sản xuất";
+            this.treeListColumn12.FieldName = "hangsanxuat";
             this.treeListColumn12.Name = "treeListColumn12";
             this.treeListColumn12.OptionsColumn.AllowEdit = false;
             this.treeListColumn12.OptionsColumn.ReadOnly = true;
             this.treeListColumn12.Visible = true;
             this.treeListColumn12.VisibleIndex = 10;
             this.treeListColumn12.Width = 180;
+            // 
+            // treeListColumn18
+            // 
+            this.treeListColumn18.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.treeListColumn18.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn18.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.treeListColumn18.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.treeListColumn18.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn18.AppearanceHeader.Options.UseForeColor = true;
+            this.treeListColumn18.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn18.Caption = "Nhà cung cấp";
+            this.treeListColumn18.FieldName = "nhacungcap";
+            this.treeListColumn18.Name = "treeListColumn18";
+            this.treeListColumn18.OptionsColumn.AllowEdit = false;
+            this.treeListColumn18.OptionsColumn.ReadOnly = true;
+            this.treeListColumn18.Visible = true;
+            this.treeListColumn18.VisibleIndex = 11;
+            this.treeListColumn18.Width = 180;
             // 
             // treeListColumn13
             // 
@@ -421,7 +421,7 @@
             this.treeListColumn13.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn13.Caption = "Giá nhập";
-            this.treeListColumn13.FieldName = "Giá nhập";
+            this.treeListColumn13.FieldName = "gianhap";
             this.treeListColumn13.Name = "treeListColumn13";
             this.treeListColumn13.OptionsColumn.AllowEdit = false;
             this.treeListColumn13.OptionsColumn.ReadOnly = true;
@@ -442,7 +442,7 @@
             this.treeListColumn14.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn14.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn14.Caption = "VAT nhập";
-            this.treeListColumn14.FieldName = "VAT nhập";
+            this.treeListColumn14.FieldName = "vatnhap";
             this.treeListColumn14.Name = "treeListColumn14";
             this.treeListColumn14.OptionsColumn.AllowEdit = false;
             this.treeListColumn14.OptionsColumn.ReadOnly = true;
@@ -462,7 +462,7 @@
             this.treeListColumn15.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn15.Caption = "Giá bán";
-            this.treeListColumn15.FieldName = "Giá bán";
+            this.treeListColumn15.FieldName = "giaban";
             this.treeListColumn15.Name = "treeListColumn15";
             this.treeListColumn15.OptionsColumn.AllowEdit = false;
             this.treeListColumn15.OptionsColumn.ReadOnly = true;
@@ -483,7 +483,7 @@
             this.treeListColumn16.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn16.Caption = "VAT bán";
-            this.treeListColumn16.FieldName = "VAT bán";
+            this.treeListColumn16.FieldName = "vatban";
             this.treeListColumn16.Name = "treeListColumn16";
             this.treeListColumn16.OptionsColumn.AllowEdit = false;
             this.treeListColumn16.OptionsColumn.ReadOnly = true;
@@ -501,7 +501,7 @@
             this.treeListColumn17.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn17.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn17.Caption = "Mã BHYT";
-            this.treeListColumn17.FieldName = "Mã BHYT";
+            this.treeListColumn17.FieldName = "medicinecodeuser";
             this.treeListColumn17.Name = "treeListColumn17";
             this.treeListColumn17.OptionsColumn.AllowEdit = false;
             this.treeListColumn17.OptionsColumn.ReadOnly = true;
@@ -509,24 +509,24 @@
             this.treeListColumn17.VisibleIndex = 16;
             this.treeListColumn17.Width = 150;
             // 
-            // treeListColumn18
+            // treeListColumn5
             // 
-            this.treeListColumn18.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.treeListColumn18.AppearanceCell.Options.UseFont = true;
-            this.treeListColumn18.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.treeListColumn18.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.treeListColumn18.AppearanceHeader.Options.UseFont = true;
-            this.treeListColumn18.AppearanceHeader.Options.UseForeColor = true;
-            this.treeListColumn18.AppearanceHeader.Options.UseTextOptions = true;
-            this.treeListColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListColumn18.Caption = "Nhà cung cấp";
-            this.treeListColumn18.FieldName = "Nhà cung cấp";
-            this.treeListColumn18.Name = "treeListColumn18";
-            this.treeListColumn18.OptionsColumn.AllowEdit = false;
-            this.treeListColumn18.OptionsColumn.ReadOnly = true;
-            this.treeListColumn18.Visible = true;
-            this.treeListColumn18.VisibleIndex = 11;
-            this.treeListColumn18.Width = 180;
+            this.treeListColumn5.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.treeListColumn5.AppearanceCell.Options.UseFont = true;
+            this.treeListColumn5.AppearanceCell.Options.UseTextOptions = true;
+            this.treeListColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn5.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeListColumn5.AppearanceHeader.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.treeListColumn5.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn5.AppearanceHeader.Options.UseForeColor = true;
+            this.treeListColumn5.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn5.Caption = "ID";
+            this.treeListColumn5.FieldName = "medicinerefid";
+            this.treeListColumn5.Name = "treeListColumn5";
+            this.treeListColumn5.OptionsColumn.ReadOnly = true;
+            this.treeListColumn5.Visible = true;
+            this.treeListColumn5.VisibleIndex = 17;
             // 
             // DM_Thuoc
             // 
@@ -538,8 +538,8 @@
             this.Size = new System.Drawing.Size(1096, 613);
             this.Load += new System.EventHandler(this.DM_Thuoc_Load);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chkAnThuocKhoa.Properties)).EndInit();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListDSThuoc)).EndInit();
             this.ResumeLayout(false);
 

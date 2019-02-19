@@ -34,30 +34,126 @@ namespace MedicalLink.QLDuoc
         #region Load
         private void DM_ThuocDetail_Load(object sender, EventArgs e)
         {
-            //LoadDanhSachThuocVatTu();
-            //HienThiLenTreeList();
-
-            //if (this.medicinestoreid != 0)
-            //{
-            //    LoadDanhSachThuocVatTuCheckTheoKho();
-            //}
+            try
+            {
+                LoadHoatChat();
+                LoadBietDuoc();
+                LoadDonViTinh();
+                LoadDuongDung();
+                LoadNuocSanXuat();
+                LoadHangSanXuat();
+                LoadNhaCungCap();
+                LoadMacDinhKhac();
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Warn(ex);
+            }
         }
-        private void LoadDanhSachThuocVatTu()
+        private void LoadHoatChat()
         {
             try
             {
-                //string _sqlDSThuoc = "";
-                //DataTable _dataThuoc = condb.GetDataTable_Phr(_sqlDSThuoc);
-                //this.lstMedicineref = O2S_Common.DataTables.Convert.DataTableToList<MedicinerefDTO>(_dataThuoc);
+                string _sqldata = "";
+                DataTable _dataDM = condb.GetDataTable_Phr(_sqldata);
+
             }
             catch (Exception ex)
             {
                 O2S_Common.Logging.LogSystem.Error(ex);
             }
         }
+        private void LoadBietDuoc()
+        {
+            try
+            {
+                string _sqldata = "";
+                DataTable _dataDM = condb.GetDataTable_Phr(_sqldata);
 
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Error(ex);
+            }
+        }
+        private void LoadDonViTinh()
+        {
+            try
+            {
+                string _sqldata = "";
+                DataTable _dataDM = condb.GetDataTable_Phr(_sqldata);
+
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Error(ex);
+            }
+        }
+        private void LoadDuongDung()
+        {
+            try
+            {
+                string _sqldata = "";
+                DataTable _dataDM = condb.GetDataTable_Phr(_sqldata);
+
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Error(ex);
+            }
+        }
+        private void LoadNuocSanXuat()
+        {
+            try
+            {
+                string _sqldata = "";
+                DataTable _dataDM = condb.GetDataTable_Phr(_sqldata);
+
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Error(ex);
+            }
+        }
+        private void LoadHangSanXuat()
+        {
+            try
+            {
+                string _sqldata = "";
+                DataTable _dataDM = condb.GetDataTable_Phr(_sqldata);
+
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Error(ex);
+            }
+        }
+        private void LoadNhaCungCap()
+        {
+            try
+            {
+                string _sqldata = "";
+                DataTable _dataDM = condb.GetDataTable_Phr(_sqldata);
+
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Error(ex);
+            }
+        }
+        private void LoadMacDinhKhac()
+        {
+            try
+            {
+               
+
+            }
+            catch (Exception ex)
+            {
+                O2S_Common.Logging.LogSystem.Error(ex);
+            }
+        }
         #endregion
-
 
         #region Events
         private void btnLuuLai_Click(object sender, EventArgs e)
@@ -103,9 +199,6 @@ namespace MedicalLink.QLDuoc
 
         #endregion
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
     }
 }

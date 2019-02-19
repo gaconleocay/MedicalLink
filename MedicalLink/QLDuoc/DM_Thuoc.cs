@@ -98,13 +98,13 @@ new object[] { _medicinecode, _medicinename, null, null, null, null, null, null,
                         if (_mediObj != null && _mediObj.Count() > 0)
                         {
                             TreeListNode childNode = treeListDSThuoc.AppendNode(
-                    new object[] { _medi.medicinecode, _medi.medicinename, _medi.donvitinh, _medi.hamluong, _medi.sodangky, _medi.hoatchat, _medi.nongdo, _medi.hamluong, _medi.quycachdonggoi, _medi.nuocsanxuat, _medi.hangsanxuat, _medi.nhacungcap, _medi.gianhap, _medi.vatnhap, _medi.giaban, _medi.vatban, _medi.medicinecodeuser, _medi.medicinerefid }, rootNode, null);
+                    new object[] { _medi.medicinecode, _medi.medicinename, _medi.donvitinh, _medi.medicinegroupcode, _medi.sodangky, _medi.hoatchat, _medi.nongdo, _medi.hamluong, _medi.quycachdonggoi, _medi.nuocsanxuat, _medi.hangsanxuat, _medi.nhacungcap, _medi.gianhap, _medi.vatnhap, _medi.giaban, _medi.vatban, _medi.medicinecodeuser, _medi.medicinerefid }, rootNode, null);
                             CreateChildNodeServiceType(childNode, _medi.medicinecode, lstMedicineref);
                         }
                         else //là lá
                         {
                             TreeListNode childChildNode = treeListDSThuoc.AppendNode(
-                                new object[] { _medi.medicinecode, _medi.medicinename, _medi.donvitinh, _medi.hamluong, _medi.sodangky, _medi.hoatchat, _medi.nongdo, _medi.hamluong, _medi.quycachdonggoi, _medi.nuocsanxuat, _medi.hangsanxuat, _medi.nhacungcap, _medi.gianhap, _medi.vatnhap, _medi.giaban, _medi.vatban, _medi.medicinecodeuser, _medi.medicinerefid }, rootNode, _medi);
+                                new object[] { _medi.medicinecode, _medi.medicinename, _medi.donvitinh, _medi.medicinegroupcode, _medi.sodangky, _medi.hoatchat, _medi.nongdo, _medi.hamluong, _medi.quycachdonggoi, _medi.nuocsanxuat, _medi.hangsanxuat, _medi.nhacungcap, _medi.gianhap, _medi.vatnhap, _medi.giaban, _medi.vatban, _medi.medicinecodeuser, _medi.medicinerefid }, rootNode, _medi);
                         }
                     }
                 }
